@@ -1,0 +1,170 @@
+\documentclass{article}
+
+\usepackage{coursenotes}
+
+\set{AuthorName}{TC Fraser}
+\set{Email}{tcfraser@tcfraser.com}
+\set{Website}{www.tcfraser.com}
+\set{ClassName}{General Relativity}
+\set{School}{University of Waterloo}
+\set{CourseCode}{Phys 476}
+\set{InstructorName}{Florian Girelli}
+\set{Term}{Winter 2016}
+
+\begin{document}
+
+\titlePage
+
+\tableOfContents
+
+\disclaimer
+
+
+\section{Introduction}
+
+\subsection{History}
+
+The first lecture was a summary of astrophsyical history from around ~200BC to today. I elected note to take notes as it was pretty standard stuff and a lot of slides.
+
+\section{Tensor Formalism}
+
+Let $V$ be a vector space of finite dimension. Any $V$ is iosmorphic to $\R^{n+1}$ through the coefficients of a chosen basis. Let the basis of $V$ be given by,
+
+\[ \bc{e_i}_{i=\tok0n} \]
+
+Then any vector $v \in V$ is expressible by,
+
+\[ v = \sum_{i=0}^{n} v^i e_i \]
+
+Where $v^i$ are the $i$-th coefficients of the vector $v$ with respect to the basis $\bc{e_i}$.
+
+\subsection{Einstein Summation Rule}
+
+For convience let's provide a new, shorter notation for the vector $v$.
+
+\[ v^ie_i = v^0e_0 + \ldots + v^ne_n = \sum_{i=0}^nv^ie_i \]
+
+Effectively, we have just \textbf{dropped the summation sign}. The einstein summation rule is as follows: \\
+
+If there are two identical indicies, 1 ``up'' and 1 ``down'', it means that a summation is secretly present, it's just be removed for convience. Note that the $i$ in this case is \textit{dummy index}.
+
+\[ v^ie_i = v^{\alpha}e_{\alpha} = v^je_j \]
+
+Here $v^i$ are the components of vector $v \in V$ and are real numbers. $v^i \in \R, \forall i \in \bc{\tok0n}$. \\
+
+Note $v^i$ is called the vector $v$ when $i$ is the set $\bc{\tok0n}$, but can also be called the $i$-th component of $v$ when $i$ has a fixed value $i \in \bc{\tok0n}$. \\
+
+\subsection{Examples of Basis for V}
+
+The values of $e_i$ or the $i$'s themselves can take on many possible values.
+
+\begin{itemize}
+    \item cartesian coordinates $t,x,y,z$
+    \item spherical coordinates $t, r, \phi, \theta$
+    \item etc.
+\end{itemize}
+
+Each of the above examples is the space $V = \R^4$ (with some bounds for spherical coordinates).
+
+\subsection{Dual Vector Space}
+
+The dual vector space of $V$ denoted $V^*$ is also iosmorphic to $\R^{n+1}$ and is built from the space of linear forms on V.
+
+\[ V^* = \bc{w: V \ar \R \st w(\alpha v_1 + \beta v_2) = \alpha w( v_1) + \beta w(v_2)} \]
+
+where $v_1, v_2 \in V$ and $\alpha, \beta \in \R$.
+
+In Quantum Mechanics, the vectors are the bras and the elements of the dual space (called the covectors) are the kets. \\
+
+We note,
+
+\[ \bc{f^i}_{i=\tok0n} \]
+
+is the basis for $V^*$ is defined by the kronecker symbol $\delta$,
+
+\[ f^j(e_j) = {\delta^j}_i \]
+
+\[ {\delta^j}_i = \piecewise{1}{i=j}{0}{i\neq j} \]
+
+An element in $V^*$ is $w = w_if^i$. $w_i$ are the components of the covector $w$. Note that for a \textbf{finite dimensional vector space},
+
+\[ V^{**} = V \]
+
+\subsection{Bilinear Maps}
+
+Introduce a bilinear map $B(v, w)$ where $B: V \cross V \ar \R$ where,
+
+\[ B(\alpha v_1 + \beta v_2, w) = \alpha B(v_1, w) + \beta B(v_2, w) \]
+
+and the same for the other parameter $w$. \\
+
+Examples include the inner product (otherwise known as the scale or dot product).
+
+Bilinear forms are bilinear maps such that the following conditions are true:
+
+\begin{itemize}
+    \item symmetric: $B(v,w) = B(w,v)$
+    \item non-degenerated: $B(v,w) = 0 \quad \forall v \implies w = 0$
+\end{itemize}
+
+Playing with indicies,
+
+\begin{align*}
+    B(v,w) &= B(v^\alpha e_\alpha, w^\beta e_\beta) \\
+           &= v^\alpha B( e_\alpha, w^\beta e_\beta) \note{By linearity} \\
+           &= v^\alpha w^\beta B( e_\alpha, e_\beta) \note{By linearity}
+\end{align*}
+
+A bilinear map used in this way provides a way to eliminate the headache of complicated cross sums. Define new notation,
+
+\[ B( e_\alpha, e_\beta) \defined g_{\al\be} \]
+
+Where $g_{\al\be}$ is a real number $\R$ whenever $\al$ and $\be$ are fixed.
+
+\[ B(v, w) = v^\al w^\be g_{\al\be} = v^\al g_{\al\be}w^\be =  w^\be g_{\al\be} v^\al \]
+
+All of the above terms are commutative because in the end, it represents a sum over all $\al, \be$.
+
+\[ B(v,w) = \underbrace{v^0w^0g_{00} + \ldots + v^2w^3g_{2,3} + \ldots + v^nw^ng_{nn}}_{(n+1)^2 \text{terms}} \]
+
+\subsection{Distance and Norms}
+
+To define a distance in a vector space, we can use norms. In this case, $g_{\al\be}$ would be called the metric. The Euclidean metric (with respect to a cartesian basis) for example would be,
+
+\[ g_{\al\be} = \piecewise{1}{\al = \be}{0}{\al \neq \be}  \]
+
+We can also choose to enforce that the basis be orthonormal,
+
+\[ B(e_i, e_j) = \piecewise{\pm1}{i = j}{0}{i \neq j} \]
+
+Note that the potential for a negative norm means the notion of positive definiteness is no longer gauranteed.
+
+\subsection{Signatures of Metrics}
+
+We call the signature of the metric the number of $+1$'s and $-1$'s appearing in $g_{ij}$ when dealing with the orthonormal basis. Signature is denoted as:
+
+\[ \br{p, q} = \br{\underbrace{p}_{\text{postive}}, \underbrace{q}_{\text{negative}}} \]
+
+For example,
+
+\begin{itemize}
+    \item Euclidean metric: $(n+1, 0)$
+    \item Minkowski metric: $(n, 1)$
+\end{itemize}
+
+Note the order of the signature is chosen to be $(p,q)$ and not $(q, p)$ by convention.
+
+\subsection{Covectors from Vectors}
+
+Note that $v^i$ was called the vector and $w_i$ was called the covector. This notation seems to indicate that conversion between $V$ and $V^*$ is notationally equivalent to raising and lowering the indicies. \\
+
+We call the following opperation ``Lowing the index using the metric''.
+
+\[ \underbrace{v^\al}_{\text{components of vector}} \mapsto g_{\al\be} v^\be = \underbrace{v_\al}_{\text{components of covector}} \]
+
+In use,
+
+\[ B(v,w) = v^\al g_{\al\be} w^\be = \untext{v_\be}{bra} \untext{w^\be}{ket} \]
+
+
+\end{document}
