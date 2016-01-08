@@ -30,7 +30,7 @@ The first lecture was a summary of astrophsyical history from around $\sim$200BC
 
 At the core of General Relativity is the mathematics of differential geometry. Differential geometry requires the idea of tensors, a generalization of vectors and matricies and forms that can handle messy geometries and metrics. \\
 
-Let $V$ be a vector space of finite dimension. Any $V$ is iosmorphic to $\R^{n+1}$ through the coefficients of a chosen basis. Let the basis of $V$ be given by,
+Let $V$ be a vector space of finite dimension. Any $V$ is isomorphic to $\R^{n+1}$ through the coefficients of a chosen basis. Let the basis of $V$ be given by,
 
 \[ \bc{e_i}_{i=\tok0n} \]
 
@@ -70,7 +70,7 @@ Each of the above examples is the space $V = \R^4$ (with some bounds for spheric
 
 \subsection{Dual Vector Space}
 
-The dual vector space of $V$ denoted $V^*$ is also iosmorphic to $\R^{n+1}$ and is built from the space of linear forms on V.
+The dual vector space of $V$ denoted $V^*$ is also isomorphic to $\R^{n+1}$ and is built from the space of linear forms on V.
 
 \[ V^* = \bc{w: V \ar \R \st w(\alpha v_1 + \beta v_2) = \alpha w( v_1) + \beta w(v_2)} \]
 
@@ -121,7 +121,7 @@ A bilinear map used in this way provides a way to eliminate the headache of comp
 
 \[ B( e_\alpha, e_\beta) \defined g_{\al\be} \]
 
-Where $g_{\al\be}$ is a real number $\R$ whenever $\al$ and $\be$ are fixed.
+Where $g_{\al\be}$ is a real number $\R$ because $\al$ and $\be$ are summed over.
 
 \[ B(v, w) = v^\al w^\be g_{\al\be} = v^\al g_{\al\be}w^\be =  w^\be g_{\al\be} v^\al \]
 
@@ -160,13 +160,144 @@ Note the order of the signature is chosen to be $(p,q)$ and not $(q, p)$ by conv
 
 Note that $v^i$ was called the vector and $w_i$ was called the covector. This notation seems to indicate that conversion between $V$ and $V^*$ is notationally equivalent to raising and lowering the indicies. \\
 
-We call the following opperation ``Lowing the index using the metric''.
+We call the following opperation ``Lowering the index using the metric''.
 
 \[ \underbrace{v^\al}_{\text{components of vector}} \mapsto g_{\al\be} v^\be = \underbrace{v_\al}_{\text{components of covector}} \]
 
 In use,
 
 \[ B(v,w) = v^\al g_{\al\be} w^\be = \untext{v_\be}{bra} \untext{w^\be}{ket} \]
+
+\subsection{Linear Map on V to V}
+
+\[ M : V \ar V \]
+
+Where M is a matrix. An the map is equivalent to $v \ar Mv \in V$. Some definition,
+
+\[ \br{Mv}^\al = \untext{{M^\al}_\be}{Matrix \\ (components)} v^\be \]
+
+Note that ${M^\al}_\be \in \R$ for $\al$ and $\be$ fixed. Example: The identity matrix is denoted ${\delta^\al}_\be = \mathbb{I}$.
+
+\subsection{Scalar Product on Dual Space}
+
+Introduce a scalar product for the covectors $w$.
+
+\[ w, t \in V^* \]
+
+\[ w \cdot t = w_\al h^{\al\be} t_\be \]
+
+Where $h^{\al\be}$ is symmetric and non-degenerate.
+
+So how is the scalar product between the dual and normal space related? Specifically how are $g_{\al\be}$ and $h^{\al\be}$ connected? Well,
+
+\begin{align*}
+   v^\al g_{\al\be} w^\be &= v^\al w_\al \\
+   &= v_\ga h^{\ga\al} w_\al \\
+   &= v^\nu g_{\nu\ga} h^{\ga\al} w_\al \\
+   &= v^\nu g_{\nu\ga} h^{\ga\al} g_{\al\mu} w^\mu
+\end{align*}
+
+Since this is true for any $v$ and $w$ we require that,
+
+\[ h^{\ga\al} g_{\al\mu} = {\delta^\ga}_\mu \]
+
+This means we say that the metric $h$ is the inverse of the metric $g$. Convention on $V^*$: we denote the metric $g^{\al\be}$ (the indicies are ``up''). \\
+
+\subsection{Invariance of Scalar Product}
+
+% TODO ' to above tilde
+
+Let us say we have a matrix $M : v \ar v' = Mv, w \ar w' = Mw$ and that $M$ preserves the scalar product.
+
+\[ v' \cdot w' = v \cdot w \qquad \forall v, w \]
+
+Examine,
+
+\[ {M^\ga}_\al v^\al g_{\al\be} {M^\be}_\rho w^\rho = v^\al g_{\al\be}w^\be \]
+
+Use communitivity and dummyness of indicies to obtain,
+
+\[ v^\al {M^\ga}_\al g_{\al\rho} {M^\rho}_\be w^\be = v^\al g_{\al\be}w^\be \]
+
+Drop outer covectors $v$ and $w$ to get,
+
+% TODO section numbering
+
+\[ {M^\ga}_\al g_{\al\rho} {M^\rho}_\be = g_{\al\be} \numberthis \label{eq:invarM} \]
+
+Note that this expression is consistent with the Einstein summation convention. \\
+
+An example of an $M$ on euclidean space could be a rotation matrix, or the identity. \\
+
+When $M$ satisfies \ref{eq:invarM}, it is said to be orthogonal. It $\det(M) = 1$ then we say that $M$ is \textit{special}.
+
+\subsection{Trace of M}
+
+What is the trace of $M$?
+
+\[ \Tr(M) = {M^\al}_\al = {M^0}_0 + \ldots + {M^n}_n\]
+
+This is just a notationally convention. It is the sum of the diagonal terms of $M$.
+
+\subsection{Tensor Product}
+
+A tensor product makes a linear map a multi-linear map.
+
+\heading{Theorem}
+
+Let $E$ and $F$ be 2 vector spaces (with finite dimensionality.)
+
+$\exists $ a unique ($!$) set (up to isomorphism) $E \otimes F$ such that if $f$ is a bilinear map $f: E \cross F \ar \R$ then $\exists$ a linear map $f^* : E \otimes F \ar \R$ such that $f = f^* \circ \phi$ with
+
+\begin{center}
+\begin{tikzpicture}
+\node (EtimesF) at (0,0) {$E \times F$};
+\node (EotimesF) at (0,-2) {$E \otimes F$};
+\node (R) at (2,-2) {$\R$};
+\draw [->] (EtimesF) edge node[left] {$\phi$} (EotimesF);
+\draw [->] (EtimesF) edge node[right] {$f$} (R);
+\draw [->] (EotimesF) edge node[below] {$f^*$} (R);
+\end{tikzpicture}
+\end{center}
+
+Then we have,
+
+\[ \Lin(E \otimes F, \R) \iso \Bin(E \cross F, \R) \]
+\[ \Lin(f^*, \R) \iso \Bin(f, \R) \]
+
+\heading{Properties}
+
+Basis for $E \otimes F$ is $e_\al \otimes g_\al$ where $e_\al$ is the basis for E and $g_\al$ is the basis for F.
+For $a \in \R$ and $t, v \in E$, $u, w \in F$,
+
+\begin{itemize}
+    \item $\dim(E \otimes F) = \dim(E)\dim(F)$
+    \item $a (v \otimes w) = (av) \otimes w = v \otimes (aw)$
+    \item $(v + t) \otimes w = v \otimes w + t \otimes w$
+    \item $v \otimes (w + u) = v \otimes w + v \otimes u$
+    \item $a \otimes w = aw$
+    \item $\R \otimes F = F$
+\end{itemize}
+
+Note that $V^* \otimes V^* \iso \Bin(V \times V, \R)$. To motivate this, let $f^\al \otimes f^\be$ be the basis for $V^* \otimes V^*$, and then a general element in $V^* \otimes V^*$ is,
+
+\[ t = t_{\al\be} f^\al \otimes f^\be \]
+
+Note that $t_{\al\be}$ is just a set of numbers. Then the tensor product is expanded as follows,
+
+\begin{align*}
+    t (v \otimes w) &= t (v^\al e_\al \otimes w^\be e_\be) \\
+    &= t_{\ga\de} (f^\ga \otimes f^\de) (v^\al e_\al \otimes w^\be e_\be) \\
+    &= t_{\ga\de} v^\al w^\be (f^\ga \otimes f^\de) (e_\al \otimes e_\be) \note{By linearity} \\
+    &= t_{\ga\de} v^\al w^\be f^\ga(e_\al) f^\de(e_\be) \note{By foiling and definition of $f$} \\
+    &= t_{\ga\de} v^\al w^\be {\delta^\ga}\al {\delta^\de}_\be \\
+    &= t_{\ga\de} v^\ga w^\be {\delta^\de}_\be \note{By sifting property of $\delta$}\\
+    &= t_{\ga\de} v^\ga w^\de \note{By sifting property of $\delta$ again}
+\end{align*}
+
+Since $t (v \otimes w)$ is the tensor product $V^* \otimes V^*$ and $t_{\ga\de}$ is the components of the bilinear form, one can see the connection $V^* \otimes V^* \iso \Bin(V \times V, \R)$.
+
+
 
 
 \end{document}
