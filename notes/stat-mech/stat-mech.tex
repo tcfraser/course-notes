@@ -29,6 +29,307 @@ There are two distinct class of Statistical Mechanics: equilibrium and non-equil
 
 The Statistical part of Statistical Mechanics implies that it is inherently a study of probabilities and probability distributions. These laws must still remain fully consistent with physical laws. \\
 
-Typically, systems are analyzed on a microscopic level. For a system of particles $\bc{q_i}$ and their positions $\bc{\vr_i}$.
+Typically, systems are analyzed on a microscopic level. For a system of particles with charges $\bc{q_i}$ and their positions $\bc{\vr_i}$, the dynamics are governed by the forces acting on each particle,
+
+\[ \vec{F}_i = m_i \vec{a}_i = \sum_{i\neq j} \f{q_iq_j}{4\pi\ep_0} \f{1}{\abs{\vec{r}_{ij}}^2} \]
+
+But does labelling the particles really matter? For the case of $N \ar \infty$, the global phenomenology is of interest.
+
+\subsection{History}
+
+\begin{itemize}
+    \item [1738] Daniel Bernoulli
+    \begin{itemize}
+        \item molecules moving in container, they collide with one another
+        \item collisions with walls explains pressure
+    \end{itemize}
+    \item [$~$1850] Gay Lussac, Joule, Thomson (Lord Kelvin), Carnot
+    \item [1859] James Clerk Maxwell
+    \begin{itemize}
+        \item $D(\nu) \sim e^{-\f{\nu^2}{2k_B T}}$
+    \end{itemize}
+    \item [1884] Josiash Willard Gibbs
+    \begin{itemize}
+        \item ensemble averaging
+    \end{itemize}
+    \item [$~$1900] Planck, Einstein, Bose, Pauli, Fermi, Dirac
+    \item [Today] Frontier is in non-equilibrium Statistical Mechanics
+    \begin{itemize}
+        \item cold atoms
+        \item biology
+        \item quantum information
+    \end{itemize}
+\end{itemize}
+
+\section{Foundations}
+
+\subsection{Essence of Statistical Mechanics}
+
+\heading{Laws of Thermodynamics}
+
+\begin{tabular}{|c|c|}
+    \hline
+    Pros & Cons \\
+    \hline
+    \tabitem great because they are totally general &
+    \tabitem does not tell us how to compute anything \\
+    \tabitem relationship's (Maxwell's realtions) between $c_p, c_v, \al, \kappa$ &
+    \tabitem does not tell us what entropy is \\
+    \hline
+\end{tabular} \\
+
+The \nth{2} law of Thermodynamics reveals $\dif U = \indif Q - \indif W$ where $\indif Q = T \dif S$. \\
+
+But what is $S$ and what does it \textbf{physically} mean? Boltzman reveals the relation:
+
+\[ S = k_B \ln (\Om) \]
+
+Which we will come back to.
+
+\subsection{Postulate of Statistical Mechanics}
+
+There is only one postulate of Statistical Mechanics:
+\begin{displayquote}
+    \textit{For an isolated system in equlibrium, all microstates accessible to the system are equally probable.}
+\end{displayquote}
+
+In order to digest this postulate, we will require some definitions.
+
+\heading{Definitions}
+
+\begin{itemize}
+    \item system
+    \begin{itemize}
+        \item part of the universe we care about
+        \item only weakly coupled to the rest of the universe
+        \item the dynamics/mechanics are dominated by the internal degrees of freedom and forces
+    \end{itemize}
+    \item isolated
+    \begin{itemize}
+        \item idealization
+        \item eliminates all external influences; no force, no energy/heat flux and no particle flux
+        \item equantities such as the energy, number of particles and colume assumed constant forever $\dif U, \dif N, \dif V = 0$
+    \end{itemize}
+    \item equilibrium
+    \begin{itemize}
+        \item everything is no-longer changing
+    \end{itemize}
+    \item microstate
+    \begin{itemize}
+        \item a complete/total description of everything at the microscopic level $\bc{\vec{r}_i, \vec{p}_i}$ for each $i$
+    \end{itemize}
+    \item macrostate
+    \begin{itemize}
+        \item a decription at the macroscopic level in accordance with the external constraints
+        \item $U, P, T, \bar{M}$
+    \end{itemize}
+    \item equally probable
+    \begin{itemize}
+        \item we are dealing with probabilities and statistics
+        \item microstates are somehow describing probabilistically the properties at the macroscopic level
+    \end{itemize}
+    \item accessible
+    \begin{itemize}
+        \item  consistancy with the macroscopic constaints imposed by the conservation laws (fixed energy, fixed number of particles)
+    \end{itemize}
+\end{itemize}
+
+\heading{Posulate Follow-up}
+
+\begin{displayquote}
+    \textit{We assume that the observed/realized macrostate is the one with the most microstates.}
+\end{displayquote}
+
+\subsection{Perspective from Coin Tossing}
+
+Consider $4$ coins toassed many, many times. What are the microstates describing this system? \\
+
+\newcolumntype{C}{>{\centering\arraybackslash}p{2em}}
+\begin{tabular}{|c|CC|CCCC|c|c|}
+
+\hline
+Macrostate Label & \multicolumn{2}{c|}{Macrostate} & \multicolumn{4}{c|}{Microstate} & Thermo Probability & True Probability \\
+{} & $N_H$ & $N_T$ & A & B & C & D & {} & {} \\
+\hline
+1 & 4 & 0 & H & H & H & H & 1 & $1/16$ \\
+\hline
+2 & 3 & 1 & H & H & H & T & 4 & $4/16$ \\
+  &   &   & H & H & T & H &   & $    $ \\
+  &   &   & H & T & H & H &   & $    $ \\
+  &   &   & T & H & H & H &   & $    $ \\
+\hline
+3 & 2 & 2 & H & H & T & T & 6 & $6/16$ \\
+  &   &   & H & T & T & H &   & $    $ \\
+  &   &   & T & T & H & H &   & $    $ \\
+  &   &   & T & H & H & T &   & $    $ \\
+  &   &   & H & T & H & T &   & $    $ \\
+  &   &   & T & H & T & H &   & $    $ \\
+\hline
+4 & 1 & 3 & T & T & T & H & 4 & $4/16$ \\
+  &   &   & T & T & H & T &   & $    $ \\
+  &   &   & T & H & T & T &   & $    $ \\
+  &   &   & H & T & T & T &   & $    $ \\
+\hline
+5 & 0 & 4 & T & T & T & T & 1 & $1/16$ \\
+\hline
+\end{tabular}
+
+\vspace{0.1in}
+
+We note that the most probable macrostate $3$ is the one with the most microstates $6$. \\
+
+How do we deal with very large $N, N_H, N_T$ in order to locate the most likely macrostate? First likes get a general expression for $\Om$ were $\Om$ is the number of microstates. Since $N = N_H + N_T$ and $N$ is considered fixed, there is only one free parameter $N_H$ (taken by choice). Thus $\Om$ can be considered a function of $N_H$ and nothing else. \\
+
+Recall from probability that the form for $\Om$ is given by,
+
+\[ \Om = \f{N!}{N_H!\br{N - N_H}!} \]
+
+The most likely macrostate is given when $\Om$ (the number of microstates) is maximized. This means that we are interested in finding values of $N_H$, namely $N_H^*$ where,
+
+\[ \bre{\der{\Om}{N_H}}_{N_H = N_H^*} = 0 \qquad \bre{\dder{\Om}{N_H}}_{N_H = N_H^*} > 0 \]
+
+In order to do this, we will need to explore some mathematics ideas.
+
+\subsection{Stirlings Formula and Gaussian Integrals}
+
+Consider the integral,
+
+\[ I = \intl_0^\inf x^N e^{-x} \dx \]
+
+This can be evaluated using integration by parts,
+
+\[ I = N \intl_0^\inf x^{N-1} e^{-x} \dx = \cdots = N! \numberthis \label{eq:intbypartsNtimes}\]
+
+\subsubsection{Differentiation Trick}
+
+However, integration by parts $N$ times on \eqref{eq:intbypartsNtimes} is annoying. There is a nice trick. Notice that,
+
+\[ \intl_0^\inf e^{-ax} \dx = \bre{-\f1a e^{-ax}}_0^\inf = \f1a \numberthis \label{eq:tricka} \]
+
+One can treat $a$ as a \textit{dummy} variable, and examine \eqref{eq:tricka}'s derivative with respect to $a$,
+
+\[ \pder{}{a} \intl_0^\inf e^{-ax} \dx = \intl_0^\inf \pder{}{a} e^{-ax} \dx = \intl_0^\inf -x e^{-ax} \dx = \pder{}{a}\br{\f1a} = -\f{1}{a^2}\]
+
+The reason for doing this is to simplify the process of \eqref{eq:intbypartsNtimes}. \\
+
+If one explores the $n\tsp{th}$ derivative of \eqref{eq:tricka} with respect to $a$, you will derive the expression,
+
+\[ \bs{\br{-1}^N \pderk{n}{}{a} \intl_0^\inf e^{-ax} \dx}_{a=1} = N! \numberthis \label{eq:trick} \]
+
+The $\br{-1}^N$ term is a result of the alternating sign induced by bringing down a $-x$ each time you take a derivative. \\
+
+\subsubsection{Stirling's Formula}
+
+Looking back at the integral \eqref{eq:intbypartsNtimes},
+
+\[ \intl_0^\inf x^N e^{-x} \dx = N! \numberthis \label{eq:stirlingstart}\]
+
+How can we approximate $N!$ using the left had side of \eqref{eq:stirlingstart}? To derive Stirling's Formula, we need to make a change of variables $x = N + \sqrt{N} y$. Substituting into \eqref{eq:stirlingstart} gives,
+
+\[ N! = \intl_0^\inf \sqrt{N} e^{-N} e^{N\ln\br{N+\sqrt{N}y}} e^{-\sqrt{N}y}\dy \]
+
+The approimation begins by expanding the logarithm for large $N$,
+
+\[ \ln\br{N + \sqrt{N}y} = \ln\br{N\bs{1+\f{y}{\sqrt{N}}}} = \ln\br{N} + \ln\br{1+\f{y}{\sqrt{N}}} \]
+
+Take $\ep = \f{y}{\sqrt{N}} << 1$ and apply taylor series,
+
+\[ \ln\br{1+\ep} \approx \ep - \f{\ep^2}{2} \]
+
+Thus,
+
+\[ N! \approx \sqrt{N}e^{-N}N^N\intl_{-\sqrt{N}}^\inf e^{-\f{y^2}{2}}\dy \]
+
+The lower bound can be approximated as $\inf$ since $N$ is so large,
+
+\[ N! \approx \sqrt{N}e^{-N}N^N\intl_{-\inf}^\inf e^{-\f{y^2}{2}}\dy \]
+
+Notice the remaining integral term. It is called the \textit{Gaussian Integral} and has solution (see \nameref{sec:gaussianintegrals}),
+
+\[ \intl_{-\inf}^\inf e^{-\f{y^2}{2}}\dy = \sqrt{\f{\pi}{a}} \numberthis \label{eq:gaussian} \]
+
+Thus letting $a = 1/2$,
+
+\[ N! \approx \sqrt{2\pi N}e^{-N}N^N \numberthis \label{eq:stirlinglong} \]
+
+Equation \eqref{eq:stirlinglong} is known as \textit{Stirling's Formula}. However, there is a much more useful form of Stirling's Formula. It is obtained by taking the logarithm of both sides,
+
+\[ \ln\br{N!} \approx \br{N+\f12}\ln\br{N} - \br{N - \untext{\f12 \ln\br{2\pi}}{small compared to large $N$}}  \]
+\[ \ln\br{N!} \approx N\ln N - N \numberthis \label{eq:stirling} \]
+
+Note that the remaining $N$ is not dropped. This is because for $N \sim 10^{23}$, $N\ln N - N$ and $N\ln N$ differ by about $2\%$. \\
+
+Now we can apply this to the problem of maximizing $\Om$ (which is equivalent to mazimizing $\ln\Om$) because the logarithm is monotonically increasing.
+
+\[ 0 = \pder{\ln\Om}{N_H} =\pder{}{N_H} \bs{\ln\br{\f{N!}{N_H!\br{N - N_H}!}}} \]
+
+Through some manipulation, and applying \eqref{eq:stirling}, one obtains the expected result,
+
+\[ N_H = \f{N}{2} \]
+
+\subsubsection{Gaussian Integrals} \label{sec:gaussianintegrals}
+
+Before continuing, we should take a moment to explore how \eqref{eq:gaussian} is solved. Let,
+
+\[ I_x = \intl_{-\inf}^\inf e^{-ax^2}\dx \]
+
+Here comes the trick. Multiply $I_x$ by itself and switch from rectangular coordinates to polar coordinates,
+
+\[ I_xI_y = \intl_{-\inf}^\inf e^{-ax^2}\dx\intl_{-\inf}^\inf e^{-ay^2}\dy \]
+\[ I^2 = \intl_{-\inf}^\inf\intl_{-\inf}^\inf e^{-a\br{x^2+y^2}}\dx\dy\]
+
+Where we take $\R^2 (x, y) \mapsto \R^2 (r, \phi)$
+
+\[ I^2 = \intl_{0}^{2\pi} \intl_{0}^\inf re^{-ar^2}\dif r\dif\phi\]
+
+Which reveals that $I^2 = \pi/a$. Thus,
+
+\[ I = \sqrt{\f{\pi}{a}} \]
+
+\subsection{Connections between Thermodynamics and Statistical Mechanics}
+
+Consider a lattice of $\text{Cu}^{2+}$ atoms. In a lattice the $\text{Cu}^{2+}$ atoms are distinguishable because they have unique locations. Now apply an external magnetic field.
+
+\[ H\tsb{zeaman} = - \vec{\mu} \cdot \vec{B} \]
+
+Recall that $\vec{u} = g \mu_B \vec{s}$ has units $J/T$ where $T$ is tesla. Where for an electron,
+
+\[ \mu_B = \f{e\hbar}{2m} = \SI{9e-24}{\joule \tesla^{-1}} \qquad g \approx 2 \]
+
+For $\vec{B} = B \hat{z}$, $H\tsb{zeaman} = 2\mu_BBs_z \defined b s_z$. The splitting of the two spin states $s_z = \pm 1$ for $B = \SI{1}{\tesla}$ has characteristic temperature of,
+
+\[ \f{H\tsb{zeaman}}{k_B} = \f{\vep}{k_B} = \f{\SI{10e-23}{\joule}}{\SI{1.4e23}{\joule\kelvin^{-1}}} \approx \SI{0.6}{\kelvin} \]
+
+Now consider $N$ electrons subject to the field $\vec{B}$ where there are $N_+$ spins ``up'' and $N_-$ spins ``down''. This is completely analogous to the coin flipping example. The total energy of the system is given by,
+
+\[ U = - N_- \vep + N_+ \vep \]
+
+Not that $N = N_+ + N_-$ and thus,
+
+\[ \f{U}{N} = \vep - 2 \vep \f{N_-}{N} \]
+
+Constraining $U$ and using the substitution,
+
+\[ \f{N_-}{N} = \f{1-x}{2} \qquad \f{N_+}{N} = \f{1+x}{2}\]
+
+Then the microstate measure is given by,
+
+\[ \Om = \f{N!}{N_+!N_-!} \]
+
+Becomes (after some manipulation as using \eqref{eq:stirling})
+
+\[ \ln\Om = -N\bs{\br{\f{1+x}{2}}\ln\br{\f{1+x}{2}} + \br{\f{1-x}{2}}\ln\br{\f{1-x}{2}}} \]
+
+Now recall that for fixed volume $\dif V = 0$,
+
+\[ \f{1}{T} = \br{\pder{S}{U}}_V \]
+
+But since $U$ depends only on $x$, we can write,
+
+\[ \f{1}{T} = \br{\pder{S}{x}}\br{\pder{x}{U}} \]
+
+Thus reveals a slight connection between $S$ the entropy and $\Om$ through $x$ in this example. Further analysis with motivate Boltzman's equation,
+
+\[ S = k_B \ln\Om + S_0 \]
 
 \end{document}
