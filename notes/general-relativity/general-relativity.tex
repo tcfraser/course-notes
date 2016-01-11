@@ -205,11 +205,9 @@ This means we say that the metric $h$ is the inverse of the metric $g$. Conventi
 
 \subsection{Invariance of Scalar Product}
 
-% TODO ' to above tilde
+Let us say we have a matrix $M : v \ar \ti{v} = Mv, w \ar \ti{w} = Mw$ and that $M$ preserves the scalar product.
 
-Let us say we have a matrix $M : v \ar v' = Mv, w \ar w' = Mw$ and that $M$ preserves the scalar product.
-
-\[ v' \cdot w' = v \cdot w \qquad \forall v, w \]
+\[ \ti{v} \cdot \ti{w} = v \cdot w \qquad \forall v, w \]
 
 Examine,
 
@@ -297,9 +295,134 @@ Note that $t_{\al\be}$ is just a set of numbers. Then the tensor product is expa
     &= t_{\ga\de} v^\ga w^\de \note{By sifting property of $\delta$ again}
 \end{align*}
 
-Since $t (v \otimes w)$ is the tensor product $V^* \otimes V^*$ and $t_{\ga\de}$ is the components of the bilinear form, one can see the connection $V^* \otimes V^* \iso \Bin(V \times V, \R)$.
+Since $t (v \otimes w)$ is the tensor product $V^* \otimes V^*$ and $t_{\ga\de}$ is the components of the bilinear form, one can see the connection $V^* \otimes V^* \iso \Bin(V \times V, \R)$. \\
 
+Tensors allow one to write bilinear maps as linear maps. What about multi-linear maps?
 
+\heading{Tensors}
+
+A tensor of rank $\br{k,l}$ is a multilinear map
+
+\[ \underbrace{V^* \times \cdots \times V^*}_{k} \times \underbrace{V \times \cdots \times V}_{l} \ar \R \]
+
+which transforms \textit{well} under the change of basis of $V$ and $V^*$. \\
+
+\begin{center}
+\label{Tensor Examples}
+\begin{tabular}{c|c}
+Tensor & Rank \\
+\hline
+vectors & $(1,0)$ \\
+covectors & $(0,1)$ \\
+scalar & $(0,0)$ \\
+metric & $(0,2)$ \\
+inverse metric & $(2,0)$ \\
+matrix & $(1,1)$ \\
+\end{tabular}
+\end{center}
+
+The set of tensors of rank $(k,l)$ is a vector space of dimension $n^{k+l}$ (if $V$ has dimension $n$). Checking with the examples above motivates this fact. \\
+
+Using the basis $e_{\al_1} \otimes \cdots \otimes e_{\al_k} \otimes f^{\be_1} \otimes \cdots \otimes f^{\be_k}$
+
+\[ T = {T^{\al_1\al_2\cdots\al_k}}_{\be_1\be_2\cdots\be_l} e_{\al_1} \otimes \cdots \otimes e_{\al_k} \otimes f^{\be_1} \otimes \cdots \otimes f^{\be_k}\]
+
+For fixed $\al_i$ and $\be_i$ this is a real number in $\R$. These are the \textit{components of the tensor}. \\
+
+By abuse of notation we will call ${T^{\al_1\al_2\cdots\al_k}}_{\be_1\be_2\cdots\be_l}$ the tensor. \\
+
+We are talking about these transformations as change of basis of $V$ and $V^*$. Examples:
+\begin{itemize}
+  \item rotations (boost)
+  \item change of coordinates from cartesian to spherical, cylindrical, etc.
+\end{itemize}
+
+We can have a linear change of basis $\ti{x}^\mu = {A^\mu}_\nu x^\nu $.
+
+\heading{Example}
+
+\begin{center}
+\begin{tabular}{c|c}
+    Cartesian & Polar \\
+    \hline
+    $e_1 = \vec{i}$ & $\ti{e}_1 = e_r$ \\
+    $e_2 = \vec{j}$ & $\ti{e}_2 = e_\theta$ \\
+\end{tabular}
+\end{center}
+
+\heading{Example}
+
+\[ \ti{e}_\al = \untext{\pder{x^\nu}{\ti{x}^\al}}{Jacobian} e_\nu = {A^{\nu}}_\al e_\nu \]
+
+Note: \textit{Up in the denominator means down on the original coordinates (LHS).}
+
+For example,
+
+\begin{center}
+\begin{tabular}{c|c}
+    $x^1 = x$ & $\ti{x}^1 = r$ \\
+    $x^2 = y$ & $\ti{x}^2 = \theta$ \\
+\end{tabular}
+\end{center}
+
+\[ \ti{e}_1 = e_r = \pder{x^1}{\ti{x}^1} e_1 + \pder{x^2}{\ti{x}^1} e_2 = \cos \theta e_1 + \sin \theta e_1 \]
+\[ \ti{e}_2 = e_\theta = \pder{x^1}{\ti{x}^2} e_1 + \pder{x^2}{\ti{x}^2} e_2 = - r \sin \theta e_1 + r \cos \theta e_1 \]
+
+\heading{Vectors in multiple basis}
+
+\[ v = v^\nu e_\nu = \ti{v}^\nu \ti{e}_\nu \]
+
+With conversion of basis given by,
+
+\[ \ti{e}_\al = {A^\nu}_al e_\nu\]
+
+Thus substituting in,
+
+\[ v^\nu e_\nu = \ti{v}^\al {A^\nu}_\al e_\nu \]
+
+\[ v^\nu = \ti{v}^\al {A^\nu}_\al \]
+
+But with $A$ as a Jacobian,
+
+\[ v^\nu = \pder{x^\nu}{\ti{x}^\al} \ti{v}^\al \]
+\[  \ti{v}^\al = \pder{\ti{x}^\al}{x^\nu} v^\nu \]
+
+But what about the dual space?
+
+By definition,
+
+\[ \ti{f}^\be\br{\ti{e}_\nu} = \delta^\be_\mu = \ti{f}^\be \br{{A^\al}_\nu e_\al} = {A^\al}_\nu \ti{f}^\be \br{ e_\al}\]
+
+Let $\ti{f}^\be \br{ e_\al}$ be expressed as $\ti{f}^\be = {B^\be}_\ga f^\ga$
+
+\begin{align*}
+    \ti{f}^\be\br{\ti{e}_\nu} &= {A^\al}_\nu {B^\be}_\ga f^\ga \br{ e_\al} \\
+    &= {A^\al}_\nu {B^\be}_\ga {\delta^\ga}_\al \\
+    &= {B^\be}_\ga {A^\ga}_\nu \\
+    &= {\delta^\be}_nu
+\end{align*}
+
+Thus $B$ is the inverse of $A$. \\
+
+What is performing \textit{well}? A tensor is performming well if it's compponents transform as
+
+\[{T^{\nu_1\nu_2\cdots\nu_k}}_{\al_1\al_2\cdots\al_l} \ar \pder{\ti{x}^\nu_1}{x^\be_1} \cdots \pder{\ti{x}^\nu_k}{x^\be_k} \pder{x^\ga_1}{\ti{x}^\al_1} \cdots \pder{x^\ga_k}{\ti{x}^\al_k} {T^{\be_1\be_2\cdots\be_k}}_{\ga_1\ga_2\cdots\ga_l} = {\ti{T}^{\nu_1\nu_2\cdots\nu_k}}_{\al_1\al_2\cdots\al_l} \]
+
+If you find something like ${T^\al}_\be$ is it a tensor? \textbf{No! You must check if it transforms well.}
+
+\[ \pder{}{x^\nu} v^\al \note{This is not a tensor.} \]
+
+The derivative here prevents it from being well-formed. In the future we will define a derivative that allows a tensor to transform well.
+
+\subsection{Operations on Tensors}
+
+\begin{itemize}
+    \item Add (with matching rank): ${T^{\al_1\al_2}}_{\be_1\be_2} + {C^{\al_1\al_2}}_{\be_1\be_2}$.
+    \item Contraction (partial trace): $\mathcal{T} (k, k) \ar \mathcal{T} (k-1, k-1)$.
+    \begin{itemize}
+        \item ${T^{\al_1\cdots\al_i\cdots\al_k}}_{\be_1\cdots\be_j\cdots\be_l} \ar {T^{\al_1\cdots\al_i\cdots\al_k}}_{\be_1\cdots\al_j\cdots\be_l}$
+    \end{itemize}
+\end{itemize}
 
 
 \end{document}
