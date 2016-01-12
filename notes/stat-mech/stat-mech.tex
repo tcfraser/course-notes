@@ -290,21 +290,21 @@ Which reveals that $I^2 = \pi/a$. Thus,
 
 Consider a lattice of $\text{Cu}^{2+}$ atoms. In a lattice the $\text{Cu}^{2+}$ atoms are distinguishable because they have unique locations. Now apply an external magnetic field.
 
-\[ H\tsb{zeaman} = - \vec{\mu} \cdot \vec{B} \]
+\[ H\tsb{Zeeman} = - \vec{\mu} \cdot \vec{B} \]
 
 Recall that $\vec{u} = g \mu_B \vec{s}$ has units $J/T$ where $T$ is tesla. Where for an electron,
 
 \[ \mu_B = \f{e\hbar}{2m} = \SI{9e-24}{\joule \tesla^{-1}} \qquad g \approx 2 \]
 
-For $\vec{B} = B \hat{z}$, $H\tsb{zeaman} = 2\mu_BBs_z \defined b s_z$. The splitting of the two spin states $s_z = \pm 1$ for $B = \SI{1}{\tesla}$ has characteristic temperature of,
+For $\vec{B} = B \hat{z}$, $H\tsb{Zeeman} = 2\mu_BBs_z \defined b s_z$. The splitting of the two spin states $s_z = \pm 1$ for $B = \SI{1}{\tesla}$ has characteristic temperature of,
 
-\[ \f{H\tsb{zeaman}}{k_B} = \f{\vep}{k_B} = \f{\SI{10e-23}{\joule}}{\SI{1.4e23}{\joule\kelvin^{-1}}} \approx \SI{0.6}{\kelvin} \]
+\[ \f{H\tsb{Zeeman}}{k_B} = \f{\vep}{k_B} = \f{\SI{10e-23}{\joule}}{\SI{1.4e23}{\joule\kelvin^{-1}}} \approx \SI{0.6}{\kelvin} \]
 
 Now consider $N$ electrons subject to the field $\vec{B}$ where there are $N_+$ spins ``up'' and $N_-$ spins ``down''. This is completely analogous to the coin flipping example. The total energy of the system is given by,
 
 \[ U = - N_- \vep + N_+ \vep \]
 
-Not that $N = N_+ + N_-$ and thus,
+Note that $N = N_+ + N_-$ and thus,
 
 \[ \f{U}{N} = \vep - 2 \vep \f{N_-}{N} \]
 
@@ -331,5 +331,176 @@ But since $U$ depends only on $x$, we can write,
 Thus reveals a slight connection between $S$ the entropy and $\Om$ through $x$ in this example. Further analysis with motivate Boltzman's equation,
 
 \[ S = k_B \ln\Om + S_0 \]
+
+\subsection{Example of a Physical System with Constraint}
+
+Suppose you have $3$ partiables called $A,B,C$ such that each particle can have $\vep_j = j \vep$ where $j = 0, 1, 2, 3, \ldots$. \\
+
+How many microstates are there subject to the constraint that the total energy is $3\vep$.
+
+\begin{tabular}{|c|CCCC|CCC|c|c|}
+
+\hline
+Macrostate Label & \multicolumn{4}{c|}{Macrostate} & \multicolumn{3}{c|}{Microstate} & Thermo Probability & True Probability \\
+{} & $N_0$ & $N_1$ & $N_2$ & $N_3$ & A & B & C & {} & {} \\
+\hline
+1 & 2 & 0 & 0 & 1 & 0 & 0 & $3\vep$ & 3 & $3/10$ \\
+  &   &   &   &   & 0 & $3\vep$ & 0 &   &        \\
+  &   &   &   &   & $3\vep$ & 0 & 0 &   &        \\
+\hline
+1 & 0 & 1 & 1 & 0 & 0 & 0 & $3\vep$ & 6 & $6/10$ \\
+  &   &   &   &   & 0 & $3\vep$ & 0 &   &        \\
+  &   &   &   &   & $3\vep$ & 0 & 0 &   &        \\
+\hline
+1 & 0 & 0 & 0 & 1 & 0 & 0 & $3\vep$ & 1 & $1/10$ \\
+  &   &   &   &   & 0 & $3\vep$ & 0 &   &        \\
+  &   &   &   &   & $3\vep$ & 0 & 0 &   &        \\
+\hline
+\end{tabular}
+
+\TODO{Fill this out}
+
+\section{Review of Thermodynamics}
+
+\subsection{Definitions}
+
+Recall Boyle's Law $PV = nRT$.
+
+\begin{itemize}
+    \item processes
+    \begin{itemize}
+        \item constant $T$, isothermal process
+        \item constant $P$, isobaric process
+        \item constant $V$, isochoric process or isovolumetric process
+        \item constant $S$, adiabatic process
+        \begin{itemize}
+            \item Comes from greek \textit{diabatos} which means \textit{to go through}
+            \item No heat exchange between system and surroundings
+            \item Can also be an approximation for processes that occur really quickly over a short period of time
+        \end{itemize}
+    \end{itemize}
+    \item proceses reversible/irreversible
+    \begin{itemize}
+        \item reversible process happens over a number of dicrete steps and that are each reversibile
+        \item irreversible processes are like poking a hole in a baloon or a gas expanding in a vacuum
+    \end{itemize}
+    \item thermodynamic variables $T, P, V, U$ where $U$ is the \textit{total energy}
+\end{itemize}
+
+\subsection{Zeroth Law of Thermodynamics}
+
+If systems $A$ and $B$ are in equilibrium with one another and systems $B$ and $C$ are in equilibrium then $A$ is in equilibrium with $C$.
+
+\subsection{Functions of State}
+
+Thermodynamic varibales are not independent. They are often realted by an equation of state. For example $PV = nRT$ for an ideal gas. Other variables might come into an equation of state. For example $\rho, \mathcal{T}, E$ are all important for the equation of state for a liquid crystal sample. \\
+
+Equations of state with typically look like
+
+\[ f\br{P, V, T} = 0 \]
+
+Another important notion is the notion of \textit{function of state}. A quantity that depends only on the thermodynamic variables of the system and \textit{not it's history}, is called a \textit{function of state}. \\
+
+We will first focus on $U\tsb{total energy}$ first and then $S\tsb{entropy}$ as our functions of state. \\
+
+Mathematically, $G = g\br{x,y}$ where $x,y$ are the thermodynamic variables and $G$ is a function of state analytic everywhere and obeys some properties:
+
+\begin{itemize}
+    \item $\dif G = \br{\pder{G}{x}}_y \dx + \br{\pder{G}{y}}_x \dy $
+    \item at most values of the thermodynamic variables $g(x,y)$ is ``smooth''.
+    \item for example: $\br{\pdder{G}{x}}_y$ or $\br{\pdder{G}{y}}_x$ or $\br{\pder{}{x}\br{\pder{G}{y}}_x}_y$ are all continous
+    \item the order of discontinuities is determined by whether or not the system or substance is undergoing transitions of state or not
+\end{itemize}
+
+For functions of state that are analytical everywhere, the order of derivatives is inconsequential.
+
+\[ \br{\pder{}{x}\br{\pder{G}{y}}} = \br{\pder{}{y}\br{\pder{G}{x}}}\]
+
+What can we say about $G$ in cases where
+
+\[ \dif G = \pder{G}{x} \dx + \pder{G}{y} \dy \numberthis \label{eq:dg} \]
+
+in the case of functions of state like $U$, $ \dif U = \indif Q - \indif W  $ and the inexact differentials and how they relate to exact differentials like $\dif V$ and $\dif S$? In particular, when can we integrate $\dif U$?
+
+Answer: eqaution \eqref{eq:dg} can be integrated in situations where
+
+\[ \br{\pder{}{y}\br{\pder{G}{x}}_y}_x = \br{\pder{}{x}\br{\pder{G}{y}}_x}_y \numberthis \label{eq:exactcond}\]
+
+When equation \eqref{eq:exactcond} is held for a physical system, one can say that $\dif G$ is an \textbf{exact differential}. Review 12,13 in notes on ``Review of Thermodynamics''. \\
+
+The difference in the function $G(x,y)$ between two sufficiently close paris of points $(x_1, y_1)$ and $(x_2, y_2)$ depends only on the difference in $G(x,y)$ evaluated at those two points.
+
+\[ \Delta G = G(x_2, y_2) - G(x_1, y_1) \]
+
+$\Delta G$ does not depend on the path from point $(x_1, y_1)$ to $(x_1, y_1)$. In practice, one can assign such a function $G$ to the values of the thermodynamic variables at the points $(x,y)$. For example, $U(P,V)$ is such a function of state. It depends only on the description through the thermodynamic variables and not the history. \\
+
+By counter example, heat $Q$ is not a function of state. No one can say, ``that substance has $X$ units of heat in it''.
+
+\subsection{Work}
+
+There are two types of work. One is called \textit{configuration work} and the other is called \textit{dissipative work}. \\
+
+\subsubsection{Configuation Work}
+
+Configuational work is denoted $\indif W$ where the symbol $\indif$ represents that it \textbf{is not} and exact differential.
+
+\[ \indif W = \sum_i y_i \dif x_i \]
+
+where $y_i$ is an intensive variable (not proportional to $N, V$; examples: pressure, surface tension). It can be thought of as a gneralized force. Here $\dif x_i$ is the generalized displacement which is an extensive variable.
+
+\subsubsection{Dissipative Work}
+
+Dissipative work can be thought of as ``stirring work''. Examples include a mixer in a liquid or an electrical wire/resistor.
+
+\begin{itemize}
+    \item electrical power:
+    \begin{itemize}
+        \item $P = V \cdot I$
+        \item $\dif W\tsb{dis} = P \cdot \dif t = R I^2 \dif t$
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Sign Convention}
+
+\[ \indif W > 0 \note{work done by the system} \]
+\[ \indif W < 0 \note{work done on the system} \]
+
+Note:
+
+\begin{itemize}
+    \item work is \textbf{not} a property of the system
+    \item work is \textbf{not} a function of state
+    \item integration on a closed loop is not degenerate $\oint \indif W \neq 0$
+\end{itemize}
+
+\subsubsection{Abiabatic Work}
+
+Abiabatic work occurs with no heat exchange.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=left,
+    width=.4\linewidth,
+    xmin = 0, xmax = 4,
+    ymin = 0, ymax = 4,
+    xtick={1,3},
+    xticklabels={$V_i$,$V_f$},
+    ytick={1,3},
+    yticklabels={$P_f$,$P_i$},
+    xlabel={Volume},
+    ylabel={Pressure}
+  ]
+\addplot [blue, ->, domain=0:pi/2,samples=50]({3 - 2*cos(deg(x))},{3 - 2*sin(deg(x))});
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+Adiabatic work is done between any two equlibrium states and is \textit{independent of path}. One can define a function of state as the total adiabtic work done on a system. Lets define this a the total internal energy of the system.
+
+\[ \dif U = - \dif W\tsb{adiabatic}\]
+
+Note the minus `$-$' sign is due to the fact that the total energy of the system increases when work is done \textbf{on} this system.
+
 
 \end{document}
