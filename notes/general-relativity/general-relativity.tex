@@ -219,8 +219,6 @@ Use communitivity and dummyness of indicies to obtain,
 
 Drop outer covectors $v$ and $w$ to get,
 
-% TODO section numbering
-
 \[ {M^\ga}_\al g_{\al\rho} {M^\rho}_\be = g_{\al\be} \numberthis \label{eq:invarM} \]
 
 Note that this expression is consistent with the Einstein summation convention. \\
@@ -422,7 +420,153 @@ The derivative here prevents it from being well-formed. In the future we will de
     \begin{itemize}
         \item ${T^{\al_1\cdots\al_i\cdots\al_k}}_{\be_1\cdots\be_j\cdots\be_l} \ar {T^{\al_1\cdots\al_i\cdots\al_k}}_{\be_1\cdots\al_j\cdots\be_l}$
     \end{itemize}
+    \item ``Outer'' Product (Gluing together tensors)
+    \begin{itemize}
+        \item $\mathcal{T}(k,l) \times \mathcal{T}(k',l') \ar \mathcal{T}(k + k', l+ l')$
+        \item $(T_1, T_2) \ar T_1T_2$
+        \item $T_1 T_2 \ar {T_1^{\nu_1\cdots\nu_k}}_{\al_1\cdots\al_l} {T_2^{\be_1\cdots\be_k}}_{\ga_1\cdots\ga_l}$
+        \item \textbf{Example:} $\br{v^\al. w_\be} \ar v^\al \otimes w_\be = v^\al w_\be$. (In QM this is $\ket{\phi}\bra{\varphi}$)
+    \end{itemize}
 \end{itemize}
+
+The metric $g_{\al\be}$ can change the rank of a tensor. Recall a metric is rank $(0,2)$ is symmetric and is non-degenerate.
+
+\heading{Example}
+
+Changing from rank $(1,0)$ to rank $(0,1)$:
+
+\[ v^\al \ar v_a = g_{\al\be} v^\be \]
+
+Changing from rank $(2,2)$ to rank $(4,0)$:
+
+\[ {c^{\al\be}}_{\ga\de} \ar c_{\al\be\ga\de} = g_{\al\rho}g_{\be\eta} {c^{\rho\eta}}_{\ga\de} \]
+
+Changing from rank $(2,2)$ to a different rank $(2,2)$:
+
+\[ {c^{\al\be}}_{\ga\de} \ar {{{c^{\al}}_\be}^{\ga}}_\de = g_{\be\rho}g^{\ga\eta} {c^{\al\rho}}_{\eta\de} \]
+
+\subsubsection{Facts About Tensors}
+
+\heading{Order Matters}
+
+\begin{align*}
+{c^\al}_\be &: \qquad V^* \times V \ar \R \\
+{c_\al}^\be &: \qquad V \times V^* \ar \R \\
+c_\al^\be &: \qquad \text{Nothing. Don't do this.} \\
+\end{align*}
+
+\heading{Equality between tensors}
+
+As tensors, indicies must match:\\
+
+Position of indicies is matching: ${{c^\al}_\ga}^\de = {{T^\al}_\ga}^\de$ \\
+
+Position of indicies is \textbf{not} matching: ${{c^\al}_\ga}^\de \neq {{T^\al}_\ga}_\de$ \\
+
+But for fixed $\al, \ga, \de$, one can abuse the notation a bit:
+
+\[ {{c^\al}_\ga}^\de = {{T^\al}_\ga}_\de \note{Try to avoid this.}\]
+
+\subsection{Outer Product and Contraction}
+
+\heading{Example}
+
+Outer Product: ${M^{\al}}_\be{M^{\ga}}_\de = {{{{C^{\al}}_\be}^\ga}_\de}$ \\
+Contraction: ${M^{\al}}_\be{M^{\be}}_\de = {{{{C^{\al}}_\be}^\be}_\de} = {C^\al}_\ga$
+
+\heading{Example}
+
+Outer product and contraction: ${C^{\al\be}}_{\ga\de}{T^{\ga\de}}_{\rho} = {A^{\al\be}}_\rho$ \\
+This doesn't make sense: ${C^{\al\be}}_{\ga\ga}{T^{\ga\de}}_{\rho} = ??$
+
+Note, when there is a ``+'' sign we can be ``loose'' with the indicies. Here the dual indicies \textbf{do not} indicate a summation. This acts as an abuse of notation, but is sometimes difficult to avoid.
+
+\[ C^{\al\ga}{T_\ga}^{\de} + {F_\ga}^{\de}A^{\al\ga} \]
+
+\subsection{Interpretation of Tensors}
+
+By looking at the indicies, how can we interpret the physical meaning of the tensor object? \\
+
+\begin{tabular}{c|l}
+    Tensor & Interpretation \\
+    \hline
+    $v^\nu$ & vector \\
+    $v_\nu$ & covector \\
+    ${M^\al}_\be$ & matrix ($\al$ rows, $\be$ columns) \\
+    ${M^\al}_\al$ & contracted matrix (trace) \\
+    ${M^{\al\ga}}_\de$ & matrix whose elements are vectors themselves (${\cdot^\ga}_\de$ is the matrix) \\
+    ${M^{\al\ga}}_\de$ & vector with matrix components (${M^\al}$ is the vector) \\
+    ${R^{\al\be}}_{\ga\de}$ & matrix of matricies *\\
+\end{tabular}
+\vspace{0.1in}
+
+*For example, if $\dim V = 4$, ${R^{\al\be}}_{\ga\de}$ has $4^4 = 256$ components. Note however, there can be many symmetries that reduce the number of unique components.
+
+\subsection{Symmetry of Tensor}
+
+We can always build a symmetric and antisymmetric part of a tensor $T^{\al\be}$. Let's look at the case of 2 indicies $\al, \be$:
+
+\heading{Symmetric Part}
+
+\[ T_{\br{\al\be}} = \f12 \br{T_{\al\be} + T_{\be\al}} \]
+\[ T_{\br{\al\be}} = T_{\br{\be\al}}  \]
+
+\heading{Antisymmetric Part}
+
+\[ T_{\bs{\al\be}} = \f12 \br{T_{\al\be} - T_{\be\al}} \]
+\[ T_{\bs{\al\be}} = - T_{\bs{\be\al}}  \]
+
+Note that for all tensors $T^{\al\be} = T^{\br{\al\be}} + T^{\bs{\al\be}}$. This acts as the decomposition into odd and even symmetries of the tensor. \\
+
+For more indicies:
+
+\[ {T^{\br{\al\be}}}_{\bs{\ga\de}} = \f14\br{{T^{\al\be}}_{\ga\de} + {T^{\be\al}}_{\ga\de} - {T^{\al\be}}_{\de\ga} - {T^{\be\al}}_{\de\ga}} \]
+
+What does $T^{\br{\al\be\ga}}$ mean? For that we will need a permutation group.
+
+\section{Physics Review}
+
+Moving away from tensors for a moment... \\
+
+\subsection{Newtonian Physics}
+
+According to Galileo and Newton, we got the interpretation that both space and time if flat $\br{\R^3}$ and is absolute. More specifically, all clocks have the same time on them if they are started at the same time. \\
+
+Built on cartesian coordinate system: $\br{\vec{x}, t}$. With this we say that an object is at position $\vec{x}$ at time $t$. They are \textit{outcomes of measurements}. In General Relativity, the notion of coordinates can be quite different. \\
+
+Consider a particle (2d spacetime):
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+    % Draw axes
+    \draw [<->,thick] (0,4) node (yaxis) [above] {$x$}
+        |- (5,0) node (xaxis) [right] {$t$};
+    \draw [blue, thick, ->] plot [smooth, tension=1] coordinates { (0,1) (1,2) (3,1) (4,3)};
+    \node [blue,above] (label) at (1,2) {$x(t)$};
+\end{tikzpicture}
+\end{center}
+
+Typically, $x$ is drawn as the ordinate ($y$-axis) and $t$ as the abscissa ($x$-axis).
+
+\heading{Spacetime diagram}
+
+In a spacetime diagram, $t$ is drawn as the ordinate.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+    % Draw axes
+    \draw [<->,thick] (0,4) node (yaxis) [above] {$t$}
+        |- (5,0) node (xaxis) [right] {$x$};
+    \draw [blue, thick, ->] plot [smooth, tension=1] coordinates { (1,0) (2,1) (1,3) (3,4)};
+    \node [blue, right] (label) at (2,1) {$x(t)$};
+\end{tikzpicture}
+\end{center}
+
+
+
+
+
+
 
 
 \end{document}
