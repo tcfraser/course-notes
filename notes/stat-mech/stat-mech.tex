@@ -2,6 +2,27 @@
 
 \usepackage{coursenotes}
 
+\usetikzlibrary{shapes,arrows}
+\tikzset{%
+pics/.cd,
+nodea/.style args={#1#2#3}{
+  code={\node[minimum height=2cm] (#3) {\color{#1}#2};
+       \draw[thick] (#3.south west) -| (#3.north east)--(#3.north west);
+  }
+},
+%pics/.cd,
+nodeb/.style args={#1#2#3}{
+  code={\node[minimum height=2cm] (#3) {\color{#1}#2};
+       \draw[thick] (#3.south east) -| (#3.north west)--(#3.north east);
+  }
+},
+%pics/.cd,
+nodec/.style args={#1#2#3}{
+  code={\node[draw,thick,shape=circle,inner sep=1cm] (#3) {\color{#1}#2};
+  }
+},
+}
+
 \set{AuthorName}{TC Fraser}
 \set{Email}{tcfraser@tcfraser.com}
 \set{Website}{www.tcfraser.com}
@@ -500,7 +521,237 @@ Adiabatic work is done between any two equlibrium states and is \textit{independ
 
 \[ \dif U = - \dif W\tsb{adiabatic}\]
 
-Note the minus `$-$' sign is due to the fact that the total energy of the system increases when work is done \textbf{on} this system.
+Note the minus `$-$' sign is due to the fact that the total energy of the system increases when work is done \textbf{on} this system. Along adiabatic paths, there is an exact differential associated with $\indif W$. It is called internal energy $\dif U$.
+
+\subsection{First of Law of Thermodynamics}
+
+\subsubsection{Heat}
+
+In systems such as boiling a pot of water, there is no work performed on the system however the state of the system changes (not boiling to boiling). The mechanism that causes this change of state is heat ($Q$).
+
+\[ \dif U = \indif W + \indif W \numberthis \label{eq:firstlaw} \]
+
+Equation \eqref{eq:firstlaw} is using the following convention:
+
+\begin{align*}
+    \indif Q &:< 0 \note{heat flow \textbf{in}} \\
+    \indif Q &:> 0 \note{heat flow \textbf{out}} \\
+    \indif W &:< 0 \note{work is done \textbf{by} system} \\
+    \indif W &:> 0 \note{work is done \textbf{on} system} \\
+\end{align*}
+
+\subsubsection{Heat Capacities}
+
+Use the convention that $C$ is the heat capacity (extensive) and $c$ is the specific heat capacity (intensive).
+
+\[ c = \f{C}{n} \]
+
+\[ C \defined \lim_{\Delta T \ar 0} \f{\Delta Q}{\Delta T} \]
+
+Heat capacity $C$ is very important. Measuring $C$ in a metal at low temperatures reveals very important intrinsic properties of the material. Also note that heat capacity is always $C \sim \f1T$ and not some other power than $-1$.
+
+\heading{Relationship Between $c_v, c_p$ for an Ideal Gas}
+
+\[ PV = nRT \]
+
+Using Boyle's law, work with $n = \SI{1}{\mole}$ for convenience. How can we relate $C$ to the properties of the substance? Let us write (noting the `-' convention),
+
+\[ \dif U = \indif Q - \indif W \]
+
+Switch to specific (per mole) quantities,
+
+\[ \dif u = \indif q - \indif w \]
+
+\[ \dif u = \pdert{u}{T}{v} \dif T + \pdert{u}{v}{T} \dif V \]
+
+\[ \indif q = \dif u + \indif w \]
+\[ \indif q = \pdert{u}{T}{v} \dif T + \bc{\pdert{u}{v}{T} \dif V + P\dif v} \]
+
+However,
+
+\[ c_v = \lim_{\dif T \ar 0} \f{\indif q}{\dif T} \note{At constant V} \]
+
+Thus,
+
+\[ c_v = \pdert{u}{T}{v} \numberthis \label{eq:heatcapacity} \]
+
+Which gives us,
+
+\[ \indif q = c_v \dif T  + P\dif v \]
+
+Note that this formula uses the fact that,
+
+\[ \pdert{U}{v}{T} = 0 \note{For ideal gas.} \]
+
+Which we will prove momentarily, but can be taken as an experimental fact discovered by Guy-Lussac. Namely $U$ is only a function of $T$ for an ideal gas ($U = U(T)$).
+
+\[ \indif q = c_v \dif T  + P\dif v + \br{ v \dif p  - v\dif p} \]
+\[ \indif q = \br{c_v + R} \dif T  - v\dif p \]
+
+Thus,
+
+\[ \lim_{\dif T \ar 0} \bre{\f{\indif q}{\dif T}}_{p=\text{const.}} = c_v + R \]
+
+Thus we can define a new quantity,
+
+\[ c_p \defined \bre{\f{\indif q}{\dif T}}_{p=\text{const.}} = c_v + R \]
+
+For an monoatomic gas ($U = \f32 RT$),
+
+\[ \ga \defined \f{c_p}{c_v} = \f{5}{3} \]
+
+\subsection{Adiabatic Work Continued}
+
+Let us examine an isotherm (red) next to an adiabatic curve (blue),
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+    % Draw axes
+    \draw [<->,thick] (0,4) node (yaxis) [above] {$P$}
+        |- (5,0) node (xaxis) [right] {$V$};
+    \draw [blue, thick, ->] plot [smooth, tension=1] coordinates { (0.5,3) (1.5, 1.3) (3.5, 0.5)};
+    \draw [red, thick, ->] plot [smooth, tension=1] coordinates { (0.6,3) (1.5, 1.8) (3.5, 1.2)};
+    \node [blue] (adiabatic) at (4.2, 0.5) {adiabatic};
+    \node [red] (isotherm) at (4.2, 1.2) {isotherm};
+\end{tikzpicture}
+\end{center}
+
+\begin{align*}
+    \indif q &= c_v \dif T + P \dif v \\
+    \indif q &= c_P \dif T - v \dif P
+\end{align*}
+
+And let's set $\indif q = 0$ (adiabatic),
+
+\[ c_v \dif T + P \dif v = c_P \dif T = v \dif P \]
+
+Which gives,
+
+\[ \f{\dif P}{P} = - \ga \f{\dif v}{v} \note{Using $\ga = c_P/c_v$} \]
+
+Or integrating along a curve,
+
+\[ \intl_1^2 \f{\dif P}{P} = - \intl_1^2 \ga \f{\dif v}{v} \]
+\[ \ln\br{\f{P_2}{P_1}} = - \ga \ln\br{\f{v_2}{v_1}} \]
+
+Which gives the relationship,
+
+\[ P_1V_1^\ga = P_2V_2^\ga \]
+
+Which holds true along an adiabatic curve. However, $PV = RT$. Thus using the expression $\dif U = - P \dif V |\tsb{adiabtic}$ gives the result,
+
+\[ W = \bc{\f{P_2V_2 - P_1V_1}{1-\ga}}_{\ga > 1} \]
+
+\subsubsection{Gay-Lussac Experiment}
+\label{sec:guylussac}
+
+For an ideal gas,
+
+\[ \pdert{U}{V}{T} = 0 \]
+
+\[ \indif Q = \pdert{U}{T}{V} \dif T + \bc{\pdert{U}{V}{T} + P}\dif V \]
+
+\[ \f{\indif Q}{T} = \f{1}{T}\pdert{U}{T}{V} \dif T + \f{1}{T}\bc{\pdert{U}{V}{T} + P}\dif V \]
+
+Employ an integrating factor for the inexact differentials. It will take us from and inexact differential to an exact differential.
+
+\heading{Math Interlude}
+
+\[ \indif G = A(x,y)\dx + B(x,y)\dy \]
+
+Multiply $G$ by $\mu(x,y)$ and unknown function of $x$ and $y$,
+
+\[ \dif \ti{G} = \mu \cdot \indif G\]
+
+Thus,
+
+\[ \dif \ti{G} = \mu A \dx + \mu B \dy \]
+
+Making,
+
+\[ \pder{\br{\mu A}}{y} = \pder{\br{\mu B}}{x} \numberthis \label{eq:intfact} \]
+
+\heading{Example}
+
+\[ \dif G = \sin(y) \dx + \cos(y) \dy \]
+\[ \dif \ti{G} = \mu\sin(y) \dx + \mu\cos(y) \dy \]
+
+Let us look for a $\mu$ such that $\mu(x,y) = \mu(x)$ and plugging into equation \eqref{eq:intfact},
+
+\[ \pder{\br{\mu \sin(y)}}{y} = \pder{\br{\mu \cos(y)}}{x} \]
+\[ \mu(x)\cos(y) = \der{\mu}{x}\cos(y) + \mu \der{\cos{y}}{x} \]
+\[ \mu(x)\cancel{\cos(y)} = \der{\mu}{x}\cancel{\cos(y)} + \mu \cancelto{0}{\der{\cos{y}}{x}} \]
+
+Thus,
+\[ \mu(x) = \der{u}{x} \]
+Which gives,
+\[ \mu(x) = e^x \]
+
+The purpose of introducing the notion of an integrating factor is to reveal that although $\indif Q$ is an inexact differential, we can introduce an integrating factor $\f1T$ that makes the quantity $\f{\indif Q}{T}$ an \textbf{exact} differential. This quantity is somehow more important that $Q$ as it describes a property of the system. We will see that this quantity is the motivation for entropy. Let us examine this,
+
+\[ \f{\indif Q}{T} = \underbrace{\f{1}{T}\pdert{U}{T}{V}}_{A} \dif T + \underbrace{\f{1}{T}\bc{\pdert{U}{V}{T} + P}}_{B}\dif V \]
+
+And thus,
+
+\[ \pder{A}{V} = \pder{B}{T} \]
+
+Gives,
+
+\[ \pder{A}{V} = \pder{}{V}\bc{\f1T \pder{U}{T}} = \f1T \f{\partial^2 U}{\partial V \partial T} \]
+\[ \pder{B}{T} = \pder{}{T}\bc{\f1T \br{\pder{U}{V} + P}} = -\f{1}{T^2} \br{\pder{U}{V} + P} + \f1T \f{\partial^2 U}{\partial T \partial V} + \f1T \pder{P}{T} \]
+
+Equating these two expressions (noticing that $\f{\partial^2 U}{\partial T \partial V} = \f{\partial^2 U}{\partial V \partial T}$ and that $PV = RT \implies \f{P}{T^2} = \f{R}{TV}$),
+
+\[ \f1T \f{\partial^2 U}{\partial V \partial T} = -\f{1}{T^2} \br{\pder{U}{V} + P} + \f1T \f{\partial^2 U}{\partial T \partial V} + \f1T \pder{P}{T} \]
+\[ \cancel{\f1T \f{\partial^2 U}{\partial V \partial T}} = -\f{1}{T^2} \br{\pder{U}{V} + P} + \cancel{\f1T \f{\partial^2 U}{\partial T \partial V}} + \f1T \pder{P}{T} \]
+\[ 0 = -\f{1}{T^2} \br{\pder{U}{V} + P} + \f1T \pder{P}{T} \]
+\[ \f{1}{T^2} \br{\pder{U}{V} + P} = \f1T \pder{P}{T} \]
+\[ \f{1}{T^2} \pder{U}{V} + \f{P}{T^2} = \f1T \pder{P}{T} \]
+\[ \f{1}{T^2} \pder{U}{V} + \cancel{\f{R}{TV}} = \cancel{\f{R}{TV}} \]
+
+Therefore Gay-Lussac was destined to find this realtionship through experiment:
+\[ \pder{U}{V} = 0 \]
+
+\subsubsection{Joule-Thomson(Kelvin) Experiment}
+
+Using $\f{1}{T}$ as the integrating factor, one can go through a similar derivation as in section \ref{sec:guylussac} to understand that the quantity $S$ is a state function of a system with,
+
+\[ \dif S \defined \f{\indif Q}{T}  \]
+
+\subsubsection{Summary of First Law}
+
+In summary, the first law of thermodynamics is really just conservation of energy with expression,
+
+\[ \dif U = \indif Q - \indif W \]
+
+\subsection{Second Law of Thermodynamics}
+
+Physical laws on the microscopic scale always are found to have an inherent time-reversal symmetry. The physics behaves the same running forward in time and backward in time. However, a semi-paradox of real-world phenomenology seems to suggest that there are some processes can not occur moving backward in time. They still satisfy the conservation of energy, but there is another law that governs these macroscopic phenomena.
+
+\subsubsection{Heat Engines}
+
+Imagine a an engine $E$ that runs from temperature $T_2$ to $T_1$ (two heat baths), where it extracts heat $Q_2$ and disposes heat $Q_1$ and does some work $W$.
+
+\begin{center}
+\begin{tikzpicture}[scale=2]
+    \pic at (0,0) {nodea={red}{$T_H$}{L}};
+    \pic at (2,0) {nodec={black}{}{C}};
+    \pic at (4,0) {nodeb={blue}{$T_C$}{R}};
+    \draw[->,>=latex](L)--node[midway,above]{$Q_H$}(C);
+    \draw[->,>=latex](C)--node[midway,above]{$Q_C$} (R);
+    \draw[->,>=latex](C)--node[midway,left]{$W$} ++(0,-2cm);
+\end{tikzpicture}
+\end{center}
+
+The efficiency of the engine is definied as,
+
+\[ \eta \defined \f{\text{output}}{\text{input}} = \f{W}{Q_2} \]
+
+
+
+
+
+
 
 
 \end{document}
