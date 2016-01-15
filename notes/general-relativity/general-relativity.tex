@@ -48,7 +48,7 @@ For convience let's provide a new, shorter notation for the vector $v$.
 
 Effectively, we have just \textbf{dropped the summation sign}. The einstein summation rule is as follows: \\
 
-If there are two identical indicies, 1 ``up'' and 1 ``down'', it means that a summation is secretly present, it's just be removed for convience. Note that the $i$ in this case is \textit{dummy index}.
+If there are two identical indices, 1 ``up'' and 1 ``down'', it means that a summation is secretly present, it's just be removed for convience. Note that the $i$ in this case is \textit{dummy index}.
 
 \[ v^ie_i = v^{\alpha}e_{\alpha} = v^je_j \]
 
@@ -61,7 +61,7 @@ Note $v^i$ is called the vector $v$ when $i$ is the set $\bc{\tok0n}$, but can a
 The values of $e_i$ or the $i$'s themselves can take on many possible values.
 
 \begin{itemize}
-    \item cartesian coordinates $t,x,y,z$
+    \item Cartesian coordinates $t,x,y,z$
     \item spherical coordinates $t, r, \phi, \theta$
     \item etc.
 \end{itemize}
@@ -76,7 +76,7 @@ The dual vector space of $V$ denoted $V^*$ is also isomorphic to $\R^{n+1}$ and 
 
 where $v_1, v_2 \in V$ and $\alpha, \beta \in \R$.
 
-In Quantum Mechanics, the vectors are the bras and the elements of the dual space (called the covectors) are the kets. \\
+In Quantum Mechanics, the vectors are the bras and the elements of the dual space (called the co-vectors) are the kets. \\
 
 We note,
 
@@ -109,7 +109,7 @@ Bilinear forms are bilinear maps such that the following conditions are true:
     \item non-degenerated: $B(v,w) = 0 \quad \forall v \implies w = 0$
 \end{itemize}
 
-Playing with indicies,
+Playing with indices,
 
 \begin{align*}
     B(v,w) &= B(v^\alpha e_\alpha, w^\beta e_\beta) \\
@@ -156,9 +156,9 @@ For example,
 
 Note the order of the signature is chosen to be $(p,q)$ and not $(q, p)$ by convention.
 
-\subsection{Covectors from Vectors}
+\subsection{Co-vectors from Vectors}
 
-Note that $v^i$ was called the vector and $w_i$ was called the covector. This notation seems to indicate that conversion between $V$ and $V^*$ is notationally equivalent to raising and lowering the indicies. \\
+Note that $v^i$ was called the vector and $w_i$ was called the covector. This notation seems to indicate that conversion between $V$ and $V^*$ is notationally equivalent to raising and lowering the indices. \\
 
 We call the following opperation ``Lowering the index using the metric''.
 
@@ -180,7 +180,7 @@ Note that ${M^\al}_\be \in \R$ for $\al$ and $\be$ fixed. Example: The identity 
 
 \subsection{Scalar Product on Dual Space}
 
-Introduce a scalar product for the covectors $w$.
+Introduce a scalar product for the co-vectors $w$.
 
 \[ w, t \in V^* \]
 
@@ -201,7 +201,7 @@ Since this is true for any $v$ and $w$ we require that,
 
 \[ h^{\ga\al} g_{\al\mu} = {\delta^\ga}_\mu \]
 
-This means we say that the metric $h$ is the inverse of the metric $g$. Convention on $V^*$: we denote the metric $g^{\al\be}$ (the indicies are ``up''). \\
+This means we say that the metric $h$ is the inverse of the metric $g$. Convention on $V^*$: we denote the metric $g^{\al\be}$ (the indices are ``up''). \\
 
 \subsection{Invariance of Scalar Product}
 
@@ -213,11 +213,11 @@ Examine,
 
 \[ {M^\ga}_\al v^\al g_{\al\be} {M^\be}_\rho w^\rho = v^\al g_{\al\be}w^\be \]
 
-Use communitivity and dummyness of indicies to obtain,
+Use communitivity and dummyness of indices to obtain,
 
 \[ v^\al {M^\ga}_\al g_{\al\rho} {M^\rho}_\be w^\be = v^\al g_{\al\be}w^\be \]
 
-Drop outer covectors $v$ and $w$ to get,
+Drop outer co-vectors $v$ and $w$ to get,
 
 \[ {M^\ga}_\al g_{\al\rho} {M^\rho}_\be = g_{\al\be} \numberthis \label{eq:invarM} \]
 
@@ -311,7 +311,7 @@ which transforms \textit{well} under the change of basis of $V$ and $V^*$. \\
 Tensor & Rank \\
 \hline
 vectors & $(1,0)$ \\
-covectors & $(0,1)$ \\
+co-vectors & $(0,1)$ \\
 scalar & $(0,0)$ \\
 metric & $(0,2)$ \\
 inverse metric & $(2,0)$ \\
@@ -332,7 +332,7 @@ By abuse of notation we will call ${T^{\al_1\al_2\cdots\al_k}}_{\be_1\be_2\cdots
 We are talking about these transformations as change of basis of $V$ and $V^*$. Examples:
 \begin{itemize}
   \item rotations (boost)
-  \item change of coordinates from cartesian to spherical, cylindrical, etc.
+  \item change of coordinates from Cartesian to spherical, cylindrical, etc.
 \end{itemize}
 
 We can have a linear change of basis $\ti{x}^\mu = {A^\mu}_\nu x^\nu $.
@@ -402,7 +402,7 @@ Let $\ti{f}^\be \br{ e_\al}$ be expressed as $\ti{f}^\be = {B^\be}_\ga f^\ga$
 
 Thus $B$ is the inverse of $A$. \\
 
-What does performing \textit{well} mean? A tensor is performming well if its components transform as
+What does performing \textit{well} mean? A tensor is performing well if its components transform as
 
 \[{T^{\nu_1\nu_2\cdots\nu_k}}_{\al_1\al_2\cdots\al_l} \ar \pder{\ti{x}^\nu_1}{x^\be_1} \cdots \pder{\ti{x}^\nu_k}{x^\be_k} \pder{x^\ga_1}{\ti{x}^\al_1} \cdots \pder{x^\ga_k}{\ti{x}^\al_k} {T^{\be_1\be_2\cdots\be_k}}_{\ga_1\ga_2\cdots\ga_l} = {\ti{T}^{\nu_1\nu_2\cdots\nu_k}}_{\al_1\al_2\cdots\al_l} \]
 
@@ -449,7 +449,7 @@ Changing from rank $(2,2)$ to a different rank $(2,2)$:
 
 \heading{Order Matters}
 
-The order of indicies that label a tensor is \textbf{very} important. It indicates the product space you are mapping \textit{from} to $\R$.
+The order of indices that label a tensor is \textbf{very} important. It indicates the product space you are mapping \textit{from} to $\R$.
 \begin{align*}
 {C^\al}_\be &: \qquad V^* \times V \ar \R \\
 {C_\al}^\be &: \qquad V \times V^* \ar \R \\
@@ -458,11 +458,11 @@ C_\al^\be &: \qquad \text{Nothing. Don't do this.} \\
 
 \heading{Equality between tensors}
 
-As tensors, indicies must match:\\
+As tensors, indices must match:\\
 
-Position of indicies is matching: ${{C^\al}_\ga}^\de = {{T^\al}_\ga}^\de$ \\
+Position of indices is matching: ${{C^\al}_\ga}^\de = {{T^\al}_\ga}^\de$ \\
 
-Position of indicies is \textbf{not} matching: ${{C^\al}_\ga}^\de \neq {{T^\al}_\ga}_\de$ \\
+Position of indices is \textbf{not} matching: ${{C^\al}_\ga}^\de \neq {{T^\al}_\ga}_\de$ \\
 
 But for fixed $\al, \ga, \de$, one can abuse the notation a bit:
 
@@ -480,13 +480,13 @@ Contraction: ${M^{\al}}_\be{M^{\be}}_\de = {{{{C^{\al}}_\be}^\be}_\de} = {C^\al}
 Outer product and contraction: ${C^{\al\be}}_{\ga\de}{T^{\ga\de}}_{\rho} = {A^{\al\be}}_\rho$ \\
 This doesn't make sense: ${C^{\al\be}}_{\ga\ga}{T^{\ga\de}}_{\rho} = ??$ \\
 
-Note, when there is a ``+'' sign we can be ``loose'' with the indicies. Here the dual indicies \textbf{do not} indicate a summation. This acts as an abuse of notation, but is sometimes difficult to avoid.
+Note, when there is a ``+'' sign we can be ``loose'' with the indices. Here the dual indices \textbf{do not} indicate a summation. This acts as an abuse of notation, but is sometimes difficult to avoid.
 
 \[ C^{\al\ga}{T_\ga}^{\de} + {F_\ga}^{\de}A^{\al\ga} \]
 
 \subsection{Interpretation of Tensors}
 
-By looking at the indicies, how can we interpret the physical meaning of the tensor object? \\
+By looking at the indices, how can we interpret the physical meaning of the tensor object? \\
 
 \begin{tabular}{c|l}
     Tensor & Interpretation \\
@@ -505,7 +505,7 @@ By looking at the indicies, how can we interpret the physical meaning of the ten
 
 \subsection{Symmetry of Tensor}
 
-We can always build a symmetric and antisymmetric part of a tensor $T^{\al\be}$. Let's look at the case of 2 indicies $\al, \be$:
+We can always build a symmetric and antisymmetric part of a tensor $T^{\al\be}$. Let's look at the case of 2 indices $\al, \be$:
 
 \heading{Symmetric Part}
 
@@ -519,7 +519,7 @@ We can always build a symmetric and antisymmetric part of a tensor $T^{\al\be}$.
 
 Note that for all tensors $T^{\al\be} = T^{\br{\al\be}} + T^{\bs{\al\be}}$. This acts as the decomposition into odd and even symmetries of the tensor. \\
 
-For more indicies:
+For more indices:
 
 \[ {T^{\br{\al\be}}}_{\bs{\ga\de}} = \f14\br{{T^{\al\be}}_{\ga\de} + {T^{\be\al}}_{\ga\de} - {T^{\al\be}}_{\de\ga} - {T^{\be\al}}_{\de\ga}} \]
 
@@ -561,11 +561,138 @@ In a spacetime diagram, $t$ is drawn as the ordinate.
 \end{tikzpicture}
 \end{center}
 
+If we begin to use light to probe the position of objects, we are going to run into some surprising results. We will have to abandon Newtonian Physics and switch to the domain of Special Relativity.
 
+\subsubsection{Newton's Dynamical Law \& Inertial Observers}
 
+\[ \vec{F} = m \vec{a}\]
 
+Where $\vec{F}$ is the total force applied to the system, $\vec{a} = \ddot{\vec{x}} = \dder{\vec{x}}{t}$ and $m$ is the inertial mass. For $\vec{x}$ is it convienent to use the Cartesian coordinate system. \\
 
+If $\vec{F} = \vec{0}$ then the dynamics becomes $\ddot{\vec{x}} = 0$ which yields solution,
 
+\[ \vec{x}(t) = \vec{v} t + \vec{x}_0 \]
 
+Where $\vec{x}_0$ is the initial condition and $\vec{v}$ is the velocity in the observer's frame. This solution describes a straight line.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+    % Draw axes
+    \draw [<->,thick] (0,4) node (yaxis) [above] {$\vec{x}$}
+        |- (5,0) node (xaxis) [right] {$t$};
+    \draw [blue, thick, ->] plot [smooth, tension=1] coordinates { (1,0) (3,4)};
+    \node [blue, right] (label) at (2,1) {$\vec{x}(t) = \vec{v}t + \vec{x}_0$};
+\end{tikzpicture}
+\end{center}
+
+However, consider this solution in a spacetime diagram,
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+    % Draw axes
+    \draw [<->,thick] (0,4) node (yaxis) [above] {$t$}
+        |- (5,0) node (xaxis) [right] {$\vec{x}$};
+    \draw [blue, thick, ->] plot [smooth, tension=1] coordinates { (0,1) (4,3)};
+    \node [blue, right] (label) at (1.5,1.5) {$t = \f{1}{\vec{v}}\br{\vec{x} - \vec{x}_0} = \f{1}{\vec{v}}\vec{x} + t_0$};
+\end{tikzpicture}
+\end{center}
+
+\heading{Definition}
+
+The class of frames (observers) for which the the dynamics of a system is $\ddot{\vec{x}} = \vec{0}$ are called an inertial observers.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+    % Draw axes
+    \coordinate (negyaxis) at (0, -1);
+    \coordinate (posyaxis) at (0, 3);
+    \coordinate (negxaxis) at (-2, 0);
+    \coordinate (posxaxis) at (4, 0);
+    \draw [<->, thick] (negyaxis) -- (posyaxis);
+    \draw [<->, thick] (negxaxis) -- (posxaxis);
+    \node [above] (labyaxis) at (posyaxis) {$t$};
+    \node [right] (labxaxis) at (posxaxis) {$x$};
+    \draw [orange, thick, ->] plot [smooth, tension=1] coordinates {(negyaxis) (posyaxis)};
+    \node [orange] (label) at (-0.5, 0.5) {$x(t)$};
+    \draw [red, thick, ->] plot [smooth, tension=1] coordinates {($(negyaxis) + (1,0)$) ($(posyaxis) + (1,0)$)};
+    \node [red] (yellowlabel) at (2, 0.5) {translation};
+    \draw [blue, thick, ->] plot [smooth, tension=1] coordinates {(-0.5, -1) (1.5, 3.0)};
+    \node [blue, right] (label) at (1.5, 3.0) {boost};
+\end{tikzpicture}
+\end{center}
+
+Note that rotations are not visible in this diagram as there is only one 1 space dimension.
+
+Transformations that relate inertial observers:
+\begin{itemize}
+    \item translation: $\vec{x}(t) \ar \vec{x}'(t) = \vec{x}(t) + \vec{a}$
+    \item rotation: $\vec{x}(t) \ar \vec{x}'(t) = R \cdot \vec{x}$
+    \item Galilean boost: $\vec{x}(t) \ar \vec{x}'(t) = - \vec{v}t  + \vec{x}(t)$
+\end{itemize}
+
+For each of these transformations $\ddvec{x}' = \vec{0}$. We will now prove the set of all these transformation of $\vec{x}(t) \ar \vec{x}'(t)$ form a group.
+
+\heading{Groups}
+
+A Group is a set $G$ equipped with an associated product ($\cdot$), a unit element and an inverse.
+
+\begin{itemize}
+    \item  $g_1 \cdot g_2 = g \in G, g_i \in G$
+    \item  $g_1 \cdot \br{g_2 \cdot g_3} = \br{g_1 \cdot g_2} \cdot g_3$
+    \item  $g \cdot 1 = 1 \cdot g = g$
+    \item  $g \cdot g^{-1} = g^{-1} \cdot g = 1$
+    \item In general, $g_1 \cdot g_2 \neq g_2 \cdot g_1$.
+    \item An abelian group is one where $g_1 \cdot g_2 = g_2 \cdot g_1$.
+\end{itemize}
+
+Upon careful examinations of translations and rotation of space $\R^n$, both translations and rotations form a group. What about Galilean boosts? \\
+
+\newcommand{\wrt}{with respect to }
+
+Consider person $A$ (Alice) standing on the ground and person $B$ (Bob) in a rocket traveling with velocity $\vec{v}_1$ \wrt $B$. Give person $B$ a ball in the rocket and let him/her kick it with velocity $\vec{v}_2$ \wrt $B$. What is the velocity of the ball \wrt person $A$? Switching between the perspectives of the system is equivalent to performing a Galilean Boost. \\
+
+\heading{Matrix Representation of a Group}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+    % Draw axes
+    \coordinate (negyaxis) at (0, -1);
+    \coordinate (posyaxis) at (0, 3);
+    \coordinate (negxaxis) at (-2, 0);
+    \coordinate (posxaxis) at (4, 0);
+    \draw [<->, thick] (negyaxis) -- (posyaxis);
+    \draw [<->, thick] (negxaxis) -- (posxaxis);
+    \node [above] (labyaxis) at (posyaxis) {$t$};
+    \node [right] (labxaxis) at (posxaxis) {$x$};
+    \draw [red, thick, ->] plot [smooth, tension=1] coordinates {(negyaxis) (posyaxis)};
+    \node [red, left] (label) at (posyaxis) {$A$};
+    \draw [blue, thick, ->] plot [smooth, tension=1] coordinates {(-0.5, -1) (1.5, 3.0)};
+    \node [blue, right] (label) at (1.5, 3.0) {$B$};
+\end{tikzpicture}
+\end{center}
+
+The boost ${B^{\al}}_\ga$ is given by,
+
+\[ {B^{\al}}_\ga = \bvec{1 & 0 & 0 & 0 \\ -v_1 & 1 & 0 & 0 \\ -v_2 & 0 & 1 & 0 \\ -v_3 & 0 & 0 & 1} \]
+
+Person $A$ (sitting on the ground) is given by,
+
+\[ A \sim \bvec{t \\ 0 \\ 0 \\ 0} \]
+
+Their product is given by,
+
+\[ \bvec{1 & 0 & 0 & 0 \\ -v_1 & 1 & 0 & 0 \\ -v_2 & 0 & 1 & 0 \\ -v_3 & 0 & 0 & 1} \bvec{t \\ 0 \\ 0 \\ 0} = \bvec{t \\ -v_1t \\ -v_2t \\ -v_3t }\]
+
+This is the trajectory of Alice \wrt Bob parametrized with time $t$. What about Bob's perspective under this linear map?
+
+\[ \bvec{t \\ v_1t \\ v_2t \\ v_3t } \bvec{1 & 0 & 0 & 0 \\ -v_1 & 1 & 0 & 0 \\ -v_2 & 0 & 1 & 0 \\ -v_3 & 0 & 0 & 1} = \bvec{t \\ -v_1t + v_1t \\ -v_2t + v_2t \\ -v_3t + v_3t \\} = \bvec{t \\ 0 \\ 0 \\ 0} \]
+
+Thus Galilean boosts form an abelian group. When we move to the regime of Special Relativity, we will see that boosts no longer form an abelian group.
+
+\subsection{The Relativity Principle}
+
+Two inertial observers moving with constant velocity cannot be distinguished by any physical experiment. \\
+
+This is most easily observed when sitting on a train next to another train. When your train is moving, it is unclear whether or not your train is moving or the other one is.
 
 \end{document}
