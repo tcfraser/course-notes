@@ -637,10 +637,10 @@ For each of these transformations $\ddvec{x}' = \vec{0}$. We will now prove the 
 A Group is a set $G$ equipped with an associated product ($\cdot$), a unit element and an inverse.
 
 \begin{itemize}
-    \item  $g_1 \cdot g_2 = g \in G, g_i \in G$
-    \item  $g_1 \cdot \br{g_2 \cdot g_3} = \br{g_1 \cdot g_2} \cdot g_3$
-    \item  $g \cdot 1 = 1 \cdot g = g$
-    \item  $g \cdot g^{-1} = g^{-1} \cdot g = 1$
+    \item $g_1 \cdot g_2 = g \in G, g_i \in G$
+    \item $g_1 \cdot \br{g_2 \cdot g_3} = \br{g_1 \cdot g_2} \cdot g_3$
+    \item $g \cdot 1 = 1 \cdot g = g$
+    \item $g \cdot g^{-1} = g^{-1} \cdot g = 1$
     \item In general, $g_1 \cdot g_2 \neq g_2 \cdot g_1$.
     \item An abelian group is one where $g_1 \cdot g_2 = g_2 \cdot g_1$.
 \end{itemize}
@@ -691,8 +691,203 @@ Thus Galilean boosts form an abelian group. When we move to the regime of Specia
 
 \subsection{The Relativity Principle}
 
-Two inertial observers moving with constant velocity cannot be distinguished by any physical experiment. \\
+\textit{Two inertial observers moving with constant velocity cannot be distinguished by any physical experiment.} \\
 
-This is most easily observed when sitting on a train next to another train. When your train is moving, it is unclear whether or not your train is moving or the other one is.
+Or alternatively, \\
+
+\textit{Inertial frames are equivalent in terms of the description of physical phenomena.} \\
+
+This is most easily observed when sitting on a train next to another train. When your train is moving, it is unclear whether or not your train is moving or the other one is. \\
+
+Inertial frames are systems with $\ddvec{x} = \vec{0}$ equipped with rods and clocks for measurements. \\
+
+What happens to the notion of spatial length when you change inertial frames? Nothing should change due to the Relativity Principle, the lengths should remain the same.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+    % Draw axes
+    \coordinate (negyaxis) at (0, -1);
+    \coordinate (posyaxis) at (0, 3);
+    \coordinate (negxaxis) at (-2, 0);
+    \coordinate (posxaxis) at (4, 0);
+    \draw [<->, thick] (negyaxis) -- (posyaxis);
+    \draw [<->, thick] (negxaxis) -- (posxaxis);
+    \node [above] (labyaxis) at (posyaxis) {$t$};
+    \node [right] (labxaxis) at (posxaxis) {$x$};
+    \draw [red, thick] plot [smooth, tension=1] coordinates {(1,1.5) (3,1.5)};
+    \node [red, left, circle] (label) at (1,1.5) {$x_A$};
+    \node [red, right, circle] (label) at (3,1.5) {$x_B$};
+\end{tikzpicture}
+\end{center}
+
+\TODO{dots}
+
+In one frame,
+\[ \abs{\vec{x}_B - \vec{x}_A }^2 = \ell^2 \]
+
+Perform a Galilean boost,
+
+\[ \vec{x}'_{A,B} = -\vec{v}t + \vec{x}_{A,B} \]
+\[ \abs{\vec{x}'_B - \vec{x}'_A }^2 = \ell'^2 \]
+But it must be that,
+
+\[ \ell' = \ell \]
+
+What about time? Galilean transformation leave time invariant because time is absolute in this Newtonian regime. The notion of simultaneity is the same for any inertial observer.
+
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+    % Draw axes
+    \coordinate (negyaxis) at (0, -1);
+    \coordinate (posyaxis) at (0, 3);
+    \coordinate (negxaxis) at (-2, 0);
+    \coordinate (posxaxis) at (4, 0);
+    \draw [<->, thick] (negyaxis) -- (posyaxis);
+    \draw [<->, thick] (negxaxis) -- (posxaxis);
+    \node [above] (labyaxis) at (posyaxis) {$t$};
+    \node [right] (labxaxis) at (posxaxis) {$x$};
+    \draw [red, thick] plot [smooth, tension=1] coordinates {(-1,-1) (3,3)};
+    \draw [red, thick] plot [smooth, tension=1] coordinates {(-1,0) (2,3)};
+    \draw [red, thick] plot [smooth, tension=1] coordinates {(0,-1) (4,3)};
+    \draw [green, thick] plot [smooth, tension=1] coordinates {(-2,1) (4,1)};
+\end{tikzpicture}
+\end{center}
+
+\TODO{Label lines.}
+
+Red lines are stationary observers, and intersection with red lines indicate simultaneous events.
+
+\heading{Math Perspective}
+
+Are Galilean transformations the most general transformations between inertial observers? Use axioms?
+
+\heading{Physics Perspective}
+
+\begin{itemize}
+    \item Maxwell's equations do not transform well under Galilean transforms. Lorrentz found the Lorrentz transformations that allow Maxwell's equations to transform well.
+    \item Michelson-Morley experiment: reveals that speed of light is invariant under the change of frame.
+    \begin{itemize}
+        \item $v_1 + v_2 = v_3$ This is \textbf{not} the case if $v_2 = c$
+        \item $v_1 + c = c$ What why???
+        \item Under the assumption that light is a wave in the ether. Results suggest that the ether is not measurable.
+    \end{itemize}
+\end{itemize}
+
+\subsection{Lorrentz Transformations}
+
+Let's use light to measure objects in two frames; specifically let's determine the position using light.
+
+\heading{Assumptions}
+
+\begin{itemize}
+    \item The speed of light is the same in any frame.
+    \item Relativity Principle
+    \item Bob will move at velocity $v < c$
+    \begin{itemize}
+        \item If an observer is moving $v > c$, their position can't be measured using light
+    \end{itemize}
+    \item 2d for simplicity
+    \item Set $c=1$, $x=ct + x_0 = t + x_0$
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+    % Draw axes
+    \coordinate (negyaxis) at (0, -1);
+    \coordinate (posyaxis) at (0, 3);
+    \coordinate (negxaxis) at (-2, 0);
+    \coordinate (posxaxis) at (4, 0);
+    \coordinate (ed) at (1.5, 1.5);
+    \node [above] (labyaxis) at (posyaxis) {$t$};
+    \node [right] (labxaxis) at (posxaxis) {$x$};
+    \draw [<->, thick] (negyaxis) -- (posyaxis);
+    \draw [<->, thick] (negxaxis) -- (posxaxis);
+    \draw [->, thick, red] (negyaxis) -- (posyaxis);
+    \draw [->, thick, blue] (-0.5, -1) -- (1.5,3);
+    \draw [->, thick, yellow] (0, 0.5) -- (ed) -- (posyaxis);
+    \node [left, red] (alicelabel) at (posyaxis) {Alice};
+    \node [right, blue] (boblabel) at (1.5,3) {Bob};
+    \node [right] (edlabel) at (ed) {Ed};
+    \fill (ed) circle[radius=1pt];
+\end{tikzpicture}
+\end{center}
+
+Let's measure the coordinates of Ed in Alice's frame and Bob's frame and the map relating the times using light to measure positions.
+
+1) Using light to measure position,
+
+\[ x = \f{1}{2c}\br{t_2 - t_1} \]
+\[ T = t_1 + \f12 \br{t_2 - t_1} = \f12 \br{t_2 + t_1} \]
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+    % Draw axes
+    \coordinate (negyaxis) at (0, -1);
+    \coordinate (posyaxis) at (0, 3);
+    \coordinate (negxaxis) at (-2, 0);
+    \coordinate (posxaxis) at (4, 0);
+    \node [above] (labyaxis) at (posyaxis) {$t$};
+    \node [right] (labxaxis) at (posxaxis) {$x$};
+    \coordinate (xt) at (0.75, 1.5);
+    \coordinate (X) at (0.75, 0);
+    \coordinate (T) at (0, 1.5);
+    \coordinate (t1) at (0, 0.5);
+    \coordinate (t2) at (0, 2.5);
+    \node [left, red] (t1label) at (t1) {$t_1$};
+    \node [left, red] (t1label) at (t2) {$t_2$};
+    \node [left] (Tlabel) at (T) {$T$};
+    \node [below] (Xlabel) at (X) {$X$};
+    \fill (xt) circle[radius=1pt];
+    \draw [->, thick, yellow] (t1) -- (xt) -- (t2);
+    \draw [dashed, gray] (X) -- (xt) -- (T);
+    \draw [<->, thick] (negyaxis) -- (posyaxis);
+    \draw [<->, thick] (negxaxis) -- (posxaxis);
+    \draw [->, thick, red] (negyaxis) -- (posyaxis);
+    \draw [->, thick, blue] (-0.5, -1) -- (1.5,3);
+    \node [left, red] (alicelabel) at (posyaxis) {A};
+    \node [right, blue] (boblabel) at (1.5,3) {B};
+\end{tikzpicture}
+\end{center}
+
+2) Determine how the difference of times of reception and emission are related?
+
+\[ \f{MN}{OM} = \f{MP}{QM} \]
+\[ \f{MN}{MN+\Delta t_A} = \f{MP}{MP+\Delta t_B} \]
+\[ \f{\Delta t_A}{MN} = \f{\Delta t_B}{MP} \]
+\[ \Delta t_A \propto \Delta t_B \]
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+    % Draw axes
+    \coordinate (negyaxis) at (0, -1);
+    \coordinate (posyaxis) at (0, 3);
+    \coordinate (negxaxis) at (-2, 0);
+    \coordinate (posxaxis) at (4, 0);
+    \node [above] (labyaxis) at (posyaxis) {$t$};
+    \node [right] (labxaxis) at (posxaxis) {$x$};
+    \coordinate (xt) at (0.75, 1.5);
+    \coordinate (t1) at (0, 0.5);
+    \coordinate (t2) at (0, 2.5);
+    \fill (xt) circle[radius=1pt];
+    \draw [->, thick, yellow] (t1) -- (xt) -- (t2);
+    \draw [->, thick, yellow] ($(t1) + (0, 0.25)$) -- ($(xt) + (0.25, 0.50) $);
+    \draw [<->, thick] (negyaxis) -- (posyaxis);
+    \draw [<->, thick] (negxaxis) -- (posxaxis);
+    \draw [->, thick, red] (negyaxis) -- (posyaxis);
+    \draw [->, thick, blue] (-0.5, -1) -- (1.5,3);
+    \node [left, red] (alicelabel) at (posyaxis) {A};
+    \node [right, blue] (boblabel) at (1.5,3) {B};
+\end{tikzpicture}
+\end{center}
+
+\TODO{This pic is broken}
+
+\[ \Delta t_A = f(v, c, x_0, y_0) \Delta t_B \]
+
+By translational invariance, $f$ cannot depend on $x_0$ or $t_0$. Therefore,
+
+\[ \Delta t_A = f(v, c) \Delta t_B \]
+
 
 \end{document}
