@@ -44,17 +44,17 @@ nodec/.style args={#1#2#3}{
 
 \subsection{What is Statistical Mechanics}
 
-Statistical Mechanics is thearea of Physics interested in systems with a large number of degress of freedon $n$. Note that these variables can be interacting or not. \\
+Statistical Mechanics is the area of Physics interested in systems with a large number of degrees of freedom $n$. Note that these variables can be interacting or not. \\
 
 There are two distinct class of Statistical Mechanics: equilibrium and non-equilibrium. \\
 
 The Statistical part of Statistical Mechanics implies that it is inherently a study of probabilities and probability distributions. These laws must still remain fully consistent with physical laws. \\
 
-Typically, systems are analyzed on a microscopic level. For a system of particles with charges $\bc{q_i}$ and their positions $\bc{\vr_i}$, the dynamics are governed by the forces acting on each particle,
+Typically, systems are analyzed on a microscopic level. For a system of particles with charges $\bc{q_i}$ and their positions $\bc{\vec{r}_i}$, the dynamics are governed by the forces acting on each particle,
 
 \[ \vec{F}_i = m_i \vec{a}_i = \sum_{i\neq j} \f{q_iq_j}{4\pi\ep_0} \f{1}{\abs{\vec{r}_{ij}}^2} \]
 
-But does labelling the particles really matter? For the case of $N \ar \infty$, the global phenomenology is of interest.
+But does labeling the particles really matter? For the case of $N \ar \infty$, the global phenomenology is of interest.
 
 \subsection{History}
 
@@ -94,14 +94,14 @@ But does labelling the particles really matter? For the case of $N \ar \infty$, 
     \hline
     \tabitem great because they are totally general &
     \tabitem does not tell us how to compute anything \\
-    \tabitem relationship's (Maxwell's realtions) between $c_p, c_v, \al, \kappa$ &
+    \tabitem relationship's (Maxwell's relations) between $c_p, c_v, \al, \kappa$ &
     \tabitem does not tell us what entropy is \\
     \hline
 \end{tabular} \\
 
 The \nth{2} law of Thermodynamics reveals $\dif U = \indif Q - \indif W$ where $\indif Q = T \dif S$. \\
 
-But what is $S$ and what does it \textbf{physically} mean? Boltzman reveals the relation:
+But what is $S$ and what does it \textbf{physically} mean? Boltzmann reveals the relation:
 
 \[ S = k_B \ln (\Om) \]
 
@@ -111,7 +111,7 @@ Which we will come back to.
 
 There is only one postulate of Statistical Mechanics:
 \begin{displayquote}
-    \textit{For an isolated system in equlibrium, all microstates accessible to the system are equally probable.}
+    \textit{For an isolated system in equilibrium, all microstates accessible to the system are equally probable.}
 \end{displayquote}
 
 In order to digest this postulate, we will require some definitions.
@@ -129,7 +129,7 @@ In order to digest this postulate, we will require some definitions.
     \begin{itemize}
         \item idealization
         \item eliminates all external influences; no force, no energy/heat flux and no particle flux
-        \item equantities such as the energy, number of particles and colume assumed constant forever $\dif U, \dif N, \dif V = 0$
+        \item quantities such as the energy, number of particles and volume assumed constant forever $\dif U, \dif N, \dif V = 0$
     \end{itemize}
     \item equilibrium
     \begin{itemize}
@@ -141,7 +141,7 @@ In order to digest this postulate, we will require some definitions.
     \end{itemize}
     \item macrostate
     \begin{itemize}
-        \item a decription at the macroscopic level in accordance with the external constraints
+        \item a description at the macroscopic level in accordance with the external constraints
         \item $U, P, T, \bar{M}$
     \end{itemize}
     \item equally probable
@@ -151,11 +151,11 @@ In order to digest this postulate, we will require some definitions.
     \end{itemize}
     \item accessible
     \begin{itemize}
-        \item  consistancy with the macroscopic constaints imposed by the conservation laws (fixed energy, fixed number of particles)
+        \item consistency with the macroscopic constraints imposed by the conservation laws (fixed energy, fixed number of particles)
     \end{itemize}
 \end{itemize}
 
-\heading{Posulate Follow-up}
+\heading{Postulate Follow-up}
 
 \begin{displayquote}
     \textit{We assume that the observed/realized macrostate is the one with the most microstates.}
@@ -163,7 +163,7 @@ In order to digest this postulate, we will require some definitions.
 
 \subsection{Perspective from Coin Tossing}
 
-Consider $4$ coins toassed many, many times. What are the microstates describing this system? \\
+Consider $4$ coins tossed many, many times. What are the microstates describing this system? \\
 
 \newcolumntype{C}{>{\centering\arraybackslash}p{2em}}
 \begin{tabular}{|c|CC|CCCC|c|c|}
@@ -249,11 +249,11 @@ How can we approximate $N!$ using the left had side of \eqref{eq:stirlingstart}?
 
 \[ N! = \intl_0^\inf \sqrt{N} e^{-N} e^{N\ln\br{N+\sqrt{N}y}} e^{-\sqrt{N}y}\dy \]
 
-The approimation begins by expanding the logarithm for large $N$,
+The approximation begins by expanding the logarithm for large $N$,
 
 \[ \ln\br{N + \sqrt{N}y} = \ln\br{N\bs{1+\f{y}{\sqrt{N}}}} = \ln\br{N} + \ln\br{1+\f{y}{\sqrt{N}}} \]
 
-Take $\ep = \f{y}{\sqrt{N}} << 1$ and apply taylor series,
+Take $\ep = \f{y}{\sqrt{N}} << 1$ and apply Taylor series,
 
 \[ \ln\br{1+\ep} \approx \ep - \f{\ep^2}{2} \]
 
@@ -280,7 +280,7 @@ Equation \eqref{eq:stirlinglong} is known as \textit{Stirling's Formula}. Howeve
 
 Note that the remaining $N$ is not dropped. This is because for $N \sim 10^{23}$, $N\ln N - N$ and $N\ln N$ differ by about $2\%$. \\
 
-Now we can apply this to the problem of maximizing $\Om$ (which is equivalent to mazimizing $\ln\Om$) because the logarithm is monotonically increasing.
+Now we can apply this to the problem of maximizing $\Om$ (which is equivalent to maximizing $\ln\Om$) because the logarithm is monotonically increasing.
 
 \[ 0 = \pder{\ln\Om}{N_H} =\pder{}{N_H} \bs{\ln\br{\f{N!}{N_H!\br{N - N_H}!}}} \]
 
@@ -313,7 +313,7 @@ Consider a lattice of $\text{Cu}^{2+}$ atoms. In a lattice the $\text{Cu}^{2+}$ 
 
 \[ H\tsb{Zeeman} = - \vec{\mu} \cdot \vec{B} \]
 
-Recall that $\vec{u} = g \mu_B \vec{s}$ has units $J/T$ where $T$ is tesla. Where for an electron,
+Recall that $\vec{u} = g \mu_B \vec{s}$ has units $J/T$ where $T$ is Tesla. Where for an electron,
 
 \[ \mu_B = \f{e\hbar}{2m} = \SI{9e-24}{\joule \tesla^{-1}} \qquad g \approx 2 \]
 
@@ -349,13 +349,13 @@ But since $U$ depends only on $x$, we can write,
 
 \[ \f{1}{T} = \br{\pder{S}{x}}\br{\pder{x}{U}} \]
 
-Thus reveals a slight connection between $S$ the entropy and $\Om$ through $x$ in this example. Further analysis with motivate Boltzman's equation,
+Thus reveals a slight connection between $S$ the entropy and $\Om$ through $x$ in this example. Further analysis with motivate Boltzmann's equation,
 
 \[ S = k_B \ln\Om + S_0 \]
 
 \subsection{Example of a Physical System with Constraint}
 
-Suppose you have $3$ partiables called $A,B,C$ such that each particle can have $\vep_j = j \vep$ where $j = 0, 1, 2, 3, \ldots$. \\
+Suppose you have $3$ particles called $A,B,C$ such that each particle can have $\vep_j = j \vep$ where $j = 0, 1, 2, 3, \ldots$. \\
 
 How many microstates are there subject to the constraint that the total energy is $3\vep$? \\
 
@@ -399,10 +399,10 @@ Recall Boyle's Law $PV = nRT$.
             \item Can also be an approximation for processes that occur really quickly over a short period of time
         \end{itemize}
     \end{itemize}
-    \item proceses reversible/irreversible
+    \item processes reversible/irreversible
     \begin{itemize}
-        \item reversible process happens over a number of dicrete steps and that are each reversibile
-        \item irreversible processes are like poking a hole in a baloon or a gas expanding in a vacuum
+        \item reversible process happens over a number of discrete steps and that are each reversible
+        \item irreversible processes are like poking a hole in a balloon or a gas expanding in a vacuum
     \end{itemize}
     \item thermodynamic variables $T, P, V, U$ where $U$ is the \textit{total energy}
 \end{itemize}
@@ -413,7 +413,7 @@ If systems $A$ and $B$ are in equilibrium with one another and systems $B$ and $
 
 \subsection{Functions of State}
 
-Thermodynamic varibales are not independent. They are often realted by an equation of state. For example $PV = nRT$ for an ideal gas. Other variables might come into an equation of state. For example $\rho, \mathcal{T}, E$ are all important for the equation of state for a liquid crystal sample. \\
+Thermodynamic variables are not independent. They are often related by an equation of state. For example $PV = nRT$ for an ideal gas. Other variables might come into an equation of state. For example $\rho, \mathcal{T}, E$ are all important for the equation of state for a liquid crystal sample. \\
 
 Equations of state with typically look like
 
@@ -428,7 +428,7 @@ Mathematically, $G = g\br{x,y}$ where $x,y$ are the thermodynamic variables and 
 \begin{itemize}
     \item $\dif G = \br{\pder{G}{x}}_y \dx + \br{\pder{G}{y}}_x \dy $
     \item at most values of the thermodynamic variables $g(x,y)$ is ``smooth''.
-    \item for example: $\br{\pdder{G}{x}}_y$ or $\br{\pdder{G}{y}}_x$ or $\br{\pder{}{x}\br{\pder{G}{y}}_x}_y$ are all continous
+    \item for example: $\br{\pdder{G}{x}}_y$ or $\br{\pdder{G}{y}}_x$ or $\br{\pder{}{x}\br{\pder{G}{y}}_x}_y$ are all continuous
     \item the order of discontinuities is determined by whether or not the system or substance is undergoing transitions of state or not
 \end{itemize}
 
@@ -442,13 +442,13 @@ What can we say about $G$ in cases where
 
 in the case of functions of state like $U$, $ \dif U = \indif Q - \indif W  $ and the inexact differentials and how they relate to exact differentials like $\dif V$ and $\dif S$? In particular, when can we integrate $\dif U$?
 
-Answer: eqaution \eqref{eq:dg} can be integrated in situations where
+Answer: equation \eqref{eq:dg} can be integrated in situations where
 
 \[ \br{\pder{}{y}\br{\pder{G}{x}}_y}_x = \br{\pder{}{x}\br{\pder{G}{y}}_x}_y \numberthis \label{eq:exactcond}\]
 
 When equation \eqref{eq:exactcond} is held for a physical system, one can say that $\dif G$ is an \textbf{exact differential}. Review 12,13 in notes on ``Review of Thermodynamics''. \\
 
-The difference in the function $G(x,y)$ between two sufficiently close paris of points $(x_1, y_1)$ and $(x_2, y_2)$ depends only on the difference in $G(x,y)$ evaluated at those two points.
+The difference in the function $G(x,y)$ between two sufficiently close pairs of points $(x_1, y_1)$ and $(x_2, y_2)$ depends only on the difference in $G(x,y)$ evaluated at those two points.
 
 \[ \Delta G = G(x_2, y_2) - G(x_1, y_1) \]
 
@@ -460,13 +460,13 @@ By counter example, heat $Q$ is not a function of state. No one can say, ``that 
 
 There are two types of work. One is called \textit{configuration work} and the other is called \textit{dissipative work}. \\
 
-\subsubsection{Configuation Work}
+\subsubsection{Configuration Work}
 
 Configuational work is denoted $\indif W$ where the symbol $\indif$ represents that it \textbf{is not} and exact differential.
 
 \[ \indif W = \sum_i y_i \dif x_i \]
 
-where $y_i$ is an intensive variable (not proportional to $N, V$; examples: pressure, surface tension). It can be thought of as a gneralized force. Here $\dif x_i$ is the generalized displacement which is an extensive variable.
+where $y_i$ is an intensive variable (not proportional to $N, V$; examples: pressure, surface tension). It can be thought of as a generalized force. Here $\dif x_i$ is the generalized displacement which is an extensive variable.
 
 \subsubsection{Dissipative Work}
 
@@ -517,7 +517,7 @@ Abiabatic work occurs with no heat exchange.
 \end{tikzpicture}
 \end{center}
 
-Adiabatic work is done between any two equlibrium states and is \textit{independent of path}. One can define a function of state as the total adiabtic work done on a system. Lets define this a the total internal energy of the system.
+Adiabatic work is done between any two equilibrium states and is \textit{independent of path}. One can define a function of state as the total adiabatic work done on a system. Lets define this a the total internal energy of the system.
 
 \[ \dif U = - \dif W\tsb{adiabatic}\]
 
@@ -638,7 +638,7 @@ Which gives the relationship,
 
 \[ P_1V_1^\ga = P_2V_2^\ga \]
 
-Which holds true along an adiabatic curve. However, $PV = RT$. Thus using the expression $\dif U = - P \dif V |\tsb{adiabtic}$ gives the result,
+Which holds true along an adiabatic curve. However, $PV = RT$. Thus using the expression $\dif U = - P \dif V |\tsb{adiabatic}$ gives the result,
 
 \[ W = \bc{\f{P_2V_2 - P_1V_1}{1-\ga}}_{\ga > 1} \]
 
@@ -709,7 +709,7 @@ Equating these two expressions (noticing that $\f{\partial^2 U}{\partial T \part
 \[ \f{1}{T^2} \pder{U}{V} + \f{P}{T^2} = \f1T \pder{P}{T} \]
 \[ \f{1}{T^2} \pder{U}{V} + \cancel{\f{R}{TV}} = \cancel{\f{R}{TV}} \]
 
-Therefore Gay-Lussac was destined to find this realtionship through experiment:
+Therefore Gay-Lussac was destined to find this relationship through experiment:
 \[ \pder{U}{V} = 0 \]
 
 \subsubsection{Joule-Thomson(Kelvin) Experiment}
@@ -737,21 +737,256 @@ Imagine a an engine $E$ that runs from temperature $T_2$ to $T_1$ (two heat bath
     \pic at (0,0) {nodea={red}{$T_H$}{L}};
     \pic at (2,0) {nodec={black}{}{C}};
     \pic at (4,0) {nodeb={blue}{$T_C$}{R}};
-    \draw[->,>=latex](L)--node[midway,above]{$Q_H$}(C);
-    \draw[->,>=latex](C)--node[midway,above]{$Q_C$} (R);
+    \draw[->,>=latex](L)--node[midway,above]{$Q_2$}(C);
+    \draw[->,>=latex](C)--node[midway,above]{$Q_1$} (R);
     \draw[->,>=latex](C)--node[midway,left]{$W$} ++(0,-2cm);
 \end{tikzpicture}
 \end{center}
 
-The efficiency of the engine is definied as,
+The efficiency of the engine is defined as,
 
 \[ \eta \defined \f{\text{output}}{\text{input}} = \f{W}{Q_2} \]
 
+Note that on a cyclic process $\De U = 0$ since $U$ is a function of state. However it is also equal to,
 
+\[ \De U = \br{Q_1 + Q_2} - W \]
 
+Therefore typically the efficiency is given by,
 
+\[ \eta = 1 + \f{Q_1}{Q_2} \]
 
+\begin{itemize}
+  \item $Q_2$ : injected into engine $E$ and is $>0$
+  \item $Q_1$ : extracted from engine $E$ and is $<0$
+\end{itemize}
 
+This can be re-written as,
 
+\[ \eta = 1 + \f{Q_1}{-\abs{Q_2}} = 1 - \f{\abs{Q_1}}{\abs{Q_2}} \]
+
+\subsubsection{Carnot Cycle/Engine}
+
+It can be shown that no engine is more efficient than a Carnot engine. Upon considering this, one can use entropy to expose the Second Law of Thermodynamics and the natural ``arrow of time''.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+    % Draw axes
+    \coordinate (nya) at (0, 0);
+    \coordinate (pya) at (0, 4);
+    \coordinate (nxa) at (0, 0);
+    \coordinate (pxa) at (5, 0);
+    \node [above] (lpya) at (pya) {$P$};
+    \node [right] (lpxa) at (pxa) {$V$};
+    \coordinate (a) at (1, 3);
+    \coordinate (b) at (3.2, 2.2);
+    \coordinate (c) at (4, 1);
+    \coordinate (d) at (2, 1.5);
+    \draw [->, thick] (nya) -- (pya);
+    \draw [->, thick] (nxa) -- (pxa);
+    \draw [->, thick] (a) -- (b) -- (c) -- (d) -- (a);
+    \node [above] (la) at (a) {$a$};
+    \node [right] (lb) at (b) {$b$};
+    \node [below] (lc) at (c) {$c$};
+    \node [left] (ld) at (d) {$d$};
+\end{tikzpicture}
+\end{center}
+
+\TODO{labels and arrows}
+\begin{center}
+\begin{tabular}{c|c|c|c}
+$ab$ & isotherm ($T_2$) & $Q_2 > 0$ & $W^{ab} > 0$\\
+\hline
+$bc$ & adiabat & $Q = 0$ & $W^{bc} > 0$\\
+\hline
+$cd$ & isotherm ($T_1$) & $Q_1 < 0$ & $W^{cd} < 0$\\
+\hline
+$da$ & adiabat & $Q = 0$ & $W^{da} < 0$\\
+\end{tabular}
+\end{center}
+
+The total work is given by,
+
+\[ W\tsb{tot} = W^{ab} + W^{bc} + W^{cd} + W^{da} \]
+
+1) First the isotherms:
+
+\[ W \sim \int P\dif V \note{Use $PV = RT$ (1 mole)}\]
+\[ W = \intl_1^2 \f{RT}{V} \dif V = RT \ln\br{\f{V_2}{V_1}} \]
+\begin{center}
+\begin{tabular}{c|c|c}
+$ab$ & $RT_2 \ln\br{\f{V_b}{V_a}} > 0$ & $\implies Q_2$\\
+\hline
+$cd$ & $RT_1 \ln\br{\f{V_d}{V_c}} < 0$ & $\implies Q_1$\\
+\end{tabular}
+\end{center}
+This is to be expected because we are on isotherms and $\Delta U = 0$. \\
+
+2) Second the adiabats:
+
+Along an adiabat,
+
+\[ PV^{\ga} = \text{const.}\]
+\[ P_1V_1^{\ga} = P_2V_2^{\ga} \]
+
+Furthermore, relating this to $PV = RT$,
+
+\[ \f{RT_1}{V_1} V_1^{\ga} = \f{RT_2}{V_2} V_2^{\ga} \]
+\[ T_1 V_1^{\ga-1} = T_2 V_2^{\ga-1} \]
+
+Applying this to our diagram,
+
+\[ T_2 V_b^{\ga-1} = T_1 V_c^{\ga-1} \quad \text{and} \quad T_1 V_d^{\ga-1} = T_2 V_a^{\ga-1} \]
+
+Which after rearrangement yields a constraint for the volumes,
+
+\[ \f{V_b}{V_a} = \f{V_c}{V_d} \]
+
+Therefore,
+
+\[ \eta\tsb{Carnot} = \eta_C = 1 + \f{Q_1}{Q_2} \]
+\[ \eta_C = 1 + \f{RT_1\ln\br{V_d/V_c}}{RT_2\ln\br{V_b/V_a}} = 1 - \f{T_1}{T_2}\f{\ln\br{V_c/V_d}}{\ln\br{V_b/V_c}} \]
+\[ \eta_C = 1 - \f{T_1}{T_2} \]
+
+\subsubsection{Second Law Statements}
+
+\begin{enumerate}
+  \item \textbf{Clausius:} You can not build a machine or engine operating in a cycle can be constructed whose sole effect is to transfer heat from a cold to hot.
+  \item \textbf{Kelvin-Planck:} It is impossible to construct a device whose sole effect is to produce work by only absorbing heat from a single reservoir. Two reservoirs are needed.
+\end{enumerate}
+
+Now let us use Clausius statement to prove Carnot's theorem as per the Carnot Engine; the most efficient engine is a Carnot engine.
+
+\heading{Example}
+
+Suppose we have an engine $E$ that extracts heat from a hot $T_2$ reservoir $Q_2 = \SI{100}{cal}$, performs $W = \SI{20}{cal}$ of work and then dumps the remaining $Q_1 = \SI{80}{cal}$ calories of heat into a cold reservoir $T_1$. This is our Carnot engine.
+
+\[ \eta_C = \f{W}{Q_2} = \f{20}{100} = 20\% \]
+
+Now suppose we had a better engine with $\eta_y > \eta_C$. Namely, this new engine has specs $Q_2 = \SI{100}{cal}, W = \SI{40}{cal}, Q_1 = \SI{60}{cal}$.
+
+\[ \eta_y = \f{W}{Q_2} = \f{40}{100} = 40\% \]
+
+Now to prove is can not be the case, let us take our Carnot engine and reverse it's processes (making it a fridge), and doubling it's size. Therefore this Carnot fridge will require $\SI{40}{cal}$ to run. This can be supplied by our ``better'' engine. Therefore, this combined engine will absorb $\SI{100}{cal}$ from a cold reservoir at $T_1$ and inject it into a hot reservoir $\SI{100}{cal}$ at temperature $T_2$, \textbf{with no other effect.} This violates the Clausius hypothesis.
+
+\heading{Corollary}
+
+All engines operating reversibly between two temperatures $T_1$ and $T_2$ have the same efficiency. In other words, the presence of any irreversible process degrades the efficiency $\eta\tsb{irreversible} < \eta\tsb{Carnot}$.
+
+\subsubsection{Entropy}
+
+We have found that,
+
+\[ \eta_C = 1 + \f{Q_1}{Q_2} = 1 - \f{T_1}{T_2} \]
+
+Or equivalently,
+
+\[ \f{Q_1}{T_1} + \f{Q_2}{T_2} = 0 \]
+
+For a single Carnot engine, the sum of heat at step $n$ over the temperature at step $n$ has sum,
+
+\[  \sum_{n=1}^{k} \f{Q_n}{T_n} = 0 \]
+
+Which gives that $\De Q / T$ over the whole cycle is zero. Taking the limit as $k \ar \inf$, it suggests that the quantity $\indif Q / T$ is an exact differential. Introduce the label of entropy,
+
+\[ \dif S = \f{\indif Q}{T} \quad \text{with} \quad \oint \dif S\tsb{rev} = 0  \]
+
+As you can see, considering a Carnot engine also suggests the presence of a quantity $S$ call entropy. Just as before, $S$ is a state function. \\
+
+How can we compute entropy? \\
+
+\heading{Example (Constant Volume)}
+
+Let's consider heat injected at constant volume, and attempt to calculate $\De S$.
+
+\[ \De U = \De Q - \De W \note{At constant volume, $\De W = 0$} \]
+
+But we also have $\De Q = C_v \De T$ where $C_v$ is the heat capacity of the material. This combination yields,
+
+\[ \dif S = \f{\indif Q}{T} = \f{C_v}{T}\dif T \]
+
+\[ \intl_1^2 \dif S = \intl_{T_1}^{T_2} \f{C_v}{T} \dif T = c_v \ln\br{\f{T_2}{T_1}} \]
+
+\[ \br{S_2 - S_1} = C_v \ln\br{\f{T_2}{T_1}} \]
+
+\heading{Example (Constant Temperature)}
+
+Let's consider change of entropy for an isothermal process.
+
+\[ S_2 - S_1 = \intl_1^2 \f{\indif Q}{T} \]
+
+But from the first law we have for constant temperature,
+
+\[ \dif U = \indif Q - P \dif V = 0  \]
+
+Thus,
+
+\[ \indif U = P \dif V \]
+\[ \intl_1^2 \dif S = \intl_1^2 \f{P}{T}\dif V = \intl_1^2 \f{nR}{V}\dif V = nR \ln\br{\f{V_2}{V_1}} \]
+
+\heading{Summarize}
+
+\begin{enumerate}
+    \item No engine is more efficient than Carnot.
+    \item As a by-produce, we discovered a quantity $\Delta S$ defined as:
+    \begin{itemize}
+        \item $\Delta S = \f{\De Q}{T}$ ($\dif S = \f{\indif Q}{T}$ for the infinitesimal)
+        \item $\dif S$: defined at each point in $(P,V,T)$ diagram
+        \item $\dif S$: is exact differential. $S_2 - S_1$ only depends on the \textbf{endpoints} not the \textbf{path}
+    \end{itemize}
+\end{enumerate}
+
+Let us show this by comparing two paths,
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+    % Draw axes
+    \draw [<->,thick] (0,4) node (yaxis) [above] {$P$}
+        |- (5,0) node (xaxis) [right] {$V$};
+    \coordinate (f) at (4,1);
+    \coordinate (m) at (1,1);
+    \coordinate (i) at (1,3);
+    \node [right] (lf) at (f) {$T_2$};
+    \node [above] (li) at (i) {$T_1$};
+    \node [below] (lm) at (m) {$T'$};
+    \node [blue, label={[blue]10:$3$}] (label) at (2.5, 2) {};
+    \draw [blue, thick, ->] plot [smooth, tension=1] coordinates { (i) (f)};
+    \draw [green, thick, ->] plot [smooth, tension=1] coordinates { (i) (m)};
+    \node [green, label={[green]10:$1$}] (label) at (0.5, 1.5) {};
+    \draw [green, thick, ->] plot [smooth, tension=1] coordinates { (m) (f)};
+    \node [green, label={[green]10:$2$}] (label) at (2, 1) {};
+    \node [below] (vi) at (1,0) {$V_1$};
+    \node [below] (vf) at (4,0) {$V_2$};
+    \node [left] (pf) at (0,1) {$P_2$};
+    \node [left] (pi) at (0,3) {$P_1$};
+    \draw [gray, dashed] (i) -- (vi);
+    \draw [gray, dashed] (i) -- (pi);
+    \draw [gray, dashed] (f) -- (vf);
+    \draw [gray, dashed] (f) -- (pf);
+\end{tikzpicture}
+\end{center}
+
+Along the green path,
+
+\[ \Delta S_1 = \intl \br{\f{\indif Q}{T}}_1 = C_v \intl_{T_1}^{T'} \f{\dif T}{T} = C_v \ln\br{\f{T'}{T_1}} \]
+\[ \Delta S_2 = \intl \br{\f{\indif Q}{T}}_2 = C_p \intl_{T'}^{T_2} \f{\dif T}{T} = C_p \ln\br{\f{T_2}{T'}} \]
+
+Thus the total change is given by,
+
+\begin{align*}
+\De S &= \De S_1 + \De S_2 \\
+&= C_v \ln\br{\f{T'}{T_1}} + C_p \ln\br{\f{T_2}{T'}} \\
+&= C_v \ln\br{\f{T'}{T_1}} + \br{C_v + R} \ln\br{\f{T_2}{T'}} \\
+&= C_v \ln\br{\f{T_2}{T_1}} + R \ln\br{\f{T_2}{T'}} \\
+&= \cancelto{0}{C_v \ln\br{\f{T_2}{T_1}}} + R \ln\br{\f{T_2}{T'}} \\
+&= R \ln\br{\f{T_2}{T'}} \\
+\end{align*}
+
+Note the cancellation $T_1 = T_2$ since (3) is an isotherm. \\
+
+Since path (2) is at constant $P$
+
+\[ \De S = R \ln\br{\f{V_2}{V_1}} \]
+
+Which is identical to the change in entropy along the isotherm derived above. Thus confirming that $\De S$ is independent of path.
 
 \end{document}
