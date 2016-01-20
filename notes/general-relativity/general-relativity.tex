@@ -42,13 +42,13 @@ Where $v^i$ are the $i$-th coefficients of the vector $v$ with respect to the ba
 
 \subsection{Einstein Summation Rule}
 
-For convience let's provide a new, shorter notation for the vector $v$.
+For convenience let's provide a new, shorter notation for the vector $v$.
 
 \[ v^ie_i = v^0e_0 + \ldots + v^ne_n = \sum_{i=0}^nv^ie_i \]
 
 Effectively, we have just \textbf{dropped the summation sign}. The einstein summation rule is as follows: \\
 
-If there are two identical indices, 1 ``up'' and 1 ``down'', it means that a summation is secretly present, it's just be removed for convience. Note that the $i$ in this case is \textit{dummy index}.
+If there are two identical indices, 1 ``up'' and 1 ``down'', it means that a summation is secretly present, it's just be removed for convenience. Note that the $i$ in this case is \textit{dummy index}.
 
 \[ v^ie_i = v^{\alpha}e_{\alpha} = v^je_j \]
 
@@ -763,7 +763,7 @@ Are Galilean transformations the most general transformations between inertial o
 \heading{Physics Perspective}
 
 \begin{itemize}
-    \item Maxwell's equations do not transform well under Galilean transforms. Lorrentz found the Lorrentz transformations that allow Maxwell's equations to transform well.
+    \item Maxwell's equations do not transform well under Galilean transforms. Lorentz found the Lorentz transformations that allow Maxwell's equations to transform well.
     \item Michelson-Morley experiment: reveals that speed of light is invariant under the change of frame.
     \begin{itemize}
         \item $v_1 + v_2 = v_3$ This is \textbf{not} the case if $v_2 = c$
@@ -772,7 +772,7 @@ Are Galilean transformations the most general transformations between inertial o
     \end{itemize}
 \end{itemize}
 
-\subsection{Lorrentz Transformations}
+\subsection{Lorentz Transformations}
 
 Let's use light to measure objects in two frames; specifically let's determine the position using light.
 
@@ -850,6 +850,7 @@ Let's measure the coordinates of Ed in Alice's frame and Bob's frame and the map
 
 2) Determine how the difference of times of reception and emission are related?
 
+\[ \De t_A = ON \quad \De t_B = QP \]
 \[ \f{MN}{OM} = \f{MP}{QM} \]
 \[ \f{MN}{MN+\Delta t_A} = \f{MP}{MP+\Delta t_B} \]
 \[ \f{\Delta t_A}{MN} = \f{\Delta t_B}{MP} \]
@@ -896,11 +897,174 @@ Let's measure the coordinates of Ed in Alice's frame and Bob's frame and the map
 \end{tikzpicture}
 \end{center}
 
-\[ \Delta t_A = f(v, c, x_0, y_0) \Delta t_B \]
+\[ \Delta t_A = f^{-1}(v, c, x_0, y_0) \Delta t_B \]
 
 By translational invariance, $f$ cannot depend on $x_0$ or $t_0$. Therefore,
 
-\[ \Delta t_A = f(v, c) \Delta t_B \]
+\[ \Delta t_A = f^{-1}(v, c) \Delta t_B \]
 
+For convenience, we will find $f$ defined as,
+
+\[ \Delta t_B = f(v, c) \Delta t_A \]
+
+By similar analysis of a pair of light rays emanating from bob,
+
+\[ \Delta \ti{t}_A = \ti{f}(v, \ti{c}) \Delta \ti{t}_B = \ti{f}(v, c) \Delta \ti{t}_B \]
+
+This uses the assumption $\ti{c} = c$. Furthermore by the relativity principle, we must have $\ti{f} = f$. Otherwise, the two inertial frames ($A, B$) would be distinguishable through $f, \ti{f}$. In conclusion:
+
+\[ \De t\tsb{received} = f(v,c) \De t\tsb{emitted} \]
+
+So what is the form of $f$? Let us assume that there is a synchronization between the two frames so that calculations become easier.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.5]
+    % Draw axes
+    \coordinate (nya) at (0, -1);
+    \coordinate (pya) at (0, 3);
+    \coordinate (nxa) at (-2, 0);
+    \coordinate (pxa) at (4, 0);
+    \draw [<->, thick] (nxa) -- (pxa);
+    \draw [<->, thick] (nya) -- (pya);
+    \node [above] (lpya) at (pya) {$t$};
+    \node [right] (lpxa) at (pxa) {$x$};
+    \coordinate (ai) at (nya);
+    \coordinate (bi) at (-0.33, -1);
+    \coordinate (af) at (pya);
+    \coordinate (bf) at (1, 3);
+    \draw [->, thick, red] (ai) -- (af);
+    \draw [->, thick, blue] (bi) -- (bf);
+    \node [left, red] (la) at (af) {A};
+    \node [right, blue] (lb) at (bf) {B};
+
+    \coordinate (t0) at (0, 1);
+    \coordinate (tau) at (intersection of t0--(3,4) and bi--bf);
+    \coordinate (tL) at ($(tau) + (0, -10)$);
+    \coordinate (tT) at ($(tau) + (-10, 0)$);
+    \coordinate (L) at (intersection of tau--tL and nxa--pxa);
+    \coordinate (T) at (intersection of tau--tT and nya--pya);
+    \coordinate (t1) at (intersection of tau--(-3,5) and ai--af);
+
+    \draw [->, thick, yellow] (t0) -- (tau);
+    \draw [->, thick, yellow] (tau) -- (t1);
+    \draw [dashed, gray] (tau) -- (L);
+    \draw [dashed, gray] (tau) -- (T);
+
+    \fill (t0) circle (1pt) node[left] {$t_0$};
+    \fill (tau) circle (1pt) node[right] {$\tau$};
+    \fill (t1) circle (1pt) node[left] {$t_1$};
+    \fill (0,0) circle (1pt) node[below right] {$S$};
+    \fill (T) circle (1pt) node[left] {$T$};
+    \fill (L) circle (1pt) node[below] {$L$};
+\end{tikzpicture}
+\end{center}
+
+Let's define:
+\begin{align*}
+    \De t_A &= S \ar t_0 = t_0 \\
+    \De \ti{t}_A &= S \ar t_1 = t_1 \\
+    \De t_B &= S \ar \tau = \tau = \De \ti{t}_B \\
+\end{align*}
+
+Therefore $\tau = f(v,c) t_0$ with,
+
+\[ t_1 = \De \ti{t}_A = f(v,c) \De \ti{t}_B = f^2(v,c) t_0 \]
+Thus we have from radar measurements,
+
+\[ L = \f12 c \br{t_1 - t_0} = \f12 c\br{f^2(v,c) - 1}t_0 \]
+\[ T = \f12 \br{t_1 + t_0} = \f12 c\br{f^2(v,c) + 1}t_0 \]
+
+The ratio is given by,
+
+\[ \f{L}{T} = v = c \f{f^2(v,c) -1}{f^2(v,c) +1} \]
+
+Inverting this expression (using $-c < v < c$) yields,
+
+\[ f(v,c) = \br{\f{1+\f{v}{c}}{1 - \f{v}{c}}}^{1/2} \]
+
+4) Ed's coordinate from A's and B's perspective.
+
+
+\begin{center}
+\begin{tikzpicture}[scale=1.5]
+    % Draw axes
+    \coordinate (nya) at (0, -1);
+    \coordinate (pya) at (0, 3);
+    \coordinate (nxa) at (-2, 0);
+    \coordinate (pxa) at (4, 0);
+    \draw [<->, thick] (nxa) -- (pxa);
+    \draw [<->, thick] (nya) -- (pya);
+    \node [above] (lpya) at (pya) {$t$};
+    \node [right] (lpxa) at (pxa) {$x$};
+    \coordinate (ai) at (nya);
+    \coordinate (bi) at (-0.33, -1);
+    \coordinate (af) at (pya);
+    \coordinate (bf) at (1, 3);
+    \coordinate (e) at (1, 1.5);
+    \draw [->, thick, red] (ai) -- (af);
+    \draw [->, thick, blue] (bi) -- (bf);
+    \node [left, red] (la) at (af) {A};
+    \node [right, blue] (lb) at (bf) {B};
+
+    \coordinate (t1a) at (0, 1);
+    \coordinate (t2a) at (0, 2);
+    \coordinate (t1b) at (intersection of t1a--e and bi--bf);
+    \coordinate (t2b) at (intersection of t2a--e and bi--bf);
+
+    \draw [->, thick, yellow] (t1a) -- (e);
+    \draw [->, thick, yellow] (e) -- (t2a);
+
+    \fill (t1a) circle (1pt) node[left] {$T_1^A$};
+    \fill (t2a) circle (1pt) node[left] {$T_2^A$};
+    \fill (t1b) circle (1pt) node[right] {$T_1^B$};
+    \fill (t2b) circle (1pt) node[right] {$T_2^B$};
+    \fill (0,0) circle (1pt) node[below right] {$S$};
+    \fill (e) circle (1pt) node[right] {$E$};
+\end{tikzpicture}
+\end{center}
+
+Let $E$ be identified in two ways,
+\begin{center}
+\begin{tabular}{c|c}
+    Alice's Perspective & $(x_A^E, t_A^E)$ \\
+    \hline
+    Bob's Perspective & $(x_B^E, t_B^E)$ \\
+\end{tabular}
+\end{center}
+
+Therefore,
+\[ x_A^E = \f12 c \br{T_2^A - T_1^A} \]
+\[ t_A^E = \f12 \br{T_2^A + T_1^A} \]
+\[ x_B^E = \f12 c \br{T_2^B - T_1^B} \]
+\[ t_B^E = \f12 \br{T_2^B + T_1^B} \]
+
+We know that $T_1^B = f T_1^A$ and $T_2^A = f T_2^B$ hence we can get the relation between $(x_A^E, t_A^E)$ and $(x_B^E, t_B^E)$.
+
+\[ x_B^E = \f{1}{\sqrt{1 - \f{v^2}{c^2}}} \br{x_A^E - vt_A^E} \]
+\[ t_B^E = \f{1}{\sqrt{1 - \f{v^2}{c^2}}} \br{t_A^E - \f{v}{c^2}x_A^E} \]
+
+For convenience we can relabel,
+\[ \ga =  \f{1}{\sqrt{1 - \f{v^2}{c^2}}} \]
+
+In matrix form,
+\[ \bvec{T' \\ X'} = \underbrace{\ga \bvec{1 & \f{-v}{c^2} \\ -v & 1}}_{\text{Lorentz Boost}} \bvec{T \\ X}\]
+
+Notice in the limit that $v << c$, the Lorentz boost becomes equivalent to the Galilean boost discussed earlier.
+
+\subsubsection{Consequences of Lorentz Transformations}
+
+\begin{enumerate}
+    \item From Alice's perspective, Bob's time axis is,
+    \begin{itemize}
+        \item $x^B = 0 = \ga (x_A - vt_A) \implies x = vt$
+    \end{itemize}
+    \item From Alice's perspective, Bob's spatial slice is,
+    \begin{itemize}
+        \item $T^B = 0 = \ga \br{t_A - \f{v}{c^2}} x_A \implies t = \f{v}{c^2} x$
+        \item The slope of this line in Alice's perspective is the \textbf{inverse} (with $c \ar 1$) of the slope of Bob's time axis
+    \end{itemize}
+\end{enumerate}
+
+Again, notice that Galilean simultaneity is recovered in the limit that $v \ar v << c$. Our new theory is still consistent with our old theories.
 
 \end{document}
