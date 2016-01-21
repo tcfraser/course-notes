@@ -866,11 +866,13 @@ Now suppose we had a better engine with $\eta_y > \eta_C$. Namely, this new engi
 
 \[ \eta_y = \f{W}{Q_2} = \f{40}{100} = 40\% \]
 
-Now to prove is can not be the case, let us take our Carnot engine and reverse it's processes (making it a fridge), and doubling it's size. Therefore this Carnot fridge will require $\SI{40}{cal}$ to run. This can be supplied by our ``better'' engine. Therefore, this combined engine will absorb $\SI{100}{cal}$ from a cold reservoir at $T_1$ and inject it into a hot reservoir $\SI{100}{cal}$ at temperature $T_2$, \textbf{with no other effect.} This violates the Clausius hypothesis.
+Now to prove is can not be the case, let us take our Carnot engine and reverse it's processes (making it a fridge), and doubling it's size. Therefore this Carnot fridge will require $\SI{40}{cal}$ to run. This can be supplied by our ``better'' engine. Therefore, this combined engine has the net effect of absorbing $\SI{100}{cal}$ from a cold reservoir at $T_1$ and injecting $\SI{100}{cal}$ into a hot reservoir at temperature $T_2$, \textbf{with no other effect.} This violates the Clausius hypothesis.
 
 \heading{Corollary}
 
-All engines operating reversibly between two temperatures $T_1$ and $T_2$ have the same efficiency. In other words, the presence of any irreversible process degrades the efficiency $\eta\tsb{irreversible} < \eta\tsb{Carnot}$.
+All engines operating reversibly between two temperatures $T_1$ and $T_2$ have the same efficiency. In other words, the presence of any irreversible process degrades the efficiency.
+
+\[ \eta\tsb{irreversible} < \eta\tsb{Carnot} \numberthis \label{eq:irreversiblecarnot}\]
 
 \subsubsection{Entropy}
 
@@ -884,7 +886,7 @@ Or equivalently,
 
 For a single Carnot engine, the sum of heat at step $n$ over the temperature at step $n$ has sum,
 
-\[  \sum_{n=1}^{k} \f{Q_n}{T_n} = 0 \]
+\[  \sum_{n=1}^{k} \f{Q_n}{T_n} = 0 \numberthis \label{eq:revcarnot}\]
 
 Which gives that $\De Q / T$ over the whole cycle is zero. Taking the limit as $k \ar \inf$, it suggests that the quantity $\indif Q / T$ is an exact differential. Introduce the label of entropy,
 
@@ -921,7 +923,7 @@ But from the first law we have for constant temperature,
 Thus,
 
 \[ \indif Q = P \dif V \]
-\[ \intl_1^2 \dif S = \intl_1^2 \f{P}{T}\dif V = \intl_1^2 \f{nR}{V}\dif V = nR \ln\br{\f{V_2}{V_1}} \]
+\[ \intl_1^2 \dif S = \intl_1^2 \f{P}{T}\dif V = \intl_1^2 \f{nR}{V}\dif V = nR \ln\br{\f{V_2}{V_1}} \numberthis \label{eq:isothermvolumechangeentropy} \]
 
 \heading{Summarize}
 
@@ -988,5 +990,216 @@ Since path (2) is at constant $P$
 \[ \De S = R \ln\br{\f{V_2}{V_1}} \]
 
 Which is identical to the change in entropy along the isotherm derived above. Thus confirming that $\De S$ is independent of path.
+
+\subsubsection{Clausius Inequality}
+
+\TODO{Draw a standard carnot curve on PV plot}
+
+Recall from equation \eqref{eq:revcarnot}, we have that for a reversible Carnot cycle,
+
+\[ \f{Q_2}{T_2} + \f{Q_1}{T_1} = 0  \]
+
+Now consider the case of heat extraction and heat disposal along a \textit{tiny Carnot cycle}.
+
+\[ \f{\indif Q_2}{T_2} + \f{\indif Q_1}{T_1} = 0  \]
+
+\TODO{Insert PV circle liney diagram}
+
+The idea here is to consider any physical process or cycle as being made up of numerous tiny adiabatic curves and isotherms. We \textit{approximate} the real cycle as being composed of a series of reversible processes. In the limit of the number of ``switches'' goes to infinity, the real engine process is made exactly reversible. \\
+
+Essentially, we are mapping out the contour of any given cycle by following many isotherms and adiabats. Then for any given sub-process here,
+
+\[ \sum_{i=1}^{n} \f{\indif Q_i}{T_i} = 0 \]
+
+Or in the limit as $n \ar \inf$,
+
+\[ \ointl \f{\indif Q\tsb{rev}}{T} = 0 \]
+
+Again we observe that $Q\tsb{rev}/T$ is an \textbf{exact} differential and we can call it $\dif S$ as done before. $S$ is a state variable. \\
+
+Any reversible cycle must obey the following equation,
+
+\[ \ointl \f{\indif Q}{T} = 0 \note{For a reversible cycle.} \]
+
+What about for an irreversible cycle? An irreversible cycle is some process that somewhat has a step that can not be performed backward. What we have shown is that the efficiency of an engine with an irreversible cycle $\eta'$ must be less than that of Carnot $\eta_C$ (see \eqref{eq:irreversiblecarnot}).
+
+\[ \eta' < \eta_C\]
+
+Using equation \eqref{eq:irreversiblecarnot}, we can show that,
+
+\[ \f{Q'_1}{Q'_2} < \br{\f{Q_1}{Q_2}}\tsb{rev Carnot} \]
+
+Or that,
+
+\[ \f{\indif Q'_1}{T_1} + \f{\indif Q'_2}{T_2} < 0 \note{For an irreversible cycle.} \]
+
+Which lead to the generalization for an infinite number of steps as,
+
+\[ \sum_{i=1}^{n} \f{\indif Q'_i}{T_i} < 0 \ar \ointl \f{\indif Q'}{T} < 0  \]
+
+This leads to the Clausius Inequality:
+
+\[ \ointl \f{\indif Q'}{T} \leq 0 \]
+
+Which achieves equality only when the \textbf{entire} cycle is irreversible. Inequality is always maintained if \text{any} part of the cycle is irreversible. This can be understood as another formulation of the Second Law of Thermodynamics. \\
+
+There are two cases ``applications'' of Clausius inequality: \\
+
+1) Consider a single two-step \textit{reversible} cycle
+
+\begin{center}
+\begin{tikzpicture}
+\coordinate (1) at (0,0);
+\coordinate (2) at (2,2);
+\coordinate (A) at (0.8,1.2);
+\coordinate (B) at (1.2,0.8);
+\draw [blue, thick, ->] plot [smooth, tension=1] coordinates { (1) (A) (2)};
+\draw [blue, thick, ->] plot [smooth, tension=1] coordinates { (2) (B) (1)};
+
+\fill (1) circle (1pt) node[below left] {$1$};
+\fill (2) circle (1pt) node[above right] {$2$};
+\node [above left, blue] (lA) at (A) {$A$};
+\node [below right, blue] (lB) at (B) {$B$};
+
+\end{tikzpicture}
+\end{center}
+
+\TODO{Arrows halfway}
+
+Therefore,
+
+\[ \oint \f{\indif Q}{T} = 0 \]
+\[ \intl_1^2 \br{\f{\indif Q}{T}}_A + \intl_2^1 \br{\f{\indif Q}{T}}_B = 0 \]
+
+Rearrangement gives,
+
+\[ \intl_1^2 \br{\f{\indif Q}{T}}_A = - \intl_2^1 \br{\f{\indif Q}{T}}_B = \intl_1^2 \br{\f{\indif Q}{T}}_B\]
+
+Which implies that entropy is conserved,
+
+\[ \br{S_2 - S_1}_A = \br{S_2 - S_1}_B \]
+
+2) Consider a two-step \textit{irreversible/reversible} process
+
+\begin{center}
+\begin{tikzpicture}
+\coordinate (1) at (0,0);
+\coordinate (2) at (2,2);
+\coordinate (A) at (0.8,1.2);
+\coordinate (B) at (1.2,0.8);
+\draw [red, thick, ->] plot [smooth, tension=1] coordinates { (1) (A) (2)};
+\draw [blue, thick, ->] plot [smooth, tension=1] coordinates { (2) (B) (1)};
+
+\fill (1) circle (1pt) node[below left] {$1$};
+\fill (2) circle (1pt) node[above right] {$2$};
+\node [above left, red] (lA) at (A) {Irrev.};
+\node [below right, blue] (lB) at (B) {Rev.};
+
+\end{tikzpicture}
+\end{center}
+
+Therefore by the Clausius Inequality we have,
+\[ \oint \f{\indif Q}{T} \leq 0 \]
+
+\[ \ointl_1^2 \br{\f{\indif Q}{T}}\tsb{irrev} + \ointl_2^1 \br{\f{\indif Q}{T}}\tsb{rev} \leq 0 \]
+\[ \ointl_1^2 \br{\f{\indif Q}{T}}\tsb{irrev} \leq - \ointl_2^1 \br{\f{\indif Q}{T}}\tsb{rev} = \ointl_1^2 \br{\f{\indif Q}{T}}\tsb{rev} \]
+
+Thus we can conclude that with $\dif S \br{\f{\indif Q}{T}}\tsb{rev}$,
+
+\[ \ointl_1^2 \br{\f{\indif Q}{T}}\tsb{irrev} \leq \ointl_1^2 \br{\dif S}\tsb{rev} = S_2 - S_1 \]
+
+Which gives that our entropy increases each cycle,
+
+\[ \br{S_2 - S_1}\tsb{rev} \geq \ointl_1^2 \br{\f{\indif Q}{T}}\tsb{irrev} \]
+
+Now suppose that our system is undergoing an adiabatic process along the whole path. This means that no heat is exchanges during the process ($\indif Q = 0$). This gives us,
+
+\[ \br{S_2 - S_1}\tsb{irrev} \geq 0 \note{For an irreversible, adiabatic process.}\]
+
+In conclusion, the entropy can only increase for an \textit{isolated} (our adiabatic example) system undergoing an irreversible process. This is a restatement of the Second Law of Thermodynamics; entropy always increases for an isolated system. Of course this is all subject to the constraint imposed on the system: $N, V, E$ might be constrained or imposed to be constant. Or more clearly: \\
+
+At \textit{equilibrium}, entropy must reach its maximum value. Otherwise it would increase because it has to.
+
+\subsubsection{Perspective on Entropy}
+
+Consider a container with two sub-sections. The left hand side will have a gas and the right hand side will have a vacuum (each side having volume $V$). At time $t=0$, the barrier between the two containers is removed and the gas has access to the entire container of volume $2V$. At equilibrium, the gas occupies the entire container. Evidently, this is an irreversible process (the gas does not have the luxury to return to it's original state). Some comments:
+
+\begin{itemize}
+  \item irreversible process
+  \item gas does no work against the vacuum
+  \item no heat exchange
+  \item $\De U = \De Q - \De W = 0$ (Conservation of energy $\implies$ temperature is constant)
+\end{itemize}
+
+This process is irreversible, so there is no way to directly compute it's change in entropy throughout the entire process. However, the entropy can be calculated using properties about the two endpoints and a \textit{reversible} process that connects these endpoints. \\
+
+The \textit{reversible} process we will consider as a replacement will be letting the gas expand via a piston held initially at the midway point of the container that is controlled externally. We will slowly move the piston until the gas fills the entire container. This new process is consider isothermal that takes use from state (1) (half gas, half vacuum) to state (2) (total gas). Along this process we can compute the change in entropy $S_2 - S_1$ along the reversible path. Turns out we already computed this in equation \eqref{eq:isothermvolumechangeentropy}.
+
+\[ \De S = S_2 - S_1 = nR \ln\br{\f{V_2}{V_1}} \]
+
+Let $nR = k_BN_A$ where $k_B$ is the Boltzmann constant and $N_A$ is Avogadro's number. Note that $V_1 = V$ and $V_2 = 2V$,
+
+\[ \De S = k_BN_A \ln\br{\f{2V}{V}} = k_B \ln\br{2^{N_A}} \]
+
+Thus we expect,
+
+\[ \De S \propto \untext{\br{\text{const.}}}{units $J/K$} \times \ln \br{2^N} \]
+
+Note that the `$2^N$' term measures the number of microstates that the system received or now has access to to due to the process. Consider the microstates counted by the possibility that the particle can be on the left or the right of the container.\\
+
+\begin{itemize}
+    \item All particles on left except 1
+    \begin{itemize}
+        \item LLLLL$\ldots$LLRLLL$\ldots$LLLLL
+        \item $N$ ways for this to occur
+    \end{itemize}
+    \item All particles on the left except 2
+    \begin{itemize}
+        \item LLLLL$\ldots$LLRLLL$\ldots$LLRL$\ldots$LLLLL
+        \item $N(N-1)/2$ ways for this to occur
+    \end{itemize}
+\end{itemize}
+
+The most probable macrostate occurs when the total number of microstates reaches a maximum. Using the Stirling's approximation, this occurs when there is a 50/50 split between the left and right with total number of microstates,
+
+\[ \Om \sim 2^N + \text{small corrections} \]
+
+Note that disordered (``mixed'') states (50/50) can be realized in so many more ways than ``ordered states''. \\
+
+With this view, entropy can be viewed as a measure of the number of microstates through the rational of the second law. These ideas are what lead Boltzmann to consider the possibility,
+
+\[ S \sim \ln \Om \]
+
+With further corrects and units,
+
+\[ S = k_B \ln \Om +S_0 \]
+
+Where the constant $S_0$ can be shown to be zero with the Third Law of Thermodynamics.
+
+\subsubsection{Conclusion}
+
+The Second Law of Thermodynamics is very much a manifestation of the probability/statistics of the large number of states microscopic objects can realize. \\
+
+The law $\De S \geq 0$ spontaneously for an isolated system means that we must seek microscopic configurations that \textit{maximize} S, as when this is achieved, the system must have reached equilibrium.
+
+\section{S.M. Basis for T.D.}
+
+Statical Mechanics Basis for Thermodynamics.
+
+\subsection{Contact Between S.M. \& T.D.}
+
+\begin{enumerate}
+    \item Systems where $V \ar \inf$ and $N \ar \inf$ and the density $N/V$ remains constant
+    \begin{itemize}
+        \item Thermodynamically large system
+    \end{itemize}
+    \item Equilibrium Thermodynamics / S.M.
+    \begin{itemize}
+        \item Consider two regions of a container separated by a diathermal wall
+        \item $(N_1, V_1, E_1)$ and $(N_2, V_2, E_2)$ number of particles, volume, energy respectively
+        \item Interested in total number of microstates
+        \item Composite system $\Om^{(0)} = \Om^{(1)} \times \Om^{(2)}$
+    \end{itemize}
+\end{enumerate}
 
 \end{document}
