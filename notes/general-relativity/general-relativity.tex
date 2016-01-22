@@ -1065,6 +1065,209 @@ Notice in the limit that $v << c$, the Lorentz boost becomes equivalent to the G
     \end{itemize}
 \end{enumerate}
 
-Again, notice that Galilean simultaneity is recovered in the limit that $v \ar v << c$. Our new theory is still consistent with our old theories.
+Again, notice that Galilean simultaneity is recovered in the limit that $v \ar v \ll c$. Our new theory is still consistent with our old theories.
+
+\subsection{Length \& Time}
+
+\subsubsection{Einstein's Train \& Simultaneity}
+\begin{center}
+\begin{tikzpicture}
+    \coordinate (b) at (-3, 0);
+    \coordinate (r) at (3, 0);
+    \coordinate (v) at (0, 1);
+    \coordinate (v2) at (1, 1);
+    \coordinate (s) at (0, -1);
+
+    \draw [->, thick] (v) -- (v2);
+    \draw [dashed, gray, thick] (b) -- (r);
+
+    \fill [blue] (b) circle (3pt) node[left] {Blue Light};
+    \fill [red] (r) circle (3pt) node[right] {Red Light};
+    \fill (v) circle (1pt) node[above right] {$v$};
+    \fill (v) circle (1pt) node[above left] {Alice};
+    \fill (s) circle (1pt) node[below] {Bob};
+\end{tikzpicture}
+\end{center}
+
+
+\begin{center}
+\begin{tikzpicture}[scale=1.5]
+    % Draw axes
+    \coordinate (nya) at (0, -1);
+    \coordinate (pya) at (0, 3);
+    \coordinate (nxa) at (-2, 0);
+    \coordinate (pxa) at (4, 0);
+    \draw [<->, thick] (nxa) -- (pxa);
+    \draw [<->, thick] (nya) -- (pya);
+    \node [above] (lpya) at (pya) {$t$};
+    \node [right] (lpxa) at (pxa) {$x$};
+    \coordinate (ai) at (nya);
+    \coordinate (af) at (pya);
+    \coordinate (bi) at (-0.33, -1);
+    \coordinate (bf) at (1, 3);
+    \coordinate (l1) at (-1.5, 0);
+    \coordinate (l2) at (1.5, 0);
+    \coordinate (lightleft) at (-5, 5);
+    \coordinate (lightright) at (5, 5);
+    \coordinate (l1l) at ($(l1) + (lightleft)$);
+    \coordinate (l1r) at ($(l1) + (lightright)$);
+    \coordinate (l2l) at ($(l2) + (lightleft)$);
+    \coordinate (l2r) at ($(l2) + (lightright)$);
+
+    \coordinate (l1i) at (intersection of bi--bf and l1--l1r);
+    \coordinate (l2i) at (intersection of ai--af and l2--l2l);
+    \coordinate (l1ii) at (intersection of bi--bf and l2--l2l);
+
+    \draw [->, thick, red] (ai) -- (af);
+    \draw [->, thick, yellow] (l1) -- (l1i);
+    \draw [->, thick, yellow] (l2) -- (l2i);
+    \draw [->, thick, blue] (bi) -- (bf);
+    \node [left, red] (la) at (af) {A};
+    \node [right, blue] (lb) at (bf) {B};
+
+    \fill (l1) circle (1pt);
+    \fill (l2) circle (1pt);
+    \fill (l2i) circle (1pt);
+    \fill (l1i) circle (1pt);
+    \fill (l1ii) circle (1pt);
+\end{tikzpicture}
+\end{center}
+
+Therefore, simultaneity is \textbf{relative}.
+
+\subsubsection{Length}
+
+What about spatial length? Alice has a ruler of length $x_2 - x_1 = \ell$. In Bob's frame,
+
+\[ x_i = \br{\untext{x'_i + v t'}{Bob's coords}} \ga \quad i = 1,2 \]
+
+Thus,
+
+\[ x'_2 - x'_1 = \br{x_2 - x_1} \f{1}{\ga} \implies \ell' = \f{\ell}{\ga} \note{Length contraction.}\]
+
+If Bob has a ruler of length $\ell' = x'_2 - x'_1$,
+
+\[ x'_i = \br{\untext{x_i + v t}{Alice's coords}} \ga \quad i = 1,2 \]
+
+\[ x_2 - x_1 = \ell = \f{1}{\ga}\ell'\note{Length contraction.}\]
+
+\subsubsection{Time}
+
+In a similar manner, we have time dilation,
+
+\[ t'_2 - t'_1 = \ga \br{t_2 - t_1} \note{With $\ga > 1$.} \]
+
+\subsubsection{Invariant Length \& Minkowski Metric}
+
+Can we construct/define a notion of length that is invariant under these transformations? Namely,
+
+\newcommand{\Lam}{\Lambda}
+
+\[ \bvec{\ga & -\ga \f{v}{c^2} \\ -\ga v & \ga} = {\Lam^{\al}}_{\be} \]
+
+Let's introduce a metric, $g_{\al\be}$ that is of course symmetric and non non-degenerate. Therefore,
+
+\[ {\Lam^{\al}}_{\be} g_{\al\ga} {\Lam^{\ga}}_{\de} = g_{\be\de}  \]
+
+Reminder: $v \cdot w = v' \cdot w'$ with $v'^\al = {\Lam^{\al}}_{\ga} v^\ga$. The solution here for 1d motion:
+
+\[ g_{\al\be} = \bvec{-1 & 0 \\ 0 & 1} \text{ or } \bvec{1 & 0 \\ 0 & -1} \]
+
+These are called \textit{Minkowski Metrics}. The difference between these two is a matter of convention. We will select the convention,
+
+\[ g_{\al\be} = \bvec{-1 & 0 \\ 0 & 1}\]
+
+\begin{center}
+\begin{tikzpicture}[scale=1.5]
+    % Draw axes
+    \coordinate (nya) at (0, -2);
+    \coordinate (pya) at (0, 2);
+    \coordinate (nxa) at (-2, 0);
+    \coordinate (pxa) at (2, 0);
+    \draw [<->, thick] (nxa) -- (pxa);
+    \draw [<->, thick] (nya) -- (pya);
+    \node [above] (lpya) at (pya) {$t$};
+    \node [right] (lpxa) at (pxa) {$x$};
+    \coordinate (o) at (0,0);
+    \coordinate (T) at (0.5,1);
+    \coordinate (L) at (1,1);
+    \coordinate (S) at (1,0.5);
+
+    \draw [dashed, thick, red] (o) -- (T);
+    \draw [dashed, thick, blue] (o) -- (L);
+    \draw [dashed, thick, green] (o) -- (S);
+    \draw [thick, yellow] (-2,-2) -- (2,2);
+    \draw [thick, yellow] (-2,2) -- (2,-2);
+
+    \fill (T) circle (1pt) node[above right] {$T$};
+    \fill (o) circle (1pt) node[below right] {$O$};
+    \fill (S) circle (1pt) node[below right] {$S$};
+    \fill (L) circle (1pt) node[below right] {$L$};
+\end{tikzpicture}
+\end{center}
+
+Let us define,
+
+\begin{align*}
+\abs{\vec{OT}}^2 &< 0 \note{``time like''} \\
+\abs{\vec{OL}}^2 &= 0 \note{``light like''} \\
+\abs{\vec{OS}}^2 &> 0 \note{``space like''}
+\end{align*}
+
+We say that a vector $v^\al$ is time-like if $v^\al \eta_{\al\be} v^\be \defined \abs{v}^2 < 0$, light-like if $v^\al \eta_{\al\be} v^\be \defined \abs{v}^2 = 0$ and space-like if $v^\al \eta_{\al\be} v^\be \defined \abs{v}^2 > 0$. \\
+
+What are inertial observers in the relativistic regime? They are \textit{still} given by a \textit{straight lines}. What are the set of transformations relating inertial observers (4d) ?
+
+\begin{itemize}
+    \item rotations: $R_x, R_y, R_z$
+\end{itemize}
+
+\[ \ar \bvec{1 & 0 & 0 & 0 \\ 1 & \cos \theta & \sin \theta & 0 \\ 0 & -\sin \theta & \cos \theta & 0 \\ 0 & 0 & 0 & 1 } \]
+
+\begin{itemize}
+    \item boost: $B_x, B_y, B_z$
+\end{itemize}
+
+\[ B_z \ar \bvec{\ga & -\ga\f{v}{c^2} & 0 & 0 \\ -\ga v & \ga & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 } \]
+
+Therefore,
+
+\[ \det B_z = \ga^2 - \ga^2 \f{v^2}{c^2} = \ga^2\br{1-\f{v^2}{c^2}} = 1 \]
+
+Let us relabel $\ga^2 = \cosh^2 \eta$ and $\ga^2\f{v^2}{c^2} = \sinh^2 \eta$,
+
+\[ B_z \ar \bvec{\cosh \eta & -\f{\sinh \eta}{c^2} & 0 & 0 \\ -\sinh \eta & \cosh \eta & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 } \]
+
+\begin{itemize}
+    \item translation: $\vec{x} \ar \vec{x} + \vec{a}$; $t \ar t + b$
+    \begin{itemize}
+        \item $x^\nu \ar x^\nu + a^\nu$
+    \end{itemize}
+\end{itemize}
+
+All of these together form the Poincare group.
+
+\subsubsection{Poincare Group}
+
+\TODO{e in poincare}
+\TODO{long fancy vec}
+
+Galilean boosts:
+
+\[ \vec{v}_1 + \vec{v}_2 = \vec{v}_3 \]
+
+Lorentzian boosts:
+
+\[ \vec{v_1 \oplus v_2} = \f{1}{1+\f{\vec{v}_1\cdot\vec{v}_2}{c^2}}\br{\vec{v}_1 + \f{1}{\ga_1}\vec{v}_2 + \f{1}{c}\f{\ga_1}{1-\ga_1}\br{\vec{v}_1\cdot\vec{v}_2} \vec{v}_2}\]
+
+Note these aren't associative,
+
+\[ \vec{\vec{v_1 \oplus v_2} \oplus \vec{v}_3} \neq \vec{v_1 \oplus \vec{v_2 \oplus \vec{v}_3}} \]
+
+However it $\vec{v}_1$ is parallel to $\vec{v}_2$ then,
+
+\[ \vec{v_1 \oplus v_2} = \f{\vec{v}_1 + \vec{v}_2}{1 + \f{\vec{v}_1 \cdot \vec{v}_2}{c^2}} \]
+
+Which forces $\abs{\vec{v_1 \oplus v_2}}^2 = c^2$ whenever either $\vec{v}_1$ or $\vec{v}_2$ has $\abs{\vec{v}_i}^2 = c^2$.
 
 \end{document}
