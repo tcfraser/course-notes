@@ -404,7 +404,7 @@ Thus $B$ is the inverse of $A$. \\
 
 What does transforming \textit{well} mean? A tensor is transforming well if its components transform as
 
-\[{T^{\nu_1\nu_2\cdots\nu_k}}_{\al_1\al_2\cdots\al_l} \ar \pder{\ti{x}^\nu_1}{x^\be_1} \cdots \pder{\ti{x}^\nu_k}{x^\be_k} \pder{x^\ga_1}{\ti{x}^\al_1} \cdots \pder{x^\ga_k}{\ti{x}^\al_k} {T^{\be_1\be_2\cdots\be_k}}_{\ga_1\ga_2\cdots\ga_l} = {\ti{T}^{\nu_1\nu_2\cdots\nu_k}}_{\al_1\al_2\cdots\al_l} \]
+\[{T^{\nu_1\nu_2\cdots\nu_k}}_{\al_1\al_2\cdots\al_l} \ar \pder{\ti{x}^{\nu_1}}{x^{\be_1}} \cdots \pder{\ti{x}^{\nu_k}}{x^{\be_k}} \pder{x^{\ga_1}}{\ti{x}^{\al_1}} \cdots \pder{x^{\ga_k}}{\ti{x}^{\al_k}} {T^{\be_1\be_2\cdots\be_k}}_{\ga_1\ga_2\cdots\ga_l} = {\ti{T}^{\nu_1\nu_2\cdots\nu_k}}_{\al_1\al_2\cdots\al_l} \]
 
 If you find something like ${T^\al}_\be$, is it a tensor? \textbf{No! You must check if it transforms well.}
 
@@ -1259,12 +1259,161 @@ Lorentzian boosts:
 
 Note these aren't associative,
 
-\[ \ovec{\ovec{v_1 \oplus v_2} \oplus \vec{v}_3} \neq \ovec{v_1 \oplus \ovec{v_2 \oplus \vec{v}_3}} \]
+\[ \ovec{\ovec{v_1 \oplus v_2} \oplus v_3} \neq \ovec{v_1 \oplus \ovec{v_2 \oplus v_3}} \]
 
 However it $\vec{v}_1$ is parallel to $\vec{v}_2$ then,
 
 \[ \ovec{v_1 \oplus v_2} = \f{\vec{v}_1 + \vec{v}_2}{1 + \f{\vec{v}_1 \cdot \vec{v}_2}{c^2}} \]
 
 Which forces $\abs{\ovec{v_1 \oplus v_2}}^2 = c^2$ whenever either $\vec{v}_1$ or $\vec{v}_2$ has $\abs{\vec{v}_i}^2 = c^2$.
+
+\subsection{Flat Spacetime}
+
+Spacetime is $\R^4$ and we will consider the Minkowski metric $\eta_{\al\be}$. In Cartesian coordinates,
+\[ x^\mu = \bvec{ct& x & y & z} \]
+
+Consider a curve in spacetime $x^\nu(\ell)$ where $\ell$ is a curvilinear parameter that parametrizes the curve. The tangent vector is given by $\der{x^\mu}{\ell}$.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+    % Draw axes
+    \draw [<->,thick] (0,4) node (yaxis) [above] {$t$}
+        |- (5,0) node (xaxis) [right] {$x$};
+    \draw [blue, thick, ->] plot [smooth, tension=1] coordinates { (1,0) (2,1) (1,3) (3,4)};
+    \draw [red, thick, ->] plot [smooth, tension=1] coordinates { (2,1) (2,2)};
+    \node [blue, right] (label) at (3,4) {$x^\mu(\ell)$};
+    \node [red, right] (label) at (2,2) {$\der{x^\mu}{\ell}$};
+\end{tikzpicture}
+\end{center}
+
+If the tangent $\der{x^\mu}{\ell}$ is always time-like, then the curve is called time-like. Analogously for space-like and light-like curves. We can then define an arclength of the curve.
+
+\[ \tau \neq \intl \sqrt{\der{x^\mu}{\ell} n_{\mu\nu} \der{x^\nu}{\ell}} \dif \ell \]
+
+This expression does not work because the metric $\eta_{\mu\nu}$ is not positive definite. Therefore the length could be complex. To combat this, introduce an absolute magnitude,
+
+\[ \tau = \intl \sqrt{\abs{\der{x^\mu}{\ell} n_{\mu\nu} \der{x^\nu}{\ell}}} \dif \ell \]
+
+Which suggests,
+\[ \der{\tau}{\ell} = \sqrt{\abs{\der{x^\mu}{\ell} n_{\mu\nu} \der{x^\nu}{\ell}}} \]
+Which implies
+\[ \dif \tau ^2 = \abs{\dif x^\mu n_{\mu\nu} \dif x^\nu} \]
+
+Now consider using $\tau$ as the curvilinear parameter. So that the tangent is defined as,
+
+\[ \der{x^\mu}{\tau} \]
+
+What does this encapsulate? Consider an observer at rest:
+
+\begin{center}
+\begin{tikzpicture}
+    % Draw axes
+    \coordinate (nya) at (0, -1);
+    \coordinate (pya) at (0, 3);
+    \coordinate (nxa) at (-1, 0);
+    \coordinate (pxa) at (3, 0);
+    \draw [<->, thick] (nxa) -- (pxa);
+    \draw [<->, thick] (nya) -- (pya);
+    \node [above] (lpya) at (pya) {$t$};
+    \node [right] (lpxa) at (pxa) {$x$};
+
+    \draw [->, thick, blue] (nya) -- (pya);
+    \draw [->, thick, red] (0,0.2) -- (0,1.0);
+    \node [red, right] (label) at (0,1) {$\der{x^\mu}{\tau}$};
+    \node [blue, right] (lpya2) at (pya) {$x^\mu(\ell)$};
+
+\end{tikzpicture}
+\end{center}
+
+Here, the notion of arclength coincides with time.
+
+\[ \dif \tau^2 = \dif t^2 \]
+
+Considering a time-like curve, the proper length or arclength is interpreted as the time as measured by a clock carried by the observer having the curve as his/her spacetime trajectory (world-line). \\
+
+Parametrization of the world line of an observer at rest $(\vec{x} = \vec{0})$.
+\[ x^0(\tau) = \tau \quad \text{ and } \quad \vec{x} = \vec{0} \]
+Which gives,
+\[ \der{x^\mu}{\tau} = \bvec{1 \\ 0 \\ 0 \\ 0} = {\de^\mu}_0 \neq {\de^0}_\mu \note{Be careful to matching indices.} \]
+Labeling ${\de^\mu}_0 = V^\al$,
+\[ V^\al \eta_{\al\be} V^\be = {\de^\al}_0 \eta_{\al\be} {\de^\be}_0 = \eta_{00}= -1 < 0  \]
+Therefore, $V^\al$ is time-like. However in general,
+
+\begin{align*}
+V^\mu \eta_{\mu\be} V^\be &= \der{x^\mu}{\tau}  \eta_{\mu\al} \der{x^\al}{\tau}\\
+&= \f{\dif x^\mu\eta_{\mu\al} \dif x^\al}{\dif \tau^2}\\
+&= \f{\dif s^2}{\dif \tau^2} \note{$\ds^2$ is the line element.}\\
+&= -1 \note{Since $\dif \tau^2 = \abs{\dif s^2} = - \dif s^2 $ (this vector is time-like).}\\
+\end{align*}
+
+We can can also write (with $c=1$),
+\begin{align*}
+\dif \tau^2 &= \dif t^2 - \dif \vec{x}^2 \\
+&= \dif t^2\br{1 - \f{\dif \vec{x}^2}{\dif t^2}} \\
+&= \dif t^2\br{1 - \vec{v}^2} \\
+\end{align*}
+Which when rearranged yields (noting the negative is ignored because we are considering time moving forward),
+\[ \der{t}{\tau} = \f{1}{\sqrt{1-\vec{v}^2}} = \ga \]
+
+Noting that,
+\[ v^\mu = \bvec{\der{t}{\tau} c \\ \der{\vec{x}}{\tau}} = \bvec{\ga c \\ \der{t}{\tau}\der{\vec{x}}{t}} = \bvec{\ga c \\ \ga\vec{v}} \]
+
+Noting that $\vec{v}$ is a velocity in 3d space while $v^\mu$ is a relativistic velocity which is a 4d object. We have shown that,
+
+\[ v^\mu v_\mu = -1 \]
+
+In the Galilean regime, $\vec{v} \in \R^3$ which allows one to use the vector space structure of $\R^3$ to add velocities,
+
+\[ \vec{v}_1 + \vec{v}_2 = \vec{v}_{12}\]
+
+But for relativistic velocities $\vec{v} \in \mathbb{H}^3$ hyperboloid.
+
+\[ \bc{v^\mu \in \R^4 \mid v^\mu v_\mu = -1} \]
+
+This is somewhat surprising, bur there exists a constraint that reduces the dimensionality.
+
+\[ v^\mu v_\mu = -1 = - \br{v^t}^2 + \br{v^x}^2 + \br{v^y}^2 + \br{v^z}^2 \]
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[grid=both]
+\addplot3[surf,shader=faceted] {sqrt(x^2 + y^2 + 1)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+This new space $\mathbb{H}^3$ allows for the addition of velocities,
+
+\[ \ovec{v_1 \oplus v_2} = \vec{v}_{12} \]
+
+\heading{Particle Considerations}
+
+\begin{itemize}
+    \item The world-line of a material particle is a time-like curve
+    \item The world-line of photons (massless) is a light-like curve
+    \item The world-line of a tachyon ($\abs{v} > c$) is space-like
+\end{itemize}
+
+Relativistic acceleration is given by,
+\[ a^\mu = \der{v^\mu}{\tau} = \dder{x^\mu}{\tau} \]
+
+For inertial observer, $a^\mu = 0^\mu$.
+
+Relativistic momentum is given for a material particle with mass $m$,
+
+\[ p^\mu = m v^\mu \implies p^\mu p_\mu = - m^2\]
+
+Which has the property,
+
+\[ p^\mu = \bvec{E = m \ga \\ \vec{p} = m\ga \vec{v}} \]
+
+Examine the space term,
+
+\[ E = m \ga = m \f{1}{\sqrt{1-v^2}} = m + \untext{\f12 m v^2}{kinetic energy} + \cdots \note{Taylor Series} \]
+
+And also rest,
+
+\[ E^2 = m^2 c^4 \]
+
 
 \end{document}
