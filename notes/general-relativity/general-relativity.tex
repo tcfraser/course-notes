@@ -1415,5 +1415,124 @@ And also rest,
 
 \[ E^2 = m^2 c^4 \]
 
+\subsection{Relativistic Dynamics}
+
+What about the dynamics in the relativistic regime? Recall in the non-relativistic regime, Newton's law is given by,
+
+\[ m_i \vec{a} = \vec{F}\tsb{tot} \]
+
+Where $m_i$ is the inertial mass. How can we modify this equation to the relativistic regime. $m_i$ has no need to change, $\vec{a}$ becomes the 4d spacetime vector $a^\mu = \dder{x^\nu}{\tau}$ and force becomes,
+\[ m_i a^\mu = F^\mu \]
+
+\subsubsection{Lorentz Force}
+
+Consider the Lorentz force,
+\[ \vec{F} = q \br{\vec{E} + \vec{v} \times \vec{B}} \]
+
+Where $q$ is the charge of the particle, $\vec{E}$ is the electric field, $\vec{v}$ is the velocity of the particle and $\vec{B}$ is the magnetic field of the particle. In the relativistic regime,
+\[ F^\mu = q {F^{\al\be}} V_\be \]
+
+Where $F^{\al\be}$ is known as the Maxwell tensor that is anti-symmetric,
+\[ F^{\al\be} = \bvec{0 & E_x & E_y & E_z \\ -E_x & 0 & B_z & -E_y \\ -E_y & -B_z & 0 & B_x \\ -E_z & B_y & -B_x & 0} \]
+
+And $V_\be$ is the relativistic velocity with,
+
+\[  V_\be = \eta_{\al\be}V^\al \]
+
+\subsubsection{Gravity}
+
+What about the relativistic behavior of gravity?
+
+\[ \vec{F} = - m_g \vdel \phi  = - \f{Gm_g M \hat{r}}{r^2}\]
+
+Where $m_g$ is gravitational mass, $\phi$ is the gravitational potential, $G$ is Newton's constant, and $M$ is the mass of the system that generates the gravitational force. For a mass density $\rho$,
+
+\[ M = \iiintl_{V} \rho \dif V \]
+
+Given a source with mass density $\rho$ we have $\phi$ given by the Poisson Equation,
+
+\[ \vdel \vdel \phi = \De \phi = 4\pi G\rho \]
+
+Where $\De$ is given by,
+
+\[ \De = \br{\pdder{}{x} + \pdder{}{y} + \pdder{}{z}} \]
+
+Gravity tells me how the matter source propagate,
+
+\[ \vec{F}_g  = m_i \vec{a} \note{gravity $\implies$ matter} \numberthis \label{eq:pregeodesic}\]
+
+While matter tells gravity how to behave through the Poisson Equation,
+
+\[ \De \phi = 4\pi G \rho \note{matter $\implies$ gravity} \numberthis \label{eq:prefield}\]
+
+Here you can see the dual nature between equations \eqref{eq:pregeodesic} and \eqref{eq:prefield}. How can we generalize these equations to the relativistic regime. What we will see is that \eqref{eq:pregeodesic} become the geodesic equations, while \eqref{eq:prefield} become the Einstein field equations. \\
+
+Let's find the relativistic version of \eqref{eq:prefield}.
+
+\[ \De \phi = \br{\pdder{}{x} + \pdder{}{y} + \pdder{}{z} } \phi \]
+
+Here $\De$ is the Laplacian. The relativistic notation is given by,
+
+\[ \Box \phi \defined \eta^{\al\be} \pder{}{x^\al} \pder{}{x^\be} \phi = \br{-\f{1}{c^2}\pdder{}{t} + \De} \phi\]
+
+Where $\Box$ is called the \textit{D'Alembertian}. What about the RHS of \eqref{eq:prefield}? $4,\pi,G$ are all constants, so all that remains is $\rho$. Notice that $\rho \sim M / V$ is a mass over a volume. As we have seen above mass $M$ is like an energy. Furthermore, boosts affect the volume $V$.
+
+\[ p^\mu= \bvec{E \\ \vec{p}} \]
+
+Now perform a boost on $p^\mu$ ($p^\mu \ar \ti{p}^\mu$) using ${\Lam^{\al}}_\be$,
+
+\[ {\Lam^{\al}}_\be = \bvec{\ga & \f{\ga v}{c^2} & 0 & 0 \\ \ga v & \ga & 0 & 0  \\ 0 & 0 & 1 & 0  \\ 0 & 0 & 0 & 1 } \]
+
+As you can see, the energy terms will get mixed up with the momentum terms. \\
+
+Consider a \textit{perfect fluid} (set of particles) characterized by,
+\begin{itemize}
+    \item velocity $v$
+    \item mass density $\rho$
+    \item pressure $p$
+\end{itemize}
+
+A perfect field is called \textit{dust} is $p = 0$. Then $\rho = M/V$ where the total mass $M$ is given by,
+
+\[ M = n \cdot m \]
+
+Where $n$ is the number of particles and $m$ is the mass of each particle. Therefore,
+
+\[ \rho = \f{M}{V} = \f{nm}{V} = \f{n}{V} m \]
+
+Now the term $n/V$ represents a number density of particles. What is the relativistic version of each of these two terms ($n/V$ and $m$). Evident $m$ is going to be generalized using the four-momentum $p^\mu$. But what about $n/V$?
+
+\[ N \defined \f{n}{V} = \text{ number density} \]
+
+In the co-moving frame (i.e. the frame at which the fluid is at rest) we have, $N = n/V$. Consider a rectangular prism in 3d space with sides $\De x, \De y, \De z$. Then the total volume is $\De x\De y\De z$. Now consider a frame that is not co-moving. Consider this frame moving at velocity $\vec{v} = v_x \hat{x}$. What happens to $\De x$? Length contraction decreases the width of the box.
+
+\[ \De x \ar \De \bar{x} = \f{1}{\ga} \De x \]
+
+What happens to $N$? Well since the total number of particles $n$ remains constant, the number density increases,
+
+\[ N \ar \bar{N} = \f{n}{\De \bar{V}} = \ga \f{n}{\De x\De y\De z} \]
+
+Can we see a flux as a number density (i.e. a number of particles crossing an area per unit area of time)? In the co-moving frame, we are moving with the particles so there is no flux. However in the non co-moving frame where $\vec{v} = v_x \hat{x}$, consider a slice along the $\bar{x}$ axis ($\bar{y}\bar{z}$-plane). What is the flux of particles flowing through this slice?
+
+\[ \text{\# particles crossing slice } = \bar{N} \cdot V = \bar{N} \underbrace{\De \bar{x}}_{v\De \bar{t}} \underbrace{\De \bar{y} \De \bar{z}}_{\De A} \]
+
+The flux then is given by,
+\[ \text{Flux } = \f{\text{\#}}{\De \bar{t} \De \bar{A}} \]
+
+Where $\De \bar{t} \De \bar{A}$ can be thought of as a \textit{spacetime volume} in 3d. So flux is a number density defined with respect to a spacetime 3d volume. Therefore,
+
+\[ \text{Flux } = \bar{N} v = v \ga N \]
+
+
+
+
+
+
+
+
+
+
+
+
 
 \end{document}
