@@ -1236,11 +1236,52 @@ Statical Mechanics Basis for Thermodynamics.
     \end{itemize}
     \item Equilibrium Thermodynamics / S.M.
     \begin{itemize}
-        \item Consider two regions of a container separated by a diathermal wall
+        \item Consider two regions $(1,2)$ of a container separated by a diathermal wall
         \item $(N_1, V_1, E_1)$ and $(N_2, V_2, E_2)$ number of particles, volume, energy respectively
         \item Interested in total number of microstates
         \item Composite system $\Om^{(0)} = \Om^{(1)} \times \Om^{(2)}$
     \end{itemize}
 \end{enumerate}
+This composite system has $E^{\br{0}} = E_1 + E_2 = $ constant. We are interested in $\Om$: the number of microstates. At \textit{any time}, system (1) is just as likely to be in any of its microstates. This is also true for system (2).
+\[ \Om^{(0)}\br{E_1, E_2} = \Om_1(E_1) \times \Om_2(E_2) \]
+\[ \Om^{(0)}\br{E_1, E^{(0)} - E_1} = \Om_1(E_1) \times \Om_2(E^{(0)} - E_1) \]
+The most likely macrostate is the one with the most number of microstates. It is important to note that is true at \textit{any time}. To maximize $\Om^{(0)}$,
+\[ \pder{\Om^{(0)}}{E_1} = 0 \implies \bre{\pder{\Om_1}{E_1}}_{E_1 = \bar{E}_1} \Om_2(\bar{E}_2) + \Om_1(\bar{E}_1) \bre{\pder{\Om_2}{E_2}}_{E_2 = \bar{E}_2} \pder{E_2}{E_1} = 0 \]
+Note since $E^{(0)}$ is fixed,
+\[ \pder{E_2}{E_1} = -1 \]
+Which reveals,
+\[ \f{1}{\Om_1(E_1)} \bre{\pder{\Om_1}{E_1}}_{E_1 = \bar{E}_1} = \f{1}{\Om_2(E_2)} \bre{\pder{\Om_2}{E_2}}_{E_2 = \bar{E}_2} \]
+Notice the logarithmic nature of this equation to show that,
+\[ \underbrace{\bre{\pder{\ln\Om_1}{E_1}}_{E_1 = \bar{E}_1}}_{\be_1} = \underbrace{\bre{\pder{\ln\Om_2}{E_2}}_{E_2 = \bar{E}_2}}_{\be_2} \]
+Therefore in summary, equilibrium requires $\be_1 = \be_2$. Recall that for a reversible process,
+\[ \dif U = \indif Q - \indif W \]
+Thus,
+\[ \dif E = \indif Q - \indif W \]
+\[ \dif E = T \dif S - P \dif V \]
+Where the definition of entropy can be expressed,
+\[ \pdert{S}{N,V}{E} = T \]
+Which gives for system 1,
+\[ \br{\pder{E_1}{\ln\Om_1}} \br{\pder{\ln\Om_1}{S_1}} = T_1 \]
+And the analogous expression for system 2,
+\[ \br{\pder{E_2}{\ln\Om_2}} \br{\pder{\ln\Om_2}{S_2}} = T_2 \]
+Combining these two systems gives,
+\[ \pder{S_1}{\ln\Om_1} = \f{1}{\be_1T_1} \qquad \pder{S_2}{\ln\Om_2} = \f{1}{\be_2T_2} \numberthis \label{eq:entropymotiv}\]
+Equations \eqref{eq:entropymotiv} should be telling for the following assumption. \\
+
+\textbf{Assumption:} There exists an intimate relationship between Statistical Mechanics and Thermodynamics for all and any system. \\
+We will propose that,
+\[ \f{1}{\be_1T_1} = \f{1}{\be_2T_2} = \f{1}{\be T} = \text{ constant/universal } \]
+Thus,
+\[ S = \text{constant}\cdot \ln \Om \]
+Where the unknown constant is actually Boltzmann's constant, $k_B$ with,
+\[  \be = \f{1}{k_B T} \]
+What about the relationships between other quantities associated with systems (1) and (2)? First consider volume.
+
+\[ \underbrace{\bre{\pder{\ln \Om_1}{V_1}}_{N_1, E_1, V_1 = \bar{V}_1}}_{\eta_1} = \underbrace{\bre{\pder{\ln \Om_2}{V_2}}_{N_2, E_2, V_2 = \bar{V}_2}}_{\eta_2} \]
+Which gives,
+\[ \eta_1 = \eta_2 \]
+
+These new variables describe the equilibrium of the two systems in terms of volume.
+
 
 \end{document}
