@@ -769,7 +769,10 @@ This can be re-written as,
 It can be shown that no engine is more efficient than a Carnot engine. Upon considering this, one can use entropy to expose the Second Law of Thermodynamics and the natural ``arrow of time''.
 
 \begin{center}
-\begin{tikzpicture}[scale=1.0]
+\begin{tikzpicture}[
+  scale=1.0,
+  decoration={post length=0.1mm, pre length=0.1mm, markings, mark=at position 0.5 with {\arrow{>}}}
+]
     % Draw axes
     \coordinate (nya) at (0, 0);
     \coordinate (pya) at (0, 4);
@@ -777,21 +780,23 @@ It can be shown that no engine is more efficient than a Carnot engine. Upon cons
     \coordinate (pxa) at (5, 0);
     \node [above] (lpya) at (pya) {$P$};
     \node [right] (lpxa) at (pxa) {$V$};
-    \coordinate (a) at (1, 3);
+    \coordinate (a) at (1.1, 3);
     \coordinate (b) at (3.2, 2.2);
     \coordinate (c) at (4, 1);
     \coordinate (d) at (2, 1.5);
     \draw [->, thick] (nya) -- (pya);
     \draw [->, thick] (nxa) -- (pxa);
-    \draw [->, thick] (a) -- (b) -- (c) -- (d) -- (a);
-    \node [above] (la) at (a) {$a$};
-    \node [right] (lb) at (b) {$b$};
+    \draw [postaction={decorate}, thick] (a) -- (b);
+    \draw [postaction={decorate}, thick] (b) -- (c);
+    \draw [postaction={decorate}, thick] (c) -- (d);
+    \draw [postaction={decorate}, thick] (d) -- (a);
+    \node [above left] (la) at (a) {$a$};
+    \node [above right] (lb) at (b) {$b$};
     \node [below] (lc) at (c) {$c$};
-    \node [left] (ld) at (d) {$d$};
+    \node [below left] (ld) at (d) {$d$};
 \end{tikzpicture}
 \end{center}
 
-\TODO{labels and arrows}
 \begin{center}
 \begin{tabular}{c|c|c|c}
 $ab$ & isotherm ($T_2$) & $Q_2 > 0$ & $W^{ab} > 0$\\
@@ -993,7 +998,41 @@ Which is identical to the change in entropy along the isotherm derived above. Th
 
 \subsubsection{Clausius Inequality}
 
-\TODO{Draw a standard carnot curve on PV plot}
+\begin{center}
+\begin{tikzpicture}[
+  scale=1.0,
+  decoration={post length=1mm, pre length=1mm, markings, mark=at position 0.5 with {\arrow{>}}}
+]
+    % Draw axes
+    \coordinate (nya) at (0, 0);
+    \coordinate (pya) at (0, 4);
+    \coordinate (nxa) at (0, 0);
+    \coordinate (pxa) at (5, 0);
+    \node [above] (lpya) at (pya) {$P$};
+    \node [right] (lpxa) at (pxa) {$V$};
+    \coordinate (a) at (1.2, 3);
+    \coordinate (b) at (3.2, 2.2);
+    \coordinate (c) at (4, 1);
+    \coordinate (d) at (2, 1.5);
+    \coordinate (ab) at (2.2, 2.4);
+    \coordinate (bc) at (3.5, 1.5);
+    \coordinate (cd) at (3, 1.15);
+    \coordinate (da) at (1.5, 2.3);
+    \draw [->, thick] (nya) -- (pya);
+    \draw [->, thick] (nxa) -- (pxa);
+    \draw [red, thick, postaction={decorate}] plot [smooth, tension=1] coordinates { (a) (ab) (b)};
+    \draw [blue, thick, postaction={decorate}] plot [smooth, tension=1] coordinates { (c) (cd) (d)};
+    \draw [thick, postaction={decorate}] plot [smooth, tension=1] coordinates { (b) (bc) (c)};
+    \draw [thick, postaction={decorate}] plot [smooth, tension=1] coordinates { (d) (da) (a)};
+
+    \node [above left] (la) at (a) {$a$};
+    \node [above right] (lb) at (b) {$b$};
+    \node [above right, red] (lab) at (ab) {$T_2$};
+    \node [below left, blue] (lcd) at (cd) {$T_1$};
+    \node [below] (lc) at (c) {$c$};
+    \node [below left] (ld) at (d) {$d$};
+\end{tikzpicture}
+\end{center}
 
 Recall from equation \eqref{eq:revcarnot}, we have that for a reversible Carnot cycle,
 
@@ -1003,7 +1042,7 @@ Now consider the case of heat extraction and heat disposal along a \textit{tiny 
 
 \[ \f{\indif Q_2}{T_2} + \f{\indif Q_1}{T_1} = 0  \]
 
-\TODO{Insert PV circle liney diagram}
+\TODO{Insert PV circle liney diagram from notes he said he'd upload}
 
 The idea here is to consider any physical process or cycle as being made up of numerous tiny adiabatic curves and isotherms. We \textit{approximate} the real cycle as being composed of a series of reversible processes. In the limit of the number of ``switches'' goes to infinity, the real engine process is made exactly reversible. \\
 
@@ -1048,13 +1087,15 @@ There are two cases ``applications'' of Clausius inequality: \\
 1) Consider a single two-step \textit{reversible} cycle
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[
+  decoration={post length=0.1mm, pre length=0.1mm, markings, mark=at position 0.5 with {\arrow{>}}}
+]
 \coordinate (1) at (0,0);
 \coordinate (2) at (2,2);
-\coordinate (A) at (0.8,1.2);
-\coordinate (B) at (1.2,0.8);
-\draw [blue, thick, ->] plot [smooth, tension=1] coordinates { (1) (A) (2)};
-\draw [blue, thick, ->] plot [smooth, tension=1] coordinates { (2) (B) (1)};
+\coordinate (A) at (0.8, 1.2);
+\coordinate (B) at (1.2, 0.8);
+\draw [blue, thick, postaction={decorate}] plot [smooth, tension=1] coordinates { (1) (A) (2)};
+\draw [blue, thick, postaction={decorate}] plot [smooth, tension=1] coordinates { (2) (B) (1)};
 
 \fill (1) circle (1pt) node[below left] {$1$};
 \fill (2) circle (1pt) node[above right] {$2$};
@@ -1063,8 +1104,6 @@ There are two cases ``applications'' of Clausius inequality: \\
 
 \end{tikzpicture}
 \end{center}
-
-\TODO{Arrows halfway}
 
 Therefore,
 
@@ -1082,13 +1121,15 @@ Which implies that entropy is conserved,
 2) Consider a two-step \textit{irreversible/reversible} process
 
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[
+decoration={post length=0.1mm, pre length=0.1mm, markings, mark=at position 0.5 with {\arrow{>}}}
+]
 \coordinate (1) at (0,0);
 \coordinate (2) at (2,2);
 \coordinate (A) at (0.8,1.2);
 \coordinate (B) at (1.2,0.8);
-\draw [red, thick, ->] plot [smooth, tension=1] coordinates { (1) (A) (2)};
-\draw [blue, thick, ->] plot [smooth, tension=1] coordinates { (2) (B) (1)};
+\draw [red, thick, postaction={decorate}] plot [smooth, tension=1] coordinates { (1) (A) (2)};
+\draw [blue, thick, postaction={decorate}] plot [smooth, tension=1] coordinates { (2) (B) (1)};
 
 \fill (1) circle (1pt) node[below left] {$1$};
 \fill (2) circle (1pt) node[above right] {$2$};
