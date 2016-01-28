@@ -1324,6 +1324,7 @@ In summary, the equation $S = k_B \ln \Om$ recovers all expected descriptions of
 
 For this analysis, we will begin with the consideration at $\hbar = 0$. In other words, we will consider the particles to point like and ignore their wave like nature and treat interactions between particles ($V(r_{ij})$) is very small. Note however, in physics, one cannot claim something is ``small'' unless the quantity is dimensionless. Everything is small compared to something else. Thus when we say $\hbar$ is small, we mean that the DeBrogile wavelength is small compared to the thermal length scale. Similarly for the potential energies between the particles, $V/k_BT \ll 1$. \\
 
+\subsubsection{Volume}
 Consider the volume the gas occupies as a fixed volume $V$. Also notice that it is acceptable at this point to say that the number of microstates is proportional to the volume.
 
 \[\Om \propto V^N \]
@@ -1347,6 +1348,66 @@ This is quite remarkable. We just derived an expression for an ideal gas using $
 Where $N_A$ is Avogadro's number $\SI{6.02e23}{}$ and $R$ was known that $R = \SI{8.31}{\J\per\mole\per\K}$ which gives a value for,
 
 \[ k_B = \SI{1.38e-23}{\J\per\K} \]
+
+\subsubsection{Energy \& Particle in a Box}
+
+As a reminder, an ideal gas has no interaction $V=0$ and modeling the particles as particles in a box. As such, they are fundamentally quantum mechanical in nature. For a particle in a box, recall from Q.M. that for a potential,
+
+\[ U(x) = \piecewise{0}{0 \leq x \leq L}{\inf}{\text{otherwise}} \]
+
+The energy is given by,
+\[ H = \f{p^2}{2m} \]
+
+Where,
+
+\[ \vec{p} = \f{\hbar}{i} \vdel \qquad H = -\f{\hbar^2}{2m}\del^2\]
+
+The TISE gives,
+
+\[ H \psi = \vep \psi \]
+
+We can use this to find the energy $\vep$,
+
+\[ -\f{\hbar^2}{2m}\del^2 \psi = \vep \psi \]
+
+Which yields generic solution,
+
+\[ \psi = A \sin \br{kx} \]
+
+Where $k L = n \pi$ and $A = \sqrt{2/L}$ and the energy in the $n$-th state is given by,
+
+\[ \vep = \f{\hbar^2}{2mL^2} \pi^2 n^2 \note{For 1D box}\]
+
+However, the generalization for 3d space $\R^3$, the energy is determined by three quantum numbers $(n_x, n_y, n_z)$ all strictly positive integers $\Z_{>0}$,
+
+\[ \vep = \f{\hbar^2}{2mL^2} \pi^2 \bc{n_x^2 + n_y^2 + n_z^2}\]
+
+This energy $\vep$ is characterized by $3$ independent integers -for a single particle. For $N$ particles in this box $V = L^3 \subset \R^3$ we will require $3N$ independent numbers. Classically, the Lagrangian of the system is,
+
+\[ L = T - V \]
+
+Where $T$ is the kinetic energy and $V$ is the potential energy. The kinetic energy is given by,
+
+\[ T = \f{p_x^2}{2m} + \f{p_y^2}{2m} + \f{p_z^2}{2m} \]
+
+Evidently for a single particle, $n$ cannot be zero because then that would yield the trivial solution $\psi(x) = 0$. So why is it that for the 3d example, it is still required that $n_x, n_y, n_z > 0$ and each cannot equal zero? It is because the solution is solved using separation of variables. In any of the components of the solution are the trivial solution $n_i = 0$ for a particular $i$, the complete solution becomes the trivial solution. \\
+
+Therefore using this three number $n_x, n_y, n_z$, we can describe the energy of a given particle for all time. However, for a fixed $\vep$ that can be measured, how many distinct set of $n_i$'s can produce this measured energy $\vep$?
+
+\[ \f{\hbar^2}{2mL^2} \pi^2 \bc{n_x^2 + n_y^2 + n_z^2} = \vep\]
+
+Since the $n_i$'s are integers, solving this problem for a fixed $\vep$ is the same as solving the Diophantine equation,
+
+\[ x^2 + y^2 + z^2 = R^2 \numberthis \label{eq:spheredio}\]
+
+Which geometrically is equivalent to asking the question:\\
+
+\textit{Where does the surface of the sphere intersect with a 3d grid of unit spacing?} \\
+
+Therefore, the total number of microstates for a fixed energy $\vep$ is the same as determining the number of solutions to \eqref{eq:spheredio}. Let us call,
+
+\[ \vep^* = \f{2m}{\hbar^2\pi^2}V^{2/3} \vep \]
+
 
 
 \end{document}
