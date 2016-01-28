@@ -495,7 +495,7 @@ Note:
 
 \subsubsection{Abiabatic Work}
 
-Abiabatic work occurs with no heat exchange.
+Adiabatic work occurs with no heat exchange.
 
 \begin{center}
 \begin{tikzpicture}[scale=1.0]
@@ -1272,7 +1272,7 @@ Equations \eqref{eq:entropymotiv} should be telling for the following assumption
 We will propose that,
 \[ \f{1}{\be_1T_1} = \f{1}{\be_2T_2} = \f{1}{\be T} = \text{ constant/universal } \]
 Thus,
-\[ S = \text{constant}\cdot \ln \Om \]
+\[ S = \text{constant}\cdot \ln \Om \numberthis \label{eq:blankboltzmann} \]
 Where the unknown constant is actually Boltzmann's constant, $k_B$ with,
 \[  \be = \f{1}{k_B T} \]
 What about the relationships between other quantities associated with systems (1) and (2)? First consider volume.
@@ -1281,7 +1281,72 @@ What about the relationships between other quantities associated with systems (1
 Which gives,
 \[ \eta_1 = \eta_2 \]
 
-These new variables describe the equilibrium of the two systems in terms of volume.
+These new variables describe the equilibrium of the two systems in terms of volume. Is it required to introduce a new constant similar to above to relate volume to entropy? Consider,
+\[ \dif E = T \dif S - P \dif V \numberthis \label{eq:nonchempot}\]
+Thus,
+\[ \pder{S}{E} = \f{1}{T} \qquad \pdert{S}{V}{E} = \f{P}{T} \]
+
+However, we could introduce another term to \eqref{eq:nonchempot} to include flux of particles; a chemical potential term. We could add more terms,
+
+\[ \dif E = T \dif S - P \dif V  + \mu \dif N - H \dif M\]
+Which would produce more relations like,
+\[ \pder{S}{N} = - \f{\mu}{T}\]
+
+From this we get,
+
+\[ \pder{\ln\Om}{V} = \eta \]
+
+Which by chain rule,
+
+\[ \pder{\ln\Om}{S}\pder{S}{V} = \eta \]
+
+But we know from \eqref{eq:entropymotiv} that $\pder{\ln\Om}{S} = \be T$. Therefore,
+
+\[ \pder{S}{V} = \f{1}{\be T} \eta = \f{P}{T} \]
+
+Therefore rearrangement gives,
+
+\[ \eta = \f{P}{k_B T} \]
+
+In summary, once we have the result \eqref{eq:blankboltzmann}, with the universal constant $k_B$, all expected equilibrium between generalized forces must be satisfied. No new constants or relations need to be constructed to explore the relationship between entropy and microscopic quantities. \\
+
+An equilibrium of energy and volume between systems (1) and (2) it must be that,
+\[ T_1 = T_2 \qquad P_1 = P_2 \]
+
+Furthermore, and equilibrium of energy and number of particles it must be that,
+\[ T_1 = T_2 \qquad \mu_1 = \mu_2 \]
+
+\textbf{Remark:} Equilibrium properties in the extensive ($E, V, N$) variables of the system translate in an equally in the intensive $(T, P, \mu)$ variables. \\
+
+In summary, the equation $S = k_B \ln \Om$ recovers all expected descriptions of thermodynamical equilibrium.
+
+\subsection{Classical Ideal Gas from S.M.}
+
+For this analysis, we will begin with the consideration at $\hbar = 0$. In other words, we will consider the particles to point like and ignore their wave like nature and treat interactions between particles ($V(r_{ij})$) is very small. Note however, in physics, one cannot claim something is ``small'' unless the quantity is dimensionless. Everything is small compared to something else. Thus when we say $\hbar$ is small, we mean that the DeBrogile wavelength is small compared to the thermal length scale. Similarly for the potential energies between the particles, $V/k_BT \ll 1$. \\
+
+Consider the volume the gas occupies as a fixed volume $V$. Also notice that it is acceptable at this point to say that the number of microstates is proportional to the volume.
+
+\[\Om \propto V^N \]
+
+Where $N$ is the number of particles. But how can be compare microstates which are dimensionless to the volume which could have dimensions $m^3$? In practice we assume,
+
+\[ \Om = \text{ constant } \times \br{\f{V}{\Lambda^3}}^N \]
+
+Where $\Lambda$ is a length scale of the system. We will return to this idea later when considering quantum gases. Note from above, we have,
+
+\[ \pdert{S}{V}{E} = \f{P}{T} \]
+
+Combined with $S = k_B\ln\Om$ and $\Om = c V^N$,
+
+\[ PV = N k_B T \]
+
+This is quite remarkable. We just derived an expression for an ideal gas using $S = k_B\ln\Om$ and some simple motivations for the form of $\Om$. Typically, this ideal gas law is written with,
+
+\[ N k_B = N_A R \]
+
+Where $N_A$ is Avogadro's number $\SI{6.02e23}{}$ and $R$ was known that $R = \SI{8.31}{\J\per\mole\per\K}$ which gives a value for,
+
+\[ k_B = \SI{1.38e-23}{\J\per\K} \]
 
 
 \end{document}
