@@ -1267,6 +1267,8 @@ However it $\vec{v}_1$ is parallel to $\vec{v}_2$ then,
 
 Which forces $\abs{\ovec{v_1 \oplus v_2}}^2 = c^2$ whenever either $\vec{v}_1$ or $\vec{v}_2$ has $\abs{\vec{v}_i}^2 = c^2$.
 
+\section{Formulation of Gravity}
+
 \subsection{Flat Spacetime}
 
 Spacetime is $\R^4$ and we will consider the Minkowski metric $\eta_{\al\be}$. In Cartesian coordinates,
@@ -1473,7 +1475,7 @@ Let's find the relativistic version of \eqref{eq:prefield}.
 
 Here $\De$ is the Laplacian. The relativistic notation is given by,
 
-\[ \Box \phi \defined \eta^{\al\be} \pder{}{x^\al} \pder{}{x^\be} \phi = \br{-\f{1}{c^2}\pdder{}{t} + \De} \phi\]
+\[ \Box \phi \defined \eta^{\al\be} \pder{}{x^\al} \pder{}{x^\be} \phi = \br{-\f{1}{c^2}\pdder{}{t} + \De} \phi \numberthis \label{eq:alembert}\]
 
 Where $\Box$ is called the \textit{D'Alembertian}. What about the RHS of \eqref{eq:prefield}? $4,\pi,G$ are all constants, so all that remains is $\rho$. Notice that $\rho \sim M / V$ is a mass over a volume. As we have seen above mass $M$ is like an energy. Furthermore, boosts affect the volume $V$.
 
@@ -1523,7 +1525,9 @@ Where $\De \bar{t} \De \bar{A}$ can be thought of as a \textit{spacetime volume}
 
 \[ \text{Flux } = \bar{N} v = v \ga N \]
 
-In summary,
+\subsection{Duality of Flux and Number Density}
+
+In summary of the above considerations,
 
 \begin{center}
 \begin{tabular}{|c|c|c|}
@@ -1595,16 +1599,16 @@ Whereas in the non co-moving frame the particles moving at speed $v_x$:
 
     \node [blue, below] (l) at (1.0, -1) {World line of particles.};
     \node [red, right] (l) at (3, 1.2) {$t =$ const.};
-    \node [green, above] (l) at (0.8, 3) {$x^\mu =$ const.};
+    \node [green, above] (l) at (1.0, 3) {$x^\mu =$ const.};
 
 \end{tikzpicture}
 \end{center}
 
-The relevant notion of relativistic number density is he notion of flux through the $x^\mu = $ const. We will introduce the ``\#-flux'' vector $N^\mu$. Where are rest,
+The relevant notion of relativistic number density is the notion of flux through the $x^\mu = $ const. We will introduce the ``\#-flux'' vector $N^\mu$. Where at rest,
 
 \[ N^\mu = \bvec{N \\ 0 \\ 0 \\ 0} \]
 
-And under a boost such as equation \eqref{eq:boost} where $v = v_x$,
+And under a boost such as in equation \eqref{eq:boost} where $v = v_x$,
 
 \[ N^\mu = \bvec{\ga N \\ \ga N v_x \\ 0 \\ 0} = N \bvec{\ga \\ \ga v_x \\ 0 \\ 0} = N v^\mu \]
 
@@ -1656,7 +1660,7 @@ This tensor $T^{\al\be}$ is called the \textit{stress energy tensor} and will ac
     \end{itemize}
 \end{itemize}
 
-\subsubsection{Properties of Stress Energy Tensor}
+\subsection{Properties of Stress Energy Tensor}
 
 \textbf{symmetric:} $T^{\al\be} = T^{\be\al}$ \\
 
@@ -1671,9 +1675,7 @@ Here is a ``proof'' using dimensional arguments.
 
 \textbf{conservation}: $\pder{}{x^\be} T^{\al\be} = 0$ \\
 
-To demonstrate this conservation, this of conservation as ``what goes in and out of a box encodes the variations of what's inside the box.''
-
-Consider a cube of side length $\ell$ aligned to a Cartesian coordinate system. Focusing on energy,
+To demonstrate this conservation, think of conservation as ``what goes in and out of a box encodes the variations of what's inside the box.'' Consider a cube of side length $\ell$ aligned to a Cartesian coordinate system. Focusing on energy,
 
 \[ \ell^3 \pder{}{t} T^{00} \note{variation of what's inside the box} \numberthis \label{eq:varin} \]
 
@@ -1693,15 +1695,19 @@ Using the definition of partial derivatives,
 
 \[ \pder{}{t} T^{00} = -\pder{}{x}T^{0x}-\pder{}{y}T^{0y}-\pder{}{z}T^{0z} \]
 
-This then implies,
+Or rearranged,
 
-\[ \pder{}{x^\al}T^{\al x} = 0 \]
+\[ \sum_{\al=1}^{3} \pder{}{x^\al}T^{0\al} = \pder{}{t} T^{0t} + \pder{}{x}T^{0x} + \pder{}{y}T^{0y} + \pder{}{z}T^{0z} = 0 \]
+
+Since $t, x, y, z$ are independent quantities, it must be that,
+
+\[ \pder{}{x^\al}T^{\al} = 0 \]
 
 Now what can we propose about gravity? Nordstrom in 1907 proposed to Einstein the idea of taking,
 
 \[ \De \phi = 4 \pi G \rho \]
 
-And replacing this with,
+And replacing this with the D'Alembertian defined as \eqref{eq:alembert} and the stress energy tensor,
 
 \[ \Box \phi = 4 \pi G {T^{\al}}_{\be} \]
 
@@ -1711,6 +1717,6 @@ In 1912, after hard work, Nordstrom proposed,
 
 \[ \f{\Box \phi}{\phi} = 4 \pi G {\ti{T}^{\al}}_{\be} \]
 
-This theory is self consistent by it can be shown that under this theory, light doesn't bend with gravity. This is been proven to be true in our universe so it must also be wrong.
+This theory is self consistent by it can be shown that under this theory, light doesn't bend with gravity. This has been proven to be true in our universe so it must also be wrong.
 
 \end{document}
