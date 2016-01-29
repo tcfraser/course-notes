@@ -1481,7 +1481,7 @@ Where $\Box$ is called the \textit{D'Alembertian}. What about the RHS of \eqref{
 
 Now perform a boost on $p^\mu$ ($p^\mu \ar \ti{p}^\mu$) using ${\Lam^{\al}}_\be$,
 
-\[ {\Lam^{\al}}_\be = \bvec{\ga & \f{\ga v}{c^2} & 0 & 0 \\ \ga v & \ga & 0 & 0  \\ 0 & 0 & 1 & 0  \\ 0 & 0 & 0 & 1 } \]
+\[ {\Lam^{\al}}_\be = \bvec{\ga & \f{\ga v}{c^2} & 0 & 0 \\ \ga v & \ga & 0 & 0  \\ 0 & 0 & 1 & 0  \\ 0 & 0 & 0 & 1 } \numberthis \label{eq:boost} \]
 
 As you can see, the energy terms will get mixed up with the momentum terms. \\
 
@@ -1523,16 +1523,193 @@ Where $\De \bar{t} \De \bar{A}$ can be thought of as a \textit{spacetime volume}
 
 \[ \text{Flux } = \bar{N} v = v \ga N \]
 
+In summary,
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+    \hline
+    & Co-moving Frame & Frame $(v_x)$ \\
+    \hline
+    \# density & $N = \f{m}{V}$ & $\bar{N} = \f{n}{\bar{V}}= \ga \f{m}{V} = \ga N$ \\
+    \hline
+    Flux & $0$ & $F_x = \ga N v_x$ \\
+    \hline
+\end{tabular}
+\end{center}
+
+The question becomes, can we see a flux as a number density? In the comoving frame we have:
+
+\begin{center}
+\begin{tikzpicture}
+    % Draw axes
+    \coordinate (nya) at (0, -1);
+    \coordinate (pya) at (0, 3);
+    \coordinate (nxa) at (-1, 0);
+    \coordinate (pxa) at (3, 0);
+    \draw [<->, thick] (nxa) -- (pxa);
+    \draw [<->, thick] (nya) -- (pya);
+    \node [above] (lpya) at (pya) {$t$};
+    \node [right] (lpxa) at (pxa) {$x$};
+
+    \draw [->, thick, blue] (-0.2, -1) -- (-0.2, 3);
+    \draw [->, thick, blue] (0, -1) -- (0, 3);
+    \draw [->, thick, blue] (0.2, -1) -- (0.2, 3);
+    \draw [->, thick, blue] (0.4, -1) -- (0.4, 3);
+    \draw [->, thick, blue] (0.6, -1) -- (0.6, 3);
+    \draw [->, thick, blue] (0.8, -1) -- (0.8, 3);
+    \draw [thick, red] (-1, 1.2) -- (3, 1.2);
+
+    \node [blue, below] (l) at (1.0, -1) {World line of particles.};
+    \node [red, right] (l) at (3, 1.2) {$t =$ const.};
+
+\end{tikzpicture}
+\end{center}
+
+Thus this represents some sort of flux through a fixed time.
+
+\[ \# \text{density} = \f{\# \text{particles}}{\De V} = \f{\# \text{particles}}{\De x \De A} \]
+
+Whereas in the non co-moving frame the particles moving at speed $v_x$:
 
 
+\begin{center}
+\begin{tikzpicture}
+    % Draw axes
+    \coordinate (nya) at (0, -1);
+    \coordinate (pya) at (0, 3);
+    \coordinate (nxa) at (-1, 0);
+    \coordinate (pxa) at (3, 0);
+    \draw [<->, thick] (nxa) -- (pxa);
+    \draw [<->, thick] (nya) -- (pya);
+    \node [above] (lpya) at (pya) {$\bar{t}$};
+    \node [right] (lpxa) at (pxa) {$\bar{x}$};
 
+    \draw [->, thick, blue] (-0.6, -1) -- (0.2, 3);
+    \draw [->, thick, blue] (-0.4, -1) -- (0.4, 3);
+    \draw [->, thick, blue] (-0.2, -1) -- (0.6, 3);
+    \draw [->, thick, blue] (0, -1) -- (0.8, 3);
+    \draw [->, thick, blue] (0.2, -1) -- (1.0, 3);
+    \draw [->, thick, blue] (0.4, -1) -- (1.2, 3);
+    \draw [-, thick, green] (0.5, -1) -- (0.5, 3);
+    \draw [thick, red] (-1, 1.2) -- (3, 1.2);
 
+    \node [blue, below] (l) at (1.0, -1) {World line of particles.};
+    \node [red, right] (l) at (3, 1.2) {$t =$ const.};
+    \node [green, above] (l) at (0.8, 3) {$x^\mu =$ const.};
 
+\end{tikzpicture}
+\end{center}
 
+The relevant notion of relativistic number density is he notion of flux through the $x^\mu = $ const. We will introduce the ``\#-flux'' vector $N^\mu$. Where are rest,
 
+\[ N^\mu = \bvec{N \\ 0 \\ 0 \\ 0} \]
 
+And under a boost such as equation \eqref{eq:boost} where $v = v_x$,
 
+\[ N^\mu = \bvec{\ga N \\ \ga N v_x \\ 0 \\ 0} = N \bvec{\ga \\ \ga v_x \\ 0 \\ 0} = N v^\mu \]
 
+As a result, the magnitude of $N^\mu$ is given by,
+
+\[ N^\mu N_\mu = N^2 v^\mu v_\mu = - N^2 \]
+
+Now consider the mass density discussed above $\rho = M/V$. At rest we have $\rho = M/V$ with $E = M$ ($c=1$). Under a boost with $v_x$,
+
+\[ \bvec{E = m \\ 0 \\ 0 \\ 0} \ar \bvec{\ga m = \bar{E} \\ m \ga v \\ 0 \\ 0} \]
+
+Furthermore the volume under the boost becomes $V \ar \bar{V} = \f{1}{\ga} V$. So $\rho = M/V$ at rest becomes under a boost,
+
+\[ \bar{\rho} = \ga^2 \rho \]
+
+This is similar to the velocity terms but instead we have a $\ga^2$ term instead of $\ga$. Note that density is given by,
+
+\[ \rho = \f{M}{V} = \f{n}{V} m \numberthis \label{eq:density}\]
+
+Where $m$ is the mass of a single particle that should be considered the mass given by the four-momentum $p^\al$. The number density should be given by the four-number density $N^\be$. Using this interpretation, \eqref{eq:density} is expressed under the relativistic regime as,
+
+\[ \rho \ar  N^\al \otimes p^\be = N V^\al \otimes m V^\be = m N V^\al \otimes V^\be = \rho V^\al \otimes V^\be \]
+
+This new quantity $\rho V^\al \otimes V^\be$ will be called $T^{\al\be}$. At rest,
+
+\[ V^\al = \bvec{1 \\ 0 \\ 0 \\ 0} \]
+
+Which gives $T^{00} = \rho$ and $T^{\al\be} = 0$ whenever $\al \neq 0$ or $\al \neq 0$. While in frame $(v_x)$,
+
+\[ V^\al = \bvec{\ga \\ v_x \\ 0 \\ 0} \]
+
+Which gives,
+
+\[ T^{00} = \ga^2 \rho \]
+
+So why does this $\ga^2$ term keep showing up? Since $T^{00}$ is a tensor with two components the $\ga$ induced by the boost affects each of the components, namely $M$ and $V$. The boost affects the tensor for each index,
+
+\[ T^{\al\be} \untext{\ar}{boost} {\Lam^\al}_\ga {\Lam^\be}_\de T^{\ga \de} = \bar{T^{\al\be}} \]
+
+This tensor $T^{\al\be}$ is called the \textit{stress energy tensor} and will act as a source of gravity.
+
+\begin{itemize}
+    \item $T^{00}$: energy density
+    \item $T^{0i}$: energy flux across $i$-th surface ($i = 1,2,3$)
+    \item $T^{i0}$: momentum density ($i = 1,2,3$)
+    \item $T^{ij}$: flux of $i$-th momentum through $j$-th surface ($i,j = 1,2,3$)
+    \begin{itemize}
+        \item this is known as the stress tensor that appears when particles have interactions with one another.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Properties of Stress Energy Tensor}
+
+\textbf{symmetric:} $T^{\al\be} = T^{\be\al}$ \\
+
+Here is a ``proof'' using dimensional arguments.
+\begin{align*}
+    T^{0i} &= \text{energy flux} \\
+    &= \text{density of energy} \times \text{speed of flow} \\
+    &= \text{density of mass} \times \text{speed of flow} \\
+    &= \text{density of momentum}\\
+    &= T^{i0}\\
+\end{align*}
+
+\textbf{conservation}: $\pder{}{x^\be} T^{\al\be} = 0$ \\
+
+To demonstrate this conservation, this of conservation as ``what goes in and out of a box encodes the variations of what's inside the box.''
+
+Consider a cube of side length $\ell$ aligned to a Cartesian coordinate system. Focusing on energy,
+
+\[ \ell^3 \pder{}{t} T^{00} \note{variation of what's inside the box} \numberthis \label{eq:varin} \]
+
+The rate of flow of energy of through each of the 6 faces of the cube is given by,
+
+\[ \ell^2 T^{0x}(x=0) - \ell^2T^{0x}(x=\ell) + \ell^2 T^{0y}(y=0) - \ell^2T^{0y}(y=\ell) + \ell^2 T^{0z}(z=0) - \ell^2T^{0z}(z=\ell) \numberthis \label{eq:goesout} \]
+
+Therefore by conservation \eqref{eq:varin} must equal \eqref{eq:goesout},
+
+\[ \ell^3 \pder{}{t} T^{00} = \ell^2 \br{T^{0x}(x=0) - T^{0x}(x=\ell) +  T^{0y}(y=0) - T^{0y}(y=\ell) +  T^{0z}(z=0) - T^{0z}(z=\ell)} \]
+
+Or more cleanly, dividing by $\ell^3$ and considering the limit as $\ell \ar 0$,
+
+\[ \pder{}{t} T^{00} = \lim_{\ell \ar 0} \f{1}{\ell} \sum_{i=1}^{3} \br{T^{0i} (x^i = 0) - T^{0i} (x^i = \ell)} \]
+
+Using the definition of partial derivatives,
+
+\[ \pder{}{t} T^{00} = -\pder{}{x}T^{0x}-\pder{}{y}T^{0y}-\pder{}{z}T^{0z} \]
+
+This then implies,
+
+\[ \pder{}{x^\al}T^{\al x} = 0 \]
+
+Now what can we propose about gravity? Nordstrom in 1907 proposed to Einstein the idea of taking,
+
+\[ \De \phi = 4 \pi G \rho \]
+
+And replacing this with,
+
+\[ \Box \phi = 4 \pi G {T^{\al}}_{\be} \]
+
+This proposed theory is incorrect because the LHS is linear by the RHS is not. Here, gravity doesn't \textit{gravitate}.
+
+In 1912, after hard work, Nordstrom proposed,
+
+\[ \f{\Box \phi}{\phi} = 4 \pi G {\ti{T}^{\al}}_{\be} \]
 
 
 \end{document}
