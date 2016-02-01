@@ -24,11 +24,11 @@
 
 \subsection{History}
 
-The first lecture was a summary of astrophsyical history from around $\sim$200BC to today. I elected not to take notes as it was pretty standard stuff and a lot of slides. Sorry.
+The first lecture was a summary of astrophysical history from around $\sim$200BC to today. I elected not to take notes as it was pretty standard stuff and a lot of slides. Sorry.
 
 \section{Tensor Formalism}
 
-At the core of General Relativity is the mathematics of differential geometry. Differential geometry requires the idea of tensors, a generalization of vectors and matricies and forms that can handle messy geometries and metrics. \\
+At the core of General Relativity is the mathematics of differential geometry. Differential geometry requires the idea of tensors, a generalization of vectors and matrices and forms that can handle messy geometries and metrics. \\
 
 Let $V$ be a vector space of finite dimension. Any $V$ is isomorphic to $\R^{n+1}$ through the coefficients of a chosen basis. Let the basis of $V$ be given by,
 
@@ -46,7 +46,7 @@ For convenience let's provide a new, shorter notation for the vector $v$.
 
 \[ v^ie_i = v^0e_0 + \ldots + v^ne_n = \sum_{i=0}^nv^ie_i \]
 
-Effectively, we have just \textbf{dropped the summation sign}. The einstein summation rule is as follows: \\
+Effectively, we have just \textbf{dropped the summation sign}. The Einstein summation rule is as follows: \\
 
 If there are two identical indices, 1 ``up'' and 1 ``down'', it means that a summation is secretly present, it's just be removed for convenience. Note that the $i$ in this case is \textit{dummy index}.
 
@@ -82,7 +82,7 @@ We note,
 
 \[ \bc{f^i}_{i=\tok0n} \]
 
-is the basis for $V^*$ is defined by the kronecker symbol $\delta$,
+is the basis for $V^*$ is defined by the Kronecker symbol $\delta$,
 
 \[ f^j(e_j) = {\delta^j}_i \]
 
@@ -131,7 +131,7 @@ All of the above terms are commutative because in the end, it represents a sum o
 
 \subsection{Distance and Norms}
 
-To define a distance in a vector space, we can use norms. In this case, $g_{\al\be}$ would be called the metric. The Euclidean metric (with respect to a cartesian basis) for example would be,
+To define a distance in a vector space, we can use norms. In this case, $g_{\al\be}$ would be called the metric. The Euclidean metric (with respect to a Cartesian basis) for example would be,
 
 \[ g_{\al\be} = \piecewise{1}{\al = \be}{0}{\al \neq \be}  \]
 
@@ -139,7 +139,7 @@ We can also choose to enforce that the basis be orthonormal,
 
 \[ B(e_i, e_j) = \piecewise{\pm1}{i = j}{0}{i \neq j} \]
 
-Note that the potential for a negative norm means the notion of positive definiteness is no longer gauranteed.
+Note that the potential for a negative norm means the notion of positive definiteness is no longer guaranteed.
 
 \subsection{Signatures of Metrics}
 
@@ -160,7 +160,7 @@ Note the order of the signature is chosen to be $(p,q)$ and not $(q, p)$ by conv
 
 Note that $v^i$ was called the vector and $w_i$ was called the covector. This notation seems to indicate that conversion between $V$ and $V^*$ is notationally equivalent to raising and lowering the indices. \\
 
-We call the following opperation ``Lowering the index using the metric''.
+We call the following operation ``Lowering the index using the metric''.
 
 \[ \underbrace{v^\al}_{\text{components of vector}} \mapsto g_{\al\be} v^\be = \underbrace{v_\al}_{\text{components of covector}} \]
 
@@ -213,7 +213,7 @@ Examine,
 
 \[ {M^\ga}_\al v^\al g_{\al\be} {M^\be}_\rho w^\rho = v^\al g_{\al\be}w^\be \]
 
-Use communitivity and dummyness of indices to obtain,
+Use commutativity and dummy-ness of indices to obtain,
 
 \[ v^\al {M^\ga}_\al g_{\al\rho} {M^\rho}_\be w^\be = v^\al g_{\al\be}w^\be \]
 
@@ -299,7 +299,7 @@ Tensors allow one to write bilinear maps as linear maps. What about multi-linear
 
 \heading{Tensors}
 
-A tensor of rank $\br{k,l}$ is a multilinear map
+A tensor of rank $\br{k,l}$ is a multi-linear map
 
 \[ \underbrace{V^* \times \cdots \times V^*}_{k} \times \underbrace{V \times \cdots \times V}_{l} \ar \R \]
 
@@ -1703,20 +1703,126 @@ Since $t, x, y, z$ are independent quantities, it must be that,
 
 \[ \pder{}{x^\al}T^{\al} = 0 \]
 
+\subsection{Early Attempts at Relativistic Gravity}
+
 Now what can we propose about gravity? Nordstrom in 1907 proposed to Einstein the idea of taking,
 
 \[ \De \phi = 4 \pi G \rho \]
 
 And replacing this with the D'Alembertian defined as \eqref{eq:alembert} and the stress energy tensor,
 
-\[ \Box \phi = 4 \pi G {T^{\al}}_{\be} \]
+\[ \Box \phi = 4 \pi G {T^{\al}}_{\al} \]
 
-This proposed theory is incorrect because the LHS is linear by the RHS is not. Here, gravity doesn't \textit{gravitate}.
+This proposed theory is incorrect because this equation is linear. Here, gravity doesn't \textit{gravitate}.
 
-In 1912, after hard work, Nordstrom proposed,
+In 1913, after hard work, Nordstrom proposed,
 
-\[ \f{\Box \phi}{\phi} = 4 \pi G {\ti{T}^{\al}}_{\be} \]
+\[ \f{\Box \phi}{\phi} = 4 \pi G {T^{\al}}_{\al} \numberthis \label{eq:Nordstrom1913}\]
 
-This theory is self consistent by it can be shown that under this theory, light doesn't bend with gravity. This has been proven to be true in our universe so it must also be wrong.
+This theory is self consistent by it can be shown that under this theory, light doesn't bend with gravity. This has been proven to be true in our universe so it must also be wrong. \\
+
+In 1914 however, Einstein and Fohker discovered that \eqref{eq:Nordstrom1913} could be recast as,
+
+\[ R = {\ti{T}^{\al}}_\al \]
+
+Where $R$ is the \textit{Ricci scalar curvature} from the study of Differential Geometry. This new theory is a geometrical theory. This is nice because it is a geometric, scalar, relativistic theory for gravity. Again this theory does not permit for the bending of light just as \eqref{eq:Nordstrom1913}; thus it must be wrong. Almost immediately afterwards, Einstein came out with his theory of general relativity in 1915.
+
+\subsection{Equivalence Principles}
+
+What is the difference between inertial mass and gravitational mass.
+
+\begin{itemize}
+    \item \textbf{Inertial mass}: Mass of an object measured by it's resistance to acceleration.
+    \begin{itemize}
+        \item An object with high inertial mass with accelerate less than objects with low inertial mass when subject to the same applied force
+        \item $a = F / m_I$
+    \end{itemize}
+    \item \textbf{Gravitational mass}: Mass of an object that defines the gravitational force on a system.
+    \begin{itemize}
+        \item $m_G \vec{g} = \vec{F}_g$
+    \end{itemize}
+\end{itemize}
+
+Note there are other forms of mass like relativistic mass and rest mass. \\
+
+Experimentally inertial mass $m_I$ and gravitational mass $m_G$ have been found to be identical.
+
+\subsubsection{Weak Equivalence Principle}
+
+The weak equivalence principle states that test bodies fall with the same acceleration independently of their structure or composition. Formally,
+
+\[ \f{m_I}{m_G} = 1 \]
+
+This was experimentally verified by experiments in 1885 by Eötvös. Today we have verified this to $10^{-12}$, or $12$ decimal places. Exploring this idea,
+
+\[ m_I \vec{a} = m_G \vec{g} \implies \vec{a} = \vec{g} \]
+
+Uniform acceleration cannot be distinguished from a uniform gravitational field. \\
+
+Consider the ISS orbiting at an altitude of $h = \SI{400}{\km}$. The gravitational field is roughly $90\%$ that of the surface gravitational field.
+
+\[ g = \f{GM}{R+h} \]
+
+Consider a particle in space characterized by position $\vec{x}$.
+
+\[ m_T \dder{\vec{x}}{t} = m_G \vec{g} \]
+
+Now consider a new frame $\vec{\chi}$ such that $\dder{\vec{\chi}}{t} = \vec{a}$ with coordinates in the old frame given by,
+
+\[ \vec{x}' = \vec{x} = \vec{\chi} \]
+
+
+\begin{center}
+\begin{tikzpicture}
+    % Draw axes
+    \coordinate (nya) at (0, -1);
+    \coordinate (pnya) at (1, -1);
+    \coordinate (pya) at (0, 3);
+    \coordinate (ppya) at (1, 3);
+    \coordinate (nxa) at (-1, 0);
+    \coordinate (pnxa) at (-1, 1);
+    \coordinate (pxa) at (3, 0);
+    \coordinate (ppxa) at (3, 1);
+    \draw [<->, thick] (nxa) -- (pxa);
+    \draw [<->, thick,red] (pnxa) -- (ppxa);
+    \draw [<->, thick] (nya) -- (pya);
+    \draw [<->, thick,red] (pnya) -- (ppya);
+    \node [above] (lpya) at (pya) {$x$};
+    \node [above] (lppya) at (ppya) {$\chi$};
+    \node [right] (lpxa) at (pxa) {$y$};
+    \node [right] (lppxa) at (ppxa) {$\ga$};
+    \fill [red] (1,1) circle (1pt) node[above right] {$\vec{\chi}$};
+    \fill [black] (1,1) circle (1pt) node[below right] {$\vec{x}$};
+
+\end{tikzpicture}
+\end{center}
+
+Therefore,
+
+\[ m_I \dder{\vec{x}'}{t} = m_I \dder{\vec{x}}{t} - m_I \dder{\vec{\chi}}{t} = m_g \vec{g} - m_I \vec{a} = m_G \br{\vec{g} - \vec{a}} \]
+
+Which confirms again that uniform acceleration is indistinguishable from a uniform gravitational field. Also note that the first falling frame is an inertial frame.
+
+\[ m_I \dder{\vec{x}'}{t} = m_G\br{\vec{g} - \vec{g}} = \vec{0} \]
+
+\subsubsection{Tidal Forces}
+
+Consider a spaceship large enough to experience the change in the gravitational field from one end to another. This force gradient causes stress and strain on the spaceship. These forces are called Tidal forces. To avoid tidal forces, only consider objects in a \textit{local inertial frame} where the field is \textit{uniform}.
+
+\subsubsection{Einstein's Strong Equivalence Principle}
+
+In a local inertial frame (where $\vec{g}$ is uniform), the results of all experiments will be indistinguishable from the results of the same experiments performed in a inertial frame in Minkowski spacetime.\\
+
+Consider the case of a rocket with initially no acceleration $\vec{a} = \vec{0}$ and constant velocity $\vec{v} = \text{const}$. Another ship comes along and shoots a laser. Suppose there is a window on the left $w_L$ and a window on the right $w_R$. Now suppose the spaceship gets lucky and the laser passes through $w_L$ and then $w_R$ (a). From the perspective of the captain of the ship, the light moves as a straight line (b). Nothing too complicated. \\
+
+\begin{center}
+    \includegraphics[scale=0.7]{figures/bend_light/constant_v.pdf}
+\end{center}
+
+Now consider the rocket moving with constant acceleration $\vec{a} =$ const (c). Additionally, the fired laser luckily misses the ship and passed through $w_L$ and then $w_R$. From the perspective of the captain, the light travels along a curved trajectory (d). Nothing too complicated. However by the Einstein's Strong Equivalence principle, this experiment must be identical to a stationary spaceship in a uniform gravitational field. Therefore, in a uniform gravitational field with everything else stationary, light \textbf{must} travel along a curved trajectory (e). Gravity bends light!
+
+\begin{center}
+    \includegraphics[scale=0.7]{figures/bend_light/constant_a.pdf}
+\end{center}
 
 \end{document}
