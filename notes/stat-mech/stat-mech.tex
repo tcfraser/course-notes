@@ -240,6 +240,7 @@ If one explores the $N\tsp{th}$ derivative of \eqref{eq:tricka} with respect to 
 The $\br{-1}^N$ term is a result of the alternating sign induced by bringing down a $-x$ each time you take a derivative. \\
 
 \subsubsection{Stirling's Formula}
+\label{sec:stirling}
 
 Looking back at the integral \eqref{eq:intbypartsNtimes},
 
@@ -1362,7 +1363,7 @@ Where,
 
 \[ \vec{p} = \f{\hbar}{i} \vdel \qquad H = -\f{\hbar^2}{2m}\del^2\]
 
-The TISE gives,
+The Time Independent Schrödinger Equation (TISE) gives,
 
 \[ H \psi = \vep \psi \]
 
@@ -1410,6 +1411,176 @@ Therefore, the total number of microstates for a fixed energy $\vep$ is the same
 
 Where $\vep^*$ acts as a dimensionless energy that characterizes the problem ($R^2 = \vep^*$).
 
+\[ \Om = \text{\# of solutions to \eqref{eq:spheredio}} \]
+
+In general (like all Diophantine equations), this problem is very hard. It is known as the \textbf{microcanonical ensemble} problem.
+
+\subsection{Microcanonical Ensemble}
+
+The Microcanonical ensemble problem involves finding positive integers $n_x, n_y, n_z$ such that,
+\[ n_x^2 + n_y^2 + n_z^2 = \f{2mL^2}{\hbar^2 \pi^2} \ep = \f{2mV^{2/3}}{\hbar^2 \pi^2} \ep \defined \ep^* \]
+Classically the total energy energy of the system is given by the sum of the kinetic energies of each of the particles.
+\[ E = K_1 + K_2 + K_3 + \cdots + K_N \]
+Which when broken into each component,
+\[ E = \br{\f{p_{1x}^2 + p_{1y}^2 + p_{1z}^2}{2m}} + \br{\f{p_{2x}^2 + p_{2y}^2 + p_{2z}^2}{2m}} + \cdots + \br{\f{p_{Nx}^2 + p_{Ny}^2 + p_{Nz}^2}{2m}} \]
+
+For fixed $E$ in general, this constitutes a $3N$ dimensional problem,
+\[ \sum_{i=1}^N \f{\hbar^2 \pi^2}{2 m V^{2/3}} \br{n_{ix}^2 + n_{iy}^2 + n_{iz}^2} = E \]
+
+Which can be expressed with shorthand notation as,
+\[ \sum_{r=1}^{3N} \f{\hbar^2 \pi^2}{2 m V^{2/3}} n_{R}^2 = E \]
+
+Where $n_{R}$ is the $r$-th degree of freedom of the system. This can be express even more compactly by absorbing constants,
+\[ \sum_{r=1}^{3N} n_{R}^2 = E^* \defined E \f{2 m V^{2/3}}{\hbar^2 \pi^2} \numberthis \label{eq:canonensemble} \]
+
+Notice that the term $E V^{2/3}$ completely characterizes the number of microstates $\Om$ as it determines the number of solutions of \eqref{eq:canonensemble}. What we notice that without calculating $\Om$, we can determine the form of entropy.
+
+\[ S = S(N,V,E) = S(N, E V^{2/3}) \]
+
+For a system undergoing a reversible adiabatic change, we have both $\indif Q = 0$ which implies that $\dif S = 0$ for fixed temperature which implies that entropy is constant. Therefore for a reversible adiabatic process, in order to ensure that entropy is constant, it must be that,
+\[ V^{2/3} \cdot E = \text{const.} \note{For reversible/adiabatic process} \]
+
+Now using the known expression,
+
+\[ P = - \pdert{E}{V}{N,S} \]
+
+And using $c$ as a constant,
+
+\[ E = c V^{-2/3} \]
+
+Which gives,
+\[ PV^(5/3) = \text{constant} \note{For reversible/adiabatic process.} \]
+
+Or more generally, for quantum/classical systems,
+
+\[ PV^\ga = \text{constant} \note{$\ga = 5/3$ for monoatomic system} \numberthis \label{eq:adiabtic} \]
+
+Note that \eqref{eq:adiabtic} does not hold for relativistic systems as $E = pc$ where $c$ is the speed of light.
+
+\subsubsection{Solving the Microcanonical Ensemble}
+
+One will notice that as $E^*$ increases, the number of solution $\Om$ varies wildly. It can be precisely $0$ and some values for $E^*$ and very many for other, nearby energies. Instead of calculating only the $n_r$ for which $E$ is precisely given, we will instead compute all the states for which $E' < E$ to simplify the problem. In principle, we want to replace the problem of finding,
+
+\[ \Om(N, V, E) \]
+
+We will instead compute (for 1 particle),
+
+\[ \sum_{'} \br{\vep'} = \sum_{\vep' \leq \vep} \Om(1, V, \vep') \]
+
+Where,
+
+\[ \sum_{n_r'}^{3} n_r^2 = \vep^* \]
+
+Which can be converted to a continuous problem of calculating,
+\[ \intl_V \dif V \]
+
+Which is a problem of finding the volume of a sphere of radius $\sqrt{\vep^*}$. In this case of 1 particle, $V$ has dimension $3$. Therefore,
+
+\[ V(R) = \f{4 \pi R^3}{3} \]
+\[ V(\vep^*) = \f{4 \pi }{3}\br{\vep^*}^{3/2} \]
+
+Now since we only can about the cases where $n_x, n_y, n_z$ are positive, this quantity \textit{overestimates} by 8 times the desired amount. Therefore the sum over all states where $0 \leq \vep'\leq\vep^*$ is
+
+\[ \sum_{'} = \f{1}{8} \f{4\pi}{3} \br{e^*}^{3/2} = \f{\pi}{6} \br{e^*}^{3/2} \]
+
+Now we must repeat this calculation for not a 3d sphere but a 3Nd-sphere.
+
+\heading{Mathematical Interlude}
+
+In 3-d, a volume element is given by, $\dif V = \dif x \dif y \dif z \defined \dif x_1\dif x_2\dif x_3$. \\
+
+In n-d, a volume element is given by,
+
+\[ \dif V_n = \prod_{i=1}^{n} \dif x_i \]
+
+Therefore in n-d the volume of a sphere is given by,
+
+\[ V_A = \intl \dif^n r = \intl \cdots \intl \dif x_1 \dif x_2 \cdots \dif x_n = \intl \cdots \intl \prod_{i=1}^{n} \dif x_i \]
+
+And performing this sum under the constraint that,
+
+\[ 0 \leq \sum_{i=1}^{n} x_i^2 \leq R^2 \]
+
+\begin{center}
+\begin{tabular}{|c|c|}
+    \hline
+    Dimensions & Volume of Ball \\
+    \hline
+    $2$ & $\pi R^2$ \\
+    $3$ & $\f43 \pi R^3$ \\
+    $n$ & $c_n R^n$ \\
+    \hline
+\end{tabular}
+\end{center}
+
+Therefore, we need to find $c_n$ in general to get the volume of a hypersphere. Since $V_n = c_n R^n$, consider
+
+\[ \dif V_n = \dif \br{c_n R^n} = \underbrace{c_n \cdot n c\dot R^{n-1}}_{S_n} \dif R \]
+
+\textbf{Trick:} With will take a function that we like for which we can do exactly the integrals in $\dif x_i$ (i.e. Cartesian Coordinates) and perform the integral in spherical coordinates.
+
+\[ \intl f(\bc{x_i}) \prod_{i=1}^n \dif x_i = \intl f(R) S_n \dif R = \intl f(R) n c_n R^{n-1} \dif R \]
+
+Now make use of Gaussian integrals used in section \ref{sec:gaussianintegrals},
+
+\[ f(x) = e^{-x^2} \]
+\[ f(\bc{x_i}) = \prod_{i=1}^{n} e^{-x_i^2} \]
+
+Gives,
+
+\[ \intlf e^{-x^2} \dif x = \sqrt{\pi} \]
+
+Which for generic $n$ with separating the terms $x_i$ gives,
+
+\[ \prod_{i=1}^{n} \intlf e^{-x_i^2} \dif x_i = \intlf e^{-x_1^2} \dif x_1 \intlf e^{-x_2^2} \dif x_2 \cdots \intlf e^{-x_n^2} \dif x_n = \intl_0^{\inf} f(R) n c_n R^{n-1} \dif R \]
+
+The RHS has $n$ terms that each evaluate to $\sqrt{\pi}$,
+
+\[ \pi^{\f{n}{2}} = \intl_0^{\inf} f(R) n c_n R^{n-1} \dif R = n c_n \intl_0^{\inf} f(R) R^{n-1} \dif R \]
+
+Since $f(R)$ is just a Gaussian in $R$,
+
+\[ \pi^{\f{n}{2}} = n c_n \intl_0^{\inf} e^{-\br{\sum_{i=1}^{n}x_i^2}} R^{n-1} \dif R = n c_n \intl_0^{\inf} e^{-R^2} R^{n-1} \dif R \]
+
+Using the identity,
+
+\[ \intl_0^{\inf} e^{-\al y^2} y^\nu \dif y \defined \f{1}{2\al^{\f{\nu+1}{2}}}  \Ga\br{\f{\nu +1}{2}} \note{For $\nu > -1$}\]
+
+Where $\Ga(x)$ is the \textit{Gamma function} which is equivalent to factorials for $x$ integers, we get,
+
+\[ \pi^{\f{n}{2}} = \f12 \Ga \br{\f{n}{2}} \]
+
+Thus,
+
+\[ c_n = \f{\pi^{\f{n}{2}}}{\br{\f{n}{2}}!} \]
+
+Therefore,
+
+\[ V_n (R) = \f{\pi^{\f{n}{2}}}{\br{\f{n}{2}}!} R^n \]
+
+Therefore for $n = 3N$ and $R = \sqrt{E^*}$ the total number of states contained inside the hypersphere with radius $R$ is given by,
+
+\[ {\sum}_N (N, V, E) = \br{\f{V}{h^3}}^N \f{\br{2\pi m E}^{3N/2}}{\br{\f{3N}{2}}!} \]
+
+Where ${\sum}_N$ doesn't explicitly represent a \textit{sum}. Instead it is the total number of microstates with the hypershpere.\\
+
+What we want to do is to derive the thermodynamic properties for E. In reality however, no system is perfectly isolated from surroundings. In practice $E$ is not exactly defined. We will construct the idea of $\De$ or uncertainty in $E$ is only because of the imperfect nature of the system. Assume that the energy is given by $E \pm \f{\De}{2}$. We will also assume that $\De \ll E$. Since initially we wanted to know $\Om(N, V, E)$ we really want to know the the number of states associated with a measure of the energy within the uncertainty. This will be the difference of two ${\sum}_N$ values.
+
+\[ \Ga_{N, V \bar{E} = E} = {\sum}_N \br{N, V, E + \f{\De}{2}} - {\sum}_N \br{N, V, E - \f{\De}{2}} \]
+
+Now in the limit that $\De/E \ar 0$,
+
+\[ \lim_{\De/E \ar 0} \Ga_{N, V \bar{E} = E} = \Ga_{N, V \bar{E} = E} = \lim_{\De/E \ar 0} \bs{{\sum}_N \br{N, V, E + \f{\De}{2}} - {\sum}_N \br{N, V, E - \f{\De}{2}}} = \pder{{\sum}_N}{E} \cdot \De \]
+
+Therefore the total number of states associated with $E= \bar{E}$ is given by,
+
+\[ \Ga_{N, V \bar{E} = E} = \pder{\sum_N}{E} \cdot \De = \f{3N}{2} \f{\De}{E} \sum_N(N, V, E =\bar{E}) \]
+
+Using the Boltzmann equation for entropy and Stirling's approximation with $N \gg 1$ (see section \ref{sec:stirling}),
+
+\[ S = k_B \ln\Ga = k_B \bs{N \ln \bc{\f{V}{h^3} \br{\f{4\pi m E}{3N}}^{3/2}} + \f{3N}{2} + \bc{\ln \br{\f{3N}{2}} + \ln \br{\f{\De}{E}}}}  \]
+
+This gives us the entropy of an ideal gas at energy $E$ within a window $E \pm \De /2$.
 
 
 \end{document}
