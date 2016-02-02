@@ -1471,7 +1471,7 @@ Where,
 
 \[ \sum_{n_r'}^{3} n_r^2 = \vep^* \]
 
-Which can be converted to a continuous problem of calculating,
+Which can be converted to a continuous problem of calculating the volume of this sphere,
 \[ \intl_V \dif V \]
 
 Which is a problem of finding the volume of a sphere of radius $\sqrt{\vep^*}$. In this case of 1 particle, $V$ has dimension $3$. Therefore,
@@ -1479,7 +1479,7 @@ Which is a problem of finding the volume of a sphere of radius $\sqrt{\vep^*}$. 
 \[ V(R) = \f{4 \pi R^3}{3} \]
 \[ V(\vep^*) = \f{4 \pi }{3}\br{\vep^*}^{3/2} \]
 
-Now since we only can about the cases where $n_x, n_y, n_z$ are positive, this quantity \textit{overestimates} by 8 times the desired amount. Therefore the sum over all states where $0 \leq \vep'\leq\vep^*$ is
+Now since we only can about the cases where $n_x, n_y, n_z$ are positive, this quantity \textit{overestimates} by $2^3= 8$ times the desired amount. Therefore the sum over all states where $0 \leq \vep'\leq\vep^*$ is
 
 \[ \sum_{'} = \f{1}{8} \f{4\pi}{3} \br{e^*}^{3/2} = \f{\pi}{6} \br{e^*}^{3/2} \]
 
@@ -1508,6 +1508,7 @@ And performing this sum under the constraint that,
     \hline
     $2$ & $\pi R^2$ \\
     $3$ & $\f43 \pi R^3$ \\
+    $\cdots$ & $\cdots$ \\
     $n$ & $c_n R^n$ \\
     \hline
 \end{tabular}
@@ -1515,7 +1516,7 @@ And performing this sum under the constraint that,
 
 Therefore, we need to find $c_n$ in general to get the volume of a hypersphere. Since $V_n = c_n R^n$, consider
 
-\[ \dif V_n = \dif \br{c_n R^n} = \underbrace{c_n \cdot n c\dot R^{n-1}}_{S_n} \dif R \]
+\[ \dif V_n = \dif \br{c_n R^n} = \underbrace{c_n \cdot n \cdot R^{n-1}}_{S_n} \dif R \]
 
 \textbf{Trick:} With will take a function that we like for which we can do exactly the integrals in $\dif x_i$ (i.e. Cartesian Coordinates) and perform the integral in spherical coordinates.
 
@@ -1562,7 +1563,7 @@ Therefore for $n = 3N$ and $R = \sqrt{E^*}$ the total number of states contained
 
 \[ {\sum}_N (N, V, E) = \br{\f{V}{h^3}}^N \f{\br{2\pi m E}^{3N/2}}{\br{\f{3N}{2}}!} \]
 
-Where ${\sum}_N$ doesn't explicitly represent a \textit{sum}. Instead it is the total number of microstates with the hypershpere.\\
+Where ${\sum}_N$ doesn't explicitly represent a \textit{sum}. Instead it is the total number of microstates within the hypersphere. It is a \textit{function} of $N, V, E$. Note this includes the factor of $\f12^{3N}$ to only count the positive integer solutions.\\
 
 What we want to do is to derive the thermodynamic properties for E. In reality however, no system is perfectly isolated from surroundings. In practice $E$ is not exactly defined. We will construct the idea of $\De$ or uncertainty in $E$ is only because of the imperfect nature of the system. Assume that the energy is given by $E \pm \f{\De}{2}$. We will also assume that $\De \ll E$. Since initially we wanted to know $\Om(N, V, E)$ we really want to know the the number of states associated with a measure of the energy within the uncertainty. This will be the difference of two ${\sum}_N$ values.
 
@@ -1578,9 +1579,99 @@ Therefore the total number of states associated with $E= \bar{E}$ is given by,
 
 Using the Boltzmann equation for entropy and Stirling's approximation with $N \gg 1$ (see section \ref{sec:stirling}),
 
-\[ S = k_B \ln\Ga = k_B \bs{N \ln \bc{\f{V}{h^3} \br{\f{4\pi m E}{3N}}^{3/2}} + \f{3N}{2} + \bc{\ln \br{\f{3N}{2}} + \ln \br{\f{\De}{E}}}}  \]
+\[ S = k_B \ln\Ga_N = k_B \bs{N \ln \bc{\f{V}{h^3} \br{\f{4\pi m E}{3N}}^{3/2}} + \f{3N}{2} + \bc{\ln \br{\f{3N}{2}} + \ln \br{\f{\De}{E}}}}  \]
 
-This gives us the entropy of an ideal gas at energy $E$ within a window $E \pm \De /2$.
+This gives us the entropy of an ideal gas at energy $E$ within a window $E \pm \De /2$.\\
 
+What thermodynamic properties does this expose?
+\[ S(N,V,E) = k_B \ln\Ga_N \approx k_B \bs{N \ln \bc{\f{V}{h^3} \br{\f{4\pi m E}{3N}}^{3/2}} + \f{3N}{2}} \numberthis \label{eq:notextensive} \]
+
+Notice that this depends on $\ln(N)$ and also $N^{-3/2}$ which seems to indicate that theses are not extensive variables. We will return to this problem soon. Rearranging for energy,
+
+\[ E(S, V, N) = \f{2h^2N}{4 \pi m V^{2/3}} \exp\br{\f{2S}{3Nk_B} - 1} \]
+
+Thermodynamically, we have,
+\[ T = \pdert{E}{S}{V,N} \]
+
+Which reveals,
+\[ E = N \br{\f32 k_B T} \]
+
+And the heat capacity at constant volume is given by,
+\[ c_V = \pdert{E}{T}{N,V} = \f32 N k_B = \f32 nR \]
+
+And analogously,
+\[ c_P = T \pdert{S}{T}{N,P} = \f53 N k_B \]
+
+Furthermore, thermodynamic pressure is given by,
+\[ P = -\pdert{E}{V}{N,S} = \f23 \f{E}{V} \]
+
+Combining these two results, we can see that,
+\[ PV = nRT \]
+
+Which means we have recovered all known results for ideal gases from only the \textit{explicit} form of $\sum_N$ (or $\Ga_N$).\\
+
+Consider an isothermal change of entropy of entropy, and we recover,
+
+\[ S_2 - S_1 = N k_B \ln\br{\f{V_2}{V_1}} \]
+
+Or for a reversible adiabatic change/process,
+\[ E,T \sim V^{-2/3} \]
+\[ PV^\ga = \text{const.} \]
+\[ TV^{\ga -1} = \text{const.} \]
+
+We also recover that,
+
+\[ \dif E = -p \dif V = -\f23 \f{E}{V} \dif V \]
+
+In conclusion we have discovered that measuring and counting microstates $\Om_N \approx \sum_N, \Ga_N$ we can then use $S = k_B \ln \Om$ to recover and describe thermodynamic properties. All that remains is to discuss the problem that $V$ and $N$ do \textit{not} appear to be extensive variables in equation \eqref{eq:notextensive}. This problem is known as \textbf{Gibb's Paradox}.
+
+\subsection{Gibb's Paradox}
+How can we fix or understand the origin of the lack of extensivity in the formula $S = k_B \ln \Om$? We should expect $S$ to scale with $V$ but in \eqref{eq:notextensive} it does not. Does this mean that \eqref{eq:notextensive} is somehow wrong? \\
+
+To expose this paradox, consider a container segmented by a wall into 2 regions with properties $N_1, V_1, T_1$ and $N_2, V_2, T_2$ with total volume $V = V_1 + V_2$. Now measure the entropy using \eqref{eq:notextensive} for each system $S_1$, $S_2$ and then adiabatically remove the wall between the segments of the container and recalculate entropy $S_T$ of the combined system. Does $S_T = S_1 + S_2$?
+
+Using $E = \f32 N k_B T$
+
+\[ S_i = N_i k_B \ln V_i + \f32 N_i k_B \bc{1 + \ln\br{\f{2 \pi m_i k_B T}{h^2}}} \quad i = 1,2 \]
+
+While,
+
+\[ S_T = \sum_{i=1}^{2} N_i k_B \ln V\]
+
+Consider the case where the particle densities are the same and thus is also the same for the mixture after removing the wall.
+
+\[ \f{N_1}{V_1} = \f{N_2}{V_2} = \f{N_1+ N_2}{V_1 + V_2} \]
+
+Therefore the change in entropy is given by,
+
+\[ \De S = S_T - \br{S_1 + S_2} \]
+
+Which is explicitly,
+
+\[ \De S = k_B \bc{N_1 \ln\br{\f{N_1 + N_1}{N_1}} + N_2\ln\br{\f{N_1 + N_1}{N_2}}} \numberthis \label{eq:entropyup} \]
+
+Now lets assume $m_1 = m_2$ or that we have identical particles. From this, the macrostate of the system looks like it doesn't change when the wall is removed by we still have by equation \eqref{eq:entropyup} that,
+
+\[ \De S > 0 \]
+
+This makes no sense because if the particles are the same, we have not \textit{mixed} anything. \\
+
+The resolution is to write (using Stirling's formula),
+
+\[ \De S = k_B \bc{\ln \bs{\br{N_1 + N_2}!} - \ln \bs{N_1!} - \ln \bs{N_2!}} \]
+
+To fix this problem we need to reduce $S$ or $\Om$ by a factor of $N!$.
+
+\[ S \text{ reduced by } k_B \ln N!\]
+\[ S_1 \text{ reduced by } k_B \ln N_1!\]
+\[ S_2 \text{ reduced by } k_B \ln N_2!\]
+
+This is an \textit{ad hoc} fix. It does not have any profound explanation of justification. The mechanism that describes this, is the notion of indistinguishably. The notion of indistinguishably is needed to be taken into account in order to properly count the number of microstates of a system. Proper analysis of this idea requires the theory of Quantum Statistics. Now we can go back and determine the proper formula for \eqref{eq:notextensive}.
+
+\[ S(N,V,E) = N k_B \ln\br{\f{V}{N}} + \f{3Nk_B}{2} \bc{\f53 + \ln\br{\f{2 \pi m k_B T}{h^2}}} \]
+
+This is the formula for the entropy of a non-degenerate ideal gas. This is known as the \textbf{Sackur-Tetrode equation}. One should note that this equation is quite remarkable. It is composed of only $N, V, E$ and a set of constants. This equation gives a proper extensivity of $S$. \\
+
+For more, look at the theory of super-solid helium.
 
 \end{document}
