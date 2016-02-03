@@ -1765,7 +1765,7 @@ Consider the ISS orbiting at an altitude of $h = \SI{400}{\km}$. The gravitation
 
 Consider a particle in space characterized by position $\vec{x}$.
 
-\[ m_T \dder{\vec{x}}{t} = m_G \vec{g} \]
+\[ m_I \dder{\vec{x}}{t} = m_G \vec{g} \]
 
 Now consider a new frame $\vec{\chi}$ such that $\dder{\vec{\chi}}{t} = \vec{a}$ with coordinates in the old frame given by,
 
@@ -1799,7 +1799,7 @@ Now consider a new frame $\vec{\chi}$ such that $\dder{\vec{\chi}}{t} = \vec{a}$
 
 Therefore,
 
-\[ m_I \dder{\vec{x}'}{t} = m_I \dder{\vec{x}}{t} - m_I \dder{\vec{\chi}}{t} = m_g \vec{g} - m_I \vec{a} = m_G \br{\vec{g} - \vec{a}} \]
+\[ m_I \dder{\vec{x}'}{t} = m_I \dder{\vec{x}}{t} - m_I \dder{\vec{\chi}}{t} = m_G \vec{g} - m_I \vec{a} = m_G \br{\vec{g} - \vec{a}} \]
 
 Which confirms again that uniform acceleration is indistinguishable from a uniform gravitational field. Also note that the first falling frame is an inertial frame.
 
@@ -1824,5 +1824,82 @@ Now consider the rocket moving with constant acceleration $\vec{a} =$ const (c).
 \begin{center}
     \includegraphics[scale=0.7]{figures/bend_light/constant_a.pdf}
 \end{center}
+
+We must be able to measure this effect. If the light falls in the gravitational field, it must gain energy $E = h \w$ and thus it will be blue shifted. Similarly, if the light climbs out of the gravitational field, it will lose energy and be red shifted. To explore this idea, consider a rocket with two individuals, one at the top of the rocket $(A)$ and one at the bottom $(B)$ (separated by height $h$). The rocket will be accelerating with $\vg$ in just the $\hz$ direction which gives,
+\[ \ddot{z}_A = \ddot{z}_B = g \]
+
+Therefore,
+\[ z_A(t) = h + \f12 g t^2 \]
+\[ z_B(t) = \f12 g t^2 \]
+
+At $t=0$, $A$ sends a light signal to $B$ and is received by $B$ at time $t_1 > t_0 = 0$.
+\[ ct_1 = z_A(0) - z_B(t_1) \]
+
+At time $t = \De \tau_A$, $A$ emits another light signal to $B$ and it will be received at time $t_1 + \De \tau_B$,
+\[ c\br{t_1 + \De \tau_B - \De \tau_A} = z_A\br{\De\tau_A} - z_B \br{t_1 + \De \tau_B} \]
+
+With these two relations, we want to get an expression that relates $\De \tau_A$ to $\De \tau_B$. Considering a non-relativistic regime $c \gg 1$, and at 1st order in $\De \tau_i$ with $i = A,B$,
+\[ \De \tau_B = \De \tau_A \br{1 - \f{gh}{c^2}} \]
+This is strange. If there were no acceleration $\De \tau_B = \De \tau_A$. However, there is an extra factor of due to the acceleration $\vg$. Because of the acceleration, the second beam of light had to travel a farther distance making $\De \tau_B < \De \tau_A$. If $\De \tau$ is taken to be the period of light waves,
+\[ \De \tau = \f{\la}{c} \]
+Thus,
+\[ \la_B = \la_A \br{1 - \f{gh}{c^2}} \]
+Which gives use a similar relation between $\la_A$ and $\la_B$, namely $\la_B < \la_A$. This corresponds to a \textbf{blue shift}. Following a similar argument with $g \ar - g$ it becomes that $\la_B > \la_A$ which corresponds to a \textbf{red shift}. \\
+
+However, by Einstein's Strong Equivalence Principle, the \textit{exact} same effect should occur while stationary under a uniform gravitational field $\vg$. We can perform this experiment on earth and measure the effect. This was known as the \textit{Pound Rebka experiment}. This effect is very small. On earth,
+\[ \f{gh}{c^2} \sim \SI{e-15}{} \]
+
+What does this experiment look like as a spacetime diagram,
+
+
+\begin{center}
+\begin{tikzpicture}
+    % Draw axes
+    \coordinate (nya) at (0, -1);
+    \coordinate (pya) at (0, 3);
+    \coordinate (nxa) at (-1, 0);
+    \coordinate (pxa) at (3, 0);
+    \draw [<->, thick] (nxa) -- (pxa);
+    \draw [<->, thick] (nya) -- (pya);
+    \node [above] (lpya) at (pya) {$t$};
+    \node [right] (lpxa) at (pxa) {$z$};
+
+    \draw [->, thick, blue] (1.0, -1) -- (1.0, 3);
+    \draw [->, thick, red] (2.0, -1) -- (2.0, 3);
+    \node [below, red] (la) at (2.0, -1) {$A$};
+    \node [below, blue] (lb) at (1.0, -1) {$B$};
+
+    \draw [thick, yellow] (2.0, 0.5) -- (1.0, 1.5);
+    \draw [thick, yellow] (2.0, 1.0) -- (1.0, 2.0);
+    \node [right] (lr) at (2.0, 0.75) {$\De \tau_B$};
+    \node [left] (ll) at (1.0, 1.75) {$\De \tau_A$};
+    \node [below] (lb) at (1.5, 0) {$h$};
+\end{tikzpicture}
+\end{center}
+
+There is a problem here. Since the field $\vg$ is uniform, it must be that the two light rays are \textit{parallel}. Since the gravitational potential at $A$ and $B$ is given by $\phi_A, \phi_B$ and they are equal,
+\[ \De \tau_B \approx \br{1 - \f{\phi_A - \phi_B}{c^2}} \De \tau_A = \De \tau_A \numberthis \label{eq:parallel} \]
+However, we have just shown that,
+\[ \De \tau_B < \De \tau_A \]
+Which indicates that these lines are converging and thus should \textbf{not} be parallel. Nonetheless, this problem can be resolved when considering geometries like the surface of a sphere where \textit{great circles} are both parallel and intersecting. This convinced Einstein that he would have to learn \textit{differential geometry}. \\
+
+Before moving to differential geometry, let us recall that for the Minkowski metric,
+\[ \dif \tau^2 = \dif t^2 - \dif \vec{x}^2 \]
+
+Now consider a modified metric,
+\[ \dif \tau^2 = \br{1+2\phi(\vec{x})}\dif t^2 - \br{1-2\phi(\vec{x})}\dif \vec{x}^2 \]
+
+This is known as the \textit{static weak field metric} where $\phi$ is the gravitational potential. Can this metric recover some of the issues discussed above? If $A$ and $B$ are at rest $\De \vec{x}^2 = 0$,
+\[ \De \tau_A^2 = \br{1+2\phi(x_A)}\De t^2 \]
+\[ \De \tau_B^2 = \br{1+2\phi(x_B)}\De t^2 \]
+Which gives,
+\[ \De \tau_A^2 = \f{1+2\phi(x_A)}{1+2\phi(x_B)}\De \tau_B^2 \]
+Where a Taylor series expansion gives,
+\[ \De \tau_A \approx \br{1+\phi(x_A)-\phi(x_B)}\De \tau_B \]
+Which can be seen to mimic \eqref{eq:parallel}. This motivates how gravity can be described as a modified metric which in turn implies a gravity affects the space in which the system lives.
+
+\section{Differential Geometry}
+
+We known the flat $\R^n$ space very well. How can be relate different geometries back to $\R^n$. Consider the surface of the earth. How can we measure \textit{where we are}? Consider someone living in Waterloo, they might have a map that has coordinates describing where they are. Similarly for someone in Toronto with a different map, they would have coordinates that describe where they are. In order for these two people to communicate, there needs to be a translation between the coordinates on one map to another. This is the spirit of differential geometry.
 
 \end{document}
