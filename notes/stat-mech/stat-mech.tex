@@ -6,20 +6,20 @@
 \tikzset{%
 pics/.cd,
 nodea/.style args={#1#2#3}{
-  code={\node[minimum height=2cm] (#3) {\color{#1}#2};
-       \draw[thick] (#3.south west) -| (#3.north east)--(#3.north west);
-  }
+    code={\node[minimum height=2cm] (#3) {\color{#1}#2};
+             \draw[thick] (#3.south west) -| (#3.north east)--(#3.north west);
+    }
 },
 %pics/.cd,
 nodeb/.style args={#1#2#3}{
-  code={\node[minimum height=2cm] (#3) {\color{#1}#2};
-       \draw[thick] (#3.south east) -| (#3.north west)--(#3.north east);
-  }
+    code={\node[minimum height=2cm] (#3) {\color{#1}#2};
+             \draw[thick] (#3.south east) -| (#3.north west)--(#3.north east);
+    }
 },
 %pics/.cd,
 nodec/.style args={#1#2#3}{
-  code={\node[draw,thick,shape=circle,inner sep=1cm] (#3) {\color{#1}#2};
-  }
+    code={\node[draw,thick,shape=circle,inner sep=1cm] (#3) {\color{#1}#2};
+    }
 },
 }
 
@@ -59,27 +59,27 @@ But does labeling the particles really matter? For the case of $N \ar \infty$, t
 \subsection{History}
 
 \begin{itemize}
-    \item [1738] Daniel Bernoulli
-    \begin{itemize}
-        \item molecules moving in container, they collide with one another
-        \item collisions with walls explains pressure
-    \end{itemize}
-    \item [$~$1850] Gay Lussac, Joule, Thomson (Lord Kelvin), Carnot
-    \item [1859] James Clerk Maxwell
-    \begin{itemize}
-        \item $D(\nu) \sim e^{-\f{\nu^2}{2k_B T}}$
-    \end{itemize}
-    \item [1884] Josiash Willard Gibbs
-    \begin{itemize}
-        \item ensemble averaging
-    \end{itemize}
-    \item [$~$1900] Planck, Einstein, Bose, Pauli, Fermi, Dirac
-    \item [Today] Frontier is in non-equilibrium Statistical Mechanics
-    \begin{itemize}
-        \item cold atoms
-        \item biology
-        \item quantum information
-    \end{itemize}
+        \item [1738] Daniel Bernoulli
+        \begin{itemize}
+                \item molecules moving in container, they collide with one another
+                \item collisions with walls explains pressure
+        \end{itemize}
+        \item [$~$1850] Gay Lussac, Joule, Thomson (Lord Kelvin), Carnot
+        \item [1859] James Clerk Maxwell
+        \begin{itemize}
+                \item $D(\nu) \sim e^{-\f{\nu^2}{2k_B T}}$
+        \end{itemize}
+        \item [1884] Josiash Willard Gibbs
+        \begin{itemize}
+                \item ensemble averaging
+        \end{itemize}
+        \item [$~$1900] Planck, Einstein, Bose, Pauli, Fermi, Dirac
+        \item [Today] Frontier is in non-equilibrium Statistical Mechanics
+        \begin{itemize}
+                \item cold atoms
+                \item biology
+                \item quantum information
+        \end{itemize}
 \end{itemize}
 
 \section{Foundations}
@@ -89,14 +89,14 @@ But does labeling the particles really matter? For the case of $N \ar \infty$, t
 \heading{Laws of Thermodynamics}
 
 \begin{tabular}{|c|c|}
-    \hline
-    Pros & Cons \\
-    \hline
-    \tabitem great because they are totally general &
-    \tabitem does not tell us how to compute anything \\
-    \tabitem relationship's (Maxwell's relations) between $c_p, c_v, \al, \kappa$ &
-    \tabitem does not tell us what entropy is \\
-    \hline
+        \hline
+        Pros & Cons \\
+        \hline
+        \tabitem great because they are totally general &
+        \tabitem does not tell us how to compute anything \\
+        \tabitem relationship's (Maxwell's relations) between $c_p, c_v, \al, \kappa$ &
+        \tabitem does not tell us what entropy is \\
+        \hline
 \end{tabular} \\
 
 The \nth{2} law of Thermodynamics reveals $\dif U = \indif Q - \indif W$ where $\indif Q = T \dif S$. \\
@@ -111,7 +111,7 @@ Which we will come back to.
 
 There is only one postulate of Statistical Mechanics:
 \begin{displayquote}
-    \textit{For an isolated system in equilibrium, all microstates accessible to the system are equally probable.}
+        \textit{For an isolated system in equilibrium, all microstates accessible to the system are equally probable.}
 \end{displayquote}
 
 In order to digest this postulate, we will require some definitions.
@@ -119,46 +119,46 @@ In order to digest this postulate, we will require some definitions.
 \heading{Definitions}
 
 \begin{itemize}
-    \item system
-    \begin{itemize}
-        \item part of the universe we care about
-        \item only weakly coupled to the rest of the universe
-        \item the dynamics/mechanics are dominated by the internal degrees of freedom and forces
-    \end{itemize}
-    \item isolated
-    \begin{itemize}
-        \item idealization
-        \item eliminates all external influences; no force, no energy/heat flux and no particle flux
-        \item quantities such as the energy, number of particles and volume assumed constant forever $\dif U, \dif N, \dif V = 0$
-    \end{itemize}
-    \item equilibrium
-    \begin{itemize}
-        \item everything is no-longer changing
-    \end{itemize}
-    \item microstate
-    \begin{itemize}
-        \item a complete/total description of everything at the microscopic level $\bc{\vec{r}_i, \vec{p}_i}$ for each $i$
-    \end{itemize}
-    \item macrostate
-    \begin{itemize}
-        \item a description at the macroscopic level in accordance with the external constraints
-        \item $U, P, T, \bar{M}$
-    \end{itemize}
-    \item equally probable
-    \begin{itemize}
-        \item we are dealing with probabilities and statistics
-        \item microstates are somehow describing probabilistically the properties at the macroscopic level
-    \end{itemize}
-    \item accessible
-    \begin{itemize}
-        \item consistency with the macroscopic constraints imposed by the conservation laws (fixed energy, fixed number of particles)
-    \end{itemize}
+        \item system
+        \begin{itemize}
+                \item part of the universe we care about
+                \item only weakly coupled to the rest of the universe
+                \item the dynamics/mechanics are dominated by the internal degrees of freedom and forces
+        \end{itemize}
+        \item isolated
+        \begin{itemize}
+                \item idealization
+                \item eliminates all external influences; no force, no energy/heat flux and no particle flux
+                \item quantities such as the energy, number of particles and volume assumed constant forever $\dif U, \dif N, \dif V = 0$
+        \end{itemize}
+        \item equilibrium
+        \begin{itemize}
+                \item everything is no-longer changing
+        \end{itemize}
+        \item microstate
+        \begin{itemize}
+                \item a complete/total description of everything at the microscopic level $\bc{\vec{r}_i, \vec{p}_i}$ for each $i$
+        \end{itemize}
+        \item macrostate
+        \begin{itemize}
+                \item a description at the macroscopic level in accordance with the external constraints
+                \item $U, P, T, \bar{M}$
+        \end{itemize}
+        \item equally probable
+        \begin{itemize}
+                \item we are dealing with probabilities and statistics
+                \item microstates are somehow describing probabilistically the properties at the macroscopic level
+        \end{itemize}
+        \item accessible
+        \begin{itemize}
+                \item consistency with the macroscopic constraints imposed by the conservation laws (fixed energy, fixed number of particles)
+        \end{itemize}
 \end{itemize}
 
 \heading{Postulate Follow-up}
 
 \begin{displayquote}
-    \textit{We assume that the observed/realized macrostate is the one with the most microstates.}
+        \textit{We assume that the observed/realized macrostate is the one with the most microstates.}
 \end{displayquote}
 
 \subsection{Perspective from Coin Tossing}
@@ -175,21 +175,21 @@ Macrostate Label & \multicolumn{2}{c|}{Macrostate} & \multicolumn{4}{c|}{Microst
 1 & 4 & 0 & H & H & H & H & 1 & $1/16$ \\
 \hline
 2 & 3 & 1 & H & H & H & T & 4 & $4/16$ \\
-  &   &   & H & H & T & H &   & $    $ \\
-  &   &   & H & T & H & H &   & $    $ \\
-  &   &   & T & H & H & H &   & $    $ \\
+    &   &   & H & H & T & H &   & $    $ \\
+    &   &   & H & T & H & H &   & $    $ \\
+    &   &   & T & H & H & H &   & $    $ \\
 \hline
 3 & 2 & 2 & H & H & T & T & 6 & $6/16$ \\
-  &   &   & H & T & T & H &   & $    $ \\
-  &   &   & T & T & H & H &   & $    $ \\
-  &   &   & T & H & H & T &   & $    $ \\
-  &   &   & H & T & H & T &   & $    $ \\
-  &   &   & T & H & T & H &   & $    $ \\
+    &   &   & H & T & T & H &   & $    $ \\
+    &   &   & T & T & H & H &   & $    $ \\
+    &   &   & T & H & H & T &   & $    $ \\
+    &   &   & H & T & H & T &   & $    $ \\
+    &   &   & T & H & T & H &   & $    $ \\
 \hline
 4 & 1 & 3 & T & T & T & H & 4 & $4/16$ \\
-  &   &   & T & T & H & T &   & $    $ \\
-  &   &   & T & H & T & T &   & $    $ \\
-  &   &   & H & T & T & T &   & $    $ \\
+    &   &   & T & T & H & T &   & $    $ \\
+    &   &   & T & H & T & T &   & $    $ \\
+    &   &   & H & T & T & T &   & $    $ \\
 \hline
 5 & 0 & 4 & T & T & T & T & 1 & $1/16$ \\
 \hline
@@ -367,15 +367,15 @@ Macrostate Label & \multicolumn{4}{c|}{Macrostate} & \multicolumn{3}{c|}{Microst
 {} & $N_0$ & $N_1$ & $N_2$ & $N_3$ & A & B & C & {} & {} \\
 \hline
 1 & 2 & 0 & 0 & 1 & 0 & 0 & $3\vep$ & 3 & $3/10$ \\
-  &   &   &   &   & 0 & $3\vep$ & 0 &   &        \\
-  &   &   &   &   & $3\vep$ & 0 & 0 &   &        \\
+    &   &   &   &   & 0 & $3\vep$ & 0 &   &        \\
+    &   &   &   &   & $3\vep$ & 0 & 0 &   &        \\
 \hline
 2 & 0 & 1 & 1 & 0 & 0 & $\vep$ & $2\vep$ & 6 & $6/10$ \\
-  &   &   &   &   & $\vep$ & $2\vep$ & 0 &   &        \\
-  &   &   &   &   & $2\vep$ & 0 & $\vep$ &   &        \\
-  &   &   &   &   & 0 & $2\vep$ & $\vep$ &   &        \\
-  &   &   &   &   & $2\vep$ & $\vep$ & 0 &   &        \\
-  &   &   &   &   & $\vep$ & 0 & $2\vep$ &   &        \\
+    &   &   &   &   & $\vep$ & $2\vep$ & 0 &   &        \\
+    &   &   &   &   & $2\vep$ & 0 & $\vep$ &   &        \\
+    &   &   &   &   & 0 & $2\vep$ & $\vep$ &   &        \\
+    &   &   &   &   & $2\vep$ & $\vep$ & 0 &   &        \\
+    &   &   &   &   & $\vep$ & 0 & $2\vep$ &   &        \\
 \hline
 3 & 0 & 3 & 0 & 0 & $\vep$ & $\vep$ & $\vep$ & 1 & $1/10$ \\
 \hline
@@ -388,24 +388,24 @@ Macrostate Label & \multicolumn{4}{c|}{Macrostate} & \multicolumn{3}{c|}{Microst
 Recall Boyle's Law $PV = nRT$.
 
 \begin{itemize}
-    \item processes
-    \begin{itemize}
-        \item constant $T$, isothermal process
-        \item constant $P$, isobaric process
-        \item constant $V$, isochoric process or isovolumetric process
-        \item constant $S$, adiabatic process
+        \item processes
         \begin{itemize}
-            \item Comes from greek \textit{diabatos} which means \textit{to go through}
-            \item No heat exchange between system and surroundings
-            \item Can also be an approximation for processes that occur really quickly over a short period of time
+                \item constant $T$, isothermal process
+                \item constant $P$, isobaric process
+                \item constant $V$, isochoric process or isovolumetric process
+                \item constant $S$, adiabatic process
+                \begin{itemize}
+                        \item Comes from greek \textit{diabatos} which means \textit{to go through}
+                        \item No heat exchange between system and surroundings
+                        \item Can also be an approximation for processes that occur really quickly over a short period of time
+                \end{itemize}
         \end{itemize}
-    \end{itemize}
-    \item processes reversible/irreversible
-    \begin{itemize}
-        \item reversible process happens over a number of discrete steps and that are each reversible
-        \item irreversible processes are like poking a hole in a balloon or a gas expanding in a vacuum
-    \end{itemize}
-    \item thermodynamic variables $T, P, V, U$ where $U$ is the \textit{total energy}
+        \item processes reversible/irreversible
+        \begin{itemize}
+                \item reversible process happens over a number of discrete steps and that are each reversible
+                \item irreversible processes are like poking a hole in a balloon or a gas expanding in a vacuum
+        \end{itemize}
+        \item thermodynamic variables $T, P, V, U$ where $U$ is the \textit{total energy}
 \end{itemize}
 
 \subsection{Zeroth Law of Thermodynamics}
@@ -427,10 +427,10 @@ We will first focus on $U\tsb{total energy}$ first and then $S\tsb{entropy}$ as 
 Mathematically, $G = g\br{x,y}$ where $x,y$ are the thermodynamic variables and $G$ is a function of state analytic everywhere and obeys some properties:
 
 \begin{itemize}
-    \item $\dif G = \br{\pder{G}{x}}_y \dx + \br{\pder{G}{y}}_x \dy $
-    \item at most values of the thermodynamic variables $g(x,y)$ is ``smooth''.
-    \item for example: $\br{\pdder{G}{x}}_y$ or $\br{\pdder{G}{y}}_x$ or $\br{\pder{}{x}\br{\pder{G}{y}}_x}_y$ are all continuous
-    \item the order of discontinuities is determined by whether or not the system or substance is undergoing transitions of state or not
+        \item $\dif G = \br{\pder{G}{x}}_y \dx + \br{\pder{G}{y}}_x \dy $
+        \item at most values of the thermodynamic variables $g(x,y)$ is ``smooth''.
+        \item for example: $\br{\pdder{G}{x}}_y$ or $\br{\pdder{G}{y}}_x$ or $\br{\pder{}{x}\br{\pder{G}{y}}_x}_y$ are all continuous
+        \item the order of discontinuities is determined by whether or not the system or substance is undergoing transitions of state or not
 \end{itemize}
 
 For functions of state that are analytical everywhere, the order of derivatives is inconsequential.
@@ -474,11 +474,11 @@ where $y_i$ is an intensive variable (not proportional to $N, V$; examples: pres
 Dissipative work can be thought of as ``stirring work''. Examples include a mixer in a liquid or an electrical wire/resistor.
 
 \begin{itemize}
-    \item electrical power:
-    \begin{itemize}
-        \item $P = V \cdot I$
-        \item $\dif W\tsb{dis} = P \cdot \dif t = R I^2 \dif t$
-    \end{itemize}
+        \item electrical power:
+        \begin{itemize}
+                \item $P = V \cdot I$
+                \item $\dif W\tsb{dis} = P \cdot \dif t = R I^2 \dif t$
+        \end{itemize}
 \end{itemize}
 
 \subsubsection{Sign Convention}
@@ -489,9 +489,9 @@ Dissipative work can be thought of as ``stirring work''. Examples include a mixe
 Note:
 
 \begin{itemize}
-    \item work is \textbf{not} a property of the system
-    \item work is \textbf{not} a function of state
-    \item integration on a closed loop is not degenerate $\oint \indif W \neq 0$
+        \item work is \textbf{not} a property of the system
+        \item work is \textbf{not} a function of state
+        \item integration on a closed loop is not degenerate $\oint \indif W \neq 0$
 \end{itemize}
 
 \subsubsection{Abiabatic Work}
@@ -500,21 +500,21 @@ Adiabatic work occurs with no heat exchange.
 
 \begin{center}
 \begin{tikzpicture}[scale=1.0]
-    % Draw axes
-    \draw [<->,thick] (0,4) node (yaxis) [above] {$P$}
-        |- (5,0) node (xaxis) [right] {$V$};
-    \coordinate (f) at (4,1);
-    \coordinate (i) at (1,3);
-    \node [blue, label={[blue]10:$\indif Q = 0$}] (mid) at (2, 1.5) {};
-    \draw [blue, thick, ->] plot [smooth, tension=1] coordinates { (i) (mid) (f)};
-    \node [below] (vi) at (1,0) {$V_i$};
-    \node [below] (vf) at (4,0) {$V_f$};
-    \node [left] (pf) at (0,1) {$P_f$};
-    \node [left] (pi) at (0,3) {$P_i$};
-    \draw [gray, dashed] (i) -- (vi);
-    \draw [gray, dashed] (i) -- (pi);
-    \draw [gray, dashed] (f) -- (vf);
-    \draw [gray, dashed] (f) -- (pf);
+        % Draw axes
+        \draw [<->,thick] (0,4) node (yaxis) [above] {$P$}
+                |- (5,0) node (xaxis) [right] {$V$};
+        \coordinate (f) at (4,1);
+        \coordinate (i) at (1,3);
+        \node [blue, label={[blue]10:$\indif Q = 0$}] (mid) at (2, 1.5) {};
+        \draw [blue, thick, ->] plot [smooth, tension=1] coordinates { (i) (mid) (f)};
+        \node [below] (vi) at (1,0) {$V_i$};
+        \node [below] (vf) at (4,0) {$V_f$};
+        \node [left] (pf) at (0,1) {$P_f$};
+        \node [left] (pi) at (0,3) {$P_i$};
+        \draw [gray, dashed] (i) -- (vi);
+        \draw [gray, dashed] (i) -- (pi);
+        \draw [gray, dashed] (f) -- (vf);
+        \draw [gray, dashed] (f) -- (pf);
 \end{tikzpicture}
 \end{center}
 
@@ -535,10 +535,10 @@ In systems such as boiling a pot of water, there is no work performed on the sys
 Equation \eqref{eq:firstlaw} is using the following convention:
 
 \begin{align*}
-    \indif Q &:< 0 \note{heat flow \textbf{in}} \\
-    \indif Q &:> 0 \note{heat flow \textbf{out}} \\
-    \indif W &:< 0 \note{work is done \textbf{by} system} \\
-    \indif W &:> 0 \note{work is done \textbf{on} system} \\
+        \indif Q &:< 0 \note{heat flow \textbf{in}} \\
+        \indif Q &:> 0 \note{heat flow \textbf{out}} \\
+        \indif W &:< 0 \note{work is done \textbf{by} system} \\
+        \indif W &:> 0 \note{work is done \textbf{on} system} \\
 \end{align*}
 
 \subsubsection{Heat Capacities}
@@ -607,19 +607,19 @@ Let us examine an isotherm (red) next to an adiabatic curve (blue),
 
 \begin{center}
 \begin{tikzpicture}[scale=1.0]
-    % Draw axes
-    \draw [<->,thick] (0,4) node (yaxis) [above] {$P$}
-        |- (5,0) node (xaxis) [right] {$V$};
-    \draw [blue, thick, ->] plot [smooth, tension=1] coordinates { (0.5,3) (1.5, 1.3) (3.5, 0.5)};
-    \draw [red, thick, ->] plot [smooth, tension=1] coordinates { (0.6,3) (1.5, 1.8) (3.5, 1.2)};
-    \node [blue] (adiabatic) at (4.2, 0.5) {adiabatic};
-    \node [red] (isotherm) at (4.2, 1.2) {isotherm};
+        % Draw axes
+        \draw [<->,thick] (0,4) node (yaxis) [above] {$P$}
+                |- (5,0) node (xaxis) [right] {$V$};
+        \draw [blue, thick, ->] plot [smooth, tension=1] coordinates { (0.5,3) (1.5, 1.3) (3.5, 0.5)};
+        \draw [red, thick, ->] plot [smooth, tension=1] coordinates { (0.6,3) (1.5, 1.8) (3.5, 1.2)};
+        \node [blue] (adiabatic) at (4.2, 0.5) {adiabatic};
+        \node [red] (isotherm) at (4.2, 1.2) {isotherm};
 \end{tikzpicture}
 \end{center}
 
 \begin{align*}
-    \indif q &= c_v \dif T + P \dif v \\
-    \indif q &= c_P \dif T - v \dif P
+        \indif q &= c_v \dif T + P \dif v \\
+        \indif q &= c_P \dif T - v \dif P
 \end{align*}
 
 And let's set $\indif q = 0$ (adiabatic),
@@ -735,12 +735,12 @@ Imagine a an engine $E$ that runs from temperature $T_2$ to $T_1$ (two heat bath
 
 \begin{center}
 \begin{tikzpicture}[scale=2]
-    \pic at (0,0) {nodea={red}{$T_H$}{L}};
-    \pic at (2,0) {nodec={black}{}{C}};
-    \pic at (4,0) {nodeb={blue}{$T_C$}{R}};
-    \draw[->,>=latex](L)--node[midway,above]{$Q_2$}(C);
-    \draw[->,>=latex](C)--node[midway,above]{$Q_1$} (R);
-    \draw[->,>=latex](C)--node[midway,left]{$W$} ++(0,-2cm);
+        \pic at (0,0) {nodea={red}{$T_H$}{L}};
+        \pic at (2,0) {nodec={black}{}{C}};
+        \pic at (4,0) {nodeb={blue}{$T_C$}{R}};
+        \draw[->,>=latex](L)--node[midway,above]{$Q_2$}(C);
+        \draw[->,>=latex](C)--node[midway,above]{$Q_1$} (R);
+        \draw[->,>=latex](C)--node[midway,left]{$W$} ++(0,-2cm);
 \end{tikzpicture}
 \end{center}
 
@@ -757,8 +757,8 @@ Therefore typically the efficiency is given by,
 \[ \eta = 1 + \f{Q_1}{Q_2} \]
 
 \begin{itemize}
-  \item $Q_2$ : injected into engine $E$ and is $>0$
-  \item $Q_1$ : extracted from engine $E$ and is $<0$
+    \item $Q_2$ : injected into engine $E$ and is $>0$
+    \item $Q_1$ : extracted from engine $E$ and is $<0$
 \end{itemize}
 
 This can be re-written as,
@@ -771,30 +771,30 @@ It can be shown that no engine is more efficient than a Carnot engine. Upon cons
 
 \begin{center}
 \begin{tikzpicture}[
-  scale=1.0,
-  decoration={post length=0.1mm, pre length=0.1mm, markings, mark=at position 0.5 with {\arrow{>}}}
+    scale=1.0,
+    decoration={post length=0.1mm, pre length=0.1mm, markings, mark=at position 0.5 with {\arrow{>}}}
 ]
-    % Draw axes
-    \coordinate (nya) at (0, 0);
-    \coordinate (pya) at (0, 4);
-    \coordinate (nxa) at (0, 0);
-    \coordinate (pxa) at (5, 0);
-    \node [above] (lpya) at (pya) {$P$};
-    \node [right] (lpxa) at (pxa) {$V$};
-    \coordinate (a) at (1.1, 3);
-    \coordinate (b) at (3.2, 2.2);
-    \coordinate (c) at (4, 1);
-    \coordinate (d) at (2, 1.5);
-    \draw [->, thick] (nya) -- (pya);
-    \draw [->, thick] (nxa) -- (pxa);
-    \draw [postaction={decorate}, thick] (a) -- (b);
-    \draw [postaction={decorate}, thick] (b) -- (c);
-    \draw [postaction={decorate}, thick] (c) -- (d);
-    \draw [postaction={decorate}, thick] (d) -- (a);
-    \node [above left] (la) at (a) {$a$};
-    \node [above right] (lb) at (b) {$b$};
-    \node [below] (lc) at (c) {$c$};
-    \node [below left] (ld) at (d) {$d$};
+        % Draw axes
+        \coordinate (nya) at (0, 0);
+        \coordinate (pya) at (0, 4);
+        \coordinate (nxa) at (0, 0);
+        \coordinate (pxa) at (5, 0);
+        \node [above] (lpya) at (pya) {$P$};
+        \node [right] (lpxa) at (pxa) {$V$};
+        \coordinate (a) at (1.1, 3);
+        \coordinate (b) at (3.2, 2.2);
+        \coordinate (c) at (4, 1);
+        \coordinate (d) at (2, 1.5);
+        \draw [->, thick] (nya) -- (pya);
+        \draw [->, thick] (nxa) -- (pxa);
+        \draw [postaction={decorate}, thick] (a) -- (b);
+        \draw [postaction={decorate}, thick] (b) -- (c);
+        \draw [postaction={decorate}, thick] (c) -- (d);
+        \draw [postaction={decorate}, thick] (d) -- (a);
+        \node [above left] (la) at (a) {$a$};
+        \node [above right] (lb) at (b) {$b$};
+        \node [below] (lc) at (c) {$c$};
+        \node [below left] (ld) at (d) {$d$};
 \end{tikzpicture}
 \end{center}
 
@@ -856,8 +856,8 @@ Therefore,
 \subsubsection{Second Law Statements}
 
 \begin{enumerate}
-  \item \textbf{Clausius:} You can not build a machine or engine operating in a cycle can be constructed whose sole effect is to transfer heat from a cold to hot.
-  \item \textbf{Kelvin-Planck:} It is impossible to construct a device whose sole effect is to produce work by only absorbing heat from a single reservoir. Two reservoirs are needed.
+    \item \textbf{Clausius:} You can not build a machine or engine operating in a cycle can be constructed whose sole effect is to transfer heat from a cold to hot.
+    \item \textbf{Kelvin-Planck:} It is impossible to construct a device whose sole effect is to produce work by only absorbing heat from a single reservoir. Two reservoirs are needed.
 \end{enumerate}
 
 Now let us use Clausius statement to prove Carnot's theorem as per the Carnot Engine; the most efficient engine is a Carnot engine.
@@ -934,42 +934,42 @@ Thus,
 \heading{Summarize}
 
 \begin{enumerate}
-    \item No engine is more efficient than Carnot.
-    \item As a by-produce, we discovered a quantity $\Delta S$ defined as:
-    \begin{itemize}
-        \item $\Delta S = \f{\De Q}{T}$ ($\dif S = \f{\indif Q}{T}$ for the infinitesimal)
-        \item $\dif S$: defined at each point in $(P,V,T)$ diagram
-        \item $\dif S$: is exact differential. $S_2 - S_1$ only depends on the \textbf{endpoints} not the \textbf{path}
-    \end{itemize}
+        \item No engine is more efficient than Carnot.
+        \item As a by-produce, we discovered a quantity $\Delta S$ defined as:
+        \begin{itemize}
+                \item $\Delta S = \f{\De Q}{T}$ ($\dif S = \f{\indif Q}{T}$ for the infinitesimal)
+                \item $\dif S$: defined at each point in $(P,V,T)$ diagram
+                \item $\dif S$: is exact differential. $S_2 - S_1$ only depends on the \textbf{endpoints} not the \textbf{path}
+        \end{itemize}
 \end{enumerate}
 
 Let us show this by comparing two paths,
 
 \begin{center}
 \begin{tikzpicture}[scale=1.0]
-    % Draw axes
-    \draw [<->,thick] (0,4) node (yaxis) [above] {$P$}
-        |- (5,0) node (xaxis) [right] {$V$};
-    \coordinate (f) at (4,1);
-    \coordinate (m) at (1,1);
-    \coordinate (i) at (1,3);
-    \node [right] (lf) at (f) {$T_2$};
-    \node [above] (li) at (i) {$T_1$};
-    \node [below] (lm) at (m) {$T'$};
-    \node [blue, label={[blue]10:$3$}] (label) at (2.5, 2) {};
-    \draw [blue, thick, ->] plot [smooth, tension=1] coordinates { (i) (f)};
-    \draw [green, thick, ->] plot [smooth, tension=1] coordinates { (i) (m)};
-    \node [green, label={[green]10:$1$}] (label) at (0.5, 1.5) {};
-    \draw [green, thick, ->] plot [smooth, tension=1] coordinates { (m) (f)};
-    \node [green, label={[green]10:$2$}] (label) at (2, 1) {};
-    \node [below] (vi) at (1,0) {$V_1$};
-    \node [below] (vf) at (4,0) {$V_2$};
-    \node [left] (pf) at (0,1) {$P_2$};
-    \node [left] (pi) at (0,3) {$P_1$};
-    \draw [gray, dashed] (i) -- (vi);
-    \draw [gray, dashed] (i) -- (pi);
-    \draw [gray, dashed] (f) -- (vf);
-    \draw [gray, dashed] (f) -- (pf);
+        % Draw axes
+        \draw [<->,thick] (0,4) node (yaxis) [above] {$P$}
+                |- (5,0) node (xaxis) [right] {$V$};
+        \coordinate (f) at (4,1);
+        \coordinate (m) at (1,1);
+        \coordinate (i) at (1,3);
+        \node [right] (lf) at (f) {$T_2$};
+        \node [above] (li) at (i) {$T_1$};
+        \node [below] (lm) at (m) {$T'$};
+        \node [blue, label={[blue]10:$3$}] (label) at (2.5, 2) {};
+        \draw [blue, thick, ->] plot [smooth, tension=1] coordinates { (i) (f)};
+        \draw [green, thick, ->] plot [smooth, tension=1] coordinates { (i) (m)};
+        \node [green, label={[green]10:$1$}] (label) at (0.5, 1.5) {};
+        \draw [green, thick, ->] plot [smooth, tension=1] coordinates { (m) (f)};
+        \node [green, label={[green]10:$2$}] (label) at (2, 1) {};
+        \node [below] (vi) at (1,0) {$V_1$};
+        \node [below] (vf) at (4,0) {$V_2$};
+        \node [left] (pf) at (0,1) {$P_2$};
+        \node [left] (pi) at (0,3) {$P_1$};
+        \draw [gray, dashed] (i) -- (vi);
+        \draw [gray, dashed] (i) -- (pi);
+        \draw [gray, dashed] (f) -- (vf);
+        \draw [gray, dashed] (f) -- (pf);
 \end{tikzpicture}
 \end{center}
 
@@ -1001,37 +1001,37 @@ Which is identical to the change in entropy along the isotherm derived above. Th
 
 \begin{center}
 \begin{tikzpicture}[
-  scale=1.0,
-  decoration={post length=1mm, pre length=1mm, markings, mark=at position 0.5 with {\arrow{>}}}
+    scale=1.0,
+    decoration={post length=1mm, pre length=1mm, markings, mark=at position 0.5 with {\arrow{>}}}
 ]
-    % Draw axes
-    \coordinate (nya) at (0, 0);
-    \coordinate (pya) at (0, 4);
-    \coordinate (nxa) at (0, 0);
-    \coordinate (pxa) at (5, 0);
-    \node [above] (lpya) at (pya) {$P$};
-    \node [right] (lpxa) at (pxa) {$V$};
-    \coordinate (a) at (1.2, 3);
-    \coordinate (b) at (3.2, 2.2);
-    \coordinate (c) at (4, 1);
-    \coordinate (d) at (2, 1.5);
-    \coordinate (ab) at (2.2, 2.4);
-    \coordinate (bc) at (3.5, 1.5);
-    \coordinate (cd) at (3, 1.15);
-    \coordinate (da) at (1.5, 2.3);
-    \draw [->, thick] (nya) -- (pya);
-    \draw [->, thick] (nxa) -- (pxa);
-    \draw [red, thick, postaction={decorate}] plot [smooth, tension=1] coordinates { (a) (ab) (b)};
-    \draw [blue, thick, postaction={decorate}] plot [smooth, tension=1] coordinates { (c) (cd) (d)};
-    \draw [thick, postaction={decorate}] plot [smooth, tension=1] coordinates { (b) (bc) (c)};
-    \draw [thick, postaction={decorate}] plot [smooth, tension=1] coordinates { (d) (da) (a)};
+        % Draw axes
+        \coordinate (nya) at (0, 0);
+        \coordinate (pya) at (0, 4);
+        \coordinate (nxa) at (0, 0);
+        \coordinate (pxa) at (5, 0);
+        \node [above] (lpya) at (pya) {$P$};
+        \node [right] (lpxa) at (pxa) {$V$};
+        \coordinate (a) at (1.2, 3);
+        \coordinate (b) at (3.2, 2.2);
+        \coordinate (c) at (4, 1);
+        \coordinate (d) at (2, 1.5);
+        \coordinate (ab) at (2.2, 2.4);
+        \coordinate (bc) at (3.5, 1.5);
+        \coordinate (cd) at (3, 1.15);
+        \coordinate (da) at (1.5, 2.3);
+        \draw [->, thick] (nya) -- (pya);
+        \draw [->, thick] (nxa) -- (pxa);
+        \draw [red, thick, postaction={decorate}] plot [smooth, tension=1] coordinates { (a) (ab) (b)};
+        \draw [blue, thick, postaction={decorate}] plot [smooth, tension=1] coordinates { (c) (cd) (d)};
+        \draw [thick, postaction={decorate}] plot [smooth, tension=1] coordinates { (b) (bc) (c)};
+        \draw [thick, postaction={decorate}] plot [smooth, tension=1] coordinates { (d) (da) (a)};
 
-    \node [above left] (la) at (a) {$a$};
-    \node [above right] (lb) at (b) {$b$};
-    \node [above right, red] (lab) at (ab) {$T_2$};
-    \node [below left, blue] (lcd) at (cd) {$T_1$};
-    \node [below] (lc) at (c) {$c$};
-    \node [below left] (ld) at (d) {$d$};
+        \node [above left] (la) at (a) {$a$};
+        \node [above right] (lb) at (b) {$b$};
+        \node [above right, red] (lab) at (ab) {$T_2$};
+        \node [below left, blue] (lcd) at (cd) {$T_1$};
+        \node [below] (lc) at (c) {$c$};
+        \node [below left] (ld) at (d) {$d$};
 \end{tikzpicture}
 \end{center}
 
@@ -1089,7 +1089,7 @@ There are two cases ``applications'' of Clausius inequality: \\
 
 \begin{center}
 \begin{tikzpicture}[
-  decoration={post length=0.1mm, pre length=0.1mm, markings, mark=at position 0.5 with {\arrow{>}}}
+    decoration={post length=0.1mm, pre length=0.1mm, markings, mark=at position 0.5 with {\arrow{>}}}
 ]
 \coordinate (1) at (0,0);
 \coordinate (2) at (2,2);
@@ -1167,10 +1167,10 @@ At \textit{equilibrium}, entropy must reach its maximum value. Otherwise it woul
 Consider a container with two sub-sections. The left hand side will have a gas and the right hand side will have a vacuum (each side having volume $V$). At time $t=0$, the barrier between the two containers is removed and the gas has access to the entire container of volume $2V$. At equilibrium, the gas occupies the entire container. Evidently, this is an irreversible process (the gas does not have the luxury to return to it's original state). Some comments:
 
 \begin{itemize}
-  \item irreversible process
-  \item gas does no work against the vacuum
-  \item no heat exchange
-  \item $\De U = \De Q - \De W = 0$ (Conservation of energy $\implies$ temperature is constant)
+    \item irreversible process
+    \item gas does no work against the vacuum
+    \item no heat exchange
+    \item $\De U = \De Q - \De W = 0$ (Conservation of energy $\implies$ temperature is constant)
 \end{itemize}
 
 This process is irreversible, so there is no way to directly compute it's change in entropy throughout the entire process. However, the entropy can be calculated using properties about the two endpoints and a \textit{reversible} process that connects these endpoints. \\
@@ -1190,16 +1190,16 @@ Thus we expect,
 Note that the `$2^N$' term measures the number of microstates that the system received or now has access to to due to the process. Consider the microstates counted by the possibility that the particle can be on the left or the right of the container.\\
 
 \begin{itemize}
-    \item All particles on left except 1
-    \begin{itemize}
-        \item LLLLL$\ldots$LLRLLL$\ldots$LLLLL
-        \item $N$ ways for this to occur
-    \end{itemize}
-    \item All particles on the left except 2
-    \begin{itemize}
-        \item LLLLL$\ldots$LLRLLL$\ldots$LLRL$\ldots$LLLLL
-        \item $N(N-1)/2$ ways for this to occur
-    \end{itemize}
+        \item All particles on left except 1
+        \begin{itemize}
+                \item LLLLL$\ldots$LLRLLL$\ldots$LLLLL
+                \item $N$ ways for this to occur
+        \end{itemize}
+        \item All particles on the left except 2
+        \begin{itemize}
+                \item LLLLL$\ldots$LLRLLL$\ldots$LLRL$\ldots$LLLLL
+                \item $N(N-1)/2$ ways for this to occur
+        \end{itemize}
 \end{itemize}
 
 The most probable macrostate occurs when the total number of microstates reaches a maximum. Using the Stirling's approximation, this occurs when there is a 50/50 split between the left and right with total number of microstates,
@@ -1231,17 +1231,17 @@ Statical Mechanics Basis for Thermodynamics.
 \subsection{Contact Between S.M. \& T.D.}
 
 \begin{enumerate}
-    \item Systems where $V \ar \inf$ and $N \ar \inf$ and the density $N/V$ remains constant
-    \begin{itemize}
-        \item Thermodynamically large system
-    \end{itemize}
-    \item Equilibrium Thermodynamics / S.M.
-    \begin{itemize}
-        \item Consider two regions $(1,2)$ of a container separated by a diathermal wall
-        \item $(N_1, V_1, E_1)$ and $(N_2, V_2, E_2)$ number of particles, volume, energy respectively
-        \item Interested in total number of microstates
-        \item Composite system $\Om^{(0)} = \Om^{(1)} \times \Om^{(2)}$
-    \end{itemize}
+        \item Systems where $V \ar \inf$ and $N \ar \inf$ and the density $N/V$ remains constant
+        \begin{itemize}
+                \item Thermodynamically large system
+        \end{itemize}
+        \item Equilibrium Thermodynamics / S.M.
+        \begin{itemize}
+                \item Consider two regions $(1,2)$ of a container separated by a diathermal wall
+                \item $(N_1, V_1, E_1)$ and $(N_2, V_2, E_2)$ number of particles, volume, energy respectively
+                \item Interested in total number of microstates
+                \item Composite system $\Om^{(0)} = \Om^{(1)} \times \Om^{(2)}$
+        \end{itemize}
 \end{enumerate}
 This composite system has $E^{\br{0}} = E_1 + E_2 = $ constant. We are interested in $\Om$: the number of microstates. At \textit{any time}, system (1) is just as likely to be in any of its microstates. This is also true for system (2).
 \[ \Om^{(0)}\br{E_1, E_2} = \Om_1(E_1) \times \Om_2(E_2) \]
@@ -1458,6 +1458,7 @@ Or more generally, for quantum/classical systems,
 Note that \eqref{eq:adiabtic} does not hold for relativistic systems as $E = pc$ where $c$ is the speed of light.
 
 \subsubsection{Solving the Microcanonical Ensemble}
+\label{sec:solvemircoensemble}
 
 One will notice that as $E^*$ increases, the number of solution $\Om$ varies wildly. It can be precisely $0$ and some values for $E^*$ and very many for other, nearby energies. Instead of calculating only the $n_r$ for which $E$ is precisely given, we will instead compute all the states for which $E' < E$ to simplify the problem. In principle, we want to replace the problem of finding,
 
@@ -1503,14 +1504,14 @@ And performing this sum under the constraint that,
 
 \begin{center}
 \begin{tabular}{|c|c|}
-    \hline
-    Dimensions & Volume of Ball \\
-    \hline
-    $2$ & $\pi R^2$ \\
-    $3$ & $\f43 \pi R^3$ \\
-    $\cdots$ & $\cdots$ \\
-    $n$ & $c_n R^n$ \\
-    \hline
+        \hline
+        Dimensions & Volume of Ball \\
+        \hline
+        $2$ & $\pi R^2$ \\
+        $3$ & $\f43 \pi R^3$ \\
+        $\cdots$ & $\cdots$ \\
+        $n$ & $c_n R^n$ \\
+        \hline
 \end{tabular}
 \end{center}
 
@@ -1567,7 +1568,7 @@ Where ${\sum}_N$ doesn't explicitly represent a \textit{sum}. Instead it is the 
 
 What we want to do is to derive the thermodynamic properties for E. In reality however, no system is perfectly isolated from surroundings. In practice $E$ is not exactly defined. We will construct the idea of $\De$ or uncertainty in $E$ is only because of the imperfect nature of the system. Assume that the energy is given by $E \pm \f{\De}{2}$. We will also assume that $\De \ll E$. Since initially we wanted to know $\Om(N, V, E)$ we really want to know the the number of states associated with a measure of the energy within the uncertainty. This will be the difference of two ${\sum}_N$ values.
 
-\[ \Ga_{N, V \bar{E} = E} = {\sum}_N \br{N, V, E + \f{\De}{2}} - {\sum}_N \br{N, V, E - \f{\De}{2}} \]
+\[ \Ga_{N, V \bar{E} = E} = {\sum}_N \br{N, V, E + \f{\De}{2}} - {\sum}_N \br{N, V, E - \f{\De}{2}} \numberthis \label{eq:deltaE}\]
 
 Now in the limit that $\De/E \ar 0$,
 
@@ -1673,5 +1674,78 @@ This is an \textit{ad hoc} fix. It does not have any profound explanation of jus
 This is the formula for the entropy of a non-degenerate ideal gas. This is known as the \textbf{Sackur-Tetrode equation}. One should note that this equation is quite remarkable. It is composed of only $N, V, E$ and a set of constants. This equation gives a proper extensivity of $S$. \\
 
 For more, look at the theory of super-solid helium.
+
+\section{Ensemble Theory}
+
+Let's step back and review some of the statements we have made. Here are come general facts:
+\begin{itemize}
+    \item Every microstate has equal probability of being selected
+    \item As time passes, the system will explore all of the microstates
+    \item Experimental measurements are made of the time averaged of the true, non-stationary value of physical quantities $f$
+    \begin{itemize}
+        \item $f = E, \text{pH}, \text{etc.}$
+        \item For example, measuring the pH level of a chemical solution will be the average measure over a macroscopic duration of time
+        \item For systems where the dynamics of the system have time scale much shorter than the measurement frequency, the measured quantity ends of being an averaged value
+    \end{itemize}
+    \item Making a ``movie'' of a physical system (many measurements) and replacing the time average by a ``still frame'' average
+    \begin{itemize}
+        \item $\bs{f}\tsb{time} = \f1T \intl_{t_0}^{t_0 + T} f(t) \dif t$: the square brackets with subscript time indicate an average measure over time
+        \item $\ba{f}\tsb{exp} = \bs{f}\tsb{time}$: Natural one should expect the time averaged value to be measure experimentally
+        \item In doing thus, there must be some sort of averaging of the true real-time value using ``snapshots'' of $f$
+    \end{itemize}
+\end{itemize}
+The question becomes, what are the options for performing this ``snapshot'' averaging? One could make periodic snapshots at fixed frequency or random intervals or combinations there of. It is the spirit of ensemble theory to determine how to construct an adequate way to compute $\ba{f}\tsb{exp}$ withing explicitly doing $\int f(t) \dif t$. Some options include,
+\begin{itemize}
+    \item microcanonical ensemble
+    \item canonical ensemble
+    \item grand ensemble
+\end{itemize}
+The procedure introduced by Gibb's involves utilizing phase space and classical systems.\\
+
+\textbf{Remark by \AuthorName:} This is intimately connected to the \textit{Erdős discrepancy problem}. (I think?)
+
+\subsection{Phase Space of Classical System}
+\subsubsection{Dynamics \& Phase Space}
+
+Imagine we have a system of $N$ \textit{distinguishable} particles,
+\[ i = 1,2,3,\ldots,N \]
+that lives in the space of 3 dimensions $\R^3$. We will fix for the system $N,V,E$. This is a microcanonical system/construction. We will also consider for the system that the particles are localized (they are were they are) and they do move (they have dynamics). The position of a particle $\mu$ is given by,
+\[ \vr_\mu = x \hx + y \hy + x \hz \]
+And each particle $\mu$ has same mass $m$. The momentum of particle $\mu$ is given by,
+\[ \vp_\mu = m \dvec{r}_\mu \]
+To index the entire system of $N$ particles, we will consider this index map,
+\[ \vr_\mu = r_{\al,\mu} \mapsto r_i \quad \al = 1,2,3 \quad  \mu = 1,2,\ldots, N \quad  i = 1,2,\ldots,3N \]
+Similarly for $\vp_\mu$
+\[ \vp_\mu = p_{\al,\mu} \mapsto p_i \quad \al = 1,2,3 \quad  \mu = 1,2,\ldots, N \quad  i = 1,2,\ldots,3N \]
+The product of the two spaces $\bc{r_i} \times \bc{p_i}$ is a $6N$ dimensional space known as the \textbf{phase space} of the system. To determine the dynamics of the system, we need to solve the following problem.
+\[ \mathcal{L} = K\br{\bc{\dot{q}_i}} - V\br{\bc{q_i, \dot{q}_i}} \]
+Where $\mathcal{L}$ is the \textbf{Lagrangian}, $K$ is the kinetic energy that depends on velocities, and $V$ is the potential energy which depends on position and sometimes velocities. Will will make the switch to the \textit{Hamiltonian} formalism of classical mechanics through a \textbf{Legendre Transform},
+\[ H = \sum_{i}^{3N} \dot{q}_i \pder{\mathcal{L}}{\dot{q}_i} - \mathcal{L} = \sum_{i}^{3N} \dot{q}_i p_i - \mathcal{L} \]
+Where $p_i = \pder{\mathcal{L}}{\dot{q}_i}$ is the generalized momentum. In principle, all classical problems can be described under this formalism. The ``bottle neck'' of this formalism is typically solving the equations of motion,
+\[ \dot{p}_i = - \pder{H}{q_i} \qquad \dot{q}_i = \pder{H}{p_i} \]
+For generic physical quantity $f\br{q,p;t}$ that depends on time, positions an momentum of all the particles, all that would be required is to solve the equations of motion, and predictions could be made. However, this is very \textit{difficult}. Ensemble Theory allows for the construction of proper approximations for generic $f$. \\
+
+\heading{$\mu$-space vs. $\Ga$-space}
+
+We will now introduce the notion of $\mu$-space. In this $6N$ dimensional space, we assign to each particle $\mu$ a single point,
+
+\[ \vr_\mu , \vp_\mu \mapsto \br{r_x, r_y, r_z, p_x, p_y, p_z} \]
+
+For $N$ particles, there are $N$ points in the $\mu$-space which are characterized by $6N$ numbers. The alternative description is phase space ($\Ga$-space). Points in phase space are representative points on the \textit{entire} system at once,
+\[ \text{state vector} = \br{q_1, q_2, \ldots , q_{3N} ; p_1, p_2, \ldots , p_{3N}} \]
+At a given time $t$, there is $1$ point in phase space that is $6N$ dimensional. We will subscribe to the notation,
+\[ \br{q_i\br{t}, p_i\br{t}} = \br{q,p} \]
+
+\subsubsection{Trajectories in Phase Space}
+How can be discuss or describe the time evolution of the system using phase space? The state vector of the system $\br{q,p}$ changes over time and this describes how each and every particles position and momentum changes with time.\\
+
+As a function of time, the representative point traces a trajectory which \textbf{never} intersects itself. This is because the time evolution of the system is governed by the Hamiltonian $H$ and the solutions to the equations of motion are unique for given initial conditions. If there were intersection, take the intersection point as the initial condition and there would be two potential trajectories available for the system. Note however, that the system can loop back on itself and form cyclic trajectories. \\
+
+Furthermore because of the fixed energy $E$ condition, there is a loss of 1 degree of freedom. Thus the trajectory is constrained to a $\br{6N-1}$ dimensional surface or hypersurface. Similar to the microcanonical ensemble problem solved in section \ref{sec:solvemircoensemble} (specifically equation \eqref{eq:deltaE}), we will treat this hypersurface or hypershell as a volume between the surfaces prescribed by the two energies,
+\[ E + \f{\De}{2}, E - \f{\De}{2} \]
+
+In general, the representative points $\br{q,p}$ are bounded. The positions $q$ are bounded by volume and the momentums $p$ by total energy through $K = \f{p^2}{2m}$.\\
+
+\textbf{Remark:} One refers to classical solutions for ``real particles'', as opposed to \textit{virtual particles} (\textit{off shell}), as being \textit{on shell}, meaning they are found \textit{exactly} on the hypersurface defined by fixed energy $E$.
 
 \end{document}
