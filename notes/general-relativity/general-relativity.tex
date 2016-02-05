@@ -1900,6 +1900,70 @@ Which can be seen to mimic \eqref{eq:parallel}. This motivates how gravity can b
 
 \section{Differential Geometry}
 
-We known the flat $\R^n$ space very well. How can be relate different geometries back to $\R^n$. Consider the surface of the earth. How can we measure \textit{where we are}? Consider someone living in Waterloo, they might have a map that has coordinates describing where they are. Similarly for someone in Toronto with a different map, they would have coordinates that describe where they are. In order for these two people to communicate, there needs to be a translation between the coordinates on one map to another. This is the spirit of differential geometry.
+We known the flat $\R^n$ space very well. How can be relate different geometries back to $\R^n$. Consider the surface of the earth. How can we measure \textit{where we are}? Consider someone living in Waterloo, they might have a map that has coordinates describing where they are. Similarly for someone in Toronto with a different map, they would have coordinates that describe where they are. In order for these two people to communicate, there needs to be a translation between the coordinates on one map to another. This is the spirit of differential geometry. By stitching together maps (charts), we can get a description of geometry through the non-trivial overlaps between adjacent maps. At any given space in our manifold, we can define a set of tangent vectors which span a \textit{tangent bundle} or tangent plane. These tangent planes can form a vector space throughout the geometry. Through these spaces, we can define co-vectors and thus tensors like metrics without these spaces. We will also explore the idea of a derivative of a tensor that relates difference tangent planes.
+
+\subsection{Definitions}
+
+\textbf{Open Ball in $\R^n$}: An open ball in $\R^n$ centered at $y$ is the set of all $x \in \R^n$ such that,
+\[ \bc{x \in \R^3 \mid \text{for a given } y \in \R^n, \abs{x - y} < R \text{ with } \abs{x-y}^2 = \sum_i \br{x-y}_i^2} \]
+Where $R \in \R_{>0}$.\\
+
+\textbf{Open set}: An open set in $\R^n$ is built from the union of open balls.
+
+\textbf{Chart}: Let $M$ be a set not necessarily $\R^n$. A \textbf{chart} or coordinate system $\br{\phi, \mathcal{U}}$ consists of a subset $\mathcal{U}$ of $M$ with a one-to-one map,
+\[ \phi : \mathcal{U} \ar \R^n \]
+Such that $\phi\br{\mathcal{U}} = V$ is an open set (in $\R^n$). We can say that $\mathcal{U} = \phi^{-1}\br{V}$. We can use $V$ to induce the topology of our topological space. By notation, we usually note $\phi(P)$ where $P \in \mathcal{U}$, as,
+\[ \phi\br{P} \defined x^{\mu} \br{P} \note{$\phi$ acts as the \textit{notion} or coordinates in $\R^n$ at $P$} \]
+
+\textbf{Atlas}: An atlas is a collection of charts $\br{\mathcal{U}_\al, \phi_\al}$ such that the union of all $\mathcal{U}_\al$ covers all of $M$,
+\[ \cup_\al \mathcal{U}_\al = M \]
+If two charts happen to overlap, (i.e. $\mathcal{U}_\al \cap \mathcal{U}_\be \neq \emptyset$), then the map $\phi_\al \circ \phi_\be^{-1}$ takes points in $\phi_\be \br{\mathcal{U}_\al\cap\mathcal{U}_\be}$ to $\phi_\al \br{\mathcal{U}_\al\cap\mathcal{U}_\be}$. We say that the chart is $C^\inf$ (or smooth) if $\phi_\al$ is $C^\inf$ (infinitely differentiable). If all the charts are $C^\inf$ then $\phi_\al \circ \phi_\be^{-1}$ and its inverse are $C^\inf$. \\
+
+\textbf{Manifold}: A manifold is a set $M$ equipped with a maximal atlas (i.e. the one that contains all the possible charts). If the atlas is defined by $\phi_\al : M \ar \R^n, \forall \al$ then $M$ is a manifold of dimension $m$.
+
+\subsubsection{Examples of Manifolds}
+
+Consider $S_1$ the circle in the plane $\R^2$,
+
+\[ S^1 = \bc{\br{x,y}\in \R^2 \mid x^2 + y^2 = 1} \]
+
+Now consider the open sets consisting of $y>0$ (red) and $y<0$ (green), as well as $x>0$ (yellow) and $x<0$ (blue).
+
+\begin{center}
+\begin{tikzpicture}
+    % Draw axes
+    \coordinate (nya) at (0, -2);
+    \coordinate (pya) at (0, 2);
+    \coordinate (nxa) at (-2, 0);
+    \coordinate (pxa) at (2, 0);
+    \draw [<->, thick] (nxa) -- (pxa);
+    \draw [<->, thick] (nya) -- (pya);
+    \node [above] (lpya) at (pya) {$y$};
+    \node [right] (lpxa) at (pxa) {$x$};
+
+    \draw [thick, gray] (0,0) circle (1);
+    \draw [thick, red,dashed] (1.1,0) arc (0:180:1.1);
+    \draw [thick, green,dashed] (1.1,0) arc (0:-180:1.1);
+    \draw [thick, yellow,dashed] (0,0.9) arc (90:-90:0.9);
+    \draw [thick, blue,dashed] (0,0.9) arc (90:270:0.9);
+\end{tikzpicture}
+\end{center}
+
+The four points of the form, $(x,y) = (1,0),(-1,0),(0,1),(0,-1)$, all belong to a single open set on $S^1$. However, for regions that belong to two separate open sets, we need a map that takes us from one open set to the next. For example, to map from yellow to red,
+\[ y\tsb{red} = \sqrt{1 - x\tsb{yellow}^2} \numberthis \label{eq:circle}\]
+This acts as the form $\phi_x \circ \phi_y^{-1} \br{x}$. Is this composite map $C^{\inf}$? Note that \eqref{eq:circle} is only not differentiable at $x = 0$. However, this point doesn't not belong the intersection of the red and yellow regions. Therefore, \eqref{eq:circle} is $C^\inf$. More more, see Caroll's book (online) for differential geometry.
+
+\subsection{Tangent Vectors}
+
+Before we defined the notion of tangent vectors, we will need to first discuss trajectories.
+
+\subsubsection{Trajectories}
+
+\textbf{Definition}: A $C^\inf$ curve in a manifold $M$ is a map $\mathcal{C} : \R \supset I \ar M, \tau \ar \mathcal{C}\br{\tau}$ were $I$ is an interval on $\R$ such that,
+\[ \forall \al : \phi_\al \circ \mathcal{C} \text{ is a $C^\inf$ map} \]
+For points $P$ in $M$ get mapped to $x^\mu(P)$ in $\R^m$ through $\phi_m$ along the interval $I$ parametrized by $\tau$.
+
+
+
 
 \end{document}
