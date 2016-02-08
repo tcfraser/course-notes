@@ -1912,8 +1912,8 @@ Where $R \in \R_{>0}$.\\
 
 \textbf{Chart}: Let $M$ be a set not necessarily $\R^n$. A \textbf{chart} or coordinate system $\br{\phi, \mathcal{U}}$ consists of a subset $\mathcal{U}$ of $M$ with a one-to-one map,
 \[ \phi : \mathcal{U} \ar \R^n \]
-Such that $\phi\br{\mathcal{U}} = V$ is an open set (in $\R^n$). We can say that $\mathcal{U} = \phi^{-1}\br{V}$. We can use $V$ to induce the topology of our topological space. By notation, we usually note $\phi(P)$ where $P \in \mathcal{U}$, as,
-\[ \phi\br{P} \defined x^{\mu} \br{P} \note{$\phi$ acts as the \textit{notion} or coordinates in $\R^n$ at $P$} \]
+Such that $\phi\br{\mathcal{U}} = V$ is an open set (in $\R^n$). We can say that $\mathcal{U} = \phi^{-1}\br{V}$. We can use $V$ to induce the topology of our topological space. By notation, we usually note $\phi(p)$ where $p \in \mathcal{U}$, as,
+\[ \phi\br{p} \defined x^{\mu} \br{p} \note{$\phi$ acts as the \textit{notion} or coordinates in $\R^n$ at $p$} \]
 
 \textbf{Atlas}: An atlas is a collection of charts $\br{\mathcal{U}_\al, \phi_\al}$ such that the union of all $\mathcal{U}_\al$ covers all of $M$,
 \[ \cup_\al \mathcal{U}_\al = M \]
@@ -1959,11 +1959,76 @@ Before we defined the notion of tangent vectors, we will need to first discuss t
 
 \subsubsection{Trajectories}
 
+\newcommand{\CC}{\mathcal{C}}
+
 \textbf{Definition}: A $C^\inf$ curve in a manifold $M$ is a map $\mathcal{C} : \R \supset I \ar M, \tau \ar \mathcal{C}\br{\tau}$ were $I$ is an interval on $\R$ such that,
 \[ \forall \al : \phi_\al \circ \mathcal{C} \text{ is a $C^\inf$ map} \]
-For points $P$ in $M$ get mapped to $x^\mu(P)$ in $\R^m$ through $\phi_m$ along the interval $I$ parametrized by $\tau$.
+For points $p$ in $M$ get mapped to $x^\mu(P)$ in $\R^m$ through $\phi_m$ along the interval $I$ parametrized by $\tau$. In summary, we take an interval $I$ in $\R$ and then map it to a trajectory in $M$ using $\mathcal{C}$ which is taken locally to $\R^n$ by $\phi_\al$.
+\[ \mathcal{C} : I \ar M \]
+\[ \phi_\al \circ \mathcal{C}(\tau) \defined x^\mu(\tau) \]
+\textbf{Definition}: We note $\mathcal{C}^\inf\br{M}$ the \textbf{algebra} of $C^\inf$ functions of the form $f : M \ar \R$, with point-wise product given by,
+\[ \br{f_1 \cdot f_2}\br{p} = f_1\br{p}f_2\br{p} \]
+Where $P \in M$.\\
+\textbf{Definition}: Let $\mathcal{C}: I \ar M$ be a smooth curve with $\mathcal{C}(0) = p$. The \textbf{tangent vector} to $\mathcal{C}$ at $p$ is the linear map $X_p:\mathcal{C}^\inf\br{M} \ar R$ given by,
+\[ X_p\br{f} = \der{}{\tau}f\br{\mathcal{C}\br{\tau}}|_{\tau=0} \]
+Notation:
+\[ f \circ \CC = f \circ \phi_\al^{-1} \circ \phi_\al \circ \CC \]
+Using the combination $F = f \circ \phi^{-1}_\al$ which is a map $F: \R^n \ar \R$ (since $\phi_\al \circ \CC: I \ar R^n$) which gives a more convenient expression,
+\[ f \circ \CC\br{\tau} = F\br{x^\mu\br{\tau}} \]
+Using the coordinate system, this becomes,
+\begin{align*}
+X_P\br{f} &= \der{}{\tau}\bre{F \br{x^\mu\br{\tau}}}_{\tau=0} \\
+&= \untext{\bre{\der{x^\mu}{\tau}}_{\tau = 0}}{components} \untext{\bre{\pder{}{x^\mu} F \br{x^\mu}}_{p}}{basis} \note{Chain rule.} \\
+\end{align*}
+Exploring this notation motivates the separation of the coordinates and basis of the tangent vector $X_p \br{f}$. Focusing on the specific curves $\CC_k\br{\tau}$ such that,
+\[ x^\mu \br{\CC_k\br{\tau}} = \br{x^0\br{p}, \ldots, x^k\br{p} +\tau, \ldots, x^n\br{n}}\]
+This addition of $\tau$ along each direction allows for the ``exploration'' of the $k$-th direction by an amount $\tau$.
+\[ \CC_1 : \br{x(p) + \tau, y\br{p}} \]
+\[ \CC_2 : \br{x(p) , y\br{p}+ \tau} \]
+This gives the form,
+\[  \der{x^\mu}{\tau}\br{\CC_k\br{\tau}}|_{\tau=0} = {\de^\mu}_k \]
+So that the tangent vector of $\CC_k$ is $\pder{}{x^k}|_p$. \\
+\textbf{Definition}: The set of all tangent vectors at a point $p$ is the tangent place $T_pM$ at $p$. \\
 
+\textbf{Theorem}: If $M$ has dimension $n$ then $T_pM$ has dimension $n$, making $T_pM \sim \R^n$. The basis of $T_pM$ is given by $\pder{}{x^\mu} |_p$.\\
 
+\textbf{Comments}:
+\begin{itemize}
+    \item In the tangent space $T_pM$, a general vector is $X = X^\mu \pder{}{x^\mu} = X^\mu \di_\mu$ (noting, down in the $\di$ term means up in the denominator by notation).
+    \item The basis $\pder{}{x^\mu}$ is coordinate dependent. Another coordinate system could be $\pder{}{y^\mu}|_p$.
+\end{itemize}
+
+These different basis are of course related by the Jacobian (Wald p.17),
+\[ \pder{}{x^\mu}\bigg\rvert_p = \pder{y^\al}{x^\mu}\bigg\rvert_p \pder{}{y^\al}\bigg\rvert_p \]
+
+So a generic vector in $T_pM$ is $X = X^\mu \pder{}{x^\mu} = \ti{X}^\mu \pder{}{y^\mu}$. How do the components $X^\mu$ relate to $\ti{X}^\mu$?
+
+\[ X^\mu \pder{}{x^\mu} = \ti{X}^\al \pder{}{y^\al} = X^\mu \pder{y^\al}{x^\mu} \pder{}{y^\al} \]
+This gives the relation,
+\[ X^\mu \ar \ti{X}^\mu = X^\al \pder{y^\mu}{x^\al}\]
+
+\textbf{Definition}: We define a cotangent space $T^*_pM$ as the set of linear maps $T_pM \ar \R$. It has dimension $n$. We note the basis of $T^*_pM$ by $\dif x^\mu$ (sometimes called a form).
+\[ \dif x^\mu \br{\di_\al} = {\de^\mu}_\al \note{analogously to $f^\mu\br{e_{\al}} = {\de^\mu}_\al$} \]
+
+\subsection{Tensor Calculus}
+
+\textbf{Definition}: A tensor of type $\br{r,q}$ on $T_pM$ is a multi-linear map:
+\[ T: \underbrace{T^*_pM \times \cdots \times T^*_pM}_{r} \times \underbrace{T_pM \times \cdots \times T_pM}_{q} \ar \R \]
+
+\textbf{Examples}:
+\begin{center}
+\begin{tabular}{|c|c|}
+    \hline
+    Tensor & Rank \\
+    \hline
+    $X^\mu$ & $\br{1,0}$ \\
+    $X_\mu$ & $\br{0,1}$ \\
+    $g_{\al\be}$ & $\br{0,2}$ \\
+    \hline
+\end{tabular}
+\end{center}
+
+\textbf{Definition}: A type $\br{0,2}$ tensor $g_{\al\be}$ which is non-degenerate ($v^\mu g_{\mu\al} w^\al = 0 \quad \forall w^\al \implies v^\mu = 0^\mu$) and symmetric ($g_{\al\be} = g_{\be\al}$) is a metric tensor. The notion of signature defined in $\R^n$ is the same as before.
 
 
 \end{document}
