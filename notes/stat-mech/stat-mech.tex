@@ -1748,19 +1748,93 @@ In general, the representative points $\br{q,p}$ are bounded. The positions $q$ 
 
 \textbf{Remark:} One refers to classical solutions for ``real particles'', as opposed to \textit{virtual particles} (\textit{off shell}), as being \textit{on shell}, meaning they are found \textit{exactly} on the hypersurface defined by fixed energy $E$. \\
 
-Recall our previous description of a hypershell,
-\[ \bar{E} - \f{\De}{2} \leq E \leq \bar{E} + \f{\De}{2} \]
+\subsection{Essential Replacement for Ensemble Theory}
 
 So what do we mean when discussing ``ensembles''? Well one thing to notice is there a issue of difficulty with trying to solve the equations of motion \textit{explicitly}. We would like to instead compute a notion of average,
 \[\ba{f(q,p)}\tsb{exp} = \f{1}{T} \intl_{t_0}^{t_0 + T} f\br{q(t),p(t)} \dif t \]
 Where $T$ is a duration that is ``long enough''. The equations of motion for the system are given by Hamiltonian mechanics \eqref{eq:hamiltonmechanics},
-\[ \dot{q}_i = \pder{H}{p_i} \qquad \dot{p}_i = \pder{H}{q_i} \]
+\[ \dot{q}_i = \pder{H}{p_i} \qquad \dot{p}_i = -\pder{H}{q_i} \]
 Solving these $3N + 3N = 6N$ equations is done explicitly in molecular dynamics and in the study of galaxy formation by this is in general very difficult. We would like to replace this with something more tractable. \\
 
-For a given macrostate $\br{N,V,E}$, we have $6N$ microscopic variables. In this sense the macroscopic description is \textit{incomplete}. We would like to take advantage of this over abundance of ``micro-information'' and average/integrate it out.
+For a given macrostate $\br{N,V,E}$, we have $6N$ microscopic variables. In this sense the macroscopic description is \textit{incomplete}. We would like to take advantage of this over abundance of ``micro-information'' and average/integrate it out. What this means is that we need some kind of density or probability description of the microstates. \\
 
+Another thing to consider is we don't really have $E$ totally precise. Instead we can examine the hypershell of energy. Recall our previous description of a hypershell,
+\[ \bar{E} - \f{\De}{2} \leq E \leq \bar{E} + \f{\De}{2} \]
 
+\subsubsection{Ergodic Hypothesis}
 
+With the Ergodic Hypothesis comes both good news and bad news.
 
+\begin{center}
+\begin{tabular}{c|c}
+    Good news & Bad news \\
+    \hline
+    It cannot be proven & It cannot be proven \\
+\end{tabular}
+\end{center}
 
+\textbf{Statement}: Given long enough time the representative point of an isolated system will come \textit{arbitrarily close} to any given point on the energy hypershell/phase space. Equivalently, given enough time, the system will explore all possible locations on the $6N-1$ hypersphere (this is somewhat justified as the trajectories cannot intersect themselves). \\
+
+\textbf{Comments \& Examples}:
+
+For the system of a simple harmonic oscillator,
+\[ E = \f{p_1^2}{2} + \f{q_1^2}{2} \]
+The Ergodic hypothesis is satisfied. It explores all points on the ellipse in phase space.\\
+
+For a system of springs coupled,
+\[ E = \f{p_1^2}{2} + \f{p_2^2}{2} + \f{q_1^2}{2} + \f{q_2^2}{2} + q_1q_2 \]
+It can be shown that finite regions of phase space are not visited by solution trajectories. In general, the Ergodic Hypothesis is far from trivial or obvious but it is believed to apply in many, many cases. Note that a famous example of the the potential failing of the Ergodic Hypothesis is the case of glass panes, clays, or gels. We don't yet have a description of how these systems behave microscopically. \\
+
+\subsubsection{Mixing Hypothesis}
+
+Note that for the $3$-body problem, we have chaotic solutions. This is also the case for $N > 3$. If we consider a system with many, many degrees of freedom ($N \gg 1$), we should expect that there are many degrees of freedom that will tend to be chaotic and explore all sorts of potential values on-shell. This can be taken as motivation for the Ergodic Hypothesis. \\
+
+This explosion in time of an initial distribution of representative points suggests we should focus on a notion of density of representative points in phase space. This density will be time-dependent.
+
+\subsubsection{Statistical Ensemble}
+The idea of statistical ensembles is to make \textit{mental copies} of the system of interest. What this means is to ascribe a representative point to each member of the ensemble. Therefore each member of the ensemble will track a representative point.
+
+\newcommand{\bwd}[2]{
+\begin{tikzpicture}[scale=0.2]
+        \draw (-1,-1)--(-1,1)--(1,1)--(1,-1)--(-1,-1);
+        \fill [red] (#1, #2) circle (5pt);
+\end{tikzpicture}
+}
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+    \hline
+    $k$ & $t$ & $t + \dif t$ \\
+    \hline
+    1 & \bwd{0.5}{0.25} & \bwd{0.4}{0} \\
+    2 & \bwd{-0.5}{0.25} & \bwd{0.4}{0} \\
+    3 & \bwd{0.5}{-0.43} & \bwd{-0.2}{0} \\
+    4 & \bwd{-0.5}{-0.2} & \bwd{-0.7}{0} \\
+    5 & \bwd{-0.5}{0.5} & \bwd{0.8}{0} \\
+    6 & \bwd{0.3}{0.3} & \bwd{0.3}{0} \\
+    7 & \bwd{-0.6}{0.4} & \bwd{0}{0} \\
+    8 & \bwd{0}{-0.7} & \bwd{-0.8}{0} \\
+    $\vdots$ & $\vdots$ & $\vdots$ \\
+    \hline
+\end{tabular}
+\end{center}
+
+Each of these $k$ tracks the location of the representative point over time. We need an object/quantity that gives us a measure of the distribution representative points.
+\[ \rho \br{\underbrace{p(t), q(t)}_{6N \text{ variables}}; t} \]
+
+For example, $\rho \dif V = \dif Q$. Consider this quantity,
+\[ \bc{\rho \br{q,p;t} \dif^{3N} q \dif^{3N} p} \]
+
+This gives us the number of points around the $6N$ dimensional point $(q,p)$ in phase space. $\rho(q,p;t)$ symbolizes the way that the members of the ensemble (of representative points) are distributed overall possible microstates $(q_i, p_i)$ at different instants in time.
+
+\[ \ba{f}\tsb{ensemble} \defined \f{\int f(q,p;t) \rho(q,p;t) \dif^{3N}q\dif^{3N}p}{\int\rho(q,p;t) \dif^{3N}q\dif^{3N}p} \]
+\[ \ba{f}\tsb{exp} = \ba{f}\tsb{ensemble} \]
+
+This $\rho$ acts a weight for all possible $k$'s that could potentially make up the solution. The goal is to compute this $\rho(q,p;t)$. To do this, we will make use of the fact that $\rho$ is constrained by the equations of motion. We must invoke the time dependence of $q,p$. Using \eqref{eq:hamiltonmechanics},
+\[ \dot{q}_i = \pder{H}{p_i} \qquad \dot{p}_i = -\pder{H}{q_i} \]
+Gives us a corresponding description of $\rho\br{q,p;t}$. \\
+
+\textbf{Important Remark}: If we are concerning ourselves with statical mechanics, we are limiting ourselves the constraint that,
+\[ \pder{\rho}{t} = 0 \]
+We have to consider how $\rho(p,q)$ is compatible with the equations of motion. The solution to this is known as \textbf{Liouville's Theorem}
 \end{document}
