@@ -1480,7 +1480,7 @@ Which is a problem of finding the volume of a sphere of radius $\sqrt{\vep^*}$. 
 \[ V(R) = \f{4 \pi R^3}{3} \]
 \[ V(\vep^*) = \f{4 \pi }{3}\br{\vep^*}^{3/2} \]
 
-Now since we only can about the cases where $n_x, n_y, n_z$ are positive, this quantity \textit{overestimates} by $2^3= 8$ times the desired amount. Therefore the sum over all states where $0 \leq \vep'\leq\vep^*$ is
+Now since we only care about the cases where $n_x, n_y, n_z$ are positive, this quantity \textit{overestimates} by $2^3= 8$ times the desired amount. Therefore the sum over all states where $0 \leq \vep'\leq\vep^*$ is
 
 \[ \sum_{'} = \f{1}{8} \f{4\pi}{3} \br{e^*}^{3/2} = \f{\pi}{6} \br{e^*}^{3/2} \]
 
@@ -1519,7 +1519,7 @@ Therefore, we need to find $c_n$ in general to get the volume of a hypersphere. 
 
 \[ \dif V_n = \dif \br{c_n R^n} = \underbrace{c_n \cdot n \cdot R^{n-1}}_{S_n} \dif R \]
 
-\textbf{Trick:} With will take a function that we like for which we can do exactly the integrals in $\dif x_i$ (i.e. Cartesian Coordinates) and perform the integral in spherical coordinates.
+\textbf{Trick:} We will take a function that we like for which we can do exactly the integrals in $\dif x_i$ (i.e. Cartesian Coordinates) and perform the integral in spherical coordinates.
 
 \[ \intl f(\bc{x_i}) \prod_{i=1}^n \dif x_i = \intl f(R) S_n \dif R = \intl f(R) n c_n R^{n-1} \dif R \]
 
@@ -1550,7 +1550,7 @@ Using the identity,
 
 Where $\Ga(x)$ is the \textit{Gamma function} which is equivalent to factorials for $x$ integers, we get,
 
-\[ \pi^{\f{n}{2}} = \f12 \Ga \br{\f{n}{2}} \]
+\[ \pi^{\f{n}{2}} = n c_n \f12 \Ga \br{\f{n}{2}} \]
 
 Thus,
 
@@ -1568,15 +1568,15 @@ Where ${\sum}_N$ doesn't explicitly represent a \textit{sum}. Instead it is the 
 
 What we want to do is to derive the thermodynamic properties for E. In reality however, no system is perfectly isolated from surroundings. In practice $E$ is not exactly defined. We will construct the idea of $\De$ or uncertainty in $E$ is only because of the imperfect nature of the system. Assume that the energy is given by $E \pm \f{\De}{2}$. We will also assume that $\De \ll E$. Since initially we wanted to know $\Om(N, V, E)$ we really want to know the the number of states associated with a measure of the energy within the uncertainty. This will be the difference of two ${\sum}_N$ values.
 
-\[ \Ga_{N, V \bar{E} = E} = {\sum}_N \br{N, V, E + \f{\De}{2}} - {\sum}_N \br{N, V, E - \f{\De}{2}} \numberthis \label{eq:deltaE}\]
+\[ \Ga_{N, V, \bar{E} = E} = {\sum}_N \br{N, V, E + \f{\De}{2}} - {\sum}_N \br{N, V, E - \f{\De}{2}} \numberthis \label{eq:deltaE}\]
 
 Now in the limit that $\De/E \ar 0$,
 
-\[ \lim_{\De/E \ar 0} \Ga_{N, V \bar{E} = E} = \Ga_{N, V \bar{E} = E} = \lim_{\De/E \ar 0} \bs{{\sum}_N \br{N, V, E + \f{\De}{2}} - {\sum}_N \br{N, V, E - \f{\De}{2}}} = \pder{{\sum}_N}{E} \cdot \De \]
+\[ \lim_{\De/E \ar 0} \Ga_{N, V, \bar{E} = E} = \Ga_{N, V \bar{E} = E} = \lim_{\De/E \ar 0} \bs{{\sum}_N \br{N, V, E + \f{\De}{2}} - {\sum}_N \br{N, V, E - \f{\De}{2}}} = \pder{{\sum}_N}{E} \cdot \De \]
 
 Therefore the total number of states associated with $E= \bar{E}$ is given by,
 
-\[ \Ga_{N, V \bar{E} = E} = \pder{\sum_N}{E} \cdot \De = \f{3N}{2} \f{\De}{E} \sum_N(N, V, E =\bar{E}) \]
+\[ \Ga_{N, V, \bar{E} = E} = \pder{\sum_N}{E} \cdot \De = \f{3N}{2} \f{\De}{E} \sum_N(N, V, E =\bar{E}) \]
 
 Using the Boltzmann equation for entropy and Stirling's approximation with $N \gg 1$ (see section \ref{sec:stirling}),
 
@@ -1746,6 +1746,10 @@ Furthermore because of the fixed energy $E$ condition, there is a loss of 1 degr
 
 In general, the representative points $\br{q,p}$ are bounded. The positions $q$ are bounded by volume and the momentums $p$ by total energy through $K = \f{p^2}{2m}$.\\
 
-\textbf{Remark:} One refers to classical solutions for ``real particles'', as opposed to \textit{virtual particles} (\textit{off shell}), as being \textit{on shell}, meaning they are found \textit{exactly} on the hypersurface defined by fixed energy $E$.
+\textbf{Remark:} One refers to classical solutions for ``real particles'', as opposed to \textit{virtual particles} (\textit{off shell}), as being \textit{on shell}, meaning they are found \textit{exactly} on the hypersurface defined by fixed energy $E$. \\
+
+Recall our previous description of a hypershell,
+\[ E - \f{\De}{2} \leq E \leq E + \f{\De}{2} \]
+
 
 \end{document}
