@@ -1722,7 +1722,7 @@ The product of the two spaces $\bc{r_i} \times \bc{p_i}$ is a $6N$ dimensional s
 Where $\mathcal{L}$ is the \textbf{Lagrangian}, $K$ is the kinetic energy that depends on velocities, and $V$ is the potential energy which depends on position and sometimes velocities. Will will make the switch to the \textit{Hamiltonian} formalism of classical mechanics through a \textbf{Legendre Transform},
 \[ H = \sum_{i}^{3N} \dot{q}_i \pder{\mathcal{L}}{\dot{q}_i} - \mathcal{L} = \sum_{i}^{3N} \dot{q}_i p_i - \mathcal{L} \]
 Where $p_i = \pder{\mathcal{L}}{\dot{q}_i}$ is the generalized momentum. In principle, all classical problems can be described under this formalism. The ``bottle neck'' of this formalism is typically solving the equations of motion,
-\[ \dot{p}_i = - \pder{H}{q_i} \qquad \dot{q}_i = \pder{H}{p_i} \]
+\[ \dot{p}_i = - \pder{H}{q_i} \qquad \dot{q}_i = \pder{H}{p_i} \numberthis \label{eq:hamiltonmechanics} \]
 For generic physical quantity $f\br{q,p;t}$ that depends on time, positions an momentum of all the particles, all that would be required is to solve the equations of motion, and predictions could be made. However, this is very \textit{difficult}. Ensemble Theory allows for the construction of proper approximations for generic $f$. \\
 
 \heading{$\mu$-space vs. $\Ga$-space}
@@ -1749,7 +1749,18 @@ In general, the representative points $\br{q,p}$ are bounded. The positions $q$ 
 \textbf{Remark:} One refers to classical solutions for ``real particles'', as opposed to \textit{virtual particles} (\textit{off shell}), as being \textit{on shell}, meaning they are found \textit{exactly} on the hypersurface defined by fixed energy $E$. \\
 
 Recall our previous description of a hypershell,
-\[ E - \f{\De}{2} \leq E \leq E + \f{\De}{2} \]
+\[ \bar{E} - \f{\De}{2} \leq E \leq \bar{E} + \f{\De}{2} \]
+
+So what do we mean when discussing ``ensembles''? Well one thing to notice is there a issue of difficulty with trying to solve the equations of motion \textit{explicitly}. We would like to instead compute a notion of average,
+\[\ba{f(q,p)}\tsb{exp} = \f{1}{T} \intl_{t_0}^{t_0 + T} f\br{q(t),p(t)} \dif t \]
+Where $T$ is a duration that is ``long enough''. The equations of motion for the system are given by Hamiltonian mechanics \eqref{eq:hamiltonmechanics},
+\[ \dot{q}_i = \pder{H}{p_i} \qquad \dot{p}_i = \pder{H}{q_i} \]
+Solving these $3N + 3N = 6N$ equations is done explicitly in molecular dynamics and in the study of galaxy formation by this is in general very difficult. We would like to replace this with something more tractable. \\
+
+For a given macrostate $\br{N,V,E}$, we have $6N$ microscopic variables. In this sense the macroscopic description is \textit{incomplete}. We would like to take advantage of this over abundance of ``micro-information'' and average/integrate it out.
+
+
+
 
 
 \end{document}
