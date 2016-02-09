@@ -1847,10 +1847,13 @@ Thus this integral over this quantity varies in time,
 
 The notion of flow (in/out of membership) describes the flow (in/out) of the phase space. With this notion of flow, there is a conservation law on the representative points; or a flow of representative point density. By analogy, this can be considered an effective ``current''.
 \[ \intl \vJ\tsb{R.P.} \cdot \hn \dif \sigma = \intl \rho \br{p,q} \vv \cdot \hn \dif \sigma \numberthis \label{eq:rpflux} \]
-This is a flux of representative points through the surface of the solution shell. The conservation implies that \eqref{eq:rpflux} balances \eqref{eq:reflow}.
+Where $\vv$ is a velocity of the rate of displacement of representative points. This is a flux of representative points through the surface of the solution shell. The conservation implies that \eqref{eq:rpflux} balances \eqref{eq:reflow}.
 \[ \pder{}{t}\intl_\w \rho \br{p,q}\dif^{3N}q\dif^{3N}p = - \intl_\sigma \rho \br{p,q} \vv \cdot \hn \dif \sigma \]
 Where $\w$ is the phase space volume, and $\sigma = \di \w$ is the surface bounding $\w$. Recognize the use of divergence theorem,
 \[ \intl_\sigma \rho \br{p,q} \vv \cdot \hn \dif \sigma = \intl_\w \div \br{\rho \vv} \dif \w \]
-Where the volume element is given by $\dif \w = \dif^{3N}q\dif^{3N}p$.
+Where the volume element is given by $\dif \w = \dif^{3N}q\dif^{3N}p$. Combining these results,
+\[ \pder{}{t}\intl_\w \rho \br{p,q}\dif \w + \intl_\w \div \br{\rho \vv} \dif \w = 0 \]
+Which by the Reymond-Dubois Lemma gives,
+\[ \pder{\rho}{t}  + \div \br{\rho \vv} = 0 \]
 
 \end{document}
