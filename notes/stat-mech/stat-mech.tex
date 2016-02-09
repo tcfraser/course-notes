@@ -1819,10 +1819,9 @@ The idea of statistical ensembles is to make \textit{mental copies} of the syste
 \end{tabular}
 \end{center}
 
-Each of these $k$ tracks the location of the representative point over time. We need an object/quantity that gives us a measure of the distribution representative points.
+Each of these $k$ tracks the location of the representative point over time. These boxes can be thought of ``trackers'' or ``members''. We need an object/quantity that gives us a measure of the distribution representative points.
 \[ \rho \br{\underbrace{p(t), q(t)}_{6N \text{ variables}}; t} \]
-
-For example, $\rho \dif V = \dif Q$. Consider this quantity,
+This is density of representative points per unit of phase space volume $\dif^{3N} q \dif^{3N} p$. Consider this quantity,
 \[ \bc{\rho \br{q,p;t} \dif^{3N} q \dif^{3N} p} \]
 
 This gives us the number of points around the $6N$ dimensional point $(q,p)$ in phase space. $\rho(q,p;t)$ symbolizes the way that the members of the ensemble (of representative points) are distributed overall possible microstates $(q_i, p_i)$ at different instants in time.
@@ -1836,5 +1835,22 @@ Gives us a corresponding description of $\rho\br{q,p;t}$. \\
 
 \textbf{Important Remark}: If we are concerning ourselves with statical mechanics, we are limiting ourselves the constraint that,
 \[ \pder{\rho}{t} = 0 \]
-We have to consider how $\rho(p,q)$ is compatible with the equations of motion. The solution to this is known as \textbf{Liouville's Theorem}
+We have to consider how $\rho(p,q)$ is compatible with the equations of motion. The solution to this is known as \textbf{Liouville's Theorem}.
+
+\subsubsection{Liouville's Theorem}
+What are the options or possible forms for $\rho(p, q)$? First remember that each member, namely \bwd{0.4}{0.3}, of the ensemble \textit{drives} the time evolution of its own representative point. As time marches on, the number of representative points that contribute to the whole set of members of the ensemble evolves. In fact, there is an effective flow of members in the ensemble moving in and out of the shell of solutions.
+
+\[ \# : \rho \br{p,q}\dif^{3N}q\dif^{3N}p \]
+
+Thus this integral over this quantity varies in time,
+\[ \pder{}{t}\intl \rho \br{p,q}\dif^{3N}q\dif^{3N}p \numberthis \label{eq:reflow} \]
+
+The notion of flow (in/out of membership) describes the flow (in/out) of the phase space. With this notion of flow, there is a conservation law on the representative points; or a flow of representative point density. By analogy, this can be considered an effective ``current''.
+\[ \intl \vJ\tsb{R.P.} \cdot \hn \dif \sigma = \intl \rho \br{p,q} \vv \cdot \hn \dif \sigma \numberthis \label{eq:rpflux} \]
+This is a flux of representative points through the surface of the solution shell. The conservation implies that \eqref{eq:rpflux} balances \eqref{eq:reflow}.
+\[ \pder{}{t}\intl_\w \rho \br{p,q}\dif^{3N}q\dif^{3N}p = - \intl_\sigma \rho \br{p,q} \vv \cdot \hn \dif \sigma \]
+Where $\w$ is the phase space volume, and $\sigma = \di \w$ is the surface bounding $\w$. Recognize the use of divergence theorem,
+\[ \intl_\sigma \rho \br{p,q} \vv \cdot \hn \dif \sigma = \intl_\w \div \br{\rho \vv} \dif \w \]
+Where the volume element is given by $\dif \w = \dif^{3N}q\dif^{3N}p$.
+
 \end{document}
