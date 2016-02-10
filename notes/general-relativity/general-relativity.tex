@@ -673,19 +673,19 @@ Consider person $A$ (Alice) standing on the ground and person $B$ (Bob) in a roc
 
 The boost ${B^{\al}}_\ga$ is given by,
 
-\[ {B^{\al}}_\ga = \bvec{1 & 0 & 0 & 0 \\ -v_1 & 1 & 0 & 0 \\ -v_2 & 0 & 1 & 0 \\ -v_3 & 0 & 0 & 1} \]
+\[ {B^{\al}}_\ga = \mtrx{1 & 0 & 0 & 0 \\ -v_1 & 1 & 0 & 0 \\ -v_2 & 0 & 1 & 0 \\ -v_3 & 0 & 0 & 1} \]
 
 Person $A$ (sitting on the ground) is given by,
 
-\[ A \sim \bvec{t \\ 0 \\ 0 \\ 0} \]
+\[ A \sim \mtrx{t \\ 0 \\ 0 \\ 0} \]
 
 Their product is given by,
 
-\[ \bvec{1 & 0 & 0 & 0 \\ -v_1 & 1 & 0 & 0 \\ -v_2 & 0 & 1 & 0 \\ -v_3 & 0 & 0 & 1} \bvec{t \\ 0 \\ 0 \\ 0} = \bvec{t \\ -v_1t \\ -v_2t \\ -v_3t }\]
+\[ \mtrx{1 & 0 & 0 & 0 \\ -v_1 & 1 & 0 & 0 \\ -v_2 & 0 & 1 & 0 \\ -v_3 & 0 & 0 & 1} \mtrx{t \\ 0 \\ 0 \\ 0} = \mtrx{t \\ -v_1t \\ -v_2t \\ -v_3t }\]
 
 This is the trajectory of Alice \wrt Bob parametrized with time $t$. What about Bob's perspective under this linear map?
 
-\[ \bvec{t \\ v_1t \\ v_2t \\ v_3t } \bvec{1 & 0 & 0 & 0 \\ -v_1 & 1 & 0 & 0 \\ -v_2 & 0 & 1 & 0 \\ -v_3 & 0 & 0 & 1} = \bvec{t \\ -v_1t + v_1t \\ -v_2t + v_2t \\ -v_3t + v_3t \\} = \bvec{t \\ 0 \\ 0 \\ 0} \]
+\[ \mtrx{t \\ v_1t \\ v_2t \\ v_3t } \mtrx{1 & 0 & 0 & 0 \\ -v_1 & 1 & 0 & 0 \\ -v_2 & 0 & 1 & 0 \\ -v_3 & 0 & 0 & 1} = \mtrx{t \\ -v_1t + v_1t \\ -v_2t + v_2t \\ -v_3t + v_3t \\} = \mtrx{t \\ 0 \\ 0 \\ 0} \]
 
 Thus Galilean boosts form an abelian group. When we move to the regime of Special Relativity, we will see that boosts no longer form an abelian group.
 
@@ -1047,7 +1047,7 @@ For convenience we can relabel,
 \[ \ga =  \f{1}{\sqrt{1 - \f{v^2}{c^2}}} \]
 
 In matrix form,
-\[ \bvec{T' \\ X'} = \underbrace{\ga \bvec{1 & \f{-v}{c^2} \\ -v & 1}}_{\text{Lorentz Boost}} \bvec{T \\ X}\]
+\[ \mtrx{T' \\ X'} = \underbrace{\ga \mtrx{1 & \f{-v}{c^2} \\ -v & 1}}_{\text{Lorentz Boost}} \mtrx{T \\ X}\]
 
 Notice in the limit that $v << c$, the Lorentz boost becomes equivalent to the Galilean boost discussed earlier.
 
@@ -1163,7 +1163,7 @@ Can we construct/define a notion of length that is invariant under these transfo
 
 \newcommand{\Lam}{\Lambda}
 
-\[ \bvec{\ga & -\ga \f{v}{c^2} \\ -\ga v & \ga} = {\Lam^{\al}}_{\be} \]
+\[ \mtrx{\ga & -\ga \f{v}{c^2} \\ -\ga v & \ga} = {\Lam^{\al}}_{\be} \]
 
 Let's introduce a metric, $g_{\al\be}$ that is of course symmetric and non non-degenerate. Therefore,
 
@@ -1171,11 +1171,11 @@ Let's introduce a metric, $g_{\al\be}$ that is of course symmetric and non non-d
 
 Reminder: $v \cdot w = v' \cdot w'$ with $v'^\al = {\Lam^{\al}}_{\ga} v^\ga$. The solution here for 1d motion:
 
-\[ g_{\al\be} = \bvec{-1 & 0 \\ 0 & 1} \text{ or } \bvec{1 & 0 \\ 0 & -1} \]
+\[ g_{\al\be} = \mtrx{-1 & 0 \\ 0 & 1} \text{ or } \mtrx{1 & 0 \\ 0 & -1} \]
 
 These are called \textit{Minkowski Metrics}. The difference between these two is a matter of convention. We will select the convention,
 
-\[ g_{\al\be} = \bvec{-1 & 0 \\ 0 & 1}\]
+\[ g_{\al\be} = \mtrx{-1 & 0 \\ 0 & 1}\]
 
 \begin{center}
 \begin{tikzpicture}[scale=1.5]
@@ -1222,13 +1222,13 @@ What are inertial observers in the relativistic regime? They are \textit{still} 
     \item rotations: $R_x, R_y, R_z$
 \end{itemize}
 
-\[ \ar \bvec{1 & 0 & 0 & 0 \\ 1 & \cos \theta & \sin \theta & 0 \\ 0 & -\sin \theta & \cos \theta & 0 \\ 0 & 0 & 0 & 1 } \]
+\[ \ar \mtrx{1 & 0 & 0 & 0 \\ 1 & \cos \theta & \sin \theta & 0 \\ 0 & -\sin \theta & \cos \theta & 0 \\ 0 & 0 & 0 & 1 } \]
 
 \begin{itemize}
     \item boost: $B_x, B_y, B_z$
 \end{itemize}
 
-\[ B_z \ar \bvec{\ga & -\ga\f{v}{c^2} & 0 & 0 \\ -\ga v & \ga & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 } \]
+\[ B_z \ar \mtrx{\ga & -\ga\f{v}{c^2} & 0 & 0 \\ -\ga v & \ga & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 } \]
 
 Therefore,
 
@@ -1236,7 +1236,7 @@ Therefore,
 
 Let us relabel $\ga^2 = \cosh^2 \eta$ and $\ga^2\f{v^2}{c^2} = \sinh^2 \eta$,
 
-\[ B_z \ar \bvec{\cosh \eta & -\f{\sinh \eta}{c^2} & 0 & 0 \\ -\sinh \eta & \cosh \eta & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 } \]
+\[ B_z \ar \mtrx{\cosh \eta & -\f{\sinh \eta}{c^2} & 0 & 0 \\ -\sinh \eta & \cosh \eta & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 } \]
 
 \begin{itemize}
     \item translation: $\vec{x} \ar \vec{x} + \vec{a}$; $t \ar t + b$
@@ -1272,7 +1272,7 @@ Which forces $\abs{\ovec{v_1 \oplus v_2}}^2 = c^2$ whenever either $\vec{v}_1$ o
 \subsection{Flat Spacetime}
 
 Spacetime is $\R^4$ and we will consider the Minkowski metric $\eta_{\al\be}$. In Cartesian coordinates,
-\[ x^\mu = \bvec{ct& x & y & z} \]
+\[ x^\mu = \mtrx{ct& x & y & z} \]
 
 Consider a curve in spacetime $x^\nu(\ell)$ where $\ell$ is a curvilinear parameter that parametrizes the curve. The tangent vector is given by $\der{x^\mu}{\ell}$.
 
@@ -1336,7 +1336,7 @@ Considering a time-like curve, the proper length or arclength is interpreted as 
 Parametrization of the world line of an observer at rest $(\vec{x} = \vec{0})$.
 \[ x^0(\tau) = \tau \quad \text{ and } \quad \vec{x} = \vec{0} \]
 Which gives,
-\[ \der{x^\mu}{\tau} = \bvec{1 \\ 0 \\ 0 \\ 0} = {\de^\mu}_0 \neq {\de^0}_\mu \note{Be careful to matching indices.} \]
+\[ \der{x^\mu}{\tau} = \mtrx{1 \\ 0 \\ 0 \\ 0} = {\de^\mu}_0 \neq {\de^0}_\mu \note{Be careful to matching indices.} \]
 Labeling ${\de^\mu}_0 = V^\al$,
 \[ V^\al \eta_{\al\be} V^\be = {\de^\al}_0 \eta_{\al\be} {\de^\be}_0 = \eta_{00}= -1 < 0  \]
 Therefore, $V^\al$ is time-like. However in general,
@@ -1358,7 +1358,7 @@ Which when rearranged yields (noting the negative is ignored because we are cons
 \[ \der{t}{\tau} = \f{1}{\sqrt{1-\vec{v}^2}} = \ga \]
 
 Noting that,
-\[ v^\mu = \bvec{\der{t}{\tau} c \\ \der{\vec{x}}{\tau}} = \bvec{\ga c \\ \der{t}{\tau}\der{\vec{x}}{t}} = \bvec{\ga c \\ \ga\vec{v}} \]
+\[ v^\mu = \mtrx{\der{t}{\tau} c \\ \der{\vec{x}}{\tau}} = \mtrx{\ga c \\ \der{t}{\tau}\der{\vec{x}}{t}} = \mtrx{\ga c \\ \ga\vec{v}} \]
 
 Noting that $\vec{v}$ is a velocity in 3d space while $v^\mu$ is a relativistic velocity which is a 4d object. We have shown that,
 
@@ -1407,7 +1407,7 @@ Relativistic momentum is given for a material particle with mass $m$,
 
 Which has the property,
 
-\[ p^\mu = \bvec{E = m \ga \\ \vec{p} = m\ga \vec{v}} \]
+\[ p^\mu = \mtrx{E = m \ga \\ \vec{p} = m\ga \vec{v}} \]
 
 Examine the space term,
 
@@ -1435,7 +1435,7 @@ Where $q$ is the charge of the particle, $\vec{E}$ is the electric field, $\vec{
 \[ F^\mu = q {F^{\al\be}} V_\be \]
 
 Where $F^{\al\be}$ is known as the Maxwell tensor that is anti-symmetric,
-\[ F^{\al\be} = \bvec{0 & E_x & E_y & E_z \\ -E_x & 0 & B_z & -E_y \\ -E_y & -B_z & 0 & B_x \\ -E_z & B_y & -B_x & 0} \]
+\[ F^{\al\be} = \mtrx{0 & E_x & E_y & E_z \\ -E_x & 0 & B_z & -E_y \\ -E_y & -B_z & 0 & B_x \\ -E_z & B_y & -B_x & 0} \]
 
 And $V_\be$ is the relativistic velocity with,
 
@@ -1479,11 +1479,11 @@ Here $\De$ is the Laplacian. The relativistic notation is given by,
 
 Where $\Box$ is called the \textit{D'Alembertian}. What about the RHS of \eqref{eq:prefield}? $4,\pi,G$ are all constants, so all that remains is $\rho$. Notice that $\rho \sim M / V$ is a mass over a volume. As we have seen above mass $M$ is like an energy. Furthermore, boosts affect the volume $V$.
 
-\[ p^\mu= \bvec{E \\ \vec{p}} \]
+\[ p^\mu= \mtrx{E \\ \vec{p}} \]
 
 Now perform a boost on $p^\mu$ ($p^\mu \ar \ti{p}^\mu$) using ${\Lam^{\al}}_\be$,
 
-\[ {\Lam^{\al}}_\be = \bvec{\ga & \f{\ga v}{c^2} & 0 & 0 \\ \ga v & \ga & 0 & 0  \\ 0 & 0 & 1 & 0  \\ 0 & 0 & 0 & 1 } \numberthis \label{eq:boost} \]
+\[ {\Lam^{\al}}_\be = \mtrx{\ga & \f{\ga v}{c^2} & 0 & 0 \\ \ga v & \ga & 0 & 0  \\ 0 & 0 & 1 & 0  \\ 0 & 0 & 0 & 1 } \numberthis \label{eq:boost} \]
 
 As you can see, the energy terms will get mixed up with the momentum terms. \\
 
@@ -1606,11 +1606,11 @@ Whereas in the non co-moving frame the particles moving at speed $v_x$:
 
 The relevant notion of relativistic number density is the notion of flux through the $x^\mu = $ const. We will introduce the ``\#-flux'' vector $N^\mu$. Where at rest,
 
-\[ N^\mu = \bvec{N \\ 0 \\ 0 \\ 0} \]
+\[ N^\mu = \mtrx{N \\ 0 \\ 0 \\ 0} \]
 
 And under a boost such as in equation \eqref{eq:boost} where $v = v_x$,
 
-\[ N^\mu = \bvec{\ga N \\ \ga N v_x \\ 0 \\ 0} = N \bvec{\ga \\ \ga v_x \\ 0 \\ 0} = N v^\mu \]
+\[ N^\mu = \mtrx{\ga N \\ \ga N v_x \\ 0 \\ 0} = N \mtrx{\ga \\ \ga v_x \\ 0 \\ 0} = N v^\mu \]
 
 As a result, the magnitude of $N^\mu$ is given by,
 
@@ -1618,7 +1618,7 @@ As a result, the magnitude of $N^\mu$ is given by,
 
 Now consider the mass density discussed above $\rho = M/V$. At rest we have $\rho = M/V$ with $E = M$ ($c=1$). Under a boost with $v_x$,
 
-\[ \bvec{E = m \\ 0 \\ 0 \\ 0} \ar \bvec{\ga m = \bar{E} \\ m \ga v \\ 0 \\ 0} \]
+\[ \mtrx{E = m \\ 0 \\ 0 \\ 0} \ar \mtrx{\ga m = \bar{E} \\ m \ga v \\ 0 \\ 0} \]
 
 Furthermore the volume under the boost becomes $V \ar \bar{V} = \f{1}{\ga} V$. So $\rho = M/V$ at rest becomes under a boost,
 
@@ -1634,11 +1634,11 @@ Where $m$ is the mass of a single particle that should be considered the mass gi
 
 This new quantity $\rho v^\al \otimes v^\be$ will be called $T^{\al\be}$. At rest,
 
-\[ v^\al = \bvec{1 \\ 0 \\ 0 \\ 0} \]
+\[ v^\al = \mtrx{1 \\ 0 \\ 0 \\ 0} \]
 
 Which gives $T^{00} = \rho$ and $T^{\al\be} = 0$ whenever $\al \neq 0$ or $\al \neq 0$. While in frame $(v_x)$,
 
-\[ v^\al = \bvec{\ga \\ v_x \\ 0 \\ 0} \]
+\[ v^\al = \mtrx{\ga \\ v_x \\ 0 \\ 0} \]
 
 Which gives,
 
