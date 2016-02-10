@@ -1988,7 +1988,7 @@ This addition of $\tau$ along each direction allows for the ``exploration'' of t
 This gives the form,
 \[  \der{x^\mu}{\tau}\br{\CC_k\br{\tau}}|_{\tau=0} = {\de^\mu}_k \]
 So that the tangent vector of $\CC_k$ is $\pder{}{x^k}|_p$. \\
-\textbf{Definition}: The set of all tangent vectors at a point $p$ is the tangent place $T_pM$ at $p$. \\
+\textbf{Definition}: The set of all tangent vectors at a point $p$ is the tangent plane $T_pM$ at $p$. \\
 
 \textbf{Theorem}: If $M$ has dimension $n$ then $T_pM$ has dimension $n$, making $T_pM \sim \R^n$. The basis of $T_pM$ is given by $\pder{}{x^\mu} |_p$.\\
 
@@ -2010,6 +2010,8 @@ This gives the relation,
 \textbf{Definition}: We define a cotangent space $T^*_pM$ as the set of linear maps $T_pM \ar \R$. It has dimension $n$. We note the basis of $T^*_pM$ by $\dif x^\mu$ (sometimes called a form).
 \[ \dif x^\mu \br{\di_\al} = {\de^\mu}_\al \note{analogously to $f^\mu\br{e_{\al}} = {\de^\mu}_\al$} \]
 
+\textbf{Remark}: Both the tangent space $T_pM$ and cotangent space $T^*_pM$ are in general not contained in the manifold $M$. Only in flat Minkowski space is this is case.
+
 \subsection{Tensor Calculus}
 
 \textbf{Definition}: A tensor of type $\br{r,q}$ on $T_pM$ is a multi-linear map:
@@ -2030,5 +2032,84 @@ This gives the relation,
 
 \textbf{Definition}: A type $\br{0,2}$ tensor $g_{\al\be}$ which is non-degenerate ($v^\mu g_{\mu\al} w^\al = 0 \quad \forall w^\al \implies v^\mu = 0$) and symmetric ($g_{\al\be} = g_{\be\al}$) is a metric tensor. The notion of signature defined in $\R^n$ is the same as before.
 
+\textbf{Definition}: We consider the union of the tangent spaces $T_pM$ for all $p\in M$ (respectively $T^*_pM$). We note,
+\[ T\br{M} = \bigcup_{p\in M} T_p M \qquad T^*\br{M} = \bigcup_{p\in M} T^*_p M \]
+A \textbf{vector field} is a map $X : M \ar T(M), p \ar X_p$. Likewise a \textbf{tensor field} is,
+\[ T : M \ar T^*(M) \times \cdots \times T^*(M) \times T(M) \cdots \times T(M) \]
+Or for a specific point $p$, $p \ar T_p$. From now on we will work with tensor fields. We extend all the formalism done in the Minkowski space.
+\begin{itemize}
+    \item Metric gives us the norm of vectors $ v^\al g_{\al\be} v^\be = L $ where $v^\al,g_{\al\be}$ are associated with a tangent plane at a point $T_pM$
+    \item The sign of $L$ determines the type of vector
+    \begin{itemize}
+        \item $L > 0 \ar V^\al$ is space-like
+        \item $L = 0 \ar V^\al$ is light-like
+        \item $L < 0 \ar V^\al$ is time-like
+    \end{itemize}
+    \item A curve in $M$ has type that follows from the tangent vector $v^\al$
+    \begin{itemize}
+        \item $M$ is space-like if tangent vector is space-like
+        \item $M$ is light-like if tangent vector is light-like
+        \item $M$ is time-like if tangent vector is time-like
+    \end{itemize}
+    \item The arclength of a curve is given by,
+\end{itemize}
 
+\[ \tau = \int \sqrt{\abs{\der{x^\mu}{\ell}g_{\mu\al}\der{x^\al}{\ell}}} \]
+Where $\ell$ is a curvilinear parameter of the curve and $\der{x^\mu}{\ell}$ is the tangent vector. The line element is given by,
+\[ \dif \tau^2 = \abs{g_{\al\mu}\dif x^\mu \dif x^\al} \]
+
+We will physically interpret the arclength $\tau$ to be proper time.
+\begin{itemize}
+    \item $\der{x^\mu}{\tau} = $ tangent vector $=$ relativistic velocity
+    \item $\dder{x^\mu}{\tau} = $ relativistic acceleration
+\end{itemize}
+
+How can we generalize Newton's law $\vF_g = m_I \va$. Using the scalar gravitational field,
+\[ - m_G \vdel \phi = m_I \va \]
+
+Since the weak equivalence principle gives us $m_G = m_I$. Therefore,
+\[ - \vdel \phi = \va \]
+What is the relativistic version? Like us assume we are in a \textit{free falling} frame given by coordinate $\xi^\al$. Then according to Einstein's strong equivalence principle, the acceleration is just zero,
+\[ a^\mu = \dder{\xi^\mu}{\tau} = 0 \]
+Since we are in a free falling frame, physics must behave like the physics in Minkowski spacetime. The line element is given by,
+\[ \dif \tau ^2 = \eta_{\mu\al} \dif \xi^\mu \dif \xi^\al \]
+Where $\eta_{\mu\al}$ is the Minkowski metric. Now let us perform a change of coordinates and move \textit{away} from the free falling frame.
+\[ \xi^\mu \ar x^\mu \]
+This transformation is transformed by the Jacobian. However notice that,
+\[ \dder{\xi^\mu}{\tau} = \der{v^\mu}{\tau} \]
+But as shown on the assignment, $v^\mu$'s coordinates do not transform well. There are extra terms generated.
+\[ \pder{\xi^\mu}{x^\al} \note{Jacobian} \]
+\[ \pder{x^\al}{\xi^\mu} \note{Inverse Jacobian} \]
+Which gives via the inverse relation,
+\[ \pder{\xi^\mu}{x^\al}\pder{x^\al}{\xi^\rho} = {\de^\mu}_\rho \]
+Which gives,
+\begin{align*}
+    \dif \tau^2 &= \eta_{\mu\al} \dif \xi^\mu \dif \xi^\al \\
+    &= \eta_{\mu\al} \pder{\xi^\mu}{x^\ga}\pder{\xi^\mu}{x^\be}\dif x^\ga \dif x^\be \\
+    &= g_{\ga\be}\dif x^\ga \dif x^\be
+\end{align*}
+But if we have the velocity to be,
+\[ v^\mu = \der{\xi^\mu}{\tau} = \pder{\xi^\mu}{x^\al} \der{x^\al}{\tau} \]
+This implies acceleration is given by \textit{product rule},
+\begin{align*}
+0 &= a^\mu  \\
+&= \der{}{\tau} v^\mu \\
+&= \der{}{\tau} \br{\pder{\xi^\mu}{x^\al} \der{x^\al}{\tau}} \\
+&= \der{x^\al}{\tau}\der{}{\tau} \br{\pder{\xi^\mu}{x^\al} } + \pder{\xi^\mu}{x^\al}\der{}{\tau} \br{ \der{x^\al}{\tau}} \note{Product rule.}\\
+&= \der{x^\al}{\tau} \f{\di^2\xi^\mu}{\di x^\al\di x^\be}\der{x^\be}{\tau} + \pder{\xi^\mu}{x^\al}\dder{x^\al}{\tau} \note{Chain rule.}\\
+\end{align*}
+Multiply by the inverse Jacobian on both sides (and send $\al \ar \ga$ for ease of notation),
+\[ 0 = \dder{x^\al}{\tau}  + \underbrace{\pder{x^\al}{\xi^\mu} \f{\di^2\xi^\mu}{\di x^\ga\di x^\be}}_{{\Ga^\al}_{\ga\be}}\der{x^\ga}{\tau}\der{x^\be}{\tau} \]
+Where ${\Ga^\al}_{\ga\be}$ are called the Christoffel symbols. Notice that they are symmetric in the lower indices,
+\[ {\Ga^\al}_{\ga\be} = {\Ga^\al}_{\be\ga} \]
+There is relationship between ${\Ga^\al}_{\be\ga}$ and the metric which and the metric transformation,
+\[ g_{\al\be} = \eta_{\mu\nu} \pder{\xi^\mu}{x^\al}\pder{\xi^\nu}{x^\be} \]
+Which can be derived to be,
+\[ {\Ga^\al}_{\ga\be} = \f12 g^{\nu\sigma}\br{\pder{g_{\mu\nu}}{x^\lambda} + \pder{g_{\lambda\nu}}{x^\mu} + \pder{g_{\mu\lambda}}{x^\nu}} \]
+This implies,
+\[ \dder{x^\al}{\tau} + {\Ga^\al}_{\ga\be} \der{x^\ga}{\tau} \der{x^\be}{\tau} \]
+Which implies the relationship between acceleration and the change of coordinates characterized by ${\Ga^\al}_{\ga\be}$,
+\[ a^\al = - {\Ga^\al}_{\ga\be}  v^\ga  v^\be\]
+
+Can we retrieve in a non relativistic limit $\va = - \vdel \phi$?
 \end{document}
