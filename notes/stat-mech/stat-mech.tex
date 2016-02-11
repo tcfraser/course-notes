@@ -108,7 +108,7 @@ But what is $S$ and what does it \textbf{physically} mean? Boltzmann reveals the
 Which we will come back to.
 
 \subsection{Postulate of Statistical Mechanics}
-
+\label{sec:postsm}
 There is only one postulate of Statistical Mechanics:
 \begin{displayquote}
         \textit{For an isolated system in equilibrium, all microstates accessible to the system are equally probable.}
@@ -1765,7 +1765,7 @@ Another thing to consider is we don't really have $E$ totally precise. Instead w
 \[ \bar{E} - \f{\De}{2} \leq E \leq \bar{E} + \f{\De}{2} \]
 
 \subsubsection{Ergodic Hypothesis}
-
+\label{sec:ergodic}
 With the Ergodic Hypothesis comes both good news and bad news.
 
 \begin{center}
@@ -1795,7 +1795,7 @@ Note that for the $3$-body problem, we have chaotic solutions. This is also the 
 This explosion in time of an initial distribution of representative points suggests we should focus on a notion of density of representative points in phase space. This density will be time-dependent.
 
 \subsubsection{Statistical Ensemble}
-The idea of statistical ensembles is to make \textit{mental copies} of the system of interest. What this means is to ascribe a representative point to each member of the ensemble. Therefore each member of the ensemble will track a representative point.
+The idea of statistical ensembles is to make \textit{mental copies} of the system of interest. What this means is to ascribe a representative point to each member of the ensemble. Therefore each member of the ensemble will track a representative point. In doing so, we can \textit{replace} the time-averaging of the \textit{real} system by performing an averaging of the long time results of many duplicated and repeated experiment.
 
 \newcommand{\bwd}[2]{
 \begin{tikzpicture}[scale=0.2]
@@ -1822,14 +1822,39 @@ The idea of statistical ensembles is to make \textit{mental copies} of the syste
 \end{tabular}
 \end{center}
 
-Each of these $k$ tracks the location of the representative point over time. These boxes can be thought of ``trackers'' or ``members''. We need an object/quantity that gives us a measure of the distribution representative points.
+Each of these $k$ tracks the location of the representative point over time. These boxes can be thought of ``trackers'' or ``members'' of the phase space. They act as a single vector that represents the entire system.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+        \draw (-1,-1)--(-1,1)--(1,1)--(1,-1)--(-1,-1);
+        \draw (2.5,-0.5)--(2.5,0.5)--(3.5,0.5)--(3.5,-0.5)--(2.5,-0.5);
+        \draw [->] (1.25,0)--(2.25,0);
+        \fill [blue] (0.6,0) circle (1pt);
+        \fill [blue] (-0.8,0.4) circle (1pt);
+        \fill [blue] (0.6,0.9) circle (1pt);
+        \fill [blue] (-0.3,-0.2) circle (1pt);
+        \fill [blue] (0.7,0) circle (1pt);
+        \fill [blue] (0.8,0.1) circle (1pt);
+        \fill [blue] (-0.8,-0.1) circle (1pt);
+        \fill [blue] (-0.2,-0.9) circle (1pt);
+        \fill [blue] (-0.2,0.4) circle (1pt);
+        \fill [blue] (0.3,-0.3) circle (1pt);
+        \fill [red] (3.2,0.1) circle (1pt);
+        \node [below] (lps) at (3,-0.5) {$\Ga$ Phase Space ($\R^{6N}$)};
+        \node [below] (lss) at (0,-1.0) {$\R^3$ Real Space};
+\end{tikzpicture}
+\end{center}
+
+We need an object/quantity that gives us a measure of the distribution representative points.
 \[ \rho \br{\underbrace{p(t), q(t)}_{6N \text{ variables}}; t} \]
 This is density of representative points per unit of phase space volume $\dif^{3N} q \dif^{3N} p$. Consider this quantity,
 \[ \bc{\rho \br{q,p;t} \dif^{3N} q \dif^{3N} p} \]
 
 This gives us the number of points around the $6N$ dimensional point $(q,p)$ in phase space. $\rho(q,p;t)$ symbolizes the way that the members of the ensemble (of representative points) are distributed overall possible microstates $(q_i, p_i)$ at different instants in time.
 
-\[ \ba{f}\tsb{ensemble} \defined \f{\int f(q,p;t) \rho(q,p;t) \dif^{3N}q\dif^{3N}p}{\int\rho(q,p;t) \dif^{3N}q\dif^{3N}p} \]
+\[ \ba{f}\tsb{ensemble} \defined \f{\int f(q,p;t) \rho(q,p;t) \dif^{3N}q\dif^{3N}p}{\int\rho(q,p;t) \dif^{3N}q\dif^{3N}p} \numberthis \label{eq:fensemble} \]
+
+The idea here is to replace the time averaging associated with the real experiment $\ba{f}\tsb{exp}$ to the ensemble average characterized by the ensemble member weight $\rho$.
 \[ \ba{f}\tsb{exp} = \ba{f}\tsb{ensemble} \]
 
 This $\rho$ acts a weight for all possible $k$'s that could potentially make up the solution. The goal is to compute this $\rho(q,p;t)$. To do this, we will make use of the fact that $\rho$ is constrained by the equations of motion. We must invoke the time dependence of $q,p$. Using \eqref{eq:hamiltonmechanics},
@@ -1850,13 +1875,67 @@ Thus this integral over this quantity varies in time,
 
 The notion of flow (in/out of membership) describes the flow (in/out) of the phase space. With this notion of flow, there is a conservation law on the representative points; or a flow of representative point density. By analogy, this can be considered an effective ``current''.
 \[ \intl \vJ\tsb{R.P.} \cdot \hn \dif \sigma = \intl \rho \br{p,q} \vv \cdot \hn \dif \sigma \numberthis \label{eq:rpflux} \]
-Where $\vv$ is a velocity of the rate of displacement of representative points. This is a flux of representative points through the surface of the solution shell. The conservation implies that \eqref{eq:rpflux} balances \eqref{eq:reflow}.
+Where $\vv$ is a velocity of the rate of displacement of representative points.
+\[ \vv = \br{\dot{q}, \dot{p}} \]
+Here $\vv$ is not a \textit{physical velocity} in the sense of particles moving. It is constructed velocity associated with the time derivative of a representative point. The $\dot{q}$ components are interpreted as the \textit{actual} velocity of each of the particles, and the $\dot{p}$ terms are the \textit{actual} forces acting on a given particle. Instead this vector $\vv$ is a flux of representative points through the surface of the solution shell. The conservation implies that \eqref{eq:rpflux} balances \eqref{eq:reflow}.
 \[ \pder{}{t}\intl_\w \rho \br{p,q}\dif^{3N}q\dif^{3N}p = - \intl_\sigma \rho \br{p,q} \vv \cdot \hn \dif \sigma \]
-Where $\w$ is the phase space volume, and $\sigma = \di \w$ is the surface bounding $\w$. Recognize the use of divergence theorem,
+Notice the negative sign here; the LHS is positive whenever the density inside $\w$ is \textbf{increasing}, indicating the corresponding flux should be negative. Where $\w$ is the phase space volume, and $\sigma = \di \w$ is the surface bounding $\w$. Recognize the use of divergence theorem,
 \[ \intl_\sigma \rho \br{p,q} \vv \cdot \hn \dif \sigma = \intl_\w \div \br{\rho \vv} \dif \w \]
 Where the volume element is given by $\dif \w = \dif^{3N}q\dif^{3N}p$. Combining these results,
 \[ \pder{}{t}\intl_\w \rho \br{p,q}\dif \w + \intl_\w \div \br{\rho \vv} \dif \w = 0 \]
-Which by the Reymond-Dubois Lemma gives,
+Since $\w$ is presumed to have no explicit time dependence,
+\[ \intl_\w \pder{\rho}{t} + \div \br{\rho \vv} \dif \w = 0 \]
+
+Which by the Reymond-Dubois Lemma gives us what is known as the \textbf{Phase Space Continuity Equation},
 \[ \pder{\rho}{t}  + \div \br{\rho \vv} = 0 \]
 
+More explicitly breaking up the $6N$ components of the divergence term into the relevant $3N,3N$ chunks,
+\[ \pder{\rho}{t} + \sum_{i=1}^{3N} \br{\pder{}{q_i} \br{\rho \dot{q}_i} + \pder{}{p_i}\br{\rho \dot{p}_i}} = 0 \]
+Which by product rule,
+\[ \pder{\rho}{t} + \sum_{i=1}^{3N} \br{\pder{\rho}{q_i} \dot{q}_i + \pder{\rho}{p_i} \dot{p}_i} + \sum_{i=1}^{3N} \br{\rho\pder{\dot{q}_i}{q_i} + \rho\pder{\dot{p}_i}{p_i} } = 0 \]
+Using the equations of motion \eqref{eq:hamiltonmechanics},
+\[ \pder{\dot{q}_i}{q_i} = \pder{}{q_i} \br{\pder{H}{p_i}} = \f{\di^2H}{\di q_i \di p_i} \]
+Assuming that $H$ is analytical in its components, we can swap order of operations,
+\[ \f{\di^2H}{\di q_i \di p_i} = \f{\di^2H}{\di p_i \di q_i} = \pder{}{p_i} \br{\pder{H}{q_i}}\]
+Therefore by the dynamics of the system,
+\[ \pder{\dot{q}_i}{q_i} = -\pder{\dot{p}_i}{p_i} \]
+Making these terms drop out.
+\[ \pder{\rho}{t} + \sum_{i=1}^{3N} \br{\pder{\rho}{q_i} \dot{q}_i + \pder{\rho}{p_i} \dot{p}_i} = 0 \]
+Again using the equations of motion \eqref{eq:hamiltonmechanics},
+\[ \pder{\rho}{t} + \underbrace{\sum_{i=1}^{3N} \br{\pder{\rho}{q_i} \pder{H}{p_i} - \pder{\rho}{p_i} \pder{H}{q_i}}}_{\bc{\rho, H}} = 0 \]
+Where $\bc{\rho, H}$ is known as the \textbf{Poisson Brackets} for this problem. By analogy in Quantum Mechanics the Poisson brackets become a commutator.
+\[ \bc{\rho, H} \Leftrightarrow \bs{\rho, H} \]
+This is known as \textbf{Liouville's Theorem},
+\[ \pder{\rho}{t} + \bc{\rho, H} = 0 \]
+\textbf{Observations}:
+\begin{enumerate}
+    \item $\pder{\rho}{t} = 0$ is already imposed for the regime of equilibrium statistical mechanics
+    \item If $\rho$ is a constant, everything becomes zero $\bc{\rho, H} = 0$
+    \item Making $\rho\br{p,q}$ not explicitly dependent on $\br{p,q}$ enforces that $\rho = \rho\br{H\br{q,p}}$
+    \begin{itemize}
+        \item If $\rho$ is to have dependence on $N,V,T$ we can makes the choice that $\rho = \exp\br{-\be H\br{q,p}}$. In doing so we will show that $\be = 1/k_bT$ (this is known as the canonical ensemble)
+    \end{itemize}
+\end{enumerate}
+\subsection{Microcanonical Ensemble Revisited}
+As a reminder, we have a hypershell in phase space of energy $E \pm \De / 2$ with $\rho\br{q,p}$ is constant on the hypershell. Using out new framework with \eqref{eq:fensemble} independent of time,
+\[ \ba{f}\tsb{ensemble} \defined \f{\int_{\w} f(q,p) \rho(q,p) \dif^{3N}q\dif^{3N}p}{\int_{\w}\rho(q,p) \dif^{3N}q\dif^{3N}p} \numberthis \label{eq:indepensembleavg} \]
+Where $\w$ indicates out integrals are performed with respect to energy within $E \pm \De / 2$. Using the notion of time averaging,
+\[ \ba{f}\tsb{exp} = \bs{f\br{t}}\tsb{time} = \f{1}{T}\intl_{t_0}^{t_0 + T} f(t) \dif t \]
+\textbf{1)} The first question that arises: Is the ensemble averaging equal to the time averaging technique?
+\[ \ba{f}\tsb{ens} \stackrel{?}{=} \bs{f(t)}\tsb{time} \]
+\textbf{2)} The second question that arises: Is $\rho\br{q,p} = $ constant indicate the probability of finding a representative point in a give volume $\dif \w$ in phase space the same as finding a representative point in a different volume $\dif \w'$? More clearly, does a uniform distribution $\rho$ indicate a uniform probability? A priori equal probability to find the system in any microstate. Up until know, we presumed this to be an axiom or postulate of statistical mechanics (see section \ref{sec:postsm}). \\
+
+\textbf{Answer to 1)}:
+Given the ensemble average $\ba{f}\tsb{ens}$ from \eqref{eq:indepensembleavg}, since the ensemble is stationary $\pder{\rho}{t} = 0$, then nothing is changed doing a time average after an ensemble average.
+\[ \ba{f} = \ba{f}\tsb{ens} \]
+Then perform a time average on the ensemble average,
+\[ \ba{f}\tsb{ens} = \bs{\ba{f}\tsb{ens}}\tsb{time} \]
+As the time average and ensemble average are independent (i.e. the Ergodic Hypothesis is satisfied; see section \ref{sec:ergodic}), swap the order of averaging,
+\[ \ba{f} = \bs{\ba{f}\tsb{ens}}\tsb{time} = \ba{\bs{f}\tsb{time}}\tsb{ens} \]
+Now notice that the time averaging of any quantity $f(t)$ over a long time $T$ must be the same for each member of the ensemble. Again utilizing the Ergodic hypothesis, any representative point will explore the whole phase space for each member of the ensemble over long enough time. In this is the case, there is \textit{nothing} gained by performing the ensemble averaging after the time averaging. Therefore we can write,
+\[ \ba{\bs{f}\tsb{time}}\tsb{ens} = \bs{f}\tsb{time} \]
+Combining these results,
+\[ \bs{f(t)}\tsb{time} = \ba{f}\tsb{ens} \]
+Therefore the experimental averaging is given by,
+\[ \ba{f}\tsb{exp} = \bs{f(t)}\tsb{time} = \ba{f}\tsb{ens} \]
 \end{document}
