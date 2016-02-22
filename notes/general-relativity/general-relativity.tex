@@ -219,7 +219,7 @@ Use commutativity and dummy-ness of indices to obtain,
 
 Drop outer co-vectors $v$ and $w$ to get,
 
-\[ {M^\ga}_\al g_{\al\rho} {M^\rho}_\be = g_{\al\be} \numberthis \label{eq:invarM} \]
+\[ {M^\ga}_\al g_{\al\rho} {M^\rho}_\be = g_{\al\be} \eq \label{eq:invarM} \]
 
 Note that this expression is consistent with the Einstein summation convention. \\
 
@@ -1461,11 +1461,11 @@ Where $\De$ is given by,
 
 Gravity tells me how the matter source propagate,
 
-\[ \vec{F}_g  = m_i \vec{a} \note{gravity $\implies$ matter} \numberthis \label{eq:pregeodesic}\]
+\[ \vec{F}_g  = m_i \vec{a} \note{gravity $\implies$ matter} \eq \label{eq:pregeodesic}\]
 
 While matter tells gravity how to behave through the Poisson Equation,
 
-\[ \De \phi = 4\pi G \rho \note{matter $\implies$ gravity} \numberthis \label{eq:prefield}\]
+\[ \De \phi = 4\pi G \rho \note{matter $\implies$ gravity} \eq \label{eq:prefield}\]
 
 Here you can see the dual nature between equations \eqref{eq:pregeodesic} and \eqref{eq:prefield}. How can we generalize these equations to the relativistic regime. What we will see is that \eqref{eq:pregeodesic} become the geodesic equations, while \eqref{eq:prefield} become the Einstein field equations. \\
 
@@ -1475,7 +1475,7 @@ Let's find the relativistic version of \eqref{eq:prefield}.
 
 Here $\De$ is the Laplacian. The relativistic notation is given by,
 
-\[ \Box \phi \defined \eta^{\al\be} \pder{}{x^\al} \pder{}{x^\be} \phi = \br{-\f{1}{c^2}\pdder{}{t} + \De} \phi \numberthis \label{eq:alembert}\]
+\[ \Box \phi \defined \eta^{\al\be} \pder{}{x^\al} \pder{}{x^\be} \phi = \br{-\f{1}{c^2}\pdder{}{t} + \De} \phi \eq \label{eq:alembert}\]
 
 Where $\Box$ is called the \textit{D'Alembertian}. What about the RHS of \eqref{eq:prefield}? $4,\pi,G$ are all constants, so all that remains is $\rho$. Notice that $\rho \sim M / V$ is a mass over a volume. As we have seen above mass $M$ is like an energy. Furthermore, boosts affect the volume $V$.
 
@@ -1483,7 +1483,7 @@ Where $\Box$ is called the \textit{D'Alembertian}. What about the RHS of \eqref{
 
 Now perform a boost on $p^\mu$ ($p^\mu \ar \ti{p}^\mu$) using ${\Lam^{\al}}_\be$,
 
-\[ {\Lam^{\al}}_\be = \mtrx{\ga & \f{\ga v}{c^2} & 0 & 0 \\ \ga v & \ga & 0 & 0  \\ 0 & 0 & 1 & 0  \\ 0 & 0 & 0 & 1 } \numberthis \label{eq:boost} \]
+\[ {\Lam^{\al}}_\be = \mtrx{\ga & \f{\ga v}{c^2} & 0 & 0 \\ \ga v & \ga & 0 & 0  \\ 0 & 0 & 1 & 0  \\ 0 & 0 & 0 & 1 } \eq \label{eq:boost} \]
 
 As you can see, the energy terms will get mixed up with the momentum terms. \\
 
@@ -1626,7 +1626,7 @@ Furthermore the volume under the boost becomes $V \ar \bar{V} = \f{1}{\ga} V$. S
 
 This is similar to the velocity terms but instead we have a $\ga^2$ term instead of $\ga$. Note that density is given by,
 
-\[ \rho = \f{M}{V} = \f{n}{V} m \numberthis \label{eq:density}\]
+\[ \rho = \f{M}{V} = \f{n}{V} m \eq \label{eq:density}\]
 
 Where $m$ is the mass of a single particle that should be considered the mass given by the four-momentum $p^\al$. The number density should be given by the four-number density $N^\be$. Using this interpretation, \eqref{eq:density} is expressed under the relativistic regime as,
 
@@ -1677,11 +1677,11 @@ Here is a ``proof'' using dimensional arguments.
 
 To demonstrate this conservation, think of conservation as ``what goes in and out of a box encodes the variations of what's inside the box.'' Consider a cube of side length $\ell$ aligned to a Cartesian coordinate system. Focusing on energy,
 
-\[ \ell^3 \pder{}{t} T^{00} \note{variation of what's inside the box} \numberthis \label{eq:varin} \]
+\[ \ell^3 \pder{}{t} T^{00} \note{variation of what's inside the box} \eq \label{eq:varin} \]
 
 The rate of flow of energy of through each of the 6 faces of the cube is given by,
 
-\[ \ell^2 T^{0x}(x=0) - \ell^2T^{0x}(x=\ell) + \ell^2 T^{0y}(y=0) - \ell^2T^{0y}(y=\ell) + \ell^2 T^{0z}(z=0) - \ell^2T^{0z}(z=\ell) \numberthis \label{eq:goesout} \]
+\[ \ell^2 T^{0x}(x=0) - \ell^2T^{0x}(x=\ell) + \ell^2 T^{0y}(y=0) - \ell^2T^{0y}(y=\ell) + \ell^2 T^{0z}(z=0) - \ell^2T^{0z}(z=\ell) \eq \label{eq:goesout} \]
 
 Therefore by conservation \eqref{eq:varin} must equal \eqref{eq:goesout},
 
@@ -1717,7 +1717,7 @@ This proposed theory is incorrect because this equation is linear. Here, gravity
 
 In 1913, after hard work, Nordstrom proposed,
 
-\[ \f{\Box \phi}{\phi} = 4 \pi G {T^{\al}}_{\al} \numberthis \label{eq:Nordstrom1913}\]
+\[ \f{\Box \phi}{\phi} = 4 \pi G {T^{\al}}_{\al} \eq \label{eq:Nordstrom1913}\]
 
 This theory is self consistent by it can be shown that under this theory, light doesn't bend with gravity. This has been proven to be true in our universe so it must also be wrong. \\
 
@@ -1878,7 +1878,7 @@ What does this experiment look like as a spacetime diagram,
 \end{center}
 
 There is a problem here. Since the field $\vg$ is uniform, it must be that the two light rays are \textit{parallel}. Since the gravitational potential at $A$ and $B$ is given by $\phi_A, \phi_B$ and they are equal,
-\[ \De \tau_B \approx \br{1 - \f{\phi_A - \phi_B}{c^2}} \De \tau_A = \De \tau_A \numberthis \label{eq:parallel} \]
+\[ \De \tau_B \approx \br{1 - \f{\phi_A - \phi_B}{c^2}} \De \tau_A = \De \tau_A \eq \label{eq:parallel} \]
 However, we have just shown that,
 \[ \De \tau_B < \De \tau_A \]
 Which indicates that these lines are converging and thus should \textbf{not} be parallel. Nonetheless, this problem can be resolved when considering geometries like the surface of a sphere where \textit{great circles} are both parallel and intersecting. This convinced Einstein that he would have to learn \textit{differential geometry}. \\
@@ -1887,7 +1887,7 @@ Before moving to differential geometry, let us recall that for the Minkowski met
 \[ \dif \tau^2 = \dif t^2 - \dif \vec{x}^2 \]
 
 Now consider a modified metric,
-\[ \dif \tau^2 = \br{1+2\phi(\vec{x})}\dif t^2 - \br{1-2\phi(\vec{x})}\dif \vec{x}^2 \]
+\[ \dif \tau^2 = \br{1+2\phi(\vec{x})}\dif t^2 - \br{1-2\phi(\vec{x})}\dif \vec{x}^2 \eq \label{eq:modmetric}\]
 
 This is known as the \textit{static weak field metric} where $\phi$ is the gravitational potential. Can this metric recover some of the issues discussed above? If $A$ and $B$ are at rest $\De \vec{x}^2 = 0$,
 \[ \De \tau_A^2 = \br{1+2\phi(x_A)}\De t^2 \]
@@ -1950,7 +1950,7 @@ Now consider the open sets consisting of $y>0$ (red) and $y<0$ (green), as well 
 \end{center}
 
 The four points of the form, $(x,y) = (1,0),(-1,0),(0,1),(0,-1)$, all belong to a single open set on $S^1$. However, for regions that belong to two separate open sets, we need a map that takes us from one open set to the next. For example, to map from yellow to red,
-\[ y\tsb{red} = \sqrt{1 - x\tsb{yellow}^2} \numberthis \label{eq:circle}\]
+\[ y\tsb{red} = \sqrt{1 - x\tsb{yellow}^2} \eq \label{eq:circle}\]
 This acts as the form $\phi_x \circ \phi_y^{-1} \br{x}$. Is this composite map $C^{\inf}$? Note that \eqref{eq:circle} is only not differentiable at $x = 0$. However, this point doesn't not belong the intersection of the red and yellow regions. Therefore, \eqref{eq:circle} is $C^\inf$. More more, see Caroll's book (online) for differential geometry.
 
 \subsection{Tangent Vectors}
@@ -2111,5 +2111,56 @@ This implies,
 Which implies the relationship between acceleration and the change of coordinates characterized by ${\Ga^\al}_{\ga\be}$,
 \[ a^\al = - {\Ga^\al}_{\ga\be}  v^\ga  v^\be\]
 
-Can we retrieve in a non relativistic limit $\va = - \vdel \phi$?
+Can we retrieve in a non relativistic limit $\va = - \vdel \phi$? To do this we need to convert show the analogy of this geometrical equation,
+\[ \ti{a}^\mu = \dder{x^\mu}{\tau} + {\Ga^{\mu}}_{\al\be} v^\al v^\be = 0 \eq \label{eq:accelgrav} \]
+To the gravitational force equation,
+\[ \va = - \vdel \phi \eq \label{eq:gravforce}\]
+In order to reveal this connection, we will perform a non-relativistic limit to \eqref{eq:accelgrav} and a weak field stationary metric to \eqref{eq:gravforce}. Using $c=1$ and $\abs{\vv} \ll 1$ we have,
+\[ v^\al = \mtrx{\ga \\ \ga v^1 \\ \ga v^2 \\ \ga v^3} \]
+Making for $i = 1,2,3$, the real space velocity components $v^i/v^0$. Therefore we have $\abs{\vv/v_0} \ll 1$. The non-relativistic limit becomes,
+\[ \abs{\vv} \ll v_0 \]
+So therefore the time components dominate,
+\[ {\Ga^\al}_{\al\be}v^\al v^\be \approx {\Ga^\al}_{00}v^0 v^0 \]
+By definition of ${\Ga^\al}_{\al\be}$,
+\[ {\Ga^\al}_{00} = -\f12 g^{\mu\al} \pder{g_{00}}{x^\al}  \eq \label{eq:timedominant}\]
+Now we will perform a weak field stationary metric on \eqref{eq:gravforce}. Therefore for a general metric $g_{\al\be}$ we can treat it as a Minkowski metric plus a tiny perturbation $\abs{h_{\al\be}} \ll 1$,
+\[ g_{\al\be} = \eta_{\al\be} + h_{\al\be} \eq \label{eq:weakfield} \]
+As such we will work in a 1st order approximation in $h_{\al\be}$. What is $g^{\al\be}$?
+\[ g^{\al\be}g_{\be\ga} = {\de^{\al}}_\ga \]
+Subbing in \eqref{eq:weakfield} the LHS becomes,
+\[ \br{\eta^{\al\be} - h^{\al\be}}\br{\eta_{\be\ga} + h_{\be\ga}} = \eta^{\al\be}\eta_{\be\ga} - h^{\al\be}\eta_{\be\ga} + \eta^{\al\be}h_{\be\ga} - h^{\al\be}h_{\be\ga} \]
+Noting that $\eta^{\al\be} - h^{\al\be}$ is a candidate for the inverse metric which will be justified after the fact for a first order approximation. $h^{\al\be}h_{\be\ga}$ is second order in $h_{\al\be}$ so it is negligible. Also, $\eta^{\al\be}\eta_{\be\ga} = {\de^\al}_\ga$ by inverse property and the remaining terms cancel out since $h_{\al\be}$ must be symmetric (because it's a metric). Therefore out inverse candidate is given by the assumed,
+\[ g^{\al\be} = \eta^{\al\be} - h^{\al\be} \]
+Then using \eqref{eq:timedominant}
+\begin{align*}
+{\Ga^\mu}_{00} &= -\f12 g^{\mu\al} \pder{g_{00}}{x^\al}\\
+&= -\f12 \br{\eta^{\mu\al} - h^{\mu\al}} \pder{}{x^\al}\br{\eta^{00} + h^{00}}\\
+&= -\f12 \br{\eta^{\mu\al} - h^{\mu\al}} \pder{}{x^\al}\br{h^{00}} \note{Since $\eta^{00} = -1$ in Cartesian coords}\\
+&= -\f12 \br{\eta^{\mu\al}} \pder{}{x^\al}\br{h^{00}} \note{Ignoring terms that are second order in $h_{\al\be}$}\\
+\end{align*}
+Recall when discussing the bending of light, \eqref{eq:modmetric} reproduced the right results. We should expect the following metric,
+\[ g_{\al\be} = \eta_{\al\be} - 2 \de_{\al\be}\phi\br{\vx} \]
+to hold. This motivates $h_{\al\be}$ to take the form $2 \de_{\al\be}\phi\br{\vx}$. Note that this metric is \textit{stationary}. Meaning that,
+\[ \di_t h_{\al\be} = \di_t 2 \de_{\al\be}\phi\br{\vx} = 0 \]
+Therefore,
+\[ \ti{a}^\mu = \dder{x^\mu}{\tau} = - {\ga^{\mu}}_{\al\be} v^\al v^\be \approx = - {\ga^{\mu}}_{00} v^0 v^0 \]
+Becomes,
+\[ \ti{a}^\mu = + \f12 \eta^{\mu\al}\br{\pder{}{x^\al}h_{00}}v^0v^0 \]
+Which has time component $\mu = 0$,
+\[ \ti{a}^0 = + \f12 \eta^{0\al}\br{\pder{}{x^\al}h_{00}}v^0v^0 = 0\]
+Since $h_{\al\be}$ is stationary. It also has space components $i = 1,2,3$,
+\[ \ti{a}^i = \dder{x^i}{\tau} = + \f12 \eta^{i\al}\br{\pder{}{x^\al}h_{00}}v^0v^0\]
+Noting that the $v^0$ terms are (again with $c=1$),
+\[ v^0 = \der{x^0}{\tau} = \der{t}{\tau} \]
+Therefore,
+\[ \dder{x^i}{\tau} = + \f12 \eta^{i\al}\br{\pder{}{x^\al}h_{00}}\br{\der{t}{\tau}}^2 \]
+In the non-relativistic limit $\tau \ar t$. Therefore,
+\[ \dder{x^i}{t} = + \f12 \eta^{i\al}\br{\pder{}{x^\al}h_{00}} \]
+Noting by motivation above that $h_{00} = - 2\phi\br{\vx}$,
+\[ \dder{x^i}{t} = + \f12 \eta^{i\al}\br{\pder{}{x^\al}\br{- 2\phi\br{\vx}}} \]
+\[ \dder{x^i}{t} = - \eta^{i\al}\br{\di^i\phi} \]
+Which by sifting of $\al = i, \eta^{ii} = 1$,
+\[ \dder{x^i}{t} = - \di^i\phi \]
+\[ \vec{\ti{a}} = - \vdel\phi \]
+Therefore Gravity is not a force by a curvature or geometry of spacetime.
 \end{document}
