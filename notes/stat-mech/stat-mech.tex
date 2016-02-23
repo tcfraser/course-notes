@@ -219,13 +219,13 @@ Consider the integral,
 
 This can be evaluated using integration by parts,
 
-\[ I = N \intl_0^\inf x^{N-1} e^{-x} \dx = \cdots = N! \numberthis \label{eq:intbypartsNtimes}\]
+\[ I = N \intl_0^\inf x^{N-1} e^{-x} \dx = \cdots = N! \eq \label{eq:intbypartsNtimes}\]
 
 \subsubsection{Differentiation Trick}
 
 However, integration by parts $N$ times on \eqref{eq:intbypartsNtimes} is annoying. There is a nice trick. Notice that,
 
-\[ \intl_0^\inf e^{-ax} \dx = \bre{-\f1a e^{-ax}}_0^\inf = \f1a \numberthis \label{eq:tricka} \]
+\[ \intl_0^\inf e^{-ax} \dx = \bre{-\f1a e^{-ax}}_0^\inf = \f1a \eq \label{eq:tricka} \]
 
 One can treat $a$ as a \textit{dummy} variable, and examine \eqref{eq:tricka}'s derivative with respect to $a$,
 
@@ -235,7 +235,7 @@ The reason for doing this is to simplify the process of \eqref{eq:intbypartsNtim
 
 If one explores the $N\tsp{th}$ derivative of \eqref{eq:tricka} with respect to $a$, you will derive the expression,
 
-\[ \bs{\br{-1}^N \pderk{N}{}{a} \intl_0^\inf e^{-ax} \dx}_{a=1} = N! \numberthis \label{eq:trick} \]
+\[ \bs{\br{-1}^N \pderk{N}{}{a} \intl_0^\inf e^{-ax} \dx}_{a=1} = N! \eq \label{eq:trick} \]
 
 The $\br{-1}^N$ term is a result of the alternating sign induced by bringing down a $-x$ each time you take a derivative. \\
 
@@ -244,7 +244,7 @@ The $\br{-1}^N$ term is a result of the alternating sign induced by bringing dow
 
 Looking back at the integral \eqref{eq:intbypartsNtimes},
 
-\[ \intl_0^\inf x^N e^{-x} \dx = N! \numberthis \label{eq:stirlingstart}\]
+\[ \intl_0^\inf x^N e^{-x} \dx = N! \eq \label{eq:stirlingstart}\]
 
 How can we approximate $N!$ using the left had side of \eqref{eq:stirlingstart}? To derive Stirling's Formula, we need to make a change of variables $x = N + \sqrt{N} y$. Substituting into \eqref{eq:stirlingstart} gives,
 
@@ -268,16 +268,16 @@ The lower bound can be approximated as $\inf$ since $N$ is so large,
 
 Notice the remaining integral term. It is called the \textit{Gaussian Integral} and has solution (see \nameref{sec:gaussianintegrals}),
 
-\[ \intl_{-\inf}^\inf e^{-\f{y^2}{2}}\dy = \sqrt{\f{\pi}{a}} \numberthis \label{eq:gaussian} \]
+\[ \intl_{-\inf}^\inf e^{-\f{y^2}{2}}\dy = \sqrt{\f{\pi}{a}} \eq \label{eq:gaussian} \]
 
 Thus letting $a = 1/2$,
 
-\[ N! \approx \sqrt{2\pi N}e^{-N}N^N \numberthis \label{eq:stirlinglong} \]
+\[ N! \approx \sqrt{2\pi N}e^{-N}N^N \eq \label{eq:stirlinglong} \]
 
 Equation \eqref{eq:stirlinglong} is known as \textit{Stirling's Formula}. However, there is a much more useful form of Stirling's Formula. It is obtained by taking the logarithm of both sides,
 
 \[ \ln\br{N!} \approx \br{N+\f12}\ln\br{N} - \br{N - \untext{\f12 \ln\br{2\pi}}{small compared to large $N$}}  \]
-\[ \ln\br{N!} \approx N\ln N - N \numberthis \label{eq:stirling} \]
+\[ \ln\br{N!} \approx N\ln N - N \eq \label{eq:stirling} \]
 
 Note that the remaining $N$ is not dropped. This is because for $N \sim 10^{23}$, $N\ln N - N$ and $N\ln N$ differ by about $2\%$. \\
 
@@ -439,13 +439,13 @@ For functions of state that are analytical everywhere, the order of derivatives 
 
 What can we say about $G$ in cases where
 
-\[ \dif G = \pder{G}{x} \dx + \pder{G}{y} \dy \numberthis \label{eq:dg} \]
+\[ \dif G = \pder{G}{x} \dx + \pder{G}{y} \dy \eq \label{eq:dg} \]
 
 in the case of functions of state like $U$, $ \dif U = \indif Q - \indif W  $ and the inexact differentials and how they relate to exact differentials like $\dif V$ and $\dif S$? In particular, when can we integrate $\dif U$?
 
 Answer: equation \eqref{eq:dg} can be integrated in situations where
 
-\[ \br{\pder{}{y}\br{\pder{G}{x}}_y}_x = \br{\pder{}{x}\br{\pder{G}{y}}_x}_y \numberthis \label{eq:exactcond}\]
+\[ \br{\pder{}{y}\br{\pder{G}{x}}_y}_x = \br{\pder{}{x}\br{\pder{G}{y}}_x}_y \eq \label{eq:exactcond}\]
 
 When equation \eqref{eq:exactcond} is held for a physical system, one can say that $\dif G$ is an \textbf{exact differential}. Review 12,13 in notes on ``Review of Thermodynamics''. \\
 
@@ -530,7 +530,7 @@ Note the minus `$-$' sign is due to the fact that the total energy of the system
 
 In systems such as boiling a pot of water, there is no work performed on the system however the state of the system changes (not boiling to boiling). The mechanism that causes this change of state is heat ($Q$).
 
-\[ \dif U = \indif W + \indif W \numberthis \label{eq:firstlaw} \]
+\[ \dif U = \indif W + \indif W \eq \label{eq:firstlaw} \]
 
 Equation \eqref{eq:firstlaw} is using the following convention:
 
@@ -574,7 +574,7 @@ However,
 
 Thus,
 
-\[ c_v = \pdert{u}{T}{v} \numberthis \label{eq:heatcapacity} \]
+\[ c_v = \pdert{u}{T}{v} \eq \label{eq:heatcapacity} \]
 
 Which gives us,
 
@@ -670,7 +670,7 @@ Thus,
 
 Making,
 
-\[ \pder{\br{\mu A}}{y} = \pder{\br{\mu B}}{x} \numberthis \label{eq:intfact} \]
+\[ \pder{\br{\mu A}}{y} = \pder{\br{\mu B}}{x} \eq \label{eq:intfact} \]
 
 \heading{Example}
 
@@ -878,7 +878,7 @@ Now to prove is can not be the case, let us take our Carnot engine and reverse i
 
 All engines operating reversibly between two temperatures $T_1$ and $T_2$ have the same efficiency. In other words, the presence of any irreversible process degrades the efficiency.
 
-\[ \eta\tsb{irreversible} < \eta\tsb{Carnot} \numberthis \label{eq:irreversiblecarnot}\]
+\[ \eta\tsb{irreversible} < \eta\tsb{Carnot} \eq \label{eq:irreversiblecarnot}\]
 
 \subsubsection{Entropy}
 
@@ -892,7 +892,7 @@ Or equivalently,
 
 For a single Carnot engine, the sum of heat at step $n$ over the temperature at step $n$ has sum,
 
-\[  \sum_{n=1}^{k} \f{Q_n}{T_n} = 0 \numberthis \label{eq:revcarnot}\]
+\[  \sum_{n=1}^{k} \f{Q_n}{T_n} = 0 \eq \label{eq:revcarnot}\]
 
 Which gives that $\De Q / T$ over the whole cycle is zero. Taking the limit as $k \ar \inf$, it suggests that the quantity $\indif Q / T$ is an exact differential. Introduce the label of entropy,
 
@@ -929,7 +929,7 @@ But from the first law we have for constant temperature,
 Thus,
 
 \[ \indif Q = P \dif V \]
-\[ \intl_1^2 \dif S = \intl_1^2 \f{P}{T}\dif V = \intl_1^2 \f{nR}{V}\dif V = nR \ln\br{\f{V_2}{V_1}} \numberthis \label{eq:isothermvolumechangeentropy} \]
+\[ \intl_1^2 \dif S = \intl_1^2 \f{P}{T}\dif V = \intl_1^2 \f{nR}{V}\dif V = nR \ln\br{\f{V_2}{V_1}} \eq \label{eq:isothermvolumechangeentropy} \]
 
 \heading{Summarize}
 
@@ -1269,14 +1269,14 @@ Which gives for system 1,
 And the analogous expression for system 2,
 \[ \br{\pder{E_2}{\ln\Om_2}} \br{\pder{\ln\Om_2}{S_2}} = T_2 \]
 Combining these two systems gives,
-\[ \pder{S_1}{\ln\Om_1} = \f{1}{\be_1T_1} \qquad \pder{S_2}{\ln\Om_2} = \f{1}{\be_2T_2} \numberthis \label{eq:entropymotiv}\]
+\[ \pder{S_1}{\ln\Om_1} = \f{1}{\be_1T_1} \qquad \pder{S_2}{\ln\Om_2} = \f{1}{\be_2T_2} \eq \label{eq:entropymotiv}\]
 Equations \eqref{eq:entropymotiv} should be telling for the following assumption. \\
 
 \textbf{Assumption:} There exists an intimate relationship between Statistical Mechanics and Thermodynamics for all and any system. \\
 We will propose that,
 \[ \f{1}{\be_1T_1} = \f{1}{\be_2T_2} = \f{1}{\be T} = \text{ constant/universal } \]
 Thus,
-\[ S = \text{constant}\cdot \ln \Om \numberthis \label{eq:blankboltzmann} \]
+\[ S = \text{constant}\cdot \ln \Om \eq \label{eq:blankboltzmann} \]
 Where the unknown constant is actually Boltzmann's constant, $k_B$ with,
 \[  \be = \f{1}{k_B T} \]
 What about the relationships between other quantities associated with systems (1) and (2)? First consider volume.
@@ -1286,7 +1286,7 @@ Which gives,
 \[ \eta_1 = \eta_2 \]
 
 These new variables describe the equilibrium of the two systems in terms of volume. Is it required to introduce a new constant similar to above to relate volume to entropy? Consider,
-\[ \dif E = T \dif S - P \dif V \numberthis \label{eq:nonchempot}\]
+\[ \dif E = T \dif S - P \dif V \eq \label{eq:nonchempot}\]
 Thus,
 \[ \pder{S}{E} = \f{1}{T} \qquad \pdert{S}{V}{E} = \f{P}{T} \]
 
@@ -1402,7 +1402,7 @@ Therefore using this three number $n_x, n_y, n_z$, we can describe the energy of
 
 Since the $n_i$'s are integers, solving this problem for a fixed $\vep$ is the same as solving the Diophantine equation,
 
-\[ x^2 + y^2 + z^2 = R^2 \numberthis \label{eq:spheredio}\]
+\[ x^2 + y^2 + z^2 = R^2 \eq \label{eq:spheredio}\]
 
 Which geometrically is equivalent to asking the question:\\
 
@@ -1434,7 +1434,7 @@ Which can be expressed with shorthand notation as,
 \[ \sum_{r=1}^{3N} \f{\hbar^2 \pi^2}{2 m V^{2/3}} n_{r}^2 = E \]
 
 Where $n_{r}$ is the $r$-th degree of freedom of the system. This can be express even more compactly by absorbing constants,
-\[ \sum_{r=1}^{3N} n_{r}^2 = E^* \defined E \f{2 m V^{2/3}}{\hbar^2 \pi^2} \numberthis \label{eq:canonensemble} \]
+\[ \sum_{r=1}^{3N} n_{r}^2 = E^* \defined E \f{2 m V^{2/3}}{\hbar^2 \pi^2} \eq \label{eq:canonensemble} \]
 
 Notice that the term $E V^{2/3}$ completely characterizes the number of microstates $\Om$ as it determines the number of solutions of \eqref{eq:canonensemble}. What we notice that without calculating $\Om$, we can determine the form of entropy.
 
@@ -1456,7 +1456,7 @@ Which gives,
 
 Or more generally, for quantum/classical systems,
 
-\[ PV^\ga = \text{constant} \note{$\ga = 5/3$ for monoatomic system} \numberthis \label{eq:adiabtic} \]
+\[ PV^\ga = \text{constant} \note{$\ga = 5/3$ for monoatomic system} \eq \label{eq:adiabtic} \]
 
 Note that \eqref{eq:adiabtic} does not hold for relativistic systems as $E = pc$ where $c$ is the speed of light.
 
@@ -1561,7 +1561,7 @@ Thus,
 
 Therefore,
 
-\[ V_n (R) = \f{\pi^{\f{n}{2}}}{\br{\f{n}{2}}!} R^n \]
+\[ V_n (R) = \f{\pi^{\f{n}{2}}}{\br{\f{n}{2}}!} R^n \eq \label{eq:vn}\]
 
 Therefore for $n = 3N$ and $R = \sqrt{E^*}$ the total number of states contained inside the hypersphere with radius $R$ is given by,
 
@@ -1571,7 +1571,7 @@ Where ${\sum}_N$ doesn't explicitly represent a \textit{sum}. Instead it is the 
 
 What we want to do is to derive the thermodynamic properties for E. In reality however, no system is perfectly isolated from surroundings. In practice $E$ is not exactly defined. We will construct the idea of $\De$ or uncertainty in $E$ is only because of the imperfect nature of the system. Assume that the energy is given by $E \pm \f{\De}{2}$. We will also assume that $\De \ll E$. Since initially we wanted to know $\Om(N, V, E)$ we really want to know the the number of states associated with a measure of the energy within the uncertainty. This will be the difference of two ${\sum}_N$ values.
 
-\[ \Ga_{N, V, \bar{E} = E} = {\sum}_N \br{N, V, E + \f{\De}{2}} - {\sum}_N \br{N, V, E - \f{\De}{2}} \numberthis \label{eq:deltaE}\]
+\[ \Ga_{N, V, \bar{E} = E} = {\sum}_N \br{N, V, E + \f{\De}{2}} - {\sum}_N \br{N, V, E - \f{\De}{2}} \eq \label{eq:deltaE}\]
 
 Now in the limit that $\De/E \ar 0$,
 
@@ -1579,7 +1579,7 @@ Now in the limit that $\De/E \ar 0$,
 
 Therefore the total number of states associated with $E= \bar{E}$ is given by,
 
-\[ \Ga_{N, V, \bar{E} = E} = \pder{\sum_N}{E} \cdot \De = \f{3N}{2} \f{\De}{E} \sum_N(N, V, E =\bar{E}) \]
+\[ \Ga_{N, V, \bar{E} = E} = \pder{\sum_N}{E} \cdot \De = \f{3N}{2} \f{\De}{E} \sum_N(N, V, E =\bar{E}) \eq \label{eq:gahypershell}\]
 
 Using the Boltzmann equation for entropy and Stirling's approximation with $N \gg 1$ (see section \ref{sec:stirling}),
 
@@ -1588,7 +1588,7 @@ Using the Boltzmann equation for entropy and Stirling's approximation with $N \g
 This gives us the entropy of an ideal gas at energy $E$ within a window $E \pm \De /2$.\\
 
 What thermodynamic properties does this expose?
-\[ S(N,V,E) = k_B \ln\Ga_N \approx k_B \bs{N \ln \bc{\f{V}{h^3} \br{\f{4\pi m E}{3N}}^{3/2}} + \f{3N}{2}} \numberthis \label{eq:notextensive} \]
+\[ S(N,V,E) = k_B \ln\Ga_N \approx k_B \bs{N \ln \bc{\f{V}{h^3} \br{\f{4\pi m E}{3N}}^{3/2}} + \f{3N}{2}} \eq \label{eq:notextensive} \]
 
 Notice that this depends on $\ln(N)$ and also $N^{-3/2}$ which seems to indicate that theses are not extensive variables. We will return to this problem soon. Rearranging for energy,
 
@@ -1652,7 +1652,7 @@ Therefore the change in entropy is given by,
 
 Which is explicitly,
 
-\[ \De S = k_B \bc{N_1 \ln\br{\f{N_1 + N_1}{N_1}} + N_2\ln\br{\f{N_1 + N_1}{N_2}}} \numberthis \label{eq:entropyup} \]
+\[ \De S = k_B \bc{N_1 \ln\br{\f{N_1 + N_1}{N_1}} + N_2\ln\br{\f{N_1 + N_1}{N_2}}} \eq \label{eq:entropyup} \]
 
 Now lets assume $m_1 = m_2$ or that we have identical particles. From this, the macrostate of the system looks like it doesn't change when the wall is removed by we still have by equation \eqref{eq:entropyup} that,
 
@@ -1672,7 +1672,7 @@ To fix this problem we need to reduce $S$ or $\Om$ by a factor of $N!$.
 
 This is an \textit{ad hoc} fix. It does not have any profound explanation of justification. The mechanism that describes this, is the notion of indistinguishably. The notion of indistinguishably is needed to be taken into account in order to properly count the number of microstates of a system. Proper analysis of this idea requires the theory of Quantum Statistics. Now we can go back and determine the proper formula for \eqref{eq:notextensive}.
 
-\[ S(N,V,E) = N k_B \ln\br{\f{V}{N}} + \f{3Nk_B}{2} \bc{\f53 + \ln\br{\f{2 \pi m k_B T}{h^2}}} \]
+\[ S(N,V,E) = N k_B \ln\br{\f{V}{N}} + \f{3Nk_B}{2} \bc{\f53 + \ln\br{\f{2 \pi m k_B T}{h^2}}} \eq \label{eq:sackurtetrode}\]
 
 This is the formula for the entropy of a non-degenerate ideal gas. This is known as the \textbf{Sackur-Tetrode equation}. One should note that this equation is quite remarkable. It is composed of only $N, V, E$ and a set of constants. This equation gives a proper extensivity of $S$. \\
 
@@ -1725,7 +1725,7 @@ The product of the two spaces $\bc{r_i} \times \bc{p_i}$ is a $6N$ dimensional s
 Where $\mathcal{L}$ is the \textbf{Lagrangian}, $K$ is the kinetic energy that depends on velocities, and $V$ is the potential energy which depends on position and sometimes velocities. Will will make the switch to the \textit{Hamiltonian} formalism of classical mechanics through a \textbf{Legendre Transform},
 \[ H = \sum_{i}^{3N} \dot{q}_i \pder{\mathcal{L}}{\dot{q}_i} - \mathcal{L} = \sum_{i}^{3N} \dot{q}_i p_i - \mathcal{L} \]
 Where $p_i = \pder{\mathcal{L}}{\dot{q}_i}$ is the generalized momentum. In principle, all classical problems can be described under this formalism. The ``bottle neck'' of this formalism is typically solving the equations of motion,
-\[ \dot{p}_i = - \pder{H}{q_i} \qquad \dot{q}_i = \pder{H}{p_i} \numberthis \label{eq:hamiltonmechanics} \]
+\[ \dot{p}_i = - \pder{H}{q_i} \qquad \dot{q}_i = \pder{H}{p_i} \eq \label{eq:hamiltonmechanics} \]
 For generic physical quantity $f\br{q,p;t}$ that depends on time, positions an momentum of all the particles, all that would be required is to solve the equations of motion, and predictions could be made. However, this is very \textit{difficult}. Ensemble Theory allows for the construction of proper approximations for generic $f$. \\
 
 \heading{$\mu$-space vs. $\Ga$-space}
@@ -1852,7 +1852,7 @@ This is density of representative points per unit of phase space volume $\dif^{3
 
 This gives us the number of points around the $6N$ dimensional point $(q,p)$ in phase space. $\rho(q,p;t)$ symbolizes the way that the members of the ensemble (of representative points) are distributed overall possible microstates $(q_i, p_i)$ at different instants in time.
 
-\[ \ba{f}\tsb{ensemble} \defined \f{\int f(q,p;t) \rho(q,p;t) \dif^{3N}q\dif^{3N}p}{\int\rho(q,p;t) \dif^{3N}q\dif^{3N}p} \numberthis \label{eq:fensemble} \]
+\[ \ba{f}\tsb{ensemble} \defined \f{\int f(q,p;t) \rho(q,p;t) \dif^{3N}q\dif^{3N}p}{\int\rho(q,p;t) \dif^{3N}q\dif^{3N}p} \eq \label{eq:fensemble} \]
 
 The idea here is to replace the time averaging associated with the real experiment $\ba{f}\tsb{exp}$ to the ensemble average characterized by the ensemble member weight $\rho$.
 \[ \ba{f}\tsb{exp} = \ba{f}\tsb{ensemble} \]
@@ -1871,10 +1871,10 @@ What are the options or possible forms for $\rho(p, q)$? First remember that eac
 \[ \# : \rho \br{p,q}\dif^{3N}q\dif^{3N}p \]
 
 Thus this integral over this quantity varies in time,
-\[ \pder{}{t}\intl \rho \br{p,q}\dif^{3N}q\dif^{3N}p \numberthis \label{eq:reflow} \]
+\[ \pder{}{t}\intl \rho \br{p,q}\dif^{3N}q\dif^{3N}p \eq \label{eq:reflow} \]
 
 The notion of flow (in/out of membership) describes the flow (in/out) of the phase space. With this notion of flow, there is a conservation law on the representative points; or a flow of representative point density. By analogy, this can be considered an effective ``current''.
-\[ \intl \vJ\tsb{R.P.} \cdot \hn \dif \sigma = \intl \rho \br{p,q} \vv \cdot \hn \dif \sigma \numberthis \label{eq:rpflux} \]
+\[ \intl \vJ\tsb{R.P.} \cdot \hn \dif \sigma = \intl \rho \br{p,q} \vv \cdot \hn \dif \sigma \eq \label{eq:rpflux} \]
 Where $\vv$ is a velocity of the rate of displacement of representative points.
 \[ \vv = \br{\dot{q}, \dot{p}} \]
 Here $\vv$ is not a \textit{physical velocity} in the sense of particles moving. It is constructed velocity associated with the time derivative of a representative point. The $\dot{q}$ components are interpreted as the \textit{actual} velocity of each of the particles, and the $\dot{p}$ terms are the \textit{actual} forces acting on a given particle. Instead this vector $\vv$ is a flux of representative points through the surface of the solution shell. The conservation implies that \eqref{eq:rpflux} balances \eqref{eq:reflow}.
@@ -1918,7 +1918,7 @@ This is known as \textbf{Liouville's Theorem},
 \end{enumerate}
 \subsection{Microcanonical Ensemble Revisited}
 As a reminder, we have a hypershell in phase space of energy $E \pm \De / 2$ with $\rho\br{q,p}$ is constant on the hypershell. Using out new framework with \eqref{eq:fensemble} independent of time,
-\[ \ba{f}\tsb{ensemble} \defined \f{\int_{\w} f(q,p) \rho(q,p) \dif^{3N}q\dif^{3N}p}{\int_{\w}\rho(q,p) \dif^{3N}q\dif^{3N}p} \numberthis \label{eq:indepensembleavg} \]
+\[ \ba{f}\tsb{ensemble} \defined \f{\int_{\w} f(q,p) \rho(q,p) \dif^{3N}q\dif^{3N}p}{\int_{\w}\rho(q,p) \dif^{3N}q\dif^{3N}p} \eq \label{eq:indepensembleavg} \]
 Where $\w$ indicates out integrals are performed with respect to energy within $E \pm \De / 2$. Using the notion of time averaging,
 \[ \ba{f}\tsb{exp} = \bs{f\br{t}}\tsb{time} = \f{1}{T}\intl_{t_0}^{t_0 + T} f(t) \dif t \]
 \textbf{1)} The first question that arises: Is the ensemble averaging equal to the time averaging technique?
@@ -1938,4 +1938,91 @@ Combining these results,
 \[ \bs{f(t)}\tsb{time} = \ba{f}\tsb{ens} \]
 Therefore the experimental averaging is given by,
 \[ \ba{f}\tsb{exp} = \bs{f(t)}\tsb{time} = \ba{f}\tsb{ens} \]
+
+\textbf{Answer to 2)}:
+What is the relationship between $\Ga\br{N,V,E}$ the number of microstates for fixed $N, V, \bar{E}$ and $\w$ the volume of phase space (where again $\bar{E} - \De / 2 < E < \bar{E} + \De / 2$)? There is a relationship between $\w$ and $\Ga$, namely if you enlarge the phase space volume the total number of potential microstates increases. We should expect,
+\[ \Ga \propto \w \]
+However $\Ga$ is dimensionless, while $\w$ is not. This was reconciled between through $S = k_B \ln \Ga$ where $k_B$ caries the appropriate dimensions. Specifically $\w$ has the units $q^{3N}p^{3N}$. This motivates the scaling factor $\w_0$ such that,
+\[ \Ga = \f{\w}{\w_0} \]
+The units of $\w$ in a typical case of one particle is given by,
+\[ \bs{\w} \sim \bs{q}\bs{p} \sim \br{\SI{}{\m}}\br{\SI{}{\N}\cdot \SI{}{\s}} \sim \SI{}{\J\s} \]
+Which is equivalent to the units of angular momentum similar to Planck's constant. Therefore we can motivate the factor that $\w_0 = z h^N$ where $z$ is a dimensionless constant. Recall that the calculation of the Sackur-Tetrode equation \eqref{eq:sackurtetrode} involved Planck's constant $h$.
+
+\subsection{Two Examples}
+\subsubsection{Compute Entropy}
+
+The first example that will be examined is computing $S$ from some phase space integrals involving the previously motivated relationship $S \sim k_B \ln \f{\w}{\w_0}$. We have from the density function $\rho\br{q,p}$ of representative points,
+\[ \w = \underbrace{\int \cdots \int}_{\text{fixed } N,V,E \br{\pm \De / 2}} \dif^{3N} q \dif^{3N} p \cdot \rho\br{q,p} \]
+Examining the case of $\rho = \rho^*$ constant and separating the integrals for position and momentum,
+\[ \w = \rho^* \cdot \bc{\int \cdots \int \dif^{3N} q} \bc{\int \cdots \int \dif^{3N} p} \]
+Where the $\dif^{3N} q$ integral is subject to volume constraints and the $\dif^{3N} p$ integral is subject to energy constraints. The position constraint gives,
+\[ \int \cdots \int \dif^{3N} q = V^N \]
+Where as the energy constraints give,
+\[ E - \f{\De}{2} \leq \sum_{i=1}^{3N}\f{p_i^2}{2m} \leq E + \f{\De}{2} \]
+Where $i$ counts the degrees of freedom. We can then perform a change of variables $p \ar y$ to get,
+\[ \int \cdots \int \dif^{3N} p = \int \cdots \int \dif^{3N} y \]
+With modified energy constraint,
+\[ 2m\br{E - \f{\De}{2}} \leq \sum_{i=1}^{3N}y_i^2 \leq 2m\br{E + \f{\De}{2}} \]
+This new integral over $y$ becomes the surface of a $3N$-dimensional hypersphere with thickness given by,
+\[ \de y_- = \sqrt{2m\br{E - \f{\De}{2}}} \quad \de y_+ = \sqrt{2m\br{E + \f{\De}{2}}} \eq \label{eq:shellbounds} \]
+In order to determine the surface area of this hypersphere, we will leverage the result computed for the volume of a hypershell before. Therefore the surface area is approximated (for thickness thin enough) that the surface area is given by,
+\[ \text{volume} = \br{\text{thickness}} \times \br{\text{surface area}} \]
+The thickness of this shell is given by the difference in the bounds given \eqref{eq:shellbounds},
+\begin{align*}
+\de y_- &= \sqrt{2m\br{E - \f{\De}{2}}} \\
+&= \sqrt{2mE}\br{1 - \f{\De}{2E}}^{1/2} \\
+&= \sqrt{2mE}\br{1 - \f{\De}{4E} + \cdots} \note{Taylor expansion $\br{1+x}^n \approx 1 + nx$} \\
+&= \sqrt{2mE} - \f12 \f{\De\sqrt{m}}{\sqrt{2E}}
+\end{align*}
+Similarly for the upper bound,
+\[ \de y_+ = \sqrt{2mE} + \f12 \f{\De\sqrt{m}}{\sqrt{2E}} \]
+Therefore the thickness is given by,
+\[ \de y_+ - \de y_- = \f{\De\sqrt{m}}{\sqrt{2E}} \]
+Using the surface area given by a derivative in \eqref{eq:vn} with $n = 3N$ and the volume of the shell becomes the thickness times the surface area,
+\[ \text{surface area} = \f{2\pi^{3N/2}}{\br{\f{3N}{2} - 1}!} \times \br{2mE}^{\f{3N - 1}{2}} \]
+\[ \w = V^N \times \De \br{\f{m}{2E}}^{1/2} \times \f{2\pi^{3N/2}}{\br{\f{3N}{2} - 1}!} \times \br{2mE}^{\f{3N - 1}{2}} \eq \label{eq:omega} \]
+\[ \w = V^N \times \br{\f{\De}{E}} \times \f{\br{2 \pi m E}^{3N/2}}{\br{\f{3N}{2} - 1}!} \]
+Comparing with \eqref{eq:gahypershell} we get the expected result for $\w_0$,
+\[ \f{\w}{\Ga} \defined \w_0 = h^{3N} \]
+\subsubsection{Simple 1D Classical Harmonic Oscillator}
+Recall that for a 1D classical harmonic oscillator,
+\[ H\br{q,p} = \f{kq^2}{2} + \f{p^2}{2m} = E\]
+Where $U = \f{kq^2}{2}$ is the potential energy $V$ of the system, $\f{p^2}{2m}$ is the kinetic energy $T$ of the system and $E$ is the total energy of the system which is a constant of motion. For simplicity, we will use the natural angular frequency $\w'$ of the system as $m \br{\w'}^2 = k$. Note that this $\w'$ with the prime is different from the phase space volume introduced in \eqref{eq:omega}. This can be a source of confusion, just be mindful of the different quantities. Therefore the phase space volume for a simple harmonic oscillator is just the \textit{area} of an ellipse ($A = \pi ab$). The equation of the ellipse is given by,
+\[ \br{\f{q^2}{2E/m\w'^2} + \f{p^2}{2mE}} = 1 \]
+The solutions to the equations of motion are given by,
+\[ q(t) = A \cos \br{\w' t + \phi} \quad p(t) = - A \sin \br{\w' t + \phi} \]
+With area given by,
+\[A = \pi \sqrt{2E/m\w'^2} \sqrt{2mE} = \f{2\pi E}{\w'}\]
+Therefore subject to the constraints $E - \De/2 \leq H\br{q,p} \leq E + \De/2$,
+\[ \w = \int \dif q \dif p = A_{E + \De/2} - A_{E - \De/2}\]
+
+\begin{center}
+\begin{tikzpicture}[
+    scale=1.0,
+    decoration={post length=1mm, pre length=1mm, markings, mark=at position 0.5 with {\arrow{>}}}
+]
+        % Draw axes
+        \coordinate (nya) at (0, -2.5);
+        \coordinate (pya) at (0, 2.5);
+        \coordinate (nxa) at (-2.5, 0);
+        \coordinate (pxa) at (2.5, 0);
+        \node [above] (lpya) at (pya) {$p$};
+        \node [right] (lpxa) at (pxa) {$q$};
+        \draw [<->, thick] (nya) -- (pya);
+        \draw [<->, thick] (nxa) -- (pxa);
+        \draw [thick, blue] (0,0) circle [x radius=2, y radius=1.5];
+        \draw [dashed, red] (0,0) circle [x radius=1.9, y radius=1.4];
+        \node [above right, red] (Elabel) at (1.9,0) {$E$};
+        \draw [thick, blue] (0,0) circle [x radius=1.8, y radius=1.3];
+        \node [above right, blue] (Elabel) at (1.8,0.5) {$\De$};
+\end{tikzpicture}
+\end{center}
+
+We are interested in the area between the outer and inner radii. Therefore,
+\[ \w = \f{2\pi \br{E + \f{\De}{2}}}{\w'} - \f{2\pi \br{E - \f{\De}{2}}}{\w'} = \f{2\pi \De}{\w'} \]
+
+\subsubsection{Reflection}
+Both of the above examples illustrate that computation of phase space volumes are a pain in the neck. We should be looking to \textit{replace} it with something else. If we have the relation $S = k_B \ln \br{\Ga}$ which gives,
+\[ S = k_B \ln \br{\Ga} = k_B \ln \br{\f{\w}{\w_0}} = k_B \ln \br{\w} - \untext{k_B \ln \br{\w_0}}{const.}\]
+The pain of computing $\w_0$ can be ignored or neglected because most thermodynamical variables are related through derivatives of $S$. In these cases, the constant contribution has zero derivative so it can be skipped.
 \end{document}
