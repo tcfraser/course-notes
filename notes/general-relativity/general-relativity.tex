@@ -2143,7 +2143,7 @@ Recall when discussing the bending of light, \eqref{eq:modmetric} reproduced the
 to hold. This motivates $h_{\al\be}$ to take the form $2 \de_{\al\be}\phi\br{\vx}$. Note that this metric is \textit{stationary}. Meaning that,
 \[ \di_t h_{\al\be} = \di_t 2 \de_{\al\be}\phi\br{\vx} = 0 \]
 Therefore,
-\[ \ti{a}^\mu = \dder{x^\mu}{\tau} = - {\ga^{\mu}}_{\al\be} v^\al v^\be \approx = - {\ga^{\mu}}_{00} v^0 v^0 \]
+\[ \ti{a}^\mu = \dder{x^\mu}{\tau} = - {\ga^{\mu}}_{\al\be} v^\al v^\be \approx - {\ga^{\mu}}_{00} v^0 v^0 \]
 Becomes,
 \[ \ti{a}^\mu = + \f12 \eta^{\mu\al}\br{\pder{}{x^\al}h_{00}}v^0v^0 \]
 Which has time component $\mu = 0$,
@@ -2163,4 +2163,55 @@ Which by sifting of $\al = i, \eta^{ii} = 1$,
 \[ \dder{x^i}{t} = - \di^i\phi \]
 \[ \vec{\ti{a}} = - \vdel\phi \]
 Therefore Gravity is not a force by a curvature or geometry of spacetime.
+\subsection{Covariant Derivative}
+Let us continue to explore,
+\[ m \va = \vF_g \]
+And manipulate the derived expression,
+\[ m \br{a^\mu + {\Ga^\mu}_{\al\be}v^\al v^\be} = 0 \]
+Using the definition of $a^\mu$,
+\[ \dder{x^\mu}{\tau} = \der{x^\al}{\tau} \pder{}{x^\al} \der{x^\mu}{\tau} = v^\al \pder{}{x^\al} v^\mu \]
+Therefore,
+\[ v^\al \pder{}{x^\al} v^\mu + {\Ga^\mu}_{\al\be}v^\al v^\be = 0\]
+Which suggests,
+\[ v^\al \br{\pder{}{x^\al} v^\mu + {\Ga^\mu}_{\al\be} v^\be} = 0 \]
+Where the \textbf{covariant derivative} is given by, $\del_\al v^\mu$ where,
+\[ \del_\al v^\mu = \pder{}{x^\al} v^\mu + {\Ga^\mu}_{\al\be} v^\be \]
+This leads to something known as the \textbf{geodesic equation},
+\[ v^\al \del_\al v^\mu = 0 \]
+With $v^\mu$ being the tangent vector to the geodesic. More formally, the covariant derivate is the \textit{notion of derivative that transforms well under a change of coordinates}.\\
+
+\textbf{Definition}: The \textit{covariant derivate} $\del$ on a manifold $M$ is a map $\del : T\br{M} \times T\br{M} \ar T\br{M}$ where $T\br{M} = \cup_{p \in M}T_pM$. It takes two vector fields $X, Y$ and maps it to $\del_X Y$. It does so such that the following properties hold,
+\[ \del_{fX + gZ}Y =  f\del_{X}Y + g\del_{Z}Y  \note{Linearity} \eq \label{eq:linearitycov1} \]
+\[ \del_{X}\br{Y + Z} =  \del_{X}Y + \del_{X}Z  \note{Linearity} \eq \label{eq:linearitycov2}\]
+\[ \del_{X}\br{fY} =  \br{\del_{X}f}Y + f\br{\del_{X}Y}  \note{Product rule}\]
+Where $X,Y : \mathcal{C}^\inf\br{M} \ar \R$,
+\[f\ar X\br{f} = X^\mu \di_\mu f \]
+Where $f$ comes from $F = f \circ \phi^{-1}$. The covariant derivative on a scalar $\del_{X}f$ is given by,
+\[ \del_{X}f \defined X\br{f} = X^\mu \pder{}{x^\mu}f \]
+Consider a generic $\del_{X}Y$ and take $X$ in the basis $X^\mu = \de^{\al\mu}$ so that,
+\[ X = X^\mu \di_\mu = \de^{\al\mu} \di_\mu = \di_\al \]
+Which suggests the notation for this particular basis,
+\[ \del_\al Y \defined \del_{e_\al} Y \]
+What is $\del_X Y$ in terms of the basis $e_\al$ of $T_p\br{M}$? Let us examine the action of the covariant derivative directly on the basis. Since this quantity $\del_\al e_\be$ is an element in the tangent space, it should be able to be written with respect to the basis $e_\al$,
+\[ \del_\al e_\be \defined {\Ga^\ga}_{\al\be}e_\ga \]
+Where ${\Ga^\ga}_{\al\be}$ is the coefficients of the \textit{connection} in the basis $e_\al$. The \textit{Christoffel symbols} are an example. Therefore what is the expression for $\del_X Y$? Writing $X, Y$ as their basis expansions,
+\[ \del_X Y = \del_{X^\al e_\al}\br{Y^\be e_\be} \]
+Where $X^\al, Y^\be$ are components of the vector field at a point in the manifold with respect to the corresponding basis $e_\al \in T_p\br{M}$. They are functions of $p$ the point in the manifold. Using \eqref{eq:linearitycov1},
+\[ \del_X Y = X^\al\del_{e_\al}\br{Y^\be e_\be} \]
+Now using \eqref{eq:linearitycov2},
+\begin{align*}
+\del_X Y &= \del_{X}\br{Y^\be e_\be} \\
+&= \del_X \br{Y^0 e_0 + Y^1 e_1 + \cdots } \\
+&= \del_X \br{Y^0 e_0} + \del_X \br{Y^1 e_1} + \cdots \\
+&= X\br{Y^0} e_0 + Y^0 \del_X e_0 + X\br{Y^1}e_1 + Y^1 \del_X e_1 + \cdots \\
+&= X\br{Y^\be} e_\be + Y^\be \del_X e_\be \\
+\end{align*}
+Where $X\br{Y^\be}$ is given by,
+\[ X\br{Y^\be} = X^\al e_\al \br{Y^\be} \]
+Which more specifically can be written using the basis for the tangent space $e_\al = \pder{}{x^\al}$,
+\[ X\br{Y^\be} = X^\al \pder{}{x^\al} \br{Y^\be} \]
+
+% \[ \del_X Y = X{Y^\be} X^\al\del_{e_\al}\br{ e_\be} \]
+% Where acting on the particular set of components of $Y$, $\del_\al Y^\be$ becomes a tensor of rank $\br{1,1}$.
+% \[  \]
 \end{document}
