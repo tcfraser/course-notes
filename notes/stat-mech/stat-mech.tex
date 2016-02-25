@@ -2020,9 +2020,133 @@ Therefore subject to the constraints $E - \De/2 \leq H\br{q,p} \leq E + \De/2$,
 
 We are interested in the area between the outer and inner radii. Therefore,
 \[ \w = \f{2\pi \br{E + \f{\De}{2}}}{\w'} - \f{2\pi \br{E - \f{\De}{2}}}{\w'} = \f{2\pi \De}{\w'} \]
+Noticing that the phase space volume (PSV) contains the characteristic frequency $2\pi/\w'$. \\
+
+Now suppose we are interested in determining the ``elementary PSV'' $\w_0$. Taking as an initial guess from the quantum mechanical simple harmonic oscillator,
+\[ E_n = \hbar \w' \br{n + \f12} \implies \De E = E_{n+1} - E_n = \hbar \w' \]
+
+Therefore the elementary phase space volume becomes,
+\[ \br{\text{PSV}}\tsb{elementary} = \w_0 = \f{2\pi}{\w'} \hbar \w' = 2 \pi \hbar = h \]
+
+This motivates the elementary phase space volume to be roughly $h$. Another approach to determining the elementary phase space volume is to use the notion that $E \gg De \gg \hbar \w'$. Therefore the number of eigenstates that would fit into $\De$ would be given by, $\# \sim \De / \hbar \w'$. Therefore,
+\[ \br{\text{PSV}}\tsb{elementary} \sim  \f{\f{2\pi}{\w'}\De}{\#} = \f{\f{2\pi}{\w'}\De}{\f{\De}{\hbar \w'}} = 2 \pi \hbar \sim h \]
+Or alternatively, one can motivate this irreducible unit of phase space volume $h$ by using the uncertainty principle $\De x \De p \sim \hbar$.
 
 \subsubsection{Reflection}
 Both of the above examples illustrate that computation of phase space volumes are a pain in the neck. We should be looking to \textit{replace} it with something else. If we have the relation $S = k_B \ln \br{\Ga}$ which gives,
 \[ S = k_B \ln \br{\Ga} = k_B \ln \br{\f{\w}{\w_0}} = k_B \ln \br{\w} - \untext{k_B \ln \br{\w_0}}{const.}\]
 The pain of computing $\w_0$ can be ignored or neglected because most thermodynamical variables are related through derivatives of $S$. In these cases, the constant contribution has zero derivative so it can be skipped.
+
+\section{Canonical Ensemble}
+\subsection{Preamble}
+Up until now we have considered the rather restricted or simple case of systems with fixed $N,V,E$. This is a natural choice for a first exploration, as it involves isolated systems. Computing microstates and phase space volume under these restrictions are known as the \textbf{microcanonical ensemble}. \\
+
+There are two comments to be made with regards to the microcanonical ensemble. The first being that $E$ is rarely perfectly fixed, and is rarely known exactly experimentally. The means performing an analysis with fixed energy $E$ is somewhat non-physically. Secondly, no system is perfectly isolated; keeping $E$ fixed in a real system is also artificial and difficult. Doing this would require a measurement device that measures energy directly, and makes adjustments to the system that an experimenter can control (like $V, T, N$) in order to ensure $E$ is fixed. \\
+
+An even easily way of controlling the system, is to fix the temperature. This modifies the ensemble to be restricted by $N, V, T$. This is known as the \textbf{canonical ensemble}. As one would expect, other ``ensembles'' can be constructed by fixed other combinations of quantities of the system.
+
+\subsection{Tackling the Canonical Ensemble}
+In any ensemble problem the goal is to determine the structure of $\rho\br{q,p}$. Typically, we should expect $\rho$ to have the form,
+\[ \rho\br{q,p} \propto e^{-H\br{q,p}/k_BT} \]
+Where $H\br{q,p}$ is the Hamiltonian or the total energy of the system.
+\begin{center}
+\begin{tikzpicture}
+    \filldraw[fill=lightgray, draw=black] (-1,-1) rectangle (1,1);
+    \draw[dashed, red] (-2,-2) rectangle (2,2);
+    \node[above, red] (lobject) at (0,2) {Object};
+    \node (lreservoir) at (0,-1.5) {Reservoir};
+    \node (lsystem) at (0,0) {System};
+\end{tikzpicture}
+\end{center}
+
+We will denote the energy of the reservoir $E^{\br{r}}$ and the energy of the system $E^{\br{s}}$. The total energy of the object will be constant at $E = E^{\br{r}} + E^{\br{s}}$ where typically $E^{\br{r}} \gg E^{\br{s}}$. We want to define some microstates for the reservoir and system. Typically one would expect that the reservoir has many more microstates. Let the probability $P_j$ that the probability that the system is in a particular microstate $j$. The probability $P_j$ is proportional to the number of sates in the reservoir that are consistent with the system being in the microstate $j$. The reason for this is that since the whole object is isolated, all the microstates between the system and reservoir are equally probable. \\
+
+If the system is in state $j$ then the number of microstates available to the reservoir is constrained by the fact that the total energy $E = E^{\br{r}} + E^{\br{s}}$ is constant. The system with microstate $j$ is said to have energy $E^{\br{s}} = E_j$. If the system changes microstate and it's own energy changes by an amount $\De E$, then the reservoir must change energy by an amount $-\De E$. Where $\De E$ is the change in energy of the system when transiting from microstate $j$ to microstate $i$. Therefore,
+\[ \De E = E_i - E_j \]
+
+We can then ask the question: What is the ratio of probability that the system is in microstate $j$ vs. microstate $i$.
+\[ \f{P_j}{P_i} = \f{\Om^{(s)} \times \Om^{(r)}\br{E^{(r)} - \De E}}{\Om^{(s)} \times \Om^{(r)}\br{E^{(r)}}} \]
+But since we are considering the system to be in a particular microstate $\Om^{(s)} = 1$,
+\[ \f{P_j}{P_i} = \f{\Om^{(r)}\br{E^{(r)} - \De E}}{\Om^{(r)}\br{E^{(r)}}} \eq \label{eq:ohmohm}\]
+Evidently, we can related the number of microstates available to the reservoir to the entropy of the reservoir using $S^{(r)} = k_B \ln \Om^{(r)}$. Therefore we can rewrite \eqref{eq:ohmohm} using logarithms,
+\[ \f{P_j}{P_i} = \exp\bc{\ln \br{\Om^{(r)}\br{E^{(r)} - \De E}} - \ln \br{\Om^{(r)}\br{E^{(r)}}}} \]
+Which can be written,
+\[ \f{P_j}{P_i} = \exp\bc{\f{S^{(r)}\br{E^{(r)} - \De E} - S^{(r)}\br{E^{(r)}}}{k_B}} \]
+However since $E^{(r)} \gg E^{(s)}$, then $E^{(r)} \gg \De E^{(s)}$. A Taylor series expansion gives,
+\[ S^{(r)}\br{E^{(r)} - \De E} - S^{(r)}\br{E^{(r)}} = - \De E \pder{S^{(r)}}{T^{(r)}} \]
+But thermodynamically,
+\[ \f{1}{T^{(r)}} = \pder{S^{(r)}}{T^{(r)}}\]
+Therefore we have the familiar relation (using the fact that in equilibrium $T = T^{(r)} = T^{(s)}$),
+\[ \f{P_j}{P_i} = \exp\bc{-\f{\De E}{k_B T}} \]
+Or for individual probabilities,
+\[ P_i \propto \exp\bc{-\f{E_i}{k_B T}} \]
+The proportionality sign `$\propto$' is present because this relationship is still missing in general a normalization factor.
+\subsubsection{Example}
+Let us perform an example. Consider a system where we have a single spin $1/2$ particle in a magnetic field $\vB$. The interaction energy is,
+\[ H = - \vec{\mu} \cdot \vB \]
+Where $\vec{\mu}= - g \mu_B \vS$. Taking the magnetic field to point in one direction $\vB = B \hz$,
+\[ H = g \mu_B B_z S_z \]
+Where $S_z$ can either be $+ \f12$ or $-\f12$. Consider $E_e$ corresponding to $S_z = +\f12$ and $E_0$ corresponding to $S_z = - \f12$. Then we have,
+\[ P_e \propto e^{-E_e / k_B T} \qquad P_0 \propto e^{-E_0 / k_B T} \]
+Since $P_e + P_0 = 1$, we get,
+\[ P_e = \f{P_e}{P_e + P_0} = \f{e^{-E_e / k_B T}}{e^{-E_e / k_B T} + e^{-E_0 / k_B T}} \]
+In general for appropriate choice of $\be \De$,
+\[ P_e = \f{e^{-\be \De}}{1 + e^{-\be \De}} \qquad P_0 = \f{1}{1 + e^{-\be \De}} \]
+
+\begin{center}
+\begin{tikzpicture}[
+    scale=1.0,
+    decoration={post length=1mm, pre length=1mm, markings, mark=at position 0.5 with {\arrow{>}}}
+]
+        % Draw axes
+        \coordinate (nya) at (0, 0);
+        \coordinate (pya) at (0, 4.2);
+        \coordinate (nxa) at (0, 0);
+        \coordinate (pxa) at (8, 0);
+        \node [above] (lpya) at (pya) {$P$};
+        \node [right] (lpxa) at (pxa) {$k_BT/\De$};
+        \draw [->, thick] (nya) -- (pya);
+        \draw [->, thick] (nxa) -- (pxa);
+        \draw [dashed, gray] (0,2) -- (8,2);
+        \node [left] (lhalf) at (0,2) {$\f{1}{2}$};
+        \node [below, red] (lpz) at (2,1.5) {$P_0$};
+        \node [above, blue] (lpe) at (2,2.5) {$P_e$};
+        \draw[domain=0.001:8,smooth,variable=\x,red]  plot ({\x},{4*(e^(-(1/\x)))/(1+e^(-(1/\x)))});
+        \draw[domain=0.001:8,smooth,variable=\x,blue]  plot ({\x},{4*(1)/(1+e^(-(1/\x)))});
+\end{tikzpicture}
+\end{center}
+
+\subsection{Canonical Ensemble Description}
+
+Consider an ensemble of identical systems $1,2,3,\ldots,\ti{N}$ that share a total energy $\ti{E}$. We will label each system with an index $r$ where each system $r$ has energy $E_r$. We will call $n_r$ the number of the systems in the ensemble that happen to have the same energy $E_r$. The two restrictions can be written,
+\[ \sum_{r} n_r = \ti{N} \quad \sum_{r} n_r E_r = \ti{E} \]
+And set of $\bc{n_r}$ that satisfies both of these two equations represents a possible ``mate''/``type'' of distribution of the ``systems'' in the ensemble. Each of these solution $\bc{n_r}$ can be realized in many different ways through permutations of $\bc{n_r}$,
+\[ W\br{\bc{n_r}} = \f{\ti{N}!}{n_1!n_2!\cdots n_r!}\]
+
+We aim to find the most probable distribution $W\br{\bc{n_r}}$. We can do so be extremizing $\ln W$ with respect to $\br{n_r}$.
+
+\begin{align*}
+    \ln W &= \ln\br{\ti{N}!} - \ln\br{\prod_{r}n_r!} \\
+    &= \ln\br{\ti{N}!} - \sum_{r}\ln\br{n_r!} \note{Logarithm identities} \\
+    &= \ti{N}\ln\br{\ti{N}} - \ti{N} - \sum_{r}\bs{n_r\ln\br{n_r} - n_r} \note{Stirling's approximation}\\
+    &= \ti{N}\ln\br{\ti{N}} + \underbrace{\sum_{r} n_r - \ti{N}}_{=0} - \sum_{r}n_r\ln\br{n_r} \\
+    &= \ti{N}\ln\br{\ti{N}} - \sum_{r}n_r\ln\br{n_r}
+\end{align*}
+Therefore varying $\ln W$ with respect to $n_r$,
+\[ \de\ln W = \de\bc{\ti{N}\ln\br{\ti{N}} - \sum_{r}n_r\ln\br{n_r}} = -\sum_{r}\br{\de n_r \ln n_r + n_r \f{1}{n_r} \de n_r} \note{Product rule}\]
+Therefore,
+\[ \de\ln W = -\sum_{r}\br{\ln n_r + 1}\de n_r \eq \label{eq:sumzerorestr}\]
+Setting this equal to zero $0 = \de \ln W$ gives and the two modified constraints $\sum_r \de n_r = 0$ and $\sum_r \de n_r \cdot E_r = 0$, use \textit{Lagrange multipliers} to solve this equation. For each constraint we subscribe two multipliers,
+\[ \al \ar \sum_r \de n_r = 0 \qquad \be \ar \sum_r \de n_r \cdot E_r= 0 \]
+Therefore \ref{eq:sumzerorestr} becomes,
+\[ \sum_r \bc{\br{-\ln n_r - 1} - \al - \be E_r} \de n_r = 0 \]
+In order to solve this equation, we need for all $\de n_r$,
+\[ \br{-\ln n_r - 1} - \al - \be E_r = 0 \]
+After rearrangement,
+\[ \ln n_r = -\br{1+\al} - \be E_r \]
+Or that the distribution of $n_r$ must be,
+\[ n_r = e^{-\br{1+\al}}e^{-\be E_r} \]
+Thus extremizing $W$ with respect to $\bc{n_r}$ gives,
+\[ n_r \propto e^{-\be E_r} \]
+What remains is to show $\be = 1/k_B T$.
 \end{document}
