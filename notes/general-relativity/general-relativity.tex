@@ -2163,6 +2163,11 @@ Which by sifting of $\al = i, \eta^{ii} = 1$,
 \[ \dder{x^i}{t} = - \di^i\phi \]
 \[ \vec{\ti{a}} = - \vdel\phi \]
 Therefore Gravity is not a force by a curvature or geometry of spacetime.
+\subsection{Differential Geometry Summary}
+In summary, our aim is to take an interval $I \subset \R$ parametrized by curvilinear parameter $\tau$ and embed it into the manifold $M$. In doing so, we ascribe for every $\tau$ a point $\mathcal{C}\br{\tau}$ in the manifold. This creates a curve in $M$.Since dealing directly with abstract points $p$ in the manifold is difficult, we will use charts to assign coordinates to the points $\mathcal{C}\br{\tau}$ by using $\phi$ which gives $x^\mu \br{\mathcal{C}\br{\tau}}$. Now to discuss smoothness of this curve, we need to use $F : f \circ \phi^{-1} : \R^m \ar \R$. Moreover, we can define an $X : \mathcal{C}^\inf \br{M} \ar \R$ to map from $f$ (which makes points in $M$ to $\R$ regardless of the dimension of $M$) to real numbers $\R$. Then,
+\[ X \br{f} = \der{x^\mu}{\tau}\bigg\rvert_{\tau = 0} \pder{F}{x^\mu}\bigg\rvert_{\phi\br{p}} \]
+This motivates the convenient tensor notation for $X$,
+\[ X = X^\mu \di_\mu \]
 \subsection{Covariant Derivative}
 Let us continue to explore,
 \[ m \va = \vF_g \]
@@ -2194,22 +2199,64 @@ Which suggests the notation for this particular basis,
 \[ \del_\al Y \defined \del_{e_\al} Y \]
 What is $\del_X Y$ in terms of the basis $e_\al$ of $T_p\br{M}$? Let us examine the action of the covariant derivative directly on the basis. Since this quantity $\del_\al e_\be$ is an element in the tangent space, it should be able to be written with respect to the basis $e_\al$,
 \[ \del_\al e_\be \defined {\Ga^\ga}_{\al\be}e_\ga \]
-Where ${\Ga^\ga}_{\al\be}$ is the coefficients of the \textit{connection} in the basis $e_\al$. The \textit{Christoffel symbols} are an example. Therefore what is the expression for $\del_X Y$? Writing $X, Y$ as their basis expansions,
+Where ${\Ga^\ga}_{\al\be}$ is the coefficients of the \textit{connection} in the basis $e_\al$. The \textit{Christoffel symbols} are an example. Therefore what is the expression for $\del_X Y$? Writing $X, Y$ as their basis expansions (noting that $Y = Y^\al e_\al$ where $Y^\al$ are each functions because $Y$ is a vector field and $e_\al$ are just basis vectors),
 \[ \del_X Y = \del_{X^\al e_\al}\br{Y^\be e_\be} \]
 Where $X^\al, Y^\be$ are components of the vector field at a point in the manifold with respect to the corresponding basis $e_\al \in T_p\br{M}$. They are functions of $p$ the point in the manifold. Using \eqref{eq:linearitycov1},
-\[ \del_X Y = X^\al\del_{e_\al}\br{Y^\be e_\be} \]
-Now using \eqref{eq:linearitycov2},
+\[ \del_X Y = X^\al\del_{e_\al}\br{Y} \eq \label{eq:expandx} \]
+Now using \eqref{eq:linearitycov2} to expand out $Y$ into it's components,
 \begin{align*}
 \del_X Y &= \del_{X}\br{Y^\be e_\be} \\
 &= \del_X \br{Y^0 e_0 + Y^1 e_1 + \cdots } \\
 &= \del_X \br{Y^0 e_0} + \del_X \br{Y^1 e_1} + \cdots \\
 &= X\br{Y^0} e_0 + Y^0 \del_X e_0 + X\br{Y^1}e_1 + Y^1 \del_X e_1 + \cdots \\
-&= X\br{Y^\be} e_\be + Y^\be \del_X e_\be \\
+&= X\br{Y^\be} e_\be + Y^\be \del_X e_\be \eq \label{eq:expandy}
 \end{align*}
 Where $X\br{Y^\be}$ is given by,
 \[ X\br{Y^\be} = X^\al e_\al \br{Y^\be} \]
 Which more specifically can be written using the basis for the tangent space $e_\al = \pder{}{x^\al}$,
 \[ X\br{Y^\be} = X^\al \pder{}{x^\al} \br{Y^\be} \]
+Furthermore using \eqref{eq:expandx} we can expand out the second term in \eqref{eq:expandy}.
+\begin{align*}
+\del_X Y &= X\br{Y^\be} e_\be + Y^\be \del_{X^\al e_\al} e_\be \note{Expand $X$}\\
+&= X\br{Y^\be} e_\be + Y^\be X^\al \del_{e_\al} e_\be \\
+&= X\br{Y^\be} e_\be + Y^\be X^\al \del_{\al} e_\be \note{By notation}\\
+&= X\br{Y^\be} e_\be + Y^\be X^\al {\Ga^\mu}_{\al\be} e_\mu \note{Using the connection $\Ga$} \\
+&= X^\al \br{\di_\al Y^\be} e_\be + Y^\be X^\al {\Ga^\mu}_{\al\be} e_\mu \note{Expand $X$}\\
+\del_X Y &= X^\al \underbrace{\br{\di_\al Y^\mu +  {\Ga^\mu}_{\al\be}Y^\be}}_{\del_\al Y^\mu} e_\mu \note{Relabel indices}\\
+\end{align*}
+This means that the components $\del_\al Y^\mu$ of $\del_X Y$ are given by,
+\[ \del_\al Y^\mu = \di_\al Y^\mu +  {\Ga^\mu}_{\al\be}Y^\be \eq \label{eq:covariantderivative} \]
+This is known as the \textbf{covariant derivative}. Note that the notation $\pder{y^\mu}{x^\al} = \pder{}{x^\al}y^\mu = {J^\mu}_\al$ is used.
+\subsubsection{Leibniz Law and Covariant Derivative}
+The covariant derivative satisfies a product law when dealing with a tensor product. This allows us to extend the notion of a covariant derivative acting on vectors to the covariant derivative acting on a tensor.
+\[ \del_\mu \br{S \otimes T} = \br{\del_\mu S} \otimes T + S \otimes \br{\del_\mu T}  \]
+When dealing with dealing with tensors, we will need to know the components of $\del_\al$ acting on a co-vector $W_\be$; $\del_\al W_\be$? We should leverage our knowledge of how the covariant derivative acts on a vector $Y^\be$. Let's apply the covariant derivative to the scalar function $Y^\be W_\be$ (scalar product). Therefore the covariant derivative should just act like a regular derivative.
+\[ \del_\al \br{Y^\be W_\be} = \di_\al \br{Y^\be W_\be} = \br{\di_\al Y^\be} W_\be + Y^\be \br{\di_\al W_\be} \eq \label{eq:regularderv} \]
+However, we can also ignore the contraction in $\be$ and view the product $Y^\be W_\be$ effectively as the tensor product $Y^\ga W_\be$ for now. If the covariant derivative is to satisfy a Leibniz law on the tensor product we get,
+\[ \del_\al \br{Y^\be W_\be} = \del_\al \br{Y^\be} W_\be + Y^\be \del_\al \br{W_\be} \eq \label{eq:tensorprodderv} \]
+We are aiming to determine the structure of $\del_\al \br{W_\be}$ and we know $\del_\al \br{Y^\be}$ already as \eqref{eq:covariantderivative}. Therefore equating \eqref{eq:regularderv} and \eqref{eq:tensorprodderv} we get,
+\[ \br{\di_\al Y^\be} W_\be + Y^\be \br{\di_\al W_\be} = \del_\al \br{Y^\be} W_\be + Y^\be \del_\al \br{W_\be}\]
+Sub in \eqref{eq:covariantderivative},
+\[ \br{\di_\al Y^\be} W_\be + Y^\be \br{\di_\al W_\be} = \br{\di_\al Y^\be + {\Ga^\be}_{\al\mu}Y^\mu} W_\be + Y^\be \del_\al \br{W_\be}\]
+Canceling terms and rearranging,
+\[ Y^\be \br{\di_\al W_\be} -{\Ga^\be}_{\al\mu}Y^\mu W_\be = Y^\be \del_\al \br{W_\be}\]
+Relabel indices for convenience,
+\[ Y^\be \br{\di_\al W_\be} -{\Ga^\ga}_{\al\be}Y^\be W_\ga = Y^\be \del_\al \br{W_\be}\]
+\[ Y^\be \bc{\di_\al W_\be -{\Ga^\ga}_{\al\be}W_\ga} = Y^\be \del_\al \br{W_\be}\]
+Since this is true for any $Y^\be$ and $W_\be$, we can eliminate $Y$.
+\[ \del_\al \br{W_\be} = \di_\al W_\be -{\Ga^\ga}_{\al\be}W_\ga \eq \label{eq:covariantderivativeco} \]
+Compare this with \eqref{eq:covariantderivative} as there are subtle differences.\\
+
+Now utilizing the product law we can determine the covariant derivative for any tensor.
+\begin{align*}
+\del_\mu {T^{\al_1 \cdots \al_p}}_{\be_1\cdots\be_q} &= \di_\mu {T^{\al_1 \cdots \al_p}}_{\be_1\cdots\be_q} + \cdots \\
+ &\cdots + {\Ga^{\al_1}}_{\mu\sigma}{T^{\sigma \al_2 \cdots \al_p}}_{\be_1\cdots\be_q} + \cdots + {\Ga^{\al_p}}_{\mu\sigma}{T^{\sigma \al_1 \cdots \al_{p-1} \sigma}}_{\be_1\cdots\be_q} + \cdots \\
+ &\cdots - {\Ga^{\sigma}}_{\mu\be_1}{T^{\al_1 \cdots \al_p}}_{\sigma\be_2\cdots\be_q} - \cdots - {\Ga^{\sigma}}_{\mu\be_p}{T^{\al_1 \cdots \al_1}}_{\be_1\cdots\be_{q-1}\sigma} \\
+\end{align*}
+
+It is important to note that $\del_\mu {T^{\al_1 \cdots \al_p}}_{\be_1\cdots\be_q}$ is still a tensor by \textit{construction}. Since $\di_\mu$ is not a tensor, it \textit{must} be that ${\Ga^\al}_{\mu\sigma}$ is not a tensor. The transformation is written, \\
+% \[ {\Ga^\al}_{\be\la} \ar {\Ga^{\al'}}_{\be'\la'} = \pder{x^\be}{y^{\be'}} \]
+\TODO{Get transformation formula from Paul}
 
 % \[ \del_X Y = X{Y^\be} X^\al\del_{e_\al}\br{ e_\be} \]
 % Where acting on the particular set of components of $Y$, $\del_\al Y^\be$ becomes a tensor of rank $\br{1,1}$.
