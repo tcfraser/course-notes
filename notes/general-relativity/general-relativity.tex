@@ -1811,7 +1811,7 @@ Consider a spaceship large enough to experience the change in the gravitational 
 
 \subsubsection{Einstein's Strong Equivalence Principle}
 
-In a local inertial frame (where $\vec{g}$ is uniform), the results of all experiments will be indistinguishable from the results of the same experiments performed in a inertial frame in Minkowski spacetime.\\
+Free-falling in local inertial frame (where $\vec{g}$ is uniform), the results of all experiments will be indistinguishable from the results of the same experiments performed in a inertial frame in Minkowski spacetime.\\
 
 Consider the case of a rocket with initially no acceleration $\vec{a} = \vec{0}$ and constant velocity $\vec{v} = \text{const}$. Another ship comes along and shoots a laser. Suppose there is a window on the left $w_L$ and a window on the right $w_R$. Now suppose the spaceship gets lucky and the laser passes through $w_L$ and then $w_R$ (a). From the perspective of the captain of the ship, the light moves as a straight line (b). Nothing too complicated. \\
 
@@ -2105,7 +2105,7 @@ Where ${\Ga^\al}_{\ga\be}$ are called the Christoffel symbols. Notice that they 
 There is relationship between ${\Ga^\al}_{\be\ga}$ and the metric which and the metric transformation,
 \[ g_{\al\be} = \eta_{\mu\nu} \pder{\xi^\mu}{x^\al}\pder{\xi^\nu}{x^\be} \]
 Which can be derived to be,
-\[ {\Ga^\al}_{\ga\be} = \f12 g^{\nu\sigma}\br{\pder{g_{\mu\nu}}{x^\lambda} + \pder{g_{\lambda\nu}}{x^\mu} + \pder{g_{\mu\lambda}}{x^\nu}} \]
+\[ {\Ga^\al}_{\ga\be} = \f12 g^{\nu\sigma}\br{\pder{g_{\mu\nu}}{x^\lambda} + \pder{g_{\lambda\nu}}{x^\mu} - \pder{g_{\mu\lambda}}{x^\nu}} \]
 This implies,
 \[ \dder{x^\al}{\tau} + {\Ga^\al}_{\ga\be} \der{x^\ga}{\tau} \der{x^\be}{\tau} \]
 Which implies the relationship between acceleration and the change of coordinates characterized by ${\Ga^\al}_{\ga\be}$,
@@ -2251,9 +2251,59 @@ Now utilizing the product law we can determine the covariant derivative for any 
 \begin{align*}
 \del_\mu {T^{\al_1 \cdots \al_p}}_{\be_1\cdots\be_q} &= \di_\mu {T^{\al_1 \cdots \al_p}}_{\be_1\cdots\be_q} + \cdots \\
  &\cdots + {\Ga^{\al_1}}_{\mu\sigma}{T^{\sigma \al_2 \cdots \al_p}}_{\be_1\cdots\be_q} + \cdots + {\Ga^{\al_p}}_{\mu\sigma}{T^{\sigma \al_1 \cdots \al_{p-1} \sigma}}_{\be_1\cdots\be_q} + \cdots \\
- &\cdots - {\Ga^{\sigma}}_{\mu\be_1}{T^{\al_1 \cdots \al_p}}_{\sigma\be_2\cdots\be_q} - \cdots - {\Ga^{\sigma}}_{\mu\be_p}{T^{\al_1 \cdots \al_1}}_{\be_1\cdots\be_{q-1}\sigma} \\
+ &\cdots - {\Ga^{\sigma}}_{\mu\be_1}{T^{\al_1 \cdots \al_p}}_{\sigma\be_2\cdots\be_q} - \cdots - {\Ga^{\sigma}}_{\mu\be_q}{T^{\al_1 \cdots \al_1}}_{\be_1\cdots\be_{q-1}\sigma} \\
 \end{align*}
 
 It is important to note that $\del_\mu {T^{\al_1 \cdots \al_p}}_{\be_1\cdots\be_q}$ is still a tensor by \textit{construction}. Since $\di_\mu$ is not a tensor, it \textit{must} be that ${\Ga^\al}_{\mu\sigma}$ is not a tensor. The transformation is written, \\
 \[ {\Ga^\al}_{\be\la} \ar {\Ga^{\al'}}_{\be'\la'} = \pder{x^\be}{y^{\be'}}\pder{x^\ga}{y^{\ga'}}\pder{y^{\al'}}{x^{\al}} {\Ga^\al}_{\be\la} - \pder{y^{\al'}}{x^{\ga}}\f{\di^2 x^{\ga}}{\di y^{\be'}\di y^{\la'}}  \]
+
+\subsection{Geodesics}
+
+\textbf{Definition}: The covariant derivative defined in terms of the Christoffel symbol is called the \textit{Levi-Civita} connection.
+\[ {\Ga^\al}_{\be\ga} = \f12 g^{\al\mu}\br{g_{\be\mu,\ga} + g_{\ga\mu,\be} - g_{\ga\be,\mu}} \]
+Where the comma notation indicates a derivative $g_{\al\be,\mu} \defined \di_\mu g_{\al\be}$. Note that for the Christoffel symbols $\Ga$, the lower two indices are symmetric ${\Ga^\al}_{\be\ga} = {\Ga^\al}_{\ga\be}$. Under this definition, one can show that the Levi-Civita connection is metric compatible,
+\[ \del_\mu g_{\al\be} = 0 \]
+\textbf{Example}: For $\R^2$ the Cartesian coordinates the metric $g_{\al\be}$ becomes,
+\[ g_{\al\be}  = \de_{\al\be} = \mtrx{1 & 0 \\ 0 & 1} \]
+This implies that in this example ${\Ga^\al}_{\be\ga} = 0$, so clearly $\del_\mu g_{\al\be} = 0$ as expected.\\
+
+\textbf{Example}: Now consider polar coordinates $x^\mu = \br{r ,\te}$.
+\[ g_{\al\be} = \mtrx{1 & 0 \\ 0 & r^2} \ar g^{\al\be} = \mtrx{1 & 0 \\ 0 & \f{1}{r^2}} \]
+
+Therefore ${\Ga^\al}_{\be\ga} \neq 0$, but it is still maintained that $\del_\mu g_{\al\be} = 0$. Alternatively, we could have done a change of coordinates to get this result more easily. \\
+
+\textbf{Theorem}: Let $g_{\al\be}$ be a metric, then there exist a unique torsion free covariant derivative such that $\del_\mu g_{\al\be} = 0$. This is the Levi-Civita connection (Proof Wald p.35). A torsion free connection maintains that ${\Ga^\al}_{\be\ga} = {\Ga^\al}_{\ga\be}$. \\
+
+Note that the Levi-Civita symbol has by product rule,
+\[ \del_\mu \br{g^{\al\be}{T_{\be}}^\ga} = g^{\al\be} \del_\mu {T_\be}^\ga \]
+Or that the metric is constant with respect to the Levi-Civita symbol. From now on we replace the derivative $\di_\mu$ with the generalized counterpart $\del_\mu$. For example, the conservation of the stress energy tensor $\di_\mu T^{\mu\al} = 0$ in Minkowski space and Cartesian coordinates becomes in a general manifold in general coordinates $\del_\mu T^{\mu\al}$,
+\[ \di_\mu T^{\mu\al} \ar \del_\mu T^{\mu\al} \]
+Applying this to a particle under the influence $\vF_g = m \va$. Let $V^\al$ be the relativistic speed that is a time-like tangent vector, $V^\al V_\al = -1$.
+\[ \der{x^\al}{\tau} g_{\al\be}\der{x^\be}{\tau} = \dder{s}{\tau} = -1 \]
+No force acting on the particle gives,
+\[ \der{V^\al}{\tau} + {\Ga^\al}_{\be\ga} V^\be V^\ga = 0 \]
+Re-writing acceleration,
+\[ V^\al = \der{x^\al}{\tau} \ar \der{V^\al}{\tau} = \der{}{\tau}\br{\der{x^\al}{\tau}} = \der{x^\be}{\tau}\pder{}{x^\be} \der{x^\al}{\tau} \]
+Therefore,
+\[ V^\be \di_\be V^\al + {\Ga^\al}_{\be\ga} V^\be V^\ga = 0 \]
+\[ V^\be \br{\di_\be V^\al + {\Ga^\al}_{\be\ga} V^\ga} = 0 \]
+\[ V^\be \del_\be V^\al = 0 \]
+Notationally, this can be compacted as $\del_V V^\al$. This is known as the \textbf{geodesic equation}. Note that $\del_X$ is just the directional derivative which has been constructed to transform well under a change of coordinates. \\
+
+\textbf{Definition}: We say that a vector $X$ is parallelly transported along $V$ if $\del_V X^\al = V^\be \del_\be X^\al= 0$. This \textbf{does not} imply that $\del_\be X^\al = 0$. Also $\del_Vg^{\al\be} = V^\ga \del_\ga g_{\al\be} = 0$ because the inner term $\del_\ga g_{\al\be} = 0$ for fixed $\ga$. This can be extended to any tensor,
+\[ \del_V {T^{\al_1 \cdots \al_p}}_{\be_1 \cdots \be_p} = 0 \]
+\textbf{Definition}: Consider a curve $\mathcal{C} \subset M$ and $V^\mu$ is its tangent vector. If $\del_V V^\al = 0$ then we call $\mathcal{C}$ a \textbf{geodesic}. Geodesics are the generalization of the notion of straight lines.
+
+\subsubsection{Examples}
+\textbf{Example}: Consider $\R^2$ with Cartesian coordinates $x^\mu = \br{x,y}$ with Minkowski,
+\[ g_{\al\be} = \mtrx{-1 & 0 \\ 0 & 1} \]
+Then a curve $\mathcal{C}$ parameterized by $\tau$ is,
+\[ \mathcal{C} : \mtrx{x\br{\tau} \\ y\br{\tau}} \implies V^\al = \mtrx{\dot{x}\br{\tau} \\ \dot{y}\br{\tau}} \]
+Since $V^\al$ is time-like, $V^\al V_\al = -1 = -\dot{x}^2 + \dot{y}^2$ combined with the geodesic equation $\del_VV^\al = 0$,
+\[ \der{V^\al}{\tau} + \underbrace{{\Ga^\al}_{\be\ga}}_{=0} V^\be V^\al = 0 \]
+Thus,
+\[ \der{V^\al}{\tau} = \mtrx{\ddot{x}\br{\tau} \\ \ddot{y}\br{\tau}} = \mtrx{0 \\ 0}\]
+Which suggests straight lines
+\[ x^\al = \mtrx{x \\ y} = \mtrx{a\tau + b \\ d \tau + e}\]
+Where $a,b,d,e$ are constants. These are straight lines! Subject to the constraint that $-1 = V^\al V_\be = -a^2 + d^2$.
 \end{document}
