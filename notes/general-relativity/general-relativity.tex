@@ -2305,5 +2305,84 @@ Thus,
 \[ \der{V^\al}{\tau} = \mtrx{\ddot{x}\br{\tau} \\ \ddot{y}\br{\tau}} = \mtrx{0 \\ 0}\]
 Which suggests straight lines
 \[ x^\al = \mtrx{x \\ y} = \mtrx{a\tau + b \\ d \tau + e}\]
-Where $a,b,d,e$ are constants. These are straight lines! Subject to the constraint that $-1 = V^\al V_\be = -a^2 + d^2$.
+Where $a,b,d,e$ are constants. These are straight lines! Subject to the constraint that $-1 = V^\al V_\be = -a^2 + d^2$. \\
+
+\textbf{Example}: Geodesic on Sphere,
+\begin{center}
+\begin{tikzpicture}[scale=1.5]
+    \draw (-1,0) arc (180:360:1cm and 0.5cm);
+    \draw[dashed] (-1,0) arc (180:0:1cm and 0.5cm);
+    \draw (0,1) arc (90:270:0.5cm and 1cm);
+    \draw[dashed] (0,1) arc (90:-90:0.5cm and 1cm);
+    \draw (0,0) circle (1cm);
+    \shade[ball color=blue!10!white,opacity=0.20] (0,0) circle (1cm);
+\end{tikzpicture}
+\end{center}
+Consider a sphere with radius $r$ with metric,
+\[ g_{\al\be} = r^2 \mtrx{1 & 0 \\ 0 & \sin^2\te} \]
+With general vector on the sphere $x^\mu$ with,
+\[ x^\mu = \mtrx{\te \in \bs{0,\pi}\\ \phi\in \bs{0,2\pi}} \]
+Therefore the velocity is $V^\mu$,
+\[ V^\mu = \mtrx{\dot{\te} \\ \dot{\phi}}\]
+Let our curvilinear parameter of the geodesic be $\tau$ and take $\tau$ to be the arclength. By doing so, we enforce that $V^\al V_\al = + 1$. Therefore since the arclength $\dif \tau^2 = x^\al g_{\al\be} x^\be$,
+\[ +1 = V^\al g_{\al\be} V^\be = \der{x^\al}{\tau} g_{\al\be} \der{x^\be}{\tau} = \der{\tau^2}{\tau^2} = r^2\dot{\te}^2 + r^2\sin^2 \te \dot{\phi}^2 \]
+Therefore the Euclidean metric used gives $V^\al$ to be spacelike.  This normalization condition $V^\al V_\al = 1$ is \textit{very} important. Finally, our geodesic must satisfy the geodesic equation.
+\[ \der{}{\tau}V^\al + {\Ga^\al}_{\be\ga} V^\be V^\al = 0 \]
+The Christoffel symbols for this metric are given by ($1 = \te , 2 = \phi$),
+\[ {\Ga^2}_{21} = {\Ga^2}_{12} = \f{\cos \te }{\sin \te} \qquad {\Ga^1}_{22} = - \sin \te \cos \te \]
+Only three terms of the $2^3 = 8$ Christoffel symbols are non-zero. The Geodesic equation becomes,
+\[ \ddot{\te} + {\Ga^{1}}_{\be\ga} V^\be V^\al = 0 \implies \ddot{\te} - \sin \te \cos \te \dot{\phi}\dot{\phi} = 0 \eq \label{eq:sphere1}\]
+\[ \ddot{\phi} + {\Ga^{2}}_{\be\ga} V^\be V^\al = 0 \implies \ddot{\phi} + 2\f{\cos \te}{\sin \te}\dot{\te}\dot{\phi} = 0 \eq \label{eq:sphere2} \]
+Noting the very important factor of $2$. We can now solve these coupled second order ODEs. First take the case of $\dot{\phi} = 0$ or that $\phi$ is constant. \eqref{eq:sphere1} gives $\te = a \tau + b$. The normalization condition implies that $a = \pm\f{1}{r}$ in this case of $\dot{\phi} = 0$. This correspond to slices through the sphere at fixed phi. This is a \textbf{great circle} or by analogy on the surface of the earth, these are meridians. \\
+
+Let use examine the other case of $\te$ being constant. In this case, \eqref{eq:sphere2} indicates that $\ddot{\phi}= 0 \implies \phi = d \tau + e$. Also \eqref{eq:sphere1} gives,
+\[ -\sin\te \cos\te \br{\dot{\phi}}^2 = 0 \implies \dot{\phi}^2 = 0  \text{ or } \sin\te\cos\te = 0 \]
+Note that if $\dot{\phi}^2 = 0$, this forces $d=0$ which violates the normalization condition. It also corresponds to a fixed point. Alternatively, $\sin\te\cos\te = 0$ suggests $\te = \pi / 2 + n\pi$. Note that $\sin \te \neq 0, \pi$ since this makes \eqref{eq:sphere2} singular. This solution corresponds to the equator of the sphere. The set of all solutions are all of the great circles on the sphere.
+
+\subsubsection{Geodesics \& Path Length}
+
+When dealing with the Euclidean metric, the geodesics are the straight lines or equivalently the \textbf{shortest path}.
+\[ \text{geodesic} \implies \text{shortest path} \]
+However when dealing with the Lorentzian metric, time like geodesics are the \textbf{longest path}.
+\[ \text{geodesic} \implies \text{longest path} \]
+This is to be expected because light-like vectors have a minimum arclength of $0$. Therefore in order to make the action of the path have zero variation $\de S = 0$, the extremized path is one with maximum action $S$.
+
+\subsection{Curvature}
+
+Curvature can be examined as a rotation of vectors that are parallel transported around a loop.
+\begin{center}
+\begin{tikzpicture}[
+    scale=1.0,
+    decoration={post length=0.1mm, pre length=0.1mm, markings, mark=at position 0.5 with {\arrow{>}}}
+]
+    \draw[postaction={decorate}, thick] (0,0) -- (1,2);
+    \draw[postaction={decorate}, thick] (1,2) -- (3,2);
+    \draw[postaction={decorate}, thick] (3,2) -- (2,0);
+    \draw[postaction={decorate}, thick] (2,0) -- (0,0);
+    \draw[->, thick, blue] (1,2) -- (0.7, 2.3);
+    \node[blue, above left] (lx) at (0, 0.5) {$x_i = x_f$};
+    \draw[->, thick, blue] (3,2) -- (2.7, 2.3);
+    \draw[->, thick, blue] (2,0) -- (1.7, 0.3);
+    \draw[->, thick, blue] (0,0) -- (-0.3, 0.3);
+\end{tikzpicture}
+\end{center}
+
+When moving around the loop the vector $x^\mu$ is not modified.
+\[ x^\mu_i = x^\mu_f \implies \text{ no curvature} \]
+
+Where as for the case of a loop on a sphere the vectors do not match,
+\[ x^\mu_i \neq x^\mu_f \implies \text{ curvature} \]
+
+\textbf{Definition}: Using $\del_\mu$ as the Levi-Civita connection, the \textit{Riemann tensor} is defined by,
+\[ \br{\del_\mu \del_\nu - \del_\nu \del_\mu} V^\al = {{R_{\mu\nu}}^\al}_\be V^\be \]
+This tensor ${{R_{\mu\nu}}^\al}_\be$ encodes the curvature. Expressed in terms of the Christoffel symbols,
+\[ {R^{\rho}}_{\sigma \mu \nu} = \di_\mu {\Ga^\rho}_{\nu\sigma}- \di_\nu {\Ga^\rho}_{\mu\sigma} + {\Ga^\rho}_{\mu\lambda}{\Ga^\lambda}_{\mu\sigma} - {\Ga^\rho}_{\nu\lambda}{\Ga^\lambda}_{\mu\sigma} \]
+Notice that when dealing with $4d$ spacetime, the Riemann tensor has $4^4 = 256$ components. It can be viewed as a matrix of matrices. This is a lot of components. Luckily, the symmetries of $\Ga$ reduce the number of unique terms. The symmetries are as follows.
+\[ R_{\rho \sigma \mu \nu} = - R_{\sigma \rho \mu \nu} = - R_{\rho \sigma \nu \mu} \note{Antisymmetric} \]
+\[ R_{\rho \sigma \mu \nu} = R_{\mu \nu \rho \sigma } \note{Symmetric in Pairs} \]
+Also cyclic permutations of the last three indices summed together are zero. This is the \textit{1st Bianchi identity}
+\[ R_{\rho \sigma \mu \nu} + R_{\rho  \mu \nu\sigma} + R_{\rho  \nu\sigma \mu} = 0 \]
+The \textit{2nd Bianchi identity} deals with cyclic permutations in the first three indices (including $\del_\mu$),
+\[ \del_\lambda R_{\rho \sigma \mu \nu} + \del_\rho R_{ \sigma\lambda \mu \nu} + \del_\sigma R_{\lambda\rho  \mu \nu} = 0 \]
+The combination of all of these symmetries reduces the number of components from $256$ to only $20$ independent components.
 \end{document}
