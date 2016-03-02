@@ -1147,16 +1147,16 @@ decoration={post length=0.1mm, pre length=0.1mm, markings, mark=at position 0.5 
 Therefore by the Clausius Inequality we have,
 \[ \oint \f{\indif Q}{T} \leq 0 \]
 
-\[ \ointl_1^2 \br{\f{\indif Q}{T}}\tsb{irrev} + \ointl_2^1 \br{\f{\indif Q}{T}}\tsb{rev} \leq 0 \]
-\[ \ointl_1^2 \br{\f{\indif Q}{T}}\tsb{irrev} \leq - \ointl_2^1 \br{\f{\indif Q}{T}}\tsb{rev} = \ointl_1^2 \br{\f{\indif Q}{T}}\tsb{rev} \]
+\[ \intl_1^2 \br{\f{\indif Q}{T}}\tsb{irrev} + \intl_2^1 \br{\f{\indif Q}{T}}\tsb{rev} \leq 0 \]
+\[ \intl_1^2 \br{\f{\indif Q}{T}}\tsb{irrev} \leq - \intl_2^1 \br{\f{\indif Q}{T}}\tsb{rev} = \intl_1^2 \br{\f{\indif Q}{T}}\tsb{rev} \]
 
 Thus we can conclude that with $\dif S \br{\f{\indif Q}{T}}\tsb{rev}$,
 
-\[ \ointl_1^2 \br{\f{\indif Q}{T}}\tsb{irrev} \leq \ointl_1^2 \br{\dif S}\tsb{rev} = S_2 - S_1 \]
+\[ \intl_1^2 \br{\f{\indif Q}{T}}\tsb{irrev} \leq \intl_1^2 \br{\dif S}\tsb{rev} = S_2 - S_1 \]
 
 Which gives that our entropy increases each cycle,
 
-\[ \br{S_2 - S_1}\tsb{rev} \geq \ointl_1^2 \br{\f{\indif Q}{T}}\tsb{irrev} \]
+\[ \br{S_2 - S_1}\tsb{rev} \geq \intl_1^2 \br{\f{\indif Q}{T}}\tsb{irrev} \]
 
 Now suppose that our system is undergoing an adiabatic process along the whole path. This means that no heat is exchanges during the process ($\indif Q = 0$). This gives us,
 
@@ -2076,9 +2076,9 @@ Evidently, we can related the number of microstates available to the reservoir t
 Which can be written,
 \[ \f{P_j}{P_i} = \exp\bc{\f{S^{(r)}\br{E^{(r)} - \De E} - S^{(r)}\br{E^{(r)}}}{k_B}} \]
 However since $E^{(r)} \gg E^{(s)}$, then $E^{(r)} \gg \De E^{(s)}$. A Taylor series expansion gives,
-\[ S^{(r)}\br{E^{(r)} - \De E} - S^{(r)}\br{E^{(r)}} = - \De E \pder{S^{(r)}}{T^{(r)}} \]
+\[ S^{(r)}\br{E^{(r)} - \De E} - S^{(r)}\br{E^{(r)}} = - \De E \pder{S^{(r)}}{E^{(r)}} \]
 But thermodynamically,
-\[ \f{1}{T^{(r)}} = \pder{S^{(r)}}{T^{(r)}}\]
+\[ \f{1}{T^{(r)}} = \pder{S^{(r)}}{E^{(r)}}\]
 Therefore we have the familiar relation (using the fact that in equilibrium $T = T^{(r)} = T^{(s)}$),
 \[ \f{P_j}{P_i} = \exp\bc{-\f{\De E}{k_B T}} \]
 Or for individual probabilities,
