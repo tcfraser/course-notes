@@ -1491,10 +1491,10 @@ Consider a \textit{perfect fluid} (set of particles) characterized by,
 \begin{itemize}
     \item velocity $v$
     \item mass density $\rho$
-    \item pressure $p$
+    \item pressure $P$
 \end{itemize}
 
-A perfect field is called \textit{dust} is $p = 0$. Then $\rho = M/V$ where the total mass $M$ is given by,
+A perfect field is called \textit{dust} is pressure $P = 0$. Then $\rho = M/V$ where the total mass $M$ is given by,
 
 \[ M = n \cdot m \]
 
@@ -1534,7 +1534,7 @@ In summary of the above considerations,
     \hline
     & Co-moving Frame & Frame $(v_x)$ \\
     \hline
-    \# density & $N = \f{m}{V}$ & $\bar{N} = \f{n}{\bar{V}}= \ga \f{m}{V} = \ga N$ \\
+    \# density & $N = \f{m}{V}$ & $\bar{N} = \f{n}{\bar{V}}= \ga \f{n}{V} = \ga N$ \\
     \hline
     Flux & $0$ & $F_x = \ga N v_x$ \\
     \hline
@@ -2102,10 +2102,10 @@ Multiply by the inverse Jacobian on both sides (and send $\al \ar \ga$ for ease 
 \[ 0 = \dder{x^\al}{\tau}  + \underbrace{\pder{x^\al}{\xi^\mu} \f{\di^2\xi^\mu}{\di x^\ga\di x^\be}}_{{\Ga^\al}_{\ga\be}}\der{x^\ga}{\tau}\der{x^\be}{\tau} \]
 Where ${\Ga^\al}_{\ga\be}$ are called the Christoffel symbols. Notice that they are symmetric in the lower indices,
 \[ {\Ga^\al}_{\ga\be} = {\Ga^\al}_{\be\ga} \]
-There is relationship between ${\Ga^\al}_{\be\ga}$ and the metric which and the metric transformation,
+There is relationship between ${\Ga^\al}_{\be\ga}$ and the metric. To illustrate this, examine that the metric transforms well,
 \[ g_{\al\be} = \eta_{\mu\nu} \pder{\xi^\mu}{x^\al}\pder{\xi^\nu}{x^\be} \]
-Which can be derived to be,
-\[ {\Ga^\al}_{\ga\be} = \f12 g^{\nu\sigma}\br{\pder{g_{\mu\nu}}{x^\lambda} + \pder{g_{\lambda\nu}}{x^\mu} - \pder{g_{\mu\lambda}}{x^\nu}} \]
+This relationship can then be derived to be,
+\[ {\Ga^\al}_{\ga\be} = \f12 g^{\al\lambda}\br{\pder{g_{\lambda\ga}}{x^\mu} + \pder{g_{\mu\lambda}}{x^\ga}-\pder{g_{\mu\ga}}{x^\lambda}} \]
 This implies,
 \[ \dder{x^\al}{\tau} + {\Ga^\al}_{\ga\be} \der{x^\ga}{\tau} \der{x^\be}{\tau} \]
 Which implies the relationship between acceleration and the change of coordinates characterized by ${\Ga^\al}_{\ga\be}$,
