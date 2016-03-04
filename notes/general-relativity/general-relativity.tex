@@ -2327,7 +2327,7 @@ Therefore the velocity is $V^\mu$,
 Let our curvilinear parameter of the geodesic be $\tau$ and take $\tau$ to be the arclength. By doing so, we enforce that $V^\al V_\al = + 1$. Therefore since the arclength $\dif \tau^2 = x^\al g_{\al\be} x^\be$,
 \[ +1 = V^\al g_{\al\be} V^\be = \der{x^\al}{\tau} g_{\al\be} \der{x^\be}{\tau} = \der{\tau^2}{\tau^2} = r^2\dot{\te}^2 + r^2\sin^2 \te \dot{\phi}^2 \]
 Therefore the Euclidean metric used gives $V^\al$ to be spacelike.  This normalization condition $V^\al V_\al = 1$ is \textit{very} important. Finally, our geodesic must satisfy the geodesic equation.
-\[ \der{}{\tau}V^\al + {\Ga^\al}_{\be\ga} V^\be V^\al = 0 \]
+\[ \der{}{\tau}V^\al + {\Ga^\al}_{\be\ga} V^\be V^\ga = 0 \]
 The Christoffel symbols for this metric are given by ($1 = \te , 2 = \phi$),
 \[ {\Ga^2}_{21} = {\Ga^2}_{12} = \f{\cos \te }{\sin \te} \qquad {\Ga^1}_{22} = - \sin \te \cos \te \]
 Only three terms of the $2^3 = 8$ Christoffel symbols are non-zero. The Geodesic equation becomes,
@@ -2385,4 +2385,80 @@ Also cyclic permutations of the last three indices summed together are zero. Thi
 The \textit{2nd Bianchi identity} deals with cyclic permutations in the first three indices (including $\del_\mu$),
 \[ \del_\lambda R_{\rho \sigma \mu \nu} + \del_\rho R_{ \sigma\lambda \mu \nu} + \del_\sigma R_{\lambda\rho  \mu \nu} = 0 \]
 The combination of all of these symmetries reduces the number of components from $256$ to only $20$ independent components.
+
+\section{Einstein Field Equations}
+
+In the previous section we defined the notion of curvature, $R_{\al\be\nu\mu}$ which is a function of $\br{\di \Ga , \Ga}$. Also, the Christoffel symbols are a function of $\br{\di g, g}$. We are looking for a generalization of $\vF_g = m_I \va$. Our analysis of $\De \phi = 4 \pi G \rho$ lead to the suggestion that $g_{\mu\nu}\br{\phi}$; the metric was dependent on $\phi$.
+
+\subsection{Motivation}
+
+Let us take Poisson's equation to get,
+\[ \De \phi = 4 \pi G \rho\]
+The constants $4 \pi G$ will be generalized to constants $k$, and $\rho$ generalizes to the stress energy tensor $T_{\al\be}$. How does $\De \phi$ modify?
+\[ f\br{R_{\al\be\mu\nu}} \stackrel{?}{=} k T_{\al\be} \]
+The RHS of this equation is a rank $(0,2)$ tensor. Therefore we will need to contract some of the indices of $R_{\al\be\mu\nu}$. Note that we can not just multiply it by the metric because as a consequence of symmetry,
+\[ g^{\al\be} R_{\al\be \mu\nu} = 0 \qquad g^{\mu\nu} R_{\al\be \mu\nu} = 0 \]
+Therefore we will contract against the first indices of each pair,
+\[ g^{\al\mu} R_{\al\be \mu\nu} \defined R_{\be\nu}\]
+This is known as the \textbf{Ricci tensor}. Note that by extension of properties of the curvature,
+\[ R_{\be\nu}= R_{\nu\be} \]
+Thus Einstein's first proposal is,
+\[ R_{\be\nu} = k T_{\be\nu} \]
+This is well motivated as both the right and left hand sides are symmetric. However since the stress energy tensor is conserved,
+\[ \del^\nu T_{\be\nu} = 0 \]
+But we have that,
+\[ \del^\nu R_{\be\nu} = \f12 \del_\be R \]
+Where $R = R_{\al\be} g^{\al\be}$ is known as the \textbf{Ricci scalar}. Therefore this first proposal is not consistent.\\
+
+How can we modify this to maintain consistency? Define a new quantity,
+\[ G_{\be\nu} = R_{\be\nu} - \f12 R g_{\be\nu} \]
+Such that it is divergenceless.
+\begin{align*}
+\del^\nu G_{\be\nu} &= \del^\nu R_{\be\nu} - \f12 \del^\nu \br{R g_{\be\nu}}\\
+&= \del^\nu R_{\be\nu} - \f12 R\del^\nu  g_{\be\nu}\\
+&= \del^\nu R_{\be\nu} - \f12 R\del_\be \\
+&= \f12 \del_\be R - \f12 R\del_\be \\
+&= 0 \\
+\end{align*}
+However, is this $G$ unique? Obviously we can add any constants that are compatible with the metric. Therefore introduce the \textbf{cosmological constant} $\Lambda$.
+\[ G_{\be\nu} = R_{\be\nu} - \f12 R g_{\be\nu}  + \Lambda g_{\be\nu}\]
+Therefore we have $G_{\be\nu} = G_{\nu\be}$ and that $\del^\nu G_{\be\nu} = 0$. Therefore,
+\[ G_{\be\nu} = k T_{\be\vu} \]
+Where $k$ is yet to be determined.\\
+
+To determine what $k$ is, we should be able to recover Newton's law of gravity in a non-relativistic limit. Consider a weak field stationary metric.
+\[ g_{\al\be} = \eta_{\al\be} + h_{\al\be} = \eta_{\al\be} -2 \phi\de_{\al\be}\]
+Where $\pder{}{x^\be} h_{\al\be} = 0$. Now we can calculate $T_{\al\be}$. Consider a perfect fluid as a dust with pressure $P= 0$ and mass density $\rho=0$.
+\[ T^{\al\be} = \rho V^\al V^\be \]
+For $h_{\al\be} \ll 1$ or in a weak gravitational field, a little bit of work yields,
+\[ R_{\al\be} = -\f12 \Box h_{\al\be} \]
+In the limit that $c \gg 1$ we obtain that the D'Alembertian becomes the Laplacian.
+\[ R_{\al\be} = \De \phi \de_{\al\be} \]
+Therefore we obtain (assuming $\Lambda = 0$ since we are dealing with Newtonian physics),
+\[ G_{\al\be} = k T_{\al\be} \]
+\[ R_{\al\be} - \f12 R g_{\al\be} = k T_{\al\be} \eq \label{eq:eineqn}\]
+Now we take the trace of this equation.
+\[ R - \f12 R g_{\al\be} g^{\al\be} = k T_{\al\be}g^{\al\be} \]
+Notice that $g_{\al\be} g^{\al\be} = 4$, since we are in a 4 dimensional spacetime.
+\[ g^{\al\be} g_{\be\ga} = {\de^\al}_{\ga} \]
+If we explicitly sum up this product,
+\[ g^{\al\be} g_{\be\al} = {\de^\al}_{\al} \]
+We obtain the \textit{trace} of the identity matrix which yields $4$.
+\[ -R = k T_{\al\be}g^{\al\be} = kT \]
+Therefore we can write \eqref{eq:eineqn} as,
+\[ R_{\al\be} = k T_{\al\be} + \f12 R g_{\al\be} \]
+\[ R_{\al\be} = k T_{\al\be} - \f12 k T g_{\al\be} \]
+Switching to the rest frame of the fluid, we obtain $T_{\al\be} = \rho V^\al V^\be$ as,
+\[ T_{\al\be} = \mtrx{\rho & 0 & 0 & 0 \\0 & 0 & 0 & 0 \\0 & 0 & 0 & 0 \\0 & 0 & 0 & 0} \]
+The only remaining component is $T_{00} = \rho$.
+\[ R_{00} = k T_{00} - \f12 k T_{00} g^{00} g_{00}\]
+Notice that $g^{00}g_{00}$ is given by,
+\[ g_{00} = -1 - 2 \phi \qquad g^{00} = -1 + 2 \phi \]
+\[ g^{00}g_{00} = 1 + O\br{\phi^2} \approx 1 \]
+Therefore,
+\[ R_{00} = \f12 k T_{00} = \f12 k \rho \]
+\[ +\De \phi = \f12 k \rho \]
+Which restricts $k$ to be $k = 8 \pi G$. Finally we obtain,
+\[ G_{\al\be} = R_{\al\be} - \f12 R g_{\al\be} + \Lambda g_{\al\be} = 8 \pi G T_{\al\be} \]
+This is \textbf{Einstein's field equation}. This acts as our generalization of $\De \phi = 4 \pi G \rho$.
 \end{document}
