@@ -2461,4 +2461,107 @@ Therefore,
 Which restricts $k$ to be $k = 8 \pi G$. Finally we obtain,
 \[ G_{\al\be} = R_{\al\be} - \f12 R g_{\al\be} + \Lambda g_{\al\be} = 8 \pi G T_{\al\be} \]
 This is \textbf{Einstein's field equation}. This acts as our generalization of $\De \phi = 4 \pi G \rho$.
+\subsection{Recap of General Relativity}
+As a recap on everything we have learned so far,
+\begin{enumerate}
+    \item gravitational degrees of freedom $\phi \ar g_{\al\be}$ metric on the manifold which acts as spacetime
+    \item given that we known the metric, we can determine completely the Levi-Civita connection
+    \begin{itemize}
+        \item $\del_\mu V^\al = \di_\mu V^\al + {\Ga^\al}_{\be\ga}V^\ga$
+        \item ${\Ga^\al}_{\be\ga} = {\Ga^\al}_{\ga\be}$
+        \item $\del_\mu g_{\al\be}$
+        \item from now on we only consider the Levi-Civita connection
+    \end{itemize}
+    \item geodesics are the paths of particles in spacetime subject to \textbf{no other forces}
+    \begin{itemize}
+        \item $\del_V V^\al = 0$ where $V^\al$ is the tangent vector to the geodesic
+        \item $\tau$: arclength with $V^\al V_\al = -1, 0, 1$
+        \item $\der{V^\al}{\tau} + {\Ga^\al}_{\be\ga} V^\be V^\ga = 0$ System of differential equations
+        \item Notice that there is no mass present in the geodesic equation
+        \item when forces are applied to a particles with mass $m$, $m\bc{\der{V^\al}{\tau} + {\Ga^\al}_{\be\ga} V^\be V^\ga} = F^\al$
+        \item when there is a force it is \textbf{no longer a geodesic}
+    \end{itemize}
+    \item Stress energy tensor $T^{\al\be}$
+    \begin{itemize}
+        \item represents a mass/energy density and is derived from a flux of particles
+        \item symmetric $T^{\al\be} = T^{\be\al}$
+        \item conservation $\del_\al T^{\al\be} = 0$ (equation of motion for fluid)
+        \item $\del_\al T^{\al\be} = 0$ gives the continuity equation and Navier-Stokes equation in non-relativistic limit
+    \end{itemize}
+    \item Covariant derivative can be used to define curvature
+    \begin{itemize}
+        \item Riemann tensor $\bs{\del_\mu, \del_\nu}V^\al = {{R_{\mu\nu}}^\al}_\be V^\be$ (${{R_{\mu\nu}}^\al}_\be=0$ implies zero curvature)
+        \item Ricci tensor $R_{\al\be} = R_{\mu\al\ga\be} g^{\mu\ga}$ (not that $R_{\al\be}=0$ does not imply that there is zero curvature)
+        \item Ricci scalar $R = R_{\al\be}g^{\al\be}$
+    \end{itemize}
+    \item Einstein equations
+    \begin{itemize}
+        \item $G_{\al\be} = R_{\al\be} - \f12 R g_{\al\be} = 8 \pi G T_{\al\be}$ (if there is a source of matter and energy)
+        \item $G_{\al\be} = R_{\al\be} - \f12 R g_{\al\be} = 0$ (in vacuum)
+        \item $G_{\al\be} = G_{\be\al}$
+        \item $\del^\al G_{\al\be} = 0$
+    \end{itemize}
+    \item Einstein equivalence principle
+    \begin{itemize}
+        \item There exists a locally inertial coordinate system $\xi^\mu$ \textit{at the point p} such that $g_{\bar{\al}\bar{\be}}\br{p} = \eta_{\bar{\al}\bar{\be}}\br{p}$
+        \item Physics is like in Minkowski space time at $p$
+    \end{itemize}
+
+\end{enumerate}
+
+The equivalence principle holds together all of General relativity,
+
+\[ M, g_{\al\be} \ar \del_\mu, \text{geodesic eqn} \ar \text{SET } T_{\al\be} \ar \text{curvature } R_{\mu\nu\al\be} \ar \text{Einstein equation} \]
+
+\subsection{Alternative Approaches to Gravity}
+
+Visualized in this way, general relativity becomes quite simple. How can we make it more complicated? Suppose we tried the followed,
+\[ \phi \ar g_{\al\be} + V_{\al} + M_{\al\be\ga\de} \]
+
+By combing tensor theories $g_{\al\be}$ and vector theories $V_{\al}$. Maybe these theories of gravity can explain dark matter. This approach adds numerous degrees of freedom. Alternatively, one could include torsion into the connections and move away from the Levi-Civita connection. Moreover, we could add more dimensions. \\
+
+In each of these cases, we must compare out observations/experiments with the predictions of the theory. These observations can be made on the three scales,
+
+\begin{center}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Scale} & \textbf{GR} \\
+    \hline
+    Solar system & works very well \\
+    Galactic & issues with dark matter \\
+    Cosmological & $\Lambda = ?$ \\
+    \hline
+\end{tabular}
+\end{center}
+
+\subsection{Solving Einstein's Equation}
+Einstein's field equations are difficult to solve. They are a system of coupled non-linear PDEs.
+
+\[ G_{\al\be} = k T_{\al\be} \stackrel{?}{=} 0 \]
+
+It is still an active area of research to solve these equations. For a point-like particle, the particles follows a geodesic,
+
+\[ \del_V V^\al = 0 \]
+
+However if the particle has mass, it \textit{should} affect the spacetime it occupies and thus the metric. This affect of the mass affecting directly the space it moves in is also an area of active research. In principle $T_{\al\be}$ depends on the trajectory of the particles $V$,
+\[ G_{\al\be} \stackrel{?}{=} k T_{\al\be} \br{V} \]
+
+\subsubsection{Assumptions to Simplify Einstein's Equations}
+
+As a physicist, a non-linear equation is difficult to solve. We will linearize the metric using perturbations such as $g_{\al\be} = \eta_{\al\be} + h_{\al\be}$ where $h_{\al\be}$ characterizes the dynamics and propagation of gravity (gravitational waves).\\
+
+Additionally, symmetries are going to greatly simplify the equations. These symmetries will be exposed using killing vectors. \\
+
+\textbf{Example}: For example, as in Newtonian gravity we can consider a system that has spherical symmetry and time translational invariance. The system will have mass $M$. First we will consider the approach from a Newtonian perspective and then compare and contrast with the metric approach. Inside the system,
+\[ \De \phi = 4 \pi G \rho \]
+Whereas outside the system, since there is no mass,
+\[ \De \phi = 0  \]
+Use spherical coordinates,
+\[ \De \phi = \der{}{r}\br{r^2 \der{}{r} \phi \br{r}} \]
+Outside the system, $\phi$ must be like in general with $A,B \in \R$ constants with $A$ having dimension length,
+\[ \phi\br{r} = - \f{A}{r} + B \]
+The condition of $r \ar \inf$ demanding that $\lim_{r\ar\inf}\phi(r) = 0$ enforces $B = 0$. We also want to experience an attractive force where $A > 0$. Evidently, we should expect the potential $\phi$ to depend on $M$ . In order to give $A$ dimensions of length, we will need to multiply by $G$.
+
+\[ \phi = - \f{GM}{r} \]
+
 \end{document}
