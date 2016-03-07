@@ -84,7 +84,7 @@ We note,
 
 is the basis for $V^*$ is defined by the Kronecker symbol $\delta$,
 
-\[ f^j(e_j) = {\delta^j}_i \]
+\[ f^j(e_i) = {\delta^j}_i \]
 
 \[ {\delta^j}_i = \piecewise{1}{i=j}{0}{i\neq j} \]
 
@@ -100,7 +100,7 @@ Introduce a bilinear map $B(v, w)$ where $B: V \cross V \ar \R$ where,
 
 and the same for the other parameter $w$. \\
 
-Examples include the inner product (otherwise known as the scale or dot product).
+Examples include the inner product (otherwise known as the scalar or dot product).
 
 Bilinear forms are bilinear maps such that the following conditions are true:
 
@@ -237,7 +237,7 @@ This is just a notationally convention. It is the sum of the diagonal terms of $
 
 \subsection{Tensor Product}
 
-A tensor product makes a linear map a multi-linear map.
+A tensor product makes a linear map out of a multi-linear map.
 
 \heading{Theorem}
 
@@ -473,7 +473,7 @@ But for fixed $\al, \ga, \de$, one can abuse the notation a bit:
 \heading{Example}
 
 Outer Product: ${M^{\al}}_\be{M^{\ga}}_\de = {{{{C^{\al}}_\be}^\ga}_\de}$ \\
-Contraction: ${M^{\al}}_\be{M^{\be}}_\de = {{{{C^{\al}}_\be}^\be}_\de} = {C^\al}_\ga$
+Contraction: ${M^{\al}}_\be{M^{\be}}_\de = {{{{C^{\al}}_\be}^\be}_\de} = {C^\al}_\de$
 
 \heading{Example}
 
@@ -815,7 +815,7 @@ Let's measure the coordinates of Ed in Alice's frame and Bob's frame and the map
 
 1) Using light to measure position,
 
-\[ x = \f{1}{2c}\br{t_2 - t_1} \]
+\[ X = \f{1}{2c}\br{t_2 - t_1} \]
 \[ T = t_1 + \f12 \br{t_2 - t_1} = \f12 \br{t_2 + t_1} \]
 
 \begin{center}
@@ -851,9 +851,10 @@ Let's measure the coordinates of Ed in Alice's frame and Bob's frame and the map
 2) Determine how the difference of times of reception and emission are related?
 
 \[ \De t_A = ON \quad \De t_B = QP \]
-\[ \f{MN}{OM} = \f{MP}{QM} \]
-\[ \f{MN}{MN+\Delta t_A} = \f{MP}{MP+\Delta t_B} \]
-\[ \f{\Delta t_A}{MN} = \f{\Delta t_B}{MP} \]
+\[ \f{MO}{MN} = \f{MP}{MQ} \]
+\[ \f{MN + ON}{MN} = \f{MQ + QP}{MQ} \]
+\[ \f{ON}{MN} = \f{QP}{MQ} \]
+\[ \f{\De t_A}{MN} = \f{\De t_B}{MQ} \]
 \[ \Delta t_A \propto \Delta t_B \]
 
 \begin{center}
@@ -897,7 +898,7 @@ Let's measure the coordinates of Ed in Alice's frame and Bob's frame and the map
 \end{tikzpicture}
 \end{center}
 
-\[ \Delta t_A = f^{-1}(v, c, x_0, y_0) \Delta t_B \]
+\[ \Delta t_A = f^{-1}(v, c, x_0, t_0) \Delta t_B \]
 
 By translational invariance, $f$ cannot depend on $x_0$ or $t_0$. Therefore,
 
@@ -1222,7 +1223,7 @@ What are inertial observers in the relativistic regime? They are \textit{still} 
     \item rotations: $R_x, R_y, R_z$
 \end{itemize}
 
-\[ \ar \mtrx{1 & 0 & 0 & 0 \\ 1 & \cos \theta & \sin \theta & 0 \\ 0 & -\sin \theta & \cos \theta & 0 \\ 0 & 0 & 0 & 1 } \]
+\[ \ar \mtrx{1 & 0 & 0 & 0 \\ 0 & \cos \theta & \sin \theta & 0 \\ 0 & -\sin \theta & \cos \theta & 0 \\ 0 & 0 & 0 & 1 } \]
 
 \begin{itemize}
     \item boost: $B_x, B_y, B_z$
@@ -1435,7 +1436,7 @@ Where $q$ is the charge of the particle, $\vec{E}$ is the electric field, $\vec{
 \[ F^\mu = q {F^{\al\be}} V_\be \]
 
 Where $F^{\al\be}$ is known as the Maxwell tensor that is anti-symmetric,
-\[ F^{\al\be} = \mtrx{0 & E_x & E_y & E_z \\ -E_x & 0 & B_z & -E_y \\ -E_y & -B_z & 0 & B_x \\ -E_z & B_y & -B_x & 0} \]
+\[ F^{\al\be} = \mtrx{0 & E_x & E_y & E_z \\ -E_x & 0 & B_z & -B_y \\ -E_y & -B_z & 0 & B_x \\ -E_z & B_y & -B_x & 0} \]
 
 And $V_\be$ is the relativistic velocity with,
 
