@@ -2275,7 +2275,7 @@ Subbing in the general Hamiltonian,
 Decoupling the momentum and position terms (for cases unlike the above where the potential energy \textbf{does not} depend on momentum),
 \[ Z = \int_{\w_p} e^{-\be\bc{\sum_{i=1}^{N} \f{\abs{\vp_i}^2}{2m}}} \f{\dif^{3N} p}{h^{3N} N!} \times \int_{\w_q} e^{- \be V \br{q}} \dif^{3N} q \]
 Here we have written $\sum_{i=1}^{N} V_{ij}\br{r_{i},r_{j}} = V\br{q}$. The second component is often very intractable. The first term can be decomposed more,
-\[ \int_{\w_p} e^{-\be\bc{\sum_{i=1}^{N} \f{\abs{\vp_i}^2}{2m}}} \f{\dif^{3N} p}{h^{3N} N!} = \int_{\w_p} e^{-\be\br{\f{p_{1,x}^2}{2m} + \cdots + \f{p_{2,y}^2}{2m} + \cdots}} \f{\dif^{3N} p}{h^{3N} N!} = \bs{\intl_{-\inf}^{\inf} e^{-\be\f{p_{\al}^2}{2m}} \dif^{3N} p}^{3N} \f{1}{h^{3N} N!} \]
+\[ \int_{\w_p} e^{-\be\bc{\sum_{i=1}^{N} \f{\abs{\vp_i}^2}{2m}}} \f{\dif^{3N} p}{h^{3N} N!} = \int_{\w_p} e^{-\be\br{\f{p_{1,x}^2}{2m} + \cdots + \f{p_{2,y}^2}{2m} + \cdots}} \f{\dif^{3N} p}{h^{3N} N!} = \bs{\intl_{-\inf}^{\inf} e^{-\be\f{p_{\al}^2}{2m}} \dif p_\al}^{3N} \f{1}{h^{3N} N!} \]
 We have seen the integral before in \eqref{sec:gaussianintegrals},
 \[ \intl_{-\inf}^{\inf} e^{-a x^2}\dif x = \sqrt{\f{\pi}{a}} \]
 Therefore taking the potential energy $V$ be zero (this can be validated if $k_B T \gg V$ which makes the interaction energy negligible compared to the thermal energy),
@@ -2292,30 +2292,107 @@ What about a combination of $N_1$ particles with mass $m_1$ and $N_2$ particles 
 \[ \iint e^{-ax^2 - by^2}\dx\dy = \int e^{-ax^2}\dx\int e^{-ay^2}\dy = \sqrt{\f{\pi}{a}}\sqrt{\f{\pi}{b}}\]
 The partition function of two groups noninteracting particles is multiplicative.
 \[ Z = Z_1 \times Z_2 \]
-Since the entropy is characterized by the logarithm of the partition functions, there corresponding entropies are additive.
+Since the entropy is characterized by the logarithm of the partition functions, there corresponding entropies are additive.\\
+
+\textbf{Remark:} The notation of $\dif^{3N} p$ can tend to be confusing. Expanding this out,
+\[ \dif^{3N} p = \dif p_1 \dif p_2 \cdots \dif p_{3N}  \]
+Here there are $3N$ terms to consider and often leads to $3N$ integrals. The $p_i$ in this context indicates a particular component of a particular particle. For example, $p_i$ could be the $y$ component of the $53$rd particle. Alternatively, when $p_i$'s are written in this way,
+\[ H = \sum_{i=1}^N \f{\abs{\vp_i}^2}{2m} = \f{p_{1,x}^2 + p_{1,y}^2 + p_{1,z}^2}{2m} + \cdots + \f{p_{N,x}^2 + p_{N,y}^2 + p_{N,z}^2}{2m} \]
+Each $\vp_i$ represents the total momentum vector of the particle. Be careful of this distinction. It should be evident from the context of the problem. \\
+
+For example, calculating the canonical partition function is in general written,
+\[ Z = \f{1}{h^{3N} N!} \int \dif^{3N}q\int \dif^{3N}p e^{-\be H\br{q,p}} \]
+But it is common that $H\br{p,q} = H\br{p}$ whenever the potential energy is zero $V = 0$. Then,
+\[ Z = \f{V^{N}}{h^{3N} N!} \int \dif^{3N}p e^{-\be \br{\f{p_1^2}{2m} + \f{p_2^2}{2m} + \cdots + \f{p_{3N}^2}{2m}}} \]
+\[ Z = \f{V^{N}}{h^{3N} N!} \br{2m\pi k_B T}^{3N/2} \]
 
 \subsection{Examples}
 
-\textbf{Example 1}: Consider a dilute gas of $\text{H}_2\text{C}$ or $\text{CO}$ with electric dipole moment $\vec{\mu}$ in an electric field $\vE$. What is the partition function $Z\br{T}$? We suspect to will take on the general form,
-\[ Z = \iint e^{-\be H} \bs{ \cdots } \]
-What is the Hamiltonian?
-\[ H \br{p,q} = \f{\abs{\vp}^2}{2m} - \vec{\mu} \cdot \vE \]
+\subsubsection{Two Masses on Springs}
+Consider a system of two masses $m_1$ and $m_2$ connected by springs to each other and a wall along a linear 1d line. Therefore each mass can only move in along the $x$-axis. If the spring constants are $c_1$, $c_2$ and $k$ with $k$ being between the two masses with $x_1$ being the position of the first mass and $x_2$ being the position of the second mass.
+
+\[ H = \br{\f{p_1^2}{2m_1} + \f{p_2^2}{2m_2}} + \br{c_1 \f{x_1^2}{2} + c_2 \f{x_2^2}{2} + k \f{\br{x_2 - x_1}^2}{2}} \]
+
+Therefore the canonical partition function can be computed,
+\[ Z = \f{1}{h^2 2!} \iint \dif p_1 \dif p_2 e^{-\be\br{\f{p_1^2}{2m_1} + \f{p_2^2}{2m_2}}} \times \iint \dif x_1 \dif x_2 e^{-\be \bc{c_1 \f{x_1^2}{2} + c_2 \f{x_2^2}{2} + k \f{\br{x_2 - x_1}^2}{2}}} \]
+
+The kinetic energy contribution is a Gaussian integral (see section \ref{sec:gaussianintegrals}) as seen many times before,
+\[ Z = \br{2\pi m_1 k_B T}^{1/2}\br{2\pi m_2 k_B T}^{1/2} \times \iint \dif x_1 \dif x_2 e^{-\be \bc{c_1 \f{x_1^2}{2} + c_2 \f{x_2^2}{2} + k \f{\br{x_2 - x_1}^2}{2}}} \]
+And the position contribution is also a Gaussian integral, just slightly modified. The solution is left as an exercise to the reader. \\
+
+\textbf{Remark:} As can be seen in this two examples, even simple problems can lead to complicated integrals. \\
+
+\subsubsection{Rigid Polar Rotator} Consider a dilute gas of $\text{H}_2\text{C}$ or $\text{CO}$ with electric dipole moment $\vec{\mu}$ in an electric field $\vE$. What is the partition function $Z\br{T}$? One would suspect that is \textit{should} on the general form,
+\[ Z = \idotsint_{\w} e^{-\be H\br{\bc{q,p}}} \bs{ \cdots } \]
+What is the Hamiltonian? Since the gas is \textit{dilute}, it can be approximated that there are no interactions between the particles. As such, the partition function and Hamiltonian can be determined for a single particle $i$ and then combined together appropriately,
+\[ Z = \f{\br{Z_i}^N}{N!} \qquad H = \sum_{i=1}^{n} H_i \]
+We will hence forth consider looking at a single particle,
+\[ H_i \br{p,q} = \f{\abs{\vp}^2}{2m} - \vec{\mu} \cdot \vE \]
 Since $V = - \vec{\mu} \cdot \vE$. For convenience let use take the electric field to be pointing in the $\hat{z}$ direction such that $\vE = E \hz$. Therefore,
-\[ H \br{p,q} = \f{\abs{\vp}^2}{2m} - \mu E \cos \te \]
-Where $\te$ is the angle between $\mu$ and the $+\hz$ axis. Taking $h = 1$ for now,
-\[ Z_N = \f{\br{Z_1}^N}{N!} \]
-Where $Z_1$ is given by,
-\[ Z_1 = \int e^{-\be H\br{q,p}} \dif q \dif p \]
+\[ H_i \br{p,q} = \f{\abs{\vp}^2}{2m} - \mu E \cos \te \]
+Where $\te$ is the angle between $\mu$ and the $+\hz$ axis. The partition function for an individual molecule is given by,
+\[ Z_i = \f{1}{h^5}\int e^{-\be H\br{q,p}} \dif q \dif p \]
 Taking the generalized position $q$ to be $\te$ (as is common in many textbooks),
-\[ Z_1 \stackrel{?}{=} \int e^{-\be H\br{\te,p}} \dif \te \dif p \dif p_\te \]
+\[ Z_i \stackrel{?}{=} \f{1}{h^5}\int e^{-\be H\br{\te,p}} \dif \te \dif p \dif p_\te \]
 Notice the $\dif p_\te$ \textbf{needs} to be there because for every generalized coordinate has corresponding momentum $p_\te$. More properly there is dependence on many generalized coordinates. The position of the molecule is given by $x,y,z$ and the generalized linear momentum $p_x, p_y, p_z$. Also the orientation of the molecule is characterized by $\te, \phi$ and generalized angular momentum $p_\te, p_\phi$. There are 10 coordinates total that the Hamiltonian depends which makes the partition function,
-\[ Z = \underbrace{\iiiint}_{4} \dif p_\te \dif p_\phi \dif \te \dif \phi \underbrace{\idotsint}_{6} \dif x \dif y \dif z \dif p_x \dif p_y \dif p_z e^{-\be H \br{\te, \phi, p_\te, p_\phi, x, y, z, p_x, p_y, p_z}} \]
+\[ Z_i = \underbrace{\iiiint}_{4} \dif p_\te \dif p_\phi \dif \te \dif \phi \underbrace{\idotsint}_{6} \dif x \dif y \dif z \dif p_x \dif p_y \dif p_z e^{-\be H \br{\te, \phi, p_\te, p_\phi, x, y, z, p_x, p_y, p_z}} \]
 Note, this integral is not decoupled. It is just written this way to illustrate the separate dependence on each of the sets of terms. The Hamiltonian has linear components and rotational components characterized by,
 \[ H = \f{\abs{\vp}^2}{2m} - \mu E \cos \te + H\tsb{rot} \]
-Where the rotation terms are given by,
+Noting that is still for a single molecule. The rotation terms are given by,
 \[ H\tsb{rot} = \f{m}{2}\br{\underbrace{\ell \dot{\te}}_{v_\te}}^2 + \f{m}{2} \br{\underbrace{\ell \sin \te \dot{\phi}}_{v_\phi}}^2 \]
 As an exercise, make sure these quantities have units of energy. An alternative way of writing this,
 \[ H\tsb{rot} = \f{p_\te^2}{2m \ell^2} + \f{p_\phi^2}{2m \ell^2 \sin^2 \te} \]
-The total Hamiltonian can be written,
+The total Hamiltonian can be written (still for a single molecule),
 \[ H = \f{1}{2m}\br{p_x^2 + p_y^2 + p_z^2} + \bc{\f{p_\te^2}{2m \ell^2} + \f{p_\phi^2}{2m \ell^2 \sin^2 \te}} - \mu E \cos \te \]
+As such for a single molecule integration over $ $,
+\[ Z = \f{1}{h^5}\br{2\pi m k_B T}^{3/2} V \times \bc{\cdots} \]
+The other six integrals are given by,
+\[ \int_{-\inf}^{\inf} e^{-\f{\be p_\te^2}{2mr^2}} \dif p_\te = \br{2m\pi r^2 k_B T}^{1/2} \]
+\[ \int_{-\inf}^{\inf} e^{-\f{\be p_\phi^2}{2mr^2\sin^2 \te}}  \dif p_\phi = \br{2m\pi r^2 k_B T \sin^2 \te}^{1/2} \]
+Note that the generated $\sin \te$ term is important here.
+\[ \int_{0}^{2\pi} \dif \phi = 2\pi \]
+\[ \int_{0}^{\pi} \dif \te \sin \te e^{-\be\br{-\mu E \cos \te}} = ? \]
+The canonical partition function is reduced to,
+\[ Z = \f{1}{h} V \br{2\pi m k_B T}^{3/2} \times \bs{\br{2m \pi r^2 k_B T}^{1/2}}^2 2 \pi \int_{0}^{\pi} \sin \te e^{\be \mu E \cos \te} \dif \te \]
+The last integral can be determined using the substitution $x = \cos \te$ and $\dif x = - \sin \te \dif \te$,
+\[ \int_{0}^{\pi} \sin \te e^{\be \mu E \cos \te} \dif \te = \int_{-1}^{1} e^{\be \mu E x} \dif x = \f{1}{\be \mu E} \sinh \br{\be \mu E} \]
+Thus,
+\[ Z = Z\tsb{trans} \times Z\tsb{rot} \times  \f{1}{\be \mu E} \sinh \br{\be \mu E} \]
+Now that $Z$ in known, we can compute all thermodynamic properties of the system by taking partial derivatives of $Z$.\\
+
+Instead of doing this, let us determine the average polarization of the gas in the $z$ direction $\ba{\mu^z}$.
+\[ \ba{\mu^z} = \ba{\mu \cos \te} = \f{\int_{0}^{2\pi} \dif \phi \int_{0}^{\pi} \mu\sin \te  \cos \te e^{\be \mu E \cos \te} \dif \te}{\int_{0}^{2\pi} \dif \phi \int_{0}^{\pi} \sin \te e^{\be \mu E \cos \te}
+\dif \te} \]
+Alternatively but completely equivalently this fraction can be reformulated as a derivative,
+\[ \ba{\mu^z} = \f{1}{\be}\f{1}{Z} \der{Z}{E} = \f{1}{\be}\pder{}{E} \ln Z  \]
+Evidently, this is more tractable that computing an integral. Therefore,
+\[ \ln Z = \ln \br{\sinh \br{\be \mu E}} - \ln \br{\be \mu E} + \text{const} \]
+Which yields derivatives,
+\[ \pder{}{E}\ln Z = \f{\mu \be}{\sinh\br{\be \mu E}}\cosh\br{\be \mu E} - \f{\be \mu}{\be \mu E} \]
+
+\[ \ba{\mu^z} = \f{\mu\cosh\br{\be \mu E}}{\sinh\br{\be \mu E}} - \f{\mu}{\be \mu E} \]
+\[ \ba{\mu^z} = \mu\bc{\coth\br{\be \mu E} - \f{1}{\be \mu E}} \]
+\[ \f{\ba{\mu^z}}{\mu} = \coth\br{ \f{\mu E}{k_B T}} - \f{k_B T}{\mu E} \]
+
+\begin{center}
+\begin{tikzpicture}
+        % Draw axes
+        \coordinate (nya) at (0, 0);
+        \coordinate (pya) at (0, 4);
+        \coordinate (nxa) at (0, 0);
+        \coordinate (pxa) at (5, 0);
+        \node [above] (lpya) at (pya) {$\f{\ba{\mu^z}}{\mu}$};
+        \node [right] (lpxa) at (pxa) {$\f{k_BT}{\mu E}$};
+        \draw [->, thick] (nya) -- (pya);
+        \draw [->, thick] (nxa) -- (pxa);
+        \draw[domain=0.001:5,smooth,thick, variable=\x,red]  plot ({\x},{3*((1 + e^(-2/\x))/(1 - e^(-2/\x)) - \x)});
+        \node [left] (t0) at (0,3) {$1$};
+\end{tikzpicture}
+\end{center}
+
+Typically, $\f{\mu E}{k_B} \approx \SI{0.5}{\milli\K}$. \\
+
+\textbf{Response Function}: The response function is typically defined,
+\[ \chi_E = \pder{\ba{\mu^z}}{E} = \f{\mu}{ k_B T} \]
+This is known as the curie behavior $\f{\mu}{ k_B T}$.
 \end{document}
