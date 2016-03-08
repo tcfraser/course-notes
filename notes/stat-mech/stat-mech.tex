@@ -2285,10 +2285,10 @@ Where $V^N$ is the physical volume to the power of $N$ and it \textbf{not} the p
 From this we can look at the Helmholtz free energy,
 \[ A = - k_B T \ln Z_N \]
 And one can recover,
-\[ PN= V k_B T \]
+\[ PV = N k_B T \]
 As well as the Sackur-Tetrode equation is $S$ is computed.\\
 
-What about the combination of $N_1$ particles with mass $m_1$ and $N_2$ particles with mass $m_2$ where $m_2 \neq m_1$. This derivation is modified in such a way that,
+What about a combination of $N_1$ particles with mass $m_1$ and $N_2$ particles with mass $m_2$ where $m_2 \neq m_1$. This derivation is modified in such a way that,
 \[ \iint e^{-ax^2 - by^2}\dx\dy = \int e^{-ax^2}\dx\int e^{-ay^2}\dy = \sqrt{\f{\pi}{a}}\sqrt{\f{\pi}{b}}\]
 The partition function of two groups noninteracting particles is multiplicative.
 \[ Z = Z_1 \times Z_2 \]
@@ -2308,9 +2308,9 @@ Where $Z_1$ is given by,
 \[ Z_1 = \int e^{-\be H\br{q,p}} \dif q \dif p \]
 Taking the generalized position $q$ to be $\te$ (as is common in many textbooks),
 \[ Z_1 \stackrel{?}{=} \int e^{-\be H\br{\te,p}} \dif \te \dif p \dif p_\te \]
-Notice the $\dif p_\te$ \textbf{needs} to be there because for every generalized coordinate has corresponding momentum $p_\te$. More properly there is dependence on many generalized coordinates. The position of the molecule is given by $x,y,z$ and the generalized linear momentum $p_x, p_y, p_z$. Also the orientation of the molecule is characterized by $\te, \phi$ and generalized angular momentum $p_\te, p_\phi$. There are 10 coordinates totla that the Hamiltonian depends which makes the partition function,
+Notice the $\dif p_\te$ \textbf{needs} to be there because for every generalized coordinate has corresponding momentum $p_\te$. More properly there is dependence on many generalized coordinates. The position of the molecule is given by $x,y,z$ and the generalized linear momentum $p_x, p_y, p_z$. Also the orientation of the molecule is characterized by $\te, \phi$ and generalized angular momentum $p_\te, p_\phi$. There are 10 coordinates total that the Hamiltonian depends which makes the partition function,
 \[ Z = \underbrace{\iiiint}_{4} \dif p_\te \dif p_\phi \dif \te \dif \phi \underbrace{\iiint\iiint}_{6} \dif x \dif y \dif z \dif p_x \dif p_y \dif p_z e^{-\be H \br{\te, \phi, p_\te, p_\phi, x, y, z, p_x, p_y, p_z}} \]
-The Hamiltonian has linear components and rotational components characterized by,
+Note, this integral is not decoupled. It is just written this way to illustrate the separate dependence on each of the sets of terms. The Hamiltonian has linear components and rotational components characterized by,
 \[ H = \f{\abs{\vp}^2}{2m} - \mu E \cos \te + H\tsb{rot} \]
 Where the rotation terms are given by,
 \[ H\tsb{rot} = \f{m}{2}\br{\underbrace{\ell \dot{\te}}_{v_\te}}^2 + \f{m}{2} \br{\underbrace{\ell \sin \te \dot{\phi}}_{v_\phi}}^2 \]
