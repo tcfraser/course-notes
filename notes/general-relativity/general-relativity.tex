@@ -2553,7 +2553,8 @@ As a physicist, a non-linear equation is difficult to solve. We will linearize t
 
 Additionally, symmetries are going to greatly simplify the equations. These symmetries will be exposed using killing vectors. \\
 
-\textbf{Example}: For example, as in Newtonian gravity we can consider a system that has spherical symmetry and time translational invariance. The system will have mass $M$. First we will consider the approach from a Newtonian perspective and then compare and contrast with the metric approach. Inside the system,
+\subsection{Schwarzschild Metric}
+For example, as in Newtonian gravity we can consider a system that has spherical symmetry and time translational invariance. The system will have mass $M$. First we will consider the approach from a Newtonian perspective and then compare and contrast with the metric approach. Inside the system,
 \[ \De \phi = 4 \pi G \rho \]
 Whereas outside the system, since there is no mass,
 \[ \De \phi = 0  \]
@@ -2561,8 +2562,72 @@ Use spherical coordinates,
 \[ \De \phi = \der{}{r}\br{r^2 \der{}{r} \phi \br{r}} \]
 Outside the system, $\phi$ must be like in general with $A,B \in \R$ constants with $A$ having dimension length,
 \[ \phi\br{r} = - \f{A}{r} + B \]
-The condition of $r \ar \inf$ demanding that $\lim_{r\ar\inf}\phi(r) = 0$ enforces $B = 0$. We also want to experience an attractive force where $A > 0$. Evidently, we should expect the potential $\phi$ to depend on $M$ . In order to give $A$ dimensions of length, we will need to multiply by $G$.
-
+The condition at $r \ar \inf$ demanding that $\lim_{r\ar\inf}\phi(r) = 0$ enforces $B = 0$. We also want to experience an attractive force where $A > 0$. Evidently, we should expect the potential $\phi$ to depend on $M$ . In order to give $A$ dimensions of length, we will need to multiply by $G$.
 \[ \phi = - \f{GM}{r} \]
+Notice that we didn't explicitly make use of the time translational invariance here.\\
+
+Now let us attempt this problem from the general relativity approach. We generalize $\phi \ar g_{\al\be}$ and $g_{\al\be}$ should be spherically symmetric. The time translational invariance gives,
+\[ g_{\al\be}\br{r, \te, \phi, t} \ar g_{\al\be}\br{r, \te, \phi} \]
+So what is the most general metric we can write with these restrictions,
+\[  g_{\mu\nu} \dif x^\mu \dif x^\nu = - e^{2\al\br{r}} \dif t^2 + e^{2\be\br{r}} \dif r^2 + r^2 \dif\Om^2\]
+Where $\dif \Om^2 = \dif \te^2 + \sin^2 \te \dif \phi^2$ is the angular element and $\al\br{r},\be\br{r}$ are functions of $r$ and $r$ alone. Note the exponentials are a manifestation of the fact that the metric should be \textit{Lorentzian} (signature $\br{-,+,+,+}$) which enforces a strictly negative coefficient in front of $\dif t^2$. Comparing to the Minkowski metric,
+\[ \eta_{\mu\nu} \dif x^\mu  \dif x^\nu = -\dif t^2 + \dif r^2 + r^2 \dif \Om^2\]
+Note that both of these metrics are diagonal. What about terms $\dif t \dif x^\mu$? These can not be present due to the time invariance. \\
+
+Outside the system with no sources, Einstein's equation becomes $G_{\mu\nu} = 0$. Therefore,
+\[ R_{\mu\nu} - \f12 R g_{\mu\nu} = 0 \]
+From here, one can calculate $R_{\mu\nu}$ and $R$ from the definition of the metric. Then solving the resultant differential equations to get $\al\br{r}$ and $\be\br{r}$. For example,
+\[ R_{tt} = e^{2\br{\al-\be}}\br{\di_r^2 \al + \br{\di_r \al}^2 - \di_r \al \di_r \be + \f{2}{r} \di_r \al} \]
+The rest of the terms are similarly messy. Solving these equations gives,
+\[ \al = - \be \qquad \di_r \br{r e^{2\al}} = 1 \]
+Therefore with $R_s$ a constant to be determined by boundary conditions,
+\[ e^{2\al} = 1 - \f{R_s}{r} \]
+The metric becomes,
+\[  g_{\mu\nu} \dif x^\mu \dif x^\nu = - \br{1 - \f{R_s}{r}} \dif t^2 + \br{1 - \f{R_s}{r}}^{-1} \dif r^2 + r^2 \dif\Om^2\]
+This metric is known as the \textbf{Schwarzschild metric}. \\
+
+\textbf{Binkhoff Theorem}:\\
+The Schwarzschild metric (other that Minkowski) is the \textit{unique} vacuum solution with \textit{spherical symmetry}. \\
+
+Now let use examine the case of $\f{R_s}{r} \ll 1$ the distance from the source is very large.
+
+\[ \br{1-\f{R_s}{r}}^{-1} \approx \br{1 + \f{R_s}{r}} \]
+
+Then the far field metric is,
+
+\[ g_{\mu\nu} \dif x^\mu \dif x^\nu  \approx -\br{1-\f{R_s}{r}} \dif t^2 + \br{1+\f{R_s}{r}} \dif r^2 + r^2 \dif \Om^2 \]
+This resembles the \textit{weak field metric} discussed earlier. If we set $\phi\br{r} = -\f{1}{2}\f{R_s}{r}$,
+\[ g_{\mu\nu} \dif x^\mu \dif x^\nu  \approx -\br{1+2\phi} \dif t^2 + \br{1-2\phi} \dif r^2 + r^2 \dif \Om^2  = \eta_{\mu\nu} \dif x^\mu \dif x^\nu + h_{\mu\nu} \dif x^\mu \dif x^\nu\]
+With $h_{\al\be} = - \phi\br{r} \de_{\al\be}$. From this we can identify the value of $R_s$,
+\[ \phi\br{r} = -\f12 \f{R_s}{r} = - \f{GM}{r} \implies R_s = 2GM \]
+For the sun, $R_s = \SI{3}{\km}$ and for the earth, $R_s - \SI{8.7}{\mm}$. In both cases, these are much less than the radius of the object $R_s \ll R$. As such, the earth and the sun are not black holes. \\
+
+If we are very far away, $r \gg 1$, the Schwarzschild metric in the limit becomes the weak-field metric and even further becomes the Minkowski metric. As such we say that the Schwarzschild metric is \textbf{asymptotically flat}. What about the case of $r = R_s$? Here there is a \textit{coordinate singularity}, which happens to be an event horizon. Note that this is not a true singularity in the sense that is coordinate dependent. The true singularity lives at $r=0$. We will return to this later.\\
+
+\textbf{Example}: Consider a system that generates a Schwarzschild metric. We can study this system's physics. First notice that the Schwarzschild metric is time independent. Secondly, the Schwarzschild metric is a very particular solution to Einstein's equations. Near large spherical objects like the sun, the Schwarzschild metric is a good approximation (ignoring the effects of other bodies in the universe, as well as feedback loops between two bodies), but in general the metric of the universe is much more complicated.
+
+\begin{itemize}
+    \item What is the redshift of this object/system?
+    \item What are the orbits of particles (modeling planets)?
+    \item What is the trajectory of light in this metric? What is the bending of light?
+    \item Geodesic precision?
+\end{itemize}
+
+Each of these bits of physics deals with geodesics. The last thing to consider is the manifestation of \textbf{blackholes}.
+
+\subsection{Red Shift}
+
+In order to compute red shift it is convenient to utilize \textbf{killing vectors}. Since the Schwarzschild metric does not depend on time,
+\[ \di_t g_{\al\be} = 0 \]
+As such, we have a time killing vector $\xi^\mu$,
+\[ \xi_\mu = \br{1,0,0,0} \]
+In the rest frame of the observer we have,
+\[ V^\al = \br{V^0, 0, 0, 0} \]
+Since in the rest frame of the observer, the observer is a geodesic, we have the normalization condition, $V^\al g_{\al\be} V^\be = -1$.
+\[ V^0 = \pm \br{1 - \f{R_s}{r}}^{-1/2} \]
+We will take the positive solution since the particle is moving forward in time. Notice now that $V^\al$ is collinear with $\xi^\al$,
+\[ V^\al = \br{1- \f{R_s}{r}}^{-1/2} \xi^\al \]
+\[\]
+
 
 \end{document}
