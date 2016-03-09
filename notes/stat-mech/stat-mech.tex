@@ -2069,19 +2069,19 @@ If the system is in state $j$ then the number of microstates available to the re
 \[ \De E = E_i - E_j \]
 
 We can then ask the question: What is the ratio of probability that the system is in microstate $j$ vs. microstate $i$.
-\[ \f{P_j}{P_i} = \f{\Om^{(s)} \times \Om^{(r)}\br{E^{(r)} - \De E}}{\Om^{(s)} \times \Om^{(r)}\br{E^{(r)}}} \]
+\[ \f{P_i}{P_j} = \f{\Om^{(s)} \times \Om^{(r)}\br{E^{(r)} - \De E}}{\Om^{(s)} \times \Om^{(r)}\br{E^{(r)}}} \]
 But since we are considering the system to be in a particular microstate $\Om^{(s)} = 1$,
-\[ \f{P_j}{P_i} = \f{\Om^{(r)}\br{E^{(r)} - \De E}}{\Om^{(r)}\br{E^{(r)}}} \eq \label{eq:ohmohm}\]
+\[ \f{P_i}{P_j} = \f{\Om^{(r)}\br{E^{(r)} - \De E}}{\Om^{(r)}\br{E^{(r)}}} \eq \label{eq:ohmohm}\]
 Evidently, we can related the number of microstates available to the reservoir to the entropy of the reservoir using $S^{(r)} = k_B \ln \Om^{(r)}$. Therefore we can rewrite \eqref{eq:ohmohm} using logarithms,
-\[ \f{P_j}{P_i} = \exp\bc{\ln \br{\Om^{(r)}\br{E^{(r)} - \De E}} - \ln \br{\Om^{(r)}\br{E^{(r)}}}} \]
+\[ \f{P_i}{P_j} = \exp\bc{\ln \br{\Om^{(r)}\br{E^{(r)} - \De E}} - \ln \br{\Om^{(r)}\br{E^{(r)}}}} \]
 Which can be written,
-\[ \f{P_j}{P_i} = \exp\bc{\f{S^{(r)}\br{E^{(r)} - \De E} - S^{(r)}\br{E^{(r)}}}{k_B}} \]
+\[ \f{P_i}{P_j} = \exp\bc{\f{S^{(r)}\br{E^{(r)} - \De E} - S^{(r)}\br{E^{(r)}}}{k_B}} \]
 However since $E^{(r)} \gg E^{(s)}$, then $E^{(r)} \gg \De E^{(s)}$. A Taylor series expansion gives,
 \[ S^{(r)}\br{E^{(r)} - \De E} - S^{(r)}\br{E^{(r)}} = - \De E \pder{S^{(r)}}{E^{(r)}} \]
 But thermodynamically,
 \[ \f{1}{T^{(r)}} = \pder{S^{(r)}}{E^{(r)}}\]
 Therefore we have the familiar relation (using the fact that in equilibrium $T = T^{(r)} = T^{(s)}$),
-\[ \f{P_j}{P_i} = \exp\bc{-\f{\De E}{k_B T}} \]
+\[ \f{P_i}{P_j} = \exp\bc{-\f{\De E}{k_B T}} \]
 Or for individual probabilities,
 \[ P_i \propto \exp\bc{-\f{E_i}{k_B T}} \eq \label{eq:eoverkbt}\]
 The proportionality sign `$\propto$' is present because this relationship is still missing in general a normalization factor.
