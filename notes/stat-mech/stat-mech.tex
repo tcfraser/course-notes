@@ -2306,9 +2306,9 @@ But it is common that $H\br{p,q} = H\br{p}$ whenever the potential energy is zer
 \[ Z = \f{V^{N}}{h^{3N} N!} \int \dif^{3N}p e^{-\be \br{\f{p_1^2}{2m} + \f{p_2^2}{2m} + \cdots + \f{p_{3N}^2}{2m}}} \]
 \[ Z = \f{V^{N}}{h^{3N} N!} \br{2m\pi k_B T}^{3N/2} \]
 
-\subsection{Examples}
+\section{Examples}
 
-\subsubsection{Two Masses on Springs}
+\subsection{Two Masses on Springs}
 Consider a system of two masses $m_1$ and $m_2$ connected by springs to each other and a wall along a linear 1d line. Therefore each mass can only move in along the $x$-axis. If the spring constants are $c_1$, $c_2$ and $k$ with $k$ being between the two masses with $x_1$ being the position of the first mass and $x_2$ being the position of the second mass.
 
 \[ H = \br{\f{p_1^2}{2m_1} + \f{p_2^2}{2m_2}} + \br{c_1 \f{x_1^2}{2} + c_2 \f{x_2^2}{2} + k \f{\br{x_2 - x_1}^2}{2}} \]
@@ -2322,7 +2322,7 @@ And the position contribution is also a Gaussian integral, just slightly modifie
 
 \textbf{Remark:} As can be seen in this two examples, even simple problems can lead to complicated integrals. \\
 
-\subsubsection{Rigid Polar Rotator} Consider a dilute gas of $\text{H}_2\text{C}$ or $\text{CO}$ with electric dipole moment $\vec{\mu}$ in an electric field $\vE$. What is the partition function $Z\br{T}$? One would suspect that is \textit{should} on the general form,
+\subsection{Rigid Polar Rotator} Consider a dilute gas of $\text{H}_2\text{C}$ or $\text{CO}$ with electric dipole moment $\vec{\mu}$ in an electric field $\vE$. What is the partition function $Z\br{T}$? One would suspect that is \textit{should} on the general form,
 \[ Z = \idotsint_{\w} e^{-\be H\br{\bc{q,p}}} \bs{ \cdots } \]
 What is the Hamiltonian? Since the gas is \textit{dilute}, it can be approximated that there are no interactions between the particles. As such, the partition function and Hamiltonian can be determined for a single particle $i$ and then combined together appropriately,
 \[ Z = \f{\br{Z_i}^N}{N!} \qquad H = \sum_{i=1}^{n} H_i \]
@@ -2395,4 +2395,107 @@ Typically, $\f{\mu E}{k_B} \approx \SI{0.5}{\milli\K}$. \\
 \textbf{Response Function}: The response function is typically defined,
 \[ \chi_E = \pder{\ba{\mu^z}}{E} = \f{\mu}{ k_B T} \]
 This is known as the curie behavior $\f{\mu}{ k_B T}$.
+
+\subsection{Polarizable Molecule}
+
+Consider a polarizable molecule with uni-axial direction $\hn$. The molecule has electric dipole $\vec{\mu}_E$ with makes the Hamiltonian the interaction it has with an electric field $\vE$,
+\[ H = - \vec{\mu}_E \cdot \vE \]
+Similarly to above, the position of the molecule is characterized by $x,y,z$ and its orientation is characterized by $\te,\phi$ through $\hn$. The dipole is induced by the electric field, and points in the direction of $\vn$.
+\[ \vec{\mu}_e \propto \br{\vE \cdot \hn} \hn \]
+ More explicitly using the polarizability $\al$,
+\[ H = - \al \br{\vE \cdot \hn} \hn \cdot \vE = - \al \br{\vE \cdot \hn}^2 = -\al \vE \cdot \bs{\hn \hn} \cdot \vE \]
+Where the term $\bs{\hn\hn}$ is a direct vector product or a rank two tensor (sometimes called dyadic).
+\[ \br{\hn\hn} = \mtrx{n_x & n_y & n_z}\mtrx{n_x \\ n_y \\ n_z} = \mtrx{n_xn_x & n_xn_y & n_xn_z \\n_yn_x & n_yn_y & n_zn_z \\n_zn_x & n_zn_y & n_zn_z} \]
+Taking the angle between $\hn$ and $\vE$ to be $\te$, the Hamiltonian can be conveniently written
+\[ H = - \al E^2 \cos^2 \te = - \ti{\al} E^2 \br{\f32\cos^2 \te - \f12} \]
+Where $\ti{\al} = \f23 \al$. Which gives,
+\[ \ba{\cos^2 \te} = \intl_{0}^{\pi} \cos^2 \te \sin \te \dif \te \dif \phi = 4\pi \]
+Recognize that the $\br{\f32 \cos^2 \te - \f12}$ term is the second Legendre polynomial $P_{20} \sim Y_{lm}\br{\te, \phi}; l=1,m=0$.
+The lesson here is that even for simple systems such as this, the mathematics can become complicated quite quickly. Also consider an electric quadrapole consider a charge distribution such as in $\text{N}_2$,
+\[  \textbf{+} \quad \textbf{-} \quad \textbf{-} \quad \textbf{+} \]
+Where the positive charges represent the nuclei each nitrogen, and the negative charges are the electrons.What does this couple with? This would also involve spherical harmonics. Moving back to our dipole, let $Q$ be the $\te$ dependence on $H$,
+\[ Q = \f32 \cos^2 \te - \f12 \]
+$Q$ acts as the effective degree of freedom of this Hamiltonian. The average energy can be determined by knowing the expectation of $Q$,
+\[ \ba{H} = - \al E^2 \ba{Q} \]
+\[ \ba{Q} = \f{1}{Z}\int_{0}^{2\pi} \dif \phi \int_{0}^{\pi} Q\br{\te}\sin \te \dif \te e^{-\be \bs{-\al E^2 \br{\f32 \cos^2\te - \f12}}} \]
+All contributions to the partition function are identical to the magnetic dipole case done previously except for the angular contribution
+\[ Z_{\te,\phi} = \int_{0}^{2\pi} \dif \phi \int_{0}^{\pi} \sin \te \dif \te e^{-\be \bs{-\al E^2 \br{\f32 \cos^2\te - \f12}}} \]
+\[ Z_{\te,\phi} = 2\pi e^{\be \al E^2 / 2} \int_{0}^{\pi} \sin \te \dif \te e^{\be \al E^2 \f32 \cos^2\te} \]
+Again making the substitution $x = \cos \te$,
+\[ Z_{\te,\phi} = 2\pi e^{\be \al E^2 / 2} \int_{-1}^{1} e^{g x^2} \dif x \]
+Where $g = \f32 \al E^2 \be$. The remaining integral is \textbf{not} a Gaussian integral. It is known as a \textbf{Dawson integral}.
+\[ D\br{g} = \int_{-1}^{1} e^{g x^2} \dif x \]
+Now that $Z$ is known, all of thermodynamics follows by performing derivatives on $\ln Z$. Note that $D\br{g}$ can't be computed analytically, but the derivatives with respect to temperature and related quantities modify the integrand of $D\br{g}$ to where it \textit{might} be computable. \\
+
+As an exercise, calculate $\ba{Q}$ in the limit of large temperature. At high temperature, $\be$ and thus $g$ is very small. \textit{Hint}: Taylor series expand out $D\br{p}$ and integrate term by term to desired order.
+
+\subsection{Permanent Electric Dipole}
+
+Consider a permanent electric dipole with Hamiltonian composed of the coupling with the electric field and the rotation kinetic energies,
+\[ H = H\tsb{rot} - \vec{\mu} \cdot \vE \]
+This dipole molecule will be considered a rigid rotator with moment of inertia $I$. As before, consider the molecule $\text{N}_2$ as an example molecule.
+\[ H = \f{\hbar^2 \hat{L}^2}{2 I} - \mu E \cos \te \]
+Where $\hat{L}$ is the angular momentum operator. Noting that the two components of the Hamiltonian here do not commute. This makes solving the equations of motion difficult because it requires a decoupling through diagonalization of the ODEs.
+\[ \hat{L} \sim \pder{}{\te} \qquad \cos \te \sim 1 - \f{\te^2}{2} \]
+
+For a free rotor,
+\[ H\tsb{rot} \Psi = E \Psi \]
+Where $\Psi \sim Y_{lm}\br{\te, \phi}$ the eigenfunctions are spherical harmonics. $l$ in this case is quantized $l = 0, 1, 2,\ldots$. The eigenvalues or eigenenergies are determined by $l$ alone,
+\[ E_l = \f{\hbar^2}{2I}l\br{l+1} \qquad l = 0,1,2,\cdots \]
+Where the $m$ quantum number is bound by $l$,
+\[ m = 0, \pm 1, \pm 2, \ldots \pm l \]
+As such, there are $\br{2l+1}$ states that have energy $E_l$. Summing over the states,
+\[ Z = \sum_{\text{states}} e^{-\be \br{\f{\hbar^2}{2I}l\br{l+1}}} \]
+Or summing over the energies,
+\[ Z = \sum_{l} \br{2l + 1} e^{-\be \br{\f{\hbar^2}{2I}l\br{l+1}}} \]
+Note that although decreasing the temperature of the system makes lower energy states \textit{more probable}, the number of microstates \textit{increases} as $l$ increases. These two effects are competing effects.\\
+Including the electric field introduces a \textit{Stark effect} analogous to the \textit{Ziemann effect} in magnetic fields. The energy levels of the states are modified by $f_{lm}$,
+\[ E_{lm} = \f{\hbar^2}{2I} l\br{l+1} + f_{lm}\br{E} \]
+
+This makes $Z$ way harder to compute. Operationally, everything is the same as in previous examples, but it might require more mathematics. The Stark effect in rigid rotors in found in most Quantum textbooks.
+
+\subsection{Spin in Magnetic Field}
+
+For a permanent magnetic moment in a magnetic field, the Hamiltonian is,
+\[ H = - \vec{\mu}_m \cdot \vB - g \mu_B \vJ \cdot \vB \]{
+Where $g_L$ is known as the \textbf{Landé factor}. For an electron $g_{e^-} \approx 2$. In general,
+\[ g_L = \f32 + \f{S\br{S+1} - L\br{L+1}}{2J\br{J+1}} \]
+For the magnetic field oriented on the $z$-axis $\vB = B \hz$,
+\[ H = - g_L \mu_B J^{z} B \]
+Where $J^z$ takes on values $-J, -J+1, \ldots J-1, J$. $J^z$ is known as the magnetic quantum number $m_J$.
+\[ Z = \sum_{m_J = -J}^{m_J = J} e^{\be g_L \mu_B m_J B} \]
+As a trick, let $x = e^{-\be g_L \mu_B B}$
+\[ Z = \sum_{m = -J}^{m = J} x^{-m} \]
+This is just the geometric series (slightly modified) with analytic sum,
+\[ \sum_{m = -J}^{J} x^{-m} = \f{x^{-J}\br{x^{2J+1} + 1}}{x-1} \]
+Which gives the partition function the form
+\[ Z = \f{\sinh\br{\br{1 + \f{1}{2J}}U}}{\sinh\br{\f{U}{2J}}} \]
+Where the term $U$ is just $U=\be g_L\mu_B B$. For $J = \f12$,
+\[ Z_{J=\f12} = 2 \cosh\br{U} \]
+\subsection{Two Level Systems}
+Consider a general two level system with two possible energies $0$ and $\vep$ with corresponding degeneracies $g_0$ and $g_\vep$.
+\[ Z = \sum_{\text{states}} e^{-\be E\tsb{states}} = \sum_{\text{energies}} g e^{-\be E} \]
+For two levels,
+\[ Z = g_0 e^{-\be \cdot 0} + g_\vep e^{-\be \vep} \]
+As an exercise, one can show that the specific heat has behavior,
+\[ \f{C}{k_B} \br{\be E} = f\br{\f{g_\vep}{g_0}, e^{-\be \vep}} \]
+Specific heat always has the general plot with increasing temperature,
+\begin{center}
+\begin{tikzpicture}
+        % Draw axes
+        \coordinate (nya) at (0, 0);
+        \coordinate (pya) at (0, 4);
+        \coordinate (nxa) at (0, 0);
+        \coordinate (pxa) at (5, 0);
+        \node [above] (lpya) at (pya) {$C$};
+        \node [right] (lpxa) at (pxa) {$\f{k_BT}{\vep}$};
+        \draw [->, thick] (nya) -- (pya);
+        \draw [->, thick] (nxa) -- (pxa);
+        \draw[domain=0.01:5,smooth,thick, variable=\x,red]  plot ({\x},{5*(1)/(\x^2) * (e^(-1/\x))/(1+e^(-1/\x))^2});
+\end{tikzpicture}
+\end{center}
+This is known as a \textbf{Schottky anomaly}. For low temperature,
+\[ C \sim e^{-\be/T} \]
+and for high temperatures,
+\[ C \sim \f{1}{T^2} \]
 \end{document}
