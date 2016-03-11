@@ -2622,12 +2622,65 @@ In order to compute red shift it is convenient to utilize \textbf{killing vector
 As such, we have a time killing vector $\xi^\mu$,
 \[ \xi_\mu = \br{1,0,0,0} \]
 In the rest frame of the observer we have,
-\[ V^\al = \br{V^0, 0, 0, 0} \]
-Since in the rest frame of the observer, the observer is a geodesic, we have the normalization condition, $V^\al g_{\al\be} V^\be = -1$.
-\[ V^0 = \pm \br{1 - \f{R_s}{r}}^{-1/2} \]
+\[ u^\al = \br{u^0, 0, 0, 0} \]
+Since in the rest frame of the observer, the observer is a geodesic, we have the normalization condition, $u^\al g_{\al\be} u^\be = -1$.
+\[ u^0 = \pm \br{1 - \f{R_s}{r}}^{-1/2} \]
 We will take the positive solution since the particle is moving forward in time. Notice now that $V^\al$ is collinear with $\xi^\al$,
-\[ V^\al = \br{1- \f{R_s}{r}}^{-1/2} \xi^\al \]
-\[\]
+\[ u^\al = \br{1- \f{R_s}{r}}^{-1/2} \xi^\al \]
+The energy of a photon with momentum vector $p^\al$ relative to observer with tangent $u^\al$ is given by the scalar product within the metric,
+\[ E = u^\al p_\al \]
+Naturally, in the frame of the observer, $u^\al$ acts as a basis for the time-like vectors. This is just the projection of the photon momentum on the observer.\\
 
+So what is the red shift of the photon as it moves from radius $r_1$ to $r_2$? Since $\xi^\al$ is a killing vector, $\xi^\al p_\al$ is conserved on the photon's world line.
+\[ \del_{V}\br{\xi^\al p_\al} = \del_{V}\br{\xi^\al} p_\al + \xi^\al \underbrace{\del_{V}\br{p_\al}}_{=0} \]
+Where $\del_{V}\br{p_\al}$ is zero because it is a geodesic. The remaining term is,
+\[ \del_{V}\br{\xi^\al p_\al} = V^\ga \del_{\ga}\br{\xi^\al} p_\al = V^\ga \del_{\ga}\br{\xi_\al} g^{\al\be} p_\be = V^\ga V^\be \del_{\ga}\br{\xi_\al} \]
+But by the killing equation,
+\[ \del_\ga \xi_\be + \del_\be \xi^\ga = 0 \]
+Which indicates that $\del_\ga \xi_\be$ is an antisymmetric tensor. Noting that $V^\al V^\be$ is clearly a symmetric tensor. By contracting a symmetric tensor with an antisymmetric tensor,
+\[ \del_{V}\br{\xi^\al p_\al} = 0 \]
+If $\xi^\al p_\al$ is conserved along the geodesic,
+\[ E\br{r} = u^\al p_\al = \br{1+2\phi\br{r}}^{-1/2} \xi^\al p_\al \]
+At $r=r_1$ we have,
+\[ E\br{r_1} = \br{1+2\phi\br{r_1}}^{-1/2} \xi^\al p_\al \]
+Identically for $r_2$,
+\[ E\br{r_2} = \br{1+2\phi\br{r_2}}^{-1/2} \xi^\al p_\al \]
+Since $\xi^\al p_\al$ is the same quantity at both $r_1$ and $r_2$. Taking a ratio of the energies,
+\[ \f{E_1}{E_2} = \f{\br{1+2\phi\br{r_1}}^{-1/2}}{\br{1+2\phi\br{r_2}}^{-1/2}} \]
+Performing a Taylor series in the weak field limit $\phi \ll 1$ OR equivalently $R_s \gg 1$,
+\[ \f{E_1}{E_2} \approx 1+\f{R_s}{2}\br{\f{1}{r_1} - \f{1}{r_2}} \]
+Recall that $E = hc /\lambda$. Therefore the wavelength ratio is given by,
+\[ \f{\lambda_2}{\lambda_1} \approx 1+\f{R_s}{2}\br{\f{1}{r_1} - \f{1}{r_2}} \]
+Since $r_2 > r_1$, this implies that $\lambda_2 > \lambda_1$. This effect is red shift! The photon loses energy as it climbs out of the gravitational field.
+\subsubsection{Orbits}
+Now we will focus on the trajectories of particles in the Schwarzschild metric. What we hope to recover is \textbf{perihelion precision} of orbits. The \textit{perihelion} is in closest point to the sun in the orbit, the \textit{aphelion} is the corresponding farthest point. Perihelion precision is the rotation of this point around the sun $\De \phi$. Newtonian gravity can not explain this effect and no other planets have been observed to explain this effect for Mercury's precision.\\
 
+The orbits of planets will be taken as orbits of particles,
+\[ \text{planet} = \text{particle} \]
+The orbit of a particle will be a time-like geodesic with helical spiral traces out in a spacetime diagram. The normalization for a time-like curve is,
+\[g_{\al\be}V^{\al}V^{\be} = -1\]
+Where $V^\al = \br{\dot{t},\dot{r},\dot{\te},\dot{\phi}}$. The normalization condition is explicitly,
+\[ -\br{1-\f{R_s}{r}}\dot{t}^2 + \br{1-\f{R_s}{r}}^{-1} \dot{r}^2 + r^2 \dot{\te}^2 + r^2 \sin^2 \te \dot{\phi}^2 = -1 \eq \label{eq:explicitnormalization}\]
+The geodesic equations on the other hand are more complicated,
+\[ \dot{t} + \f{R_s}{r\br{r-R_s}}\dot{r}\dot{t} = 0 \]
+\[ \ddot{r} + \cdots = 0 \note{Won't be used}\]
+\[ \der{}{\tau} \br{r^2 \dot{\te}} - r^2 \sin \te \cos \te \br{\dot{\phi}}^2 = 0 \eq \label{eq:geosm3}\]
+\[ \ddot{\phi} + \f{2}{r}\dot{\phi}\dot{r} + 2 \f{\sin\te}{\cos\te}\dot{\te}\dot{\phi} = 0 \]
+Where the factor of two in the last equation are due to the symmetric nature of the Christoffel symbols ${\Ga^\phi}_{\te\phi}$. We will make use of conserved quantities. The metric is time invariant meaning we have a time killing vector $\xi^\al = \br{1,0,0,0}$. Also, the metric is spherically symmetric. From this we should expect $3$ killing vectors. Since the metric is independent of $\phi$ one of the killing vectors is $\di_\phi$ which in components is $\xi^\al = \br{0,0,0,1}$. This $\phi$ killing vector will be denoted $R_\phi$. The other two are not as simple. Therefore along the geodesic we have conserved quantities,
+\[ E = \xi^\mu V_\mu = \xi^\mu g_{\mu\al}V^\al\]
+Where $V^\mu$ is the tangent vector of the geodesic. Up to the mass of the particle, this is just the energy as before. Using the metric explicitly,
+\[ E = \xi^0 g_{0\al}V^\al = g_00 V^0 = - \br{1 - \f{R_s}{r}}\dot{t} \eq \label{eq:esquare}\]
+The other conserved quantity will be one component of the angular momentum.
+\[ L = R_\phi^\mu V_\mu = R_\phi^\mu g_{\mu\al} V^\al = g_{\phi\phi} V^{\phi} = r^2 \sin \te \dot{\phi} \]
+In order to expose an obvious solution, $\te\br{\tau} = \f{\pi}{2}, \forall \tau$. This trivially solves \eqref{eq:geosm3}. This implies that $L = r^2 \dot{\phi}$. Focusing at the normalization condition \eqref{eq:explicitnormalization}. Multiply \eqref{eq:explicitnormalization} by $\br{1 - \f{R_s}{r}}$. The first term becomes $E^2$ by \eqref{eq:esquare}, and the other terms become $L^2 / r^2$,
+\[ - E^2 + \dot{r}^2 + \f{L^2}{r^2} \br{1 - \f{R^s}{r}} = -\br{1 - \f{R_s}{r}}\]
+Notice that this is only a differential equation in $r$. Rearranging yields,
+\[ \f{1}{2}\dot{r}^2 + V\br{r} = \mathcal{E} \]
+Where $V\br{r}$ is given by,
+\[V\br{r} = \f12 - \f12 \f{R_s}{r} + \f{L^2}{2r^2} - \f12 \f{R_sL^2}{r^3}\]
+and $\mathcal{E} = \f12 E^2$. We will now multiply this equation by $\dot{\phi}^{-2}$. After come algebra and defining $x = \f{2L^2}{R_s r}$ and differentiate with respect to $\phi$ (since $r$ will be a function of $\phi$) we get a second order differential equation,
+\[ \dder{x}{\phi} - 1 + x = \f34 \f{R_s^2}{L^2} x^2 \]
+In the Newtonian cases, this corresponding equation of motion is simpler,
+\[ \dder{x}{\phi} - 1 + x = 0 \]
+This extra term $\f34 \f{R_s^2}{L^2} x^2$ is responsible for precision of the orbits.
 \end{document}
