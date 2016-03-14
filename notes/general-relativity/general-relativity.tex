@@ -2610,7 +2610,7 @@ If we are very far away, $r \gg 1$, the Schwarzschild metric in the limit become
     \item What is the redshift of this object/system?
     \item What are the orbits of particles (modeling planets)?
     \item What is the trajectory of light in this metric? What is the bending of light?
-    \item Geodesic precision?
+    \item Geodesic precession?
 \end{itemize}
 
 Each of these bits of physics deals with geodesics. The last thing to consider is the manifestation of \textbf{blackholes}.
@@ -2652,8 +2652,9 @@ Performing a Taylor series in the weak field limit $\phi \ll 1$ OR equivalently 
 Recall that $E = hc /\lambda$. Therefore the wavelength ratio is given by,
 \[ \f{\lambda_2}{\lambda_1} \approx 1+\f{R_s}{2}\br{\f{1}{r_1} - \f{1}{r_2}} \]
 Since $r_2 > r_1$, this implies that $\lambda_2 > \lambda_1$. This effect is red shift! The photon loses energy as it climbs out of the gravitational field.
-\subsubsection{Orbits}
-Now we will focus on the trajectories of particles in the Schwarzschild metric. What we hope to recover is \textbf{perihelion precision} of orbits. The \textit{perihelion} is in closest point to the sun in the orbit, the \textit{aphelion} is the corresponding farthest point. Perihelion precision is the rotation of this point around the sun $\De \phi$. Newtonian gravity can not explain this effect and no other planets have been observed to explain this effect for Mercury's precision.\\
+
+\subsection{Orbits \& Precession}
+Now we will focus on the trajectories of particles in the Schwarzschild metric. What we hope to recover is \textbf{perihelion precession} of orbits. The \textit{perihelion} is in closest point to the sun in the orbit, the \textit{aphelion} is the corresponding farthest point. Perihelion precession is the rotation of this point around the sun $\De \phi$. Newtonian gravity can not explain this effect and no other planets have been observed to explain this effect for Mercury's precession.\\
 
 The orbits of planets will be taken as orbits of particles,
 \[ \text{planet} = \text{particle} \]
@@ -2679,8 +2680,98 @@ Notice that this is only a differential equation in $r$. Rearranging yields,
 Where $V\br{r}$ is given by,
 \[V\br{r} = \f12 - \f12 \f{R_s}{r} + \f{L^2}{2r^2} - \f12 \f{R_sL^2}{r^3}\]
 and $\mathcal{E} = \f12 E^2$. We will now multiply this equation by $\dot{\phi}^{-2}$. After come algebra and defining $x = \f{2L^2}{R_s r}$ and differentiate with respect to $\phi$ (since $r$ will be a function of $\phi$) we get a second order differential equation,
-\[ \dder{x}{\phi} - 1 + x = \f34 \f{R_s^2}{L^2} x^2 \]
+\[ \dder{x}{\phi} - 1 + x = \f34 \f{R_s^2}{L^2} x^2 \eq \label{eq:GRorbit}\]
 In the Newtonian cases, this corresponding equation of motion is simpler,
 \[ \dder{x}{\phi} - 1 + x = 0 \]
-This extra term $\f34 \f{R_s^2}{L^2} x^2$ is responsible for precision of the orbits.
+This extra term $\f34 \f{R_s^2}{L^2} x^2$ is responsible for precession of the orbits. In order to solve \eqref{eq:GRorbit}, we will first consider the homogeneous equation and then solve \eqref{eq:GRorbit} by perturbations. The solution to the homogeneous case is given by,
+\[ x = 1 + e \cos \phi \eq \label{eq:x0}\]
+Where $e$ is an undetermined constant known as the eccentricity of the ellipse. Using the definition of $r$ and $x$ gives,
+\[ \f{2L^2}{R_s r} = 1 + e \cos \phi \implies r = \f{2L^2}{R_s \br{1 + e \cos \phi}}\]
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+        % Draw axes
+        \coordinate (nya) at (0, -2.5);
+        \coordinate (pya) at (0, 2.5);
+        \coordinate (nxa) at (-2.5, 0);
+        \coordinate (pxa) at (2.5, 0);
+        \node [above] (lpya) at (pya) {$y$};
+        \node [right] (lpxa) at (pxa) {$x$};
+        \draw [<->, thick] (nya) -- (pya);
+        \draw [<->, thick] (nxa) -- (pxa);
+        \draw [thick, blue] (0,0) circle [x radius=2, y radius=1.5];
+        \node [above right, blue] (xlabel) at (1.8,0.5) {$r\br{\phi}$};
+\end{tikzpicture}
+\end{center}
+
+To solve \eqref{eq:GRorbit}, we will use $x_0$ as the solution to the homogeneous differential equation \eqref{eq:x0} and perturb the solution by $x_1$.
+\[ x = x_0 + x_1 \]
+Subbing into \eqref{eq:GRorbit} gives,
+\[ \dder{x_1}{\phi} + x_1 = \f{3}{4}\f{R_s^2}{L^2} \br{x_0 + x_1}^2 \]
+Treating $x_0 + x_1 \approx x_0$ since $x_1$ is much less than $x_0$,
+\[ \dder{x_1}{\phi} + x_1 \approx \f{3}{4}\f{R_s^2}{L^2} x_0^2 \]
+This gives solution,
+\[ x \approx 1 + e \cos \br{\br{1 - \al} \phi} \]
+With $\al = \f{3}{4}\f{R_s^2}{L^2}$. Therefore the moment $\phi$ goes completely around one revolution $\phi = 2 \pi$, the actual orbit has gone around $2 \pi \br{1 - \al}$ times. This means that the orbit has not done a complete revolution. This manifests as a precession of the orbit. The perihelion advances by $\De \phi = 2\pi \al$.
+
+\[ \De \phi = \f{3}{4}\pi \f{R_s^2}{L^2} \approx \f{3\pi R_s}{\br{1 - e^2} a} \]
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+        % Draw axes
+        \coordinate (nya) at (0, -2.5);
+        \coordinate (pya) at (0, 2.5);
+        \coordinate (nxa) at (-2.5, 0);
+        \coordinate (pxa) at (2.5, 0);
+        \node [above] (lpya) at (pya) {$y$};
+        \node [right] (lpxa) at (pxa) {$x$};
+        \draw [<->, thick] (nya) -- (pya);
+        \draw [<->, thick] (nxa) -- (pxa);
+        % \draw [thick, blue] (0,0) circle [x radius=2, y radius=1.5];
+        \draw [->, smooth, blue, thick, domain=0:3600, samples=500] plot ( {0.2*cos(\x)/(1 + 0.9*cos((0.9)*\x))}, {0.2*sin(\x)/(1 + 0.9*cos((0.9)*\x))} );
+        \node [above right, blue] (xlabel) at (1.7,0.4) {$r\br{\phi}$};
+\end{tikzpicture}
+\end{center}
+
+For Mercury, this effect is measurable but still small.
+\[ \De \phi = 43'' \text{ per century} \]
+
+\subsection{Deflection of Light}
+
+As we have seen the geodesic equation gives us a solution for $\te\br{\tau} = \pi/2$. When considering a \textit{light-like} vector now, the normalization for this geodesic was given to be,
+
+\[ -\br{1-\f{R_s}{r}}\dot{t}^2 + \br{1-\f{R_s}{r}}^{-1} \dot{r}^2 + r^2 \dot{\te}^2 + r^2 \sin^2 \te \dot{\phi}^2 = 0 \]
+Notice the contrast to \eqref{eq:explicitnormalization}. Taking again $\te\br{\tau} = \pi/2 \forall \tau$, we have conserved quantities,
+\[ E = - \br{1 - \f{R_s}{r}} \dot{t} \qquad L = + r^2 \sin^2 \te \dot{\phi} = r^2 \dot{\phi}\]
+Which simplifies the normalization condition,
+\[ - \br{1 - \f{R_s}{r}}^{-1} E^2 + \br{1 - \f{R_s}{r}}^{-1} \dot{r}^2 + \f{L^2}{r^2} = 0\]
+Multiplying by $- \br{1 - \f{R_s}{r}} / L^2$
+\[ \f{E^2}{L^2} - \f{\dot{r}^2}{L^2} - \br{1 - \f{R_s}{r}} \f{1}{r^2} = 0\]
+With $b = \f{L}{E}$ and $W\br{r} =\br{1 - \f{R_s}{r}} \f{1}{r^2} $,
+\[ \f{1}{b^2} =  \f{\dot{r}^2}{L^2} + W \br{r} = 0\]
+Now that this differential equation for $r$ has been simplified, we can solve for $r$ and get 3 distinct types of trajectories. The first of the these trajectories is a \textbf{circular orbit} with radius $r = 3GM$. The second trajectory is the light being captured by the gravitational well and is an \textbf{inward spiral} that terminates. The final trajectory is the light being \textbf{deflected} when moving past the body. We will focus now on the deflection case.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+        % Draw axes
+        \coordinate (nya) at (0, 0);
+        \coordinate (pya) at (0, 3);
+        \coordinate (nxa) at (0, 0);
+        \coordinate (pxa) at (4, 0);
+        \node [above] (lpya) at (pya) {$y$};
+        \node [right] (lpxa) at (pxa) {$x$};
+        \draw [->, thick] (nya) -- (pya);
+        \draw [->, thick] (nxa) -- (pxa);
+        \draw [red, thick] (0,0) -- (2,1);
+        \draw [->, yellow, thick] (4,1) -- (1,1);
+        \node [red] (lphi) at (1, 0.2) {$\phi$};
+        \node [red] (lr) at (0.9, 0.65) {$r$};
+        \draw [<->, black, thick] (3.5,0) -- (3.5,1);
+        \node [right] (ld) at (3.5, 0.5) {$d$};
+        % \draw [thick, blue] (0,0) circle [x radius=2, y radius=1.5];
+\end{tikzpicture}
+\end{center}
+
+When light is very far away, $d/r = \sin \phi \approx \phi$. If $\der{\phi}{r} = - d/r^2$ what is $\der{\phi}{t}$?
+
 \end{document}
