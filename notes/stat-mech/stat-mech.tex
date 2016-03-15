@@ -2243,7 +2243,7 @@ From this, we have learned that if we can compute the partition function $Z$ and
 In practice, the first step is very difficult for newly discovered systems. Furthermore, computing the third step precisely using a naive brute force approach is nearly impossible. We need to develop smarter ways to obtain the partition function $Z$.
 
 \subsection{Alternative Form for Z \& Degeneracy of States}
-
+\label{sec:densityofstates}
 In any notation the partition function is just a \textit{sum over states},
 \[ Z = \sum_n e^{-\be E_n} = \sum_r e^{-\be E_r} = \sum_a e^{-\be E_a} \eq \label{eq:sumoverstates}\]
 Let us apply this to the hydrogen atom. The energy levels for the hydrogen atoms is given by,
@@ -2322,9 +2322,9 @@ But it is common that $H\br{p,q} = H\br{p}$ whenever the potential energy is zer
 \[ Z = \f{V^{N}}{h^{3N} N!} \int \dif^{3N}p e^{-\be \br{\f{p_1^2}{2m} + \f{p_2^2}{2m} + \cdots + \f{p_{3N}^2}{2m}}} \]
 \[ Z = \f{V^{N}}{h^{3N} N!} \br{2m\pi k_B T}^{3N/2} \]
 
-\section{Examples}
+\subsection{Examples of C.E.}
 
-\subsection{Two Masses on Springs}
+\subsubsection{Two Masses on Springs}
 Consider a system of two masses $m_1$ and $m_2$ connected by springs to each other and a wall along a linear 1d line. Therefore each mass can only move in along the $x$-axis. If the spring constants are $c_1$, $c_2$ and $k$ with $k$ being between the two masses with $x_1$ being the position of the first mass and $x_2$ being the position of the second mass.
 
 \[ H = \br{\f{p_1^2}{2m_1} + \f{p_2^2}{2m_2}} + \br{c_1 \f{x_1^2}{2} + c_2 \f{x_2^2}{2} + k \f{\br{x_2 - x_1}^2}{2}} \]
@@ -2338,7 +2338,7 @@ And the position contribution is also a Gaussian integral, just slightly modifie
 
 \textbf{Remark:} As can be seen in this two examples, even simple problems can lead to complicated integrals. \\
 
-\subsection{Rigid Polar Rotator} Consider a dilute gas of $\text{H}_2\text{C}$ or $\text{CO}$ with electric dipole moment $\vec{\mu}$ in an electric field $\vE$. What is the partition function $Z\br{T}$? One would suspect that is \textit{should} on the general form,
+\subsubsection{Rigid Polar Rotator} Consider a dilute gas of $\text{H}_2\text{C}$ or $\text{CO}$ with electric dipole moment $\vec{\mu}$ in an electric field $\vE$. What is the partition function $Z\br{T}$? One would suspect that is \textit{should} on the general form,
 \[ Z = \idotsint_{\w} e^{-\be H\br{\bc{q,p}}} \bs{ \cdots } \]
 What is the Hamiltonian? Since the gas is \textit{dilute}, it can be approximated that there are no interactions between the particles. As such, the partition function and Hamiltonian can be determined for a single particle $i$ and then combined together appropriately,
 \[ Z = \f{\br{Z_i}^N}{N!} \qquad H = \sum_{i=1}^{n} H_i \]
@@ -2411,7 +2411,7 @@ Typically, $\f{\mu E}{k_B} \approx \SI{0.5}{\milli\K}$. \\
 \[ \chi_E = \pder{\ba{\mu^z}}{E} = \f{\mu}{ k_B T} \]
 This is known as the curie behavior $\f{\mu}{ k_B T}$.
 
-\subsection{Polarizable Molecule}
+\subsubsection{Polarizable Molecule}
 
 Consider a polarizable molecule with uni-axial direction $\hn$. The molecule has electric dipole $\vec{\mu}_E$ with makes the Hamiltonian the interaction it has with an electric field $\vE$,
 \[ H = - \vec{\mu}_E \cdot \vE \]
@@ -2444,7 +2444,7 @@ Now that $Z$ is known, all of thermodynamics follows by performing derivatives o
 
 As an exercise, calculate $\ba{Q}$ in the limit of large temperature. At high temperature, $\be$ and thus $g$ is very small. \textit{Hint}: Taylor series expand out $D\br{p}$ and integrate term by term to desired order.
 
-\subsection{Permanent Electric Dipole}
+\subsubsection{Permanent Electric Dipole}
 
 Consider a permanent electric dipole with Hamiltonian composed of the coupling with the electric field and the rotation kinetic energies,
 \[ H = H\tsb{rot} - \vec{\mu} \cdot \vE \]
@@ -2469,7 +2469,7 @@ Including the electric field introduces a \textit{Stark effect} analogous to the
 
 This makes $Z$ way harder to compute. Operationally, everything is the same as in previous examples, but it might require more mathematics. The Stark effect in rigid rotors in found in most Quantum textbooks.
 
-\subsection{Spin in Magnetic Field}
+\subsubsection{Spin in Magnetic Field}
 
 For a permanent magnetic moment in a magnetic field, the Hamiltonian is,
 \[ H = - \vec{\mu}_m \cdot \vB - g \mu_B \vJ \cdot \vB \]{
@@ -2487,7 +2487,7 @@ Which gives the partition function the form
 \[ Z = \f{\sinh\br{\br{1 + \f{1}{2J}}U}}{\sinh\br{\f{U}{2J}}} \]
 Where the term $U$ is just $U=\be g_L\mu_B B$. For $J = \f12$,
 \[ Z_{J=\f12} = 2 \cosh\br{U} \]
-\subsection{Two Level Systems}
+\subsubsection{Two Level Systems}
 Consider a general two level system with two possible energies $0$ and $\vep$ with corresponding degeneracies $g_0$ and $g_\vep$.
 \[ Z = \sum_{\text{states}} e^{-\be E\tsb{states}} = \sum_{\text{energies}} g e^{-\be E} \]
 For two levels,
@@ -2513,4 +2513,93 @@ This is known as a \textbf{Schottky anomaly}. For low temperature,
 \[ C \sim e^{-\be/T} \]
 and for high temperatures,
 \[ C \sim \f{1}{T^2} \]
+
+\subsection{Energy Fluctuations}
+Now that we have looked at a number of examples using the canonical ensemble, we will begin to develop some more formalism involved with fluctuations of the canonical ensemble. Recall as a summary that the micro-canonical ensemble involved fixing $N$ and $V$ as well as the total energy $E$ or the energy range $E \pm \De / 2$. The idea was to determine the number of distinct accessible microstates $\Om$ and then computing the entropy of the system, $S = k_B \ln \Om$. Alternatively, the more realistic scenario is the canonical ensemble. Here we fixed the temperature $T$ and allowed the energy to fluctuate. Then, the probability of finding a system in the ensemble in one of the states states (say $E_r$) is given by,
+\[ P_r = \f{e^{-\be E_r}}{\sum_r e^{-\be E_r}} \]
+Where the denominator is a probability scaling factor and is known as the partition function $Z$.
+\[ S = - k_B \sum_r P_r \ln P_r \]
+Note the similarity to \textit{Shannon entropy} from information theory. Now what we want to do is to look at \textit{energy fluctuations} in the canonical ensemble. In doing so, we aim to show the approximate equivalency of the two approaches (microcanonical and canonical). We would \textbf{not} like our results for thermodynamically large systems (large $N,T$) to depend on whether or calculations are done in the microcanonical or canonical ensemble.\\
+
+\textbf{Question}: For a fixed temperature, the energy is allowed to fluctuate. The question is, how much or how large can these energies fluctuate?\\
+
+In order to define the fluctuations in energy, we need a notion of where it is fluctuating from. This will be the average energy,
+\[ U = \ba{E} = \f{\sum_r E_re^{-\be E_r}}{\sum_r e^{-\be E_r}} \]
+This has been seen before. It is ensemble average of the energy.
+\[ \pder{\ba{E}}{\be} = -\f{\sum_r E_r^2 e^{-\be E_r}}{\sum_r e^{-\be E_r}} + \f{\br{\sum_r E_r e^{-\be E_r}}^2}{\br{\sum_r e^{-\be E_r}}^2} \]
+These terms are just ensemble averages themselves,
+\[ \pder{\ba{E}}{\be} = - \ba{E^2} + \ba{E}^2 \]
+Note that this is the expectation of the energy deviation,
+\[ \ba{\br{\De E}^2} = \ba{\br{E - \ba{E}}^2} = \ba{E^2 - 2E\ba{E} + \ba{E}^2} = \ba{E^2} - 2\ba{E}\ba{E} + \ba{E}^2 = \ba{E^2} - \ba{E}^2 \]
+Therefore,
+\[ \ba{\br{\De E}^2} =- \pder{\ba{E}}{\be} = - \pder{U}{\be}  \]
+This is just the \textbf{variance} of the energy. To take this further, use chain rule,
+\[ \pder{U}{\be} = \pder{T}{\be}\pder{U}{T} \]
+With $\be = 1/k_B T$ we have $T = 1/ \be k_B$,
+\[ \pder{U}{\be} = -\f{1}{\be^2 k_B}\pder{U}{T} = -k_B T^2 \pder{U}{T} \]
+\[ \ba{\br{\De E}^2} = k_B T^2 \pder{U}{T} \]
+But the specific heat with respect to constant volume is just $C_V = \pdert{U}{T}{V}$,
+\[ \ba{\br{\De E}^2} = k_B T^2 C_V \]
+Therefore the \textbf{root-mean-squared} or the fluctuations is just,
+\[ \f{\sqrt{\ba{\br{\De E}^2}}}{\ba{E}} = \f{ \sqrt{k_B T^2 C_V} }{U} \]
+But $C_V \propto N$ is an extensive variable. Also $U \propto N$ and $T$ doesn't scale with temperature. For very large $N$, the root-mean-squared fluctuations in energy go as $1/\sqrt{N}$ and thus are negligible for large $N$. In this limit, the varying energy becomes ultimately zero. Therefore for $N \ar \inf$, the canonical ensemble acts like the microcanonical ensemble. \\
+
+Next we will consider the same example in the case of a \textit{continuous} probability distribution instead of discrete. We now have the interpretation of $P\br{E}$ as a function of $E$. Therefore the probability of energy being in a range $E$ to $E + \dif E$ is given by $P\br{E} \dif E$. Taking $g\br{E}$ as the density of states (see section \ref{sec:densityofstates}).
+\[ P\br{E} \dif E \propto g\br{E} e^{-\be E} \dif E \]
+There are two energy-dependent factors influencing $P\br{E}$: $g\br{E}$ and $e^{-\be E}$. Let's see whether $P\br{E}$ has an extremum at some point $E^*$.
+\[ \pder{}{E}\bre{g\br{E} e^{-\be E}}_{E = E^*} = 0 \]
+Instead of computing this directly, use logarithms. Since $\ln$ is monotonically increasing the maximum occurs in the same location $E^*$.
+\[ \ln \br{g\br{E} e^{-\be E}} = \ln\br{g\br{E}} + \ln\br{e^{-\be E}} = \ln\br{g\br{E}} + -\be E \]
+The maximization condition is then,
+\[ \pder{}{E}\bre{\ln \br{g\br{E} e^{-\be E}}}_{E = E^*} = 0 \]
+Which becomes,
+\[ \pder{}{E}\bre{\ln \br{g\br{E}}}_{E = E^*} = \be \eq \label{eq:estarderv}\]
+What is $\ln g\br{E}$? Recall that entropy is the logarithm of the number of accessible microstates. Since $g\br{E}$ is the number of microstates for a particular energy $E$,
+\[ S\br{E} = k_B \ln\br{g\br{E}} \]
+Subbing this into \eqref{eq:estarderv},
+\[ \f{1}{k_B}\pder{}{E}\bre{S\br{E}}_{E = E^*} = \be \]
+\[ \pder{}{E}\bre{S\br{E}}_{E = E^*} = \f{1}{T} \]
+But as we know from thermodynamics $\pder{S\br{E}}{E} \mid_{E=U} = \f{1}{T}$. This shows us that the ensemble average $U$ is equal to the extremum value $E^*$.
+\[ U = E^* \]
+As such, $U$ and $E^*$ can be taken interchangably. Irrespective of the Hamiltonian of system, the most probable value of its energy is identical to its mean value. Depending on which is more advantageous we will use $U$ or $E^*$.\\
+
+Consider $\ln \bs{g\br{E} e^{-\be E}} = \ln P\br{E}$, and Taylor expand this around $E = U$. This can be done as we expect $E$ to not vary wildly from $U$ as it fluctuates.
+\[ \ln P\br{E} = \bs{\ln e^{-\be E} + \ln g}\big\rvert_{E=U} + \f{1}{2} \pdder{}{E}\bs{\ln e^{-\be E} + \ln g}\big\rvert_{E=U} \br{E-U}^2 + O\br{\br{E-U}^3} \]
+Ignoring higher order terms,
+\[ \ln P\br{E} = -\be U + \f{S}{k_B} + \f{1}{2} \pdder{}{E} \ln g \big\rvert_{E = U} \br{E - U}^2\]
+The right hand term is given by,
+\[ \pdder{}{E} \ln g = \f{1}{k_B}\pdder{}{E} S = \f{1}{k_B}\pder{}{E}\pder{S}{E}  = \f{1}{k_B}\pder{}{E}\br{\pder{T}{E} \pder{S}{T}} = \f{1}{k_B} \pder{}{E}\br{\f{1}{T}} = -\f{1}{k_B T^2} \pder{T}{E} = -\f{1}{k_B T^2 C_V} \]
+Which gives,
+\[ \ln P\br{E} = -\be\br{U - TS} - \f{1}{2} \f{1}{k_B T^2 C_V} \br{E - U}^2\]
+Notice the Helmholtz free energy $U - TS$. Looking at $P\br{E} \propto e^{-\be E} g\br{E}$. Then we have,
+\[ P\br{E} \sim e^{-\be \br{U - TS}} e^{-\f{\br{E-U}^2}{2 k_B T^2 C_V}} \]
+We can then determine the partition function,
+\[ Z = Z\br{V,T} \propto e^{-\be \br{U - TS}} \intl_{0}^{\inf} \dif E e^{-\f{\br{E-U}^2}{2 k_B T^2 C_V}} \]
+Recall Gaussian integrals \ref{sec:gaussianintegrals},
+\[ Z \approx e^{-\be \br{U - TS}} \sqrt{2 \pi k_B T^2 C_V} \]
+Recall that $A \defined - k_B T \ln Z$ so we have,
+\[ A = \br{U - TS} - \f12 kT \ln \br{2 \pi k_B T^2 C_V} \]
+If $U-TS$ is the Helmholtz free energy, the extra piece is a problem. Consider the high $N$ limit. The logarithm term becomes negligible compared to the leading $U$ term. Hence we have $A \approx U - TS$ derived from stat mech. As such, the microcanonical and canonical ensemble approaches are similar. \\
+
+In principle, we could derive all of thermodynamics from statistical mechanics. This is left to the reader as an exercise. Since we derived $A$ from the canonical ensemble using $S$ from microcanonical ensemble, the emergence of a consistent thermodynamic relationship establishes that the two approaches are essentially identical.
+
+\subsection{Equipartition \& Virial Theorems}
+
+\subsubsection{Equipartition}
+
+The Equipartition theorem is really useful to estimate or determine thermodynamic properties of systems by analyzing the degrees of freedom of the system. Consider a Hamiltonian $H \br{\vq, \vp}$. Let's call $x_i$ and $x_j$ any two of the $6N$ generalized coordinates of the system $\br{q,p}$. In the canonical ensemble we are interested in the expectation,
+\[ \ba{x_i \pder{H}{x_j}} \]
+Explicitly,
+\[ \ba{x_i \pder{H}{x_j}} = \f{\int x_i \pder{H}{x_j} e^{-\be H} \dif^{3N} q \dif^{3N} p}{\int e^{-\be H} \dif^{3N} q \dif^{3N} p} \]
+Just considering the numerator requires integration by parts,
+\[ \int x_i \pder{H}{x_j} e^{-\be H} \dif \w = \int \dif \w_i\bc{ - \f{1}{\be} x_i e^{-\be H}\bigg\rvert_{\br{x_j}_1}^{\br{x_j}_2} + \f{1}{\be}\int  \pder{x_i}{x_j} e^{-\be H} \dif x_j} \dif \w_j  \]
+Where $\br{x_j}_1$ and $\br{x_j}_2$ are the extremal values. $\dif w_j$ is the phase space volume excluding $\dif x_j$. The first term banishes because $H$ becomes infinite at extremal values. For example, the potential becomes infinite of the kinetic energy becomes infinite at the boundaries. The second term has a $\de$ function.
+\[ \pder{x_i}{x_j} = \de_{ij} \]
+Therefore,
+\[ \f{1}{\be} \di_{ij} \int e^{-\be H} \dif \w_j \]
+Which gives,
+\[\ba{x_i \pder{H}{x_j}} = \de_{ij} \br{k_B T} \]
+
+\subsubsection{Virial Theorem}
+
 \end{document}
