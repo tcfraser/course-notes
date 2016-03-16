@@ -2754,9 +2754,9 @@ Now that this differential equation for $r$ has been simplified, we can solve fo
 \begin{center}
 \begin{tikzpicture}[scale=1.0]
         % Draw axes
-        \coordinate (nya) at (0, 0);
+        \coordinate (nya) at (0, -3);
         \coordinate (pya) at (0, 3);
-        \coordinate (nxa) at (0, 0);
+        \coordinate (nxa) at (-4, 0);
         \coordinate (pxa) at (4, 0);
         \node [above] (lpya) at (pya) {$y$};
         \node [right] (lpxa) at (pxa) {$x$};
@@ -2772,6 +2772,64 @@ Now that this differential equation for $r$ has been simplified, we can solve fo
 \end{tikzpicture}
 \end{center}
 
-When light is very far away, $d/r = \sin \phi \approx \phi$. If $\der{\phi}{r} = - d/r^2$ what is $\der{\phi}{t}$?
+When light is very far away, $d/r = \sin \phi \approx \phi$. If $\der{\phi}{r} = - d/r^2$ what is $\der{\phi}{t}$? If their is no deflection, the change in $\phi$, $\De \phi$ should be $\pi$. For deflection,
+\[ \De \phi = \pi + \de \phi \]
+For the Geodesic,
+\[ \f{1}{b^2} + \f{1}{L^2} \dot{r}^2  + W\tsb{eff}\br{r} \eq \label{eq:curvegeodesic}\]
+With $b = L / E$ a conserved quantity. Therefore,
+\[ b^2 = \f{L^2}{E^2} = \f{r^4 \dot{\phi}^2}{\br{1-\f{R_s}{r}}^2 \dot{t}^2} = \f{r^4}{\br{1-\f{R_s}{r}}^2} \br{\der{\phi}{t}}^2 \]
+Next we can take $r \gg R_s$ to give the approximation,
+\[b^2 \approx r^4 \br{\der{\phi}{t}}^2\]
+We also know that for $r$ very large, the Schwarzschild metric becomes approximately the Minkowski metric. If we have $\sin \phi = d/r$, a large $r$ indicates that $\phi$ is small with,
+\[ \phi = \f{d}{r} \]
+What then is $\der{\phi}{t}$? By chain rule we get,
+\[ \der{\phi}{t} = \der{\phi}{r} \der{r}{t}  = - \f{d}{r^2} \der{r}{t} \eq \label{eq:phidot}\]
+What then is $\der{r}{t}$? By the normalization condition for a light curve is $V^\al V_\al = 0$. At large $r$ again,
+\[ 0 = -\dot{t}^2 + \dot{r}^2 + r^2 \dot{\te}^2  + r^2 \sin^2 \te \dot{\phi}^2\]
+Fixing $\te{\tau} = \pi /2,  \forall \tau$ again,
+\[ 0 = -\dot{t}^2 + \dot{r}^2 + r^2 \dot{\phi}^2\]
+Which gives,
+\[ 1 = \br{\der{r}{t}}^2 + r^2 \br{\der{\phi}{t}}^2 \]
+By substituting \eqref{eq:phidot}, we get,
+\[ 1 = \br{\der{r}{t}}^2 \br{1 + \f{d^2}{r^4} r^2} \]
+For large $r$ again,
+\[ 1 \approx \br{\der{r}{t}}^2 \]
+Since the light trajectory has $r$ decreasing,
+\[ \der{r}{t} = -1 \]
+As such, we arrive at the result using \eqref{eq:phidot},
+\[ \der{\phi}{t} = +\f{d}{r^2} \]
+Which gives,
+\[ b^2 = r^4 \br{\der{\phi}{t}}^2 = r^4 \br{\f{d}{r^2}}^2 = d^2 \implies b = d \]
+The conserved quantity $b$ indicates that $d$ is also constant and equal to $b$. By \eqref{eq:curvegeodesic},
+\[ \f{1}{d^2} = \f{\dot{r}^2}{L^2} + W\tsb{eff}\br{r} \]
+With $L^2 = r^4 \dot{\phi}^2$,
+\[ \f{1}{d^2} = \f{1}{r^4}\br{\der{r}{\phi}}^2 + W\tsb{eff}\br{r} \]
+This is just a differential equation for $r$ and $\phi$. Inverting gives,
+\[ \br{\der{\phi}{r}}^2 = \f{1}{r^4} \br{\f{1}{d^2} - W\tsb{eff}\br{r}}^{-1} \]
+When taking this equation's square root, should be retain the positive or the negative result. When the light ray is initially approaching (say in region 1), an increasing $\phi$ means a \textit{decreasing} $r$. Albeit when the light ray is leaving the origin (say in region 2), an increasing $\phi$ means an \textit{increasing} $r$. Therefore we have both regions to consider.
+\[ \der{\phi}{r} = \pm \f{1}{r^2} \br{\f{1}{d^2} - W\tsb{eff}\br{r}}^{-1/2} \]
+Taking $r_1$ to the be the point of transition from region 1 to region 2,
+\[ \De \phi = \intl_{\inf}^{r_1} -\f{1}{r^2} \br{\f{1}{d^2} - W\tsb{eff}\br{r}}^{-1/2} \dif r + \intl_{r_1}^{\inf} \f{1}{r^2} \br{\f{1}{d^2} - W\tsb{eff}\br{r}}^{-1/2} \dif r \]
+\[ \De \phi = 2\intl_{r_1}^{\inf} \f{1}{r^2} \br{\f{1}{d^2} - W\tsb{eff}\br{r}}^{-1/2} \dif r  \]
+After integrating,
+\[ \De \phi = \pi + \de \phi \]
+With $\de \phi = 2 \f{R_s}{d} = \f{4GM}{d}$. For the sun and rays grazing the edge of the sun,
+\[ \de \phi_{\odot} \approx 1.7" \]
+Such an effect would also appear in Newtonian gravity but off by a factor of $2$,
+\[ \de \phi\tsb{Newtonian} = \f12\de \phi\tsb{GR} \]
+In 1919, Eddington measured the location of the stars behind the sun during an solar eclipse compared to where they are normally. This confirmed the theory of GR and made Einstein a \textbf{rock-star}. \\
+
+Due to the bending of light, \textbf{Gravitational lensing} allows for the bending of light around large massive bodies. This allows one to see behind the massive body. Alternatively, measuring a deflection $\de \phi$ and the mass $M$ and size $d$ of large clusters of objects, many times the predictions of GR are \textbf{wrong}. There are many proposals for explain this discrepancy. This matter should not be interacting with anything by gravity and is known as \textbf{dark matter}. In practice, we need to add extra mass in order to match the actual deflection. \\
+
+Another hint that indicates something might be wrong with gravity, rotating galaxies should have their exterior arms rotate slower as they are farther away from the Galactic center. Unfortunately, with increasing $r$, the rotational velocity does not decrease; instead is remains constant. This suggests there is either Dark Matter halos or gravity is wrong.
+
+\subsection{Black Holes}
+
+For the sun, the Schwarzschild radius is only $\SI{3}{\km}$ while its actual radius of the sun is $R\tsb{sun} = \SI{7e5}{\km}$. If the radius was shrunk below the Schwarzschild radius, nothing bad would happen \textit{gravitationally}. The Schwarzschild metric is valid \textit{outside} the spherically symmetric object. Recall the troubling term in the Schwarzschild metric,
+\[ \br{1 - \f{R_s}{r}}^{-1} \]
+The Schwarzschild metric is a solution to the vacuum Einstein equations. Remember that,
+\[ G_{\mu\nu} = 0 = R_{\mu\nu} = \f12 R g_{\mu\nu} \]
+Does \textit{not} indicate zero curvature $R_{\al\be\mu\nu} = 0$.
+
 
 \end{document}
