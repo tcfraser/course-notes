@@ -2595,11 +2595,123 @@ Just considering the numerator requires integration by parts,
 \[ \int x_i \pder{H}{x_j} e^{-\be H} \dif \w = \int \dif \w_i\bc{ - \f{1}{\be} x_i e^{-\be H}\bigg\rvert_{\br{x_j}_1}^{\br{x_j}_2} + \f{1}{\be}\int  \pder{x_i}{x_j} e^{-\be H} \dif x_j} \dif \w_j  \]
 Where $\br{x_j}_1$ and $\br{x_j}_2$ are the extremal values. $\dif w_j$ is the phase space volume excluding $\dif x_j$. The first term banishes because $H$ becomes infinite at extremal values. For example, the potential becomes infinite of the kinetic energy becomes infinite at the boundaries. The second term has a $\de$ function.
 \[ \pder{x_i}{x_j} = \de_{ij} \]
-Therefore,
+Therefore the numerator becomes,
 \[ \f{1}{\be} \di_{ij} \int e^{-\be H} \dif \w_j \]
-Which gives,
-\[\ba{x_i \pder{H}{x_j}} = \de_{ij} \br{k_B T} \]
+Thus,
+\[ \ba{x_i \pder{H}{x_j}} = \f{\f{1}{\be} \di_{ij} \int e^{-\be H} \dif \w}{\int e^{-\be H} \dif \w} \]
+After canceling,
+\[\ba{x_i \pder{H}{x_j}} = \de_{ij} k_B T \eq \label{eq:equiresult}\]
+Notice that this is independent of the Hamiltonian $H$.\\
+
+\textbf{Considerations}:
+First for $x_i = x_j = p_i$, \eqref{eq:equiresult} becomes,
+\[\ba{p_i \pder{H}{p_i}} = k_B T \]
+From Hamiltonian's equations, $\dot{q}_i = \pder{H}{p_i}$,
+\[\ba{p_i \dot{q}_i} = k_B T \eq \label{eq:pdotq} \]
+Similarly using Hamiltonian's other equation $\dot{p}_i = -\pder{H}{q_i}$
+\[\ba{q_i \dot{p}_i} = -k_B T \eq \label{eq:qdotp}\]
+Then adding $i=1\ar3N$ for both $p_i$ and $q_i$,
+\[ \ba{\sum_i p_i \dot{q}_i} = 3 N k_B T \eq \label{eq:sumpdotq}\]
+\[ -\ba{\sum_i q_i \dot{p}_i} = 3 N k_B T \eq \label{eq:sumqdotp}\]
+In many cases, $H\br{q,p}$ in generalized quadratic form of the coordinates $\bc{q_i, p_i}$. A \textbf{canonical transformation} can be used to diagonalized $H$ into the following form,
+\[ H = \sum_j A_j P_j^2 + \sum_j B_j Q_j^2 \]
+Where $A_j, B_j$ are constants and $P_i,Q_i$ are the corresponding to the transformed coordinates. Under this transformation,
+\[ \pder{H}{P_j} = A_j 2 P_j \quad \pder{H}{Q_j} = B_j 2 Q_j \]
+Summing over all $j$,
+\[ \sum_j \br{P_j \pder{H}{P_j} + Q_j \pder{H}{Q_j}} = \sum_j \br{P_j A_J 2 P_j + Q_j B_j 2 Q_j} = 2\sum_j \br{A_J P_j^2 + B_j Q_j^2} = 2H \]
+From equation \eqref{eq:pdotq} and \eqref{eq:qdotp},
+\[ \ba{H} = \f12 \br{f_A + f_B} k_B T = \f12 f k_B T \]
+Where $f_A$ and $f_B$ sum together to give $f$ are the number of $A_i$ an $B_j$ that are non-zero in the Hamiltonian. \textit{This is a very important result}. Each harmonic (quadratic) term in the Hamiltonian contributes exactly $\f12 k_B T$ toward to the energy. As a consequence, each degree of freedom contributes $\f12 k_B$ towards the specific heat $C_V$. This is the classical version of the theorem of Equipartition theorem. \\
+
+Note that at really low temperatures, this breaks down. Consider \textit{phonons} which are lattice vibrations, each behaving as quantum harmonic oscillators. At low temperatures in certain systems, the energy can become quantized and there are corrections to the above result that can be seen experimentally.
 
 \subsubsection{Virial Theorem}
+
+Consider equation \eqref{eq:sumqdotp},
+\[ \ba{\sum_i q_i \dot{p}_i} = -3 N k_B T  \]
+The Virial theorem introduces the notion of generalized force,
+\[ F_{i,\text{generalized}} = \dot{p}_i \]
+Thus \eqref{eq:sumqdotp} is the expectation value of the product of coordinate $q_i$ with the force acting on it. It is called the \textbf{Virial}.
+\[ \mathcal{V} = \ba{\sum_i q_i \dot{p}_i} \]
+The Virial equation is simply then,
+\[ \mathcal{V} = -3 N k_B T \eq \label{eq:equivirial} \]
+More commonly, it is written as a force integral. \\
+
+\textbf{Example}: Consider an ideal gas that is dilute enough that it is not interacting with itself but it only interacting with the walls of the container it is in for example. The Virial for this system is thus,
+\[ \mathcal{V}_0 = \ba{\sum_i q_i F_i}_0  = - P \oiint_S \vr \cdot \dif \vs\]
+Where the `$0$' is just to indicate that it is not interacting. Here $P$ is the pressure (uniform) pointing inward on a ball $S$ (hence the minus sign), $\dif \vs$ is the area normal pointing outward, and $\vr$ is the location on the surface of the ball $S$. Applying the divergence theorem, we can relate the surface integral to a volume integral,
+\[ \oiint_S \vr \cdot \dif \vs = \iiint_V \div \vr \dif V  \]
+Remember that $\div \vr$ is just,
+\[ \div \vr = \br{\pder{}{x}\hx + \pder{}{z}\hy + \pder{}{z}\hz} \cdot \br{ x \hx + y\hy + z\hz } = 1 + 1 + 1 = 3 \]
+Thus the Virial is just,
+\[ \mathcal{V}_0 = - 3 PV \]
+Where $V$ is the volume contained inside the bounding surface $S$. From this using \eqref{eq:equivirial},
+\[ PV = N k_B T  \implies PV = nRT \]
+Which is just the ideal gas law. Note the this only works for an ideal gas. A more complicated gas with internal fores would have a more complicated integral for $\mathcal{V}$. From this, the equation of state would become,
+\[ \f{P}{\f{N}{V} k_B T} = 1 + \f{1}{dNk_B T} \ba{\sum_{i<j} \vF\br{\vf_{ij}}\cdot \vr_{ij}}  \]
+Where $d$ is just the spacing dimension. This is known as the \textbf{virial equation of state}. It is typically solved computationally. One can make a career in Chemistry solving the equation of state for different systems.
+
+\section{Grand Canonical Ensemble}
+
+Recall that microcanonical ensemble was constructed with fixed energy $E$, the canonical ensemble which has fixed $T$ and energy was allowed to be exchange energy $E$ with the reservoir. The grand canonical ensemble is simply a generalization of the canonical ensemble where the number of particles $N$ \textit{and} the total energy $E$ is allowed to be shared via fluctuations with the reservoir. Similar to before, we hope to recover thermodynamic relations using this formalism. The derivations of the grand canonical ensemble follow almost precisely the same as it did in the case of the canonical ensemble, with a few caveats. \\
+
+Now there the interface between the system and reservoir is some sort of permeable membrane that allows for a flow of particles between the system and reservoir.
+
+\begin{center}
+\begin{tikzpicture}
+    \filldraw[fill=lightgray, draw=blue,dashed] (-1,-1) rectangle (1,1);
+    \draw[dashed, red] (-2,-2) rectangle (2,2);
+    \node[above, red] (lobject) at (0,2) {Object};
+    \node (lreservoir) at (0,-1.5) {Reservoir};
+    \node (lsystem) at (0,0) {System};
+    \draw[->, thick] (0.1, 0.8)   -- (0.1,1.2);
+    \draw[<-, thick] (-0.1, 0.8)  -- (-0.1,1.2);
+    \draw[->, thick] (0.8, 0.1)   -- (1.2,0.1);
+    \draw[<-, thick] (0.8, -0.1)   -- (1.2,-0.1);
+    \draw[->, thick] (-0.1, -0.8) -- (-0.1,-1.2);
+    \draw[<-, thick] (0.1, -0.8)  -- (0.1,-1.2);
+    \draw[->, thick] (-0.8, -0.1) -- (-1.2,-0.1);
+    \draw[<-, thick] (-0.8, 0.1)  -- (-1.2,0.1);
+\end{tikzpicture}
+\end{center}
+
+\subsection{Derivation}
+
+We will label the number of particles in the in the reservoir $N^{(r)}$ and the energy in the reservoir $E^{(r)}$. The number of particles,energy in the system is $N^{(s)}, E^{(s)}$. Assuming that $N^{(r)} \gg N^{(s)}$ and $E^{(r)} \gg E^{(s)}$ because the reservoir is considered so large. We will assume the total number of particles $N$ and the total energy $E$ to be constant with,
+\[ N = N^{(r)} + N^{(s)} \qquad E = E^{(r)} + E^{(s)} \]
+Note that the fraction of particles in the system has the form,
+\[  \f{N^{(s)}}{N} = \br{1 - \f{N^{(r)}}{N}} \ll 1 \]
+And the fraction of energy in the system is,
+\[  \f{E^{(s)}}{E} = \br{1 - \f{E^{(r)}}{E}} \ll 1 \]
+Similar to the canonical case, if the system is found to be the state $\br{N^{(s)}_i,E^{(s)}_j}$, the probability is proportional to the number of microstates, $\Om^{(r)}\br{N^{(r)}_i,E^{(r)}_j}$ that the reservoir has access to,
+\[  P\br{N^{(r)}_i,E^{(r)}_j} \propto \Om^{(r)}\br{N^{(r)}_i,E^{(r)}_j} \]
+Well will write this as the exponent of a logarithm to allow for the Taylor series to converge ($P \propto \exp \br{\ln \Om^{(r)}}$). Expanding around the total energy and number of particles $E,N$ to first order,
+\[ \ln \Om^{(r)} \br{N^{(r)},E^{(r)}} \approx \ln \Om^{(r)} \br{N,E} + \pder{\ln \Om^{(r)}}{N^{(r)}} \bigg\rvert_{N^{(r)} = N} \br{N^{(r)} - N} + \pder{\ln \Om^{(r)}}{E^{(r)}} \bigg\rvert_{E^{(r)} = E} \br{E^{(r)} - E} \]
+Noting that $E^{(r)} - E = - E^{(s)}$ and $S = k_B \ln \Om$, the derivative of $S$ with respect to $N$ is given by the chemical potential $\mu$,
+\[ \pder{S}{N} = - \f{\mu}{T} \qquad \pder{S}{E} = \f{1}{T} \]
+We obtain,
+\[ \ln \Om^{(r)} \br{N^{(r)},E^{(r)}} \approx \ln \Om^{(r)} \br{N,E} + \f{\mu^{(r)}}{k_B T^{(r)}} N^{(s)} - \f{1}{k_B T^{(r)}} E^{(s)} \]
+Here $\mu^{(r)} = \mu^{(s)} = \mu$ and $T^{(r)} = T^{(s)} = T$ since we are considering being in chemical and thermodynamic equilibrium respectively. As such we have obtained that,
+\[ P_{ij}\br{N^{(s)}_i,E^{(s)}_j} \propto \exp\bs{-\al N^{(s)}_i - \be N^{(s)}_j} \]
+Where the constants are defined as,
+\[ \al \defined -\f{\mu}{k_B T}  \quad \be = \f{1}{k_B T} \]
+Normalizing the probability removes the proportionality. Summing over all accessible states of the system that are allowed $\bc{i,j}$,
+\[ P_{ij}\br{N^{(s)}_i,E^{(s)}_j} =  \f{\exp\bs{-\al N^{(s)}_i - \be N^{(s)}_j}}{\sum_{i,j}\exp\bs{-\al N^{(s)}_i - \be N^{(s)}_j}} \]
+Or dropping the notation of the system,
+\[ P_{ij}\br{N_i,E_j} =  \f{\exp\bs{-\al N_i - \be N_j}}{\sum_{i,j}\exp\bs{-\al N_i - \be N_j}} \]
+
+\subsection{Comparison to Canonical Ensemble}
+We will now consider a system in the grand canonical \textbf{ensemble}. Imagine an ensemble of $\mathcal{N}$ identical systems. Together they will share a total energy $\mathcal{N} \bar{E}$ and will also share a total number of particles $\mathcal{N} \bar{N}$. Call $n_{i,j}$ the number of systems that have number of particles $N_{i}$ and energy $E_{j}$. Then we obtain the following relations,
+\[ \sum_{i,j} n_{i,j} = \mathcal{N} \eq \label{eq:gcc1} \]
+\[ \sum_{i,j} n_{i,j}N_i = \mathcal{N} \bar{N} \eq \label{eq:gcc2}\]
+\[ \sum_{i,j} n_{i,j}E_j = \mathcal{N} \bar{E} \eq \label{eq:gcc3} \]
+Any set $\bc{n_{i,j}}$ of the numbers $n_{i,j}$ that satisfy the above constraints (\eqref{eq:gcc1}, \eqref{eq:gcc2}, \eqref{eq:gcc3}) represents the possible \textit{modes of distribution} of particles among the ensemble. Any such mode of the distribution can be realized in $W\bc{n_{i,j}}$,
+\[ W \bc{n_{i,j}} = \f{\mathcal{N}!}{\prod_{i,j} \br{n_{i,j} !}} \]
+We will again use Lagrange multipliers in order to extremize this distribution to find the most probable mode.
+
+
+
+
+
 
 \end{document}
