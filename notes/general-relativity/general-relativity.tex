@@ -2827,9 +2827,99 @@ Another hint that indicates something might be wrong with gravity, rotating gala
 
 For the sun, the Schwarzschild radius is only $\SI{3}{\km}$ while its actual radius of the sun is $R\tsb{sun} = \SI{7e5}{\km}$. If the radius was shrunk below the Schwarzschild radius, nothing bad would happen \textit{gravitationally}. The Schwarzschild metric is valid \textit{outside} the spherically symmetric object. Recall the troubling term in the Schwarzschild metric,
 \[ \br{1 - \f{R_s}{r}}^{-1} \]
-The Schwarzschild metric is a solution to the vacuum Einstein equations. Remember that,
+Which makes the metric diverge at $r = R_s$,
+\[ \dif s^2 = -\br{1 - \f{R_s}{r}} \dif t^2 + \underbrace{\br{1 - \f{R_s}{r}}^{-1}}_{\ar \inf } \dif r^2 + r^2 \dif \Om^2 \eq \label{eq:Schwarzschildmetric} \]
+Because of this, the Schwarzschild metric only works in th region with $r > R_s$. The Schwarzschild metric is a solution to the vacuum Einstein equations. Remember that,
 \[ G_{\mu\nu} = 0 = R_{\mu\nu} = \f12 R g_{\mu\nu} \]
-Does \textit{not} indicate zero curvature $R_{\al\be\mu\nu} = 0$.
+Does \textit{not} indicate zero curvature $R_{\al\be\mu\nu} = 0$. When studying the collapse of stars, there cases where the collapsing continues until electron degeneracy pressure supports the gravitational collapse of the star. These are \textbf{white dwarf} stars. If the original star is massive enough, gravity beats even electron degeneracy pressure and electrons are ejected and \textbf{neutron stars} are formed supported by neutron degeneracy pressure. Continuing this, even more massive stars can continue collapsing into super dense objects called \textbf{black holes}. For object with $r < R_s$ light can not escape (hence \textit{black} holes). \\
 
+In the early 1960s, GR became an important area of study and lots of work was done on black holes. At this time, people really began to consider black holes are actual physically real objects. By observing the orbits of stars in the center of the galaxy, black holes are indirectly measurable. \footnote{To see a fancy video of this: \url{https://www.youtube.com/watch?v=duoHtJpo4GY}} \\
+
+The question becomes, what happens when a particle falls toward a black hole? Note that we have two singularities at $r = 0$ \textit{and} $r = R_s$ (examine \eqref{eq:Schwarzschildmetric}). What happens to the curvature $R_{\al\be\ga\de}$? Looking at the \textbf{Kretschmann scalar},
+\[ R_{\al\be\ga\de}R^{\al\be\ga\de} = \f{12R_s^2}{r^6} \]
+This is clearly divergent at $r = 0$, which indicates an infinite curvature. However at $r = R_s$, the curvature is well behaved.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+        % Draw axes
+        \coordinate (nya) at (0, 0);
+        \coordinate (pya) at (0, 3);
+        \coordinate (nxa) at (0, 0);
+        \coordinate (pxa) at (5, 0);
+        \node [above] (lpya) at (pya) {$t$};
+        \node [right] (lpxa) at (pxa) {$r$};
+        \node [below] (lr0) at (0, 0) {$r = 0$};
+        \node [below, blue] (lrRs) at (1.5, 0) {$r = R_s$};
+        \node [below, blue] (lrR0) at (4, 0) {$r = r_0 \approx \inf$};
+        \draw [->, thick] (nya) -- (pya);
+        \draw [->, thick] (nxa) -- (pxa);
+        \draw [blue, dashed, thick] (1.5, 0) -- (1.5, 3);
+        \draw [blue, dashed, thick] (4, 0) -- (4, 3);
+        \draw [->, thick, red] plot [smooth, tension=1.1] coordinates {(4,1) (2.6, 1.5) (1.6,2.8)};
+\end{tikzpicture}
+\end{center}
+
+Consider an observer at $r = \inf$ emitting a particle toward the black hole with decreasing $r$. Obviously, the original location of the observer $r = r_0 \approx \inf$ follows a geodesic. Furthermore, the timelike trajectory of the particle is also a geodesic. How much time is elapsed before the particle reaches $r=R_s$? This question is \textit{ill-defined}. We need to measure time with respect to an observer. We will instead ask two questions,
+\begin{itemize}
+    \item How much time elapses for the observer $t$?
+    \item How much time elapses for the particle $\tau$ (proper time)?
+\end{itemize}
+To answer these questions, we will make use of the normalization condition (taking $\te, \phi$ constant),
+\[ - \br{1- \f{R_s}{r}}\dot{t}^2 + \br{1 - \f{R_s}{r}}^{-1} \dot{r}^2 = -1 \]
+Here we have the conserved quantity,
+\[ E = - \br{1 - \f{R_s}{r}} \dot{t} \eq \label{eq:conserved} \]
+Since there is no angular momentum (the particle is falling inward).
+\[  - \f{E^2}{1 - \f{R_s}{r}} + \f{1}{1 - \f{R_s}{r}} \dot{r}^2 = -1 \eq \label{eq:bhgeo} \]
+Solving this DE with initial conditions $r_0, t_0$, and $\dot{r}\br{r_0} = 0$ we can use the normalization condition to get,
+\[ - \f{E^2}{1 - \f{R_s}{r_0}} + 0 = -1 \]
+Which gives the energy,
+\[ E = + \br{1 - \f{R_s}{r_0}}^{1/2} \]
+Taking the observer to be standing at $r_0 \approx \inf$, $E$ where the observer stands is just,
+\[ E = 1 \]
+Then \eqref{eq:bhgeo} becomes,
+\[ - \f{1}{1 -\f{R_s}{r}} + \f{1}{1-\f{R_s}{r}} \br{\der{r}{\tau}}^2 = -1 \]
+Simplifying gives,
+\[ \br{\der{r}{\tau}}^2 = \f{R_s}{r} \]
+Since $r$ is decreasing with increasing $\tau$,
+\[ \der{r}{\tau} = - \br{\f{R_s}{r}}^{1/2} \eq \label{eq:tdot} \]
+\[ \De \tau = -\int_{R}^{R_s} \f{r^{1/2}}{R_s^{1/2}} \dif r = \f23 \br{r^{3/2}}_{R_s}^{R} < \inf \]
+Note this is just the proper time. So from the particle's perspective ($t\tsb{particle} = \tau$) it reaches $R_s$ in a finite time. What about $\De t$? The amount of time elapsed for the observer. How can we get rid of $\tau$ in \eqref{eq:tdot}?
+\[ \der{r}{\tau} = \der{r}{t} \der{t}{\tau} = \der{r}{t} \dot{t} \]
+From the conserved quantity \eqref{eq:conserved},
+\[ 1 = - \br{1 - \f{R_s}{r}} \der{t}{\tau} \implies \der{\tau}{t} = - \br{1 - \f{R_s}{r}} \]
+Which gives,
+\[ \der{r}{t} = \der{r}{\tau} \der{\tau}{t} = \br{1 - \f{R_s}{r}} \br{\f{R_s}{r}}^{1/2} \]
+Thus integrating gives,
+\[ \De t = \int_{R}^{R_s} \f{r^{1/2}}{R_s^{1/2} \br{1 - \f{R_s}{r}}} \dif r = \inf \]
+For an observer at $\inf$, it takes an $\inf$ amount of time to reach $r = R_s$. \\
+
+As an extra question, we can ask what happens if the particle is emitting light back to the observer,
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+        % Draw axes
+        \coordinate (nya) at (0, 0);
+        \coordinate (pya) at (0, 3);
+        \coordinate (nxa) at (0, 0);
+        \coordinate (pxa) at (5, 0);
+        \node [above] (lpya) at (pya) {$t$};
+        \node [right] (lpxa) at (pxa) {$r$};
+        \node [below] (lr0) at (0, 0) {$r = 0$};
+        \node [below, blue] (lrRs) at (1.5, 0) {$r = R_s$};
+        \node [below, blue] (lrR0) at (4, 0) {$r = r_0 \approx \inf$};
+        \draw [->, thick] (nya) -- (pya);
+        \draw [->, thick] (nxa) -- (pxa);
+        \draw [->, yellow, thick] (2.6,1.6) -- (3.6,2.6);
+        \draw [->, yellow, thick] (2.4,1.8) -- (3.4,2.8);
+        \draw [blue, dashed, thick] (1.5, 0) -- (1.5, 3);
+        \draw [blue, dashed, thick] (4, 0) -- (4, 3);
+        \draw [->, thick, red] plot [smooth, tension=1.1] coordinates {(4,1) (2.6, 1.5) (1.6,2.8)};
+\end{tikzpicture}
+\end{center}
+
+Obviously, the light emitted will be very red shifted,
+\[ \f{\lambda_e}{\lambda_r} = \f{\br{1- \f{R_s}{r_e}}^{1/2}}{\br{1- \f{R_s}{r_r}}^{1/2}} \sim_{r_r \ar \inf} \br{1 -\f{R_s}{r_e}}^{1/2} \ar 0  \]
+Therefore,
+\[ \lambda_r \gg \lambda_e \]
 
 \end{document}
