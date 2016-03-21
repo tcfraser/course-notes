@@ -2836,7 +2836,7 @@ Does \textit{not} indicate zero curvature $R_{\al\be\mu\nu} = 0$. When studying 
 In the early 1960s, GR became an important area of study and lots of work was done on black holes. At this time, people really began to consider black holes are actual physically real objects. By observing the orbits of stars in the center of the galaxy, black holes are indirectly measurable. \footnote{To see a fancy video of this: \url{https://www.youtube.com/watch?v=duoHtJpo4GY}} \\
 
 The question becomes, what happens when a particle falls toward a black hole? Note that we have two singularities at $r = 0$ \textit{and} $r = R_s$ (examine \eqref{eq:Schwarzschildmetric}). What happens to the curvature $R_{\al\be\ga\de}$? Looking at the \textbf{Kretschmann scalar},
-\[ R_{\al\be\ga\de}R^{\al\be\ga\de} = \f{12R_s^2}{r^6} \]
+\[ K = R_{\al\be\ga\de}R^{\al\be\ga\de} = \f{12R_s^2}{r^6} \eq \label{eq:KretschmannScalar} \]
 This is clearly divergent at $r = 0$, which indicates an infinite curvature. However at $r = R_s$, the curvature is well behaved.
 
 \begin{center}
@@ -2872,10 +2872,10 @@ Since there is no angular momentum (the particle is falling inward).
 \[  - \f{E^2}{1 - \f{R_s}{r}} + \f{1}{1 - \f{R_s}{r}} \dot{r}^2 = -1 \eq \label{eq:bhgeo} \]
 Solving this DE with initial conditions $r_0, t_0$, and $\dot{r}\br{r_0} = 0$ we can use the normalization condition to get,
 \[ - \f{E^2}{1 - \f{R_s}{r_0}} + 0 = -1 \]
-Which gives the energy,
-\[ E = + \br{1 - \f{R_s}{r_0}}^{1/2} \]
+Which gives the conserved quantity $E$ to be negative (since $\dot{t} >0$ as time moves forward and $\der{r}{t} < 0$ as the particle falls inward),
+\[ E = - \br{1 - \f{R_s}{r_0}}^{1/2} \]
 Taking the observer to be standing at $r_0 \approx \inf$, $E$ where the observer stands is just,
-\[ E = 1 \]
+\[ E = -1 \]
 Then \eqref{eq:bhgeo} becomes,
 \[ - \f{1}{1 -\f{R_s}{r}} + \f{1}{1-\f{R_s}{r}} \br{\der{r}{\tau}}^2 = -1 \]
 Simplifying gives,
@@ -2886,11 +2886,11 @@ Since $r$ is decreasing with increasing $\tau$,
 Note this is just the proper time. So from the particle's perspective ($t\tsb{particle} = \tau$) it reaches $R_s$ in a finite time. What about $\De t$? The amount of time elapsed for the observer. How can we get rid of $\tau$ in \eqref{eq:tdot}?
 \[ \der{r}{\tau} = \der{r}{t} \der{t}{\tau} = \der{r}{t} \dot{t} \]
 From the conserved quantity \eqref{eq:conserved},
-\[ 1 = - \br{1 - \f{R_s}{r}} \der{t}{\tau} \implies \der{\tau}{t} = - \br{1 - \f{R_s}{r}} \]
+\[ -1 = - \br{1 - \f{R_s}{r}} \der{t}{\tau} \implies \der{\tau}{t} = \br{1 - \f{R_s}{r}} \]
 Which gives,
-\[ \der{r}{t} = \der{r}{\tau} \der{\tau}{t} = \br{1 - \f{R_s}{r}} \br{\f{R_s}{r}}^{1/2} \]
+\[ \der{r}{t} = \der{r}{\tau} \der{\tau}{t} = -\br{1 - \f{R_s}{r}} \br{\f{R_s}{r}}^{1/2} \]
 Thus integrating gives,
-\[ \De t = \int_{R}^{R_s} \f{r^{1/2}}{R_s^{1/2} \br{1 - \f{R_s}{r}}} \dif r = \inf \]
+\[ \De t = -\int_{R}^{R_s} \f{r}{R_s^{1/2} \br{1 - \f{R_s}{r}}} \dif r = + \inf \]
 For an observer at $\inf$, it takes an $\inf$ amount of time to reach $r = R_s$. \\
 
 As an extra question, we can ask what happens if the particle is emitting light back to the observer,
@@ -2921,5 +2921,99 @@ Obviously, the light emitted will be very red shifted,
 \[ \f{\lambda_e}{\lambda_r} = \f{\br{1- \f{R_s}{r_e}}^{1/2}}{\br{1- \f{R_s}{r_r}}^{1/2}} \sim_{r_r \ar \inf} \br{1 -\f{R_s}{r_e}}^{1/2} \ar 0  \]
 Therefore,
 \[ \lambda_r \gg \lambda_e \]
+
+\subsection{Singularities}
+
+Recall the Kretschmann Scalar given by \eqref{eq:KretschmannScalar}. At $r = R_s$ the Kretschmann scalar and thus the scalar is finite. However for $r = 0$, $K \ar \inf$ which is bad news. What is a true singularity? A singularity should be independent of coordinates. The problem at $r = R_s$ is just a manifestation of a poor choice of coordinates. As an example, consider $\R^3$. Suppose we are defining things in terms of spherical coordinates. If we have a function given by,
+\[ f\br{r,\te,\phi} = \f{1}{r-1} \]
+This function $f$ is perfectly well behaved everywhere except on the sphere with $r = 1$. This \textit{could} in general mean that there is a problem with our manifold. However we know that Cartesian coordinates on $\R^3$ have no issues. It is always possible that divergence terms are a manifestation of a poor choice of coordinates.\\
+
+Can we introduce another choice of coordinates so that the metric is well defined at $r = R_s$? As an exercise will will remove the $\dif r^2$ term from the Minkowski metric. \\
+
+\textbf{Example:} In the Minkowski case,
+\[ \dif s^2 = - \dif t^2 + \dif r^2 + r^2 \dif \Om^2 \]
+
+We will introduce a new variable $v = t + r$ such that,
+\[ \dif v = \dif t + \dif r \]
+Which gives the new metric,
+\[ \dif s^2 = - \dif v^2 + 2 \dif v \dif r + r^2 \dif \Om^2 \]
+Here we have a new feature that this metric has non-diagonal terms. In a matrix representation,
+\[ g_{\al\be} = \mtrx{-1 & 1 & 0 \\1 & 0 & 0 \\0 & 0 & r^2} \]
+In order to explore the trajectory of light in this metric, we \textit{could} look at the geodesic equation and compute the Christoffel symbols for this metric. More easily, looking at the normalization condition for a lightlike trajectory,
+\[ 0 = - \dif v^2 + 2 \dif v \dif r + r^2 \dif \Om^2 \]
+Just focusing on radial motion, $\te, \phi$ are constants which means $\dif \te = \dif \phi = 0$. This reduces the normalization condition to,
+\[ 0 = - \dif v^2 + 2 \dif v \dif r \]
+Factorizing,
+\[ 0 = \dif v \br{2 \dif r - \dif v} \]
+Which gives two possibilities. The first being that $v$ is constant,
+\[ \dif v = 0 \implies v = \text{const.} \implies t = \text{const} - r \]
+These are drawn in green. Alternatively,
+\[ 2 \dif r - \dif v \implies t = r + \text{const} \]
+These trajectories are drawn in red.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+        % Draw axes
+        \coordinate (nya) at (0, -1);
+        \coordinate (pya) at (0, 3);
+        \coordinate (nxa) at (-2, 0);
+        \coordinate (pxa) at (4, 0);
+        \node [above] (lpya) at (pya) {$t = v - r$};
+        \node [right] (lpxa) at (pxa) {$r$};
+        \draw [<-, green, thick] (-1,3) -- (3,-1);
+        \draw [<-, green, thick] (0,3) -- (4,-1);
+        \draw [<-, green, thick] (-0.5,3) -- (3.5,-1);
+        \draw [<-, red, thick] (3,3) -- (-1,-1);
+        \draw [<-, red, thick] (4,3) -- (0,-1);
+        \draw [<-, red, thick] (3.5,3) -- (-0.5,-1);
+        \draw [->, thick] (nya) -- (pya);
+        \draw [->, thick] (nxa) -- (pxa);
+\end{tikzpicture}
+\end{center}
+With the addition of radial symmetry, these trajectories or rays trace out light cones. \\
+
+\textbf{Example:} Now in the case of the Schwarzschild metric,
+\[ v = t+r + R_s \ln \abs{\f{r}{R_s} - 1} \eq \label{eq:efcc}\]
+The metric then becomes,
+\[ \dif s^2\tsb{sch} \ar \dif s^2 = - \br{1- \f{R_s}{r}} \dif v^2 + 2 \dif v \dif r + r^2 \dif \Om^2 \]
+This metric is known as the \textbf{Eddington-Finkenstein metric}. In a matrix representation,
+\[ g_{\al\be} = \mtrx{-\br{1- \f{R_s}{r}} & 1 & 0 \\1 & 0 & 0 \\0 & 0 & r^2} \]
+It is important to note the subtlety here. Choosing spherical coordinates $\br{t, r, \te, \phi}$ resulted in a problem in the metric representation. However choosing better coordinates $\br{t, v, \te, \phi}$ results in the Eddington-Finkenstein metric. This metric has no divergence at $r = R_s$. The transformation from $v \ar r$ divergences at $r = R_s$ in \eqref{eq:efcc} because spherical coordinates were a bad choice, \textbf{not} because the manifold was a problem (this is contrasting to the case of $r=0$ where there is no good choice of coordinates; a true singularity). \\
+
+Now we can find the light trajectory by using the normalization condition and the purely radial motion ($\dif \te = \dif \phi = 0 $).
+\[ - \br{1- \f{R_s}{r}}  \dif v^2 + 2 \dif v \dif r = 0 \]
+Again factorizing,
+\[ \dif v \bs{- \br{1- \f{R_s}{r}}  \dif v + 2 \dif r} = 0 \]
+Which has two solutions,
+\[ \dif v = 0 \implies v = \text{const} \]
+This case is drawn in green as before. Alternatively,
+\[ \br{1 - \f{R_s}{r}} \dif v = 2 \dif r \]
+This differential equation has one solution at $r = R_s$ (purple). If $r \neq R_s$,
+\[ \dif v = \f{2 \dif r}{ 1 - \f{R_s}{r}} \implies v = 2 r + R_s \ln\br{r - R_s} + \text{const} \]
+This solution is graphed below in orange.
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+        % Draw axes
+        \coordinate (nya) at (0, -1);
+        \coordinate (pya) at (0, 3);
+        \coordinate (nxa) at (-2, 0);
+        \coordinate (pxa) at (4, 0);
+        \node [above] (lpya) at (pya) {$\ti{t} = v - r$};
+        \node [right] (lpxa) at (pxa) {$r$};
+        \draw [<-, green, thick] (-1,3) -- (3,-1);
+        \draw [<-, green, thick] (0,3) -- (4,-1);
+        \draw [<-, green, thick] (-0.5,3) -- (3.5,-1);
+        \draw [->, purple, thick] (1,-1) -- (1,3);
+        \draw [->, orange, thick] (3,0) to[out=90,in=220] (4,3);
+        \draw [->, orange, thick] (2,0) to[out=90,in=240] (2.6,3);
+        \draw [->, orange, thick] (1.5,0) to[out=90,in=250] (1.8,3);
+        \draw [->, orange, thick] (0.5,0) to[out=90,in=290] (0.2,3);
+        % \draw [<-, red, thick] (4,3) -- (0,-1);
+        % \draw [<-, red, thick] (3.5,3) -- (-0.5,-1);
+        \draw [->, thick] (nya) -- (pya);
+        \draw [->, thick] (nxa) -- (pxa);
+\end{tikzpicture}
+\end{center}
+
 
 \end{document}
