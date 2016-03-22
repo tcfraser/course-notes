@@ -2560,7 +2560,7 @@ Subbing this into \eqref{eq:estarderv},
 \[ \f{1}{k_B}\pder{}{E}\bre{S\br{E}}_{E = E^*} = \be \]
 \[ \pder{}{E}\bre{S\br{E}}_{E = E^*} = \f{1}{T} \]
 But as we know from thermodynamics $\pder{S\br{E}}{E} \mid_{E=U} = \f{1}{T}$. This shows us that the ensemble average $U$ is equal to the extremum value $E^*$.
-\[ U = E^* \]
+\[ U = E^* \eq \label{eq:probableaverage}\]
 As such, $U$ and $E^*$ can be taken interchangably. Irrespective of the Hamiltonian of system, the most probable value of its energy is identical to its mean value. Depending on which is more advantageous we will use $U$ or $E^*$.\\
 
 Consider $\ln \bs{g\br{E} e^{-\be E}} = \ln P\br{E}$, and Taylor expand this around $E = U$. This can be done as we expect $E$ to not vary wildly from $U$ as it fluctuates.
@@ -2653,9 +2653,7 @@ Where $d$ is just the spacing dimension. This is known as the \textbf{virial equ
 
 \section{Grand Canonical Ensemble}
 
-Recall that microcanonical ensemble was constructed with fixed energy $E$, the canonical ensemble which has fixed $T$ and energy was allowed to be exchange energy $E$ with the reservoir. The grand canonical ensemble is simply a generalization of the canonical ensemble where the number of particles $N$ \textit{and} the total energy $E$ is allowed to be shared via fluctuations with the reservoir. Similar to before, we hope to recover thermodynamic relations using this formalism. The derivations of the grand canonical ensemble follow almost precisely the same as it did in the case of the canonical ensemble, with a few caveats. \\
-
-Now there the interface between the system and reservoir is some sort of permeable membrane that allows for a flow of particles between the system and reservoir.
+Recall that microcanonical ensemble was constructed with fixed energy $E$, the canonical ensemble which has fixed $T$ and energy was allowed to be exchange energy $E$ with the reservoir. The \textbf{grand canonical ensemble (GCE)} is simply a generalization of the canonical ensemble where the number of particles $N$ \textit{and} the total energy $E$ is allowed to be shared via fluctuations with the reservoir. Similar to before, we hope to recover thermodynamic relations using this formalism. The derivations of the grand canonical ensemble follow almost precisely the same as it did in the case of the canonical ensemble, with a few caveats. \\
 
 \begin{center}
 \begin{tikzpicture}
@@ -2675,6 +2673,18 @@ Now there the interface between the system and reservoir is some sort of permeab
 \end{tikzpicture}
 \end{center}
 
+Now there the interface between the system and reservoir is some sort of permeable membrane that allows for a flow of particles between the system and reservoir. \\
+
+\textbf{Observation}: Recall that making the switch from the microcanonical ensemble to canonical ensemble made life easier in terms of a procedures/computations because we relaxed the constraint that the system energy $E$ was fixed. The Grand canonical ensemble further relaxes the constraint of $N$ being fixed. This too will further make the computations even \textit{simpler}. \\
+
+As a first example, consider that a slab of $N_2$ just above a substrate where there is an exchange of material between the $N_2$ and the substrate as well as the energy of the two materials as the system evolves. This is an example of a grand canonical ensemble. \\
+
+Alternatively, an example of a quantum system with Hamiltonian,
+\[ H = \sum_{i = 1}^{N} \f{p_i^2}{2m} + \f{c}{2} \br{x_{i+1} - x_i}^2 \]
+Can be mapped (with algebra) to the equivalent problem of a system of harmonic oscillators,
+\[ H = \sum_k = \hbar \w\br{k} \bc{ a_k^\dagger a_k + \f12} \]
+Where $N_k = a_k^\dagger a_k$ is known as the \textbf{number operator}. This number is typically not conserved in most contexts, which further motivates the use of the grand canonical ensemble as lots of systems share the properties of fluctuating energy $E$ and number of particles $N$.
+
 \subsection{Derivation}
 
 We will label the number of particles in the in the reservoir $N^{(r)}$ and the energy in the reservoir $E^{(r)}$. The number of particles,energy in the system is $N^{(s)}, E^{(s)}$. Assuming that $N^{(r)} \gg N^{(s)}$ and $E^{(r)} \gg E^{(s)}$ because the reservoir is considered so large. We will assume the total number of particles $N$ and the total energy $E$ to be constant with,
@@ -2692,26 +2702,92 @@ Noting that $E^{(r)} - E = - E^{(s)}$ and $S = k_B \ln \Om$, the derivative of $
 We obtain,
 \[ \ln \Om^{(r)} \br{N^{(r)},E^{(r)}} \approx \ln \Om^{(r)} \br{N,E} + \f{\mu^{(r)}}{k_B T^{(r)}} N^{(s)} - \f{1}{k_B T^{(r)}} E^{(s)} \]
 Here $\mu^{(r)} = \mu^{(s)} = \mu$ and $T^{(r)} = T^{(s)} = T$ since we are considering being in chemical and thermodynamic equilibrium respectively. As such we have obtained that,
-\[ P_{ij}\br{N^{(s)}_i,E^{(s)}_j} \propto \exp\bs{-\al N^{(s)}_i - \be N^{(s)}_j} \]
+\[ P_{ij}\br{N^{(s)}_i,E^{(s)}_j} \propto \exp\bs{-\al N^{(s)}_i - \be E^{(s)}_j} \]
 Where the constants are defined as,
-\[ \al \defined -\f{\mu}{k_B T}  \quad \be = \f{1}{k_B T} \]
+\[ \al \defined -\f{\mu}{k_B T}  \quad \be = \f{1}{k_B T} \eq \label{eq:albe}\]
 Normalizing the probability removes the proportionality. Summing over all accessible states of the system that are allowed $\bc{i,j}$,
-\[ P_{ij}\br{N^{(s)}_i,E^{(s)}_j} =  \f{\exp\bs{-\al N^{(s)}_i - \be N^{(s)}_j}}{\sum_{i,j}\exp\bs{-\al N^{(s)}_i - \be N^{(s)}_j}} \]
+\[ P_{ij}\br{N^{(s)}_i,E^{(s)}_j} =  \f{\exp\bs{-\al N^{(s)}_i - \be E^{(s)}_j}}{\sum_{i,j}\exp\bs{-\al N^{(s)}_i - \be E^{(s)}_j}} \]
 Or dropping the notation of the system,
-\[ P_{ij}\br{N_i,E_j} =  \f{\exp\bs{-\al N_i - \be N_j}}{\sum_{i,j}\exp\bs{-\al N_i - \be N_j}} \]
+\[ P_{ij}\br{N_i,E_j} =  \f{\exp\bs{-\al N_i - \be E_j}}{\sum_{i,j}\exp\bs{-\al N_i - \be E_j}} \eq \label{eq:PGCE}\]
 
 \subsection{Comparison to Canonical Ensemble}
-We will now consider a system in the grand canonical \textbf{ensemble}. Imagine an ensemble of $\mathcal{N}$ identical systems. Together they will share a total energy $\mathcal{N} \bar{E}$ and will also share a total number of particles $\mathcal{N} \bar{N}$. Call $n_{i,j}$ the number of systems that have number of particles $N_{i}$ and energy $E_{j}$. Then we obtain the following relations,
+We will now consider a system in the grand canonical \textbf{ensemble}. Imagine an ensemble of $\mathcal{N}$ identical copies of the system of interest. Together they will share a total energy $\mathcal{N} \bar{E}$ and will also share a total number of particles $\mathcal{N} \bar{N}$. As a manner of notation, we will call $n_{i,j}$ the number of systems that have number of particles $N_{i}$ and energy $E_{j}$. Then we obtain the following relations,
 \[ \sum_{i,j} n_{i,j} = \mathcal{N} \eq \label{eq:gcc1} \]
 \[ \sum_{i,j} n_{i,j}N_i = \mathcal{N} \bar{N} \eq \label{eq:gcc2}\]
 \[ \sum_{i,j} n_{i,j}E_j = \mathcal{N} \bar{E} \eq \label{eq:gcc3} \]
+
+\textbf{Remark}: As a comparison to the canonical ensemble, the new constraint associated with the GCE is the constraint of total number of particles \eqref{eq:gcc2}. \\
+
 Any set $\bc{n_{i,j}}$ of the numbers $n_{i,j}$ that satisfy the above constraints (\eqref{eq:gcc1}, \eqref{eq:gcc2}, \eqref{eq:gcc3}) represents the possible \textit{modes of distribution} of particles among the ensemble. Any such mode of the distribution can be realized in $W\bc{n_{i,j}}$,
 \[ W \bc{n_{i,j}} = \f{\mathcal{N}!}{\prod_{i,j} \br{n_{i,j} !}} \]
-We will again use Lagrange multipliers in order to extremize this distribution to find the most probable mode.
+Where $\mathcal{N}!$ is the number of permutations associated with the copies of the system and $\prod_{i,j} \br{n_{i,j} !}$ are the internal number of permutations that maintain the microstates of the system. We will again use Lagrange multipliers in order to extremize this distribution to find the \textit{most probable} mode. Just as before the derivation employs that $N \gg 1$. From this one obtains,
+\[ \f{n_{i,j}}{\mathcal{N}} =  \f{e^{-\al N_i - \be E_j}}{\sum_{i,j}e^{-\al N_i - \be E_j}}\]
+Which is identical to \eqref{eq:PGCE}. This is fitting as $n_{i,j}$ is the number of systems that happen to have $N_i$ particles and $E_j$ energy, and $\mathcal{N}$ is the total number of system. One can also show that in the thermodynamic limit one can show that $n_{i,j} = \ba{n_{i,j}}$. This is precisely the same idea that was invoked to prove \eqref{eq:probableaverage}. We will use this result moving forward.
+\[ n_{i,j} = \ba{n_{i,j}} \]
+Using this we can compute the average number of particles,
+\[ \bar{N} = \f{\sum_{i,j} N_i e^{-\al N_i - \be E_j}}{\sum_{i,j}e^{-\al N_i - \be E_j}} \]
+Using the derivative of the logarithm trick performed many times before,
+\[ \bar{N} = -\pder{}{\al}\ln \bc{\sum_{i,j} e^{-\al N_i - \be E_j}} \]
+Similarly, the average energy of the system is determined by a derivative of $\be$.
+\[ \bar{E} = -\pder{}{\be}\ln \bc{\sum_{i,j} e^{-\al N_i - \be E_j}} \]
+Just as in the canonical ensemble, $\be = 1/k_B T$; however what is the physical interpretation/significance of $\al$? Note that this was previously motivated with \eqref{eq:albe} above, but we will re-examine this again now.
 
+\subsection{Physical Significance of $\al, \be$}
 
+For convenience of notation we will define the non-physical quantity $\eta$ as,
+\[ \eta \defined \ln \br{\sum_{i,j} e^{-\al N_i - \be N_j}} \eq \label{eq:eta}\]
+Thermodynamically, $\al, \be, E_j$ can vary depending on volume. To digest or interpret $\al, \be$, we first need to compute $\dif \eta$.
+\[ \dif \eta = - \bar{N} \dif \al - \bar{E} \dif \be - \f{\be}{\mathcal{N}} \sum_{i,j} \ba{n_{i,j}} \dif E_j \eq \label{eq:difeta}\]
+Now consider the quantity $\eta + \bar{N} \al + \bar{E} \be$ and its differential,
+\[ \dif \br{\eta + \bar{N} \al + \bar{E} \be} \]
+By chain rule and \eqref{eq:difeta} this can be expressed,
+\[ \dif \br{\eta + \bar{N} \al + \bar{E} \be} = \be \bc{ \f{\al}{\be}\dif \bar{N} + \dif \bar{E} -\f{1}{\mathcal{N}} \sum_{i,j} \ba{n_{i,j}} \dif E_j } \]
+Recall from the first law of thermodynamics,
+\[ \dif \bar{E} = \dif Q - \dif W + \mu \dif \bar{N} \]
+Comparing term by term,
+\[ \mu = - \f{\mu}{\be} \qquad \dif W = - \f{1}{\mathcal{N}} \sum_{i,j} \ba{n_{i,j}} \dif E_j \qquad \dif \br{\eta + \bar{N} \al + \bar{E} \be} = \be \dif Q\]
+Therefore we obtain that,
+\[ \al = -\f{\mu}{k_B T} \]
+\subsection{Grand Canonical Partition Function}
+Just as found for \eqref{eq:albe}. Further examination of the incremental heat,
+\[ \dif \br{\eta + \bar{N} \al + \bar{E} \be} = \be\dif Q = \f{\dif S}{k_B} \]
+Therefore we have the entropy of the system in terms of $\eta, \al, \be, \bar{N}$ and $\bar{E}$,
+\[ S = k_B \br{\eta + \bar{N} \al + \bar{E} \be} \]
+Or rearranged for $\eta$,
+\[ \eta = \f{S}{k_B} + \f{\mu\bar{N}}{k_B T} - \f{\bar{E}}{k_BT} = \f{ST + \mu\bar{N} - \bar{E}}{k_BT} \]
+Recall the Gibb's free energy $G = \bar{E} - TS + PV = \mu \bar{N}$ and the original definition for $\eta$ \eqref{eq:eta},
+\[ \eta = \ln \br{\sum_{i,j} e^{-\al N_i - \be N_j}} = \f{PV}{k_B T} \]
+So $\eta$ has a physical interpretation after all. \\
 
+Note that $e^{-\al N_i} = \br{e^{-\al}}^N_i$ has the inner term often denoted with a lower case $z$,
+\[ z = e^{-\al} = e^{\f{\mu}{k_B T}}\]
+Where $z \neq Z$ is \textbf{not} the partition function. It is known as the \textbf{fugacity}. \\
 
+Clearly $\eta$ given by \eqref{eq:eta} plays a crucial role. It can be rewritten as,
+\[ \eta  = \ln \br{\sum_{i,j} e^{-\al N_i} e^{-\be E_j}}  = \ln \br{\sum_{i} e^{-\al N_i} \sum_{j}e^{-\be E_j}} \]
+The second sum is given by the possible energies of the system $E_j$. Instead of summing over these arbitrary indices, we can replace this with summing over the states $s$ with $E_s$ depending possibly on the number of particles $N_i$,
+\[ \eta  = \ln \br{\sum_{i} e^{-\al N_i} \sum_{s}e^{-\be E_s\br{N_i}}} \]
+Recalling the canonical partition function $Z = \sum_s e^{-\be E_s}$. Since $Z$ can now depend on the number of particles, we will denote it $Z_{N_i}$.
+\[ \eta  = \ln \br{\sum_{i}z^{N_i} Z_{N_i} \br{V,T}} \]
+Where $Z_{N_i}$ is the canonical partition function for a given number of particles $N_i$ and it depends on the volume and temperatures of the system. It is often the case that the canonical partition function $Z$ has its label replaced with a $Q$.
+\[ \eta  = \ln \br{\sum_{i} z^{N_i} Q_{N_i} \br{V,T}} \]
+The term in the logarithm is known as the \textbf{grand canonical partition function}.
+\[ Z_{GC} = \sum_{i} z^{N_i} Q_{N_i} \br{V,T} \]
+How does it work? Recall that $Q_{N_i} \br{V,T} = \sum_s e^{-\be E_s}$ is identically the canonical partition function as done before. Once one obtains this for each possible number of particles $N_i$, the grand canonical partition function is simply a weighted sum of each of these $Q_{N_i}$'s. Alternatively, this modification can be viewed as a shifting of energy for the corresponding number of particles,
+\[ \sum_{i} e^{-\al N_i} \sum_{s}e^{-\be E_s\br{N_i}} = \sum_{i} \sum_{s}e^{-\be\br{E_s - \mu N_i}} \]
 
+\textbf{Example}: Consider an illuminating example of a system of 3 spins ($S_i = \pm 1, \forall i$) with Hamiltonian,
+\[ H = J \br{S_1 S_2 + S_2 S_3 + S_3 S_1} \]
+Where two states have energy $E = 3J$ and 6 states have energy $E=-J$. Letting $s$ run through the states,
+\[ \sum_{s=1}^{s=8} e^{-\be E_s} = 2e^{-\be\br{3J}} + 6e^{-\be\br{-J}} \]
+Thus it is more efficient computationally to recognize these repeated values and include the degeneracies in the formula.\\
 
+Returning to the generic case, instead of summing over the index $i$,
+\[ \sum_{i} e^{\be \mu N_i} \ar \sum_{N_i = 0}^{\inf} e^{\be \mu N_i} \]
+We can sum over the actual number of particles $N_i$. This is precisely analogous to summing over the energies instead of summing over the states as throughly discussed in section \ref{sec:densityofstates}. Altogether,
+\[ Z_{GC} = \sum_{N_i = 0}^{\inf} e^{\be \mu N_i} \br{\sum_{E} g\br{E}e^{-\be E}}_{N_i} \]
+Note that there is no corresponding density of states for the number of particles $g\br{N}$. $g\br{E}$ corresponds to the number of states that happen to have the same energy $E$. However if the number of particles are the same, it corresponds to precisely the same state without degeneracies.
 \end{document}
+
+
+
