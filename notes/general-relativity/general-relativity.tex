@@ -3008,12 +3008,50 @@ This solution is graphed below in orange.
         \draw [->, orange, thick] (2,0) to[out=90,in=240] (2.6,3);
         \draw [->, orange, thick] (1.5,0) to[out=90,in=250] (1.8,3);
         \draw [->, orange, thick] (0.5,0) to[out=90,in=290] (0.2,3);
-        % \draw [<-, red, thick] (4,3) -- (0,-1);
-        % \draw [<-, red, thick] (3.5,3) -- (-0.5,-1);
+        \node [below right, purple] (lRs) at (1, 0) {$R_s$};
         \draw [->, thick] (nya) -- (pya);
         \draw [->, thick] (nxa) -- (pxa);
 \end{tikzpicture}
 \end{center}
 
+The intersection between the orange and green trajectories moving forward (upward) in time form the line cones for the particles moving between them. For $r < R_s$, the trajectories for light fall inward toward $r = 0$. There is \textit{no way} for light emanating from below $r < R_s$ to escape to a region where $r > R_s$. As such, for observers with $r>R_S$, $r = R_s$ acts as an \textbf{event horizon}. This is contrasting to the Minkowski case discussed above. An observer at any point in a Minkowski metric given enough time has access to information at every other point in spacetime.
+
+\section{Cosmology}
+
+Up until the notion of spacetime and GR, scientists assumed that the universe was infinite, static and eternal. Two characteristic assumptions of Cosmology are the notions of \textbf{homogeneity} and \textbf{isotropic}.
+\begin{itemize}
+    \item homogeneous: Universe behaves/looks the same at every place
+    \item isotropic: At every point, the universe looks the same in every direction
+\end{itemize}
+The first hint that suggests that the universe can't be static or infinite is that the night sky is mostly dark. If the universe were infinite, looking in any particular direction should be bright because \textit{eventually} you ray of vision will hit a star. This idea was first discussed in 1826 and is known as \textbf{Albers' paradox}. Moreover in 1912, Slipher observed that galaxies are red shifted. This work was extended by Hubble in 1929 when he observed that this redshift is proportional to the distance to the galaxies. If galaxies are redshifted, then that means they are moving away from us. Combining this with the assumption of homogeneity, indicates that \textit{all galaxies are moving away from each other}
+. Because of this, the universe is \textit{not} static. Explicitly, this indicates that the space between galaxies are growing. In summary, these observations indicate that the universe can not be infinite or static. \\
+
+At this time in history people started utilizing GR to study the \textit{evolution} of the universe. To do so we will choose a metric to describe spacetime. Given the assumptions that \textit{space alone} is homogeneous and isotropic we can arrive at some symmetries. Specifically the isotropic assumption introduces spherical symmetry and thus $3$ rotation killing vectors. In additional homogeneity introduces ``translational'' invariance. Translational is written in quotes because it does not be linear translations in a Cartesian sense. As an example, consider a translation away from the north pole of a sphere. These ``translationals'' can manifest themselves as rotations or boosts. From this we also get $3$ killing vectors. \\
+
+\textbf{Theorem}: Given a manifold $M$ with dimension $n > 1$, we can have at most $\f{n\br{n+1}}{2}$ killing vectors. If we have the maximum number of killing vectors, we say that $M$ is \textbf{maximally symmetric}. Moreover in the maximally symmetric case we have that,
+\[ R_{\al\be\ga\de} = \f{k}{n\br{n-1}} \br{g_{\al\ga} g_{\be\de} - g_{\al\de} g_{\be\ga}} \eq \label{eq:maxsym}\]
+Where $k$ is just a constant with values potential values $-1, 0, 1$ and $g_{\al\be}$ is a metric on $M$.\\
+
+For example, taking space with $3$ dimensions, the maximal number of killing vectors is,
+\[ \f{n\br{n+1}}{2} = \f{3\br{3+1}}{2} = 6 \]
+Therefore homogeneity and isotropy immediately imply that we have a maximally symmetric space. One example is hyperplane $\vR^3$ with zero curvature $k = 0$. A second example is $S^3$ the 3-sphere with curvature $k = 1$ and finally the Hyperboloid with curvature $k=-1$. \\
+\begin{center}
+\begin{tabular}{|c|c|c|}
+    \hline
+    Space & Curvature $k$ \\
+    \hline
+    $\vR^3$ & 0 \\
+    $S^3$ & 1 \\
+    $\mathcal{H}^3$ & -1 \\
+    \hline
+\end{tabular}
+\end{center}
+In order to obtain the spatial metric, we can solve \eqref{eq:maxsym}. Beginning with the most general homogeneous, isotropic metric,
+\[ \dif \sigma^2 = \ga_{ij} \dif x^i \dif x^j = e^{2 \be \br{r}} \dif r^2 + r^2 \dif \Om^2 \eq \label{eq:homisomet} \]
+We can using \eqref{eq:maxsym} to solve for $\be \br{r}$. Computing the Ricci tensor from \eqref{eq:maxsym} gives,
+\[ R_{\be \de} = R_{\al\be\de\ga} g^{\al\ga} = \f{k}{6}\br{\underbrace{g_{\al\ga} g^{\al\ga}}_{3} g_{\be\de} - \underbrace{g^{\al\ga} g_{\al\de}}_{{\de^\ga}_\de} g_{\be\ga}} \]
+\[ R_{\be \de} = \f{k}{6} \br{2 g_{\be \de}} \]
+Therefore \eqref{eq:homisomet} becomes,
+\[ \ga_{ij} \dif x^i \dif x^j = \f{1}{1 - k r^2} \dif r^2 + r^2 \dif \Om^2 \]
 
 \end{document}
