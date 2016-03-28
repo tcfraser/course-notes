@@ -3034,24 +3034,62 @@ Where $k$ is just a constant with values potential values $-1, 0, 1$ and $g_{\al
 
 For example, taking space with $3$ dimensions, the maximal number of killing vectors is,
 \[ \f{n\br{n+1}}{2} = \f{3\br{3+1}}{2} = 6 \]
-Therefore homogeneity and isotropy immediately imply that we have a maximally symmetric space. One example is hyperplane $\vR^3$ with zero curvature $k = 0$. A second example is $S^3$ the 3-sphere with curvature $k = 1$ and finally the Hyperboloid with curvature $k=-1$. \\
+Therefore homogeneity and isotropy immediately imply that we have a maximally symmetric space. One example is hyperplane $\R^3$ with zero curvature $k = 0$. A second example is $S^3$ the 3-sphere with curvature $k = 1$ and finally the Hyperboloid with curvature $k=-1$. \\
 \begin{center}
 \begin{tabular}{|c|c|c|}
     \hline
     Space & Curvature $k$ \\
     \hline
-    $\vR^3$ & 0 \\
-    $S^3$ & 1 \\
+    $\R^3$ & 0 \\
+    $S^3$ & +1 \\
     $\mathcal{H}^3$ & -1 \\
     \hline
 \end{tabular}
 \end{center}
-In order to obtain the spatial metric, we can solve \eqref{eq:maxsym}. Beginning with the most general homogeneous, isotropic metric,
+\subsection{FLRW Metric}
+In order to obtain the spatial metric, we can solve \eqref{eq:maxsym}. A general expression for a metric can be written with $i = 1,2,3$,
+\[ g_{\al\be} \dif x^\al \dif x^\be = g_{00}\br{\dif t}^2 + g_{0i}\dif t \dif x^i + g_{i0} \dif x^i \dif t + g_{ij}\br{\vx,t}\dif x^i \dif x^j \eq \label{eq:genmetric}\]
+First we take a look at the space components of the metric $\ga_{ij}$ and utilize the fact that space is homogeneous and isotropic metric,
 \[ \dif \sigma^2 = \ga_{ij} \dif x^i \dif x^j = e^{2 \be \br{r}} \dif r^2 + r^2 \dif \Om^2 \eq \label{eq:homisomet} \]
 We can using \eqref{eq:maxsym} to solve for $\be \br{r}$. Computing the Ricci tensor from \eqref{eq:maxsym} gives,
 \[ R_{\be \de} = R_{\al\be\de\ga} g^{\al\ga} = \f{k}{6}\br{\underbrace{g_{\al\ga} g^{\al\ga}}_{3} g_{\be\de} - \underbrace{g^{\al\ga} g_{\al\de}}_{{\de^\ga}_\de} g_{\be\ga}} \]
 \[ R_{\be \de} = \f{k}{6} \br{2 g_{\be \de}} \]
 Therefore \eqref{eq:homisomet} becomes,
-\[ \ga_{ij} \dif x^i \dif x^j = \f{1}{1 - k r^2} \dif r^2 + r^2 \dif \Om^2 \]
+\[ \ga_{ij} \dif x^i \dif x^j = \f{1}{1 - k r^2} \dif r^2 + r^2 \dif \Om^2 \eq\label{eq:gammametric}\]
+Now we can return to our general metric \eqref{eq:genmetric} and analyze the time components. To do so we will use the notion of \textbf{comoving coordinates}. Here the tangent vector of a world line is always perpendicular to hypersurface of space and naturally the position components are held constant $x^i = \text{const}$ (Wainwright's notes p114). As such we can make the off diagonal terms zero,
+\[ g_{0i} = g_{i0} = 0 \]
+And the first components can be negative,
+\[ g_{00} = -1 \]
+What about $g_{ij}$ in \eqref{eq:genmetric}? If in general $g_{ij} = g_{ij}\br{\vx, t}$ the space metric depends on $\vx$ then we violate the assumption of homogeneity. Therefore it must depend on $r$. Similarly, if $g_{ij}$ is to be isotropic in time, the time components must be separable from $g_{ij}$. Recalling \eqref{eq:gammametric},
+\[ g_{ij}\br{\vx, t} \ar a^2 \br{t} \ga_{ij}\br{r} \]
+Here $a\br{t}$ is known as a \textbf{scale factor}. Moreover the square on $a\br{t}$ is introduced to ensure positiveness. Combining all of these motivations together yields the \textbf{Friedmann Le maître Robertson Walker metric (FLRW).}
+\[ g_{\al\be} \dif x^\al \dif x^\be = -\dif t^2 + a^2\br{t} \ga_{ij} \dif x^i \dif x^j \eq \label{eq:FLRW} \]
+The discovery and proof of uniqueness of this metric took from $\sim$1922-1935. What are the implications of this metric? What we will see is that \eqref{eq:FLRW} produces a relationship between redshift and distance.
+\subsection{Redshift \& Distance}
+Suppose we have two individuals each in a separate galaxy very far apart. If person $1$ sends a signal to person $2$ at a time $t = t_e$ at some later time, person $B$ will receive this signal. If their separation was initially $\ell$, by \eqref{eq:FLRW}, the separation at a later time $t_r$ is given by $a\br{t_r} \ell$. Denote the tangent vectors for each observed $V^\mu_1$ and $V^\mu_2$ respectively. Finally, let the receiver of light (2) be placed at $r=0$. Since the light signal is moving along a geodesic (and the motion is purely radial), the normalization condition for a lightlike trajectory becomes,
+\[ 0 = - \dot{t}^2 + a\br{t} \f{\dot{r}^2}{1 - kr^2} \]
+Therefore since the position of the light relative to observer 2 $r$ is decreasing, $\dif r < 0$. By factoring out the $\dif \tau$'s one obtains,
+\[ \f{\dif t}{a\br{t}} = - \f{\dif r}{\br{1-kr^2}^{1/2}} \]
+Integrating over the path of the trajectory,
+\[ \int_{t_e}^{t_r} \f{\dif t}{a\br{t}} = - \int_{r_e}^{r_r} \f{\dif r}{\br{1-kr^2}^{1/2}} = f_k \br{r_r, r_e} \eq \label{eq:intintfk}\]
+We will not consider a series of light pulses spaced by short intervals $\delta t_e$ with frequency $\w_e = \f{2 \pi }{\de t_e}$ when emitted and received with frequency $\w_r = \f{2 \pi }{\de t_r}$. For every pulse, \eqref{eq:intintfk} holds true. For the pulse at $t = t_e + \de t_e$ we can assume that $\de t_e$ is small enough or that $a\br{t}$ is small enough such that the total \textit{distance} traveled does not differ from the original pulse,
+\[ \int_{t_e + \de t_e}^{t_r + \de t_r} \f{\dif t}{a\br{t}} = - \int_{r_e}^{r_r} \f{\dif r}{\br{1-kr^2}^{1/2}} = f_k \br{r_r, r_e} \]
+Since the traveled distance is the same we have,
+\[ \int_{t_e + \de t_e}^{t_r + \de t_r} \f{\dif t}{a\br{t}} = \int_{t_e}^{t_r} \f{\dif t}{a\br{t}} \]
+Fragmenting the bounds of integration,
+\[ \int_{t_e + \de t_e}^{t_r + \de t_r} \f{\dif t}{a\br{t}} = \int_{t_r}^{t_r + \de t_r} \f{\dif t}{a\br{t}} + \int_{t_e}^{t_r} \f{\dif t}{a\br{t}} + \int_{t_e + \de t_e}^{t_e} \f{\dif t}{a\br{t}} \]
+The term over $t_e \ar t_r$ cancels out giving,
+\[ \int_{t_e}^{t_e + \de t_e} \f{\dif t}{a\br{t}} = \int_{t_r }^{t_r + \de t_r} \f{\dif t}{a\br{t}} \]
+Finally using the fundamental theorem of calculus ($F\br{t + \de t} - F\br{t} \approx \de t F'\br{t}$),
+\[ \f{\de t_r}{a\br{t_r}} = \f{\de t_e}{a\br{t_e}} \]
+Rearranging and switching to frequencies and wavelengths gives the redshift factor $Z$,
+\[ \f{\de t_e}{\de t_r} = \f{\w_r}{\w_e} = \f{\lambda_e}{\lambda_r} = \f{a\br{t_e}}{a\br{t_r}} \defined 1 + Z \]
+So does \eqref{eq:FLRW} produce a redshift or a blueshift? This depends on the change of $a$. If $a\br{t}$ is decreasing, we will see a blueshift of distance galaxies. Conversely if $a\br{t}$ is increasing, we should expect to observe a redshift. \\
 
+Using this result, what can we say about the relationship between redshift and distance? Consider the Taylor expansion of $a\br{t}$,
+\[ a\br{t} = a_0 \br{t_0} + \br{t- t_0}\dot{a}\br{t_0} + \f12\br{t- t_0}^2\ddot{a}\br{t_0} + O\br{\br{t-t_0}^3} \]
+We will now define some parameters. The \textbf{Hubble parameter} is,
+\[ H\br{t} = \f{\dot{a}\br{t}}{a\br{t}} \]
+The \textbf{deceleration parameter} is,
+\[ q\br{t} = - \f{a\br{t}\ddot{a}\br{t}}{\dot{a}^2\br{t}}\]
 \end{document}
