@@ -2759,7 +2759,7 @@ Recall the Gibb's free energy $G = \bar{E} - TS + PV = \mu \bar{N}$ and the orig
 \[ \eta = \ln \br{\sum_{i,j} e^{-\al N_i - \be N_j}} = \f{PV}{k_B T} \]
 So $\eta$ has a physical interpretation after all. \\
 
-Note that $e^{-\al N_i} = \br{e^{-\al}}^N_i$ has the inner term often denoted with a lower case $z$,
+Note that $e^{-\al N_i} = \br{e^{-\al}}^{N_i}$ has the inner term often denoted with a lower case $z$,
 \[ z = e^{-\al} = e^{\f{\mu}{k_B T}}\]
 Where $z \neq Z$ is \textbf{not} the partition function. It is known as the \textbf{fugacity}. \\
 
@@ -2785,8 +2785,100 @@ Thus it is more efficient computationally to recognize these repeated values and
 Returning to the generic case, instead of summing over the index $i$,
 \[ \sum_{i} e^{\be \mu N_i} \ar \sum_{N_i = 0}^{\inf} e^{\be \mu N_i} \]
 We can sum over the actual number of particles $N_i$. This is precisely analogous to summing over the energies instead of summing over the states as throughly discussed in section \ref{sec:densityofstates}. Altogether,
-\[ Z_{GC} = \sum_{N_i = 0}^{\inf} e^{\be \mu N_i} \br{\sum_{E} g\br{E}e^{-\be E}}_{N_i} \]
-Note that there is no corresponding density of states for the number of particles $g\br{N}$. $g\br{E}$ corresponds to the number of states that happen to have the same energy $E$. However if the number of particles are the same, it corresponds to precisely the same state without degeneracies.
+\[ Z_{GC} = \sum_{N_i = 0}^{\inf} e^{\be \mu N_i} \br{\sum_{E}^{'} g\br{E}e^{-\be E}}_{N_i} \]
+Note that there is no corresponding density of states for the number of particles $g\br{N}$. $g\br{E}$ corresponds to the number of states that happen to have the same energy $E$. However if the number of particles are the same, it corresponds to precisely the same state without degeneracies. Moreover notice that the second sum in this formula has a prime to make clear that the sum is made using the constraint that the number of particles is fixed. It behaves, for fixed $N$, precisely as the \textit{canonical} ensemble.
+\[ Z_{GC} = \sum_{N = 0}^{\inf} z^{N} Z_{C}\br{N} \]
+
+% TODO write notes about pages 6.7 - 6.13 and some examples (p95-97), (p103-105)
+
+\section{Ideal Quantum Gases}
+
+We will begin now to discuss ideal quantum gases. Just as in the ideal gas case, we may restrict our setting to just deal with \textbf{non-interacting} particles. As such out general Hamiltonian,
+\[ H = H\tsb{kin} + \sum_{i>j} V_{ij} \]
+May be simply written,
+\[ H = H\tsb{kin} \]
+This switch can be motivated for the regime of $\be V = \f{V}{k_B T} \ll 1$ or in the case of \textit{dilute} gases. Since the particles are quantum mechanical, they are indistinguishable. Examples of these gases include,
+\begin{itemize}
+    \item fermions: electrons, protons, neutrons, $S = \f12 \hbar$
+    \begin{itemize}
+        \item Governed by the Pauli Exclusion principle
+    \end{itemize}
+    \item bosons: collective excitations, composite objects, photon, phonon
+\end{itemize}
+
+An example of a composite particle is a hydrogen atom. Under the correct description, a hydrogen atom is composed of two fermions (electron, proton) and their combination can behave as a boson with spin ($S = \f12 \hbar$).
+
+\subsection{Microcanonical Ensemble For IQG}
+To begin, we should first look at ideal quantum gases from the perspective of fixed $N, V, E$ (microcanonical ensemble). A non-quantum ideal gas has a fixed energy of (for each particle at temperature $T$),
+\[ E = \f32 N k_B T \]
+So how can we modify this expression to deal with \textit{quantum} ideal gases? Recall the results for a particle in a box of length $L$ with Hamiltonian,
+\[ H\tsb{kin} = \f{\hbar^2}{2m} \vdel^2 \]
+With TISE,
+\[ \f{\hbar^2}{2m} \vdel^2 \psi = E \psi \]
+Where states $\psi$ are standing waves within the box. The difference between fermions and bosons is that no two fermions can share exactly the same quantum state while bosons can. For example, only two (one with spin up, one with spin down) electrons can occupy the lowest energy state standing wave $\psi_1 = \sin \br{\f{\pi x}{L}}$. Knowing this, it is clear that the number of configurations for fermions is considerably lower than for bosons. \\
+
+What we will do is look at an energy spectrum with energy levels $\vep_i$ with,
+\[ \vep_1 < \vep_2 < \cdots < \vep_n \]
+Where there are $g_i$ states that share that eigenenergy. For each energy level $\vep_i$, we can have $n_i$ particles with that energy. Therefore to characterize the $i$-th cell, we need $\br{n_i; \vep_i; g_i}$. Under this picture we have constraints:
+\begin{enumerate}
+    \item number constraint $N = \sum_i n_i$
+    \item energy constraint $E = \sum_i n_i \vep_i$
+\end{enumerate}
+Now under these constraints, our goal is to compute the number of microstates $\Om$ accessible to the system for fixed $N, V, E$.
+\[ \Om\br{N,V,E} = {\sum_{\bc{n_i}}}' \mathcal{W} \bc{n_i} \]
+Where $\mathcal{W}\bc{n_i}$ is the number of microstates associated with a distribution (of particles) $\bc{n_i}$ consistent with constraints $1,2$. Moreover the prime on the summation symbol $\Sigma'$ indicates the summation over all these ``modes of distribution'' that must fulfill the constraints above. What is $\mathcal{W}\bc{n_i}$?
+\[ \mathcal{W}\bc{n_i} = \prod_{i} w \br{i} \]
+Where $w \br{i}$ is the number of distinct ways in which $n_i$ indistinguishable particles can be distributed among the (distinguishable) $g_i$ levels/states in the $i$-th cell. The form of $w\br{i}$ will of course depend on the type of particle in question.\\
+
+\textbf{Bosons}:
+A system of bosons will be called a \textbf{Bose-Einstein statistic (BE)}. This is just given by the typical stars and bars result,
+\[ w\tsb{BE} \br{i} = \f{\br{n_i + g_i - 1}!}{n_i !\br{g_i - 1}!} \]
+Thus making $\mathcal{W}\bc{n_i}$ given to be,
+\[ \mathcal{W}\tsb{BE}\bc{n_i} = \prod_{i} \f{\br{n_i + g_i - 1}!}{n_i !\br{g_i - 1}!} \]
+
+\textbf{Fermions}:
+By contrast, the same result for a \textbf{Fermi Dirac statistic (FD)} is quite different. Any particular fermion has $g_i$ possible states in can occupy for each energy cell $\vep_i$. However, the second particle has less choice. The second particle will have access to $g_i - 1$ states since one is already occupied by the first one. This process continues until the $n_i$-th particle picks a state,
+\[ g_i \br{g_i - 1}\br{g_i - 2}\cdots\br{g_i - \br{n_i - 1}} \note{$n_i \leq g_i$}\]
+One can write this more compactly as the difference between two factorials,
+\[ \f{g_i !}{ \br{g_i - n_i}!} \]
+This gives the number of ways, one can distribute $n_i$ particles into $g_i$ levels with no more than $1$ particle per level. However since the particles are indistinguishable we have over-counted by the number of permutations of the $n_i$ particles themselves,
+\[ w\tsb{FD} = \f{1}{n_i!}\f{g_i !}{ \br{g_i - n_i}!} \]
+Making,
+\[ \mathcal{W}\tsb{FD}\bc{n_i} = \prod_{i} \f{1}{n_i!}\f{g_i !}{ \br{g_i - n_i}!} \]
+
+\textbf{Maxwell-Boltzmann distribution}: Assuming first that the particles are indistinguishable, for the distribution set $\bc{n_i}$ we can ask: How many ways can $N$ particles be distributed into $n_1$ particles in cell 1 and $n_2$ particles in cell 2 and $n_i$ particles in cell $i$? This is given by the multinomial distribution,
+\[ \f{N!}{n_1! \cdot n_2! \cdots n_i!} = \f{N!}{\prod_i n_i !} \]
+Now with $g_i$ states we can have $g_i^{n_i}$ configurations of particle distribution of $n_i$ particles among $g_i$ states in cell $i$. Furthermore removing the distinguishability of the $N$ particles requires division by $N!$,
+\[ \mathcal{W}\tsb{MB}\bc{n_i} = \f{1}{n_i!} \prod_{i} g_i^{n_i}  \]
+For supplementary materials, see Sertagg-Wan Wylen. \\ % Typo in the name TODO
+
+\subsection{Entropy}
+By with any of these distributions, we can determine the entropy of the system in the usual way,
+\[ S \br{N, V, E} = k_B \ln \Om \br{N, V, E} = k_B \ln \br{{\sum_{\bc{n_i}}}' \mathcal{W}\bc{n_i}} \]
+In the thermodynamic limit $N \gg 1, n_i \gg 1, g_i \gg 1$, etc, the sum ${\sum_{\bc{n_i}}}' \mathcal{W}\bc{n_i}$ is very well approximated by $\mathcal{W}\bc{n_i^*}$ where $\bc{n_i^*}$ is the distribution of $\bc{n_i}$ that will maximize $\mathcal{W}\bc{n_i}$. As such we obtain the approximation,
+\[ S \br{N, V, E} = k_B \ln \mathcal{W} \bc{n_i^*} \]
+Now we have to maximize $\mathcal{W}$ whether it be $\mathcal{W}\tsb{BE}$, $\mathcal{W}\tsb{FD}$ or $\mathcal{W}\tsb{MB}$. Use Lagrange multipliers again and maximize the logarithm of $\mathcal{W}$,
+\[ \dif \ln \mathcal{W} \bc{n_i} - \bc{\al \sum_i \dif n_i + \be \sum_i \vep_i \dif n_i} = 0 \]
+% TODO do this exercise
+Plugging in each of the distributions above $\mathcal{W}$,
+\[ n_i^* = \f{g_i}{e^{\al + \be \vep_i} + a} \]
+Where we have,
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        Distribution & $a$ \\
+        \hline
+        $\mathcal{W}\tsb{BE}$ & $-1$ \\
+        $\mathcal{W}\tsb{FD}$ & $+1$ \\
+        $\mathcal{W}\tsb{MB}$ & $0$ \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\textbf{Remark}: One thing to notice is that $n_i^*$ is proportional to $g_i$. As such, $\f{n_i^*}{g_i}$ can be interpreted as the most probable number of particles per energy level in the $i$-th cell. This also suggests we can interpret $\f{n_i^*}{g_i}$ as the most probable number of particles \textit{even if} we had a single energy level/state $\vep_i$. \\
+
+\textbf{Comment}: This last statement can be obtained rigorously within the grand canonical ensemble where each single particle energy state is \textit{considered individually} without grouping them in cells with a number $g_i$ much greater than $1$ ($g_i \gg 1$) per cell.
+
 \end{document}
 
 
