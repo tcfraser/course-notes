@@ -2892,19 +2892,19 @@ Since there is only one particle, we are ignoring the interaction potential $V_{
 \[ \vep = \f{\hbar^2}{2m} \br{k_x^2 + k_y^2 + k_z^2} = \sum_{m=1}^{d} \f{\hbar^2}{2m} k_m^2 \]
 With wave function state with the general form,
 \[ \psi\br{x,y,z} \sim \f{1}{\sqrt{L}} e^{i\br{\vk \cdot \vr}} \]
-Where $\vk = k_x \hat{x} + k_y \hat{y} + k_z \hat{z}$. Boundary conditions yield a quantization of energies
+Where $\vk = k_x \hat{x} + k_y \hat{y} + k_z \hat{z}$. Periodic boundary conditions yield a quantization of energies,
 \[\psi\br{x,y,z} = \psi\br{x+L,y,z} \implies e^{ik_x L} = 1 \]
 Thus $k_x L$ must be multiple of $2\pi$,
 \[ k_x L = 0, \pm 2\pi, \pm 4\pi\ldots  \]
-The same relationships hold for $k_y, k_z$. So in order to determine the canonical partition function,
+Notice that $k_x = 0$ would be allowed under the periodic boundary conditions and corresponds to a uniform wavefunction. The same relationships hold for $k_y, k_z$. So in order to determine the canonical partition function we can utilize $k_m$ to identify our states,
 \[ Z_{N}\br{V,T} = {\sum_s}' e^{-\be E_s}  \]
-Since we have that $E_s = \sum_{\vep} n_\vep \vep$ ($n_\vep$ is the number of particles with energy $\vep$) we can sum over the energies,
+Since we have that the energy of the system is $E_s = \sum_{\vep} n_\vep \vep$ ($n_\vep$ is the number of particles with energy $\vep$) we can sum over the energies instead of summing over the states,
 \[ Z_{N}\br{V,T} = {\sum_{\bc{n_\vep}}}' F\bc{n_\vep} e^{-\be \sum_{\vep} n_\vep \vep} \]
-The prime on the summation used to indicate that the sum is performed under the constraint that the number of particles is fixed,
+Where $F\bc{n_\vep}$ is a statistical weight appropriate to the relevant distribution. It characterizes the weight provided for each energy $\vep$. For Bosons, these weights are all $1$. The prime on the summation used to indicate that the sum is performed under the constraint that the number of particles is fixed,
 \[ \sum_{\vep} n_\vep = N \]
 The total energy is also given by the sum of the particles,
 \[ \sum_\vep n_\vep \vep = E\]
-But we don't care about this ``constraint'' because the total energy is allowed to vary. Moreover, $F\bc{n_\vep}$ is a statistical weight appropriate to the relevant distribution. Therefore we have that,
+But we don't care about this ``constraint'' because the total energy is allowed to vary in the canonical ensemble. Therefore we have that,
 \[ Z_{N}\br{V,T} = {\sum_{\bc{n_\vep}}}' F\bc{n_\vep} e^{-\be \sum_{\vep} n_\vep \vep} \]
 With weights given by,
 \begin{center}
@@ -2921,21 +2921,21 @@ With weights given by,
     \hline
 \end{tabular}
 \end{center}
-As it turns out, only the Maxwell-Boltzmann case can be done straight forwardly,
+Where the weighting for the Maxwell-Boltzmann distribution is due to the indistinguishability for each set $n_\vep$. As it turns out, only the Maxwell-Boltzmann case can be done straight forwardly,
 \[ Z_{N}\br{V,T} = {\sum_{\bc{n_\vep}}}' \br{\prod_\vep \f{1}{n_\vep !}} e^{-\be \sum_{\vep} n_\vep \vep} \]
 Using multiplicative properties of exponentials,
 \[ Z_{N}\br{V,T} = {\sum_{\bc{n_\vep}}}' \br{\prod_\vep \f{1}{n_\vep !}} \br{\prod_\vep e^{-\be \vep}}^{n_\vep} \]
-Under the ``prime'' constraint that $\sum_\vep n_\vep = N$ it can be shown,
+Under the ``prime'' constraint that $\sum_\vep n_\vep = N$ it can be shown using the \textbf{Multinomial theorem} (generalization of the binomial theorem),
 \[ Z_{N}\br{V,T} = \f{1}{N!}\br{\sum_\vep e^{-\be \vep}}^N \]
 Treating the inner term as the partition function for a single state,
 \[ Z_{N}\br{V,T} = \f{1}{N!}\br{Z_1\br{V,T}}^N \eq \label{eq:Zdecomp}\]
-Again we can solve for the inner term,
+Again we can solve for the inner term (the single particle partition function $Z_{1}\br{V,T}$),
 \[ \sum_\vep e^{-\be \vep} = \sum_{k_x,k_y,k_z}e^{-\be\f{\hbar^2 k^2}{2m}} \]
 For high temperature we can make the approximation that the discrete sum becomes an integral,
 \[ \sum_{k_m} \ar \int \f{\dif k_m}{L /2 \pi} \]
-Then we get,
-\[ \br{\f{L}{2\pi}}^3 \iiint \dif k_x \dif k_y \dif k_z e^{-\be\f{\hbar^2 k^2}{2m}} = \f{V}{8 \pi^3} \int \br{4\pi k^2} e^{-\be \f{\hbar^2 k^2}{2m}} \dif k\]
-Gaussian integrals our old friend! We can then write the single partition function,
+Where $L/2\pi$ is introduced to normalize $\dif k_m$ to the correct units. Then we get by utilizing spherical coordinates on $k_x,k_y,k_z$,
+\[ Z_{1}\br{V,T} = \br{\f{L}{2\pi}}^3 \iiint \dif k_x \dif k_y \dif k_z e^{-\be\f{\hbar^2 k^2}{2m}} = \f{V}{8 \pi^3} \intl_{0}^{\inf} \br{4\pi k^2} e^{-\be \f{\hbar^2 k^2}{2m}} \dif k\]
+Gaussian integrals our old friend! The infinite bounds in the integral are a result of the particle having unbounded (by positive) $k$. We can then write the single particle partition function,
 \[ Z_{1}\br{V,T} = \f{V}{\lambda_T^3} \qquad \lambda_T = \f{h}{\br{2 \pi m k_B T}^{1/2}} \]
 Making the combined partition function is given by \eqref{eq:Zdecomp},
 \[ Z_{N}\br{V,T} = \br{\f{V}{\lambda_T^3}}^N \f{1}{N!}\]
@@ -2972,8 +2972,18 @@ Which yields,
 \[ \ba{n_{\vep'}}\tsb{BE} = \f{1}{e^{\be\br{\vep - \mu} - 1}}\]
 \[ \ba{n_{\vep'}}\tsb{FD} = \f{1}{e^{\be\br{\vep - \mu} + 1}}\]
 \[ \ba{n_{\vep'}}\tsb{MB} = e^{-\be\br{\vep - \mu}}\]
-\[\]
+\subsubsection{Implications of $\ba{n_\vep}$}
+\textbf{Fermions}:\\
+Because the only electrons/fermions capable of being reshuffled by thermal fluctuations are closed to the Fermi energy, one has that all the properties of the metal are controlled by the that \textit{sliver} of electrons for $\vep \approx \vep_F \pm \De$ where $\De = k_B T$. For real/ordinary metals $T_F \sim 10^4- 10^5 \text{K}$. As such $T/T_F \ll 1$. Electrons in metals are essentially/almost at $T = 0^+$. \\
+
+Because fermions obey the exclusion principle, they exert pressure (called degeneracy pressure). In a white dwarf, it is the Fermi pressure that holds the gravity of the star. There is a limit (the Chandrasekhar limit $M\tsb{CH}$) when the mass of the white dwarf becomes more massive that $M\tsb{CH}$ where white dwarfs collapse into neutron stars and then beyond that, black holes (quark stars, superconducting cores/color superconductivity). \\
+
+\textbf{Bosons}:\\
+There is no restriction for Bosons to occupy all the same $\vp \approx 0$ momentum state. What is remarkable is the evolution from ``normal gas'' to one with $n \de \br{\vp} = n\br{T} \de \br{\vp}$ appears/proceeds through a \textit{phase transition} called \textbf{Bose-Einstein condensate (BEC)}. This was predicted in 1924-1925 by Satyendra, Bose and Einstein and was not observed until June 5th, 1995 where is was found that,
+\[ n \lambda_T^3 \sim 1 \quad \lambda_T = \f{h}{\br{2 \pi m k_B T}^{1/2}} \quad T_c \sim 3.3125 \f{\hbar^2 n^{2/3}}{m k_B} \]
+Superfluid $^4\text{He}$ has $T_c \sim \SI{2.17}{\K}$ is a complex form of a BEC. Also $^3\text{He}$ (a fermion) is also a superfluid with $T \sim \SI{1}{\micro \K}$. This is achieved when two fermions form a \textbf{Cooper pair} to form a composite boson that can then be thought of as a BEC. Superconductivity is a form of a BEC.
 \end{document}
+
 
 
 
