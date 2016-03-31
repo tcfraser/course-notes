@@ -2945,14 +2945,15 @@ Where $z$ is $z = e^{-\be \mu}$ the fugacity as seen before. Notice this is the 
 \[ Z\br{z, V, T} = e^{z \f{V}{\lambda_T^3}} \]
 As a reminder, the analogous derivations of $Z_N$ for B.E. and F.D. distributions are not as tractable. \textit{However}, computing $Z$ (the grand canonical partition function) is tractable! In general,
 \[ Z\br{z,V,T} = \sum_{N = 0}^\inf z^N Z_{N}\br{N,V,T} = \sum_{N=0}^\inf {\sum_{\bc{n_\vep}}}' \bs{\prod_\vep \br{z e^{-\be \vep}}^{n_\vep}} \]
-Looks messy! However, now that we have the sum of all $N$, we can \textit{remove} the constraint of the prime on the summation. This gives,
+Looks messy! However, now that we have the sum of all $N$, we can \textit{remove} the constraint of the prime on the summation. This is extremely important. The grand canonical formalism doesn't care about the number of particles being fixed. This gives,
 \[ Z\br{z,V,T} = \sum_{n_0}\sum_{n_1}\cdots\sum_{n_\vep} \br{z e^{-\be \vep}}^{n_{0}}\br{z e^{-\be \vep}}^{n_{1}} \cdots\br{z e^{-\be \vep}}^{n_{\vep}} \]
 The nested summations are separable,
 \[ Z\br{z,V,T} = \sum_{n_0}\br{z e^{-\be \vep}}^{n_{0}} \cdot \sum_{n_1}\br{z e^{-\be \vep}}^{n_{1}} \cdots \sum_{n_\vep} \br{z e^{-\be \vep}}^{n_{\vep}} \]
+Here we have just a product of sums with similar structure,
 \[ Z\br{z,V,T} = \prod_\vep \br{\sum_{n_\vep} \br{z e^{-\be \vep}}^{n_\vep}} \eq\label{eq:canonicalresult}\]
-Recall that for F.D. $n_\vep = 0,1$ which gives,
+Recall that for F.D. $n_\vep = 0,1$ since at most one particle can be in any given state with energy $\vep$ which gives,
 \[ Z\tsb{FD}\br{z,V,T} = \prod_\vep \br{1 + z e^{-\be z}} \]
-Whereas for B.E. we can utilize the geometric series,
+Whereas for B.E., $n_\vep$ can take on any value (any number of bosons can share the same state). Then we can utilize the geometric series,
 \[ \sum_{n = 0}^{\inf} x^n = \f{1}{1-x} \note{For $\abs{x} < 1$}\]
 Letting $x = ze^{-\be \vep} = e^{+\be\mu}e^{-\be\vep}$,
 \[ Z\tsb{BE}\br{z,V,T} = \prod_\vep\br{\f{1}{1 - z e^{-\be \vep}}}  \]
@@ -2972,6 +2973,13 @@ Which yields,
 \[ \ba{n_{\vep'}}\tsb{BE} = \f{1}{e^{\be\br{\vep - \mu} - 1}}\]
 \[ \ba{n_{\vep'}}\tsb{FD} = \f{1}{e^{\be\br{\vep - \mu} + 1}}\]
 \[ \ba{n_{\vep'}}\tsb{MB} = e^{-\be\br{\vep - \mu}}\]
+
+\textbf{Example}:
+For spin systems, there might be adjusts to the formulas above. Generally, there is a ``internal structure''/ multiplicative factor.
+\[ \bar{E} = \sum_{\vep} \f{g_s \vep}{e^{\be \br{\vep - \mu}} + a} = g_s \br{\f{L}{2\pi}}^3 4 \pi \intl_{0}^{\inf} \f{\br{\f{\hbar^2 k^2}{2m}} k^2 \dif k}{e^{\be\br{\f{\hbar^2 k^2}{2m} - \mu}} + a} \]
+\[ \bar{N} = \sum_{\vep} \f{g_s}{e^{\be \br{\vep - \mu}} + a} = g_s \br{\f{L}{2\pi}}^3 4 \pi \intl_{0}^{\inf} \f{k^2 \dif k}{e^{\be\br{\f{\hbar^2 k^2}{2m} - \mu}} + a} \]
+In practice, one needs to invert these integrals to obtain $\mu$ for any given system.
+
 \subsubsection{Implications of $\ba{n_\vep}$}
 \textbf{Fermions}:\\
 Because the only electrons/fermions capable of being reshuffled by thermal fluctuations are closed to the Fermi energy, one has that all the properties of the metal are controlled by the that \textit{sliver} of electrons for $\vep \approx \vep_F \pm \De$ where $\De = k_B T$. For real/ordinary metals $T_F \sim 10^4- 10^5 \text{K}$. As such $T/T_F \ll 1$. Electrons in metals are essentially/almost at $T = 0^+$. \\
