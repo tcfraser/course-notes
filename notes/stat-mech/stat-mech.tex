@@ -183,7 +183,8 @@ In order to digest this postulate, we will require some definitions.
 
 Consider $4$ coins tossed many, many times. What are the microstates describing this system? \\
 
-\newcolumntype{C}{>{\centering\arraybackslash}p{2em}}
+\newcolumntype{C}{>{\centering\arraybackslash}p{1.8em}}
+\begin{center}
 \begin{tabular}{|c|CC|CCCC|c|c|}
 
 \hline
@@ -212,6 +213,7 @@ Macrostate Label & \multicolumn{2}{c|}{Macrostate} & \multicolumn{4}{c|}{Microst
 5 & 0 & 4 & T & T & T & T & 1 & $1/16$ \\
 \hline
 \end{tabular}
+\end{center}
 
 \vspace{0.1in}
 
@@ -294,7 +296,8 @@ Thus letting $a = 1/2$,
 
 Equation \eqref{eq:stirlinglong} is known as \textit{Stirling's Formula}. However, there is a much more useful form of Stirling's Formula. It is obtained by taking the logarithm of both sides,
 
-\[ \ln\br{N!} \approx \br{N+\f12}\ln\br{N} - \br{N - \untext{\f12 \ln\br{2\pi}}{small compared to large $N$}}  \]
+\[ \ln\br{N!} \approx \br{N+\f12}\ln\br{N} - \br{N - \f12 \ln\br{2\pi}}  \]
+But $\f12 \ln\br{2\pi}$ is much smaller than $N$ for very large $N$,
 \[ \ln\br{N!} \approx N\ln N - N \eq \label{eq:stirling} \]
 
 Note that the remaining $N$ is not dropped. This is because for $N \sim 10^{23}$, $N\ln N - N$ and $N\ln N$ differ by about $2\%$. \\
@@ -378,6 +381,7 @@ Suppose you have $3$ particles called $A,B,C$ such that each particle can have $
 
 How many microstates are there subject to the constraint that the total energy is $3\vep$? \\
 
+\begin{center}
 \begin{tabular}{|c|CCCC|CCC|c|c|}
 
 \hline
@@ -398,6 +402,7 @@ Macrostate Label & \multicolumn{4}{c|}{Macrostate} & \multicolumn{3}{c|}{Microst
 3 & 0 & 3 & 0 & 0 & $\vep$ & $\vep$ & $\vep$ & 1 & $1/10$ \\
 \hline
 \end{tabular}
+\end{center}
 
 \section{Review of Thermodynamics}
 
@@ -2989,7 +2994,7 @@ Because fermions obey the exclusion principle, they exert pressure (called degen
 \textbf{Bosons}:\\
 There is no restriction for Bosons to occupy all the same $\vp \approx 0$ momentum state. What is remarkable is the evolution from ``normal gas'' to one with $n \de \br{\vp} = n\br{T} \de \br{\vp}$ appears/proceeds through a \textit{phase transition} called \textbf{Bose-Einstein condensate (BEC)}. This was predicted in 1924-1925 by Satyendra, Bose and Einstein and was not observed until June 5th, 1995 where is was found that,
 \[ n \lambda_T^3 \sim 1 \quad \lambda_T = \f{h}{\br{2 \pi m k_B T}^{1/2}} \quad T_c \sim 3.3125 \f{\hbar^2 n^{2/3}}{m k_B} \]
-Superfluid $^4\text{He}$ has $T_c \sim \SI{2.17}{\K}$ is a complex form of a BEC. Also $^3\text{He}$ (a fermion) is also a superfluid with $T \sim \SI{1}{\micro \K}$. This is achieved when two fermions form a \textbf{Cooper pair} to form a composite boson that can then be thought of as a BEC. Superconductivity is a form of a BEC.
+Below this critical temperature, all of the particles merge into a single wave function. Superfluid $^4\text{He}$ has $T_c \sim \SI{2.17}{\K}$ is a complex form of a BEC. Also $^3\text{He}$ (a fermion) is also a superfluid with $T \sim \SI{1}{\micro \K}$. This is achieved when two fermions form a \textbf{Cooper pair} to form a composite boson that can then be thought of as a BEC. Superconductivity is a form of a BEC.
 \end{document}
 
 
