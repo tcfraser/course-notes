@@ -3087,9 +3087,63 @@ Rearranging and switching to frequencies and wavelengths gives the redshift fact
 So does \eqref{eq:FLRW} produce a redshift or a blueshift? This depends on the change of $a$. If $a\br{t}$ is decreasing, we will see a blueshift of distance galaxies. Conversely if $a\br{t}$ is increasing, we should expect to observe a redshift. \\
 
 Using this result, what can we say about the relationship between redshift and distance? Consider the Taylor expansion of $a\br{t}$,
-\[ a\br{t} = a_0 \br{t_0} + \br{t- t_0}\dot{a}\br{t_0} + \f12\br{t- t_0}^2\ddot{a}\br{t_0} + O\br{\br{t-t_0}^3} \]
+\[ a\br{t} = a \br{t_0} + \br{t- t_0}\dot{a}\br{t_0} + \f12\br{t- t_0}^2\ddot{a}\br{t_0} + O\br{\br{t-t_0}^3} \eq\label{eq:redtaylor}\]
 We will now define some parameters. The \textbf{Hubble parameter} is,
 \[ H\br{t} = \f{\dot{a}\br{t}}{a\br{t}} \]
 The \textbf{deceleration parameter} is,
 \[ q\br{t} = - \f{a\br{t}\ddot{a}\br{t}}{\dot{a}^2\br{t}}\]
+Of course, the corresponding higher order terms are called \textbf{Jerk, Snap, Crackle} and \textbf{Pop} respectively. Moving forward we will look at the first order terms in \eqref{eq:redtaylor} and treat $t$ and the time emitted and $t_0$ the time received,
+\[ a\br{t_e} = a \br{t_r} + \br{t_e - t_r}\dot{a}\br{t_r} \]
+Rearranging yields,
+\[ \f{a\b-r{t_e} - a \br{t_r}}{a\br{t_r}} = \br{t_e - t_r}\f{\dot{a}\br{t_r}}{a\br{t_r}} = \br{t_e - t_r}H\br{t_r} \]
+Where $H$ is just the Hubble parameter,
+\[ \f{a\br{t_e}}{a\br{t_r}} - 1 = H\br{t_r}\br{t_e - t_r} \]
+Recalling the definition of redshift $1 + Z = \f{a\br{t_r}}{a\br{t_e}}$,
+\[ \f{1}{1+Z} - 1 = H\br{t_r}\br{t_e - t_r} \]
+For small $Z \ll 1$,
+\[ -Z \approx H\br{t_r}\br{t_e - t_r} \]
+The distance that the light traveled is given by $R = a\br{t_r} \ell$. But,
+\[ t_r - t_e = \De t = \f{R}{c} = R \note{With $c=1$}\]
+Giving a linear relation between redshift and distance,
+\[ Z = H\br{t_r}R = H_0 R\]
+Of course this only works for small redshift; or for object a few megaparsecs away. This linear result between distance $R$ and $Z$ was observed by Hubble himself using variable stars specifically Cepheids. The constant $H_0$ that Hubble observed in 1929 was,
+\[ H_0 = \SI{500}{\km \s^{-1} \per \text{Mpc}} \]
+Where as in the 2000s, this measurement has been refined to,
+\[ H_0 = \SI{67}{\km \s^{-1} \per \text{Mpc}} \]
+
+\subsection{Stress Energy Tensor}
+Recall that in General relativity we have the Einstein equation that indicates that stuff tells how gravity should be. We also have geodesics which indicate how particles propagate. Finally, we have the conservation of the Stress Energy Tensor which indicates how fluids behave. We can then assume that the stuff in the universe behaves like a perfect fluid that is completely characterized by $\br{\rho, P}$. Perfect fluids have the equation of states,
+\[ P = \w \rho \]
+Where $\w$ characterizes the type of fluid. For some examples,\\
+
+\textbf{Dust}: Dust have no pressure. $P= 0$ gives us that $\w = 0$.\\
+
+\textbf{Radiation}: The stress energy tensor is given by,
+\[ T\tsp{EM}_{\mu\nu} = F_{\mu\al}{F_{\nu}}^{\al} - \f14 g_{\mu\nu} F_{\al\be} F^{\al\be} \]
+Where $F_{\al\be}$ is the Maxwell stress tensor and the trace of ${T\tsp{EM}}_{\mu\nu}$ is zero,
+\[ g^{\mu\nu}T\tsp{EM}_{\mu\nu} = F_{\mu\al}F^{\mu\al} - \f14 \underbrace{g_{\mu\nu}g^{\mu\nu}}_{4} F_{\al\be} F^{\al\be} = 0 \]
+If radiation is approximated by a perfect fluid we should have a traceless stress energy tensor,
+\[ T^{\al\be} = \br{\rho + P}V^\al V^\be + P g^{\al\be} \]
+We can use co-moving coordinates, $V^\al = \br{1, 0, 0, 0}$,
+\[ T^{\al\be} = \pmtrx{\rho & 0 \\ 0 & g^{ij}P} \]
+The trace then is,
+\[ T^{\al\be}g_{\al\be} = -\rho + \underbrace{g_{ij}g^{ij}}_{3}P = 0 \]
+Therefore,
+\[ P = \f{1}{3} \rho \]
+Which gives that our $\w$ term must be,
+\[ \w = \f{1}{3} \]
+For a perfect fluid interpreted as radiation. \\
+
+\textbf{Cosmological Constant}:
+Using the FLRW metric and looking at the Einstein equations,
+\[ G_{\al\be} = k T_{\al\be} \]
+With $k = 8\pi G$. Expanding out $G_{\al\be}$,
+\[ R_{\al\be} - \f12 R g_{\al\be} + \Lambda g_{\al\be} = k T_{\al\be} \]
+We can take the cosmological constant term and move it to the RHS,
+\[ R_{\al\be} - \f12 R g_{\al\be} = k T_{\al\be} - \Lambda g_{\al\be} = k \br{T_{\al\be} - T^{\Lambda}_{\al\be}} \]
+Where,
+\[ T^{\Lambda}_{\al\be} = \pmtrx{ \f{\Lambda}{k} & 0 \\ 0 & -\f{\Lambda}{k} g_{ij}} \]
+Where $\rho^{\Lambda} = \f{\Lambda}{k}$ and $P^{\Lambda} = -\f{\Lambda}{k}$. This gives,
+\[ \w = -1 \]
+When the Cosmological constant is interpreted as a perfect fluid.
 \end{document}

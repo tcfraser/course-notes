@@ -2756,7 +2756,7 @@ Therefore we have the entropy of the system in terms of $\eta, \al, \be, \bar{N}
 Or rearranged for $\eta$,
 \[ \eta = \f{S}{k_B} + \f{\mu\bar{N}}{k_B T} - \f{\bar{E}}{k_BT} = \f{ST + \mu\bar{N} - \bar{E}}{k_BT} \]
 Recall the Gibb's free energy $G = \bar{E} - TS + PV = \mu \bar{N}$ and the original definition for $\eta$ \eqref{eq:eta},
-\[ \eta = \ln \br{\sum_{i,j} e^{-\al N_i - \be N_j}} = \f{PV}{k_B T} \]
+\[ \eta = \ln \br{\sum_{i,j} e^{-\al N_i - \be N_j}} = \f{PV}{k_B T} \eq \label{eq:eta}\]
 So $\eta$ has a physical interpretation after all. \\
 
 Note that $e^{-\al N_i} = \br{e^{-\al}}^{N_i}$ has the inner term often denoted with a lower case $z$,
@@ -2830,6 +2830,8 @@ Where $\mathcal{W}\bc{n_i}$ is the number of microstates associated with a distr
 \[ \mathcal{W}\bc{n_i} = \prod_{i} w \br{i} \]
 Where $w \br{i}$ is the number of distinct ways in which $n_i$ indistinguishable particles can be distributed among the (distinguishable) $g_i$ levels/states in the $i$-th cell. The form of $w\br{i}$ will of course depend on the type of particle in question.\\
 
+\subsection{Statistical Distributions}
+\label{sec:statdist}
 \textbf{Bosons}:
 A system of bosons will be called a \textbf{Bose-Einstein statistic (BE)}. This is just given by the typical stars and bars result,
 \[ w\tsb{BE} \br{i} = \f{\br{n_i + g_i - 1}!}{n_i !\br{g_i - 1}!} \]
@@ -2852,7 +2854,8 @@ Now with $g_i$ states we can have $g_i^{n_i}$ configurations of particle distrib
 \[ \mathcal{W}\tsb{MB}\bc{n_i} = \f{1}{n_i!} \prod_{i} g_i^{n_i}  \]
 For supplementary materials, see Sertagg-Wan Wylen. \\ % Typo in the name TODO
 
-\subsection{Entropy}
+\subsection{Entropy \& Distributions}
+\label{sec:a}
 By with any of these distributions, we can determine the entropy of the system in the usual way,
 \[ S \br{N, V, E} = k_B \ln \Om \br{N, V, E} = k_B \ln \br{{\sum_{\bc{n_i}}}' \mathcal{W}\bc{n_i}} \]
 In the thermodynamic limit $N \gg 1, n_i \gg 1, g_i \gg 1$, etc, the sum ${\sum_{\bc{n_i}}}' \mathcal{W}\bc{n_i}$ is very well approximated by $\mathcal{W}\bc{n_i^*}$ where $\bc{n_i^*}$ is the distribution of $\bc{n_i}$ that will maximize $\mathcal{W}\bc{n_i}$. As such we obtain the approximation,
@@ -2877,8 +2880,99 @@ Where we have,
 
 \textbf{Remark}: One thing to notice is that $n_i^*$ is proportional to $g_i$. As such, $\f{n_i^*}{g_i}$ can be interpreted as the most probable number of particles per energy level in the $i$-th cell. This also suggests we can interpret $\f{n_i^*}{g_i}$ as the most probable number of particles \textit{even if} we had a single energy level/state $\vep_i$. \\
 
-\textbf{Comment}: This last statement can be obtained rigorously within the grand canonical ensemble where each single particle energy state is \textit{considered individually} without grouping them in cells with a number $g_i$ much greater than $1$ ($g_i \gg 1$) per cell.
+\textbf{Comment}: This last statement can be obtained rigorously within the grand canonical ensemble where each single particle energy state is \textit{considered individually} without grouping them in cells with a number $g_i$ much greater than $1$ ($g_i \gg 1$) per cell. \\
 
+What about other ensembles like canonical and grand canonical?
+
+\subsection{Ideal gas in other Q.M. ensembles}
+
+\textbf{Canonical}: First we will look at the case of the canonical ensemble approach to ideal quantum gases. We will restrict our perspective to gases ``free to move''in some volume $V$ subject to their corresponding statistics outlined in section \eqref{sec:statdist}. We will therefore have in mind energy for states $E_s$ and energy states for single particles $\vep$. The reason for this distinction is that for single, isolated particle alone ($N=1$),
+\[ H \psi = -\f{\hbar^2}{2m} \del^2 \psi = \vep \psi \]
+Since there is only one particle, we are ignoring the interaction potential $V_{ij}$ (mind you we are ignoring them anyway for \textit{ideal} quantum gases). Therefore for particles in a box we have the usual,
+\[ \vep = \f{\hbar^2}{2m} \br{k_x^2 + k_y^2 + k_z^2} = \sum_{m=1}^{d} \f{\hbar^2}{2m} k_m^2 \]
+With wave function state with the general form,
+\[ \psi\br{x,y,z} \sim \f{1}{\sqrt{L}} e^{i\br{\vk \cdot \vr}} \]
+Where $\vk = k_x \hat{x} + k_y \hat{y} + k_z \hat{z}$. Boundary conditions yield a quantization of energies
+\[\psi\br{x,y,z} = \psi\br{x+L,y,z} \implies e^{ik_x L} = 1 \]
+Thus $k_x L$ must be multiple of $2\pi$,
+\[ k_x L = 0, \pm 2\pi, \pm 4\pi\ldots  \]
+The same relationships hold for $k_y, k_z$. So in order to determine the canonical partition function,
+\[ Z_{N}\br{V,T} = {\sum_s}' e^{-\be E_s}  \]
+Since we have that $E_s = \sum_{\vep} n_\vep \vep$ ($n_\vep$ is the number of particles with energy $\vep$) we can sum over the energies,
+\[ Z_{N}\br{V,T} = {\sum_{\bc{n_\vep}}}' F\bc{n_\vep} e^{-\be \sum_{\vep} n_\vep \vep} \]
+The prime on the summation used to indicate that the sum is performed under the constraint that the number of particles is fixed,
+\[ \sum_{\vep} n_\vep = N \]
+The total energy is also given by the sum of the particles,
+\[ \sum_\vep n_\vep \vep = E\]
+But we don't care about this ``constraint'' because the total energy is allowed to vary. Moreover, $F\bc{n_\vep}$ is a statistical weight appropriate to the relevant distribution. Therefore we have that,
+\[ Z_{N}\br{V,T} = {\sum_{\bc{n_\vep}}}' F\bc{n_\vep} e^{-\be \sum_{\vep} n_\vep \vep} \]
+With weights given by,
+\begin{center}
+\begin{tabular}{|c|c|}
+    \hline
+    \textbf{Distribution} & $\mathbf{F\bc{n_\vep}}$ \\
+    \hline
+    B.E. & $1$ \\
+    \hline
+    F.D. & $1$ if all $n_\vep = 0,1$ \\
+         & $0$ otherwise \\
+    \hline
+    M.B. & $\prod_\vep \f{1}{n_\vep !}$\\
+    \hline
+\end{tabular}
+\end{center}
+As it turns out, only the Maxwell-Boltzmann case can be done straight forwardly,
+\[ Z_{N}\br{V,T} = {\sum_{\bc{n_\vep}}}' \br{\prod_\vep \f{1}{n_\vep !}} e^{-\be \sum_{\vep} n_\vep \vep} \]
+Using multiplicative properties of exponentials,
+\[ Z_{N}\br{V,T} = {\sum_{\bc{n_\vep}}}' \br{\prod_\vep \f{1}{n_\vep !}} \br{\prod_\vep e^{-\be \vep}}^{n_\vep} \]
+Under the ``prime'' constraint that $\sum_\vep n_\vep = N$ it can be shown,
+\[ Z_{N}\br{V,T} = \f{1}{N!}\br{\sum_\vep e^{-\be \vep}}^N \]
+Treating the inner term as the partition function for a single state,
+\[ Z_{N}\br{V,T} = \f{1}{N!}\br{Z_1\br{V,T}}^N \eq \label{eq:Zdecomp}\]
+Again we can solve for the inner term,
+\[ \sum_\vep e^{-\be \vep} = \sum_{k_x,k_y,k_z}e^{-\be\f{\hbar^2 k^2}{2m}} \]
+For high temperature we can make the approximation that the discrete sum becomes an integral,
+\[ \sum_{k_m} \ar \int \f{\dif k_m}{L /2 \pi} \]
+Then we get,
+\[ \br{\f{L}{2\pi}}^3 \iiint \dif k_x \dif k_y \dif k_z e^{-\be\f{\hbar^2 k^2}{2m}} = \f{V}{8 \pi^3} \int \br{4\pi k^2} e^{-\be \f{\hbar^2 k^2}{2m}} \dif k\]
+Gaussian integrals our old friend! We can then write the single partition function,
+\[ Z_{1}\br{V,T} = \f{V}{\lambda_T^3} \qquad \lambda_T = \f{h}{\br{2 \pi m k_B T}^{1/2}} \]
+Making the combined partition function is given by \eqref{eq:Zdecomp},
+\[ Z_{N}\br{V,T} = \br{\f{V}{\lambda_T^3}}^N \f{1}{N!}\]
+This is the result for the canonical ensemble. The Grand canonical ensemble partition function immediately follows,
+\[ Z\br{z, V, T} = \sum_{N = 0}^{\inf} z^N Q_N\br{V,T} \]
+Where $z$ is $z = e^{-\be \mu}$ the fugacity as seen before. Notice this is the Taylor series expansion of $e^x$,
+\[ Z\br{z, V, T} = e^{z \f{V}{\lambda_T^3}} \]
+As a reminder, the analogous derivations of $Z_N$ for B.E. and F.D. distributions are not as tractable. \textit{However}, computing $Z$ (the grand canonical partition function) is tractable! In general,
+\[ Z\br{z,V,T} = \sum_{N = 0}^\inf z^N Z_{N}\br{N,V,T} = \sum_{N=0}^\inf {\sum_{\bc{n_\vep}}}' \bs{\prod_\vep \br{z e^{-\be \vep}}^{n_\vep}} \]
+Looks messy! However, now that we have the sum of all $N$, we can \textit{remove} the constraint of the prime on the summation. This gives,
+\[ Z\br{z,V,T} = \sum_{n_0}\sum_{n_1}\cdots\sum_{n_\vep} \br{z e^{-\be \vep}}^{n_{0}}\br{z e^{-\be \vep}}^{n_{1}} \cdots\br{z e^{-\be \vep}}^{n_{\vep}} \]
+The nested summations are separable,
+\[ Z\br{z,V,T} = \sum_{n_0}\br{z e^{-\be \vep}}^{n_{0}} \cdot \sum_{n_1}\br{z e^{-\be \vep}}^{n_{1}} \cdots \sum_{n_\vep} \br{z e^{-\be \vep}}^{n_{\vep}} \]
+\[ Z\br{z,V,T} = \prod_\vep \br{\sum_{n_\vep} \br{z e^{-\be \vep}}^{n_\vep}} \eq\label{eq:canonicalresult}\]
+Recall that for F.D. $n_\vep = 0,1$ which gives,
+\[ Z\tsb{FD}\br{z,V,T} = \prod_\vep \br{1 + z e^{-\be z}} \]
+Whereas for B.E. we can utilize the geometric series,
+\[ \sum_{n = 0}^{\inf} x^n = \f{1}{1-x} \note{For $\abs{x} < 1$}\]
+Letting $x = ze^{-\be \vep} = e^{+\be\mu}e^{-\be\vep}$,
+\[ Z\tsb{BE}\br{z,V,T} = \prod_\vep\br{\f{1}{1 - z e^{-\be \vep}}}  \]
+Suggestively, these two distributions can be written together,
+\[ Z_{\text{FD};\text{BE}}\br{z,V,T} = \prod_\vep\br{1 \pm z e^{-\be \vep}}^{\pm1}  \]
+Recalling a result we obtained earlier when looking at $\eta$ in \eqref{eq:eta},
+\[ PV = k_B T \ln \br{Z\br{z,V,T}} = \pm k_B T \sum_\vep \ln \br{1 \pm z e^{-\be \vep}} \]
+Or using $a = \bc{0, -1, +1}$ as in section \ref{sec:a},
+\[ PV = \f{k_B T}{a} \sum_\vep \ln \br{1 + z ae^{-\be \vep}} \]
+Other results that follow from \eqref{eq:canonicalresult} include,
+\[ \bar{N} = z \pdert{\ln Z}{z}{V,T} = \sum_\vep \f{1}{z^{-1}e^{\be \vep} + a} \]
+And,
+\[ \bar{E} = - \pdert{\ln Z}{\be}{V,T} = \sum_\vep \f{\vep}{z^{-1}e^{\be \vep} + a} = \sum_\vep \vep e^{-\be \br{\vep - \mu}} \]
+Perhaps most interestingly for a particular $\vep'$ (holding all other $\vep$ constant),
+\[ \ba{n_{\vep'}} = \f{1}{Z} \bc{- \f{1}{\be} \pdert{Z}{\vep'}{z, T, \ldots \vep}} = \f{1}{e^{\be\br{\vep - \mu} + a}}\]
+Which yields,
+\[ \ba{n_{\vep'}}\tsb{BE} = \f{1}{e^{\be\br{\vep - \mu} - 1}}\]
+\[ \ba{n_{\vep'}}\tsb{FD} = \f{1}{e^{\be\br{\vep - \mu} + 1}}\]
+\[ \ba{n_{\vep'}}\tsb{MB} = e^{-\be\br{\vep - \mu}}\]
+\[\]
 \end{document}
 
 
