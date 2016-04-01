@@ -3095,7 +3095,7 @@ The \textbf{deceleration parameter} is,
 Of course, the corresponding higher order terms are called \textbf{Jerk, Snap, Crackle} and \textbf{Pop} respectively. Moving forward we will look at the first order terms in \eqref{eq:redtaylor} and treat $t$ and the time emitted and $t_0$ the time received,
 \[ a\br{t_e} = a \br{t_r} + \br{t_e - t_r}\dot{a}\br{t_r} \]
 Rearranging yields,
-\[ \f{a\b-r{t_e} - a \br{t_r}}{a\br{t_r}} = \br{t_e - t_r}\f{\dot{a}\br{t_r}}{a\br{t_r}} = \br{t_e - t_r}H\br{t_r} \]
+\[ \f{a\br{t_e} - a \br{t_r}}{a\br{t_r}} = \br{t_e - t_r}\f{\dot{a}\br{t_r}}{a\br{t_r}} = \br{t_e - t_r}H\br{t_r} \]
 Where $H$ is just the Hubble parameter,
 \[ \f{a\br{t_e}}{a\br{t_r}} - 1 = H\br{t_r}\br{t_e - t_r} \]
 Recalling the definition of redshift $1 + Z = \f{a\br{t_r}}{a\br{t_e}}$,
@@ -3111,12 +3111,12 @@ Of course this only works for small redshift; or for object a few megaparsecs aw
 Where as in the 2000s, this measurement has been refined to,
 \[ H_0 = \SI{67}{\km \s^{-1} \per \text{Mpc}} \]
 
-\subsection{Stress Energy Tensor}
+\subsection{Stress Energy Tensor of Perfect Fluids}
 Recall that in General relativity we have the Einstein equation that indicates that stuff tells how gravity should be. We also have geodesics which indicate how particles propagate. Finally, we have the conservation of the Stress Energy Tensor which indicates how fluids behave. We can then assume that the stuff in the universe behaves like a perfect fluid that is completely characterized by $\br{\rho, P}$. Perfect fluids have the equation of states,
-\[ P = \w \rho \]
-Where $\w$ characterizes the type of fluid. For some examples,\\
+\[ P = w \rho \]
+Where $w$ characterizes the type of fluid. For some examples,\\
 
-\textbf{Dust}: Dust have no pressure. $P= 0$ gives us that $\w = 0$.\\
+\textbf{Dust (Matter)}: Dust have no pressure. $P= 0$ gives us that $w = 0$.\\
 
 \textbf{Radiation}: The stress energy tensor is given by,
 \[ T\tsp{EM}_{\mu\nu} = F_{\mu\al}{F_{\nu}}^{\al} - \f14 g_{\mu\nu} F_{\al\be} F^{\al\be} \]
@@ -3130,8 +3130,8 @@ The trace then is,
 \[ T^{\al\be}g_{\al\be} = -\rho + \underbrace{g_{ij}g^{ij}}_{3}P = 0 \]
 Therefore,
 \[ P = \f{1}{3} \rho \]
-Which gives that our $\w$ term must be,
-\[ \w = \f{1}{3} \]
+Which gives that our $w$ term must be,
+\[ w = \f{1}{3} \]
 For a perfect fluid interpreted as radiation. \\
 
 \textbf{Cosmological Constant}:
@@ -3144,6 +3144,107 @@ We can take the cosmological constant term and move it to the RHS,
 Where,
 \[ T^{\Lambda}_{\al\be} = \pmtrx{ \f{\Lambda}{k} & 0 \\ 0 & -\f{\Lambda}{k} g_{ij}} \]
 Where $\rho^{\Lambda} = \f{\Lambda}{k}$ and $P^{\Lambda} = -\f{\Lambda}{k}$. This gives,
-\[ \w = -1 \]
-When the Cosmological constant is interpreted as a perfect fluid.
+\[ w = -1 \]
+When the Cosmological constant is interpreted as a perfect fluid.\\
+
+In summary we have,
+
+\begin{center}
+\begin{tabular}{|c|c|}
+    \hline
+    Material & $w$ \\
+    \hline
+    Dust (Matter) & $0$ \\
+    Radiation & $\f13$ \\
+    Cosmo. Const. & $-1$ \\
+    ``Curvature'' & $-\f13$ \\
+    \hline
+\end{tabular}
+\end{center}
+We will now look at the equation of motion of the fluid; namely the conservation of the stress energy tensor,
+\[ \del^\mu T_{\mu\al} \]
+Again using the FLRW metric,
+\[ \dif s^2 = - \dif t^2 + a^2 \br{t} \ga_{ij} \dif x^i \dif x^j \]
+In order to examine the conservation equation, we must first compute the associated Christoffel symbols. In general it follows in a typical way,
+\[ {\Ga^{0}}_{11} = \f{a \dot{a}}{1 - k r^2} \cdots \]
+One result that stems from computing the Christoffel symbols yields,
+\[ \dot{\rho} = - 3 \f{\dot{a}}{a} \br{\rho + P} \]
+Recall that the form of gravity is completely characterized by the scale factor $a$. Plugging in the equation of state $P = w \rho$ gives,
+\[ \dot{\rho} = - 3 \f{\dot{a}}{a}\rho \br{1 + w} \]
+Obviously depending on the type of material considered ($w$) we can solve this differential equation for $\rho$ in terms of $a$.
+\[ \rho = \rho_0 a^{-3 \br{1 + w}} \]
+Therefore subbing in different materials,
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+    \hline
+    Material & $w$ & $\rho/\rho_0$\\
+    \hline
+    Dust (Matter) & $0$ & $a^{-4}$\\
+    Radiation & $\f13$ & $a^{-3}$ \\
+    Cosmo. Const. & $-1$ & $1$ \\
+    ``Curvature'' & $-\f13$ & $a^{-2}$ \\
+    \hline
+\end{tabular}
+\end{center}
+
+Since we observe redshift in the universe, it must be that $a$ is increasing with time. Clearly, the power on $a$ indicates which materials are dominate in the Universe. When $a$ is small, radiation is dominant. As $a$ grows, the dominant term becomes matter and then finally for $a$ very large we obtain that the cosmological is dominant.
+
+\subsection{Einstein Equations With Stress Energy Tensor}
+
+So how does $a$ change with time explicitly? To discover this we consider the Einstein equation where we introduce the different densities,
+\[ \rho\tsp{tot} = \rho_M + \rho_R + \rho_{\Lambda} + \rho_C \]
+Where the time evolution is characterized by,
+\[ \rho_{I}\br{t} = \rho_{0I} a^{-m_I} \]
+Where for each material $I$,
+\[ m_I = \br{4,3,2,0} \]
+The Einstein equations are then,
+\[ G_{\mu\nu} = R_{\mu\nu} - \f12 R g_{\mu\nu} = 8 \pi G T_{\mu\nu}\tsp{tot} \]
+We will use the FLRW metric to calculate $R_{\mu\nu}$ for this metric. This is left as an exercise. As an example,
+\[ R_{00} = - 3 \f{\ddot{a}}{a} \]
+Then we obtain that (with $k = 1, 0, -1$ according to the curvature of space) in the comoving frame,
+\[ G_{00} = \f{3}{a^2} \br{k + \dot{a}^2} = 8 \pi G \rho = 8\pi G \br{\rho_R + \rho_M + \rho_{\Lambda}} \eq \label{eq:gtime}\]
+And the space terms,
+\[ G_{ii} = - \br{2 \f{\ddot{a}}{a}  + \f{1}{a^2}\br{k + \dot{a}^2}} = 8 \pi G \rho  \eq \label{eq:gspace}\]
+Using both \eqref{eq:gtime} and \eqref{eq:gspace} to solve for $\dot{a}$ and $\ddot{a}$,
+\[ \dot{a}^2 = \f{8\pi G}{3} \rho a^2 - k \eq \label{eq:fl1}\]
+\[ \f{\ddot{a}}{a} = -\f{4\pi G}{3} \br{\rho + 3 P} \eq \label{eq:fl2}\]
+These equation we first obtained by Friedmann in 1922 and later by Le maître 1927. Even without solving these equations we can learn a lot by making astronomical observations. We can learn about,
+\begin{enumerate}
+    \item The nature of space (i.e. the value of $k$)
+    \item The age of the Universe (approximately)
+    \item The fate of the Universe
+\end{enumerate}
+\subsubsection{The Nature of Space}
+The learn about the age of the universe, we will take \eqref{eq:fl1} and divide by $a^2$. As you will see, we obtain the Hubble constant $H$,
+\[ H^2 = \f{\dot{a}^2}{a^2} = \f{8\pi G}{3} \rho - \f{k}{a^2} \]
+Dividing by $H^2$,
+\[ 1 = \f{8\pi G}{3 H^2} \rho - \f{k}{H^2 a^2} \]
+More rearranging,
+\[ \f{k}{H^2 a^2} = \f{8\pi G}{3 H^2} \rho - 1 \]
+Defining $\rho\tsb{crit}\br{t} = \f{3 H^2\br{t}}{8\pi G}$,
+\[ \f{k}{H^2 a^2} = \f{\rho}{\rho\tsb{crit}} - 1 \]
+Taking $t = t\tsb{now}$ the time it is now we can then measure $H_0 = H\br{t\tsb{now}}$ via redshift. We can use this to measure $\rho\tsb{crit}\br{t\tsb{now}}$. From this can measure $\rho$ and its components ($\rho_M, \rho_R$). \\
+
+From observations we measure $\rho$ and get the value of $\rho/\rho\tsb{crit} = \Om$,
+\[ \f{k}{H^2 a^2} = \Om - 1 \]
+Notice that $H^2 a^2$ is positive. Therefore the value of $\Om$ determines the sign of $k$ and thus the nature of space! If from observations we obtain $\rho > \rho\tsb{crit}$, we get that $\Om > 1$ and then $k > 0$ and thus space is a sphere. If $\rho < \rho\tsb{crit}$, $k < 0$ and we live in a hyperboloid. Finally if $\rho = \rho\tsb{crit}$, we get $\Om = 1$ and thus $k = 0$ and we live in a hyperplane $\R^2$. Our current observation is that,
+\[ \rho = \rho\tsb{crit} \]
+What we will see is that the value of $k$ determines the fate of the Universe.
+
+\subsubsection{Age of The Universe}
+The age of the Universe comes from \eqref{eq:fl2}.
+\[ 3 \f{\ddot{a}}{a} = - \br{4 \pi G\br{\rho + 3 P} - \Lambda} \]
+Looking more carefully at the inner term $\rho + 3 P$. $\rho + 3 P$ is positive if $P > -\f13 \rho$ or if $w < -\f13$. Considering radiation and matter, $\rho + 3 P > 0$. Moreover looking at $\Lambda$, if $\Lambda < 0$ the overall RHS is negative meaning $\ddot{a} < 0$; the Universe is decelerating. However if $\Lambda > 0$ the $\Lambda$ contribution is causing an acceleration of the Universe (of course the mass/radiation term always caused deceleration). From current observation suggests that $\Lambda \approx 0^+$ is slightly bigger than zero. For simplicity we sat that $\Lambda = 0$. Therefore $\ddot{a} < 0$. But from observation we have that $\dot{a} > 0$ since we observe an expanding Universe. Therefore the curve of $a$ \textit{must} be concave down. How $a$ behaves for large $t$ has not been answered yet but right now, $a\br{t \approx t\tsb{now}}$ is concave down. Taking a tangent line along $a$ backward in time,
+\[ a\tsb{tan} - a\br{t\tsb{now}} = \dot{a}\br{t\tsb{now}}\br{t - t\tsb{now}}  \]
+Obviously when $a = 0$ we have $a\br{t\tsb{bang}} = 0$ a time when there was a $t\tsb{bang}$. We will call the approximation using the tangent line to be $a\tsb{tan}\br{t\tsb{boom}} = 0$.
+\[ -\f{a\br{t\tsb{now}}}{\dot{a}\br{t\tsb{now}}} = \br{t\tsb{boom} - t\tsb{now}} \]
+\[ \f{1}{H_0} = t\tsb{now} - t\tsb{boom} \]
+But $t\tsb{now} - t\tsb{boom} < t\tsb{now} - t\tsb{bang}$
+Therefore,
+\[ \f{1}{H_0} > t\tsb{now} - t\tsb{bang} = \text{Age of Universe} \]
+\[ \]
+
+
+
 \end{document}
