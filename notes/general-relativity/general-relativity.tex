@@ -2384,7 +2384,7 @@ Notice that when dealing with $4d$ spacetime, the Riemann tensor has $4^4 = 256$
 Also cyclic permutations of the last three indices summed together are zero. This is the \textit{1st Bianchi identity}
 \[ R_{\rho \sigma \mu \nu} + R_{\rho  \mu \nu\sigma} + R_{\rho  \nu\sigma \mu} = 0 \]
 The \textit{2nd Bianchi identity} deals with cyclic permutations in the first three indices (including $\del_\mu$),
-\[ \del_\lambda R_{\rho \sigma \mu \nu} + \del_\rho R_{ \sigma\lambda \mu \nu} + \del_\sigma R_{\lambda\rho  \mu \nu} = 0 \]
+\[ \del_\lambda R_{\rho \sigma \mu \nu} + \del_\rho R_{ \sigma\lambda \mu \nu} + \del_\sigma R_{\lambda\rho  \mu \nu} = 0 \eq \label{eq:2ndbi}\]
 The combination of all of these symmetries reduces the number of components from $256$ to only $20$ independent components.
 
 \section{Einstein Field Equations}
@@ -2407,18 +2407,19 @@ Thus Einstein's first proposal is,
 \[ R_{\be\nu} = k T_{\be\nu} \]
 This is well motivated as both the right and left hand sides are symmetric. However since the stress energy tensor is conserved,
 \[ \del^\nu T_{\be\nu} = 0 \]
-But we have that,
-\[ \del^\nu R_{\be\nu} = \f12 \del_\be R \]
+But is can be shown using the second Bianchi identity \eqref{eq:2ndbi},
+\[ \del^\nu R_{\nu\mu} = \f12 \del_\mu R \]
 Where $R = R_{\al\be} g^{\al\be}$ is known as the \textbf{Ricci scalar}. Therefore this first proposal is not consistent.\\
 
 How can we modify this to maintain consistency? Define a new quantity,
 \[ G_{\be\nu} = R_{\be\nu} - \f12 R g_{\be\nu} \]
 Such that it is divergenceless.
 \begin{align*}
-\del^\nu G_{\be\nu} &= \del^\nu R_{\be\nu} - \f12 \del^\nu \br{R g_{\be\nu}}\\
-&= \del^\nu R_{\be\nu} - \f12 R\del^\nu  g_{\be\nu}\\
-&= \del^\nu R_{\be\nu} - \f12 R\del_\be \\
-&= \f12 \del_\be R - \f12 R\del_\be \\
+\del^\nu G_{\nu\be} &= \del^\nu R_{\nu\be} - \f12 \del^\be \br{R g_{\be\nu}} \note{Definition of $G_{\nu\be}$}\\
+&= \del^\nu R_{\nu\be} - \f12 \del^\be \br{R }g_{\be\nu} - \f12 R\del^\be \br{ g_{\be\nu}} \note{Product rule} \\
+&= \del^\nu R_{\nu\be} - \f12 g_{\be\nu} \del^\be R \note{Metric compatible} \\
+&= \f12 \del_\nu R - \f12 g_{\be\nu} \del^\be R \\
+&= \f12 \del_\nu R - \f12 \del_\nu R \note{Lowering index} \\
 &= 0 \\
 \end{align*}
 However, is this $G$ unique? Obviously we can add any constants that are compatible with the metric. Therefore introduce the \textbf{cosmological constant} $\Lambda$.
@@ -3083,7 +3084,7 @@ The term over $t_e \ar t_r$ cancels out giving,
 Finally using the fundamental theorem of calculus ($F\br{t + \de t} - F\br{t} \approx \de t F'\br{t}$),
 \[ \f{\de t_r}{a\br{t_r}} = \f{\de t_e}{a\br{t_e}} \]
 Rearranging and switching to frequencies and wavelengths gives the redshift factor $Z$,
-\[ \f{\de t_e}{\de t_r} = \f{\w_r}{\w_e} = \f{\lambda_e}{\lambda_r} = \f{a\br{t_e}}{a\br{t_r}} \defined 1 + Z \]
+\[ \f{\de t_r}{\de t_e} = \f{\w_e}{\w_r} = \f{\lambda_r}{\lambda_e} = \f{a\br{t_r}}{a\br{t_e}} \defined 1 + Z \]
 So does \eqref{eq:FLRW} produce a redshift or a blueshift? This depends on the change of $a$. If $a\br{t}$ is decreasing, we will see a blueshift of distance galaxies. Conversely if $a\br{t}$ is increasing, we should expect to observe a redshift. \\
 
 Using this result, what can we say about the relationship between redshift and distance? Consider the Taylor expansion of $a\br{t}$,
