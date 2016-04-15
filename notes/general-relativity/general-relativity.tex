@@ -2170,6 +2170,7 @@ In summary, our aim is to take an interval $I \subset \R$ parametrized by curvil
 This motivates the convenient tensor notation for $X$,
 \[ X = X^\mu \di_\mu \]
 \subsection{Covariant Derivative}
+\label{sec:covariantderivative}
 Let us continue to explore,
 \[ m \va = \vF_g \]
 And manipulate the derived expression,
@@ -2618,7 +2619,7 @@ Each of these bits of physics deals with geodesics. The last thing to consider i
 
 \subsection{Red Shift}
 
-In order to compute red shift it is convenient to utilize \textbf{killing vectors}. Since the Schwarzschild metric does not depend on time,
+In order to compute red shift it is convenient to utilize \textbf{killing vectors}; see Appendix \ref{sec:killing}. Since the Schwarzschild metric does not depend on time,
 \[ \di_t g_{\al\be} = 0 \]
 As such, we have a time killing vector $\xi^\mu$,
 \[ \xi_\mu = \br{1,0,0,0} \]
@@ -3019,6 +3020,7 @@ The intersection between the orange and green trajectories moving forward (upwar
 
 \section{Cosmology}
 
+\subsection{Preface}
 Up until the notion of spacetime and GR, scientists assumed that the universe was infinite, static and eternal. Two characteristic assumptions of Cosmology are the notions of \textbf{homogeneity} and \textbf{isotropic}.
 \begin{itemize}
     \item homogeneous: Universe behaves/looks the same at every place
@@ -3028,6 +3030,9 @@ The first hint that suggests that the universe can't be static or infinite is th
 . Because of this, the universe is \textit{not} static. Explicitly, this indicates that the space between galaxies are growing. In summary, these observations indicate that the universe can not be infinite or static. \\
 
 At this time in history people started utilizing GR to study the \textit{evolution} of the universe. To do so we will choose a metric to describe spacetime. Given the assumptions that \textit{space alone} is homogeneous and isotropic we can arrive at some symmetries. Specifically the isotropic assumption introduces spherical symmetry and thus $3$ rotation killing vectors. In additional homogeneity introduces ``translational'' invariance. Translational is written in quotes because it does not be linear translations in a Cartesian sense. As an example, consider a translation away from the north pole of a sphere. These ``translationals'' can manifest themselves as rotations or boosts. From this we also get $3$ killing vectors. \\
+
+\subsection{Maximal Symmetry}
+\label{sec:maxsym}
 
 \textbf{Theorem}: Given a manifold $M$ with dimension $n > 1$, we can have at most $\f{n\br{n+1}}{2}$ killing vectors. If we have the maximum number of killing vectors, we say that $M$ is \textbf{maximally symmetric}. Moreover in the maximally symmetric case we have that,
 \[ R_{\al\be\ga\de} = \f{k}{n\br{n-1}} \br{g_{\al\ga} g_{\be\de} - g_{\al\de} g_{\be\ga}} \eq \label{eq:maxsym}\]
@@ -3063,7 +3068,7 @@ And the first components can be negative,
 \[ g_{00} = -1 \]
 What about $g_{ij}$ in \eqref{eq:genmetric}? If in general $g_{ij} = g_{ij}\br{\vx, t}$ the space metric depends on $\vx$ then we violate the assumption of homogeneity. Therefore it must depend on $r$. Similarly, if $g_{ij}$ is to be isotropic in time, the time components must be separable from $g_{ij}$. Recalling \eqref{eq:gammametric},
 \[ g_{ij}\br{\vx, t} \ar a^2 \br{t} \ga_{ij}\br{r} \]
-Here $a\br{t}$ is known as a \textbf{scale factor}. Moreover the square on $a\br{t}$ is introduced to ensure positiveness. Combining all of these motivations together yields the \textbf{Friedmann Le maître Robertson Walker metric (FLRW).}
+Here $a\br{t}$ is known as a \textbf{scale factor}. Moreover the square on $a\br{t}$ is introduced to ensure positiveness. Combining all of these motivations together yields the \textbf{Friedman Le maître Robertson Walker metric (FLRW).}
 \[ g_{\al\be} \dif x^\al \dif x^\be = -\dif t^2 + a^2\br{t} \ga_{ij} \dif x^i \dif x^j \eq \label{eq:FLRW} \]
 The discovery and proof of uniqueness of this metric took from $\sim$1922-1935. What are the implications of this metric? What we will see is that \eqref{eq:FLRW} produces a relationship between redshift and distance.
 \subsection{Redshift \& Distance}
@@ -3210,7 +3215,7 @@ And the space terms,
 Using both \eqref{eq:gtime} and \eqref{eq:gspace} to solve for $\dot{a}$ and $\ddot{a}$,
 \[ \dot{a}^2 = \f{8\pi G}{3} \rho a^2 - k \eq \label{eq:fl1}\]
 \[ \f{\ddot{a}}{a} = -\f{4\pi G}{3} \br{\rho + 3 P} \eq \label{eq:fl2}\]
-These equation we first obtained by Friedmann in 1922 and later by Le maître 1927. Even without solving these equations we can learn a lot by making astronomical observations. We can learn about,
+These equation we first obtained by Friedman in 1922 and later by Le maître 1927. Even without solving these equations we can learn a lot by making astronomical observations. We can learn about,
 \begin{enumerate}
     \item The nature of space (i.e. the value of $k$)
     \item The age of the Universe (approximately)
@@ -3263,17 +3268,368 @@ For $t > t\tsb{max} $ we will reach a point where $\dot{a} < 0$. In this case th
 As argued before, we can assume that the space curvature contribution $k$ is in fact the contribution of a fluid with equation of state $P = -\f13 \rho$. Writing all three contributions,
 \[ \dot{a}^2 = \f{8\pi G}{3}\sum_{b=R,M}c_b a^{-\br{1 + 3 w_b}} - k + \f{\Lambda}{3}a^2 \]
 Which becomes,
-\[ \dot{a}^2 = \f{c_M}{a} + \f{c_R}{a^2} - k + \f{\Lambda}{3}a^2 \]
+\[ \dot{a}^2 = \f{c_M}{a} + \f{c_R}{a^2} - k + \f{\Lambda}{3}a^2 \eq \label{eq:add} \]
 According to the value of $a$ at different times in the evolution of the universe, different contributions will dominate. \\
 
 As time evolves, we have the dominating term evolve,
-\[ \text{radiation} \ar \text{matter} \ar \text{curvature} \ar \text{cosmological constant} \]
+\[ \text{small } a : \text{radiation} \ar \text{matter} \ar \text{curvature} \ar \text{cosmological constant} : \text{large } a \]
 % TODO einstein universe
 \subsection{Einstein Universe}
-\TODO{Einstein Universe Here}
+In the olden times before Hubble, the Universe was thought to be static with $\dot{a}\br{t} = 0 \ar a\br{t} = a_0, \forall t$. Using this idea in the conservation of the SET and in the Friedman equations respectively,
+\[ \dot{\rho} = - 3 \br{\rho + p}\f{\dot{a}}{a} \implies \dot{\rho} = 0 \implies \rho = \rho_0 \eq \label{eq:rhoconstant}\]
+\[ -3\f{\ddot{a}}{a} = 4 \pi G \br{\rho + 3p} - \La \implies \Lambda = 4 \pi G \br{\rho + 3 p} \eq \label{eq:einunila} \]
+When considering matter or radiation, equation \eqref{eq:einunila} requires that $\La > 0$. This was the source of Einstein's motivation to introduce $\La$ in the first place; to make the universe static. We also obtain that $\dot{\rho} = 0$ from \eqref{eq:rhoconstant} which should make sense for a static universe. \\
+
+Next we will need to determine what type of spatial geometry we are dealing with. First looking at the Friedman equation,
+\[ \br{\f{\dot{a}}{a}}^2 + \f{k}{a^2} = \f{8 \pi}{3} G \rho + \f{\La}{3} \]
+Which for a static universe gives.
+\[ \f{k}{a_0^2} = 4\pi G\br{\rho + p} > 0 \]
+If $k > 0$, then it must be that $k = 1$ and,
+\[ a_0^2 = \br{4\pi G\br{\rho + p}}^{-1} \]
+Recall from section \ref{sec:maxsym} that $k=1$ corresponds to space being a \textit{sphere} (topological $\R \times S^3$). This is evident because as the effective radius scale $a_0$ decreases, the density is increasing. Therefore the cosmological constant exactly matches the gravitational attraction.
+\[ \ddot{a}_0 = -\f13 \br{4\pi G \br{\rho + 3 p} - \La} a_0 = 0 \]
+Since $\ddot{a}_0 = 0$, it is unstable under small perturbations $a = a_0 + \ep a_1$. A Universe with only matter has $\br{\La = 0, k = 0}$. This is known as \textbf{Einstein de Sitter Universe}. In this universe we have to solve \eqref{eq:add} and look at the case of $k = 0$.
+\[ \br{\dot{a}}^2 = \f{c_M}{a} \implies \dot{a} = \pm\br{\f{c_M}{a}}^{1/2} \]
+In the $\dot{a} > 0$ case,
+\[ a\br{t} \propto \br{t}^{2/3} \]
+This is the Einstein de Sitter universe where the universe is in expansion from the Big bang onward when $t = 0$. In the $\dot{a} < 0$ case,
+\[ a\br{t} \propto \br{t_f - t}^{2/3} \]
+Which corresponds to a collapsing universe with a Big Crunch at $t = t_f$. Alternatively, one can examine a universe with just a cosmological constant (no matter/radiation).
+\[ \dot{a}^2 = -k + \f{\La}{3} a^2 \]
+Since $\dot{a}^2 > 0$ always, if $\La > 0$ then $k=-1,0,1$ are all allowed. However when $\La < 0$, it is required that $k = -1$. A new notation that is common to adopt is $\abs{\f{\La}{3}} = \pm \ell^{-2}$. Then we have.
+\[ \dot{a}^2 = -k \pm a^2 \ell^{-2} \implies \ddot{a} = \pm a \ell^{-2} \]
+Therefore there are $4$ cases to consider.\\
+
+$\mathbf{\La > 0}$ Metrics of the de Sitter spacetime:
+\begin{align*}
+k = 0 &\ar a_+\br{t} = e^{+\f{t}{\ell}} \ar \dif \tau^2 = - \dif t^2 + e^{+\f{t}{\ell}} \dif \vx^2 \\
+k = 1 &\ar \dif \tau^2 = - \dif t^2 + \ell^2 \cosh^2\br{\f{t}{\ell}} \dif \ti\Om^2 \\
+k = -1 &\ar \dif \tau^2 = - \dif t^2 + \ell^2 \sinh^2\br{\f{t}{\ell}} \dif \ti\Om^2
+\end{align*}
+
+$\mathbf{\La < 0}$ Metrics of the Anti de Sitter spacetime:
+\begin{align*}
+k = -1 &\ar \dif \tau^2 = - \dif t^2 + \ell^2 \sin^2\br{\f{t}{\ell}} \dif \ti\Om^2
+\end{align*}
 \section{Gravitational Waves}
-\TODO{Gravity waves slides here}
+\begin{adjustwidth}{0.5in}{0.5in}
+\textbf{Note by Author:} This section was delivered as a set of slides in the last part of the last lecture. The aim of these section to shed light on some of the techniques of perturbation theory in context of general relativity. The logical flow is not meant to be flawless as it is merely a summary of the presented mathematics. \textit{It is not considered testable material.}
+\end{adjustwidth}
+\subsection{Perturbations}
+In physics, we often analyze a system by looking at what happens under small perturbations (cf quantum field theory). To simplify the Einstein equations, we can consider a \textit{fixed background metric} $g_{\mu\nu}^{(0)}$ and look at the behavior of \textit{perturbations} $h_{\mu\nu}$ around it,
+\[ g_{\mu\nu} = g_{\mu\nu}^{(0)} + h_{\mu\nu} \qquad \abs{h_{\mu\nu}} \ll 1\]
+To further simplify the analysis, we can consider the background metric to be the Minkowski metric with signature $\br{-,+,+,+}$.
+\[ g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu} \]
+Here $h_{\mu\nu}$ is the metric perturbation. In effect we are going to study the dynamics of the symmetric tensor field $h_{\mu\nu}$ propagating on Minkowski spacetime. This is a \textit{linearized General Relativity}. In order to look at the Einstein equations, we first need to known the inverse metric, Christoffel symbols and the Riemann tensor. Keeping only \textbf{the first order terms}, the inverse metric is,
+\[ g^{\mu\nu} = \eta^{\mu\nu} - h^{\mu\nu} = \eta^{\mu\nu} - \eta^{\mu\rho}\eta^{\nu\si}h_{\rho\si} \]
+The Christoffel symbols are determined by the metric ($\di_\al \eta_{\be\ga} = 0$),
+\[ {\Ga^{\ro}}_{\mu\nu} = \f12 g^{\ro\la}\br{- \di_\la g_{\mu\nu} + \di_\mu g_{\nu\la} + \di_\nu g_{\la\mu}} = \f12 \eta^{\ro\la}\br{- \di_\la h_{\mu\nu} + \di_\mu h_{\nu\la} + \di_\nu h_{\la\mu}} \]
+And the Riemann tensor is,
+\[ R_{\mu\nu \ro \si} = \eta_{\mu\la}\di_{\ro}{\Ga^{\la}}_{\mu\si} - \eta_{\mu\la}\di_{\si}{\Ga^{\la}}_{\mu\ro} = \f12 \br{\di_\ro \di_\nu h_{\mu\si} + \di_\si \di_\mu h_{\nu\ro}- \di_\si \di_\nu h_{\mu\ro} -\di_\ro \di_\mu h_{\nu\si}} \]
+Using the Riemann tensor, we can obtain the Ricci tensor and Ricci scalar,
+\[ R_{\mu\nu} = \f12 \br{\di_\si \di_\nu {h^{\si}}_{\mu} + \di_\si \di_\mu {h^{\si}}_{\nu} - \di_\mu \di_\nu h - \Box h_{\mu\nu}} \]
+Where $h$ is just the trace of the metric perturbation $h = \eta^{\mu\nu}h_{\mu\nu}$ and $\Box$ is the Alembertian. Then one can obtain the Ricci scalar,
+\[ R = \di_\mu\di_\nu h^{\mu\nu} - \Box h \]
+The Einstein tensor becomes,
+\[ G_{\mu\nu} = R_{\mu\nu} - \f12\eta_{\mu\nu}R \]
+\[ G_{\mu\nu} = \f12\br{\di_\si \di_\nu {h^{\si}}_{\mu} + \di_\si \di_\mu {h^{\si}}_{\nu} - \di_\mu \di_\nu h - \Box h_{\mu\nu} -\eta_{\mu\nu}\di_\sigma\di_\rho h^{\sigma\rho} + \eta_{\mu\nu}\Box h} \eq \label{eq:linein}\]
+Which gives a corresponding equation of motion,
+\[ G_{\mu\nu} = 8\pi G T_{\mu\nu} \]
+Or in a vacuum,
+\[ G_{\mu\nu} = 0 \]
+\subsection{Modes of Propagation}
+Now we can consider the linearized Einstein equations term by term in order to determine the propagating modes. The modes will be denoted,
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        Mode Type & Notation \\
+        \hline
+        Scalar & $\Phi$ \\
+        Vector & $w_i$ \\
+        Tensor & $s_{ij}$ \\
+        \hline
+    \end{tabular}
+\end{center}
+\newcommand{\gs}{\mathfrak{s}}
+To clarify the analysis, we can write each of the perturbation elements explicitly,
+\[ h_00 = - 2 \Phi \qquad h_{0i} = h_{i0} = w_i \qquad h_{ij} = 2 s_{ij} - 2\de_{ij} \mathfrak{s} \]
+Where $\gs$ is proportional to the trace of the tensor mode,
+\[ \gs = -\f16 {s_{i}}^i = -\f16 s_{ij}\de^{ij} \]
+The tensor mode is traceless and called the strain,
+\[ s_{ij} = \f12\br{h_{ij} - \f13 \de_{ij}h_{kl}\de^{kl}} \]
+The scalar mode is related to the Newton potential.\\
 
+The Einstein equations become 3 sets of equations for each of the modes,
+\[ G_00 = s\del^2\gs + \di_k\di_ls^{kl} = 4 \pi G T_{00} \]
+This determines $\gs$ in terms of the strain , the source and the boundary conditions. It is not propagating.
+\[ G_{0j} = -\f12 \del^2 w_j + \f12 \di_j \di_k w^k + 2 \di_0 \di_j \gs + \di_0\di_k {s^{k}}_j = 4 \pi G T_{0j} \]
+This determines the vector mode in terms of the strain, the source and the boundary conditions. It is not propagating. And finally,
+\[ G_{ij} = \br{\de_{ij}\del^2 - \di_i\di_j}\br{\Phi - \gs} + \de_{ij} \di_0\di_k w^k - \di_0\br{\di_{(i}w_{j)}} + 2\de_{ij}\di_0^2\gs - \Box s_{ij} + 2 \di_l\br{\di_{(i}{s_{j)}}^k} - \de_{ij}\de_k\de_ls^{kl} = 4 \pi G T_{ij} \]
+This determines the scalar mode in terms of the strain, the source and the boundary conditions. It is not propagating. The strain is therefore the only propagating degrees of freedom.
 
+\subsection{Diffeomorphisms}
+We have only few dynamical variables. We can use the symmetries of the Einstein equations to eliminate the spurious variables and focus on the relevant ones, just as in electromagnetism. Diffeomorphisms, or change of coordinates, provide the symmetry of the Einstein equations.
+\[ x^\mu \ar x'^\mu \qquad g_{\mu\nu}\br{x} \ar g'_{\mu\nu}\br{x'} = \pder{x^\al}{x'^\mu}\pder{x^\be}{x'^\nu}g_{\al\be}\br{x} \]
+The understanding of the diffeomorphism symmetry took a long time for Einstein to realize this was a key element in the construction of GR (cf hole argument in Rovelli’s book “Quantum Gravity”). Still now, this is a topic of questioning (e.g. what is time?) and often confusing. The bottom line is that:
+\begin{itemize}
+    \item the observable quantities should be invariant under diffeomorphisms
+    \item the coordinates used to parameterize GR are not physical, but it is possible to introduce some (idealized) degrees of freedom as clocks and rulers to define physical coordinates (cf the GPS). A typical way to introduce these (idealized) degrees of freedom is to introduce a gauge (just as in electromagnetism).
+\end{itemize}
+\subsection{Gauge}
+The general diffeomorphisms will not preserve the linearized Einstein equations. We therefore look at their linearized version.
+\[ x^\mu = x^\mu + \xi^\mu\br{x} \qquad h'_{\mu\nu}\br{x} = h_{\mu\nu} - \di_\mu \xi_\nu - \di_\nu \xi_\mu \]
+Let us come back to the linearized Einstein equations \eqref{eq:linein} and perform a gauge transformation (i.e. choose a coordinate system) such that the equations become simpler. In particular the \textbf{Lorentz Gauge},
+\[ \di_\si {h^{\si}}_\mu - \f12 \di_\mu h = 0 \]
+Makes \eqref{eq:linein} become,
+\[ -\Box h_{\mu\nu} + \f12 \eta_{\mu\nu}\Box h = 4 \pi G T_{\mu\nu} \]
+In fact we have the possibility to simplify further the metric perturbations by going to the radiation gauge, which freezes the trace and the scalar and vector modes to zero when we have no source (cf Wald p.80). The gauge is also called the Transverse-Traceless (TT) gauge.
+\[ \Box h_{\mu\nu} = 0 \]
+This is just the wave equation for $h_{\mu\nu}$.
+\[ h_{\mu\nu} = a_{\mu\nu}e^{ix_\mu k^\mu} \]
+Where $a_{\mu\nu}$ is just a constant with,
+\[ a_{\mu\nu} = \begin{cases}
+    a_{0\mu} = 0 & \text{radiation gauge}\\
+    {a_{\mu}}^\mu = 0 & \text{radiation gauge}\\
+    k^\mu a_{\mu\nu} = 0 & \text{Lorentz gauge}
+\end{cases} \]
+Originally we had 10 variables, but the constraints given by the TT gauge reduce this to 2 variables. If we choose to orient the coordinate system such that the wave propagates along the $z$-axis (in-line with $k^\mu$), the most general shape becomes,
+\[ h_{\mu\nu} = \pmtrx{0 & 0 & 0 & 0 \\0 & a & b & 0 \\0 & b & -a & 0 \\0 & 0 & 0 & 0 }e^{i\w\br{z-t}} \]
+\subsection{Waves}
+Therefore the direction of propagation is in the \textbf{longitudinal} direction with two perpendicular directions of oscillation in the transverse directions.
+\begin{center}
+    \includegraphics[width=6in]{figures/waves/rings.png}
+\end{center}
 
+\newpage
+\section*{Appendix}
+\addcontentsline{toc}{section}{Appendix}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\subsection{Connections}
+\label{sec:connections}
+Throughout the duration of this course, and in most working theories of gravity, we have taken the connection symbols ${\Ga^\al}_{\ga\be}$ to be the Christoffel symbols. However, these are a \textit{special case} of the connection symbols with the following two properties,
+\[ {\tbar{\Ga}^\al}_{\ga\be} = {\tbar{\Ga}^\al}_{\be\ga} \qquad \tbar{\del}_\ga g_{\al\be} = 0 \eq \label{eq:Christoffelproperties}\]
+Note that the ``bar on top'' is used to identify the special case of the Christoffel symbols ${\tbar{\Ga}^\al}_{\ga\be}$ and the Levi-Civita connection $\tbar{\del}_\ga$ that satisfy these properties. This will be used for this entire section. Albeit, throughout the rest of these notes, the var is omitted as only the Christoffel symbols and the Levi-Civita connection are being considered.\\
+
+In all scenarios, the general connection acting on a vector $w^\al$ is \textit{defined} as,
+\[ \del_\mu w^\al \defined \br{\di_\mu w^\al + {\Ga^\al}_{\mu\nu} w^\nu} \]
+Where ${\Ga^\al}_{\mu\nu}$ are known as the \textbf{connection symbols}. How does this work when acting on a tensor? \\
+
+In order to determine $\del_\mu C_{\al\be}$ one needs to first come up with an expression for how the general connection acts on a co-vector. Utilizing how it acts on vectors,
+\[ \del_\mu w^\al = \br{\di_\mu w^\al + {\Ga^\al}_{\mu\nu} w^\mu} \eq \label{eq:connectiononvector}\]
+Consider the connection acting on $w^\al v_\al$ where $v_\be$ is a general co-vector. Since $w^\al v_\al$ is a contraction of indices, it is just a scalar or in this particular case a scalar function. Therefore the connection acting on this behaves as the normal derivative. Using this and product rule,
+\[\del_\mu \br{w^\al v_\al} = \di_\mu \br{w^\al v_\al} = \di_\mu \br{w^\al} v_\al + w^\al \di_\mu \br{
+v_\al} \eq \label{eq:scalarproductrule} \]
+Alternatively, one can ignore the contraction and apply product rule directly using the connection,
+\[ \del_\mu \br{w^\al v_\al} = \del_\mu \br{w^\al} v_\al + w^\al \del_\mu \br{v_\al} \]
+Which by \eqref{eq:connectiononvector} gives,
+\[ \del_\mu \br{w^\al v_\al} = \br{\di_\mu w^\al + {\Ga^\al}_{\mu\nu} w^\mu} v_\al + w^\al \del_\mu \br{v_\al} \eq \label{eq:connectionproductrule} \]
+Equating \eqref{eq:scalarproductrule} with \eqref{eq:connectionproductrule} gives,
+\[ \di_\mu \br{w^\al} v_\al + w^\al \di_\mu \br{v_\al} = \br{\di_\mu w^\al + {\Ga^\al}_{\mu\nu} w^\mu} v_\al + w^\al \del_\mu \br{v_\al} \]
+Canceling terms gives,
+\[ w^\al \di_\mu \br{v_\al} - v_\al{\Ga^\al}_{\mu\nu} w^\mu = w^\al \del_\mu \br{v_\al} \]
+Relabeling indices,
+\[ w^\al \di_\mu \br{v_\al} - w^\al{\Ga^\ga}_{\al\nu}v_\ga  = w^\al \del_\mu \br{v_\al} \]
+Since this is true for arbitrary $w^\al$, it can be factored out; revealing the desired result,
+\[ \del_\mu v_\al = \di_\mu v_\al - {\Ga^\ga}_{\al\nu}v_\ga \]
+Now in order to determine how the covariant derivative acts on a general tensor $C_{\al\be}$, all that needs to be done is generalize the procedure by contracting $C_{\al\be}$ down to scalar function using general vectors and co-vectors $C_{\al\be} w^\al v^\be$. This gives the relation,
+\begin{align*}
+\del_\mu \br{C_{\al\be} w^\al v^\be} &= \del_\mu \br{C_{\al\be}} w^\al v^\be + C_{\al\be} \del_\mu \br{w^\al} v^\be + C_{\al\be} w^\al \del_\mu \br{v^\be} \\
+&= \del_\mu \br{C_{\al\be}} w^\al v^\be + C_{\al\be} \br{\di_\mu w^\al + {\Ga^\al}_{\mu\nu} w^\mu} v^\be + C_{\al\be} w^\al \br{\di_\mu v^\be + {\Ga^\be}_{\mu\nu} v^\mu} \\
+&= \di_\mu \br{C_{\al\be} w^\al v^\be} \\
+&= \di_\mu \br{C_{\al\be}} w^\al v^\be + C_{\al\be} \di_\mu \br{w^\al} v^\be + C_{\al\be} w^\al \di_\mu \br{v^\be}
+\end{align*}
+Canceling terms gives,
+\[\del_\mu \br{C_{\al\be}} w^\al v^\be + C_{\al\be} {\Ga^\al}_{\mu\nu} w^\mu v^\be + C_{\al\be} w^\al {\Ga^\be}_{\mu\nu} v^\mu = \di_\mu \br{C_{\al\be}} w^\al v^\be\]
+Relabel indices,
+\[\del_\mu \br{C_{\al\be}} w^\al v^\be + C_{\ga\be} {\Ga^\ga}_{\mu\al} w^\al v^\be + C_{\al\xi}  {\Ga^\xi}_{\mu\be} w^\al v^\be = \di_\mu \br{C_{\al\be}} w^\al v^\be\]
+Since $w^\al$ and $v^\be$ are completely unspecified, they can be factored out giving the required result,
+\[\del_\mu C_{\al\be} = \di_\mu C_{\al\be} - C_{\ga\be} {\Ga^\ga}_{\mu\al}  - C_{\al\xi}  {\Ga^\xi}_{\mu\be} \eq \label{eq:metricderivative} \]
+Obviously, this procedure can be generalized to,
+\begin{align*}
+\del_\mu {T^{\al_1 \cdots \al_p}}_{\be_1\cdots\be_q} &= \di_\mu {T^{\al_1 \cdots \al_p}}_{\be_1\cdots\be_q} + \cdots \\
+ &\cdots + {\Ga^{\al_1}}_{\mu\sigma}{T^{\sigma \al_2 \cdots \al_p}}_{\be_1\cdots\be_q} + \cdots + {\Ga^{\al_p}}_{\mu\sigma}{T^{\sigma \al_1 \cdots \al_{p-1} \sigma}}_{\be_1\cdots\be_q} + \cdots \\
+ &\cdots - {\Ga^{\sigma}}_{\mu\be_1}{T^{\al_1 \cdots \al_p}}_{\sigma\be_2\cdots\be_q} - \cdots - {\Ga^{\sigma}}_{\mu\be_q}{T^{\al_1 \cdots \al_1}}_{\be_1\cdots\be_{q-1}\sigma} \\
+\end{align*}
+This is true for the \textit{general connection} as well as the Levi-Civita connection by proxy.
+\newcommand{\tx}{\ti{x}}
+\newcommand{\tw}{\ti{w}}
+We hope that $\del_\al w^\be$ itself remains a tensor. Therefore it \textit{must} transform well under a change of coordinates. Enforcing this, we can prove that the connection coefficients $\Ga$ are \textbf{not} a tensor in general. \\
+
+Suppose $\del_\al w^\be$ was originally expressed in terms of the set of coordinates $\bc{x^\mu}$. The new tensor expression in terms of $\bc{\ti{x}^\mu}$ is given by,
+\[ \widetilde{\del_\al w^\be} = \pder{x^\ga}{\tx^\al}\pder{\tx^\be}{x^\eta} \del_\ga w^\eta \]
+Using \eqref{eq:connectiononvector},
+\[ \widetilde{\di_\al w^\be} + \widetilde{{\Ga^\be}_{\al\de}w^\de} = \pder{x^\ga}{\tx^\al}\pder{\tx^\be}{x^\eta} \br{\di_\ga w^\eta + {\Ga^\eta}_{\ga \sigma} w^\sigma} \]
+Examining the $\di_\ga w^\eta$ term, since $w^\eta$ is a tensor it transforms well. Using this idea and product rule then chain rule,
+\[ \di_\ga w^\eta = \di_\ga \br{\pder{x^\eta}{\tx^\be}\tw^\be} = \di_\ga \br{\pder{x^\eta}{\tx^\zeta}}\tw^\zeta + \pder{x^\eta}{\tx^\be}\di_\ga \br{\tw^\be} = \di_\ga \br{\pder{x^\eta}{\tx^\zeta}}\tw^\zeta + \pder{x^\eta}{\tx^\be}\pder{\tw^\be}{\tx^\al}\pder{\tx^\al}{x^\ga} \]
+Subbing this in,
+\[ \widetilde{\di_\al w^\be} + \widetilde{{\Ga^\be}_{\al\de}w^\de} =  \pder{x^\ga}{\tx^\al}\pder{\tx^\be}{x^\eta}\di_\ga \br{\pder{x^\eta}{\tx^\zeta}}\tw^\zeta + \pder{\tw^\be}{\tx^\al} + \pder{x^\ga}{\tx^\al}\pder{\tx^\be}{x^\eta}{\Ga^\eta}_{\ga \sigma} w^\sigma \]
+But $\widetilde{\di_\al w^\be}$ is precisely $\pder{\tw^\be}{\tx^\al}$ therefore,
+\[ \widetilde{{\Ga^\be}_{\al\de}w^\de} =  \pder{x^\ga}{\tx^\al}\pder{\tx^\be}{x^\eta}\di_\ga \br{\pder{x^\eta}{\tx^\zeta}}\tw^\zeta + \pder{x^\ga}{\tx^\al}\pder{\tx^\be}{x^\eta}{\Ga^\eta}_{\ga \sigma} w^\sigma \]
+Relabel indices,
+\[ {\ti{\Ga}^\be}_{\al\de}\ti{w}^\de =  \pder{x^\ga}{\tx^\al}\pder{\tx^\be}{x^\eta}\di_\ga \br{\pder{x^\eta}{\tx^\de}}\tw^\de + \pder{x^\ga}{\tx^\al}\pder{\tx^\be}{x^\eta}{\Ga^\eta}_{\ga \sigma} \pder{x^\sigma}{\tx^\de} \ti{w}^\de \]
+Since $\ti{w}^\de$ is arbitrary,
+\[ {\ti{\Ga}^\be}_{\al\de} =  \pder{x^\ga}{\tx^\al}\pder{\tx^\be}{x^\eta}\di_\ga \br{\pder{x^\eta}{\tx^\de}} + \pder{x^\ga}{\tx^\al}\pder{\tx^\be}{x^\eta} \pder{x^\sigma}{\tx^\de}{\Ga^\eta}_{\ga \sigma}  \]
+If ${\Ga^\eta}_{\ga \sigma}$ were to transform well, it would be required that
+\[ {\ti{\Ga}^\be}_{\al\de} = \pder{x^\ga}{\tx^\al}\pder{\tx^\be}{x^\eta} \pder{x^\sigma}{\tx^\de}{\Ga^\eta}_{\ga \sigma}  \]
+However, the extra term $\pder{x^\ga}{\tx^\al}\pder{\tx^\be}{x^\eta}\di_\ga \br{\pder{x^\eta}{\tx^\de}}$ prevents $\Ga$ from transforming well. Therefore $\Ga$ is not a tensor. \\
+Now how does parallel transport work under the general connection? Recall that we say for a general vector $w^\al$ is parallel transported along a geodesic with tangent $X$ iff $\del_X w^\al = 0$.
+If the scalar product $w_1^\mu g_{\mu\nu} w_2^\nu$ is to be left invariant under parallel transport, it must be that,
+\[ 0 = \del_X \br{w_1^\mu g_{\mu\nu} w_2^\nu} = X^\be \del_\be\br{w_1^\mu g_{\mu\nu} w_2^\nu}  \]
+Although $w_1^\mu g_{\mu\nu} w_2^\nu$ we will ignore this fact an apply the product rule,
+\[ 0 = X^\be \del_\be\br{w_1^\mu} g_{\mu\nu} w_2^\nu + w_1^\mu X^\be \del_\be\br{g_{\mu\nu}} w_2^\nu + w_1^\mu g_{\mu\nu} X^\be \del_\be\br{w_2^\nu} \]
+But $w_1$ and $w_2$ are individually parallel transported along $\mathcal{C}$ which gives $\del_\be\br{w_1^\mu} = 0$ and $\del_\be\br{w_2^\nu} = 0$. Thus,
+\[ 0 = w_1^\mu X^\be \del_\be\br{g_{\mu\nu}} w_2^\nu \]
+Since $w_1$ and $w_2$ are any vectors and the curve $\mathcal{C}$ is arbitrary and thus by extension $X^\be$ is arbitrary, they may also be factored out,
+\[ 0 = \del_\be g_{\mu\nu} \eq \label{eq:metriccompat} \]
+Therefore if the scalar product is to be left invariant under parallel transport (as it should), it must be that \eqref{eq:metriccompat}. If this holds true, the connection is said to be \textbf{metric compatible}. The Levi-Civita symbols are an example of a connection that is metric compatible.
+When considering the subset of metric compatible connections, one can write the connection symbols in terms of the metric and the \textbf{torsion tensor},
+\[ {T^\al}_{\be\ga} = {\Ga^\al}_{\be\ga} - {\Ga^\al}_{\ga\be} \]
+Recall that the Christoffel symbols are symmetric in the lower indices \eqref{eq:Christoffelproperties}. As such, the Christoffel symbols are said to be \textit{torsion free} as ${\tbar{T}^\al}_{\be\ga} = 0$. By relabeling the indices of \eqref{eq:metriccompat},
+\[ \del_\mu g_{\be\ga} = 0 \quad \del_\be g_{\ga\mu} = 0 \quad \del_\ga g_{\mu\be} = 0 \]
+Which gives three relations using \eqref{eq:metricderivative},
+\begin{align*}
+0 &= \del_\mu g_{\be\ga} = \del_\mu g_{\be\ga} = \di_\mu g_{\be\ga} - g_{\sigma\ga} {\Ga^\sigma}_{\mu\be}  - g_{\be\sigma}  {\Ga^\sigma}_{\mu\ga} \\
+0 &= \del_\be g_{\ga\mu} = \del_\be g_{\ga\mu} = \di_\be g_{\ga\mu} - g_{\sigma\mu} {\Ga^\sigma}_{\be\ga}  - g_{\ga\sigma}  {\Ga^\sigma}_{\be\mu} \\
+0 &= \del_\ga g_{\mu\be} = \del_\ga g_{\mu\be} = \di_\ga g_{\mu\be} - g_{\sigma\be} {\Ga^\sigma}_{\ga\mu}  - g_{\mu\sigma}  {\Ga^\sigma}_{\ga\be}
+\end{align*}
+Adding the first two and subtracting the third gives,
+\[ 0 = \di_\mu g_{\be\ga} - g_{\sigma\ga} {\Ga^\sigma}_{\mu\be}  - g_{\be\sigma}  {\Ga^\sigma}_{\mu\ga} + \di_\be g_{\ga\mu} - g_{\sigma\mu} {\Ga^\sigma}_{\be\ga}  - g_{\ga\sigma}  {\Ga^\sigma}_{\be\mu} - \di_\ga g_{\mu\be} + g_{\sigma\be} {\Ga^\sigma}_{\ga\mu}  + g_{\mu\sigma}  {\Ga^\sigma}_{\ga\be} \]
+Using the torsion tensor ${T^{\al}}_{\be\ga} = {\Ga^{\al}}_{\be\ga}- {\Ga^{\al}}_{\ga\be}$ and the symmetric symbols ${\Ga^{\al}}_{\br{\be\ga}} = \f12\br{{\Ga^{\al}}_{\be\ga} + {\Ga^{\al}}_{\ga\be}}$
+\[ 0 = \di_\mu g_{\be\ga} + \di_\be g_{\ga\mu} - \di_\ga g_{\mu\be}- 2g_{\sigma\ga} {\Ga^\sigma}_{\br{\mu\be}}+ g_{\sigma\be} {T^\sigma}_{\ga\mu}  + g_{\mu\sigma}  {T^\sigma}_{\ga\be} \]
+In order to determine what $\di_\mu g_{\be\ga} + \di_\be g_{\ga\mu} - \di_\ga g_{\mu\be}$ is, look at the special case of the Christoffel symbols $\tbar{\Ga}$. If we replace the general connection $\Ga$ with the Christoffel connection symbols, $\tbar{\Ga}$, then the torsion terms drop out because $\tbar{\Ga}$ is torsion-less, or that they are symmetric in the bottom two indices, ${\tbar{\Ga}^{\al}}_{\be\ga} = {\tbar{\Ga}^{\al}}_{\ga\be}$. Therefore,
+\[ 0 = \di_\mu g_{\be\ga} + \di_\be g_{\ga\mu} - \di_\ga g_{\mu\be}- 2g_{\sigma\ga} {\tbar{\Ga}^\sigma}_{\br{\mu\be}} \]
+\[ g_{\sigma\ga} {\tbar{\Ga}^\sigma}_{\mu\be} = \f12 \br{\di_\mu g_{\be\ga} + \di_\be g_{\ga\mu} - \di_\ga g_{\mu\be}} \]
+Therefore,
+\[ 0 = 2g_{\sigma\ga} {\tbar{\Ga}^\sigma}_{\mu\be}- 2g_{\sigma\ga} {\Ga^\sigma}_{\br{\mu\be}}+ g_{\sigma\be} {T^\sigma}_{\ga\mu}  + g_{\mu\sigma}  {T^\sigma}_{\ga\be} \]
+\[ g_{\sigma\ga} {\Ga^\sigma}_{\br{\mu\be}} = g_{\sigma\ga} {\tbar{\Ga}^\sigma}_{\mu\be} + \f12\br{g_{\sigma\be} {T^\sigma}_{\ga\mu}  + g_{\mu\sigma}  {T^\sigma}_{\ga\be}} \]
+Multiply by inverse metric $g^{\sigma\ga}$,
+\[  {\Ga^\al}_{\br{\mu\be}} = {\tbar{\Ga}^\al}_{\mu\be} + \f12\br{g^{\al\ga}g_{\sigma\be} {T^\sigma}_{\ga\mu}  + g^{\al\ga}g_{\mu\sigma}  {T^\sigma}_{\ga\be}} \]
+Then lowering and raising corresponding indices,
+\[  {\Ga^\al}_{\br{\mu\be}} = {\tbar{\Ga}^\al}_{\mu\be} + \f12\br{g^{\al\ga} {T}_{\be\ga\mu}  + g^{\al\ga}{T}_{\mu\ga\be}} \]
+\[  {\Ga^\al}_{\br{\mu\be}} = {\tbar{\Ga}^\al}_{\mu\be} + \f12\br{{{T_{\be}}^{\al}}_\mu  + {{T_{\mu}}^{\al}}_\be} \]
+Relabeling indices gives the required result,
+\[  {\Ga^\al}_{\br{\be\ga}} = {\tbar{\Ga}^\al}_{\be\ga} + \f12\br{{{T_{\be}}^{\al}}_\ga  + {{T_{\ga}}^{\al}}_\be} \eq \label{eq:4}\]
+The general connection coefficients are related to the Christoffel symbols in this way. This leads to the general shape for an \textbf{affine connection}.\\
+
+Just using the definition, ${\Ga^\al}_{\br{\be\ga}} = \f12 \br{{\Ga^\al}_{\be\ga} + {\Ga^\al}_{\ga\be}}$ \eqref{eq:4} becomes,
+\[  \f12 \br{{\Ga^\al}_{\be\ga} + {\Ga^\al}_{\ga\be}} = {\tbar{\Ga}^\al}_{\be\ga} + \f12\br{{{T_{\be}}^{\al}}_\ga  + {{T_{\ga}}^{\al}}_\be} \]
+\[  \f12 {\Ga^\al}_{\ga\be} = {\tbar{\Ga}^\al}_{\be\ga} + \f12\br{{{T_{\be}}^{\al}}_\ga  + {{T_{\ga}}^{\al}}_\be - {\Ga^\al}_{\be\ga} } \]
+\[  \f12 {\Ga^\al}_{\ga\be} = {\tbar{\Ga}^\al}_{\be\ga} + \f12\br{{{T_{\be}}^{\al}}_\ga  + {{T_{\ga}}^{\al}}_\be - {\Ga^\al}_{\be\ga} + {\Ga^\al}_{\ga\be} - {\Ga^\al}_{\ga\be} } \]
+\[  {\Ga^\al}_{\ga\be} = {\tbar{\Ga}^\al}_{\be\ga} + \f12\br{{{T_{\be}}^{\al}}_\ga  + {{T_{\ga}}^{\al}}_\be - {\Ga^\al}_{\be\ga} + {\Ga^\al}_{\ga\be} } \]
+By definition of the torsion tensor and symmetric indices in $\bar{\Ga}$
+\[  {\Ga^\al}_{\ga\be} = {\tbar{\Ga}^\al}_{\ga\be} + \f12\br{{{T_{\be}}^{\al}}_\ga  + {{T_{\ga}}^{\al}}_\be + {T^\al}_{\ga\be} } \]
+Here the extra terms are known as the \textbf{contorsion tensor} ${K^{\al}}_{\ga\be}$,
+\[{K^{\al}}_{\ga\be} = \f12\br{{{T_{\be}}^{\al}}_\ga  + {{T_{\ga}}^{\al}}_\be + {T^\al}_{\ga\be} } \]
+\subsection{Lie Derivative}
+\label{sec:liederivative}
+In section \eqref{sec:covariantderivative} we introduced the notion of a covariant derivative. There is another derivative of importance: the \textbf{Lie Derivative}. It can characterize where tensors are invariant under translational shifts.\\
+
+When considering a linear transformation from the coordinates of a point $x^\mu$ to another set of coordinates $\ti{x}^\mu$ given by,
+\[ \ti{x}^\mu = x^\mu + \ep \xi^\mu \eq \label{eq:killingtransform} \]
+This will modify the representation or coordinates of fields that depend on those points $x^\mu$. For a scalar field $\phi \br{x^\mu}$ the change in field under this transformation \eqref{eq:killingtransform} is given by the directional derivative (in the direction $\xi$) as in multi-variable calculus. At a generic point $x^\ga$,
+\[ \De_{\xi}\phi\br{x^\ga} = \xi^\mu \di_\mu \phi\br{x^\ga} \eq \label{eq:scalardirectional} \]
+However on a generic vector \textit{field} $W^\mu$, the change in the representation of $W$ is given by,
+\[ W^\mu \br{\ti{x}^\ga} - \ti{W}^\mu \br{\ti{x}^\ga} \eq \label{eq:invariant} \]
+Essentially, this tells one how the new vector field compares to the old vector field at a particular point $\ti{x}^\ga$. The vector field is left invariant if this quantity becomes zero. In order to determine this quantity explicitly, we can utilize how the vector field changes under the translation \eqref{eq:killingtransform}, ignoring that the transformation can be viewed as affecting the actual components of the vector field. Using a first order approximation for this Taylor expansion in small $\ep$,
+\[ W^\mu \br{\ti{x}^\ga} = W^\mu \br{x^\ga} + \ep \xi^\nu \di_\nu W^\mu \br{x^\ga} + O^\mu\br{\ep^2}  \eq \label{eq:justdirectional} \]
+Notice that this expansion has no interest in the transformed vector field $\ti{W}^\mu$. I am taking $O^\mu\br{\ep^2} \approx 0$ from now on. In order to determine how the vector field itself is modified, use the fact that $W^\mu$ is a tensor field that transforms well using a Jacobian,
+\[ \ti{W}^\mu \br{\ti{x}^\ga} = \pder{\ti{x}^\mu}{x^\nu} W^\nu \br{x^\ga} \]
+The Jacobian $\pder{\ti{x}^\mu}{x^\nu}$ can be computed by \eqref{eq:killingtransform} directly,
+\[ \pder{\ti{x}^\mu}{x^\nu} = \pder{}{x^\nu}\br{x^\mu + \ep \xi^\mu} = \pder{}{x^\nu}\br{x^\mu} + \ep \pder{}{x^\nu}\br{\xi^\mu} = {\de^\mu}_\nu + \ep \di_\nu \xi^\mu \]
+Therefore,
+\[ \ti{W}^\mu \br{\ti{x}^\ga} = \bs{{\de^\mu}_\nu + \ep \di_\nu \xi^\mu}W^\nu \br{x^\ga} = W^\mu \br{x^\ga} + \ep W^\nu \di_\nu \xi^\mu  \br{x^\ga} \eq \label{eq:transformswell}\]
+Therefore \eqref{eq:invariant} can be obtained by taking \eqref{eq:justdirectional} subtract \eqref{eq:transformswell},
+\[ W^\mu \br{\ti{x}^\ga} - \ti{W}^\mu \br{\ti{x}^\ga} = \ep \xi^\nu \di_\nu  W^\mu \br{x^\ga} -\ep W^\nu \di_\nu \xi^\mu \br{x^\ga} \]
+Taking this difference per unit length $\ep$ under the limit for $\ep \ar 0$ gives the definition of the \textit{Lie derivative} in the direction of $\xi^\mu$.
+\[ L_\xi W^\mu \br{x^\ga} = \xi^\nu \di_\nu  W^\mu \br{x^\ga}-W^\nu \di_\nu \xi^\mu \br{x^\ga} \]
+Or without writing dependence on $x^\ga$,
+\[ L_\xi W^\mu = \xi^\nu \di_\nu  W^\mu - W^\nu \di_\nu \xi^\mu \eq \label{eq:liederivativevector} \]
+Symmetries in $W^\mu$ under \eqref{eq:killingtransform} are known as isometries and are exposed by $L_\xi W^\mu = 0$. How does this Lie derivative act on the metric tensor? This can be determined by exploiting how the Lie derivative acts on a scalar field $\phi$ given by \eqref{eq:scalardirectional}.
+\[ L_\xi \phi = \xi^\nu \di_\nu \phi \eq \label{eq:liescalar} \]
+Considering two generic vector fields $W^\mu$ and $V^\mu$, one can construct a scalar field using the metric $g_{\al\be}$; $\phi = W^\al g_{\al\be} V^\be$.
+Then by \eqref{eq:liescalar},
+\[ L_\xi \phi = L_\xi \br{W^\al g_{\al\be} V^\be} = \xi^\ga \di_\ga \br{W^\al g_{\al\be} V^\be} \]
+By product rule,
+\[ L_\xi \br{W^\al g_{\al\be} V^\be} = \xi^\ga \di_\ga \br{W^\al} g_{\al\be} V^\be + W^\al \xi^\ga \di_\ga \br{g_{\al\be}} V^\be + W^\al g_{\al\be} \xi^\ga \di_\ga \br{V^\be} \eq \label{eq:liescalarproductrule}\]
+Shifting focus, we should be able to treat $W^\al g_{\al\be} V^\be$ as a tensor field $W^\mu g_{\al\be} V^\nu$ and apply product rule directly,
+\[ L_\xi \br{W^\al g_{\al\be} V^\be} = L_\xi \br{W^\al} g_{\al\be} V^\be + W^\al L_\xi \br{g_{\al\be}} V^\be + W^\al g_{\al\be} L_\xi \br{V^\be} \]
+The action of $L_\xi$ on vector fields is known giving,
+\[ L_\xi \br{W^\al g_{\al\be} V^\be} = \br{\xi^\ga \di_\ga  W^\al - W^\ga \di_\ga \xi^\al} g_{\al\be} V^\be + W^\al L_\xi \br{g_{\al\be}} V^\be + W^\al g_{\al\be} \br{\xi^\ga \di_\ga  V^\be - V^\ga \di_\ga \xi^\be} \eq \label{eq:fieldproductrule} \]
+Equating \eqref{eq:liescalarproductrule} with \eqref{eq:fieldproductrule} and canceling duplicate terms yields,
+\[ W^\al \xi^\ga \di_\ga \br{g_{\al\be}} V^\be = - W^\ga \di_\ga \xi^\al g_{\al\be} V^\be + W^\al L_\xi \br{g_{\al\be}} V^\be - W^\al g_{\al\be} V^\ga \di_\ga \xi^\be \]
+\[ W^\al L_\xi \br{g_{\al\be}} V^\be = W^\al \xi^\ga \di_\ga \br{g_{\al\be}} V^\be + W^\ga \di_\ga \xi^\al g_{\al\be} V^\be + W^\al g_{\al\be} V^\ga \di_\ga \xi^\be \]
+Relabel indices,
+\[ W^\al L_\xi \br{g_{\al\be}} V^\be = W^\al \xi^\ga \di_\ga \br{g_{\al\be}} V^\be + W^\al \di_\al \xi^\ga g_{\ga\be} V^\be + W^\al g_{\al\ga} V^\be \di_\be \xi^\ga \]
+Since $W^\al$ and $V^\be$ are arbitrary, they can be factored out,
+\[ L_\xi \br{g_{\al\be}} = \xi^\ga \di_\ga \br{g_{\al\be}} + \di_\al \xi^\ga g_{\ga\be} + g_{\al\ga} \di_\be \xi^\ga \]
+Using the comma notation,
+\[ L_\xi \br{g_{\al\be}} =  g_{\al\be,\ga} \xi^\ga + g_{\ga\be} {\xi^\ga}_{,\al} + g_{\al\ga} {\xi^\ga}_{,\be} \]
+As discussed above, isometries are exposed whenever $L_\xi \br{g_{\al\be}} = 0$, therefore in order for \eqref{eq:killingtransform} to be an isometry, $g_{\al\be}$ needs to satisfy,
+\[ 0 =  g_{\al\be,\ga} \xi^\ga + g_{\ga\be} {\xi^\ga}_{,\al} + g_{\al\ga} {\xi^\ga}_{,\be} \eq \label{eq:21} \]
+This is a form of the \textbf{Killing equation}.
+\subsection{Killing Vectors}
+\label{sec:killing}
+At the end of section \ref{sec:liederivative}, we obtained an expression for the killing equation \eqref{eq:21}. This section aims to manipulate this result and arrive at the idea of killing vectors $\xi^\mu$ and their use in general relativity.\\
+
+The definition of the Christoffel symbols are,
+\[ {\Ga^\al}_{\be\ga} = \f12 g^{\al\mu}\br{g_{\be\mu,\ga} + g_{\ga\mu,\be} - g_{\ga\be,\mu}}  \]
+Which gives,
+\[ 2{\Ga^\al}_{\be\ga}g_{\al\mu} = g_{\be\mu,\ga} + g_{\ga\mu,\be} - g_{\ga\be,\mu}  \]
+Multiply by $\xi^\mu$
+\[ 2{\Ga^\al}_{\be\ga}g_{\al\mu}\xi^\mu = g_{\be\mu,\ga}\xi^\mu + g_{\ga\mu,\be}\xi^\mu - g_{\ga\be,\mu} \xi^\mu \]
+Sub in \eqref{eq:21},
+\[ 2{\Ga^\al}_{\be\ga}\xi_\al = g_{\be\mu,\ga}\xi^\mu + g_{\ga\mu,\be}\xi^\mu +g_{\mu\be} {\xi^\mu}_{,\ga} + g_{\ga\mu} {\xi^\mu}_{,\be}  \]
+\[ 2{\Ga^\al}_{\be\ga}\xi_\al = \di_\ga\br{g_{\be\mu}}\xi^\mu + \di_\be\br{g_{\ga\mu}}\xi^\mu +g_{\mu\be} \di_\ga\br{\xi^\mu} + g_{\ga\mu} \di_\be\br{\xi^\mu}  \]
+Inverse product rule,
+\[ 2{\Ga^\al}_{\be\ga}\xi_\al = \di_\ga\br{g_{\be\mu}\xi^\mu} + \di_\be\br{g_{\ga\mu}\xi^\mu} \]
+Lowering of indices,
+\[ 2{\Ga^\al}_{\be\ga}\xi_\al = \di_\ga\br{\xi_\be} + \di_\be\br{\xi_\ga} \]
+\[ 2{\Ga^\al}_{\be\ga}\xi_\al = \xi_{\be,\ga} + \xi_{\ga,\be} \]
+\[ 0 = \xi_{\be,\ga} + \xi_{\ga,\be} - 2{\Ga^\al}_{\be\ga}\xi_\al \eq \label{eq:22}\]
+This is another form of the killing equation. To take this further,
+The Levi-Civita connection acting on co-vectors is given by,
+\[ \del_\al \br{\xi_\be} = \di_\al\br{\xi_\be} - {\Ga^\ga}_{\al\be} \xi_\ga = \xi_{\be,\al} - {\Ga^\ga}_{\al\be} \xi_\ga \]
+Therefore from \eqref{eq:22},
+\[ 0 = \xi_{\be,\ga} + \xi_{\ga,\be} - {\Ga^\al}_{\be\ga}\xi_\al- {\Ga^\al}_{\be\ga}\xi_\al \]
+Since the Christoffel symbols are symmetric in the lower indices,
+\[ 0 = \xi_{\be,\ga} - {\Ga^\al}_{\ga\be}\xi_\al + \xi_{\ga,\be} - {\Ga^\al}_{\be\ga}\xi_\al \]
+\[ 0 = \del_\ga \xi_\be + \del_\be \xi_\ga \]
+Or by relabeling indices,
+\[ 0 = \del_\al \xi_\be + \del_\be \xi_\al \eq \label{eq:killing} \]
+Which gives the killing equation in a popular form.\\
+
+But what are killing vectors $\xi^\al$ used for? Suppose we have a geodesic with tangent vector $V^\al$ and killing vector $\xi^\be$, by product rule of the connection,
+\[ \del_V \br{\xi^\be V_\be} = \del_V \br{\xi_\be V^\be} = \del_V \br{\xi_\be} V^\be + \xi_\be \del_V \br{V_\be} = V^\ga \del_\ga \br{\xi_\be} V^\be + \xi_\be V^\ga \del_\ga \br{V^\be} \]
+Since $V^\al$ is tangent to a geodesic, it must satisfy the geodesic equation,
+\[ \del_V V^\be = 0 \]
+Therefore,
+\[ \del_V \br{\xi^\be V_\be} = V^\ga \del_\ga \br{\xi_\be} V^\be \eq \label{eq:postive}\]
+Notice the switch for convenience,
+\[ \xi^\be V_\be = g_{\be\al}g^{\be\al} \xi^\be V_\be = \xi_\al V^\al = \xi_\be V^\be \]
+But since $\xi^\be$ is a killing vector it satisfies \eqref{eq:killing},
+\[ \del_V \br{\xi^\be V_\be} = -V^\ga \del_\be \br{\xi_\ga} V^\be \]
+By relabeling indices,
+\[ \del_V \br{\xi^\be V_\be} = -V^\be \del_\ga \br{\xi_\be} V^\ga \]
+By commutativity,
+\[ \del_V \br{\xi^\be V_\be} = - V^\ga\del_\ga \br{\xi_\be} V^\be \]
+Which by \eqref{eq:postive} gives,
+\[ \del_V \br{\xi^\be V_\be} = - \del_V \br{\xi^\be V_\be} \]
+Which yields,
+\[ \del_V \br{\xi^\be V_\be} = 0 \]
+Physically, this means that $\xi^\be V_\be$ is a scalar quantity that is \textbf{conserved} along the length of the geodesic. As such, one can \textit{construct} killing vectors $\xi^\al$ that satisfy \eqref{eq:killing} in order to expose certain components of $V^\be$ that are conserved allow the length of the geodesic. As an example, taking $\xi^\al = \br{1,0,0,0}$ as a killing vector, $\xi = \xi^\al \di_\al = \di_0$. If $\xi^\al$ is to satisfy the killing equation,
+\[ 0 = \del_\al \xi_\be + \del_\be \xi_\al \]
+Alternatively, use the equivalent form of the killing equation, \eqref{eq:21},
+\[ 0 = g_{\al\be,\ga} \xi^\ga + g_{\ga\be} {\xi^\ga}_{,\al} + g_{\al\ga} {\xi^\ga}_{,\be} \]
+Which for this particular $\xi^\al$, we have,
+\[ {\xi^\ga}_{,\al} = 0 \]
+Since $\xi^\al$ is only made up of constants. Thus,
+\[ 0 = g_{\al\be,\ga} \xi^\ga \]
+Which when contracted gives,
+\[ 0 = g_{\al\be,0} \xi^0 \]
+\[ 0 = \di_0 g_{\al\be}\]
+Or that $g_{\al\be}$ is time independent,
+\[ 0 = \di_t g_{\al\be} \]
+This concludes a proof that for \textbf{stationary metrics}, where $g_{\al\be}$ does not depend on time, the vector $\xi^\al = \br{1,0,0,0}$ is always a killing vector. As such, the time components of $V^\al$ are always conserved along the length of a geodesic. This was to be expected because the time component of $V^\al$ in the frame of the observed that is moving along the geodesic is constant.
 \end{document}
