@@ -5,5 +5,3 @@ This is the repository that contains all of the `.tex` source files and figures 
 If you are just interested in the `.pdf` files, I suggest you visit my website [here](http://tcfraser.com/coursenotes/).
 
 If you notice any mistakes, feel free to make a pull request or just email me at tcfraser@tcfraser.com.
-
-These notes are copyrighted under the MIT License.
