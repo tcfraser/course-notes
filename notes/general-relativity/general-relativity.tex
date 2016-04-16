@@ -3413,7 +3413,7 @@ Therefore the direction of propagation is in the \textbf{longitudinal} direction
 \label{sec:connections}
 Throughout the duration of this course, and in most working theories of gravity, we have taken the connection symbols ${\Ga^\al}_{\ga\be}$ to be the Christoffel symbols. However, these are a \textit{special case} of the connection symbols with the following two properties,
 \[ {\tbar{\Ga}^\al}_{\ga\be} = {\tbar{\Ga}^\al}_{\be\ga} \qquad \tbar{\del}_\ga g_{\al\be} = 0 \eq \label{eq:Christoffelproperties}\]
-Note that the ``bar on top'' is used to identify the special case of the Christoffel symbols ${\tbar{\Ga}^\al}_{\ga\be}$ and the Levi-Civita connection $\tbar{\del}_\ga$ that satisfy these properties. This will be used for this entire section. Albeit, throughout the rest of these notes, the var is omitted as only the Christoffel symbols and the Levi-Civita connection are being considered.\\
+Note that the ``bar on top'' is used to identify the special case of the Christoffel symbols ${\tbar{\Ga}^\al}_{\ga\be}$ and the Levi-Civita connection $\tbar{\del}_\ga$ that satisfy these properties. This will be used for this entire section. Albeit throughout the rest of these notes, the bar is omitted as only the Christoffel symbols and the Levi-Civita connection are being considered.\\
 
 In all scenarios, the general connection acting on a vector $w^\al$ is \textit{defined} as,
 \[ \del_\mu w^\al \defined \br{\di_\mu w^\al + {\Ga^\al}_{\mu\nu} w^\nu} \]
@@ -3477,10 +3477,11 @@ Since $\ti{w}^\de$ is arbitrary,
 If ${\Ga^\eta}_{\ga \sigma}$ were to transform well, it would be required that
 \[ {\ti{\Ga}^\be}_{\al\de} = \pder{x^\ga}{\tx^\al}\pder{\tx^\be}{x^\eta} \pder{x^\sigma}{\tx^\de}{\Ga^\eta}_{\ga \sigma}  \]
 However, the extra term $\pder{x^\ga}{\tx^\al}\pder{\tx^\be}{x^\eta}\di_\ga \br{\pder{x^\eta}{\tx^\de}}$ prevents $\Ga$ from transforming well. Therefore $\Ga$ is not a tensor. \\
-Now how does parallel transport work under the general connection? Recall that we say for a general vector $w^\al$ is parallel transported along a geodesic with tangent $X$ iff $\del_X w^\al = 0$.
+
+Now how does parallel transport work under the general connection? Recall that we say a general vector $w^\al$ is parallel transported along a geodesic with tangent $X$ iff $\del_X w^\al = 0$.
 If the scalar product $w_1^\mu g_{\mu\nu} w_2^\nu$ is to be left invariant under parallel transport, it must be that,
 \[ 0 = \del_X \br{w_1^\mu g_{\mu\nu} w_2^\nu} = X^\be \del_\be\br{w_1^\mu g_{\mu\nu} w_2^\nu}  \]
-Although $w_1^\mu g_{\mu\nu} w_2^\nu$ we will ignore this fact an apply the product rule,
+Although $w_1^\mu g_{\mu\nu} w_2^\nu$ is in fact a scalar field (due to the contraction) we can and will ignore this fact an apply the product rule anyway,
 \[ 0 = X^\be \del_\be\br{w_1^\mu} g_{\mu\nu} w_2^\nu + w_1^\mu X^\be \del_\be\br{g_{\mu\nu}} w_2^\nu + w_1^\mu g_{\mu\nu} X^\be \del_\be\br{w_2^\nu} \]
 But $w_1$ and $w_2$ are individually parallel transported along $\mathcal{C}$ which gives $\del_\be\br{w_1^\mu} = 0$ and $\del_\be\br{w_2^\nu} = 0$. Thus,
 \[ 0 = w_1^\mu X^\be \del_\be\br{g_{\mu\nu}} w_2^\nu \]
