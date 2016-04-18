@@ -1266,14 +1266,14 @@ Statical Mechanics Basis for Thermodynamics.
                 \item Consider two regions $(1,2)$ of a container separated by a diathermal wall
                 \item $(N_1, V_1, E_1)$ and $(N_2, V_2, E_2)$ number of particles, volume, energy respectively
                 \item Interested in total number of microstates
-                \item Composite system $\Om^{(0)} = \Om^{(1)} \times \Om^{(2)}$
+                \item Composite system $\Om\tsb{tot} = \Om_0 = \Om_1 \times \Om_2$
         \end{itemize}
 \end{enumerate}
 This composite system has $E^{\br{0}} = E_1 + E_2 = $ constant. We are interested in $\Om$: the number of microstates. At \textit{any time}, system (1) is just as likely to be in any of its microstates. This is also true for system (2).
-\[ \Om^{(0)}\br{E_1, E_2} = \Om_1(E_1) \times \Om_2(E_2) \]
-\[ \Om^{(0)}\br{E_1, E^{(0)} - E_1} = \Om_1(E_1) \times \Om_2(E^{(0)} - E_1) \]
-The most likely macrostate is the one with the most number of microstates. It is important to note that is true at \textit{any time}. To maximize $\Om^{(0)}$,
-\[ \pder{\Om^{(0)}}{E_1} = 0 \implies \bre{\pder{\Om_1}{E_1}}_{E_1 = \bar{E}_1} \Om_2(\bar{E}_2) + \Om_1(\bar{E}_1) \bre{\pder{\Om_2}{E_2}}_{E_2 = \bar{E}_2} \pder{E_2}{E_1} = 0 \]
+\[ \Om_0\br{E_1, E_2} = \Om_1(E_1) \times \Om_2(E_2) \]
+\[ \Om_0\br{E_1, E_0 - E_1} = \Om_1(E_1) \times \Om_2(E_0 - E_1) \]
+The most likely macrostate is the one with the most number of microstates. It is important to note that is true at \textit{any time}. To maximize $\Om_0$,
+\[ \pder{\Om_0}{E_1} = 0 \implies \bre{\pder{\Om_1}{E_1}}_{E_1 = \bar{E}_1} \Om_2(\bar{E}_2) + \Om_1(\bar{E}_1) \bre{\pder{\Om_2}{E_2}}_{E_2 = \bar{E}_2} \pder{E_2}{E_1} = 0 \]
 Note since $E^{(0)}$ is fixed,
 \[ \pder{E_2}{E_1} = -1 \]
 Which reveals,
@@ -1286,7 +1286,7 @@ Thus,
 \[ \dif E = \indif Q - \indif W \]
 \[ \dif E = T \dif S - P \dif V \]
 Where the definition of entropy can be expressed,
-\[ \pdert{S}{N,V}{E} = T \]
+\[ \pdert{S}{E}{N,V} = T \]
 Which gives for system 1,
 \[ \br{\pder{E_1}{\ln\Om_1}} \br{\pder{\ln\Om_1}{S_1}} = T_1 \]
 And the analogous expression for system 2,
