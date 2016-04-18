@@ -219,7 +219,7 @@ Macrostate Label & \multicolumn{2}{c|}{Macrostate} & \multicolumn{4}{c|}{Microst
 
 We note that the most probable macrostate $3$ is the one with the most microstates $6$. \\
 
-How do we deal with very large $N, N_H, N_T$ in order to locate the most likely macrostate? First likes get a general expression for $\Om$ were $\Om$ is the number of microstates. Since $N = N_H + N_T$ and $N$ is considered fixed, there is only one free parameter $N_H$ (taken by choice). Thus $\Om$ can be considered a function of $N_H$ and nothing else. \\
+How do we deal with very large $N, N_H, N_T$ in order to locate the most likely macrostate? First let's get a general expression for $\Om$ were $\Om$ is the number of microstates. Since $N = N_H + N_T$ and $N$ is considered fixed, there is only one free parameter $N_H$ (taken by choice). Thus $\Om$ can be considered a function of $N_H$ and nothing else. \\
 
 Recall from probability that the form for $\Om$ is given by,
 
@@ -754,7 +754,7 @@ Physical laws on the microscopic scale always are found to have an inherent time
 
 \subsubsection{Heat Engines}
 
-Imagine a an engine $E$ that runs from temperature $T_2$ to $T_1$ (two heat baths), where it extracts heat $Q_2$ and disposes heat $Q_1$ and does some work $W$.
+Imagine an engine $E$ that runs from temperature $T_2$ to $T_1$ (two heat baths), where it extracts heat $Q_2$ and disposes heat $Q_1$ and does some work $W$.
 
 \begin{center}
 \begin{tikzpicture}[scale=2]
@@ -786,7 +786,7 @@ Therefore typically the efficiency is given by,
 
 This can be re-written as,
 
-\[ \eta = 1 + \f{Q_1}{-\abs{Q_2}} = 1 - \f{\abs{Q_1}}{\abs{Q_2}} \]
+\[ \eta = 1 + \f{-\abs{Q_1}}{Q_2} = 1 - \f{\abs{Q_1}}{\abs{Q_2}} \]
 
 \subsubsection{Carnot Cycle/Engine}
 
@@ -879,7 +879,7 @@ Therefore,
 \subsubsection{Second Law Statements}
 
 \begin{enumerate}
-    \item \textbf{Clausius:} You can not build a machine or engine operating in a cycle can be constructed whose sole effect is to transfer heat from a cold to hot.
+    \item \textbf{Clausius:} You can not build a machine or engine operating in a cycle whose sole effect is to transfer heat from a cold to hot.
     \item \textbf{Kelvin-Planck:} It is impossible to construct a device whose sole effect is to produce work by only absorbing heat from a single reservoir. Two reservoirs are needed.
 \end{enumerate}
 
@@ -1107,7 +1107,7 @@ This leads to the Clausius Inequality:
 
 \[ \ointl \f{\indif Q'}{T} \leq 0 \]
 
-Which achieves equality only when the \textbf{entire} cycle is irreversible. Inequality is always maintained if \text{any} part of the cycle is irreversible. This can be understood as another formulation of the Second Law of Thermodynamics. \\
+Which achieves equality only when the \textbf{entire} cycle is reversible. Inequality is always maintained if \text{any} part of the cycle is irreversible. This can be understood as another formulation of the Second Law of Thermodynamics. \\
 
 There are two cases ``applications'' of Clausius inequality: \\
 
@@ -1172,7 +1172,7 @@ Therefore by the Clausius Inequality we have,
 \[ \intl_1^2 \br{\f{\indif Q}{T}}\tsb{irrev} + \intl_2^1 \br{\f{\indif Q}{T}}\tsb{rev} \leq 0 \]
 \[ \intl_1^2 \br{\f{\indif Q}{T}}\tsb{irrev} \leq - \intl_2^1 \br{\f{\indif Q}{T}}\tsb{rev} = \intl_1^2 \br{\f{\indif Q}{T}}\tsb{rev} \]
 
-Thus we can conclude that with $\dif S \br{\f{\indif Q}{T}}\tsb{rev}$,
+Thus we can conclude that with $\dif S = \br{\f{\indif Q}{T}}\tsb{rev}$,
 
 \[ \intl_1^2 \br{\f{\indif Q}{T}}\tsb{irrev} \leq \intl_1^2 \br{\dif S}\tsb{rev} = S_2 - S_1 \]
 
@@ -2280,19 +2280,19 @@ Note that in this course we typically choose our measurable quantity $f$ to be p
 \textbf{Example}: As an example, let us look at the scenario of free classical particles with Hamiltonian given (most of the time) by,
 \[ H\br{p,q} = \text{kinetic energy} + \text{potential energy} \]
 More explicitly,
-\[ T = \sum_{i=1}^{N} \f{\abs{\vp_i}^2}{2m} \qquad V = \sum_{i > j} V_{ij} \br{r_{ij}}\]
+\[ T = \sum_{i=1}^{N} \f{\abs{\vp_i}^2}{2m} \qquad V = \sum_{i > j} V_{ij} \br{q_{ij}}\]
 Note that is \textit{not} always possible to write potential energies are functions of the distance between particles $r_{ij}$ directly. Nonetheless it is valid for numerous examples. As an example for particles in magnetic field, with $\div \vB = \vec0$ we can write $\vB$ as the curl of a vector potential,
 \[ \vB = \curl \vA \]
 Using this vector potential, the Hamiltonian can be written,
 \[ H = \f{\abs{\vp - e \vA}^2}{2m} \]
 This is a simple example where $T$ and $V$ are coupled together. Moving forward the distance between two distinct particles can be written,
-\[ \abs{\vr_{ij}}^2 = \abs{\vr_i - \vr_j}^2 \]
+\[ \abs{\vq_{ij}}^2 = \abs{\vq_i - \vq_j}^2 \]
 Where $\vr_i$'s are the generalized position components in the Hamiltonian formalism,
 \[ \vr_i = \br{r_{ix},r_{iy},r_{iz}} = \br{q_{ix}, q_{iy}, q_{iz}} \]
 Computing the partition function,
 \[ Z = \int_{\w} e^{-\be H} \dif \w = \int_{\w} e^{-\be H} \f{\dif^{3N} q \dif^{3N} p}{h^{3N} N!} \]
 Subbing in the general Hamiltonian,
-\[ Z = \int_{\w} e^{-\be\bc{\sum_{i=1}^{N} \f{\abs{\vp_i}^2}{2m}} - \be \bc{\sum_{i > j} V_{ij} \br{r_{i},r_{j}}}} \f{\dif^{3N} q \dif^{3N} p}{h^{3N} N!} \]
+\[ Z = \int_{\w} e^{-\be\bc{\sum_{i=1}^{N} \f{\abs{\vp_i}^2}{2m}} - \be \bc{\sum_{i > j} V_{ij} \br{q_{i},q_{j}}}} \f{\dif^{3N} q \dif^{3N} p}{h^{3N} N!} \]
 Decoupling the momentum and position terms (for cases unlike the above where the potential energy \textbf{does not} depend on momentum),
 \[ Z = \int_{\w_p} e^{-\be\bc{\sum_{i=1}^{N} \f{\abs{\vp_i}^2}{2m}}} \f{\dif^{3N} p}{h^{3N} N!} \times \int_{\w_q} e^{- \be V \br{q}} \dif^{3N} q \]
 Here we have written $\sum_{i=1}^{N} V_{ij}\br{r_{i},r_{j}} = V\br{q}$. The second component is often very intractable. The first term can be decomposed more,
@@ -2307,7 +2307,7 @@ From this we can look at the Helmholtz free energy,
 \[ A = - k_B T \ln Z_N \]
 And one can recover,
 \[ PV = N k_B T \]
-As well as the Sackur-Tetrode equation is $S$ is computed.\\
+As well as the Sackur-Tetrode equation if $S$ were first computed from $A$.\\
 
 What about a combination of $N_1$ particles with mass $m_1$ and $N_2$ particles with mass $m_2$ where $m_2 \neq m_1$. This derivation is modified in such a way that,
 \[ \iint e^{-ax^2 - by^2}\dx\dy = \int e^{-ax^2}\dx\int e^{-ay^2}\dy = \sqrt{\f{\pi}{a}}\sqrt{\f{\pi}{b}}\]
@@ -2379,14 +2379,14 @@ The last integral can be determined using the substitution $x = \cos \te$ and $\
 \[ \int_{0}^{\pi} \sin \te e^{\be \mu E \cos \te} \dif \te = \int_{-1}^{1} e^{\be \mu E x} \dif x = \f{1}{\be \mu E} \sinh \br{\be \mu E} \]
 Thus,
 \[ Z = Z\tsb{trans} \times Z\tsb{rot} \times  \f{1}{\be \mu E} \sinh \br{\be \mu E} \]
-Now that $Z$ in known, we can compute all thermodynamic properties of the system by taking partial derivatives of $Z$.\\
+Now that $Z$ is known, we can compute all thermodynamic properties of the system by taking partial derivatives of $Z$.\\
 
 Instead of doing this, let us determine the average polarization of the gas in the $z$ direction $\ba{\mu^z}$.
 \[ \ba{\mu^z} = \ba{\mu \cos \te} = \f{\int_{0}^{2\pi} \dif \phi \int_{0}^{\pi} \mu\sin \te  \cos \te e^{\be \mu E \cos \te} \dif \te}{\int_{0}^{2\pi} \dif \phi \int_{0}^{\pi} \sin \te e^{\be \mu E \cos \te}
 \dif \te} \]
 Alternatively but completely equivalently this fraction can be reformulated as a derivative,
 \[ \ba{\mu^z} = \f{1}{\be}\f{1}{Z} \der{Z}{E} = \f{1}{\be}\pder{}{E} \ln Z  \]
-Evidently, this is more tractable that computing an integral. Therefore,
+Evidently, this is more tractable than computing an integral. Therefore,
 \[ \ln Z = \ln \br{\sinh \br{\be \mu E}} - \ln \br{\be \mu E} + \text{const} \]
 Which yields derivatives,
 \[ \pder{}{E}\ln Z = \f{\mu \be}{\sinh\br{\be \mu E}}\cosh\br{\be \mu E} - \f{\be \mu}{\be \mu E} \]
@@ -2433,7 +2433,7 @@ Where $\ti{\al} = \f23 \al$. Which gives,
 Recognize that the $\br{\f32 \cos^2 \te - \f12}$ term is the second Legendre polynomial $P_{20} \sim Y_{lm}\br{\te, \phi}; l=1,m=0$.
 The lesson here is that even for simple systems such as this, the mathematics can become complicated quite quickly. Also consider an electric quadrapole consider a charge distribution such as in $\text{N}_2$,
 \[  \textbf{+} \quad \textbf{-} \quad \textbf{-} \quad \textbf{+} \]
-Where the positive charges represent the nuclei each nitrogen, and the negative charges are the electrons.What does this couple with? This would also involve spherical harmonics. Moving back to our dipole, let $Q$ be the $\te$ dependence on $H$,
+Where the positive charges represent the nuclei of each nitrogen, and the negative charges are the electrons.What does this couple with? This would also involve spherical harmonics. Moving back to our dipole, let us denote the Hamiltonian's `$\te$' dependence as $Q$,
 \[ Q = \f32 \cos^2 \te - \f12 \]
 $Q$ acts as the effective degree of freedom of this Hamiltonian. The average energy can be determined by knowing the expectation of $Q$,
 \[ \ba{H} = - \al E^2 \ba{Q} \]
@@ -2472,7 +2472,7 @@ Note that although decreasing the temperature of the system makes lower energy s
 Including the electric field introduces a \textit{Stark effect} analogous to the \textit{Ziemann effect} in magnetic fields. The energy levels of the states are modified by $f_{lm}$,
 \[ E_{lm} = \f{\hbar^2}{2I} l\br{l+1} + f_{lm}\br{E} \]
 
-This makes $Z$ way harder to compute. Operationally, everything is the same as in previous examples, but it might require more mathematics. The Stark effect in rigid rotors in found in most Quantum textbooks.
+This makes $Z$ way harder to compute. Operationally, everything is the same as in previous examples, but it might require more mathematics. The Stark effect in rigid rotors is found in most Quantum textbooks.
 
 \subsubsection{Spin in Magnetic Field}
 
@@ -2626,7 +2626,7 @@ Summing over all $j$,
 \[ \sum_j \br{P_j \pder{H}{P_j} + Q_j \pder{H}{Q_j}} = \sum_j \br{P_j A_J 2 P_j + Q_j B_j 2 Q_j} = 2\sum_j \br{A_J P_j^2 + B_j Q_j^2} = 2H \]
 From equation \eqref{eq:pdotq} and \eqref{eq:qdotp},
 \[ \ba{H} = \f12 \br{f_A + f_B} k_B T = \f12 f k_B T \]
-Where $f_A$ and $f_B$ sum together to give $f$ are the number of $A_i$ an $B_j$ that are non-zero in the Hamiltonian. \textit{This is a very important result}. Each harmonic (quadratic) term in the Hamiltonian contributes exactly $\f12 k_B T$ toward to the energy. As a consequence, each degree of freedom contributes $\f12 k_B$ towards the specific heat $C_V$. This is the classical version of the theorem of Equipartition theorem. \\
+Where $f_A$ and $f_B$ sum together to give $f$ are the number of $A_i$ an $B_j$ that are non-zero in the Hamiltonian. \textit{This is a very important result}. Each harmonic (quadratic) term in the Hamiltonian contributes exactly $\f12 k_B T$ toward the total energy. As a consequence, each degree of freedom contributes $\f12 k_B$ towards the specific heat $C_V$. This is the classical version of the theorem of Equipartition theorem. \\
 
 Note that at really low temperatures, this breaks down. Consider \textit{phonons} which are lattice vibrations, each behaving as quantum harmonic oscillators. At low temperatures in certain systems, the energy can become quantized and there are corrections to the above result that can be seen experimentally.
 
@@ -2652,7 +2652,7 @@ Thus the Virial is just,
 \[ \mathcal{V}_0 = - 3 PV \]
 Where $V$ is the volume contained inside the bounding surface $S$. From this using \eqref{eq:equivirial},
 \[ PV = N k_B T  \implies PV = nRT \]
-Which is just the ideal gas law. Note the this only works for an ideal gas. A more complicated gas with internal fores would have a more complicated integral for $\mathcal{V}$. From this, the equation of state would become,
+Which is just the ideal gas law. Note the this only works for an ideal gas. A more complicated gas with internal forces would have a more complicated integral for $\mathcal{V}$. From this, the equation of state would become,
 \[ \f{P}{\f{N}{V} k_B T} = 1 + \f{1}{dNk_B T} \ba{\sum_{i<j} \vF\br{\vf_{ij}}\cdot \vr_{ij}}  \]
 Where $d$ is just the spacing dimension. This is known as the \textbf{virial equation of state}. It is typically solved computationally. One can make a career in Chemistry solving the equation of state for different systems.
 
@@ -2699,7 +2699,7 @@ Note that the fraction of particles in the system has the form,
 And the fraction of energy in the system is,
 \[  \f{E^{(s)}}{E} = \br{1 - \f{E^{(r)}}{E}} \ll 1 \]
 Similar to the canonical case, if the system is found to be the state $\br{N^{(s)}_i,E^{(s)}_j}$, the probability is proportional to the number of microstates, $\Om^{(r)}\br{N^{(r)}_i,E^{(r)}_j}$ that the reservoir has access to,
-\[  P\br{N^{(r)}_i,E^{(r)}_j} \propto \Om^{(r)}\br{N^{(r)}_i,E^{(r)}_j} \]
+\[  P\br{N^{(s)}_i,E^{(s)}_j} \propto \Om^{(r)}\br{N^{(r)}_i,E^{(r)}_j} \]
 Well will write this as the exponent of a logarithm to allow for the Taylor series to converge ($P \propto \exp \br{\ln \Om^{(r)}}$). Expanding around the total energy and number of particles $E,N$ to first order,
 \[ \ln \Om^{(r)} \br{N^{(r)},E^{(r)}} \approx \ln \Om^{(r)} \br{N,E} + \pder{\ln \Om^{(r)}}{N^{(r)}} \bigg\rvert_{N^{(r)} = N} \br{N^{(r)} - N} + \pder{\ln \Om^{(r)}}{E^{(r)}} \bigg\rvert_{E^{(r)} = E} \br{E^{(r)} - E} \]
 Noting that $E^{(r)} - E = - E^{(s)}$ and $S = k_B \ln \Om$, the derivative of $S$ with respect to $N$ is given by the chemical potential $\mu$,
@@ -2750,7 +2750,7 @@ By chain rule and \eqref{eq:difeta} this can be expressed,
 Recall from the first law of thermodynamics,
 \[ \dif \bar{E} = \dif Q - \dif W + \mu \dif \bar{N} \]
 Comparing term by term,
-\[ \mu = - \f{\mu}{\be} \qquad \dif W = - \f{1}{\mathcal{N}} \sum_{i,j} \ba{n_{i,j}} \dif E_j \qquad \dif \br{\eta + \bar{N} \al + \bar{E} \be} = \be \dif Q\]
+\[ \mu = - \f{\al}{\be} \qquad \dif W = - \f{1}{\mathcal{N}} \sum_{i,j} \ba{n_{i,j}} \dif E_j \qquad \dif \br{\eta + \bar{N} \al + \bar{E} \be} = \be \dif Q\]
 Therefore we obtain that,
 \[ \al = -\f{\mu}{k_B T} \]
 \subsection{Grand Canonical Partition Function}
