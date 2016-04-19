@@ -2122,7 +2122,7 @@ In order to reveal this connection, we will perform a non-relativistic limit to 
 Making for $i = 1,2,3$, the real space velocity components $v^i/v^0$. Therefore we have $\abs{\vv/v_0} \ll 1$. The non-relativistic limit becomes,
 \[ \abs{\vv} \ll v_0 \]
 So therefore the time components dominate,
-\[ {\Ga^\al}_{\al\be}v^\al v^\be \approx {\Ga^\al}_{00}v^0 v^0 \]
+\[ {\Ga^\al}_{\ga\be}v^\ga v^\be \approx {\Ga^\al}_{00}v^0 v^0 \]
 By definition of ${\Ga^\al}_{\al\be}$,
 \[ {\Ga^\al}_{00} = -\f12 g^{\mu\al} \pder{g_{00}}{x^\al}  \eq \label{eq:timedominant}\]
 Now we will perform a weak field stationary metric on \eqref{eq:gravforce}. Therefore for a general metric $g_{\al\be}$ we can treat it as a Minkowski metric plus a tiny perturbation $\abs{h_{\al\be}} \ll 1$,
@@ -3465,7 +3465,7 @@ Suppose $\del_\al w^\be$ was originally expressed in terms of the set of coordin
 Using \eqref{eq:connectiononvector},
 \[ \widetilde{\di_\al w^\be} + \widetilde{{\Ga^\be}_{\al\de}w^\de} = \pder{x^\ga}{\tx^\al}\pder{\tx^\be}{x^\eta} \br{\di_\ga w^\eta + {\Ga^\eta}_{\ga \sigma} w^\sigma} \]
 Examining the $\di_\ga w^\eta$ term, since $w^\eta$ is a tensor it transforms well. Using this idea and product rule then chain rule,
-\[ \di_\ga w^\eta = \di_\ga \br{\pder{x^\eta}{\tx^\be}\tw^\be} = \di_\ga \br{\pder{x^\eta}{\tx^\zeta}}\tw^\zeta + \pder{x^\eta}{\tx^\be}\di_\ga \br{\tw^\be} = \di_\ga \br{\pder{x^\eta}{\tx^\zeta}}\tw^\zeta + \pder{x^\eta}{\tx^\be}\pder{\tw^\be}{\tx^\al}\pder{\tx^\al}{x^\ga} \]
+    \[ \di_\ga w^\eta = \di_\ga \br{\pder{x^\eta}{\tx^\be}\tw^\be} = \di_\ga \br{\pder{x^\eta}{\tx^\zeta}}\tw^\zeta + \pder{x^\eta}{\tx^\be}\di_\ga \br{\tw^\be} = \di_\ga \br{\pder{x^\eta}{\tx^\zeta}}\tw^\zeta + \pder{x^\eta}{\tx^\be}\pder{\tw^\be}{\tx^\al}\pder{\tx^\al}{x^\ga} \]
 Subbing this in,
 \[ \widetilde{\di_\al w^\be} + \widetilde{{\Ga^\be}_{\al\de}w^\de} =  \pder{x^\ga}{\tx^\al}\pder{\tx^\be}{x^\eta}\di_\ga \br{\pder{x^\eta}{\tx^\zeta}}\tw^\zeta + \pder{\tw^\be}{\tx^\al} + \pder{x^\ga}{\tx^\al}\pder{\tx^\be}{x^\eta}{\Ga^\eta}_{\ga \sigma} w^\sigma \]
 But $\widetilde{\di_\al w^\be}$ is precisely $\pder{\tw^\be}{\tx^\al}$ therefore,
