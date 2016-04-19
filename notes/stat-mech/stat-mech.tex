@@ -1753,7 +1753,7 @@ For generic physical quantity $f\br{q,p;t}$ that depends on time, positions an m
 
 \heading{$\mu$-space vs. $\Ga$-space}
 
-We will now introduce the notion of $\mu$-space. In this $6N$ dimensional space, we assign to each particle $\mu$ a single point,
+We will now introduce the notion of $\mu$-space. In this $6$ dimensional space, we assign to each particle $\mu$ a single point,
 
 \[ \vr_\mu , \vp_\mu \mapsto \br{r_x, r_y, r_z, p_x, p_y, p_z} \]
 
@@ -1884,7 +1884,7 @@ This $\rho$ acts a weight for all possible $k$'s that could potentially make up 
 \[ \dot{q}_i = \pder{H}{p_i} \qquad \dot{p}_i = -\pder{H}{q_i} \]
 Gives us a corresponding description of $\rho\br{q,p;t}$. \\
 
-\textbf{Important Remark}: If we are concerning ourselves with statical mechanics, we are limiting ourselves the constraint that,
+\textbf{Important Remark}: If we are concerning ourselves with equilibrium statical mechanics, we are limiting ourselves the constraint that,
 \[ \pder{\rho}{t} = 0 \]
 We have to consider how $\rho(p,q)$ is compatible with the equations of motion. The solution to this is known as \textbf{Liouville's Theorem}.
 
@@ -2790,7 +2790,7 @@ Thus it is more efficient computationally to recognize these repeated values and
 Returning to the generic case, instead of summing over the index $i$,
 \[ \sum_{i} e^{\be \mu N_i} \ar \sum_{N_i = 0}^{\inf} e^{\be \mu N_i} \]
 We can sum over the actual number of particles $N_i$. This is precisely analogous to summing over the energies instead of summing over the states as throughly discussed in section \ref{sec:densityofstates}. Altogether,
-\[ Z_{GC} = \sum_{N_i = 0}^{\inf} e^{\be \mu N_i} \br{\sum_{E}^{'} g\br{E}e^{-\be E}}_{N_i} \]
+\[ Z_{GC} = \sum_{N_i = 0}^{\inf} e^{\be \mu N_i} \br{{\sum_{E}}' g\br{E}e^{-\be E}}_{N_i} \]
 Note that there is no corresponding density of states for the number of particles $g\br{N}$. $g\br{E}$ corresponds to the number of states that happen to have the same energy $E$. However if the number of particles are the same, it corresponds to precisely the same state without degeneracies. Moreover notice that the second sum in this formula has a prime to make clear that the sum is made using the constraint that the number of particles is fixed. It behaves, for fixed $N$, precisely as the \textit{canonical} ensemble.
 \[ Z_{GC} = \sum_{N = 0}^{\inf} z^{N} Z_{C}\br{N} \]
 
@@ -2856,8 +2856,8 @@ Making,
 \textbf{Maxwell-Boltzmann distribution}: Assuming first that the particles are indistinguishable, for the distribution set $\bc{n_i}$ we can ask: How many ways can $N$ particles be distributed into $n_1$ particles in cell 1 and $n_2$ particles in cell 2 and $n_i$ particles in cell $i$? This is given by the multinomial distribution,
 \[ \f{N!}{n_1! \cdot n_2! \cdots n_i!} = \f{N!}{\prod_i n_i !} \]
 Now with $g_i$ states we can have $g_i^{n_i}$ configurations of particle distribution of $n_i$ particles among $g_i$ states in cell $i$. Furthermore removing the distinguishability of the $N$ particles requires division by $N!$,
-\[ \mathcal{W}\tsb{MB}\bc{n_i} = \f{1}{n_i!} \prod_{i} g_i^{n_i}  \]
-For supplementary materials, see Sertagg-Wan Wylen. \\ % Typo in the name TODO
+\[ \mathcal{W}\tsb{MB}\bc{n_i} = \prod_{i} \f{g_i^{n_i}}{n_i!}  \]
+For supplementary materials, see Gordon Van Wylen. \\
 
 \subsection{Entropy \& Distributions}
 \label{sec:a}
@@ -2957,7 +2957,7 @@ The nested summations are separable,
 Here we have just a product of sums with similar structure,
 \[ Z\br{z,V,T} = \prod_\vep \br{\sum_{n_\vep} \br{z e^{-\be \vep}}^{n_\vep}} \eq\label{eq:canonicalresult}\]
 Recall that for F.D. $n_\vep = 0,1$ since at most one particle can be in any given state with energy $\vep$ which gives,
-\[ Z\tsb{FD}\br{z,V,T} = \prod_\vep \br{1 + z e^{-\be z}} \]
+\[ Z\tsb{FD}\br{z,V,T} = \prod_\vep \br{1 + z e^{-\be \vep}} \]
 Whereas for B.E., $n_\vep$ can take on any value (any number of bosons can share the same state). Then we can utilize the geometric series,
 \[ \sum_{n = 0}^{\inf} x^n = \f{1}{1-x} \note{For $\abs{x} < 1$}\]
 Letting $x = ze^{-\be \vep} = e^{+\be\mu}e^{-\be\vep}$,
