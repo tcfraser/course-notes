@@ -3027,8 +3027,7 @@ Up until the notion of spacetime and GR, scientists assumed that the universe wa
     \item homogeneous: Universe behaves/looks the same at every place
     \item isotropic: At every point, the universe looks the same in every direction
 \end{itemize}
-The first hint that suggests that the universe can't be static or infinite is that the night sky is mostly dark. If the universe were infinite, looking in any particular direction should be bright because \textit{eventually} you ray of vision will hit a star. This idea was first discussed in 1826 and is known as \textbf{Albers' paradox}. Moreover in 1912, Slipher observed that galaxies are red shifted. This work was extended by Hubble in 1929 when he observed that this redshift is proportional to the distance to the galaxies. If galaxies are redshifted, then that means they are moving away from us. Combining this with the assumption of homogeneity, indicates that \textit{all galaxies are moving away from each other}
-. Because of this, the universe is \textit{not} static. Explicitly, this indicates that the space between galaxies are growing. In summary, these observations indicate that the universe can not be infinite or static. \\
+The first hint that suggests that the universe can't be static or infinite is that the night sky is mostly dark. If the universe were infinite, looking in any particular direction should be bright because \textit{eventually} your ray of vision will hit a star. This idea was first discussed in 1826 and is known as \textbf{Albers' paradox}. Moreover in 1912, Slipher observed that galaxies are red shifted. This work was extended by Hubble in 1929 when he observed that this redshift is proportional to the distance to the galaxies. If galaxies are redshifted, then that means they are moving away from us. Combining this with the assumption of homogeneity, indicates that \textit{all galaxies are moving away from each other}. Because of this, the universe is \textit{not} static. Explicitly, this indicates that the space between galaxies are growing. In summary, these observations indicate that the universe can not be infinite or static. \\
 
 At this time in history people started utilizing GR to study the \textit{evolution} of the universe. To do so we will choose a metric to describe spacetime. Given the assumptions that \textit{space alone} is homogeneous and isotropic we can arrive at some symmetries. Specifically the isotropic assumption introduces spherical symmetry and thus $3$ rotation killing vectors. In additional homogeneity introduces ``translational'' invariance. Translational is written in quotes because it does not be linear translations in a Cartesian sense. As an example, consider a translation away from the north pole of a sphere. These ``translationals'' can manifest themselves as rotations or boosts. From this we also get $3$ killing vectors. \\
 
@@ -3074,7 +3073,7 @@ Here $a\br{t}$ is known as a \textbf{scale factor}. Moreover the square on $a\br
 The discovery and proof of uniqueness of this metric took from $\sim$1922-1935. What are the implications of this metric? What we will see is that \eqref{eq:FLRW} produces a relationship between redshift and distance.
 \subsection{Redshift \& Distance}
 Suppose we have two individuals each in a separate galaxy very far apart. If person $1$ sends a signal to person $2$ at a time $t = t_e$ at some later time, person $B$ will receive this signal. If their separation was initially $\ell$, by \eqref{eq:FLRW}, the separation at a later time $t_r$ is given by $a\br{t_r} \ell$. Denote the tangent vectors for each observed $V^\mu_1$ and $V^\mu_2$ respectively. Finally, let the receiver of light (2) be placed at $r=0$. Since the light signal is moving along a geodesic (and the motion is purely radial), the normalization condition for a lightlike trajectory becomes,
-\[ 0 = - \dot{t}^2 + a\br{t} \f{\dot{r}^2}{1 - kr^2} \]
+\[ 0 = - \dot{t}^2 + a^2\br{t} \f{\dot{r}^2}{1 - kr^2} \]
 Therefore since the position of the light relative to observer 2 $r$ is decreasing, $\dif r < 0$. By factoring out the $\dif \tau$'s one obtains,
 \[ \f{\dif t}{a\br{t}} = - \f{\dif r}{\br{1-kr^2}^{1/2}} \]
 Integrating over the path of the trajectory,
@@ -3169,7 +3168,7 @@ In summary we have,
 \end{tabular}
 \end{center}
 We will now look at the equation of motion of the fluid; namely the conservation of the stress energy tensor,
-\[ \del^\mu T_{\mu\al} \]
+\[ \del^\mu T_{\mu\al} = 0 \]
 Again using the FLRW metric,
 \[ \dif s^2 = - \dif t^2 + a^2 \br{t} \ga_{ij} \dif x^i \dif x^j \]
 In order to examine the conservation equation, we must first compute the associated Christoffel symbols. In general it follows in a typical way,
