@@ -2981,7 +2981,7 @@ The metric then becomes,
 \[ \dif s^2\tsb{sch} \ar \dif s^2 = - \br{1- \f{R_s}{r}} \dif v^2 + 2 \dif v \dif r + r^2 \dif \Om^2 \]
 This metric is known as the \textbf{Eddington-Finkenstein metric}. In a matrix representation,
 \[ g_{\al\be} = \mtrx{-\br{1- \f{R_s}{r}} & 1 & 0 \\1 & 0 & 0 \\0 & 0 & r^2} \]
-It is important to note the subtlety here. Choosing spherical coordinates $\br{t, r, \te, \phi}$ resulted in a problem in the metric representation. However choosing better coordinates $\br{t, v, \te, \phi}$ results in the Eddington-Finkenstein metric. This metric has no divergence at $r = R_s$. The transformation from $v \ar r$ divergences at $r = R_s$ in \eqref{eq:efcc} because spherical coordinates were a bad choice, \textbf{not} because the manifold was a problem (this is contrasting to the case of $r=0$ where there is no good choice of coordinates; a true singularity). \\
+It is important to note the subtlety here. Choosing spherical coordinates $\br{t, r, \te, \phi}$ resulted in a problem in the metric representation. However choosing better coordinates $\br{t, v, \te, \phi}$ results in the Eddington-Finkenstein metric. This metric has no divergence at $r = R_s$. The transformation from $v \ar r$ diverges at $r = R_s$ (see \eqref{eq:efcc}) because spherical coordinates were a bad choice, \textbf{not} because the manifold was a problem (this is contrasting to the case of $r=0$ where there is no good choice of coordinates; a true singularity). \\
 
 Now we can find the light trajectory by using the normalization condition and the purely radial motion ($\dif \te = \dif \phi = 0 $).
 \[ - \br{1- \f{R_s}{r}}  \dif v^2 + 2 \dif v \dif r = 0 \]
@@ -3353,7 +3353,7 @@ Now we can consider the linearized Einstein equations term by term in order to d
 \end{center}
 \newcommand{\gs}{\mathfrak{s}}
 To clarify the analysis, we can write each of the perturbation elements explicitly,
-\[ h_00 = - 2 \Phi \qquad h_{0i} = h_{i0} = w_i \qquad h_{ij} = 2 s_{ij} - 2\de_{ij} \mathfrak{s} \]
+\[ h_{00} = - 2 \Phi \qquad h_{0i} = h_{i0} = w_i \qquad h_{ij} = 2 s_{ij} - 2\de_{ij} \mathfrak{s} \]
 Where $\gs$ is proportional to the trace of the tensor mode,
 \[ \gs = -\f16 {s_{i}}^i = -\f16 s_{ij}\de^{ij} \]
 The tensor mode is traceless and called the strain,
@@ -3361,7 +3361,7 @@ The tensor mode is traceless and called the strain,
 The scalar mode is related to the Newton potential.\\
 
 The Einstein equations become 3 sets of equations for each of the modes,
-\[ G_00 = s\del^2\gs + \di_k\di_ls^{kl} = 4 \pi G T_{00} \]
+\[ G_{00} = s\del^2\gs + \di_k\di_ls^{kl} = 4 \pi G T_{00} \]
 This determines $\gs$ in terms of the strain , the source and the boundary conditions. It is not propagating.
 \[ G_{0j} = -\f12 \del^2 w_j + \f12 \di_j \di_k w^k + 2 \di_0 \di_j \gs + \di_0\di_k {s^{k}}_j = 4 \pi G T_{0j} \]
 This determines the vector mode in terms of the strain, the source and the boundary conditions. It is not propagating. And finally,
