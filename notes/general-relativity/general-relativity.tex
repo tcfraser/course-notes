@@ -2427,7 +2427,7 @@ Such that it is divergenceless.
 However, is this $G$ unique? Obviously we can add any constants that are compatible with the metric. Therefore introduce the \textbf{cosmological constant} $\Lambda$.
 \[ G_{\be\nu} = R_{\be\nu} - \f12 R g_{\be\nu}  + \Lambda g_{\be\nu}\]
 Therefore we have $G_{\be\nu} = G_{\nu\be}$ and that $\del^\nu G_{\be\nu} = 0$. Therefore,
-\[ G_{\be\nu} = k T_{\be\vu} \]
+\[ G_{\be\nu} = k T_{\be\nu} \]
 Where $k$ is yet to be determined.\\
 
 To determine what $k$ is, we should be able to recover Newton's law of gravity in a non-relativistic limit. Consider a weak field stationary metric.
@@ -2473,7 +2473,7 @@ As a recap on everything we have learned so far,
     \begin{itemize}
         \item $\del_\mu V^\al = \di_\mu V^\al + {\Ga^\al}_{\be\ga}V^\ga$
         \item ${\Ga^\al}_{\be\ga} = {\Ga^\al}_{\ga\be}$
-        \item $\del_\mu g_{\al\be}$
+        \item $\del_\mu g_{\al\be} = 0$
         \item from now on we only consider the Levi-Civita connection
     \end{itemize}
     \item geodesics are the paths of particles in spacetime subject to \textbf{no other forces}
@@ -2637,7 +2637,7 @@ Naturally, in the frame of the observer, $u^\al$ acts as a basis for the time-li
 So what is the red shift of the photon as it moves from radius $r_1$ to $r_2$? Since $\xi^\al$ is a killing vector, $\xi^\al p_\al$ is conserved on the photon's world line.
 \[ \del_{V}\br{\xi^\al p_\al} = \del_{V}\br{\xi^\al} p_\al + \xi^\al \underbrace{\del_{V}\br{p_\al}}_{=0} \]
 Where $\del_{V}\br{p_\al}$ is zero because it is a geodesic. The remaining term is,
-\[ \del_{V}\br{\xi^\al p_\al} = V^\ga \del_{\ga}\br{\xi^\al} p_\al = V^\ga \del_{\ga}\br{\xi_\al} g^{\al\be} p_\be = V^\ga V^\be \del_{\ga}\br{\xi_\al} \]
+\[ \del_{V}\br{\xi^\al p_\al} = V^\ga \del_{\ga}\br{\xi^\al} p_\al = V^\ga \del_{\ga}\br{\xi_\al} g^{\al\be} p_\be = V^\ga V^\be \del_{\ga}\br{\xi_\al} = ? \]
 But by the killing equation,
 \[ \del_\ga \xi_\be + \del_\be \xi^\ga = 0 \]
 Which indicates that $\del_\ga \xi_\be$ is an antisymmetric tensor. Noting that $V^\al V^\be$ is clearly a symmetric tensor. By contracting a symmetric tensor with an antisymmetric tensor,
