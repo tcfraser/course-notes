@@ -22,6 +22,94 @@
 
 \disclaimer
 
+\section{DTMC}
 
+\subsection{Review of Probability}
+
+A \textit{random variable} (r.v.) $X$ is a real valued function of the outcomes of a random experiment.
+
+\[ X : \Om \to \R \]
+
+Where $\Om = \bc{\w_1, \w_2, \ldots}$ is the sample space corresponding to all possible outcomes $\w_i$. The outcomes can in principle be any possible outcomes. We say that $X$ maps each outcome $\w$ to a real number $\w \mapsto X\br{\w} \in \R$. \\
+
+A \textit{stochastic process} is a family of random variables $\bc{X_t}_{t \in T}$, defined on a common sample space $\Om$. $T$ is referred to as the index set for the stochastic process which is often understood as time. The index set $T$ can take a discrete spectrum,
+\[ T = \bc{0, 1, 2, \ldots} \qquad \bc{X_n \mid n = 0, 1, 2, \ldots} \]
+Alternatively, $T$ can take on a continuous spectrum,
+\[ T = \bc{t \mid t \geq 0} = \left[ 0 , \inf \right) \]
+
+The \textit{state space} $S$ is th collection of all possible values of $X_t$'s. It is important to understand the distinction of between sample space and state space. Additionally, the state space can either have discrete or continuous spectrum. \\
+
+A question remains, \textit{Why do we need the family of random variables to be defined on a common sample space?} The answer being that we would like to be able to discuss the joint behaviour of $X_t$'s. If $X_1$ has domain $\Om_1$ and $X_2$ has domain $\Om_2$ (where $\Om_1 \neq \Om_2$), then one can \textit{not} talk about common ideas of correlations and associations between $X_1$ and $X_2$. As such we assert that all members of a stochastic process share the same sample space domain $\Om$.
+
+\subsection{Discrete-time Markov Chain}
+
+A \textit{discrete-time stochastic process} $\bc{X_n \mid n \in 0, 1, 2, \ldots}$ is said to be a \textit{Discrete-time Markov Chain} (DTMC) if the following conditions hold:
+\begin{enumerate}
+    \item The state space is at most \textit{countable}\footnote{Countable meaning there is a one-to-one mapping from the state space to the natural numbers.} (i.e. finite or countable).
+    \[ S = \bc{0, 1, \ldots, k} \quad \textrm{or} \quad S = \bc{0, 1, 2, \ldots} \]
+    \item \textit{Markov Property}: For any $n = 0, 1, 2, \ldots$,
+    \[ P\br{X_{n+1} = x_{n+1} \mid X_n = x_n, X_{n-1} = x_{n-1}, \ldots, X_{0} = x_{0}} = P\br{X_{n+1} = x_{n+1} \mid X_{n} = x_{n}} \]
+\end{enumerate}
+We use capital letters $X$ to denote the random variable and lower case letters $x$ to denote a specific realization or valuation of $X$. The motivation of the Markov property is that future events $X_{n+1} = x_{n+1}$ are independent of past histories $\bc{X_{i} = x_{i} \mid i = 0, 1, \ldots, n-1}$ given the immediate past state $X_{n} = x_{n}$. The intuition being that the future and the past are probabilistically independent.
+
+\subsection{Transition Probability}
+
+The \textit{transition probability} from a state $i \in S$ at time $n$ to state $j \in S$ (at time $n+1$) is given by,
+\[ P_{n, i, j} \defined P \br{X_{n+1}= j \mid X_{n} = i} \qquad n = 0, 1, 2, \ldots\]
+In full generality, the transition probability could depend on time $n$ but in this course we will restrict ourselves to transition probabilities that \textit{do not} depend on time $n$ ($P_{n, i, j} = P_{i, j}$). We say that the MC is (time-)homogeneous if this property holds. From now on, this will be our default setting. \\
+
+The matrix of all transition probabilities $P = \bc{P_{i,j} \mid i,j \in S}$ is called the \textit{one-step transition (probability) matrix} for $\bc{X_{n} \mid n \in T}$.
+\[ P = \pmtrx{P_{00} & P_{01} & \cdots & P_{0j} & \cdots \\ P_{10} & P_{11} & \cdots & P_{1j} & \cdots \\ \vdots & \vdots & \ddots & \vdots & \cdots \\ P_{i0} & P_{i1} & \cdots & P_{ij} & \cdots \\ \vdots & \vdots & \vdots & \vdots & \ddots} \]
+The one-step transition matrix $P$ has the following properties,
+\[ P_{i,j} \geq 0 \]
+\[ \forall i : \sum_{j \in S} P_{ij} = 1 \]
+The row sum for $P$ is always unitary.\\
+
+The \textit{n-step transition probability} is defined via the homogeneous property,
+\[ \forall i,j \in S : P_{ij}^{(n)} \defined P\br{X_{n+m} = j \mid X_{n} = i} = P\br{X_{n} = j \mid X_{0} = i} \]
+Analogously, the \textit{n-step transition matrix} is the matrix,
+\[ P^{(n)} = \bc{P_{ij}^{(n)} \mid i, j \in S} \]
+
+There is a simple relation between $P^{(n)}$ and $P$.
+\[ P^{(n)} = P^{(n-1)} \cdot P = \underbrace{P \cdot P \cdot \cdots \cdot P}_{n} = P^n \]
+
+\textbf{Proof:} Proof by induction:
+\[ P^{(1)} = P \note{By definition.} \]
+We also have $P^{(0)} = P^{0} = \mathbb{I}$ is the identity matrix. We now assume $P^{(n)} = P^{n}$. Then $\forall i,j \in S$,
+\begin{align*}
+    P_{ij}^{(n+1)} &= P\br{X_{n+1} = j \mid X_{0} = i} \\
+    &= \sum_{k \in S} P\br{X_{n+1} = j, X_{n} = k \mid X_{0} = i} \note{Total probability}\\
+    &= \sum_{k \in S} \f{P\br{X_{n+1} = j, X_{n} = k, X_{0} = i}}{P\br{X_{0} = i}} \\
+    &= \sum_{k \in S} \f{P\br{X_{n+1} = j, X_{n} = k, X_{0} = i}}{P\br{X_{n} = k, X_{0} = i}}\f{P\br{X_{n} = k, X_{0} = i}}{P\br{X_{0} = i}} \\
+    &= \sum_{k \in S} P\br{X_{n+1} = j \mid X_{n} = k, X_{0} = i} \cdot P\br{X_{n} = k \mid X_{0} = i} \note{Conditional total probability}\\
+    &= \sum_{k \in S} P\br{X_{n+1} = j \mid X_{n} = k} \cdot P\br{X_{n} = k \mid X_{0} = i} \note{Use Markov Property}\\
+    &= \sum_{k \in S} P_{kj} \cdot P_{ik}^{(n)} \note{Matrix terms}\\
+    &= \br{P \cdot P^{(n)}}_{ij} \note{Matrix product}\\
+    &= \br{P^{n+1}}_{ij} \note{Inductive Hypothesis}
+\end{align*}
+There we have proved that $P^{(n+1)} = P^{n+1}$ and so we have a complete proof that $P^{(n)} = P^{n}$.\\
+
+As a corollary, we have obtained that,
+\[ P^{(n)} = P^{(m)} \cdot P^{(n-m)} \qquad \forall 0 \leq m \leq n \]
+Or equivalently we have \textbf{Chapman-Kolmogorov Equation} or simply C-K equation,
+\[ P^{(n)}_{ij} = \sum_{k \in S} P^{(m)}_{ik} P^{(n-m)}_{kj} \qquad \forall i,j \in S, \forall 0 \leq m \leq n \]
+
+So far, we have only been discussing transition probabilities. We will now divert our attention to actual distributions for a stochastic process. \\
+
+Let $\al_n = \br{\al_{n, 0}, \al_{n, 1}, \ldots}$ be the distribution of $X_n$.
+\[ \al_{n,k} = P\br{X_n = k} \qquad \forall k \in S \]
+Note that $\al_{n,k} \geq 0$ and $\sum_{k\in S} \al_{n, k} = 1$ and $n = 0, 1, 2,\ldots$. We also define the initial distribution $\al_0$,
+\[ \al_0 = \br{P\br{X_0 = 0}, P\br{X_0 = 1}, \ldots} \]
+The transition probability matrix gives us a relationship between $\al_n$ and $\al_0$,
+\[ \al_n = \al_0 \cdot P^{n} \eq \label{eq:transition_dist}\]
+The proof \cref{eq:transition_dist} is quite trivial:
+\begin{align*}
+    \forall j \in S \quad \al_{n, j} &= P\br{X_n = j} \\
+     &= \sum_{i \in S} P\br{X_n = j \mid X_0 = i} \cdot P\br{X_0 = i} \\
+     &= \sum_{i \in S} \al_{0, i} \cdot P_{ij}^{n} \\
+     &= \al_{0, 0} \cdot P_{0j}^{n} + \al_{0, 1} \cdot P_{1j}^{n} + \ldots \\
+     &= \br{\al_{0} \cdot P^{n}}_j
+\end{align*}
+\[  \]
 
 \end{document}
