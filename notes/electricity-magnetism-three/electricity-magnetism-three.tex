@@ -1,0 +1,54 @@
+\documentclass{article}
+
+\usepackage{coursenotes}
+
+\set{AuthorName}{TC Fraser}
+\set{Email}{tcfraser@tcfraser.com}
+\set{Website}{www.tcfraser.com}
+\set{ClassName}{Electricity \& Magnetism 3}
+\set{School}{University of Waterloo}
+\set{CourseCode}{Phys 442}
+\set{InstructorName}{Chris O'Donovan}
+\set{Term}{Fall 2016}
+\set{Version}{1.0}
+
+\draftprofile[TC Fraser]{TC}{Purple}
+
+\begin{document}
+
+\titlePage
+
+\tableOfContents
+
+\disclaimer
+
+\section{Coordinates and Symmetry}
+
+A clever choice of coordinates systems typically makes solving a problem considerably easier. Mathematically, this is due to \textit{Noether's Theorem}. A typical three dimensional Lagrangian will have three dependent generalized coordinates $L = L \br{x,y,z} = L \br{s,\theta,\zeta} = \cdots$. However, if one can identify generalized coordinates $q$ that make the Lagrangian invariant $\pder{L}{q} = 0$, then the \textit{Euler-Lagrange} equations are considerably similar,
+\[ \der{}{t}\br{\pder{L}{\dot{q}}} - \pder{L}{q} = 0 \implies \pder{L}{\dot{q}} = \textrm{const.} \implies L \propto \dot{q} \]
+As such, the number of equations that remain to solved has been reduced.
+
+\section{First Assignment?}
+
+\textbf{A1.1}: Use cylindrical coordinates with $\zeta$ along the axis of the cable,
+
+\[ V\br{\zeta} = \f{1}{4 \pi \ep_0} \int_{\mathcal{C}}\f{\dif \rho}{\rcurs} \]
+
+Where $\vec{\rcurs} = \vec{r} - \vec{r}'$, $\vec{r}'$ is the source point and $\vec{r}$ is the field point. The entire cylinder is the set of all source points $\vec{r}'$ that are contained inside $\abs{\vec{r}'} \leq R$.
+\[ \vec{r} = \zeta \hat{\zeta} \]
+\[ \vrp{r} = s' \hat{s}' + \zeta' \hat{\zeta} \]
+
+\[ V\br{\zeta} = \f{\rho}{4 \pi \ep_0} \int_{\mathcal{C}}\f{\dif V}{\abs{\vec{r} - \vec{r}'}} \]
+
+Where $ \dif V = s \dif s \dif \theta \dif \zeta$. One can then find the electric \textit{field} by doing $\vec{E} = - \vdel V = E_{\zeta} \hat{\zeta} = -\pder{V}{\zeta} \hat{\zeta}$
+
+\textbf{A1.2}:
+
+Between the two conductors, there will be a radial electric field $\vec{E} = E\br{s} \hat{s}$ and parallel magnetism field $\vec{B} = B\br{s} \hat{\zeta} $. Outside the two conductors, there will be no electric or magnetic field.
+
+\[ E^{\parallel}\tsb{vac} = 0 \]
+\[ E^{\perp}\tsb{vac} = \f{\si}{\ep_0} \]
+\[ \vdel \cdot \vec{E} = \f{\rho}{\ep_0} \]
+
+\todo[TC]{Figure out O'Donovan}
+\end{document}

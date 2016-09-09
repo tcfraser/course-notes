@@ -1,0 +1,86 @@
+\documentclass{article}
+
+\usepackage{coursenotes}
+
+\set{AuthorName}{TC Fraser}
+\set{Email}{tcfraser@tcfraser.com}
+\set{Website}{www.tcfraser.com}
+\set{ClassName}{Quantum Physics 3}
+\set{School}{University of Waterloo}
+\set{CourseCode}{Phys 434}
+\set{InstructorName}{Anton Burkov}
+\set{Term}{Fall 2016}
+\set{Version}{1.0}
+
+\draftprofile[TC Fraser]{TC}{Purple}
+
+\newcommand{\hilb}{\mathcal{H}}
+
+\begin{document}
+
+\titlePage
+
+\tableOfContents
+
+\disclaimer
+
+\section{Review}
+
+States in quantum mechanics are vectors in Hilbert space $\hilb$. In Dirac notation, states are denoted as \textit{kets} $\ket{\psi}$. Observables in quantum mechanics are operators $A : \hilb \to \hilb$ such that $\ket{\psi} \mapsto A \ket{\psi}$. Every operator $A$ has a set of eigenkets $\bc{\ket{a'}}$,
+\[ A \ket{a'} = a' \ket{a'} \]
+The eigenvalue corresponding to the eigenket $\ket{a'}$ is denoted $a' \in \R$. The dual Hilbert space will be called the bra space and elements of the bra space will be denoted with a ket space $\ket{\varphi}$.\\
+
+We will denoted the \textit{inner product} (scalar product) to be $\braket{\varphi}{\psi}$. By definition,
+\[ \braket{\varphi}{\psi} = \braket{\psi}{\varphi}^{*} \]
+\[ \braket{\psi}{\psi} = \norm{\psi} \geq 0 \]
+
+Every state in the Hilbert space can be normalized,
+\[ \ket{\ti{\psi}} = \f{1}{\sqrt{\braket{\psi}{\psi}}} \ket{\psi} \]
+
+In doing so, we have,
+\[ \braket{\ti{\psi}}{\ti{\psi}} = \f{\braket{\psi}{\psi}}{\braket{\psi}{\psi}} = 1 \]
+
+Evidently, if we have that $\braket{\varphi}{\psi} = \braket{\psi}{\varphi}$, then $\braket{\varphi}{\psi}$ must be real. A bra $\bra{\varphi}$ and ket $\ket{\psi}$ are said to the \textit{orthogonal} if $\braket{\varphi}{\psi} = 0$. \\
+
+The dual of $A \ket{\psi}$ is $\bra{\psi} A^\dagger$. Where $A^{\dagger}$ is the Hermitian conjugate (adjoint) of $A$. We can act on the ket $A\ket{\psi}$ with the bra $\bra{\varphi}$ and obtain,
+\[ \bramidket{\varphi}{A}{\psi} = \bramidket{\psi}{A^\dagger}{\varphi}^{*} \]
+
+The operator $A$ is \textit{Hermitian} if and only if $A = A^{\dagger}$. \\
+
+If $A$ is a Hermitian operator, then $A$'s eigenvalues and eigenkets have particularly nice properties. Let $\br{a', \ket{a'}}$ and $\br{a'', \ket{a''}}$ be two eigen-pairs.
+\[ A \ket{a'} = a' \ket{a'} \eq \label{eq:review_eig1}\]
+\[ A \ket{a''} = a' \ket{a''} \eq \label{eq:review_eig2} \]
+Let $\bra{\varphi}$ be an arbitrary bra. By \cref{eq:review_eig2} be have that,
+\[ \bramidket{\varphi}{A}{a''} = a'' \braket{\varphi}{a''} \]
+The adjoint to this equation yields,
+\[ \bramidket{a''}{A}{\varphi}^{*} = a'' \braket{a''}{\varphi}^{*} \]
+Conjugating each term,
+\[ \bramidket{a''}{A}{\varphi} = a''^{*} \braket{a''}{\varphi} \eq \label{eq:review_gen_varphi}\]
+Since \cref{eq:review_gen_varphi} is true for an arbitrary $\bra{\varphi}$, it must be that
+\[ \bra{a''}A = a''^{*} \bra{a''} \eq \label{eq:review_gen_varphi_dropped} \]
+Combining \cref{eq:review_gen_varphi_dropped,eq:review_eig1}, and recognizing that $A$ is Hermitian,
+\[ \underbrace{\bramidket{a''}{A}{a'} - \bramidket{a''}{A^\dagger}{a'}}_{0} = a' \braket{a''}{a'} = a''^{*} \braket{a''}{a'} \]
+Therefore,
+\[ \br{a' - a''^{*}}\braket{a''}{a'} = 0 \eq \label{eq:review_aa}\]
+As an example, we can chose $\ket{a''} = \ket{a'}$ to see that
+\[ \br{a' - a'^{*}}\braket{a'}{a'} = 0 \implies a' = a'^{*}\]
+Therefore all eigenvalues of Hermitian operators are always real. Since the spectrum of an operator represents all physical observables, this observation is in agreement with the fact that all physical quantities are real-valued. \\
+
+Moreover returning to \cref{eq:review_aa} we can consider $\ket{a'}$ and $\ket{a''}$ to be different eigenkets that are non-degenerate (their eigenvalues differ). Then be \cref{eq:review_aa},
+\[ \braket{a''}{a'} = 0 \]
+Therefore eigenkets of Hermitian operators are orthogonal (or can at least be orthogonalized). Since the norm of an eigenket is arbitrary, we will hence forth assert that all eigenkets are normalized. Each of these properties can be summarized with a Kronecker delta.
+\[ \braket{a''}{a'} = \de_{a, a'} \]
+In summary, the set of eigenkets of any Hermitian operator forms a complete orthonormal set of states. Effectively, the set of eigenkets form a basis for the Hilbert space. Consequently, we can write any ket $\ket{\psi}$ in terms of the eigenkets for any Hermitian operator $A$
+\[ \ket{\psi} = \sum_{a'} C_{a'} \ket{a'} \eq \label{eq:complete_basis}\]
+Where $C_{a'} \in \C$ are uniquely defined through acting with the dual eigenket $\bra{a''}$,
+\[ \braket{a''}{\psi} = \sum_{a'} C_{a'} \braket{a''}{a'} = \sum_{a'} C_{a'} \de_{a'', a'} = C_{a''} \implies C_{a'} = \braket{a'}{\psi} \]
+Physically, the coefficient $C_{a'}$ is called a \textit{probability amplitude}. When a given system is in state $\ket{\psi}$, the probability of measuring the value $a'$ when making the observation or measurement $A$ is given by the square modulus of $C_{a'}$,
+\[ P_{A}\br{a'} = \abs{\braket{a'}{\psi}}^2 \]
+We now have the luxury of re-writing \cref{eq:complete_basis} as a spectral decomposition,
+\[ \ket{\psi} = \sum_{a'} \ket{a'} \braket{a'}{\psi} \eq \label{eq:spectral_decomp_ket} \]
+Since $\ket{\psi}$ is \textit{arbitrary}, we a closure relation (otherwise known as the resolution of identity).
+\[ \sum_{a'} \ket{a'} \bra{a'} = \mathbb{I} \eq \label{eq:closure} \]
+We define the projection operator $\Lambda_{a'} = \ket{a'}\bra{a'}$.
+\[ \La_{a''}\ket{\psi} = \ket{a''}\braket{a''}{\psi} = \sum_{a'} \ket{a'}\underbrace{\braket{a'}{a''}}_{\de_{a', a''}}\braket{a''}{\psi} = \braket{a''}{\psi}\ket{a''} \]
+
+\end{document}
