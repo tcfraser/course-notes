@@ -26,6 +26,7 @@
 
 \section{Review}
 
+\subsection{Discrete Spectrum}
 States in quantum mechanics are vectors in Hilbert space $\hilb$. In Dirac notation, states are denoted as \textit{kets} $\ket{\psi}$. Observables in quantum mechanics are operators $A : \hilb \to \hilb$ such that $\ket{\psi} \mapsto A \ket{\psi}$. Every operator $A$ has a set of eigenkets $\bc{\ket{a'}}$,
 \[ A \ket{a'} = a' \ket{a'} \]
 The eigenvalue corresponding to the eigenket $\ket{a'}$ is denoted $a' \in \R$. The dual Hilbert space will be called the bra space and elements of the bra space will be denoted with a ket space $\ket{\varphi}$.\\
@@ -69,7 +70,7 @@ Therefore all eigenvalues of Hermitian operators are always real. Since the spec
 Moreover returning to \cref{eq:review_aa} we can consider $\ket{a'}$ and $\ket{a''}$ to be different eigenkets that are non-degenerate (their eigenvalues differ). Then be \cref{eq:review_aa},
 \[ \braket{a''}{a'} = 0 \]
 Therefore eigenkets of Hermitian operators are orthogonal (or can at least be orthogonalized). Since the norm of an eigenket is arbitrary, we will hence forth assert that all eigenkets are normalized. Each of these properties can be summarized with a Kronecker delta.
-\[ \braket{a''}{a'} = \de_{a, a'} \]
+\[ \braket{a}{a'} = \de_{a, a'} \eq \label{eq:orthonormality_discrete}\]
 In summary, the set of eigenkets of any Hermitian operator forms a complete orthonormal set of states. Effectively, the set of eigenkets form a basis for the Hilbert space. Consequently, we can write any ket $\ket{\psi}$ in terms of the eigenkets for any Hermitian operator $A$
 \[ \ket{\psi} = \sum_{a'} C_{a'} \ket{a'} \eq \label{eq:complete_basis}\]
 Where $C_{a'} \in \C$ are uniquely defined through acting with the dual eigenket $\bra{a''}$,
@@ -78,9 +79,85 @@ Physically, the coefficient $C_{a'}$ is called a \textit{probability amplitude}.
 \[ P_{A}\br{a'} = \abs{\braket{a'}{\psi}}^2 \]
 We now have the luxury of re-writing \cref{eq:complete_basis} as a spectral decomposition,
 \[ \ket{\psi} = \sum_{a'} \ket{a'} \braket{a'}{\psi} \eq \label{eq:spectral_decomp_ket} \]
-Since $\ket{\psi}$ is \textit{arbitrary}, we a closure relation (otherwise known as the resolution of identity).
+Since $\ket{\psi}$ is \textit{arbitrary}, we obtain a closure relation (otherwise known as the resolution of identity).
 \[ \sum_{a'} \ket{a'} \bra{a'} = \mathbb{I} \eq \label{eq:closure} \]
 We define the projection operator $\Lambda_{a'} = \ket{a'}\bra{a'}$.
 \[ \La_{a''}\ket{\psi} = \ket{a''}\braket{a''}{\psi} = \sum_{a'} \ket{a'}\underbrace{\braket{a'}{a''}}_{\de_{a', a''}}\braket{a''}{\psi} = \braket{a''}{\psi}\ket{a''} \]
+As such, $\La_{a}$ \textit{projects} $\ket{\psi}$ into the direction of $\ket{a}$. Using the closure operation \cref{eq:closure} and the spectral decomposition of a ket \cref{eq:spectral_decomp_ket} one can recover the spectral decomposition of an operator $A$. For each eigenket $\ket{a'}$, multiply \cref{eq:review_eig1} by $\bra{a'}$,
+\[ A \ket{a'} \bra{a'} = a' \ket{a'} \bra{a'} \]
+And summing over all eigenkets,
+\[ A = \sum_{a'} a' \ket{a'}\bra{a'} \]
+Additionally consider another operator $B$,
+\[ B = \mathbb{I} \cdot B \cdot \mathbb{I} = \sum_{a', a''} \ket{a''}\bramidket{a''}{B}{a'}\bra{a'} \]
+Where $\bramidket{a''}{B}{a'}$ can be interpreted as a matrix indexed by $\ket{a''}$ and $\ket{a'}$,
+\[ \bramidket{a''}{B}{a'} = B_{a'', a'} \]
+Where refer to $B_{a'', a'}$ as the matrix elements of an operator $B$ with respect to the a complete orthonormal set of eigenstates of a Hermitian operator $A$. The entries in $B_{a'', a'}$ have the following property,
+\[ \bramidket{a''}{B}{a'} = \bramidket{a'}{B^{\dagger}}{a''}^{*} \]
+Therefore the matrix that corresponds to $B^{\dagger}$ is the complex conjugate transposed of the matrix corresponding to $B$.\\
+
+\subsection{Continuous Spectrum}
+Of course, there exists operators with non-discrete spectrum. We will now generalize to operators with continuous spectrum. The two most important of such operators are position and momentum. Let $\ket{\vec{x}'}$ a position eigenket corresponding to the state of a particle at position $\vec{x}'$ in space. Let $\vec{x}$ be the position \textit{operator} defined as,
+\[ \vec{x} \ket{\vx'} = \vx' \ket{\vx'} \]
+It is important not to get confused about notation:
+\begin{itemize}
+    \item $\vx$ -- Position operator
+    \item $\vx'$ -- Position eigenket
+\end{itemize}
+The wave function $\psi\br{\vx'}$ is the probability amplitude to find a particle in a state $\ket{\psi}$ at position $\vx'$ and is defined as,
+\[ \braket{\vx'}{\psi} = \psi\br{\vx'} \]
+We also have the ability to generalize \cref{eq:orthonormality_discrete} to a continuous spectrum. The continous generalization of the Kronecker delta is the Dirac delta function.
+\[ \braket{\vx'}{\vx''} = \de\br{\vx' - \vx''} \]
+Where $\de{\vx'}$ is defined as,
+\[ \int_{\R^3} \dif^3 x' f\br{\vx'} \de\br{\vx'} = f\br{\vec{0}} \]
+Where $f\br{\vx'} : \R^3 \to \R$ is a function on $\R^3$. \\
+
+The closure relation becomes,
+\[ \mathbb{I} = \int_{\R^3} \dif^3 x' \ket{\vx'} \bra{\vx'} \]
+
+Therefore we have that,
+\[ \ket{\psi} = \mathbb{I} \cdot \ket{\psi} = \int_{\R^3} \dif^3 x' \ket{\vx'} \braket{\vx'}{\psi} \]
+
+Now let $\ket{\phi}$ be another space in the same Hilbert space as $\ket{\psi}$,
+\begin{align*}
+\braket{\phi}{\psi} &= \int_{\R^3} \dif^3 x' \braket{\phi}{\vx'} \braket{\vx'}{\psi} \\
+&= \int_{\R^3} \dif^3 x' \braket{\vx'}{\phi}^{*} \braket{\vx'}{\psi} \\
+&= \int_{\R^3} \dif^3 x' \phi\br{\vx'}^{*} \psi\br{\vx'}
+\end{align*}
+
+\subsection{Infinitesimal Translations}
+
+The operator of infinitesimal translations $T$ is defined as,
+\[ T\br{\dif \vx'}\ket{\vx'} = \ket{\vx' + \dif \vx'} \]
+Where $\dif \vx'$ is an infinitesimally small vector. Acting on an arbitrary state $\ket{\psi}$,
+\begin{align*}
+T\br{\dif \vx'}\ket{\psi} &= T\br{\dif \vx'} \bc{\int_{\R^3} \dif^3 x' \ket{\vx'} \braket{\vx'}{\psi}} \\
+&= \int_{\R^3} \dif^3 x' \ket{\vx' + \dif \vx'} \braket{\vx'}{\psi} \\
+&= \int_{\R^3} \dif^3 x' \ket{\vx'} \braket{\vx' - \dif \vx'}{\psi} \note{$\vx' \mapsto \vx' - \dif \vx'$}\\
+\end{align*}
+Next without loss of generality, let $\ket{\psi}$ be normalized $\braket{\psi}{\psi} = 1$. Moreover, we may let $T\br{\dif \vx'}\ket{\psi}$ be normalized as well.
+\[ \bra{\psi}T^{\dagger}\br{\dif \vx'} T\br{\dif \vx'}\ket{\psi} \eq \label{eq:TT}\]
+If we wish for \cref{eq:TT} to hold for all states $\ket{\psi}$, it must be that $T\br{\dif \vx'}$ is \textit{unitary}.
+\[ T^{\dagger}\br{\dif \vx'} T\br{\dif \vx'} = \mathbb{I} \implies T^{\dagger}\br{\dif \vx'} = T^{-1}\br{\dif \vx'} \eq\label{eq:unitary_trans}\]
+Another desired property of translations $T\br{\dif \vx'}$ is that they are additive,
+\[ T\br{\dif \vx'}T\br{\dif \vx''} = T\br{\dif \vx' + \dif \vx''} \eq \label{eq:trans_add}\]
+Consequently,
+\[ T^{-1}\br{\dif \vx'} = T\br{-\dif \vx'} \qquad T\br{\vec{0}} = \mathbb{I} \]
+All of the above properties are satisfied if,
+\[ T\br{\dif \vx'} = \mathbb{I} - i \vec{K} \cdot \dif \vx' \]
+Where $\vec{K} = \br{K_x, K_y, K_z}$ is a vector operator that is Hermitian ($\vec{K}^{\dagger} = \vec{K}$) to be determined. First we demonstrate that such a $T\br{\dif \vx'}$ is unitary (\cref{eq:unitary_trans}),
+\begin{align*}
+T^{\dagger}\br{\dif \vx'} T\br{\dif \vx'} &= \br{\mathbb{I} + i \vec{K}^{\dagger} \cdot \dif \vx'}\br{\mathbb{I} - i \vec{K} \cdot \dif \vx'} \\
+&= \mathbb{I} + \underbrace{i \vec{K}^{\dagger} \cdot \dif \vx' - i \vec{K} \cdot \dif \vx'}_{0} + \cancelto{0}{\s{O}\br{\abs{\dif \vx'}^2}} \\
+&= \mathbb{I}
+\end{align*}
+Next we demonstrate additivity (\cref{eq:trans_add}),
+\begin{align*}
+T\br{\dif \vx''} T\br{\dif \vx'} &= \br{\mathbb{I} - i \vec{K} \cdot \dif \vx''}\br{\mathbb{I} - i \vec{K} \cdot \dif \vx'} \\
+&= \mathbb{I} - i \vec{K} \cdot \dif \vx'' - i \vec{K} \cdot \dif \vx' + \cancelto{0}{\s{O}\br{\abs{\dif \vx'}^2}} \\
+&= \mathbb{I} - i \vec{K} \cdot \br{\dif \vx'' + \dif \vx'} \\
+&= T\br{\dif \vx'' + \dif \vx'}
+\end{align*}
+In order to illuminate the specific form of $\vec{K}$, we calculate the commutator $\bs{\vx, T\br{\dif \vx'}}$,
+\[ \vx \cdot T\br{\dif \vx'} \]
 
 \end{document}
