@@ -32,23 +32,76 @@ As such, the number of equations that remain to solved has been reduced.
 
 \textbf{A1.1}: Use cylindrical coordinates with $\zeta$ along the axis of the cable,
 
-\[ V\br{\zeta} = \f{1}{4 \pi \ep_0} \int_{\mathcal{C}}\f{\dif \rho}{\rcurs} \]
+\[ V\br{\zeta} = \f{1}{4 \pi \ep_0} \int_{\s{C}}\f{\dif \rho}{\rcurs} \]
 
-Where $\vec{\rcurs} = \vec{r} - \vec{r}'$, $\vec{r}'$ is the source point and $\vec{r}$ is the field point. The entire cylinder is the set of all source points $\vec{r}'$ that are contained inside $\abs{\vec{r}'} \leq R$.
-\[ \vec{r} = \zeta \hat{\zeta} \]
-\[ \vrp{r} = s' \hat{s}' + \zeta' \hat{\zeta} \]
+Where $\ve{\rcurs} = \ve{r} - \ve{r}'$, $\ve{r}'$ is the source point and $\ve{r}$ is the field point. The entire cylinder is the set of all source points $\ve{r}'$ that are contained inside $\abs{\ve{r}'} \leq R$.
+\[ \ve{r} = \zeta \hat{\zeta} \]
+\[ \ve{r}' = s' \hat{s}' + \zeta' \hat{\zeta} \]
 
-\[ V\br{\zeta} = \f{\rho}{4 \pi \ep_0} \int_{\mathcal{C}}\f{\dif V}{\abs{\vec{r} - \vec{r}'}} \]
+\[ V\br{\zeta} = \f{\rho}{4 \pi \ep_0} \int_{\s{C}}\f{\dif V}{\abs{\ve{r} - \ve{r}'}} \]
 
-Where $ \dif V = s \dif s \dif \theta \dif \zeta$. One can then find the electric \textit{field} by doing $\vec{E} = - \vdel V = E_{\zeta} \hat{\zeta} = -\pder{V}{\zeta} \hat{\zeta}$
+Where $ \dif V = s \dif s \dif \theta \dif \zeta$. One can then find the electric \textit{field} by doing $\ve{E} = - \vdel V = E_{\zeta} \hat{\zeta} = -\pder{V}{\zeta} \hat{\zeta}$
 
 \textbf{A1.2}:
 
-Between the two conductors, there will be a radial electric field $\vec{E} = E\br{s} \hat{s}$ and parallel magnetism field $\vec{B} = B\br{s} \hat{\zeta} $. Outside the two conductors, there will be no electric or magnetic field.
+Between the two conductors, there will be a radial electric field $\ve{E} = E\br{s} \hat{s}$ and parallel magnetic field $\ve{B} = B\br{s} \hat{\zeta} $. Outside the two conductors, there will be no electric or magnetic field.
 
 \[ E^{\parallel}\tsb{vac} = 0 \]
 \[ E^{\perp}\tsb{vac} = \f{\si}{\ep_0} \]
-\[ \vdel \cdot \vec{E} = \f{\rho}{\ep_0} \]
+\[ \vdel \cdot \ve{E} = \f{\rho}{\ep_0} \]
+
+For part g), use Laplace's equation $\del^2 V = 0$. In cylindrical coordinates, Laplace's equation is,
+\[ \del^2 V = \f{1}{s} \pder{}{s}\br{s \pder{V}{s}} = 0 \]
+Cylindrical coordinates gives us the following symmetries $\pder{V}{\phi} = \pder{V}{\zeta} = 0$.
+Solving this system gives the potential in terms of $s$: $V\br{s} = \cdots$. Then the electric field can then be obtained via $\vec{E} = - \vdel V$.
+
+\textbf{A1.3}: Using cylindrical coordinates once again, the electric field is going to be radial outwards to the uniform charge density. For the uniform density cylinder, construct a Gaussian surface cylindrically around the cylinder. For the current density cylinder, the current density is the current per cross sectional area. Construct an Amperian loop,
+\[ \oint_{\s{A}} \dif \vec{l} \cdot \vec{B} = \mu I\tsb{enc}  \]
+Part e), finding the vector potential,
+\[ A\br{\vr} = \f{\mu_0}{4\pi} \int_{\s{C}} \dif \tau' \f{\vec{J}\br{\vec{r}}}{\rcurs} \]
+Evidently, $\hat{s}$ and $\hat{s}'$ are in \textit{different} directions.
+Solving such an equation yields,
+\[ A\br{s} = \f{\mu_0}{4 \pi} \int_{0}^{2\pi} \dif \phi' \int_{0}^{a} s' \dif s' \int_{-\inf}^{\inf} \dif \zeta' \f{J\br{s}}{\abs{s \hat{s} - s' \hat{s}' - \zeta' \hat\zeta}} \]
+Recognize the structure of the potential integral,
+\[ V\br{s} = \f{1}{4\pi \ep_0} \int_{\s{C}} \dif \tau' \f{\rho\br{r'}}{\rcurs} = \f{\rho_0}{4 \pi \ep_0} \int_{\s{C}} \f{\dif \tau'}{\rcurs}\]
+Comparing to the vector potential, we have an equivalent integral (up to a constant).
+\[ A\br{s} = \f{\mu_0 J_0}{4 \pi} \int_{\s{C}} \f{\dif \tau'}{\rcurs} \]
+For question f), use the definition of $\vec{B}$ in terms of $\vec{A}$,
+\[ \vec{B} = \vdel \times \vec{A} \]
+Further, recall that if $\vec{E} = -\vdel V$, then by Stoke's theorem for some loop $\s{L}$,
+\[ V = - \int_{\s{L}} \dif \vec{l} \cdot \vec{E} \]
+
 
 \todo[TC]{Figure out O'Donovan}
+
+\section{Conservation Laws}
+Beginning with one of Maxwell's equations,
+\[ \vdel \times \vec{B} = \mu_0 \vec{J} + \mu_0 \ep_0 \pder{\vec{E}}{t} \]
+Taking the divergence of the above equation,
+\[ \cancelto{0}{\vdel \cdot \br{\vdel \times \vec{B}}} = \mu_0 \vdel \cdot \vec{J} + \mu_0 \ep_0 \pder{}{t}\br{\vdel \cdot \vec{E}} \]
+Luckily, the divergence of a curl is always $0$. Dividing by relevant constants we obtain the following conservation law,
+\[ 0 = \vdel \cdot \vec{J} + \pder{\rho}{t} \eq \label{eq:conservation_charge}\]
+This is a conservation of charge. It is a \textbf{local} conservation law because it holds for all points in space $\vec{r}$. Intuitively, is claims that the rate of charge of charge at a point is equal to the amount of current following in or out of the take point. \\
+
+\textbf{A2.1}: Again using cylindrical coordinates $\vec{r} = s \hat{s} + \zeta \hat{\zeta}$. Let the current flow in such a way that the magnetic field points along the $\zeta$-axis. Let $\s{L}$ be an Amperian loop with one side at distance $\abs{\vec{r}} \to \inf$,
+\[ \int_{\s{L}} \dif \vec{l} \cdot \vec{B} = \mu_0 I\tsb{enc} \]
+The same equation can be reused to calculate the vector potential for a Gaussian surface $\s{S}$,
+\[ \int_{\s{L}} \dif \vec{l} \cdot \vec{A} = \int_{\s{S}} \dif \vec{a} \cdot \vec{B} = \Phi \]
+Where $\Phi$ is the magnetic flux through $\s{S}$. Furthermore, the energy required to set up a magnetic field is,
+\[ W = \f{1}{2 \mu_0} \int_{\s{C}} \dif \tau B^2 = \f{1}{2} \int_{\s{C}} \dif \tau \vec{J} \cdot \vec{A} = \f{1}{2} L I^2 \]
+Where $L$ is the self-inductance of the solenoid.
+
+\section{Poynting's Theorem}
+First we begin with two of Maxwell's equations,
+\[ \vdel \times \vec{E} = - \pder{B}{t} \eq \label{eq:poyn_max_1}\]
+\[ \vdel \times \vec{B} = \mu_0 \vec{J} + \mu_0 \ep_0 \pder{\vec{E}}{t} \eq \label{eq:poyn_max_2}\]
+Computing the inner product between \cref{eq:poyn_max_1} and $\vec{B}$, and the inner product between \cref{eq:poyn_max_2} and $\vec{E}$ and taking a difference,
+\[ \vec{B} \cdot \br{\vdel \times \vec{E}} - \vec{E} \cdot \br{\vdel \times \vec{B}} = - \pder{}{t}\br{\f{\ep_0}{2} E^2 + \f{1}{2 \mu_0} B^2} = \mu_0 \vec{E} \cdot \vec{J}\]
+Letting $\f{\ep_0}{2} E^2 + \f{1}{2 \mu_0} B^2$ be the \textbf{electromagnetic energy density} $U$, we have the following identity,
+\[ \vdel\cdot\br{\vec{E} \times \vec{B}} = - \mu_0 \pder{U}{t} - \mu_0 \vec{E} \cdot \vec{J} \eq \label{eq:poyn_conservation_energy} \]
+Physically \cref{eq:poyn_conservation_energy} corresponds to a conservation of energy. We refer to the term $\f{1}{\mu_0} \br{\vec{E} \times \vec{B}}$ as the Poynting vector $\vec{S}$ as it determines the direction of electromagnetic radiation,
+\[ \vdel \cdot \vec{S} + \pder{U}{t} + \vec{E} \cdot \vec{J} = 0 \eq \label{eq:poyn_eq}\]
+Much like \cref{eq:conservation_charge}, \cref{eq:poyn_eq} is a local conservation of \textit{energy}. The only algebraic difference is the term $\vec{E} \cdot \vec{J}$. If there is a flowing charge $\vec{J}$ through an electric field $\vec{E}$, then there is work done on the charge.
+
+
 \end{document}
