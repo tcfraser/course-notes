@@ -59,7 +59,13 @@ The \textit{transition probability} from a state $i \in S$ at time $n$ to state 
 In full generality, the transition probability could depend on time $n$ but in this course we will restrict ourselves to transition probabilities that \textit{do not} depend on time $n$ ($P_{n, i, j} = P_{i, j}$). We say that the MC is (time-)homogeneous if this property holds. From now on, this will be our default setting. \\
 
 The matrix of all transition probabilities $P = \bc{P_{i,j} \mid i,j \in S}$ is called the \textit{one-step transition (probability) matrix} for $\bc{X_{n} \mid n \in T}$.
-\[ P = \pmtrx{P_{00} & P_{01} & \cdots & P_{0j} & \cdots \\ P_{10} & P_{11} & \cdots & P_{1j} & \cdots \\ \vdots & \vdots & \ddots & \vdots & \cdots \\ P_{i0} & P_{i1} & \cdots & P_{ij} & \cdots \\ \vdots & \vdots & \vdots & \vdots & \ddots} \]
+\[ P = \begin{pmatrix}
+P_{00} & P_{01} & \cdots & P_{0j} & \cdots \\
+P_{10} & P_{11} & \cdots & P_{1j} & \cdots \\
+\vdots & \vdots & \ddots & \vdots & \cdots \\
+P_{i0} & P_{i1} & \cdots & P_{ij} & \cdots \\
+\vdots & \vdots & \vdots & \vdots & \ddots
+\end{pmatrix} \]
 The one-step transition matrix $P$ has the following properties,
 \[ P_{i,j} \geq 0 \]
 \[ \forall i : \sum_{j \in S} P_{ij} = 1 \]

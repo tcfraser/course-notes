@@ -13,6 +13,21 @@
 \set{Version}{1.0}
 
 \draftprofile[TC Fraser]{TC}{Purple}
+\pgfplotsset{
+    standardplot/.style={
+        axis x line=middle,
+        axis y line=middle,
+        enlarge x limits=0.05,
+        enlarge y limits=0.05,
+        every axis x label/.style={at={(current axis.right of origin)},anchor=north east},
+        every axis y label/.style={at={(current axis.above origin)},anchor=north east},
+        ytick=\empty,
+        xtick=\empty,
+        width=3in,
+        height=2.5in,
+        axis line style=thick,
+    }
+}
 
 \begin{document}
 
@@ -30,7 +45,8 @@
 The first lecture consisted of everyone introducing themselves and then a brief summary of historical cosmology from Copernicus, to Kepler, Newton, and Einstein. The Copernican principle demonstrated that the earth is not special; Kepler's Laws revealed that the motion of the planets can be described by mathematical tools; Newton's laws unified physical properties observed on earth to those observed in the night sky. Finally, Einstein's equivalence principle further illuminated the equivalence between different observers. All of these observations and discovers have progressed us to the understanding we have today. The \textit{Cosmological Principle} is as follows,
 
 \begin{center}
-    \textit{At large scales the universe is homogeneous and isotropic. Equivalently, all observers see the same thing.}
+    \textit{At large scales the universe is homogeneous and isotropic.}\\
+    \textit{Equivalently, all observers see the same thing.}
 \end{center}
 
 However, there are two important caveats. First, the Cosmological Principle holds on very large scales (typically $\SI{6e22}{\m}$). Second, the Cosmological Principle holds for space but \textit{not} time. This latter caveat was not fully accepted until after Einstein. Einstein was under the motivation that the Universe was static and unchanging because of his unification of space and time (i.e. the homogeneity of space \textit{should} imply the homogeneity of time). However there was an observation that disagrees with this idea. \textbf{Olbers' Paradox} concerns itself with the issue of the darkness of the night sky. If the universe is homogeneous and isotropic, then in every direction one can look in the night sky, there should be a star at some distance away. In dual statement: no point in the night sky should be dark; hence the paradox. The resolution to Olbers' paradox is that the universe must not be infinite. \\
@@ -44,8 +60,9 @@ In 1922, Hubble discovered the cosmic expansion of the universe which in turn im
 
 \subsection{Studying the Universe as a Whole}
 
-To study the paradigm of Cosmology, we will have to study the stuff that composes it. We can learn about the universe as a whole in many ways. For example, most of our observations are via the electromagnetic spectrum ($\ga$/X-ray, UV, optical, IR, $\mu$-waves, radio). Moreover we have the ability to probe the universe through neutrinos, cosmic rays and more recently due to the work of the LIGO observatory, gravitational waves. \\
+To study the paradigm of Cosmology, we will have to study the stuff that composes it. We can learn about the universe as a whole in many ways. For example, most of our observations are via the electromagnetic spectrum ($\ga$/X-ray, UV, optical, IR, $\mu$-waves, radio). Moreover we have the ability to probe the universe through neutrinos, cosmic rays and more recently (due to the work of the LIGO observatory), gravitational waves. \\
 
+\subsubsection{Optical}
 The building blocks of the visible/optical universe are:
 \begin{itemize}
     \item Stars
@@ -60,6 +77,67 @@ The building blocks of the visible/optical universe are:
         \item Radius: $R \approx \SI{100}{\kilo\pc}$
     \end{itemize}
     \item Globular Clusters
+    \begin{itemize}
+        \item Number of stars: $N \approx \SI{1e8}{}$
+    \end{itemize}
 \end{itemize}
 
+Of course, the Milky Way (the galaxy we live in) is observable in the visible spectrum with the naked eye. The Milky Way is a relatively flat disk but appears to us as a thin band due to our location inside it. The approximate thickness of the Milky Way is $\SI{300}{\pc}$ and our distance to the center is roughly $\SI{8.5}{\kilo\pc}$. The central (roughly spherical) bulge in the center of the Milky Way is on the order of $\SI{1}{\kilo\pc}-\SI{2}{\kilo\pc}$. The orbital velocity of the solar system in the Milky Way is $v \approx \SI{220}{\km\per\s}$. The total orbital period is then,
+\[ t = \f{2\pi r}{v} \approx \SI{2e8}{\yr} \]
+While the age of the universe is $t\tsb{univ} \approx \SI{1.4e12}{\yr}$. \\
+
+Moreover, there are other galaxies in the Universe other than the Milky Way; the most famous one being the Andromeda Galaxy (M31). The `M' stands for Messier. In the 20th century, people started making measurements of the distance to the nearest galaxies (which at the time were unknown objects) and discovered they were much farther than previously thought $d \gtrsim \SI{770}{\kilo\pc}$. \\
+
+Galaxies come in two distinct types: some are elliptical and some are disks (spirals). To characterize a given galaxy, it depends on the size of the central bulge. Disk galaxies (bluer, older) are very ordered and have collated orbits while elliptical galaxies (reder, younger) are almost entirely bulges. \\
+
+A collection of galaxies can form larger structures themselves. The Andromeda and Milky Way galaxies themselves are members of a larger structure known as the \textbf{Local Group} bound together by gravity. Other members of the local group include the Large Magellanic Cloud and various small satellites to the Milky Way. A galaxy group typically has on the order of a few dozens of large objects. \\
+
+Continuing to larger and larger scales, galaxies can form clusters. Some examples include the Virgo cluster, or the Coma Cluster. A galaxy cluster typically has roughly thousands of members and has galaxy speeds $v\tsb{gal} \approx \SI{1000}{\km \per \s}$. Galaxy clusters are the largest known bound structures in the universe with a size on the order of $\SI{1}{\mega\pc}$. \\
+
+Even larger, there are super clusters or voids. These objects are large regions where there are very many galaxies or very few galaxies and are on the order of $d \approx \SI{10}{\mega\pc}$. At larger scales, the universe is homogeneous. The approximate deviation in density is on the order of $n\tsb{gal} \approx \br{4-5} \times \ba{n\tsb{gal}}$. There is an assortment of names for these objects including:
+\begin{itemize}
+    \item Filaments
+    \item Fingers of God
+    \item Great wall
+    \item Matchstick man
+\end{itemize}
+
+\subsubsection{Other Wavelengths}
+
+Looking at the Universe in other wavelengths ($\ga$/X-ray, UV, IR, $\mu$-waves, radio) allows one to view features that are not visible in the optical spectrum. To see the universe in shorter wavelengths like $\ga$/X-ray, UV, we have had to build telescopes outside the earth's atmosphere. Although many things can be learned from making observations in each spectrum, the $\mu$-waves spectrum is of particular importance to cosmology. \\
+
+The \textbf{Cosmic Microwave Background (CMB)} was first discovered by Penzias \& Wilson in 1965 by accident. If the universe is expanding, then at some point in the past hot media would have emitted radiation and cooled to much lower temperatures. The CMB is a isotropic source of radiation that is at a temperature,
+\[ T\tsb{CMB} = \SI{2.725 \pm 0.001}{\K} \]
+Which was first measured in 1992 by COBE-FIRAS. Recall the blackbody spectrum,
+\begin{center}
+\begin{tikzpicture}
+        \begin{axis}[
+            standardplot,
+            xmin=0, xmax=10, ymin=0, ymax=2,
+            xlabel={$f$},
+            ylabel={$\ep_f$},
+        ]
+        \addplot[domain=0.001:10,smooth,thick, variable=\x,red]  plot ({\x},{\x^3/(e^(\x) - 1)});
+        \end{axis}
+\end{tikzpicture}
+\end{center}
+
+Where $\ep_f$ is the energy of radiation per unit volume per frequency,
+\[ \f{\dif E}{ \dif V \dif f} = \ep_f = \f{8\pi h f^3}{c^3\bs{e^{hf/kT} - 1}} \]
+Which under appropriate normalization matches the CMB extremely well; making it our most accurate indication for big-bang cosmology. However, there are slight anisotropies in the CMB. The variation in temperature of the CMB is extremely small (discovered COBE-DMR 1992),
+\[ \f{\de T}{T} \approx \SI{1e-5}{} \]
+For these discoveries, John Marher and G. Smoot shared the Nobel prize in 2006. Since these observations the WMAP (2001) and Planck (2013) projects have obtained higher and higher resolution images of the CMB. \\
+
+In addition to $\mu$-waves, the infrared (IR) spectrum is also important for cosmology. Dust absorbs more and more light at higher and higher frequencies. As such, lower wavelengths are important to be able to see through cosmic dust. As a quick summary, here are some infrared surveys,
+\begin{itemize}
+    \item 2MASS ($2\mu$, neat IR) stars
+    \item IRAS (80's) ($>20\mu$, far IR) dust
+    \item Spitzer (new)
+\end{itemize}
+
+Moreover X-rays are much more energetic than optical light rays,
+\[ E\tsb{optical} \approx \SI{}{\eV} \approx \SI{1.6e-19}{\J} \qquad E\tsb{X} \approx \SI{}{\kilo\eV} \]
+The typical temperature of an X-ray is $T\tsb{X} \approx \SI{1e7}{\K}$ which is great for studying clusters of galaxies because most of a clusters mass is in plasma and $T\tsb{plasma} \approx T\tsb{X}$. Clusters are excellent cosmic labs because they are so dense. In fact, our first evidence for dark matter came from studying galaxy clusters via X-rays. \\
+
+Radiowaves are also useful for cosmology because the transition of an electron in a neutral hydrogen atom from spin up to spin down emits weak energy emissions around $\SI{21}{\cm}$. The precision of radiowaves allows one to measure speeds of cosmic bodies by examining shifts in the $\SI{21}{\cm}$ spectrum. The CHIME project is an up-and-coming radiowave telescope.
 \end{document}

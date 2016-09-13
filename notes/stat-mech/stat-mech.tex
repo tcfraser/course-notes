@@ -2,6 +2,26 @@
 
 \usepackage{coursenotes}
 
+% Piecewise
+\newcommand{\piecewise}[4]{
+    \begin{cases}
+        #1 & #2 \\
+        #3 & #4
+    \end{cases}
+}
+\newcommand{\mtrx}[1]{
+    \begin{bmatrix}
+    #1
+    \end{bmatrix}
+}
+
+% Block vector or matrix
+\newcommand{\pmtrx}[1]{
+    \begin{pmatrix}
+    #1
+    \end{pmatrix}
+}
+
 \set{AuthorName}{TC Fraser}
 \set{Email}{tcfraser@tcfraser.com}
 \set{Website}{www.tcfraser.com}
@@ -72,7 +92,7 @@ Typically, systems are analyzed on a microscopic level. For a system of particle
 
 \[ \vec{F}_i = m_i \vec{a}_i = \sum_{i\neq j} \f{q_iq_j}{4\pi\ep_0} \f{1}{\abs{\vec{r}_{ij}}^2} \]
 
-But does labeling the particles really matter? For the case of $N \ar \infty$, the global phenomenology is of interest.
+But does labeling the particles really matter? For the case of $N \to \infty$, the global phenomenology is of interest.
 
 \subsection{History}
 
@@ -570,7 +590,7 @@ Use the convention that $C$ is the heat capacity (extensive) and $c$ is the spec
 
 \[ c = \f{C}{n} \]
 
-\[ C \defined \lim_{\Delta T \ar 0} \f{\Delta Q}{\Delta T} \]
+\[ C \defined \lim_{\Delta T \to 0} \f{\Delta Q}{\Delta T} \]
 
 Heat capacity $C$ is very important. Measuring $C$ in a metal at low temperatures reveals very important intrinsic properties of the material. Also note that heat capacity is always $C \sim \f1T$ and not some other power than $-1$.
 
@@ -593,7 +613,7 @@ Switch to specific (per mole) quantities,
 
 However,
 
-\[ c_v = \lim_{\dif T \ar 0} \f{\indif q}{\dif T} \note{At constant V} \]
+\[ c_v = \lim_{\dif T \to 0} \f{\indif q}{\dif T} \note{At constant V} \]
 
 Thus,
 
@@ -614,7 +634,7 @@ Which we will prove momentarily, but can be taken as an experimental fact discov
 
 Thus,
 
-\[ \lim_{\dif T \ar 0} \bre{\f{\indif q}{\dif T}}_{p=\text{const.}} = c_v + R \]
+\[ \lim_{\dif T \to 0} \bre{\f{\indif q}{\dif T}}_{p=\text{const.}} = c_v + R \]
 
 Thus we can define a new quantity,
 
@@ -917,7 +937,7 @@ For a single Carnot engine, the sum of heat at step $n$ over the temperature at 
 
 \[  \sum_{n=1}^{k} \f{Q_n}{T_n} = 0 \eq \label{eq:revcarnot}\]
 
-Which gives that $\De Q / T$ over the whole cycle is zero. Taking the limit as $k \ar \inf$, it suggests that the quantity $\indif Q / T$ is an exact differential. Introduce the label of entropy,
+Which gives that $\De Q / T$ over the whole cycle is zero. Taking the limit as $k \to \inf$, it suggests that the quantity $\indif Q / T$ is an exact differential. Introduce the label of entropy,
 
 \[ \dif S = \f{\indif Q}{T} \quad \text{with} \quad \oint \dif S\tsb{rev} = 0  \]
 
@@ -1077,7 +1097,7 @@ Essentially, we are mapping out the contour of any given cycle by following many
 
 \[ \sum_{i=1}^{n} \f{\indif Q_i}{T_i} = 0 \]
 
-Or in the limit as $n \ar \inf$,
+Or in the limit as $n \to \inf$,
 
 \[ \ointl \f{\indif Q\tsb{rev}}{T} = 0 \]
 
@@ -1101,7 +1121,7 @@ Or that,
 
 Which lead to the generalization for an infinite number of steps as,
 
-\[ \sum_{i=1}^{n} \f{\indif Q'_i}{T_i} < 0 \ar \ointl \f{\indif Q'}{T} < 0  \]
+\[ \sum_{i=1}^{n} \f{\indif Q'_i}{T_i} < 0 \to \ointl \f{\indif Q'}{T} < 0  \]
 
 This leads to the Clausius Inequality:
 
@@ -1257,7 +1277,7 @@ Statical Mechanics Basis for Thermodynamics.
 \subsection{Contact Between S.M. \& T.D.}
 
 \begin{enumerate}
-        \item Systems where $V \ar \inf$ and $N \ar \inf$ and the density $N/V$ remains constant
+        \item Systems where $V \to \inf$ and $N \to \inf$ and the density $N/V$ remains constant
         \begin{itemize}
                 \item Thermodynamically large system
         \end{itemize}
@@ -1596,9 +1616,9 @@ What we want to do is to derive the thermodynamic properties for E. In reality h
 
 \[ \Ga_{N, V, \bar{E} = E} = {\sum}_N \br{N, V, E + \f{\De}{2}} - {\sum}_N \br{N, V, E - \f{\De}{2}} \eq \label{eq:deltaE}\]
 
-Now in the limit that $\De/E \ar 0$,
+Now in the limit that $\De/E \to 0$,
 
-\[ \lim_{\De/E \ar 0} \Ga_{N, V, \bar{E} = E} = \Ga_{N, V \bar{E} = E} = \lim_{\De/E \ar 0} \bs{{\sum}_N \br{N, V, E + \f{\De}{2}} - {\sum}_N \br{N, V, E - \f{\De}{2}}} = \pder{{\sum}_N}{E} \cdot \De \]
+\[ \lim_{\De/E \to 0} \Ga_{N, V, \bar{E} = E} = \Ga_{N, V \bar{E} = E} = \lim_{\De/E \to 0} \bs{{\sum}_N \br{N, V, E + \f{\De}{2}} - {\sum}_N \br{N, V, E - \f{\De}{2}}} = \pder{{\sum}_N}{E} \cdot \De \]
 
 Therefore the total number of states associated with $E= \bar{E}$ is given by,
 
@@ -1738,11 +1758,11 @@ Imagine we have a system of $N$ \textit{distinguishable} particles,
 that lives in the space of 3 dimensions $\R^3$. We will fix for the system $N,V,E$. This is a microcanonical system/construction. We will also consider for the system that the particles are localized (they are were they are) and they do move (they have dynamics). The position of a particle $\mu$ is given by,
 \[ \vr_\mu = x \hx + y \hy + x \hz \]
 And each particle $\mu$ has same mass $m$. The momentum of particle $\mu$ is given by,
-\[ \vp_\mu = m \dvec{r}_\mu \]
+\[ \vec{p}_\mu = m \dot{\vec{r}}_\mu \]
 To index the entire system of $N$ particles, we will consider this index map,
 \[ \vr_\mu = r_{\al,\mu} \mapsto r_i \quad \al = 1,2,3 \quad  \mu = 1,2,\ldots, N \quad  i = 1,2,\ldots,3N \]
-Similarly for $\vp_\mu$
-\[ \vp_\mu = p_{\al,\mu} \mapsto p_i \quad \al = 1,2,3 \quad  \mu = 1,2,\ldots, N \quad  i = 1,2,\ldots,3N \]
+Similarly for $\vec{p}_\mu$
+\[ \vec{p}_\mu = p_{\al,\mu} \mapsto p_i \quad \al = 1,2,3 \quad  \mu = 1,2,\ldots, N \quad  i = 1,2,\ldots,3N \]
 The product of the two spaces $\bc{r_i} \times \bc{p_i}$ is a $6N$ dimensional space known as the \textbf{phase space} of the system. To determine the dynamics of the system, we need to solve the following problem.
 \[ \mathcal{L} = K\br{\bc{\dot{q}_i}} - V\br{\bc{q_i, \dot{q}_i}} \]
 Where $\mathcal{L}$ is the \textbf{Lagrangian}, $K$ is the kinetic energy that depends on velocities, and $V$ is the potential energy which depends on position and sometimes velocities. Will will make the switch to the \textit{Hamiltonian} formalism of classical mechanics through a \textbf{Legendre Transform},
@@ -1755,7 +1775,7 @@ For generic physical quantity $f\br{q,p;t}$ that depends on time, positions an m
 
 We will now introduce the notion of $\mu$-space. In this $6$ dimensional space, we assign to each particle $\mu$ a single point,
 
-\[ \vr_\mu , \vp_\mu \mapsto \br{r_x, r_y, r_z, p_x, p_y, p_z} \]
+\[ \vr_\mu , \vec{p}_\mu \mapsto \br{r_x, r_y, r_z, p_x, p_y, p_z} \]
 
 For $N$ particles, there are $N$ points in the $\mu$-space which are characterized by $6N$ numbers. The alternative description is phase space ($\Ga$-space). Points in phase space are representative points on the \textit{entire} system at once,
 \[ \text{state vector} = \br{q_1, q_2, \ldots , q_{3N} ; p_1, p_2, \ldots , p_{3N}} \]
@@ -1982,7 +2002,7 @@ Where the $\dif^{3N} q$ integral is subject to volume constraints and the $\dif^
 \[ \int \cdots \int \dif^{3N} q = V^N \]
 Where as the energy constraints give,
 \[ E - \f{\De}{2} \leq \sum_{i=1}^{3N}\f{p_i^2}{2m} \leq E + \f{\De}{2} \]
-Where $i$ counts the degrees of freedom. We can then perform a change of variables $p \ar y$ to get,
+Where $i$ counts the degrees of freedom. We can then perform a change of variables $p \to y$ to get,
 \[ \int \cdots \int \dif^{3N} p = \int \cdots \int \dif^{3N} y \]
 With modified energy constraint,
 \[ 2m\br{E - \f{\De}{2}} \leq \sum_{i=1}^{3N}y_i^2 \leq 2m\br{E + \f{\De}{2}} \]
@@ -2162,7 +2182,7 @@ Therefore varying $\ln W$ with respect to $n_r$,
 Therefore,
 \[ \de\ln W = -\sum_{r}\br{\ln n_r + 1}\de n_r \eq \label{eq:sumzerorestr}\]
 Setting this equal to zero $0 = \de \ln W$ gives and the two modified constraints $\sum_r \de n_r = 0$ and $\sum_r \de n_r \cdot E_r = 0$, use \textit{Lagrange multipliers} to solve this equation. For each constraint we subscribe two multipliers,
-\[ \al \ar \sum_r \de n_r = 0 \qquad \be \ar \sum_r \de n_r \cdot E_r= 0 \]
+\[ \al \to \sum_r \de n_r = 0 \qquad \be \to \sum_r \de n_r \cdot E_r= 0 \]
 Therefore \ref{eq:sumzerorestr} becomes,
 \[ \sum_r \bc{\br{-\ln n_r - 1} - \al - \be E_r} \de n_r = 0 \]
 In order to solve this equation, we need for all $\de n_r$,
@@ -2253,7 +2273,7 @@ In any notation the partition function is just a \textit{sum over states},
 \[ Z = \sum_n e^{-\be E_n} = \sum_r e^{-\be E_r} = \sum_a e^{-\be E_a} \eq \label{eq:sumoverstates}\]
 Let us apply this to the hydrogen atom. The energy levels for the hydrogen atoms is given by,
 \[ E_n = -\f{\SI{13.6}{\eV}}{n^2} \]
-Where $n$ is the principle quantum number. Notice that this $n$ comes from a quantum mechanical consideration of the boundaries conditions for $H \psi_n = E_n \psi_n$ where $\psi = \psi_{nlm}\br{r,\te,\phi}$ is indexed by many number $n,l,m$. Writing the states $\ket{nlm}$, the first ground state is written $\ket{1,0,0}$. For $n = 2$, there are four states $\ket{2,0,0},\ket{2,1,0},\ket{2,1,-1},\ket{2,1,1}$. There are many states that share the same energy $E_n$ as $n \ar \inf$. Therefore we can compute the partition function,
+Where $n$ is the principle quantum number. Notice that this $n$ comes from a quantum mechanical consideration of the boundaries conditions for $H \psi_n = E_n \psi_n$ where $\psi = \psi_{nlm}\br{r,\te,\phi}$ is indexed by many number $n,l,m$. Writing the states $\ket{nlm}$, the first ground state is written $\ket{1,0,0}$. For $n = 2$, there are four states $\ket{2,0,0},\ket{2,1,0},\ket{2,1,-1},\ket{2,1,1}$. There are many states that share the same energy $E_n$ as $n \to \inf$. Therefore we can compute the partition function,
 \[ Z = e^{-\be \br{-\SI{13.6}{\eV}}} + e^{-\be \br{-\SI{13.6}{\eV}/2^2}} + e^{-\be \br{-\SI{13.6}{\eV}/2^2}} + \cdots \]
 We can combine the many repeated sums over the same energy level,
 \[ Z = e^{-\be \br{-\SI{13.6}{\eV}}} + 4e^{-\be \br{-\SI{13.6}{\eV}/2^2}} + \cdots\]
@@ -2280,11 +2300,11 @@ Note that in this course we typically choose our measurable quantity $f$ to be p
 \textbf{Example}: As an example, let us look at the scenario of free classical particles with Hamiltonian given (most of the time) by,
 \[ H\br{p,q} = \text{kinetic energy} + \text{potential energy} \]
 More explicitly,
-\[ T = \sum_{i=1}^{N} \f{\abs{\vp_i}^2}{2m} \qquad V = \sum_{i > j} V_{ij} \br{q_{ij}}\]
+\[ T = \sum_{i=1}^{N} \f{\abs{\vec{p}_i}^2}{2m} \qquad V = \sum_{i > j} V_{ij} \br{q_{ij}}\]
 Note that is \textit{not} always possible to write potential energies are functions of the distance between particles $r_{ij}$ directly. Nonetheless it is valid for numerous examples. As an example for particles in magnetic field, with $\div \vB = \vec0$ we can write $\vB$ as the curl of a vector potential,
 \[ \vB = \curl \vA \]
 Using this vector potential, the Hamiltonian can be written,
-\[ H = \f{\abs{\vp - e \vA}^2}{2m} \]
+\[ H = \f{\abs{\vec{p} - e \vA}^2}{2m} \]
 This is a simple example where $T$ and $V$ are coupled together. Moving forward the distance between two distinct particles can be written,
 \[ \abs{\vq_{ij}}^2 = \abs{\vq_i - \vq_j}^2 \]
 Where $\vr_i$'s are the generalized position components in the Hamiltonian formalism,
@@ -2292,11 +2312,11 @@ Where $\vr_i$'s are the generalized position components in the Hamiltonian forma
 Computing the partition function,
 \[ Z = \int_{\w} e^{-\be H} \dif \w = \int_{\w} e^{-\be H} \f{\dif^{3N} q \dif^{3N} p}{h^{3N} N!} \]
 Subbing in the general Hamiltonian,
-\[ Z = \int_{\w} e^{-\be\bc{\sum_{i=1}^{N} \f{\abs{\vp_i}^2}{2m}} - \be \bc{\sum_{i > j} V_{ij} \br{q_{i},q_{j}}}} \f{\dif^{3N} q \dif^{3N} p}{h^{3N} N!} \]
+\[ Z = \int_{\w} e^{-\be\bc{\sum_{i=1}^{N} \f{\abs{\vec{p}_i}^2}{2m}} - \be \bc{\sum_{i > j} V_{ij} \br{q_{i},q_{j}}}} \f{\dif^{3N} q \dif^{3N} p}{h^{3N} N!} \]
 Decoupling the momentum and position terms (for cases unlike the above where the potential energy \textbf{does not} depend on momentum),
-\[ Z = \int_{\w_p} e^{-\be\bc{\sum_{i=1}^{N} \f{\abs{\vp_i}^2}{2m}}} \f{\dif^{3N} p}{h^{3N} N!} \times \int_{\w_q} e^{- \be V \br{q}} \dif^{3N} q \]
+\[ Z = \int_{\w_p} e^{-\be\bc{\sum_{i=1}^{N} \f{\abs{\vec{p}_i}^2}{2m}}} \f{\dif^{3N} p}{h^{3N} N!} \times \int_{\w_q} e^{- \be V \br{q}} \dif^{3N} q \]
 Here we have written $\sum_{i=1}^{N} V_{ij}\br{r_{i},r_{j}} = V\br{q}$. The second component is often very intractable. The first term can be decomposed more,
-\[ \int_{\w_p} e^{-\be\bc{\sum_{i=1}^{N} \f{\abs{\vp_i}^2}{2m}}} \f{\dif^{3N} p}{h^{3N} N!} = \int_{\w_p} e^{-\be\br{\f{p_{1,x}^2}{2m} + \cdots + \f{p_{2,y}^2}{2m} + \cdots}} \f{\dif^{3N} p}{h^{3N} N!} = \bs{\intl_{-\inf}^{\inf} e^{-\be\f{p_{\al}^2}{2m}} \dif p_\al}^{3N} \f{1}{h^{3N} N!} \]
+\[ \int_{\w_p} e^{-\be\bc{\sum_{i=1}^{N} \f{\abs{\vec{p}_i}^2}{2m}}} \f{\dif^{3N} p}{h^{3N} N!} = \int_{\w_p} e^{-\be\br{\f{p_{1,x}^2}{2m} + \cdots + \f{p_{2,y}^2}{2m} + \cdots}} \f{\dif^{3N} p}{h^{3N} N!} = \bs{\intl_{-\inf}^{\inf} e^{-\be\f{p_{\al}^2}{2m}} \dif p_\al}^{3N} \f{1}{h^{3N} N!} \]
 We have seen the integral before in \eqref{sec:gaussianintegrals},
 \[ \intl_{-\inf}^{\inf} e^{-a x^2}\dif x = \sqrt{\f{\pi}{a}} \]
 Therefore taking the potential energy $V$ be zero (this can be validated if $k_B T \gg V$ which makes the interaction energy negligible compared to the thermal energy),
@@ -2318,8 +2338,8 @@ Since the entropy is characterized by the logarithm of the partition functions, 
 \textbf{Remark:} The notation of $\dif^{3N} p$ can tend to be confusing. Expanding this out,
 \[ \dif^{3N} p = \dif p_1 \dif p_2 \cdots \dif p_{3N}  \]
 Here there are $3N$ terms to consider and often leads to $3N$ integrals. The $p_i$ in this context indicates a particular component of a particular particle. For example, $p_i$ could be the $y$ component of the $53$rd particle. Alternatively, when $p_i$'s are written in this way,
-\[ H = \sum_{i=1}^N \f{\abs{\vp_i}^2}{2m} = \f{p_{1,x}^2 + p_{1,y}^2 + p_{1,z}^2}{2m} + \cdots + \f{p_{N,x}^2 + p_{N,y}^2 + p_{N,z}^2}{2m} \]
-Each $\vp_i$ represents the total momentum vector of the particle. Be careful of this distinction. It should be evident from the context of the problem. \\
+\[ H = \sum_{i=1}^N \f{\abs{\vec{p}_i}^2}{2m} = \f{p_{1,x}^2 + p_{1,y}^2 + p_{1,z}^2}{2m} + \cdots + \f{p_{N,x}^2 + p_{N,y}^2 + p_{N,z}^2}{2m} \]
+Each $\vec{p}_i$ represents the total momentum vector of the particle. Be careful of this distinction. It should be evident from the context of the problem. \\
 
 For example, calculating the canonical partition function is in general written,
 \[ Z = \f{1}{h^{3N} N!} \int \dif^{3N}q\int \dif^{3N}p e^{-\be H\br{q,p}} \]
@@ -2348,9 +2368,9 @@ And the position contribution is also a Gaussian integral, just slightly modifie
 What is the Hamiltonian? Since the gas is \textit{dilute}, it can be approximated that there are no interactions between the particles. As such, the partition function and Hamiltonian can be determined for a single particle $i$ and then combined together appropriately,
 \[ Z = \f{\br{Z_i}^N}{N!} \qquad H = \sum_{i=1}^{n} H_i \]
 We will hence forth consider looking at a single particle,
-\[ H_i \br{p,q} = \f{\abs{\vp}^2}{2m} - \vec{\mu} \cdot \vE \]
+\[ H_i \br{p,q} = \f{\abs{\vec{p}}^2}{2m} - \vec{\mu} \cdot \vE \]
 Since $V = - \vec{\mu} \cdot \vE$. For convenience let use take the electric field to be pointing in the $\hat{z}$ direction such that $\vE = E \hz$. Therefore,
-\[ H_i \br{p,q} = \f{\abs{\vp}^2}{2m} - \mu E \cos \te \]
+\[ H_i \br{p,q} = \f{\abs{\vec{p}}^2}{2m} - \mu E \cos \te \]
 Where $\te$ is the angle between $\mu$ and the $+\hz$ axis. The partition function for an individual molecule is given by,
 \[ Z_i = \f{1}{h^5}\int e^{-\be H\br{q,p}} \dif q \dif p \]
 Taking the generalized position $q$ to be $\te$ (as is common in many textbooks),
@@ -2358,7 +2378,7 @@ Taking the generalized position $q$ to be $\te$ (as is common in many textbooks)
 Notice the $\dif p_\te$ \textbf{needs} to be there because for every generalized coordinate has corresponding momentum $p_\te$. More properly there is dependence on many generalized coordinates. The position of the molecule is given by $x,y,z$ and the generalized linear momentum $p_x, p_y, p_z$. Also the orientation of the molecule is characterized by $\te, \phi$ and generalized angular momentum $p_\te, p_\phi$. There are 10 coordinates total that the Hamiltonian depends which makes the partition function,
 \[ Z_i = \underbrace{\iiiint}_{4} \dif p_\te \dif p_\phi \dif \te \dif \phi \underbrace{\idotsint}_{6} \dif x \dif y \dif z \dif p_x \dif p_y \dif p_z e^{-\be H \br{\te, \phi, p_\te, p_\phi, x, y, z, p_x, p_y, p_z}} \]
 Note, this integral is not decoupled. It is just written this way to illustrate the separate dependence on each of the sets of terms. The Hamiltonian has linear components and rotational components characterized by,
-\[ H = \f{\abs{\vp}^2}{2m} - \mu E \cos \te + H\tsb{rot} \]
+\[ H = \f{\abs{\vec{p}}^2}{2m} - \mu E \cos \te + H\tsb{rot} \]
 Noting that is still for a single molecule. The rotation terms are given by,
 \[ H\tsb{rot} = \f{m}{2}\br{\underbrace{\ell \dot{\te}}_{v_\te}}^2 + \f{m}{2} \br{\underbrace{\ell \sin \te \dot{\phi}}_{v_\phi}}^2 \]
 As an exercise, make sure these quantities have units of energy. An alternative way of writing this,
@@ -2547,7 +2567,7 @@ But the specific heat with respect to constant volume is just $C_V = \pdert{U}{T
 \[ \ba{\br{\De E}^2} = k_B T^2 C_V \]
 Therefore the \textbf{root-mean-squared} or the fluctuations is just,
 \[ \f{\sqrt{\ba{\br{\De E}^2}}}{\ba{E}} = \f{ \sqrt{k_B T^2 C_V} }{U} \]
-But $C_V \propto N$ is an extensive variable. Also $U \propto N$ and $T$ doesn't scale with temperature. For very large $N$, the root-mean-squared fluctuations in energy go as $1/\sqrt{N}$ and thus are negligible for large $N$. In this limit, the varying energy becomes ultimately zero. Therefore for $N \ar \inf$, the canonical ensemble acts like the microcanonical ensemble. \\
+But $C_V \propto N$ is an extensive variable. Also $U \propto N$ and $T$ doesn't scale with temperature. For very large $N$, the root-mean-squared fluctuations in energy go as $1/\sqrt{N}$ and thus are negligible for large $N$. In this limit, the varying energy becomes ultimately zero. Therefore for $N \to \inf$, the canonical ensemble acts like the microcanonical ensemble. \\
 
 Next we will consider the same example in the case of a \textit{continuous} probability distribution instead of discrete. We now have the interpretation of $P\br{E}$ as a function of $E$. Therefore the probability of energy being in a range $E$ to $E + \dif E$ is given by $P\br{E} \dif E$. Taking $g\br{E}$ as the density of states (see section \ref{sec:densityofstates}).
 \[ P\br{E} \dif E \propto g\br{E} e^{-\be E} \dif E \]
@@ -2592,7 +2612,7 @@ In principle, we could derive all of thermodynamics from statistical mechanics. 
 
 \subsubsection{Equipartition}
 
-The Equipartition theorem is really useful to estimate or determine thermodynamic properties of systems by analyzing the degrees of freedom of the system. Consider a Hamiltonian $H \br{\vq, \vp}$. Let's call $x_i$ and $x_j$ any two of the $6N$ generalized coordinates of the system $\br{q,p}$. In the canonical ensemble we are interested in the expectation,
+The Equipartition theorem is really useful to estimate or determine thermodynamic properties of systems by analyzing the degrees of freedom of the system. Consider a Hamiltonian $H \br{\vq, \vec{p}}$. Let's call $x_i$ and $x_j$ any two of the $6N$ generalized coordinates of the system $\br{q,p}$. In the canonical ensemble we are interested in the expectation,
 \[ \ba{x_i \pder{H}{x_j}} \]
 Explicitly,
 \[ \ba{x_i \pder{H}{x_j}} = \f{\int x_i \pder{H}{x_j} e^{-\be H} \dif^{3N} q \dif^{3N} p}{\int e^{-\be H} \dif^{3N} q \dif^{3N} p} \]
@@ -2615,7 +2635,7 @@ From Hamiltonian's equations, $\dot{q}_i = \pder{H}{p_i}$,
 \[\ba{p_i \dot{q}_i} = k_B T \eq \label{eq:pdotq} \]
 Similarly using Hamiltonian's other equation $\dot{p}_i = -\pder{H}{q_i}$
 \[\ba{q_i \dot{p}_i} = -k_B T \eq \label{eq:qdotp}\]
-Then adding $i=1\ar3N$ for both $p_i$ and $q_i$,
+Then adding $i=1\to3N$ for both $p_i$ and $q_i$,
 \[ \ba{\sum_i p_i \dot{q}_i} = 3 N k_B T \eq \label{eq:sumpdotq}\]
 \[ -\ba{\sum_i q_i \dot{p}_i} = 3 N k_B T \eq \label{eq:sumqdotp}\]
 In many cases, $H\br{q,p}$ in generalized quadratic form of the coordinates $\bc{q_i, p_i}$. A \textbf{canonical transformation} can be used to diagonalized $H$ into the following form,
@@ -2737,7 +2757,7 @@ Similarly, the average energy of the system is determined by a derivative of $\b
 \[ \bar{E} = -\pder{}{\be}\ln \bc{\sum_{i,j} e^{-\al N_i - \be E_j}} \]
 Just as in the canonical ensemble, $\be = 1/k_B T$; however what is the physical interpretation/significance of $\al$? Note that this was previously motivated with \eqref{eq:albe} above, but we will re-examine this again now.
 
-\subsection{Physical Significance of $\al, \be$}
+\subsection{Physical Significance of \texorpdfstring{$\al, \be$}{Lg}}
 
 For convenience of notation we will define the non-physical quantity $\eta$ as,
 \[ \eta \defined \ln \br{\sum_{i,j} e^{-\al N_i - \be N_j}} \eq \label{eq:eta}\]
@@ -2761,14 +2781,14 @@ Therefore we have the entropy of the system in terms of $\eta, \al, \be, \bar{N}
 Or rearranged for $\eta$,
 \[ \eta = \f{S}{k_B} + \f{\mu\bar{N}}{k_B T} - \f{\bar{E}}{k_BT} = \f{ST + \mu\bar{N} - \bar{E}}{k_BT} \]
 Recall the Gibb's free energy $G = \bar{E} - TS + PV = \mu \bar{N}$ and the original definition for $\eta$ \eqref{eq:eta},
-\[ \eta = \ln \br{\sum_{i,j} e^{-\al N_i - \be N_j}} = \f{PV}{k_B T} \eq \label{eq:eta}\]
+\[ \eta = \ln \br{\sum_{i,j} e^{-\al N_i - \be N_j}} = \f{PV}{k_B T} \eq \label{eq:eta2}\]
 So $\eta$ has a physical interpretation after all. \\
 
 Note that $e^{-\al N_i} = \br{e^{-\al}}^{N_i}$ has the inner term often denoted with a lower case $z$,
 \[ z = e^{-\al} = e^{\f{\mu}{k_B T}}\]
 Where $z \neq Z$ is \textbf{not} the partition function. It is known as the \textbf{fugacity}. \\
 
-Clearly $\eta$ given by \eqref{eq:eta} plays a crucial role. It can be rewritten as,
+Clearly $\eta$ given by \eqref{eq:eta2} plays a crucial role. It can be rewritten as,
 \[ \eta  = \ln \br{\sum_{i,j} e^{-\al N_i} e^{-\be E_j}}  = \ln \br{\sum_{i} e^{-\al N_i} \sum_{j}e^{-\be E_j}} \]
 The second sum is given by the possible energies of the system $E_j$. Instead of summing over these arbitrary indices, we can replace this with summing over the states $s$ with $E_s$ depending possibly on the number of particles $N_i$,
 \[ \eta  = \ln \br{\sum_{i} e^{-\al N_i} \sum_{s}e^{-\be E_s\br{N_i}}} \]
@@ -2788,7 +2808,7 @@ Where two states have energy $E = 3J$ and 6 states have energy $E=-J$. Letting $
 Thus it is more efficient computationally to recognize these repeated values and include the degeneracies in the formula.\\
 
 Returning to the generic case, instead of summing over the index $i$,
-\[ \sum_{i} e^{\be \mu N_i} \ar \sum_{N_i = 0}^{\inf} e^{\be \mu N_i} \]
+\[ \sum_{i} e^{\be \mu N_i} \to \sum_{N_i = 0}^{\inf} e^{\be \mu N_i} \]
 We can sum over the actual number of particles $N_i$. This is precisely analogous to summing over the energies instead of summing over the states as throughly discussed in section \ref{sec:densityofstates}. Altogether,
 \[ Z_{GC} = \sum_{N_i = 0}^{\inf} e^{\be \mu N_i} \br{{\sum_{E}}' g\br{E}e^{-\be E}}_{N_i} \]
 Note that there is no corresponding density of states for the number of particles $g\br{N}$. $g\br{E}$ corresponds to the number of states that happen to have the same energy $E$. However if the number of particles are the same, it corresponds to precisely the same state without degeneracies. Moreover notice that the second sum in this formula has a prime to make clear that the sum is made using the constraint that the number of particles is fixed. It behaves, for fixed $N$, precisely as the \textit{canonical} ensemble.
@@ -2937,7 +2957,7 @@ Treating the inner term as the partition function for a single state,
 Again we can solve for the inner term (the single particle partition function $Z_{1}\br{V,T}$),
 \[ \sum_\vep e^{-\be \vep} = \sum_{k_x,k_y,k_z}e^{-\be\f{\hbar^2 k^2}{2m}} \]
 For high temperature we can make the approximation that the discrete sum becomes an integral,
-\[ \sum_{k_m} \ar \int \f{\dif k_m}{L /2 \pi} \]
+\[ \sum_{k_m} \to \int \f{\dif k_m}{L /2 \pi} \]
 Where $L/2\pi$ is introduced to normalize $\dif k_m$ to the correct units. Then we get by utilizing spherical coordinates on $k_x,k_y,k_z$,
 \[ Z_{1}\br{V,T} = \br{\f{L}{2\pi}}^3 \iiint \dif k_x \dif k_y \dif k_z e^{-\be\f{\hbar^2 k^2}{2m}} = \f{V}{8 \pi^3} \intl_{0}^{\inf} \br{4\pi k^2} e^{-\be \f{\hbar^2 k^2}{2m}} \dif k\]
 Gaussian integrals our old friend! The infinite bounds in the integral are a result of the particle having unbounded (by positive) $k$. We can then write the single particle partition function,
@@ -2985,14 +3005,14 @@ For spin systems, there might be adjusts to the formulas above. Generally, there
 \[ \bar{N} = \sum_{\vep} \f{g_s}{e^{\be \br{\vep - \mu}} + a} = g_s \br{\f{L}{2\pi}}^3 4 \pi \intl_{0}^{\inf} \f{k^2 \dif k}{e^{\be\br{\f{\hbar^2 k^2}{2m} - \mu}} + a} \]
 In practice, one needs to invert these integrals to obtain $\mu$ for any given system.
 
-\subsubsection{Implications of $\ba{n_\vep}$}
+\subsubsection{Implications of \texorpdfstring{$\ba{n_\vep}$}{Lg}}
 \textbf{Fermions}:\\
 Because the only electrons/fermions capable of being reshuffled by thermal fluctuations are closed to the Fermi energy, one has that all the properties of the metal are controlled by the that \textit{sliver} of electrons for $\vep \approx \vep_F \pm \De$ where $\De = k_B T$. For real/ordinary metals $T_F \sim 10^4- 10^5 \text{K}$. As such $T/T_F \ll 1$. Electrons in metals are essentially/almost at $T = 0^+$. \\
 
 Because fermions obey the exclusion principle, they exert pressure (called degeneracy pressure). In a white dwarf, it is the Fermi pressure that holds the gravity of the star. There is a limit (the Chandrasekhar limit $M\tsb{CH}$) when the mass of the white dwarf becomes more massive that $M\tsb{CH}$ where white dwarfs collapse into neutron stars and then beyond that, black holes (quark stars, superconducting cores/color superconductivity). \\
 
 \textbf{Bosons}:\\
-There is no restriction for Bosons to occupy all the same $\vp \approx 0$ momentum state. What is remarkable is the evolution from ``normal gas'' to one with $n \de \br{\vp} = n\br{T} \de \br{\vp}$ appears/proceeds through a \textit{phase transition} called \textbf{Bose-Einstein condensate (BEC)}. This was predicted in 1924-1925 by Satyendra, Bose and Einstein and was not observed until June 5th, 1995 where is was found that,
+There is no restriction for Bosons to occupy all the same $\vec{p} \approx 0$ momentum state. What is remarkable is the evolution from ``normal gas'' to one with $n \de \br{\vec{p}} = n\br{T} \de \br{\vec{p}}$ appears/proceeds through a \textit{phase transition} called \textbf{Bose-Einstein condensate (BEC)}. This was predicted in 1924-1925 by Satyendra, Bose and Einstein and was not observed until June 5th, 1995 where is was found that,
 \[ n \lambda_T^3 \sim 1 \quad \lambda_T = \f{h}{\br{2 \pi m k_B T}^{1/2}} \quad T_c \sim 3.3125 \f{\hbar^2 n^{2/3}}{m k_B} \]
 Below this critical temperature, all of the particles merge into a single wave function. Superfluid $^4\text{He}$ has $T_c \sim \SI{2.17}{\K}$ is a complex form of a BEC. Also $^3\text{He}$ (a fermion) is also a superfluid with $T \sim \SI{1}{\micro \K}$. This is achieved when two fermions form a \textbf{Cooper pair} to form a composite boson that can then be thought of as a BEC. Superconductivity is a form of a BEC.
 \end{document}

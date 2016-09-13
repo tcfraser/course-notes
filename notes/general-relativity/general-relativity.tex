@@ -2,6 +2,26 @@
 
 \usepackage{coursenotes}
 
+% Piecewise
+\newcommand{\piecewise}[4]{
+    \begin{cases}
+        #1 & #2 \\
+        #3 & #4
+    \end{cases}
+}
+\newcommand{\mtrx}[1]{
+    \begin{bmatrix}
+    #1
+    \end{bmatrix}
+}
+
+% Block vector or matrix
+\newcommand{\pmtrx}[1]{
+    \begin{pmatrix}
+    #1
+    \end{pmatrix}
+}
+
 \set{AuthorName}{TC Fraser}
 \set{Email}{tcfraser@tcfraser.com}
 \set{Website}{www.tcfraser.com}
@@ -73,7 +93,7 @@ Each of the above examples is the space $V = \R^4$ (with some bounds for spheric
 
 The dual vector space of $V$ denoted $V^*$ is also isomorphic to $\R^{n+1}$ and is built from the space of linear forms on V.
 
-\[ V^* = \bc{w: V \ar \R \st w(\alpha v_1 + \beta v_2) = \alpha w( v_1) + \beta w(v_2)} \]
+\[ V^* = \bc{w: V \to \R \mid w(\alpha v_1 + \beta v_2) = \alpha w( v_1) + \beta w(v_2)} \]
 
 where $v_1, v_2 \in V$ and $\alpha, \beta \in \R$.
 
@@ -95,7 +115,7 @@ An element in $V^*$ is $w = w_if^i$. $w_i$ are the components of the covector $w
 
 \subsection{Bilinear Maps}
 
-Introduce a bilinear map $B(v, w)$ where $B: V \cross V \ar \R$ where,
+Introduce a bilinear map $B(v, w)$ where $B: V \times V \to \R$ where,
 
 \[ B(\alpha v_1 + \beta v_2, w) = \alpha B(v_1, w) + \beta B(v_2, w) \]
 
@@ -171,9 +191,9 @@ In use,
 
 \subsection{Linear Map on V to V}
 
-\[ M : V \ar V \]
+\[ M : V \to V \]
 
-Where M is a matrix. An the map is equivalent to $v \ar Mv \in V$. Some definition,
+Where M is a matrix. An the map is equivalent to $v \to Mv \in V$. Some definition,
 
 \[ \br{Mv}^\al = \untext{{M^\al}_\be}{Matrix \\ (components)} v^\be \]
 
@@ -206,7 +226,7 @@ This means we say that the metric $h$ is the inverse of the metric $g$. Conventi
 
 \subsection{Invariance of Scalar Product}
 
-Let us say we have a matrix $M : v \ar \ti{v} = Mv, w \ar \ti{w} = Mw$ and that $M$ preserves the scalar product.
+Let us say we have a matrix $M : v \to \ti{v} = Mv, w \to \ti{w} = Mw$ and that $M$ preserves the scalar product.
 
 \[ \ti{v} \cdot \ti{w} = v \cdot w \qquad \forall v, w \]
 
@@ -244,7 +264,7 @@ A tensor product makes a linear map out of a multi-linear map.
 
 Let $E$ and $F$ be 2 vector spaces (with finite dimensionality.)
 
-$\exists $ a unique ($!$) set (up to isomorphism) $E \otimes F$ such that if $f$ is a bilinear map $f: E \cross F \ar \R$ then $\exists$ a linear map $f^* : E \otimes F \ar \R$ such that $f = f^* \circ \phi$ with
+$\exists $ a unique ($!$) set (up to isomorphism) $E \otimes F$ such that if $f$ is a bilinear map $f: E \times F \to \R$ then $\exists$ a linear map $f^* : E \otimes F \to \R$ such that $f = f^* \circ \phi$ with
 
 \begin{center}
 \begin{tikzpicture}
@@ -259,7 +279,7 @@ $\exists $ a unique ($!$) set (up to isomorphism) $E \otimes F$ such that if $f$
 
 Then we have,
 
-\[ \Lin(E \otimes F, \R) \iso \Bin(E \cross F, \R) \]
+\[ \Lin(E \otimes F, \R) \iso \Bin(E \times F, \R) \]
 \[ \Lin(f^*, \R) \iso \Bin(f, \R) \]
 
 where `$\iso$' is used to denote \textit{isomorphic}.
@@ -302,7 +322,7 @@ Tensors allow one to write bilinear maps as linear maps. What about multi-linear
 
 A tensor of rank $\br{k,l}$ is a multi-linear map
 
-\[ \underbrace{V^* \times \cdots \times V^*}_{k} \times \underbrace{V \times \cdots \times V}_{l} \ar \R \]
+\[ \underbrace{V^* \times \cdots \times V^*}_{k} \times \underbrace{V \times \cdots \times V}_{l} \to \R \]
 
 which transforms \textit{well} under the change of basis of $V$ and $V^*$. \\
 
@@ -344,8 +364,8 @@ We can have a linear change of basis $\ti{x}^\mu = {A^\mu}_\nu x^\nu $.
 \begin{tabular}{c|c}
     Cartesian & Polar \\
     \hline
-    $e_1 = \vec{i}$ & $\ti{e}_1 = e_r$ \\
-    $e_2 = \vec{j}$ & $\ti{e}_2 = e_\theta$ \\
+    $e_1 = \ve{i}$ & $\ti{e}_1 = e_r$ \\
+    $e_2 = \ve{j}$ & $\ti{e}_2 = e_\theta$ \\
 \end{tabular}
 \end{center}
 
@@ -405,7 +425,7 @@ Thus $B$ is the inverse of $A$. \\
 
 What does transforming \textit{well} mean? A tensor is transforming well if its components transform as
 
-\[{T^{\nu_1\nu_2\cdots\nu_k}}_{\al_1\al_2\cdots\al_l} \ar \pder{\ti{x}^{\nu_1}}{x^{\be_1}} \cdots \pder{\ti{x}^{\nu_k}}{x^{\be_k}} \pder{x^{\ga_1}}{\ti{x}^{\al_1}} \cdots \pder{x^{\ga_k}}{\ti{x}^{\al_k}} {T^{\be_1\be_2\cdots\be_k}}_{\ga_1\ga_2\cdots\ga_l} = {\ti{T}^{\nu_1\nu_2\cdots\nu_k}}_{\al_1\al_2\cdots\al_l} \]
+\[{T^{\nu_1\nu_2\cdots\nu_k}}_{\al_1\al_2\cdots\al_l} \to \pder{\ti{x}^{\nu_1}}{x^{\be_1}} \cdots \pder{\ti{x}^{\nu_k}}{x^{\be_k}} \pder{x^{\ga_1}}{\ti{x}^{\al_1}} \cdots \pder{x^{\ga_k}}{\ti{x}^{\al_k}} {T^{\be_1\be_2\cdots\be_k}}_{\ga_1\ga_2\cdots\ga_l} = {\ti{T}^{\nu_1\nu_2\cdots\nu_k}}_{\al_1\al_2\cdots\al_l} \]
 
 If you find something like ${T^\al}_\be$, is it a tensor? \textbf{No! You must check if it transforms well.}
 
@@ -417,16 +437,16 @@ The derivative here prevents it from being well-formed. In the future we will de
 
 \begin{itemize}
     \item Add (with matching rank): ${T^{\al_1\al_2}}_{\be_1\be_2} + {C^{\al_1\al_2}}_{\be_1\be_2}$.
-    \item Contraction (partial trace): $\mathcal{T} (k, k) \ar \mathcal{T} (k-1, k-1)$.
+    \item Contraction (partial trace): $\mathcal{T} (k, k) \to \mathcal{T} (k-1, k-1)$.
     \begin{itemize}
-        \item ${T^{\al_1\cdots\al_i\cdots\al_k}}_{\be_1\cdots\be_j\cdots\be_l} \ar {T^{\al_1\cdots\al_i\cdots\al_k}}_{\be_1\cdots\al_j\cdots\be_l}$
+        \item ${T^{\al_1\cdots\al_i\cdots\al_k}}_{\be_1\cdots\be_j\cdots\be_l} \to {T^{\al_1\cdots\al_i\cdots\al_k}}_{\be_1\cdots\al_j\cdots\be_l}$
     \end{itemize}
     \item ``Outer'' Product (Gluing together tensors)
     \begin{itemize}
-        \item $\mathcal{T}(k,l) \times \mathcal{T}(k',l') \ar \mathcal{T}(k + k', l+ l')$
-        \item $(T_1, T_2) \ar T_1T_2$
-        \item $T_1 T_2 \ar {T_1^{\nu_1\cdots\nu_k}}_{\al_1\cdots\al_l} {T_2^{\be_1\cdots\be_k}}_{\ga_1\cdots\ga_l}$
-        \item \textbf{Example:} $\br{v^\al, w_\be} \ar v^\al \otimes w_\be = v^\al w_\be$. (In QM this is $\ket{\phi}\bra{\varphi}$)
+        \item $\mathcal{T}(k,l) \times \mathcal{T}(k',l') \to \mathcal{T}(k + k', l+ l')$
+        \item $(T_1, T_2) \to T_1T_2$
+        \item $T_1 T_2 \to {T_1^{\nu_1\cdots\nu_k}}_{\al_1\cdots\al_l} {T_2^{\be_1\cdots\be_k}}_{\ga_1\cdots\ga_l}$
+        \item \textbf{Example:} $\br{v^\al, w_\be} \to v^\al \otimes w_\be = v^\al w_\be$. (In QM this is $\ket{\phi}\bra{\varphi}$)
     \end{itemize}
 \end{itemize}
 
@@ -436,15 +456,15 @@ The metric $g_{\al\be}$ can change the rank of a tensor. Recall a metric is rank
 
 Changing from rank $(1,0)$ to rank $(0,1)$:
 
-\[ v^\al \ar v_a = g_{\al\be} v^\be \]
+\[ v^\al \to v_a = g_{\al\be} v^\be \]
 
 Changing from rank $(2,2)$ to rank $(4,0)$:
 
-\[ {C^{\al\be}}_{\ga\de} \ar C_{\al\be\ga\de} = g_{\al\rho}g_{\be\eta} {C^{\rho\eta}}_{\ga\de} \]
+\[ {C^{\al\be}}_{\ga\de} \to C_{\al\be\ga\de} = g_{\al\rho}g_{\be\eta} {C^{\rho\eta}}_{\ga\de} \]
 
 Changing from rank $(2,2)$ to a different rank $(2,2)$:
 
-\[ {C^{\al\be}}_{\ga\de} \ar {{{C^{\al}}_\be}^{\ga}}_\de = g_{\be\rho}g^{\ga\eta} {C^{\al\rho}}_{\eta\de} \]
+\[ {C^{\al\be}}_{\ga\de} \to {{{C^{\al}}_\be}^{\ga}}_\de = g_{\be\rho}g^{\ga\eta} {C^{\al\rho}}_{\eta\de} \]
 
 \subsection{Facts About Tensors}
 
@@ -452,8 +472,8 @@ Changing from rank $(2,2)$ to a different rank $(2,2)$:
 
 The order of indices that label a tensor is \textbf{very} important. It indicates the product space you are mapping \textit{from} to $\R$.
 \begin{align*}
-{C^\al}_\be &: \qquad V^* \times V \ar \R \\
-{C_\al}^\be &: \qquad V \times V^* \ar \R \\
+{C^\al}_\be &: \qquad V^* \times V \to \R \\
+{C_\al}^\be &: \qquad V \times V^* \to \R \\
 C_\al^\be &: \qquad \text{Nothing. Don't do this.} \\
 \end{align*}
 
@@ -532,7 +552,7 @@ Moving away from tensors for a moment... \\
 
 \subsection{Newtonian Physics}
 
-According to Galileo and Newton, we got the interpretation that both space and time is flat $\br{\R^3}$ and is absolute. More specifically, all clocks will have the same time if they are started/synced at some shared moment. It is built on cartesian coordinate system: $\br{\vec{x}, t}$. With this we say that an object is at position $\vec{x}$ at time $t$. In this context, coordinates are \textit{outcomes of measurements}. In General Relativity, the notion of coordinates can be quite different. \\
+According to Galileo and Newton, we got the interpretation that both space and time is flat $\br{\R^3}$ and is absolute. More specifically, all clocks will have the same time if they are started/synced at some shared moment. It is built on cartesian coordinate system: $\br{\ve{x}, t}$. With this we say that an object is at position $\ve{x}$ at time $t$. In this context, coordinates are \textit{outcomes of measurements}. In General Relativity, the notion of coordinates can be quite different. \\
 
 Consider a particle (2d spacetime):
 
@@ -566,23 +586,23 @@ If we begin to use light to probe the position of objects, we are going to run i
 
 \subsubsection{Newton's Dynamical Law \& Inertial Observers}
 
-\[ \vec{F} = m \vec{a}\]
+\[ \ve{F} = m \ve{a}\]
 
-Where $\vec{F}$ is the total force applied to the system, $\vec{a} = \ddot{\vec{x}} = \dder{\vec{x}}{t}$ and $m$ is the inertial mass. For $\vec{x}$ is it convienent to use the Cartesian coordinate system. \\
+Where $\ve{F}$ is the total force applied to the system, $\ve{a} = \ddot{\ve{x}} = \dder{\ve{x}}{t}$ and $m$ is the inertial mass. For $\ve{x}$ is it convienent to use the Cartesian coordinate system. \\
 
-If $\vec{F} = \vec{0}$ then the dynamics becomes $\ddot{\vec{x}} = 0$ which yields solution,
+If $\ve{F} = \ve{0}$ then the dynamics becomes $\ddot{\ve{x}} = 0$ which yields solution,
 
-\[ \vec{x}(t) = \vec{v} t + \vec{x}_0 \]
+\[ \ve{x}(t) = \ve{v} t + \ve{x}_0 \]
 
-Where $\vec{x}_0$ is the initial condition and $\vec{v}$ is the velocity in the observer's frame. This solution describes a straight line.
+Where $\ve{x}_0$ is the initial condition and $\ve{v}$ is the velocity in the observer's frame. This solution describes a straight line.
 
 \begin{center}
 \begin{tikzpicture}[scale=1.0]
     % Draw axes
-    \draw [<->,thick] (0,4) node (yaxis) [above] {$\vec{x}$}
+    \draw [<->,thick] (0,4) node (yaxis) [above] {$\ve{x}$}
         |- (5,0) node (xaxis) [right] {$t$};
     \draw [blue, thick, ->] plot [smooth, tension=1] coordinates { (1,0) (3,4)};
-    \node [blue, right] (label) at (2,1) {$\vec{x}(t) = \vec{v}t + \vec{x}_0$};
+    \node [blue, right] (label) at (2,1) {$\ve{x}(t) = \ve{v}t + \ve{x}_0$};
 \end{tikzpicture}
 \end{center}
 
@@ -592,15 +612,15 @@ However, consider this solution in a spacetime diagram,
 \begin{tikzpicture}[scale=1.0]
     % Draw axes
     \draw [<->,thick] (0,4) node (yaxis) [above] {$t$}
-        |- (5,0) node (xaxis) [right] {$\vec{x}$};
+        |- (5,0) node (xaxis) [right] {$\ve{x}$};
     \draw [blue, thick, ->] plot [smooth, tension=1] coordinates { (0,1) (4,3)};
-    \node [blue, right] (label) at (1.5,1.5) {$t = \f{1}{\vec{v}}\br{\vec{x} - \vec{x}_0} = \f{1}{\vec{v}}\vec{x} + t_0$};
+    \node [blue, right] (label) at (1.5,1.5) {$t = \f{1}{\ve{v}}\br{\ve{x} - \ve{x}_0} = \f{1}{\ve{v}}\ve{x} + t_0$};
 \end{tikzpicture}
 \end{center}
 
 \heading{Definition}
 
-The class of frames (observers) for which the the dynamics of a system is $\ddot{\vec{x}} = \vec{0}$ are called an inertial observers.
+The class of frames (observers) for which the the dynamics of a system is $\ddot{\ve{x}} = \ve{0}$ are called an inertial observers.
 
 \begin{center}
 \begin{tikzpicture}[scale=1.0]
@@ -626,12 +646,12 @@ Note that rotations are not visible in this diagram as there is only one 1 space
 
 Transformations that relate inertial observers:
 \begin{itemize}
-    \item translation: $\vec{x}(t) \ar \vec{x}'(t) = \vec{x}(t) + \vec{a}$
-    \item rotation: $\vec{x}(t) \ar \vec{x}'(t) = R \cdot \vec{x}$
-    \item Galilean boost: $\vec{x}(t) \ar \vec{x}'(t) = - \vec{v}t  + \vec{x}(t)$
+    \item translation: $\ve{x}(t) \to \ve{x}'(t) = \ve{x}(t) + \ve{a}$
+    \item rotation: $\ve{x}(t) \to \ve{x}'(t) = R \cdot \ve{x}$
+    \item Galilean boost: $\ve{x}(t) \to \ve{x}'(t) = - \ve{v}t  + \ve{x}(t)$
 \end{itemize}
 
-For each of these transformations $\ddvec{x}' = \vec{0}$. We will now prove the set of all these transformation of $\vec{x}(t) \ar \vec{x}'(t)$ form a group.
+For each of these transformations $\ddve{x}' = \ve{0}$. We will now prove the set of all these transformation of $\ve{x}(t) \to \ve{x}'(t)$ form a group.
 
 \heading{Groups}
 
@@ -650,7 +670,7 @@ Upon careful examinations of translations and rotation of space $\R^n$, both tra
 
 \newcommand{\wrt}{with respect to }
 
-Consider person $A$ (Alice) standing on the ground and person $B$ (Bob) in a rocket traveling with velocity $\vec{v}_1$ \wrt $B$. Give person $B$ a ball in the rocket and let him/her kick it with velocity $\vec{v}_2$ \wrt $B$. What is the velocity of the ball \wrt person $A$? Switching between the perspectives of the system is equivalent to performing a Galilean Boost. \\
+Consider person $A$ (Alice) standing on the ground and person $B$ (Bob) in a rocket traveling with velocity $\ve{v}_1$ \wrt $B$. Give person $B$ a ball in the rocket and let him/her kick it with velocity $\ve{v}_2$ \wrt $B$. What is the velocity of the ball \wrt person $A$? Switching between the perspectives of the system is equivalent to performing a Galilean Boost. \\
 
 \heading{Matrix Representation of a Group}
 
@@ -700,7 +720,7 @@ Or alternatively, \\
 
 This is most easily observed when sitting on a train next to another train. When your train is moving, it is unclear whether or not your train is moving or the other one is. \\
 
-Inertial frames are systems with $\ddvec{x} = \vec{0}$ equipped with rods and clocks for measurements. \\
+Inertial frames are systems with $\ddve{x} = \ve{0}$ equipped with rods and clocks for measurements. \\
 
 What happens to the notion of spatial length when you change inertial frames? Nothing should change due to the Relativity Principle, the lengths should remain the same.
 
@@ -724,12 +744,12 @@ What happens to the notion of spatial length when you change inertial frames? No
 \end{center}
 
 In one frame,
-\[ \abs{\vec{x}_B - \vec{x}_A }^2 = \ell^2 \]
+\[ \abs{\ve{x}_B - \ve{x}_A }^2 = \ell^2 \]
 
 Perform a Galilean boost,
 
-\[ \vec{x}'_{A,B} = -\vec{v}t + \vec{x}_{A,B} \]
-\[ \abs{\vec{x}'_B - \vec{x}'_A }^2 = \ell'^2 \]
+\[ \ve{x}'_{A,B} = -\ve{v}t + \ve{x}_{A,B} \]
+\[ \abs{\ve{x}'_B - \ve{x}'_A }^2 = \ell'^2 \]
 But it must be that,
 
 \[ \ell' = \ell \]
@@ -963,9 +983,9 @@ So what is the form of $f$? Let us assume that there is a synchronization betwee
 
 Let's define:
 \begin{align*}
-    \De t_A &= S \ar t_0 = t_0 \\
-    \De \ti{t}_A &= S \ar t_1 = t_1 \\
-    \De t_B &= S \ar \tau = \tau = \De \ti{t}_B \\
+    \De t_A &= S \to t_0 = t_0 \\
+    \De \ti{t}_A &= S \to t_1 = t_1 \\
+    \De t_B &= S \to \tau = \tau = \De \ti{t}_B \\
 \end{align*}
 
 Therefore $\tau = f(v,c) t_0$ with,
@@ -1063,11 +1083,11 @@ Notice in the limit that $v << c$, the Lorentz boost becomes equivalent to the G
     \item From Alice's perspective, Bob's spatial slice is,
     \begin{itemize}
         \item $T^B = 0 = \ga \br{t_A - \f{v}{c^2}} x_A \implies t = \f{v}{c^2} x$
-        \item The slope of this line in Alice's perspective is the \textbf{inverse} (with $c \ar 1$) of the slope of Bob's time axis
+        \item The slope of this line in Alice's perspective is the \textbf{inverse} (with $c \to 1$) of the slope of Bob's time axis
     \end{itemize}
 \end{enumerate}
 
-Again, notice that Galilean simultaneity is recovered in the limit that $v \ar v \ll c$. Our new theory is still consistent with our old theories.
+Again, notice that Galilean simultaneity is recovered in the limit that $v \to v \ll c$. Our new theory is still consistent with our old theories.
 
 \subsection{Length \& Time}
 
@@ -1211,9 +1231,9 @@ These are called \textit{Minkowski Metrics}. The difference between these two is
 Let us define,
 
 \begin{align*}
-\abs{\vec{OT}}^2 &< 0 \note{``time like''} \\
-\abs{\vec{OL}}^2 &= 0 \note{``light like''} \\
-\abs{\vec{OS}}^2 &> 0 \note{``space like''}
+\abs{\ve{OT}}^2 &< 0 \note{``time like''} \\
+\abs{\ve{OL}}^2 &= 0 \note{``light like''} \\
+\abs{\ve{OS}}^2 &> 0 \note{``space like''}
 \end{align*}
 
 We say that a vector $v^\al$ is time-like if $v^\al \eta_{\al\be} v^\be \defined \abs{v}^2 < 0$, light-like if $v^\al \eta_{\al\be} v^\be \defined \abs{v}^2 = 0$ and space-like if $v^\al \eta_{\al\be} v^\be \defined \abs{v}^2 > 0$. \\
@@ -1224,13 +1244,13 @@ What are inertial observers in the relativistic regime? They are \textit{still} 
     \item rotations: $R_x, R_y, R_z$
 \end{itemize}
 
-\[ \ar \mtrx{1 & 0 & 0 & 0 \\ 0 & \cos \theta & \sin \theta & 0 \\ 0 & -\sin \theta & \cos \theta & 0 \\ 0 & 0 & 0 & 1 } \]
+\[ \to \mtrx{1 & 0 & 0 & 0 \\ 0 & \cos \theta & \sin \theta & 0 \\ 0 & -\sin \theta & \cos \theta & 0 \\ 0 & 0 & 0 & 1 } \]
 
 \begin{itemize}
     \item boost: $B_x, B_y, B_z$
 \end{itemize}
 
-\[ B_z \ar \mtrx{\ga & -\ga\f{v}{c^2} & 0 & 0 \\ -\ga v & \ga & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 } \]
+\[ B_z \to \mtrx{\ga & -\ga\f{v}{c^2} & 0 & 0 \\ -\ga v & \ga & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 } \]
 
 Therefore,
 
@@ -1238,12 +1258,12 @@ Therefore,
 
 Let us relabel $\ga^2 = \cosh^2 \eta$ and $\ga^2\f{v^2}{c^2} = \sinh^2 \eta$,
 
-\[ B_z \ar \mtrx{\cosh \eta & -\f{\sinh \eta}{c^2} & 0 & 0 \\ -\sinh \eta & \cosh \eta & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 } \]
+\[ B_z \to \mtrx{\cosh \eta & -\f{\sinh \eta}{c^2} & 0 & 0 \\ -\sinh \eta & \cosh \eta & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1 } \]
 
 \begin{itemize}
-    \item translation: $\vec{x} \ar \vec{x} + \vec{a}$; $t \ar t + b$
+    \item translation: $\ve{x} \to \ve{x} + \ve{a}$; $t \to t + b$
     \begin{itemize}
-        \item $x^\nu \ar x^\nu + a^\nu$
+        \item $x^\nu \to x^\nu + a^\nu$
     \end{itemize}
 \end{itemize}
 
@@ -1253,21 +1273,21 @@ All of these together form the Poincaré group.
 
 Galilean boosts:
 
-\[ \vec{v}_1 + \vec{v}_2 = \vec{v}_3 \]
+\[ \ve{v}_1 + \ve{v}_2 = \ve{v}_3 \]
 
 Lorentzian boosts:
 
-\[ \ovec{v_1 \oplus v_2} = \f{1}{1+\f{\vec{v}_1\cdot\vec{v}_2}{c^2}}\br{\vec{v}_1 + \f{1}{\ga_1}\vec{v}_2 + \f{1}{c}\f{\ga_1}{1-\ga_1}\br{\vec{v}_1\cdot\vec{v}_2} \vec{v}_2}\]
+\[ \ove{v_1 \oplus v_2} = \f{1}{1+\f{\ve{v}_1\cdot\ve{v}_2}{c^2}}\br{\ve{v}_1 + \f{1}{\ga_1}\ve{v}_2 + \f{1}{c}\f{\ga_1}{1-\ga_1}\br{\ve{v}_1\cdot\ve{v}_2} \ve{v}_2}\]
 
 Note these aren't associative,
 
-\[ \ovec{\ovec{v_1 \oplus v_2} \oplus v_3} \neq \ovec{v_1 \oplus \ovec{v_2 \oplus v_3}} \]
+\[ \ove{\ove{v_1 \oplus v_2} \oplus v_3} \neq \ove{v_1 \oplus \ove{v_2 \oplus v_3}} \]
 
-However it $\vec{v}_1$ is parallel to $\vec{v}_2$ then,
+However it $\ve{v}_1$ is parallel to $\ve{v}_2$ then,
 
-\[ \ovec{v_1 \oplus v_2} = \f{\vec{v}_1 + \vec{v}_2}{1 + \f{\vec{v}_1 \cdot \vec{v}_2}{c^2}} \]
+\[ \ove{v_1 \oplus v_2} = \f{\ve{v}_1 + \ve{v}_2}{1 + \f{\ve{v}_1 \cdot \ve{v}_2}{c^2}} \]
 
-Which forces $\abs{\ovec{v_1 \oplus v_2}}^2 = c^2$ whenever either $\vec{v}_1$ or $\vec{v}_2$ has $\abs{\vec{v}_i}^2 = c^2$.
+Which forces $\abs{\ove{v_1 \oplus v_2}}^2 = c^2$ whenever either $\ve{v}_1$ or $\ve{v}_2$ has $\abs{\ve{v}_i}^2 = c^2$.
 
 \section{Formulation of Gravity}
 
@@ -1335,8 +1355,8 @@ Here, the notion of arclength coincides with time.
 
 Considering a time-like curve, the proper length or arclength is interpreted as the time as measured by a clock carried by the observer having the curve as his/her spacetime trajectory (world-line). \\
 
-Parametrization of the world line of an observer at rest $(\vec{x} = \vec{0})$.
-\[ x^0(\tau) = \tau \quad \text{ and } \quad \vec{x} = \vec{0} \]
+Parametrization of the world line of an observer at rest $(\ve{x} = \ve{0})$.
+\[ x^0(\tau) = \tau \quad \text{ and } \quad \ve{x} = \ve{0} \]
 Which gives,
 \[ \der{x^\mu}{\tau} = \mtrx{1 \\ 0 \\ 0 \\ 0} = {\de^\mu}_0 \neq {\de^0}_\mu \note{Be careful to matching indices.} \]
 Labeling ${\de^\mu}_0 = V^\al$,
@@ -1352,25 +1372,25 @@ V^\mu \eta_{\mu\be} V^\be &= \der{x^\mu}{\tau}  \eta_{\mu\al} \der{x^\al}{\tau}\
 
 We can can also write (with $c=1$),
 \begin{align*}
-\dif \tau^2 &= \dif t^2 - \dif \vec{x}^2 \\
-&= \dif t^2\br{1 - \f{\dif \vec{x}^2}{\dif t^2}} \\
-&= \dif t^2\br{1 - \vec{v}^2} \\
+\dif \tau^2 &= \dif t^2 - \dif \ve{x}^2 \\
+&= \dif t^2\br{1 - \f{\dif \ve{x}^2}{\dif t^2}} \\
+&= \dif t^2\br{1 - \ve{v}^2} \\
 \end{align*}
 Which when rearranged yields (noting the negative is ignored because we are considering time moving forward),
-\[ \der{t}{\tau} = \f{1}{\sqrt{1-\vec{v}^2}} = \ga \]
+\[ \der{t}{\tau} = \f{1}{\sqrt{1-\ve{v}^2}} = \ga \]
 
 Noting that,
-\[ v^\mu = \mtrx{\der{t}{\tau} c \\ \der{\vec{x}}{\tau}} = \mtrx{\ga c \\ \der{t}{\tau}\der{\vec{x}}{t}} = \mtrx{\ga c \\ \ga\vec{v}} \]
+\[ v^\mu = \mtrx{\der{t}{\tau} c \\ \der{\ve{x}}{\tau}} = \mtrx{\ga c \\ \der{t}{\tau}\der{\ve{x}}{t}} = \mtrx{\ga c \\ \ga\ve{v}} \]
 
-Noting that $\vec{v}$ is a velocity in 3d space while $v^\mu$ is a relativistic velocity which is a 4d object. We have shown that,
+Noting that $\ve{v}$ is a velocity in 3d space while $v^\mu$ is a relativistic velocity which is a 4d object. We have shown that,
 
 \[ v^\mu v_\mu = -1 \]
 
-In the Galilean regime, $\vec{v} \in \R^3$ which allows one to use the vector space structure of $\R^3$ to add velocities,
+In the Galilean regime, $\ve{v} \in \R^3$ which allows one to use the vector space structure of $\R^3$ to add velocities,
 
-\[ \vec{v}_1 + \vec{v}_2 = \vec{v}_{12}\]
+\[ \ve{v}_1 + \ve{v}_2 = \ve{v}_{12}\]
 
-But for relativistic velocities $\vec{v} \in \mathbb{H}^3$ hyperboloid.
+But for relativistic velocities $\ve{v} \in \mathbb{H}^3$ hyperboloid.
 
 \[ \bc{v^\mu \in \R^4 \mid v^\mu v_\mu = -1} \]
 
@@ -1388,7 +1408,7 @@ This is somewhat surprising, bur there exists a constraint that reduces the dime
 
 This new space $\mathbb{H}^3$ allows for the addition of velocities,
 
-\[ \ovec{v_1 \oplus v_2} = \vec{v}_{12} \]
+\[ \ove{v_1 \oplus v_2} = \ve{v}_{12} \]
 
 \heading{Particle Considerations}
 
@@ -1409,7 +1429,7 @@ Relativistic momentum is given for a material particle with mass $m$,
 
 Which has the property,
 
-\[ p^\mu = \mtrx{E = m \ga \\ \vec{p} = m\ga \vec{v}} \]
+\[ p^\mu = \mtrx{E = m \ga \\ \ve{p} = m\ga \ve{v}} \]
 
 Examine the space term,
 
@@ -1423,17 +1443,17 @@ And also rest,
 
 What about the dynamics in the relativistic regime? Recall in the non-relativistic regime, Newton's law is given by,
 
-\[ m_i \vec{a} = \vec{F}\tsb{tot} \]
+\[ m_i \ve{a} = \ve{F}\tsb{tot} \]
 
-Where $m_i$ is the inertial mass. How can we modify this equation to the relativistic regime. $m_i$ has no need to change, $\vec{a}$ becomes the 4d spacetime vector $a^\mu = \dder{x^\nu}{\tau}$ and force becomes,
+Where $m_i$ is the inertial mass. How can we modify this equation to the relativistic regime. $m_i$ has no need to change, $\ve{a}$ becomes the 4d spacetime vector $a^\mu = \dder{x^\nu}{\tau}$ and force becomes,
 \[ m_i a^\mu = F^\mu \]
 
 \subsubsection{Lorentz Force}
 
 Consider the Lorentz force,
-\[ \vec{F} = q \br{\vec{E} + \vec{v} \times \vec{B}} \]
+\[ \ve{F} = q \br{\ve{E} + \ve{v} \times \ve{B}} \]
 
-Where $q$ is the charge of the particle, $\vec{E}$ is the electric field, $\vec{v}$ is the velocity of the particle and $\vec{B}$ is the magnetic field of the particle. In the relativistic regime,
+Where $q$ is the charge of the particle, $\ve{E}$ is the electric field, $\ve{v}$ is the velocity of the particle and $\ve{B}$ is the magnetic field of the particle. In the relativistic regime,
 \[ F^\mu = q {F^{\al\be}} V_\be \]
 
 Where $F^{\al\be}$ is known as the Maxwell tensor that is anti-symmetric,
@@ -1447,7 +1467,7 @@ And $V_\be$ is the relativistic velocity with,
 
 What about the relativistic behavior of gravity?
 
-\[ \vec{F} = - m_g \vdel \phi  = - \f{Gm_g M \hat{r}}{r^2}\]
+\[ \ve{F} = - m_g \vdel \phi  = - \f{Gm_g M \hat{r}}{r^2}\]
 
 Where $m_g$ is gravitational mass, $\phi$ is the gravitational potential, $G$ is Newton's constant, and $M$ is the mass of the system that generates the gravitational force. For a mass density $\rho$,
 
@@ -1463,7 +1483,7 @@ Where $\De$ is given by,
 
 Gravity tells me how the matter source propagate,
 
-\[ \vec{F}_g  = m_i \vec{a} \note{gravity $\implies$ matter} \eq \label{eq:pregeodesic}\]
+\[ \ve{F}_g  = m_i \ve{a} \note{gravity $\implies$ matter} \eq \label{eq:pregeodesic}\]
 
 While matter tells gravity how to behave through the Poisson Equation,
 
@@ -1481,9 +1501,9 @@ Here $\De$ is the Laplacian. The relativistic notation is given by,
 
 Where $\Box$ is called the \textit{D'Alembertian}. What about the RHS of \eqref{eq:prefield}? $4,\pi,G$ are all constants, so all that remains is $\rho$. Notice that $\rho \sim M / V$ is a mass over a volume. As we have seen above mass $M$ is like an energy. Furthermore, boosts affect the volume $V$.
 
-\[ p^\mu= \mtrx{E \\ \vec{p}} \]
+\[ p^\mu= \mtrx{E \\ \ve{p}} \]
 
-Now perform a boost on $p^\mu$ ($p^\mu \ar \ti{p}^\mu$) using ${\Lam^{\al}}_\be$,
+Now perform a boost on $p^\mu$ ($p^\mu \to \ti{p}^\mu$) using ${\Lam^{\al}}_\be$,
 
 \[ {\Lam^{\al}}_\be = \mtrx{\ga & \f{\ga v}{c^2} & 0 & 0 \\ \ga v & \ga & 0 & 0  \\ 0 & 0 & 1 & 0  \\ 0 & 0 & 0 & 1 } \eq \label{eq:boost} \]
 
@@ -1508,15 +1528,15 @@ Now the term $n/V$ represents a number density of particles. What is the relativ
 
 \[ N \defined \f{n}{V} = \text{ number density} \]
 
-In the co-moving frame (i.e. the frame at which the fluid is at rest) we have, $N = n/V$. Consider a rectangular prism in 3d space with sides $\De x, \De y, \De z$. Then the total volume is $\De x\De y\De z$. Now consider a frame that is not co-moving. Consider this frame moving at velocity $\vec{v} = v_x \hat{x}$. What happens to $\De x$? Length contraction decreases the width of the box.
+In the co-moving frame (i.e. the frame at which the fluid is at rest) we have, $N = n/V$. Consider a rectangular prism in 3d space with sides $\De x, \De y, \De z$. Then the total volume is $\De x\De y\De z$. Now consider a frame that is not co-moving. Consider this frame moving at velocity $\ve{v} = v_x \hat{x}$. What happens to $\De x$? Length contraction decreases the width of the box.
 
-\[ \De x \ar \De \bar{x} = \f{1}{\ga} \De x \]
+\[ \De x \to \De \bar{x} = \f{1}{\ga} \De x \]
 
 What happens to $N$? Well since the total number of particles $n$ remains constant, the number density increases,
 
-\[ N \ar \bar{N} = \f{n}{\De \bar{V}} = \ga \f{n}{\De x\De y\De z} \]
+\[ N \to \bar{N} = \f{n}{\De \bar{V}} = \ga \f{n}{\De x\De y\De z} \]
 
-Can we see a flux as a number density (i.e. a number of particles crossing an area per unit area of time)? In the co-moving frame, we are moving with the particles so there is no flux. However in the non co-moving frame where $\vec{v} = v_x \hat{x}$, consider a slice along the $\bar{x}$ axis ($\bar{y}\bar{z}$-plane). What is the flux of particles flowing through this slice?
+Can we see a flux as a number density (i.e. a number of particles crossing an area per unit area of time)? In the co-moving frame, we are moving with the particles so there is no flux. However in the non co-moving frame where $\ve{v} = v_x \hat{x}$, consider a slice along the $\bar{x}$ axis ($\bar{y}\bar{z}$-plane). What is the flux of particles flowing through this slice?
 
 \[ \text{\# particles crossing slice } = \bar{N} \cdot V = \bar{N} \underbrace{\De \bar{x}}_{v\De \bar{t}} \underbrace{\De \bar{y} \De \bar{z}}_{\De A} \]
 
@@ -1620,9 +1640,9 @@ As a result, the magnitude of $N^\mu$ is given by,
 
 Now consider the mass density discussed above $\rho = M/V$. At rest we have $\rho = M/V$ with $E = M$ ($c=1$). Under a boost with $v_x$,
 
-\[ \mtrx{E = m \\ 0 \\ 0 \\ 0} \ar \mtrx{\ga m = \bar{E} \\ m \ga v \\ 0 \\ 0} \]
+\[ \mtrx{E = m \\ 0 \\ 0 \\ 0} \to \mtrx{\ga m = \bar{E} \\ m \ga v \\ 0 \\ 0} \]
 
-Furthermore the volume under the boost becomes $V \ar \bar{V} = \f{1}{\ga} V$. So $\rho = M/V$ at rest becomes under a boost,
+Furthermore the volume under the boost becomes $V \to \bar{V} = \f{1}{\ga} V$. So $\rho = M/V$ at rest becomes under a boost,
 
 \[ \bar{\rho} = \ga^2 \rho \]
 
@@ -1632,7 +1652,7 @@ This is similar to the velocity terms but instead we have a $\ga^2$ term instead
 
 Where $m$ is the mass of a single particle that should be considered the mass given by the four-momentum $p^\al$. The number density should be given by the four-number density $N^\be$. Using this interpretation, \eqref{eq:density} is expressed under the relativistic regime as,
 
-\[ \rho \ar  N^\al \otimes p^\be = N v^\al \otimes m v^\be = m N v^\al \otimes v^\be = \rho v^\al \otimes v^\be \]
+\[ \rho \to  N^\al \otimes p^\be = N v^\al \otimes m v^\be = m N v^\al \otimes v^\be = \rho v^\al \otimes v^\be \]
 
 This new quantity $\rho v^\al \otimes v^\be$ will be called $T^{\al\be}$. At rest,
 
@@ -1648,7 +1668,7 @@ Which gives,
 
 So why does this $\ga^2$ term keep showing up? Since $T^{00}$ is a tensor with two components the $\ga$ induced by the boost affects each of the components, namely $M$ and $V$. The boost affects the tensor for each index,
 
-\[ T^{\al\be} \untext{\ar}{boost} {\Lam^\al}_\ga {\Lam^\be}_\de T^{\ga \de} = \bar{T^{\al\be}} \]
+\[ T^{\al\be} \untext{\to}{boost} {\Lam^\al}_\ga {\Lam^\be}_\de T^{\ga \de} = \bar{T^{\al\be}} \]
 
 This tensor $T^{\al\be}$ is called the \textit{stress energy tensor} and will act as a source of gravity.
 
@@ -1689,9 +1709,9 @@ Therefore by conservation \eqref{eq:varin} must equal \eqref{eq:goesout},
 
 \[ \ell^3 \pder{}{t} T^{00} = \ell^2 \br{T^{0x}(x=0) - T^{0x}(x=\ell) +  T^{0y}(y=0) - T^{0y}(y=\ell) +  T^{0z}(z=0) - T^{0z}(z=\ell)} \]
 
-Or more cleanly, dividing by $\ell^3$ and considering the limit as $\ell \ar 0$,
+Or more cleanly, dividing by $\ell^3$ and considering the limit as $\ell \to 0$,
 
-\[ \pder{}{t} T^{00} = \lim_{\ell \ar 0} \f{1}{\ell} \sum_{i=1}^{3} \br{T^{0i} (x^i = 0) - T^{0i} (x^i = \ell)} \]
+\[ \pder{}{t} T^{00} = \lim_{\ell \to 0} \f{1}{\ell} \sum_{i=1}^{3} \br{T^{0i} (x^i = 0) - T^{0i} (x^i = \ell)} \]
 
 Using the definition of partial derivatives,
 
@@ -1741,7 +1761,7 @@ What is the difference between inertial mass and gravitational mass.
     \end{itemize}
     \item \textbf{Gravitational mass}: Mass of an object that defines the gravitational force on a system.
     \begin{itemize}
-        \item $m_G \vec{g} = \vec{F}_g$
+        \item $m_G \ve{g} = \ve{F}_g$
     \end{itemize}
 \end{itemize}
 
@@ -1757,7 +1777,7 @@ The weak equivalence principle states that test bodies fall with the same accele
 
 This was experimentally verified by experiments in 1885 by Eötvös. Today we have verified this to $10^{-12}$, or $12$ decimal places. Exploring this idea,
 
-\[ m_I \vec{a} = m_G \vec{g} \implies \vec{a} = \vec{g} \]
+\[ m_I \ve{a} = m_G \ve{g} \implies \ve{a} = \ve{g} \]
 
 Uniform acceleration cannot be distinguished from a uniform gravitational field. \\
 
@@ -1765,13 +1785,13 @@ Consider the ISS orbiting at an altitude of $h = \SI{400}{\km}$. The gravitation
 
 \[ g = \f{GM}{R+h} \]
 
-Consider a particle in space characterized by position $\vec{x}$.
+Consider a particle in space characterized by position $\ve{x}$.
 
-\[ m_I \dder{\vec{x}}{t} = m_G \vec{g} \]
+\[ m_I \dder{\ve{x}}{t} = m_G \ve{g} \]
 
-Now consider a new frame $\vec{\chi}$ such that $\dder{\vec{\chi}}{t} = \vec{a}$ with coordinates in the old frame given by,
+Now consider a new frame $\ve{\chi}$ such that $\dder{\ve{\chi}}{t} = \ve{a}$ with coordinates in the old frame given by,
 
-\[ \vec{x}' = \vec{x} = \vec{\chi} \]
+\[ \ve{x}' = \ve{x} = \ve{\chi} \]
 
 
 \begin{center}
@@ -1793,19 +1813,19 @@ Now consider a new frame $\vec{\chi}$ such that $\dder{\vec{\chi}}{t} = \vec{a}$
     \node [above] (lppya) at (ppya) {$\chi$};
     \node [right] (lpxa) at (pxa) {$y$};
     \node [right] (lppxa) at (ppxa) {$\ga$};
-    \fill [red] (1,1) circle (1pt) node[above right] {$\vec{\chi}$};
-    \fill [black] (1,1) circle (1pt) node[below right] {$\vec{x}$};
+    \fill [red] (1,1) circle (1pt) node[above right] {$\ve{\chi}$};
+    \fill [black] (1,1) circle (1pt) node[below right] {$\ve{x}$};
 
 \end{tikzpicture}
 \end{center}
 
 Therefore,
 
-\[ m_I \dder{\vec{x}'}{t} = m_I \dder{\vec{x}}{t} - m_I \dder{\vec{\chi}}{t} = m_G \vec{g} - m_I \vec{a} = m_G \br{\vec{g} - \vec{a}} \]
+\[ m_I \dder{\ve{x}'}{t} = m_I \dder{\ve{x}}{t} - m_I \dder{\ve{\chi}}{t} = m_G \ve{g} - m_I \ve{a} = m_G \br{\ve{g} - \ve{a}} \]
 
 Which confirms again that uniform acceleration is indistinguishable from a uniform gravitational field. Also note that the first falling frame is an inertial frame.
 
-\[ m_I \dder{\vec{x}'}{t} = m_G\br{\vec{g} - \vec{g}} = \vec{0} \]
+\[ m_I \dder{\ve{x}'}{t} = m_G\br{\ve{g} - \ve{g}} = \ve{0} \]
 
 \subsubsection{Tidal Forces}
 
@@ -1813,15 +1833,15 @@ Consider a spaceship large enough to experience the change in the gravitational 
 
 \subsubsection{Einstein's Strong Equivalence Principle}
 
-Free-falling in local inertial frame (where $\vec{g}$ is uniform), the results of all experiments will be indistinguishable from the results of the same experiments performed in a inertial frame in Minkowski spacetime.\\
+Free-falling in local inertial frame (where $\ve{g}$ is uniform), the results of all experiments will be indistinguishable from the results of the same experiments performed in a inertial frame in Minkowski spacetime.\\
 
-Consider the case of a rocket with initially no acceleration $\vec{a} = \vec{0}$ and constant velocity $\vec{v} = \text{const}$. Another ship comes along and shoots a laser. Suppose there is a window on the left $w_L$ and a window on the right $w_R$. Now suppose the spaceship gets lucky and the laser passes through $w_L$ and then $w_R$ (a). From the perspective of the captain of the ship, the light moves as a straight line (b). Nothing too complicated. \\
+Consider the case of a rocket with initially no acceleration $\ve{a} = \ve{0}$ and constant velocity $\ve{v} = \text{const}$. Another ship comes along and shoots a laser. Suppose there is a window on the left $w_L$ and a window on the right $w_R$. Now suppose the spaceship gets lucky and the laser passes through $w_L$ and then $w_R$ (a). From the perspective of the captain of the ship, the light moves as a straight line (b). Nothing too complicated. \\
 
 \begin{center}
     \includegraphics[scale=0.7]{figures/bend_light/constant_v.pdf}
 \end{center}
 
-Now consider the rocket moving with constant acceleration $\vec{a} =$ const (c). Additionally, the fired laser luckily misses the ship and passed through $w_L$ and then $w_R$. From the perspective of the captain, the light travels along a curved trajectory (d). Nothing too complicated. However by the Einstein's Strong Equivalence principle, this experiment must be identical to a stationary spaceship in a uniform gravitational field. Therefore, in a uniform gravitational field with everything else stationary, light \textbf{must} travel along a curved trajectory (e). Gravity bends light!
+Now consider the rocket moving with constant acceleration $\ve{a} =$ const (c). Additionally, the fired laser luckily misses the ship and passed through $w_L$ and then $w_R$. From the perspective of the captain, the light travels along a curved trajectory (d). Nothing too complicated. However by the Einstein's Strong Equivalence principle, this experiment must be identical to a stationary spaceship in a uniform gravitational field. Therefore, in a uniform gravitational field with everything else stationary, light \textbf{must} travel along a curved trajectory (e). Gravity bends light!
 
 \begin{center}
     \includegraphics[scale=0.7]{figures/bend_light/constant_a.pdf}
@@ -1846,7 +1866,7 @@ This is strange. If there were no acceleration $\De \tau_B = \De \tau_A$. Howeve
 \[ \De \tau = \f{\la}{c} \]
 Thus,
 \[ \la_B = \la_A \br{1 - \f{gh}{c^2}} \]
-Which gives use a similar relation between $\la_A$ and $\la_B$, namely $\la_B < \la_A$. This corresponds to a \textbf{blue shift}. Following a similar argument with $g \ar - g$ it becomes that $\la_B > \la_A$ which corresponds to a \textbf{red shift}. \\
+Which gives use a similar relation between $\la_A$ and $\la_B$, namely $\la_B < \la_A$. This corresponds to a \textbf{blue shift}. Following a similar argument with $g \to - g$ it becomes that $\la_B > \la_A$ which corresponds to a \textbf{red shift}. \\
 
 However, by Einstein's Strong Equivalence Principle, the \textit{exact} same effect should occur while stationary under a uniform gravitational field $\vg$. We can perform this experiment on earth and measure the effect. This was known as the \textit{Pound Rebka experiment}. This effect is very small. On earth,
 \[ \f{gh}{c^2} \sim \SI{e-15}{} \]
@@ -1886,12 +1906,12 @@ However, we have just shown that,
 Which indicates that these lines are converging and thus should \textbf{not} be parallel. Nonetheless, this problem can be resolved when considering geometries like the surface of a sphere where \textit{great circles} are both parallel and intersecting. This convinced Einstein that he would have to learn \textit{differential geometry}. \\
 
 Before moving to differential geometry, let us recall that for the Minkowski metric,
-\[ \dif \tau^2 = \dif t^2 - \dif \vec{x}^2 \]
+\[ \dif \tau^2 = \dif t^2 - \dif \ve{x}^2 \]
 
 Now consider a modified metric,
-\[ \dif \tau^2 = \br{1+2\phi(\vec{x})}\dif t^2 - \br{1-2\phi(\vec{x})}\dif \vec{x}^2 \eq \label{eq:modmetric}\]
+\[ \dif \tau^2 = \br{1+2\phi(\ve{x})}\dif t^2 - \br{1-2\phi(\ve{x})}\dif \ve{x}^2 \eq \label{eq:modmetric}\]
 
-This is known as the \textit{static weak field metric} where $\phi$ is the gravitational potential. Can this metric recover some of the issues discussed above? If $A$ and $B$ are at rest $\De \vec{x}^2 = 0$,
+This is known as the \textit{static weak field metric} where $\phi$ is the gravitational potential. Can this metric recover some of the issues discussed above? If $A$ and $B$ are at rest $\De \ve{x}^2 = 0$,
 \[ \De \tau_A^2 = \br{1+2\phi(x_A)}\De t^2 \]
 \[ \De \tau_B^2 = \br{1+2\phi(x_B)}\De t^2 \]
 Which gives,
@@ -1913,7 +1933,7 @@ Where $R \in \R_{>0}$.\\
 \textbf{Open set}: An open set in $\R^n$ is built from the union of open balls.
 
 \textbf{Chart}: Let $M$ be a set not necessarily $\R^n$. A \textbf{chart} or coordinate system $\br{\phi, \mathcal{U}}$ consists of a subset $\mathcal{U}$ of $M$ with a one-to-one map,
-\[ \phi : \mathcal{U} \ar \R^n \]
+\[ \phi : \mathcal{U} \to \R^n \]
 Such that $\phi\br{\mathcal{U}} = V$ is an open set (in $\R^n$). We can say that $\mathcal{U} = \phi^{-1}\br{V}$. We can use $V$ to induce the topology of our topological space. By notation, we usually note $\phi(p)$ where $p \in \mathcal{U}$, as,
 \[ \phi\br{p} \defined x^{\mu} \br{p} \note{$\phi$ acts as the \textit{notion} or coordinates in $\R^n$ at $p$} \]
 
@@ -1921,7 +1941,7 @@ Such that $\phi\br{\mathcal{U}} = V$ is an open set (in $\R^n$). We can say that
 \[ \cup_\al \mathcal{U}_\al = M \]
 If two charts happen to overlap, (i.e. $\mathcal{U}_\al \cap \mathcal{U}_\be \neq \emptyset$), then the map $\phi_\al \circ \phi_\be^{-1}$ takes points in $\phi_\be \br{\mathcal{U}_\al\cap\mathcal{U}_\be}$ to $\phi_\al \br{\mathcal{U}_\al\cap\mathcal{U}_\be}$. We say that the chart is $C^\inf$ (or smooth) if $\phi_\al$ is $C^\inf$ (infinitely differentiable). If all the charts are $C^\inf$ then $\phi_\al \circ \phi_\be^{-1}$ and its inverse are $C^\inf$. \\
 
-\textbf{Manifold}: A manifold is a set $M$ equipped with a maximal atlas (i.e. the one that contains all the possible charts). If the atlas is defined by $\phi_\al : M \ar \R^n, \forall \al$ then $M$ is a manifold of dimension $n$.
+\textbf{Manifold}: A manifold is a set $M$ equipped with a maximal atlas (i.e. the one that contains all the possible charts). If the atlas is defined by $\phi_\al : M \to \R^n, \forall \al$ then $M$ is a manifold of dimension $n$.
 
 \subsubsection{Examples of Manifolds}
 
@@ -1963,19 +1983,19 @@ Before we defined the notion of tangent vectors, we will need to first discuss t
 
 \newcommand{\CC}{\mathcal{C}}
 
-\textbf{Definition}: A $C^\inf$ curve in a manifold $M$ is a map $\mathcal{C} : \R \supset I \ar M, \tau \ar \mathcal{C}\br{\tau}$ were $I$ is an interval on $\R$ such that,
+\textbf{Definition}: A $C^\inf$ curve in a manifold $M$ is a map $\mathcal{C} : \R \supset I \to M, \tau \to \mathcal{C}\br{\tau}$ were $I$ is an interval on $\R$ such that,
 \[ \forall \al : \phi_\al \circ \mathcal{C} \text{ is a $C^\inf$ map} \]
 For points $p$ in $M$ get mapped to $x^\mu(P)$ in $\R^m$ through $\phi_m$ along the interval $I$ parametrized by $\tau$. In summary, we take an interval $I$ in $\R$ and then map it to a trajectory in $M$ using $\mathcal{C}$ which is taken locally to $\R^n$ by $\phi_\al$.
-\[ \mathcal{C} : I \ar M \]
+\[ \mathcal{C} : I \to M \]
 \[ \phi_\al \circ \mathcal{C}(\tau) \defined x^\mu(\tau) \]
-\textbf{Definition}: We note $\mathcal{C}^\inf\br{M}$ the \textbf{algebra} of $C^\inf$ functions of the form $f : M \ar \R$, with point-wise product given by,
+\textbf{Definition}: We note $\mathcal{C}^\inf\br{M}$ the \textbf{algebra} of $C^\inf$ functions of the form $f : M \to \R$, with point-wise product given by,
 \[ \br{f_1 \cdot f_2}\br{p} = f_1\br{p}f_2\br{p} \]
 Where $P \in M$.\\
-\textbf{Definition}: Let $\mathcal{C}: I \ar M$ be a smooth curve with $\mathcal{C}(0) = p$. The \textbf{tangent vector} to $\mathcal{C}$ at $p$ is the linear map $X_p:\mathcal{C}^\inf\br{M} \ar R$ given by,
+\textbf{Definition}: Let $\mathcal{C}: I \to M$ be a smooth curve with $\mathcal{C}(0) = p$. The \textbf{tangent vector} to $\mathcal{C}$ at $p$ is the linear map $X_p:\mathcal{C}^\inf\br{M} \to R$ given by,
 \[ X_p\br{f} = \der{}{\tau}f\br{\mathcal{C}\br{\tau}}|_{\tau=0} \]
 Notation:
 \[ f \circ \CC = f \circ \phi_\al^{-1} \circ \phi_\al \circ \CC \]
-Using the combination $F = f \circ \phi^{-1}_\al$ which is a map $F: \R^n \ar \R$ (since $\phi_\al \circ \CC: I \ar R^n$) which gives a more convenient expression,
+Using the combination $F = f \circ \phi^{-1}_\al$ which is a map $F: \R^n \to \R$ (since $\phi_\al \circ \CC: I \to R^n$) which gives a more convenient expression,
 \[ f \circ \CC\br{\tau} = F\br{x^\mu\br{\tau}} \]
 Using the coordinate system, this becomes,
 \begin{align*}
@@ -2007,9 +2027,9 @@ So a generic vector in $T_pM$ is $X = X^\mu \pder{}{x^\mu} = \ti{X}^\mu \pder{}{
 
 \[ X^\mu \pder{}{x^\mu} = \ti{X}^\al \pder{}{y^\al} = X^\mu \pder{y^\al}{x^\mu} \pder{}{y^\al} \]
 This gives the relation,
-\[ X^\mu \ar \ti{X}^\mu = X^\al \pder{y^\mu}{x^\al}\]
+\[ X^\mu \to \ti{X}^\mu = X^\al \pder{y^\mu}{x^\al}\]
 
-\textbf{Definition}: We define a cotangent space $T^*_pM$ as the set of linear maps $T_pM \ar \R$. It has dimension $n$. We note the basis of $T^*_pM$ by $\dif x^\mu$ (sometimes called a form).
+\textbf{Definition}: We define a cotangent space $T^*_pM$ as the set of linear maps $T_pM \to \R$. It has dimension $n$. We note the basis of $T^*_pM$ by $\dif x^\mu$ (sometimes called a form).
 \[ \dif x^\mu \br{\di_\al} = {\de^\mu}_\al \note{analogously to $f^\mu\br{e_{\al}} = {\de^\mu}_\al$} \]
 
 \textbf{Remark}: Both the tangent space $T_pM$ and cotangent space $T^*_pM$ are in general not contained in the manifold $M$. Only in flat Minkowski space is this is case.
@@ -2017,7 +2037,7 @@ This gives the relation,
 \subsection{Tensor Calculus}
 
 \textbf{Definition}: A tensor of type $\br{r,q}$ on $T_pM$ is a multi-linear map:
-\[ T: \underbrace{T^*_pM \times \cdots \times T^*_pM}_{r} \times \underbrace{T_pM \times \cdots \times T_pM}_{q} \ar \R \]
+\[ T: \underbrace{T^*_pM \times \cdots \times T^*_pM}_{r} \times \underbrace{T_pM \times \cdots \times T_pM}_{q} \to \R \]
 
 \textbf{Examples}:
 \begin{center}
@@ -2036,16 +2056,16 @@ This gives the relation,
 
 \textbf{Definition}: We consider the union of the tangent spaces $T_pM$ for all $p\in M$ (respectively $T^*_pM$). We note,
 \[ T\br{M} = \bigcup_{p\in M} T_p M \qquad T^*\br{M} = \bigcup_{p\in M} T^*_p M \]
-A \textbf{vector field} is a map $X : M \ar T(M), p \ar X_p$. Likewise a \textbf{tensor field} is,
-\[ T : M \ar T^*(M) \times \cdots \times T^*(M) \times T(M) \cdots \times T(M) \]
-Or for a specific point $p$, $p \ar T_p$. From now on we will work with tensor fields. We extend all the formalism done in the Minkowski space.
+A \textbf{vector field} is a map $X : M \to T(M), p \to X_p$. Likewise a \textbf{tensor field} is,
+\[ T : M \to T^*(M) \times \cdots \times T^*(M) \times T(M) \cdots \times T(M) \]
+Or for a specific point $p$, $p \to T_p$. From now on we will work with tensor fields. We extend all the formalism done in the Minkowski space.
 \begin{itemize}
     \item Metric gives us the norm of vectors $ v^\al g_{\al\be} v^\be = L $ where $v^\al,g_{\al\be}$ are associated with a tangent plane at a point $T_pM$
     \item The sign of $L$ determines the type of vector
     \begin{itemize}
-        \item $L > 0 \ar V^\al$ is space-like
-        \item $L = 0 \ar V^\al$ is light-like
-        \item $L < 0 \ar V^\al$ is time-like
+        \item $L > 0 \to V^\al$ is space-like
+        \item $L = 0 \to V^\al$ is light-like
+        \item $L < 0 \to V^\al$ is time-like
     \end{itemize}
     \item A curve in $M$ has type that follows from the tangent vector $v^\al$
     \begin{itemize}
@@ -2076,7 +2096,7 @@ What is the relativistic version? Like us assume we are in a \textit{free fallin
 Since we are in a free falling frame, physics must behave like the physics in Minkowski spacetime. The line element is given by,
 \[ \dif \tau ^2 = \eta_{\mu\al} \dif \xi^\mu \dif \xi^\al \]
 Where $\eta_{\mu\al}$ is the Minkowski metric. Now let us perform a change of coordinates and move \textit{away} from the free falling frame.
-\[ \xi^\mu \ar x^\mu \]
+\[ \xi^\mu \to x^\mu \]
 This transformation is transformed by the Jacobian. However notice that,
 \[ \dder{\xi^\mu}{\tau} = \der{v^\mu}{\tau} \]
 But as shown on the assignment, $v^\mu$'s coordinates do not transform well. There are extra terms generated.
@@ -2100,7 +2120,7 @@ This implies acceleration is given by \textit{product rule},
 &= \der{x^\al}{\tau}\der{}{\tau} \br{\pder{\xi^\mu}{x^\al} } + \pder{\xi^\mu}{x^\al}\der{}{\tau} \br{ \der{x^\al}{\tau}} \note{Product rule.}\\
 &= \der{x^\al}{\tau} \f{\di^2\xi^\mu}{\di x^\al\di x^\be}\der{x^\be}{\tau} + \pder{\xi^\mu}{x^\al}\dder{x^\al}{\tau} \note{Chain rule.}\\
 \end{align*}
-Multiply by the inverse Jacobian on both sides (and send $\al \ar \ga$ for ease of notation),
+Multiply by the inverse Jacobian on both sides (and send $\al \to \ga$ for ease of notation),
 \[ 0 = \dder{x^\al}{\tau}  + \underbrace{\pder{x^\al}{\xi^\mu} \f{\di^2\xi^\mu}{\di x^\ga\di x^\be}}_{{\Ga^\al}_{\ga\be}}\der{x^\ga}{\tau}\der{x^\be}{\tau} \]
 Where ${\Ga^\al}_{\ga\be}$ are called the Christoffel symbols. Notice that they are symmetric in the lower indices,
 \[ {\Ga^\al}_{\ga\be} = {\Ga^\al}_{\be\ga} \]
@@ -2156,17 +2176,17 @@ Noting that the $v^0$ terms are (again with $c=1$),
 \[ v^0 = \der{x^0}{\tau} = \der{t}{\tau} \]
 Therefore,
 \[ \dder{x^i}{\tau} = + \f12 \eta^{i\al}\br{\pder{}{x^\al}h_{00}}\br{\der{t}{\tau}}^2 \]
-In the non-relativistic limit $\tau \ar t$. Therefore,
+In the non-relativistic limit $\tau \to t$. Therefore,
 \[ \dder{x^i}{t} = + \f12 \eta^{i\al}\br{\pder{}{x^\al}h_{00}} \]
 Noting by motivation above that $h_{00} = - 2\phi\br{\vx}$,
 \[ \dder{x^i}{t} = + \f12 \eta^{i\al}\br{\pder{}{x^\al}\br{- 2\phi\br{\vx}}} \]
 \[ \dder{x^i}{t} = - \eta^{i\al}\br{\di^i\phi} \]
 Which by sifting of $\al = i, \eta^{ii} = 1$,
 \[ \dder{x^i}{t} = - \di^i\phi \]
-\[ \vec{\ti{a}} = - \vdel\phi \]
+\[ \ve{\ti{a}} = - \vdel\phi \]
 Therefore Gravity is not a force by a curvature or geometry of spacetime.
 \subsection{Differential Geometry Summary}
-In summary, our aim is to take an interval $I \subset \R$ parametrized by curvilinear parameter $\tau$ and embed it into the manifold $M$. In doing so, we ascribe for every $\tau$ a point $\mathcal{C}\br{\tau}$ in the manifold. This creates a curve in $M$.Since dealing directly with abstract points $p$ in the manifold is difficult, we will use charts to assign coordinates to the points $\mathcal{C}\br{\tau}$ by using $\phi$ which gives $x^\mu \br{\mathcal{C}\br{\tau}}$. Now to discuss smoothness of this curve, we need to use $F : f \circ \phi^{-1} : \R^m \ar \R$. Moreover, we can define an $X : \mathcal{C}^\inf \br{M} \ar \R$ to map from $f$ (which makes points in $M$ to $\R$ regardless of the dimension of $M$) to real numbers $\R$. Then,
+In summary, our aim is to take an interval $I \subset \R$ parametrized by curvilinear parameter $\tau$ and embed it into the manifold $M$. In doing so, we ascribe for every $\tau$ a point $\mathcal{C}\br{\tau}$ in the manifold. This creates a curve in $M$.Since dealing directly with abstract points $p$ in the manifold is difficult, we will use charts to assign coordinates to the points $\mathcal{C}\br{\tau}$ by using $\phi$ which gives $x^\mu \br{\mathcal{C}\br{\tau}}$. Now to discuss smoothness of this curve, we need to use $F : f \circ \phi^{-1} : \R^m \to \R$. Moreover, we can define an $X : \mathcal{C}^\inf \br{M} \to \R$ to map from $f$ (which makes points in $M$ to $\R$ regardless of the dimension of $M$) to real numbers $\R$. Then,
 \[ X \br{f} = \der{x^\mu}{\tau}\bigg\rvert_{\tau = 0} \pder{F}{x^\mu}\bigg\rvert_{\phi\br{p}} \]
 This motivates the convenient tensor notation for $X$,
 \[ X = X^\mu \di_\mu \]
@@ -2188,12 +2208,12 @@ This leads to something known as the \textbf{geodesic equation},
 \[ v^\al \del_\al v^\mu = 0 \]
 With $v^\mu$ being the tangent vector to the geodesic. More formally, the covariant derivate is the \textit{notion of derivative that transforms well under a change of coordinates}.\\
 
-\textbf{Definition}: The \textit{covariant derivate} $\del$ on a manifold $M$ is a map $\del : T\br{M} \times T\br{M} \ar T\br{M}$ where $T\br{M} = \cup_{p \in M}T_pM$. It takes two vector fields $X, Y$ and maps it to $\del_X Y$. It does so such that the following properties hold,
+\textbf{Definition}: The \textit{covariant derivate} $\del$ on a manifold $M$ is a map $\del : T\br{M} \times T\br{M} \to T\br{M}$ where $T\br{M} = \cup_{p \in M}T_pM$. It takes two vector fields $X, Y$ and maps it to $\del_X Y$. It does so such that the following properties hold,
 \[ \del_{fX + gZ}Y =  f\del_{X}Y + g\del_{Z}Y  \note{Linearity} \eq \label{eq:linearitycov1} \]
 \[ \del_{X}\br{Y + Z} =  \del_{X}Y + \del_{X}Z  \note{Linearity} \eq \label{eq:linearitycov2}\]
 \[ \del_{X}\br{fY} =  \br{\del_{X}f}Y + f\br{\del_{X}Y}  \note{Product rule}\]
-Where $X,Y : \mathcal{C}^\inf\br{M} \ar \R$,
-\[f\ar X\br{f} = X^\mu \di_\mu f \]
+Where $X,Y : \mathcal{C}^\inf\br{M} \to \R$,
+\[f\to X\br{f} = X^\mu \di_\mu f \]
 Where $f$ comes from $F = f \circ \phi^{-1}$. The covariant derivative on a scalar $\del_{X}f$ is given by,
 \[ \del_{X}f \defined X\br{f} = X^\mu \pder{}{x^\mu}f \]
 Consider a generic $\del_{X}Y$ and take $X$ in the basis $X^\mu = \de^{\al\mu}$ so that,
@@ -2258,7 +2278,7 @@ Now utilizing the product law we can determine the covariant derivative for any 
 \end{align*}
 
 It is important to note that $\del_\mu {T^{\al_1 \cdots \al_p}}_{\be_1\cdots\be_q}$ is still a tensor by \textit{construction}. Since $\di_\mu$ is not a tensor, it \textit{must} be that ${\Ga^\al}_{\mu\sigma}$ is not a tensor. The transformation is written, \\
-\[ {\Ga^\al}_{\be\la} \ar {\Ga^{\al'}}_{\be'\la'} = \pder{x^\be}{y^{\be'}}\pder{x^\ga}{y^{\ga'}}\pder{y^{\al'}}{x^{\al}} {\Ga^\al}_{\be\la} - \pder{y^{\al'}}{x^{\ga}}\f{\di^2 x^{\ga}}{\di y^{\be'}\di y^{\la'}}  \]
+\[ {\Ga^\al}_{\be\la} \to {\Ga^{\al'}}_{\be'\la'} = \pder{x^\be}{y^{\be'}}\pder{x^\ga}{y^{\ga'}}\pder{y^{\al'}}{x^{\al}} {\Ga^\al}_{\be\la} - \pder{y^{\al'}}{x^{\ga}}\f{\di^2 x^{\ga}}{\di y^{\be'}\di y^{\la'}}  \]
 
 \subsection{Geodesics}
 
@@ -2271,7 +2291,7 @@ Where the comma notation indicates a derivative $g_{\al\be,\mu} \defined \di_\mu
 This implies that in this example ${\Ga^\al}_{\be\ga} = 0$, so clearly $\del_\mu g_{\al\be} = 0$ as expected.\\
 
 \textbf{Example}: Now consider polar coordinates $x^\mu = \br{r ,\te}$.
-\[ g_{\al\be} = \mtrx{1 & 0 \\ 0 & r^2} \ar g^{\al\be} = \mtrx{1 & 0 \\ 0 & \f{1}{r^2}} \]
+\[ g_{\al\be} = \mtrx{1 & 0 \\ 0 & r^2} \to g^{\al\be} = \mtrx{1 & 0 \\ 0 & \f{1}{r^2}} \]
 
 Therefore ${\Ga^\al}_{\be\ga} \neq 0$, but it is still maintained that $\del_\mu g_{\al\be} = 0$. Alternatively, we could have done a change of coordinates to get this result more easily. \\
 
@@ -2280,13 +2300,13 @@ Therefore ${\Ga^\al}_{\be\ga} \neq 0$, but it is still maintained that $\del_\mu
 Note that the Levi-Civita symbol has by product rule,
 \[ \del_\mu \br{g^{\al\be}{T_{\be}}^\ga} = g^{\al\be} \del_\mu {T_\be}^\ga \]
 Or that the metric is constant with respect to the Levi-Civita symbol. From now on we replace the derivative $\di_\mu$ with the generalized counterpart $\del_\mu$. For example, the conservation of the stress energy tensor $\di_\mu T^{\mu\al} = 0$ in Minkowski space and Cartesian coordinates becomes in a general manifold in general coordinates $\del_\mu T^{\mu\al}$,
-\[ \di_\mu T^{\mu\al} \ar \del_\mu T^{\mu\al} \]
+\[ \di_\mu T^{\mu\al} \to \del_\mu T^{\mu\al} \]
 Applying this to a particle under the influence $\vF_g = m \va$. Let $V^\al$ be the relativistic speed that is a time-like tangent vector, $V^\al V_\al = -1$.
 \[ \der{x^\al}{\tau} g_{\al\be}\der{x^\be}{\tau} = \dder{s}{\tau} = -1 \]
 No force acting on the particle gives,
 \[ \der{V^\al}{\tau} + {\Ga^\al}_{\be\ga} V^\be V^\ga = 0 \]
 Re-writing acceleration,
-\[ V^\al = \der{x^\al}{\tau} \ar \der{V^\al}{\tau} = \der{}{\tau}\br{\der{x^\al}{\tau}} = \der{x^\be}{\tau}\pder{}{x^\be} \der{x^\al}{\tau} \]
+\[ V^\al = \der{x^\al}{\tau} \to \der{V^\al}{\tau} = \der{}{\tau}\br{\der{x^\al}{\tau}} = \der{x^\be}{\tau}\pder{}{x^\be} \der{x^\al}{\tau} \]
 Therefore,
 \[ V^\be \di_\be V^\al + {\Ga^\al}_{\be\ga} V^\be V^\ga = 0 \]
 \[ V^\be \br{\di_\be V^\al + {\Ga^\al}_{\be\ga} V^\ga} = 0 \]
@@ -2354,14 +2374,37 @@ This is to be expected because light-like vectors have a minimum arclength of $0
 
 Curvature can be examined as a rotation of vectors that are parallel transported around a loop.
 \begin{center}
-\begin{tikzpicture}[
-    scale=1.0,
-    decoration={post length=0.1mm, pre length=0.1mm, markings, mark=at position 0.5 with {\arrow{>}}}
-]
-    \draw[postaction={decorate}, thick] (0,0) -- (1,2);
-    \draw[postaction={decorate}, thick] (1,2) -- (3,2);
-    \draw[postaction={decorate}, thick] (3,2) -- (2,0);
-    \draw[postaction={decorate}, thick] (2,0) -- (0,0);
+\tikzset{
+    on each segment/.style={
+        decorate,
+        decoration={
+            show path construction,
+            moveto code={},
+            lineto code={
+                \path [#1]
+                (\tikzinputsegmentfirst) -- (\tikzinputsegmentlast);
+            },
+            curveto code={
+                \path [#1] (\tikzinputsegmentfirst)
+                .. controls
+                (\tikzinputsegmentsupporta) and (\tikzinputsegmentsupportb)
+                ..
+                (\tikzinputsegmentlast);
+            },
+            closepath code={
+                \path [#1]
+                (\tikzinputsegmentfirst) -- (\tikzinputsegmentlast);
+            },
+        },
+    },
+    mid arrow/.style={postaction={decorate,decoration={
+                markings,
+                mark=at position .6 with {\arrow[scale=1.5, blue]{stealth}}
+            }}},
+}
+\begin{tikzpicture}[every path/.style={draw=blue, thick}]
+    \path[postaction={on each segment={mid arrow}}]
+    (0,0) -- (1,2) -- (3,2) -- (2,0) -- (0,0);
     \draw[->, thick, blue] (1,2) -- (0.7, 2.3);
     \node[blue, above left] (lx) at (0, 0.5) {$x_i = x_f$};
     \draw[->, thick, blue] (3,2) -- (2.7, 2.3);
@@ -2468,7 +2511,7 @@ This is \textbf{Einstein's field equation}. This acts as our generalization of $
 \subsection{Recap of General Relativity}
 As a recap on everything we have learned so far,
 \begin{enumerate}
-    \item gravitational degrees of freedom $\phi \ar g_{\al\be}$ metric on the manifold which acts as spacetime
+    \item gravitational degrees of freedom $\phi \to g_{\al\be}$ metric on the manifold which acts as spacetime
     \item given that we known the metric, we can determine completely the Levi-Civita connection
     \begin{itemize}
         \item $\del_\mu V^\al = \di_\mu V^\al + {\Ga^\al}_{\be\ga}V^\ga$
@@ -2515,12 +2558,12 @@ As a recap on everything we have learned so far,
 
 The equivalence principle holds together all of General relativity,
 
-\[ M, g_{\al\be} \ar \del_\mu, \text{geodesic eqn} \ar \text{SET } T_{\al\be} \ar \text{curvature } R_{\mu\nu\al\be} \ar \text{Einstein equation} \]
+\[ M, g_{\al\be} \to \del_\mu, \text{geodesic eqn} \to \text{SET } T_{\al\be} \to \text{curvature } R_{\mu\nu\al\be} \to \text{Einstein equation} \]
 
 \subsection{Alternative Approaches to Gravity}
 
 Visualized in this way, general relativity becomes quite simple. How can we make it more complicated? Suppose we tried the followed,
-\[ \phi \ar g_{\al\be} + V_{\al} + M_{\al\be\ga\de} \]
+\[ \phi \to g_{\al\be} + V_{\al} + M_{\al\be\ga\de} \]
 
 By combing tensor theories $g_{\al\be}$ and vector theories $V_{\al}$. Maybe these theories of gravity can explain dark matter. This approach adds numerous degrees of freedom. Alternatively, one could include torsion into the connections and move away from the Levi-Civita connection. Moreover, we could add more dimensions. \\
 
@@ -2565,12 +2608,12 @@ Use spherical coordinates,
 \[ \De \phi = \der{}{r}\br{r^2 \der{}{r} \phi \br{r}} \]
 Outside the system, $\phi$ must be like in general with $A,B \in \R$ constants with $A$ having dimension length,
 \[ \phi\br{r} = - \f{A}{r} + B \]
-The condition at $r \ar \inf$ demanding that $\lim_{r\ar\inf}\phi(r) = 0$ enforces $B = 0$. We also want to experience an attractive force where $A > 0$. Evidently, we should expect the potential $\phi$ to depend on $M$ . In order to give $A$ dimensions of length, we will need to multiply by $G$.
+The condition at $r \to \inf$ demanding that $\lim_{r\to\inf}\phi(r) = 0$ enforces $B = 0$. We also want to experience an attractive force where $A > 0$. Evidently, we should expect the potential $\phi$ to depend on $M$ . In order to give $A$ dimensions of length, we will need to multiply by $G$.
 \[ \phi = - \f{GM}{r} \]
 Notice that we didn't explicitly make use of the time translational invariance here.\\
 
-Now let us attempt this problem from the general relativity approach. We generalize $\phi \ar g_{\al\be}$ and $g_{\al\be}$ should be spherically symmetric. The time translational invariance gives,
-\[ g_{\al\be}\br{r, \te, \phi, t} \ar g_{\al\be}\br{r, \te, \phi} \]
+Now let us attempt this problem from the general relativity approach. We generalize $\phi \to g_{\al\be}$ and $g_{\al\be}$ should be spherically symmetric. The time translational invariance gives,
+\[ g_{\al\be}\br{r, \te, \phi, t} \to g_{\al\be}\br{r, \te, \phi} \]
 So what is the most general metric we can write with these restrictions,
 \[  g_{\mu\nu} \dif x^\mu \dif x^\nu = - e^{2\al\br{r}} \dif t^2 + e^{2\be\br{r}} \dif r^2 + r^2 \dif\Om^2\]
 Where $\dif \Om^2 = \dif \te^2 + \sin^2 \te \dif \phi^2$ is the angular element and $\al\br{r},\be\br{r}$ are functions of $r$ and $r$ alone. Note the exponentials are a manifestation of the fact that the metric should be \textit{Lorentzian} (signature $\br{-,+,+,+}$) which enforces a strictly negative coefficient in front of $\dif t^2$. Comparing to the Minkowski metric,
@@ -2831,7 +2874,7 @@ Another hint that indicates something might be wrong with gravity, rotating gala
 For the sun, the Schwarzschild radius is only $\SI{3}{\km}$ while its actual radius of the sun is $R\tsb{sun} = \SI{7e5}{\km}$. If the radius was shrunk below the Schwarzschild radius, nothing bad would happen \textit{gravitationally}. The Schwarzschild metric is valid \textit{outside} the spherically symmetric object. Recall the troubling term in the Schwarzschild metric,
 \[ \br{1 - \f{R_s}{r}}^{-1} \]
 Which makes the metric diverge at $r = R_s$,
-\[ \dif s^2 = -\br{1 - \f{R_s}{r}} \dif t^2 + \underbrace{\br{1 - \f{R_s}{r}}^{-1}}_{\ar \inf } \dif r^2 + r^2 \dif \Om^2 \eq \label{eq:Schwarzschildmetric} \]
+\[ \dif s^2 = -\br{1 - \f{R_s}{r}} \dif t^2 + \underbrace{\br{1 - \f{R_s}{r}}^{-1}}_{\to \inf } \dif r^2 + r^2 \dif \Om^2 \eq \label{eq:Schwarzschildmetric} \]
 Because of this, the Schwarzschild metric only works in th region with $r > R_s$. The Schwarzschild metric is a solution to the vacuum Einstein equations. Remember that,
 \[ G_{\mu\nu} = 0 = R_{\mu\nu} = \f12 R g_{\mu\nu} \]
 Does \textit{not} indicate zero curvature $R_{\al\be\mu\nu} = 0$. When studying the collapse of stars, there cases where the collapsing continues until electron degeneracy pressure supports the gravitational collapse of the star. These are \textbf{white dwarf} stars. If the original star is massive enough, gravity beats even electron degeneracy pressure and electrons are ejected and \textbf{neutron stars} are formed supported by neutron degeneracy pressure. Continuing this, even more massive stars can continue collapsing into super dense objects called \textbf{black holes}. For object with $r < R_s$ light can not escape (hence \textit{black} holes). \\
@@ -2921,13 +2964,13 @@ As an extra question, we can ask what happens if the particle is emitting light 
 \end{center}
 
 Obviously, the light emitted will be very red shifted,
-\[ \f{\lambda_e}{\lambda_r} = \f{\br{1- \f{R_s}{r_e}}^{1/2}}{\br{1- \f{R_s}{r_r}}^{1/2}} \sim_{r_r \ar \inf} \br{1 -\f{R_s}{r_e}}^{1/2} \ar 0  \]
+\[ \f{\lambda_e}{\lambda_r} = \f{\br{1- \f{R_s}{r_e}}^{1/2}}{\br{1- \f{R_s}{r_r}}^{1/2}} \sim_{r_r \to \inf} \br{1 -\f{R_s}{r_e}}^{1/2} \to 0  \]
 Therefore,
 \[ \lambda_r \gg \lambda_e \]
 
 \subsection{Singularities}
 
-Recall the Kretschmann Scalar given by \eqref{eq:KretschmannScalar}. At $r = R_s$ the Kretschmann scalar and thus the scalar is finite. However for $r = 0$, $K \ar \inf$ which is bad news. What is a true singularity? A singularity should be independent of coordinates. The problem at $r = R_s$ is just a manifestation of a poor choice of coordinates. As an example, consider $\R^3$. Suppose we are defining things in terms of spherical coordinates. If we have a function given by,
+Recall the Kretschmann Scalar given by \eqref{eq:KretschmannScalar}. At $r = R_s$ the Kretschmann scalar and thus the scalar is finite. However for $r = 0$, $K \to \inf$ which is bad news. What is a true singularity? A singularity should be independent of coordinates. The problem at $r = R_s$ is just a manifestation of a poor choice of coordinates. As an example, consider $\R^3$. Suppose we are defining things in terms of spherical coordinates. If we have a function given by,
 \[ f\br{r,\te,\phi} = \f{1}{r-1} \]
 This function $f$ is perfectly well behaved everywhere except on the sphere with $r = 1$. This \textit{could} in general mean that there is a problem with our manifold. However we know that Cartesian coordinates on $\R^3$ have no issues. It is always possible that divergence terms are a manifestation of a poor choice of coordinates.\\
 
@@ -2978,10 +3021,10 @@ With the addition of radial symmetry, these trajectories or rays trace out light
 \textbf{Example:} Now in the case of the Schwarzschild metric,
 \[ v = t+r + R_s \ln \abs{\f{r}{R_s} - 1} \eq \label{eq:efcc}\]
 The metric then becomes,
-\[ \dif s^2\tsb{sch} \ar \dif s^2 = - \br{1- \f{R_s}{r}} \dif v^2 + 2 \dif v \dif r + r^2 \dif \Om^2 \]
+\[ \dif s^2\tsb{sch} \to \dif s^2 = - \br{1- \f{R_s}{r}} \dif v^2 + 2 \dif v \dif r + r^2 \dif \Om^2 \]
 This metric is known as the \textbf{Eddington-Finkenstein metric}. In a matrix representation,
 \[ g_{\al\be} = \mtrx{-\br{1- \f{R_s}{r}} & 1 & 0 \\1 & 0 & 0 \\0 & 0 & r^2} \]
-It is important to note the subtlety here. Choosing spherical coordinates $\br{t, r, \te, \phi}$ resulted in a problem in the metric representation. However choosing better coordinates $\br{t, v, \te, \phi}$ results in the Eddington-Finkenstein metric. This metric has no divergence at $r = R_s$. The transformation from $v \ar r$ diverges at $r = R_s$ (see \eqref{eq:efcc}) because spherical coordinates were a bad choice, \textbf{not} because the manifold was a problem (this is contrasting to the case of $r=0$ where there is no good choice of coordinates; a true singularity). \\
+It is important to note the subtlety here. Choosing spherical coordinates $\br{t, r, \te, \phi}$ resulted in a problem in the metric representation. However choosing better coordinates $\br{t, v, \te, \phi}$ results in the Eddington-Finkenstein metric. This metric has no divergence at $r = R_s$. The transformation from $v \to r$ diverges at $r = R_s$ (see \eqref{eq:efcc}) because spherical coordinates were a bad choice, \textbf{not} because the manifold was a problem (this is contrasting to the case of $r=0$ where there is no good choice of coordinates; a true singularity). \\
 
 Now we can find the light trajectory by using the normalization condition and the purely radial motion ($\dif \te = \dif \phi = 0 $).
 \[ - \br{1- \f{R_s}{r}}  \dif v^2 + 2 \dif v \dif r = 0 \]
@@ -3067,7 +3110,7 @@ Now we can return to our general metric \eqref{eq:genmetric} and analyze the tim
 And the first components can be negative,
 \[ g_{00} = -1 \]
 What about $g_{ij}$ in \eqref{eq:genmetric}? If in general $g_{ij} = g_{ij}\br{\vx, t}$ the space metric depends on $\vx$ then we violate the assumption of homogeneity. Therefore it must depend on $r$. Similarly, if $g_{ij}$ is to be isotropic in time, the time components must be separable from $g_{ij}$. Recalling \eqref{eq:gammametric},
-\[ g_{ij}\br{\vx, t} \ar a^2 \br{t} \ga_{ij}\br{r} \]
+\[ g_{ij}\br{\vx, t} \to a^2 \br{t} \ga_{ij}\br{r} \]
 Here $a\br{t}$ is known as a \textbf{scale factor}. Moreover the square on $a\br{t}$ is introduced to ensure positiveness. Combining all of these motivations together yields the \textbf{Friedman Le maître Robertson Walker metric (FLRW).}
 \[ g_{\al\be} \dif x^\al \dif x^\be = -\dif t^2 + a^2\br{t} \ga_{ij} \dif x^i \dif x^j \eq \label{eq:FLRW} \]
 The discovery and proof of uniqueness of this metric took from $\sim$1922-1935. What are the implications of this metric? What we will see is that \eqref{eq:FLRW} produces a relationship between redshift and distance.
@@ -3084,7 +3127,7 @@ Since the traveled distance is the same we have,
 \[ \int_{t_e + \de t_e}^{t_r + \de t_r} \f{\dif t}{a\br{t}} = \int_{t_e}^{t_r} \f{\dif t}{a\br{t}} \]
 Fragmenting the bounds of integration,
 \[ \int_{t_e + \de t_e}^{t_r + \de t_r} \f{\dif t}{a\br{t}} = \int_{t_r}^{t_r + \de t_r} \f{\dif t}{a\br{t}} + \int_{t_e}^{t_r} \f{\dif t}{a\br{t}} + \int_{t_e + \de t_e}^{t_e} \f{\dif t}{a\br{t}} \]
-The term over $t_e \ar t_r$ cancels out giving,
+The term over $t_e \to t_r$ cancels out giving,
 \[ \int_{t_e}^{t_e + \de t_e} \f{\dif t}{a\br{t}} = \int_{t_r }^{t_r + \de t_r} \f{\dif t}{a\br{t}} \]
 Finally using the fundamental theorem of calculus ($F\br{t + \de t} - F\br{t} \approx \de t F'\br{t}$),
 \[ \f{\de t_r}{a\br{t_r}} = \f{\de t_e}{a\br{t_e}} \]
@@ -3278,11 +3321,11 @@ The future of the universe is determined by \eqref{eq:fl1},
 \[ \dot{a}^2 = \f{8\pi}{3}G \rho a^2 - k \]
 Where as we have seen before with $w > -1/3$,
 \[ \rho a^2 = a^{-3 \br{1 + w} + 2} \]
-Where when $a \ar \inf$, $\rho a^2 \ar 0$. Then for different values of $k$ we can see that the fate of the universe will be. \\
+Where when $a \to \inf$, $\rho a^2 \to 0$. Then for different values of $k$ we can see that the fate of the universe will be. \\
 
 \textbf{Forever Expansion $\mathbf{k = -1}$}: If $k=-1$, then by observation of $\dot{a} > 0$ with $\dot{a} \neq 0$. This corresponds to expansion forever.\\
 
-\textbf{Slowing Expansion $\mathbf{k = 0}$}: If $k = 0$ we have that $\dot{a}^2 = \f{8 \pi G}{3} \rho a^2 \ar 0$ whenever $a$ is large. Therefore we still have an expansion forever but the expansion becomes slower and slower with time.\\
+\textbf{Slowing Expansion $\mathbf{k = 0}$}: If $k = 0$ we have that $\dot{a}^2 = \f{8 \pi G}{3} \rho a^2 \to 0$ whenever $a$ is large. Therefore we still have an expansion forever but the expansion becomes slower and slower with time.\\
 
 \textbf{Eventual Contraction $\mathbf{k = 1}$}: If $k=1$, we have $\dot{a}^2 = \f{8\pi}{3}G \rho a^2 - k$ achieves a zero value at a critical $a$. By observation again $\dot{a} > 0$, there exists a particular time $t\tsb{max}$ when,
 \[ a\br{t\tsb{max}} = a\tsb{max}  \implies \dot{a}\br{t\tsb{max}} = 0 \]
@@ -3295,10 +3338,10 @@ Which becomes,
 According to the value of $a$ at different times in the evolution of the universe, different contributions will dominate. \\
 
 As time evolves, we have the dominating term evolve,
-\[ \text{small } a : \text{radiation} \ar \text{matter} \ar \text{curvature} \ar \text{cosmological constant} : \text{large } a \]
+\[ \text{small } a : \text{radiation} \to \text{matter} \to \text{curvature} \to \text{cosmological constant} : \text{large } a \]
 % TODO einstein universe
 \subsection{Einstein Universe}
-In the olden times before Hubble, the Universe was thought to be static with $\dot{a}\br{t} = 0 \ar a\br{t} = a_0, \forall t$. Using this idea in the conservation of the SET and in the Friedman equations respectively,
+In the olden times before Hubble, the Universe was thought to be static with $\dot{a}\br{t} = 0 \to a\br{t} = a_0, \forall t$. Using this idea in the conservation of the SET and in the Friedman equations respectively,
 \[ \dot{\rho} = - 3 \br{\rho + p}\f{\dot{a}}{a} \implies \dot{\rho} = 0 \implies \rho = \rho_0 \eq \label{eq:rhoconstant}\]
 \[ -3\f{\ddot{a}}{a} = 4 \pi G \br{\rho + 3p} - \La \implies \Lambda = 4 \pi G \br{\rho + 3 p} \eq \label{eq:einunila} \]
 When considering matter or radiation, equation \eqref{eq:einunila} requires that $\La > 0$. This was the source of Einstein's motivation to introduce $\La$ in the first place; to make the universe static. We also obtain that $\dot{\rho} = 0$ from \eqref{eq:rhoconstant} which should make sense for a static universe. \\
@@ -3325,14 +3368,14 @@ Therefore there are $4$ cases to consider.\\
 
 $\mathbf{\La > 0}$ Metrics of the de Sitter spacetime:
 \begin{align*}
-k = 0 &\ar a_+\br{t} = e^{+\f{t}{\ell}} \ar \dif \tau^2 = - \dif t^2 + e^{+\f{t}{\ell}} \dif \vx^2 \\
-k = 1 &\ar \dif \tau^2 = - \dif t^2 + \ell^2 \cosh^2\br{\f{t}{\ell}} \dif \ti\Om^2 \\
-k = -1 &\ar \dif \tau^2 = - \dif t^2 + \ell^2 \sinh^2\br{\f{t}{\ell}} \dif \ti\Om^2
+k = 0 &\to a_+\br{t} = e^{+\f{t}{\ell}} \to \dif \tau^2 = - \dif t^2 + e^{+\f{t}{\ell}} \dif \vx^2 \\
+k = 1 &\to \dif \tau^2 = - \dif t^2 + \ell^2 \cosh^2\br{\f{t}{\ell}} \dif \ti\Om^2 \\
+k = -1 &\to \dif \tau^2 = - \dif t^2 + \ell^2 \sinh^2\br{\f{t}{\ell}} \dif \ti\Om^2
 \end{align*}
 
 $\mathbf{\La < 0}$ Metrics of the Anti de Sitter spacetime:
 \begin{align*}
-k = -1 &\ar \dif \tau^2 = - \dif t^2 + \ell^2 \sin^2\br{\f{t}{\ell}} \dif \ti\Om^2
+k = -1 &\to \dif \tau^2 = - \dif t^2 + \ell^2 \sin^2\br{\f{t}{\ell}} \dif \ti\Om^2
 \end{align*}
 \section{Gravitational Waves}
 \begin{adjustwidth}{0.5in}{0.5in}
@@ -3392,7 +3435,7 @@ This determines the scalar mode in terms of the strain, the source and the bound
 
 \subsection{Diffeomorphisms}
 We have only few dynamical variables. We can use the symmetries of the Einstein equations to eliminate the spurious variables and focus on the relevant ones, just as in electromagnetism. Diffeomorphisms, or change of coordinates, provide the symmetry of the Einstein equations.
-\[ x^\mu \ar x'^\mu \qquad g_{\mu\nu}\br{x} \ar g'_{\mu\nu}\br{x'} = \pder{x^\al}{x'^\mu}\pder{x^\be}{x'^\nu}g_{\al\be}\br{x} \]
+\[ x^\mu \to x'^\mu \qquad g_{\mu\nu}\br{x} \to g'_{\mu\nu}\br{x'} = \pder{x^\al}{x'^\mu}\pder{x^\be}{x'^\nu}g_{\al\be}\br{x} \]
 The understanding of the diffeomorphism symmetry took a long time for Einstein to realize this was a key element in the construction of GR (cf hole argument in Rovelli’s book “Quantum Gravity”). Still now, this is a topic of questioning (e.g. what is time?) and often confusing. The bottom line is that:
 \begin{itemize}
     \item the observable quantities should be invariant under diffeomorphisms
@@ -3568,7 +3611,7 @@ Therefore,
 \[ \ti{W}^\mu \br{\ti{x}^\ga} = \bs{{\de^\mu}_\nu + \ep \di_\nu \xi^\mu}W^\nu \br{x^\ga} = W^\mu \br{x^\ga} + \ep W^\nu \di_\nu \xi^\mu  \br{x^\ga} \eq \label{eq:transformswell}\]
 Therefore \eqref{eq:invariant} can be obtained by taking \eqref{eq:justdirectional} subtract \eqref{eq:transformswell},
 \[ W^\mu \br{\ti{x}^\ga} - \ti{W}^\mu \br{\ti{x}^\ga} = \ep \xi^\nu \di_\nu  W^\mu \br{x^\ga} -\ep W^\nu \di_\nu \xi^\mu \br{x^\ga} \]
-Taking this difference per unit length $\ep$ under the limit for $\ep \ar 0$ gives the definition of the \textit{Lie derivative} in the direction of $\xi^\mu$.
+Taking this difference per unit length $\ep$ under the limit for $\ep \to 0$ gives the definition of the \textit{Lie derivative} in the direction of $\xi^\mu$.
 \[ L_\xi W^\mu \br{x^\ga} = \xi^\nu \di_\nu  W^\mu \br{x^\ga}-W^\nu \di_\nu \xi^\mu \br{x^\ga} \]
 Or without writing dependence on $x^\ga$,
 \[ L_\xi W^\mu = \xi^\nu \di_\nu  W^\mu - W^\nu \di_\nu \xi^\mu \eq \label{eq:liederivativevector} \]
