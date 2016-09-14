@@ -2,6 +2,8 @@
 
 \usepackage{coursenotes}
 
+\usepackage{tikz-3dplot}
+
 \set{AuthorName}{TC Fraser}
 \set{Email}{tcfraser@tcfraser.com}
 \set{Website}{www.tcfraser.com}
@@ -30,6 +32,81 @@ As such, the number of equations that remain to solved has been reduced.
 
 \section{First Assignment?}
 
+\newcommand{\coord}[4]{\coordinate (#1) at (#2,#3,#4);}
+\newcommand{\cylindcoord}[4]{\coordinate (#1) at ({#2*cos(#3)},{#2*sin(#3)},{#4});}
+\newcommand{\spherecoord}[4]{\coordinate (#1) at ({#2*cos(#3)*sin(#4)},{#2*sin(#3)*sin(#4)},{#2*cos(#4)});}
+
+%polar coordinates of visibility
+\pgfmathsetmacro\th{70}
+\pgfmathsetmacro\az{110}
+\tdplotsetmaincoords{\th}{\az}
+
+\begin{center}
+
+\begin{tikzpicture} [scale=1, tdplot_main_coords, axis/.style={->,black}]
+
+    %parameters of the cone
+    \pgfmathsetmacro\R{1.6} % Radius of cylinder
+    \pgfmathsetmacro\H{3} % Height of cylinder
+    \pgfmathsetmacro\aL{3.5} % Length of the axis
+
+    \pgfmathsetmacro\rr{4}
+    \pgfmathsetmacro\r{4}
+    \pgfmathsetmacro\rphi{60}
+    \pgfmathsetmacro\rh{4}
+    \cylindcoord{r}{\rr}{\rphi}{\rh}
+    \cylindcoord{rflat}{\rr}{\rphi}{0}
+    \cylindcoord{rp}{\R}{-40}{1.4}
+    \cylindcoord{radius}{\R}{-60}{0}
+    \cylindcoord{hmark}{1.8}{-70}{0}
+    \cylindcoord{hmarktop}{1.8}{-70}{\H}
+
+    % Axis declaration
+    \coordinate (O) at (0,0,0);
+    \coordinate (x) at (1,0,0);
+    \coordinate (y) at (0,1,0);
+    \coordinate (z) at (0,0,1);
+    \coordinate (X) at ($\aL*(x)$);
+    \coordinate (Y) at ($\aL*(y)$);
+    \coordinate (Z) at ($\aL*(z)$);
+
+    %draw axes
+    \draw[axis] (O)--(X) node[anchor=north]{$\hat{x}$};
+    \draw[axis] (O)--(Y) node[anchor=north]{$\hat{y}$};
+    \draw[axis] (O)--(Z) node[anchor=south]{$\hat{z}$};
+
+    % % angles for transformed lines
+    \pgfmathsetmacro\PhiOne{180+(\az)}
+    \pgfmathsetmacro\PhiTwo{0+(\az)}
+
+    % % coordinates for transformed surface lines
+    \pgfmathsetmacro\sinPhiOne{{sin(\PhiOne)}}
+    \pgfmathsetmacro\cosPhiOne{{cos(\PhiOne)}}
+    \pgfmathsetmacro\sinPhiTwo{{sin(\PhiTwo)}}
+    \pgfmathsetmacro\cosPhiTwo{{cos(\PhiTwo)}}
+
+    % % draw basis circle
+    \tdplotdrawarc[tdplot_main_coords]{(O)}{\R}{\PhiOne}{360+\PhiTwo}{}{}
+    \tdplotdrawarc[tdplot_main_coords]{(O)++($\H*(z)$)}{\R}{0}{360}{}{}
+    \tdplotdrawarc[tdplot_main_coords,dashed]{(O)}{\R}{\PhiTwo}{\PhiOne}{}{}
+
+    \tdplotdrawarc[tdplot_main_coords,color=red]{(O)}{0.3}{0}{\rphi}{anchor=north}{$\phi$}
+
+    % % displaying tranformed surface of the cone (rotated)
+    \draw (\R*\cosPhiOne,\R*\sinPhiOne,\H) -- (\R*\cosPhiOne,\R*\sinPhiOne,0);
+    \draw (\R*\cosPhiTwo,\R*\sinPhiTwo,\H) -- (\R*\cosPhiTwo,\R*\sinPhiTwo,0);
+
+    \draw[thick,color=red, ->] (O) -- node[midway, below]{$\vr$} (r);
+    \draw[thick,color=blue, ->] (O) -- node[midway, below]{$\vr'$} (rp);
+    \draw[thick, ->] (rp) -- node[midway, below]{$\vec{\rcurs}$} (r);
+    \draw[dashed,color=red, ->] (O) -- node[midway, below left]{$s\hat{s}$} (rflat);
+    \draw[dashed,color=red, ->] (rflat) -- node[midway, right]{$\zeta\hat{\zeta}$} (r);
+    \draw[->] (O) -- node[midway, below]{$R$} (radius);
+    \draw[|<->|] (hmark) -- node[midway, left]{$h$} (hmarktop);
+
+\end{tikzpicture}
+\end{center}
+
 \textbf{A1.1}: Use cylindrical coordinates with $\zeta$ along the axis of the cable,
 
 \[ V\br{\zeta} = \f{1}{4 \pi \ep_0} \int_{\s{C}}\f{\dif \rho}{\rcurs} \]
@@ -56,7 +133,7 @@ Cylindrical coordinates gives us the following symmetries $\pder{V}{\phi} = \pde
 Solving this system gives the potential in terms of $s$: $V\br{s} = \cdots$. Then the electric field can then be obtained via $\vec{E} = - \vdel V$.
 
 \textbf{A1.3}: Using cylindrical coordinates once again, the electric field is going to be radial outwards to the uniform charge density. For the uniform density cylinder, construct a Gaussian surface cylindrically around the cylinder. For the current density cylinder, the current density is the current per cross sectional area. Construct an Amperian loop,
-\[ \oint_{\s{A}} \dif \vec{l} \cdot \vec{B} = \mu I\tsb{enc}  \]
+\[ \oint_{\s{A}} \dif \vec{\ell} \cdot \vec{B} = \mu I\tsb{enc}  \]
 Part e), finding the vector potential,
 \[ A\br{\vr} = \f{\mu_0}{4\pi} \int_{\s{C}} \dif \tau' \f{\vec{J}\br{\vec{r}}}{\rcurs} \]
 Evidently, $\hat{s}$ and $\hat{s}'$ are in \textit{different} directions.
@@ -69,7 +146,7 @@ Comparing to the vector potential, we have an equivalent integral (up to a const
 For question f), use the definition of $\vec{B}$ in terms of $\vec{A}$,
 \[ \vec{B} = \vdel \times \vec{A} \]
 Further, recall that if $\vec{E} = -\vdel V$, then by Stoke's theorem for some loop $\s{L}$,
-\[ V = - \int_{\s{L}} \dif \vec{l} \cdot \vec{E} \]
+\[ V = - \int_{\s{L}} \dif \vec{\ell} \cdot \vec{E} \]
 
 
 \todo[TC]{Figure out O'Donovan}
@@ -84,9 +161,9 @@ Luckily, the divergence of a curl is always $0$. Dividing by relevant constants 
 This is a conservation of charge. It is a \textbf{local} conservation law because it holds for all points in space $\vec{r}$. Intuitively, is claims that the rate of charge of charge at a point is equal to the amount of current following in or out of the take point. \\
 
 \textbf{A2.1}: Again using cylindrical coordinates $\vec{r} = s \hat{s} + \zeta \hat{\zeta}$. Let the current flow in such a way that the magnetic field points along the $\zeta$-axis. Let $\s{L}$ be an Amperian loop with one side at distance $\abs{\vec{r}} \to \inf$,
-\[ \int_{\s{L}} \dif \vec{l} \cdot \vec{B} = \mu_0 I\tsb{enc} \]
+\[ \int_{\s{L}} \dif \vec{\ell} \cdot \vec{B} = \mu_0 I\tsb{enc} \]
 The same equation can be reused to calculate the vector potential for a Gaussian surface $\s{S}$,
-\[ \int_{\s{L}} \dif \vec{l} \cdot \vec{A} = \int_{\s{S}} \dif \vec{a} \cdot \vec{B} = \Phi \]
+\[ \int_{\s{L}} \dif \vec{\ell} \cdot \vec{A} = \int_{\s{S}} \dif \vec{a} \cdot \vec{B} = \Phi \]
 Where $\Phi$ is the magnetic flux through $\s{S}$. Furthermore, the energy required to set up a magnetic field is,
 \[ W = \f{1}{2 \mu_0} \int_{\s{C}} \dif \tau B^2 = \f{1}{2} \int_{\s{C}} \dif \tau \vec{J} \cdot \vec{A} = \f{1}{2} L I^2 \]
 Where $L$ is the self-inductance of the solenoid.
@@ -97,11 +174,83 @@ First we begin with two of Maxwell's equations,
 \[ \vdel \times \vec{B} = \mu_0 \vec{J} + \mu_0 \ep_0 \pder{\vec{E}}{t} \eq \label{eq:poyn_max_2}\]
 Computing the inner product between \cref{eq:poyn_max_1} and $\vec{B}$, and the inner product between \cref{eq:poyn_max_2} and $\vec{E}$ and taking a difference,
 \[ \vec{B} \cdot \br{\vdel \times \vec{E}} - \vec{E} \cdot \br{\vdel \times \vec{B}} = - \pder{}{t}\br{\f{\ep_0}{2} E^2 + \f{1}{2 \mu_0} B^2} = \mu_0 \vec{E} \cdot \vec{J}\]
-Letting $\f{\ep_0}{2} E^2 + \f{1}{2 \mu_0} B^2$ be the \textbf{electromagnetic energy density} $U$, we have the following identity,
-\[ \vdel\cdot\br{\vec{E} \times \vec{B}} = - \mu_0 \pder{U}{t} - \mu_0 \vec{E} \cdot \vec{J} \eq \label{eq:poyn_conservation_energy} \]
-Physically \cref{eq:poyn_conservation_energy} corresponds to a conservation of energy. We refer to the term $\f{1}{\mu_0} \br{\vec{E} \times \vec{B}}$ as the Poynting vector $\vec{S}$ as it determines the direction of electromagnetic radiation,
-\[ \vdel \cdot \vec{S} + \pder{U}{t} + \vec{E} \cdot \vec{J} = 0 \eq \label{eq:poyn_eq}\]
-Much like \cref{eq:conservation_charge}, \cref{eq:poyn_eq} is a local conservation of \textit{energy}. The only algebraic difference is the term $\vec{E} \cdot \vec{J}$. If there is a flowing charge $\vec{J}$ through an electric field $\vec{E}$, then there is work done on the charge.
+Letting $\f{\ep_0}{2} E^2 + \f{1}{2 \mu_0} B^2$ be the \textbf{electromagnetic energy density} $u$, we have the following identity,
+\[ \vdel\cdot\br{\vec{E} \times \vec{B}} = - \mu_0 \pder{u}{t} - \mu_0 \vec{E} \cdot \vec{J} \eq \label{eq:poyn_conservation_energy} \]
+Physically \cref{eq:poyn_conservation_energy} corresponds to a conservation of energy. We refer to the term $\f{1}{\mu_0} \br{\vec{E} \times \vec{B}}$ as the Poynting vector $\vec{S}$ as it determines the direction of electromagnetic radiation. The Poynting vector $\vec{S}$ represents the power density.
+\[ \vdel \cdot \vec{S} + \pder{u}{t} + \vec{E} \cdot \vec{J} = 0 \eq \label{eq:poyn_eq}\]
+Much like \cref{eq:conservation_charge}, \cref{eq:poyn_eq} is a local conservation of \textit{energy}. The only algebraic difference is the term $\vec{E} \cdot \vec{J}$. If there is a flowing charge $\vec{J}$ through an electric field $\vec{E}$, then there is work done on the charge. By Gauss's theorem, the energy leaving through a surface $\s{S}$ per unit time is,
+\[ \int_{\s{V}} \vdel \cdot \vec{S} \dif \tau =  \oint_{\s{S}} \dif \vec{a}\cdot \vec{S} \]
+and the E-M energy in the volume $\s{V}$ is given by,
+\[ \int_{\s{V}} \dif \tau u \]
+Where again, $u$ is the electromagnetic energy density. If we integrate over \cref{eq:poyn_eq},
+\[\int_{\s{V}} \dif \tau \br{\vdel \cdot \vec{S} +\pder{u}{t} + \vec{E} \cdot \vec{J}} = \oint_{\s{S}} \dif \vec{a}\cdot \vec{S} + \int_{\s{V}} \dif \tau \pder{u}{t} + \int_{\s{V}} \dif \tau \vec{E} \cdot \vec{J} \]
+Each term in \cref{eq:poyn_eq} has it's purpose illuminated. The final term $\int_{\s{V}} \dif \tau \vec{E} \cdot \vec{J}$ corresponds to the work done on moving charges $\vec{J}$ in the volume $\s{V}$. In it important to note that there are no terms that corresponding to ``magnetic work''. \\
+
+Consider the work done to move a charge $q$ a displacement $\dif \vec{\ell}$ by E-M forces,
+\begin{align*}
+\dif W &= \dif \vec{\ell} \cdot \vec{F} \\
+&= \dif \vec{\ell} \cdot q \br{\vec{E} + \vec{v} \times \vec{B}}\\
+&= \vec{v} \dif t \cdot q \br{\vec{E} + \vec{v} \times \vec{B}}\\
+&= q \dif t \br{\vec{v} \cdot \vec{E}} + q \dif t \underbrace{\br{\vec{v} \cdot \bc{\vec{v} \times \vec{B}}}}_{= 0} \\
+&= q \dif t \br{\vec{v} \cdot \vec{E}}
+\end{align*}
+So for a continuous charge distribution we have that $\dif q = \rho \dif \tau$ and $\rho \vec{v} = \vec{J}$. Which means that the rate of work done on the charge $\rho$ in the volume $\s{V}$ (i.e. creating the current density $\vec{J}$) is,
+\[ \dot{W} = \int_{\s{V}} \dif \tau \vec{E} \cdot \vec{J} \]
+We can interpret this as the work done per unit time rearranging the charge in $\s{V}$. One again \cref{eq:poyn_eq} is given by
+\[ \vdel \cdot \vec{S} + \pder{u}{t} + \vec{E} \cdot \vec{J} = 0 \]
+With the following interpretations,
+\begin{itemize}
+    \item $\vdel \cdot \vec{S}$: amount of radiation energy leaving the point $\vr$
+    \item $\pder{u}{t}$: increase in E-M energy at the point $\vr$
+    \item $\vec{E} \cdot \vec{J}$: the amount of work done on charges at the point $\vr$
+\end{itemize}
+
+% \begin{tikzpicture}
+%     \draw[thin, dashed] (0,0) circle (2);
+%     \draw[fill] (0,0) circle (0.1);
+% \end{tikzpicture}
+
+As an illustrative example, consider a parallel plate capacitor with an electric field $\vec{E}$ between them.
+\begin{center}
+\begin{tikzpicture}
+    \coordinate (top) at (0,1);
+    \coordinate (bot) at (0,-1);
+    \draw[thin] (top) ellipse (2 and 0.4);
+    \draw[thin] (bot) ellipse (2 and 0.4);
+    \draw[thick] (top) -- (0, 2) -- (3, 2) -- (3, -2) -- (0, -2) -- (bot);
+    \draw[thick, green] (top) edge[<-] (bot);
+    \draw[thick, green] (0.5, 1) edge[<-] node[midway, right]{$\vec{E}\br{t}$} (0.5, -1);
+    \draw[thick, green] (-0.5, 1) edge[<-] (-0.5, -1);
+    \draw[thick, blue] (0, 0) edge[->] node[midway, above]{$\vec{S}\br{t}$} (-2, -0.4);
+    \draw[->, thick, red] (-1,-0.5) arc [start angle=-190, end angle=160, x radius=1, y radius=0.2];
+    \draw[red] (1, -0.5) node[right]{$\vec{B}\br{t}$};
+\end{tikzpicture}
+\end{center}
+\todo[TC]{Draw this example.}
+We ave that the magnetic field points in the $\hat{\phi}$ direction, $\vec{B} = V \hat{\phi}$. The electric field $\vec{E} = E \hat{\zeta}$, and Poynting vector are $\vec{S} = S \hat{s}$. We have that the radiation through the surface $\s{S}$,
+\[ \int_{\s{S}} \dif \vec{a} \cdot \vec{S} = - \br{2 \pi a h} S \]
+Therefore $\pder{U}{t} = - \br{2 \pi a h} S$ corresponding to the amount of energy flowing out of the capacitor and therefore,
+\[ U = \intl_{0}^{\inf} \dif t \br{- 2 \pi a h S} = \f12 C V^2 \]
+
+\textbf{Ex 8.1}:
+\todo[TC]{Draw this figure}
+Inside the conductor the electric field moves parallel to its axis $\vec{E} = \f{V_0}{\ell} \hat{\zeta}$. The magnetic field is then given by,
+\[ \vdel \times \vec{B} = \mu_0 \ep_0 \pder{E}{t} + \mu_0 \vec{J} \]
+Integration over the surface $\s{S}$,
+\[ \int_{\s{S}} \dif \vec{a} \cdot \br{\vdel \times \vec{B}} = \mu_0 \int_{\s{S}} \dif \vec{a} \cdot \vec{J} = \mu_0 I\tsb{enc} \]
+Therefore computing this integral $\int \dif \vec{\ell} \cdot \vec{B}$ yields,
+\[ \vec{B} = \f{\mu_0I}{2\pi a}\hat{\phi} \]
+Moreover, the Poynting vector is given by,
+\begin{align*}
+\vec{S} &= \f{1}{\mu_0} \vec{E}\times \vec{B} \\
+&= \f{1}{\mu_0} \f{V_0}{\ell} \hat{\zeta} \times \f{\mu_0 I}{2 \pi a} \hat{\phi} \\
+&= -\f{V_0 I}{2\pi a \ell}\hat{s}
+\end{align*}
+The
+\[ \int_{\s{S}} \dif \vec{a} \cdot \vec{S} = -\f{V_0 I}{2 \pi a \ell} \int_{\s{S}} \dif a = - V_0 I \]
+Which is exactly the amount of Joule heating for a current $I$ though a wire with voltage $V_0$ across it. Using $V = I R$,
+\[ \int_{\s{S}} \dif \vec{a} \cdot \vec{S} = -I^2 R \]
+
 
 
 \end{document}

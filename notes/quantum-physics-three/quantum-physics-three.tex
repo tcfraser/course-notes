@@ -96,8 +96,8 @@ Where refer to $B_{a'', a'}$ as the matrix elements of an operator $B$ with resp
 Therefore the matrix that corresponds to $B^{\dagger}$ is the complex conjugate transposed of the matrix corresponding to $B$.\\
 
 \subsection{Continuous Spectrum}
-Of course, there exists operators with non-discrete spectrum. We will now generalize to operators with continuous spectrum. The two most important of such operators are position and momentum. Let $\ket{\vec{x}'}$ a position eigenket corresponding to the state of a particle at position $\vec{x}'$ in space. Let $\vec{x}$ be the position \textit{operator} defined as,
-\[ \vec{x} \ket{\vx'} = \vx' \ket{\vx'} \]
+Of course, there exists operators with non-discrete spectrum. We will now generalize to operators with continuous spectrum. The two most important of such operators are position and momentum. Let $\ket{\ve{x}'}$ a position eigenket corresponding to the state of a particle at position $\ve{x}'$ in space. Let $\ve{x}$ be the position \textit{operator} defined as,
+\[ \ve{x} \ket{\vx'} = \vx' \ket{\vx'} \]
 It is important not to get confused about notation:
 \begin{itemize}
     \item $\vx$ -- Position operator
@@ -108,7 +108,7 @@ The wave function $\psi\br{\vx'}$ is the probability amplitude to find a particl
 We also have the ability to generalize \cref{eq:orthonormality_discrete} to a continuous spectrum. The continous generalization of the Kronecker delta is the Dirac delta function.
 \[ \braket{\vx'}{\vx''} = \de\br{\vx' - \vx''} \]
 Where $\de{\vx'}$ is defined as,
-\[ \int_{\R^3} \dif^3 x' f\br{\vx'} \de\br{\vx'} = f\br{\vec{0}} \]
+\[ \int_{\R^3} \dif^3 x' f\br{\vx'} \de\br{\vx'} = f\br{\ve{0}} \]
 Where $f\br{\vx'} : \R^3 \to \R$ is a function on $\R^3$. \\
 
 The closure relation becomes,
@@ -128,7 +128,7 @@ Now let $\ket{\phi}$ be another space in the same Hilbert space as $\ket{\psi}$,
 
 The operator of infinitesimal translations $T$ is defined as,
 \[ T\br{\dif \vx'}\ket{\vx'} = \ket{\vx' + \dif \vx'} \]
-Where $\dif \vx'$ is an infinitesimally small vector. Acting on an arbitrary state $\ket{\psi}$,
+Where $\dif \vx'$ is an infinitesimally small vetor. Acting on an arbitrary state $\ket{\psi}$,
 \begin{align*}
 T\br{\dif \vx'}\ket{\psi} &= T\br{\dif \vx'} \bc{\int_{\R^3} \dif^3 x' \ket{\vx'} \braket{\vx'}{\psi}} \\
 &= \int_{\R^3} \dif^3 x' \ket{\vx' + \dif \vx'} \braket{\vx'}{\psi} \\
@@ -141,23 +141,78 @@ If we wish for \cref{eq:TT} to hold for all states $\ket{\psi}$, it must be that
 Another desired property of translations $T\br{\dif \vx'}$ is that they are additive,
 \[ T\br{\dif \vx'}T\br{\dif \vx''} = T\br{\dif \vx' + \dif \vx''} \eq \label{eq:trans_add}\]
 Consequently,
-\[ T^{-1}\br{\dif \vx'} = T\br{-\dif \vx'} \qquad T\br{\vec{0}} = \mathbb{I} \]
+\[ T^{-1}\br{\dif \vx'} = T\br{-\dif \vx'} \qquad T\br{\ve{0}} = \mathbb{I} \]
 All of the above properties are satisfied if,
-\[ T\br{\dif \vx'} = \mathbb{I} - i \vec{K} \cdot \dif \vx' \]
-Where $\vec{K} = \br{K_x, K_y, K_z}$ is a vector operator that is Hermitian ($\vec{K}^{\dagger} = \vec{K}$) to be determined. First we demonstrate that such a $T\br{\dif \vx'}$ is unitary (\cref{eq:unitary_trans}),
+\[ T\br{\dif \vx'} = \mathbb{I} - i \ve{K} \cdot \dif \vx' \]
+Where $\ve{K} = \br{K_x, K_y, K_z}$ is a vetor operator that is Hermitian ($\ve{K}^{\dagger} = \ve{K}$) to be determined. First we demonstrate that such a $T\br{\dif \vx'}$ is unitary (\cref{eq:unitary_trans}),
 \begin{align*}
-T^{\dagger}\br{\dif \vx'} T\br{\dif \vx'} &= \br{\mathbb{I} + i \vec{K}^{\dagger} \cdot \dif \vx'}\br{\mathbb{I} - i \vec{K} \cdot \dif \vx'} \\
-&= \mathbb{I} + \underbrace{i \vec{K}^{\dagger} \cdot \dif \vx' - i \vec{K} \cdot \dif \vx'}_{0} + \cancelto{0}{\s{O}\br{\abs{\dif \vx'}^2}} \\
+T^{\dagger}\br{\dif \vx'} T\br{\dif \vx'} &= \br{\mathbb{I} + i \ve{K}^{\dagger} \cdot \dif \vx'}\br{\mathbb{I} - i \ve{K} \cdot \dif \vx'} \\
+&= \mathbb{I} + \underbrace{i \ve{K}^{\dagger} \cdot \dif \vx' - i \ve{K} \cdot \dif \vx'}_{0} + \cancelto{0}{\s{O}\br{\abs{\dif \vx'}^2}} \\
 &= \mathbb{I}
 \end{align*}
 Next we demonstrate additivity (\cref{eq:trans_add}),
 \begin{align*}
-T\br{\dif \vx''} T\br{\dif \vx'} &= \br{\mathbb{I} - i \vec{K} \cdot \dif \vx''}\br{\mathbb{I} - i \vec{K} \cdot \dif \vx'} \\
-&= \mathbb{I} - i \vec{K} \cdot \dif \vx'' - i \vec{K} \cdot \dif \vx' + \cancelto{0}{\s{O}\br{\abs{\dif \vx'}^2}} \\
-&= \mathbb{I} - i \vec{K} \cdot \br{\dif \vx'' + \dif \vx'} \\
+T\br{\dif \vx''} T\br{\dif \vx'} &= \br{\mathbb{I} - i \ve{K} \cdot \dif \vx''}\br{\mathbb{I} - i \ve{K} \cdot \dif \vx'} \\
+&= \mathbb{I} - i \ve{K} \cdot \dif \vx'' - i \ve{K} \cdot \dif \vx' + \cancelto{0}{\s{O}\br{\abs{\dif \vx'}^2}} \\
+&= \mathbb{I} - i \ve{K} \cdot \br{\dif \vx'' + \dif \vx'} \\
 &= T\br{\dif \vx'' + \dif \vx'}
 \end{align*}
-In order to illuminate the specific form of $\vec{K}$, we calculate the commutator $\bs{\vx, T\br{\dif \vx'}}$,
-\[ \vx \cdot T\br{\dif \vx'} \]
-
+In order to illuminate the specific form of $\ve{K}$, we calculate the commutator $\bs{\vx, T\br{\dif \vx'}}$,
+\begin{align*}
+\bs{\vx, T\br{\dif \vx'}} &= \bs{\vx, \mathbb{I} - i \ve{K}\cdot\dif\vx'} \\
+&= -i \vx \ve{K} \dif \vx' + i \ve{K} \dif \vx' \vx
+\end{align*}
+Choose $\dif \vx' = \dif x' \hat{x}_j$ and $\ve{K} \cdot \hat{x}_j = K_j$ where $\hat{x}_j$ is the unit vetor in the direction of one of the basis vectors.
+\[ \bs{\vx, T\br{\dif \vx'}} = -i \vx \ve{K} \dif \vx' + i \ve{K} \dif \vx' \vx \]
+Moreover $\bs{X_i, K_j} = 0$ whenever $i \neq j$.
+\[ -i x_j K_j + i K_j x_j = 1 \implies -i \bs{x_j, K_j} = 1 \implies \bs{x_j, K_j} = i \]
+Therefore,
+\[ \bs{x_i, K_j} = i \de_{ij} \implies \ve{K} = \f{1}{\hbar} \ve{p} \]
+Where $\ve{p}$ is the generator of infinitesimal translations,
+\[ \bs{x_i, p_j} = i \hbar \de_{ij} \]
+Such that,
+\[ T\br{\dif \vx'} = 1 - \f{i}{\hbar} \ve{p} \cdot \dif \vx' \]
+Calculate for a 1D system,
+\begin{align*}
+    T\br{\De x'}\ket{\psi} &= \br{1 - \f{i}{\hbar} p \De x'}\ket{\psi}\\
+    &= \int_{\R} \dif x' \br{1 - \f{i}{\hbar} p \De x'}\ket{x'}\braket{x'}{\psi}\\
+    &= \int_{\R} \dif x' T\br{\De x'}\ket{x'}\braket{x'}{\psi}\\
+    &= \int_{\R} \dif x'\ket{x' + \De x'}\braket{x'}{\psi}\\
+    &= \int_{\R} \dif x'\ket{x'}\braket{x' - \De x'}{\psi}
+\end{align*}
+Examine $\braket{x' - \De x'}{\psi}$,
+\begin{align*}
+    \braket{x' - \De x'}{\psi} \approx \braket{x'}{\psi} - \De x' \pder{}{x'}\braket{x'}{\psi}
+\end{align*}
+Therefore,
+\begin{align*}
+    T\br{\De x'}\ket{\psi} &= \int_{\R} \dif x'\ket{x'}\bs{\braket{x'}{\psi} - \De x' \pder{}{x'}\braket{x'}{\psi}} \\
+    &= \ket{\psi} - \De x' \int_{\R} \dif x'\ket{x'}\bs{ \pder{}{x'}\braket{x'}{\psi}} \\
+\end{align*}
+Which in turn implies that,
+\[ p \ket{\psi} = \int_{\R} \dif x'\ket{x'}\br{-i\hbar \pder{}{x'}}\braket{x'}{\psi} \]
+Since a given ket $\ket{\psi}$ can be written in \textit{any} basis or representation, we can transform $\ket{\psi}$ in the momentum basis. Recall the momentum eigenkets form a complete orthonormal set of states,
+\[ \ve{p} \ket{\ve{p}'} = \ve{p}'\ket{\ve{p}'} \qquad \braket{\ve{p}'}{\ve{p}''} = \de\br{\ve{p}' - \ve{p}''} \]
+Moreover we have the resolution of identity,
+\[ \mathbb{I} = \int \dif^3 p' \ket{\ve{p}'}\bra{\ve{p}'} \]
+Therefore we have that,
+\[ \ket{\psi} = \mathbb{I} \cdot \ket{\psi} = \int \dif^3 p' \ket{\ve{p}'}\braket{\ve{p}'}{\psi} \]
+So we define the wavefunction in momentum representation $\braket{\ve{p}'}{\psi} = \psi\br{\ve{p}'}$. We will now discover how to transform from $\psi\br{\ve{p}'}$ to $\psi\br{\ve{x}'}$ in 1D. By definition we have that,
+\[ \bramidket{x'}{p}{\psi} = - i \hbar \pder{}{x'} \braket{x'}{\psi} \]
+We now choose $\ket{\psi} = \ket{p'}$,
+\[ \bramidket{x'}{p}{p'} = - i \hbar \pder{}{x'} \braket{x'}{p'} \]
+But $\ket{p'}$ is an eigenket of $p$,
+\[ p'\braket{x'}{p'} = - i \hbar \pder{}{x'} \braket{x'}{p'} \]
+Therefore we have a differential equation for $f\br{x'} = \braket{x'}{p'}$,
+\[ p' f\br{x'} = - i \hbar \pder{f}{x'} \eq \label{eq:four_diff_eqn}\]
+Which has the well known solution,
+\[ f\br{x'} = \braket{x'}{p'} = N e^{\f{i}{\hbar}p'x'} \eq \label{eq:xp}\]
+Where $N$ is an arbitrary constant. To confirm \cref{eq:four_diff_eqn} check $\pder{f}{x'}$
+\[ \pder{f}{x'} = N \f{i}{\hbar}p'e^{\f{i}{\hbar}p'x'} = \f{i}{\hbar} p' f\br{x'}\]
+As a quick trick notice that,
+\[ \braket{x'}{x''} = \de\br{x' - x''} = \bramidket{x'}{\mathbb{I}}{x''} = \int \dif p' \braket{x'}{p'}\braket{p'}{x'} \]
+Substitute in \cref{eq:xp},
+\[ \de\br{x' - x''} = N^2 \int \dif p' e^{\f{i}{\hbar}p'x'}e^{-\f{i}{\hbar}p'x''} = N^2 \int \dif p' e^{\f{i}{\hbar}p'\br{x' - x''}} \]
+Recall a integral representation of the Dirac-delta function,
+\[ \f{1}{2\pi} \intl_{-\inf}^{\inf} e^{i kx}\dif k = \de\br{x}  \]
 \end{document}
