@@ -148,9 +148,6 @@ For question f), use the definition of $\vec{B}$ in terms of $\vec{A}$,
 Further, recall that if $\vec{E} = -\vdel V$, then by Stoke's theorem for some loop $\s{L}$,
 \[ V = - \int_{\s{L}} \dif \vec{\ell} \cdot \vec{E} \]
 
-
-\todo[TC]{Figure out O'Donovan}
-
 \section{Conservation Laws}
 Beginning with one of Maxwell's equations,
 \[ \vdel \times \vec{B} = \mu_0 \vec{J} + \mu_0 \ep_0 \pder{\vec{E}}{t} \]
@@ -215,8 +212,8 @@ As an illustrative example, consider a parallel plate capacitor with an electric
 \begin{tikzpicture}
     \coordinate (top) at (0,1);
     \coordinate (bot) at (0,-1);
-    \draw[thin] (top) ellipse (2 and 0.4);
-    \draw[thin] (bot) ellipse (2 and 0.4);
+    \draw[thick] (top) ellipse (2 and 0.4);
+    \draw[thick] (bot) ellipse (2 and 0.4);
     \draw[thick] (top) -- (0, 2) -- (3, 2) -- (3, -2) -- (0, -2) -- (bot);
     \draw[thick, green] (top) edge[<-] (bot);
     \draw[thick, green] (0.5, 1) edge[<-] node[midway, right]{$\vec{E}\br{t}$} (0.5, -1);
@@ -226,14 +223,32 @@ As an illustrative example, consider a parallel plate capacitor with an electric
     \draw[red] (1, -0.5) node[right]{$\vec{B}\br{t}$};
 \end{tikzpicture}
 \end{center}
-\todo[TC]{Draw this example.}
 We ave that the magnetic field points in the $\hat{\phi}$ direction, $\vec{B} = V \hat{\phi}$. The electric field $\vec{E} = E \hat{\zeta}$, and Poynting vector are $\vec{S} = S \hat{s}$. We have that the radiation through the surface $\s{S}$,
 \[ \int_{\s{S}} \dif \vec{a} \cdot \vec{S} = - \br{2 \pi a h} S \]
 Therefore $\pder{U}{t} = - \br{2 \pi a h} S$ corresponding to the amount of energy flowing out of the capacitor and therefore,
 \[ U = \intl_{0}^{\inf} \dif t \br{- 2 \pi a h S} = \f12 C V^2 \]
 
 \textbf{Ex 8.1}:
-\todo[TC]{Draw this figure}
+\begin{center}
+\begin{tikzpicture}
+    \pgfmathsetmacro\R{1} % Radius of cylinder
+    \coordinate (top) at (\R,0);
+    \coordinate (bot) at (-\R,0);
+    \coordinate (topshift) at (\R,\R);
+    % \draw[thick] (top) ellipse (0.2 and 1);
+    \draw[thick] (bot) ellipse (0.2 and 1);
+    \draw[thick, dashed] (\R, \R) arc [start angle=90, end angle=270, x radius=0.2, y radius=1];
+    \draw[thick] (\R, -\R) arc [start angle=-90, end angle=90, x radius=0.2, y radius=1];
+    \draw[thick, blue, <-] (0.5, -1.3) arc [start angle=-60, end angle=60, x radius=0.3, y radius=1.5];
+    \draw[thick, blue] (0.5, 1.3) node[right]{$\ve{B}$};
+    \draw[thick, dashed, red, fill, fill opacity=0.2] (0.5, 0) arc [start angle=0, end angle=360, x radius=0.2, y radius=1] node[left, fill opacity=1.0]{$\s{S}$};
+    \draw[thick] (\R, \R) -- (-\R, \R);
+    \draw[thick] (\R, -\R) -- (-\R, -\R);
+    \draw[thick] (top) -- (2, 0) -- (2, -2) -- (-2, -2) -- (-2, 0) -- (bot);
+
+    \draw[thick, green] (-0.7, -0.3) edge[->] node[below]{$\vec{J}$} (0.3, -0.3);
+\end{tikzpicture}
+\end{center}
 Inside the conductor the electric field moves parallel to its axis $\vec{E} = \f{V_0}{\ell} \hat{\zeta}$. The magnetic field is then given by,
 \[ \vdel \times \vec{B} = \mu_0 \ep_0 \pder{E}{t} + \mu_0 \vec{J} \]
 Integration over the surface $\s{S}$,
@@ -246,7 +261,7 @@ Moreover, the Poynting vector is given by,
 &= \f{1}{\mu_0} \f{V_0}{\ell} \hat{\zeta} \times \f{\mu_0 I}{2 \pi a} \hat{\phi} \\
 &= -\f{V_0 I}{2\pi a \ell}\hat{s}
 \end{align*}
-The
+Therefore the radiation flux,
 \[ \int_{\s{S}} \dif \vec{a} \cdot \vec{S} = -\f{V_0 I}{2 \pi a \ell} \int_{\s{S}} \dif a = - V_0 I \]
 Which is exactly the amount of Joule heating for a current $I$ though a wire with voltage $V_0$ across it. Using $V = I R$,
 \[ \int_{\s{S}} \dif \vec{a} \cdot \vec{S} = -I^2 R \]
