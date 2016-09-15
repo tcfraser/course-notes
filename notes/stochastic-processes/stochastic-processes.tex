@@ -159,22 +159,22 @@ This means the probabilistic properties of a DTMC are fully characterized by two
     \item Transition matrix $P$
 \end{enumerate}
 \subsection{Classification of States}
-\newcommand{\comm}[2]{#1 \leftrightarrow #2}
+\newcommand{\comm}{\leftrightarrow}
 \newcommand{\acc}[2]{#1 \to #2}
 
-State $j$ is \term{accessible} from state $i$ (denoted $\acc{i}{j}$) if there exists $n = 0, 1, \ldots$ such that $P^{(n)}_{ij} > 0$. Intuitively, one can transition from state $i$ to state $j$ in finite steps $n$ with positive probability. If $i$ is also accessible from $j$, then we say $i$ and $j$ \term{communication}, denoted as $\comm{i}{j}$.
-\[ \comm{i}{j} \Leftrightarrow \exists m, n \geq 0, P_{ij}^{(m)} > 0, P_{ji}^{(n)} > 0 \]
+State $j$ is \term{accessible} from state $i$ (denoted $\acc{i}{j}$) if there exists $n = 0, 1, \ldots$ such that $P^{(n)}_{ij} > 0$. Intuitively, one can transition from state $i$ to state $j$ in finite steps $n$ with positive probability. If $i$ is also accessible from $j$, then we say $i$ and $j$ \term{communicate}, denoted as ${i}\comm{j}$.
+\[ {i}\comm{j} \Leftrightarrow \exists m, n \geq 0, P_{ij}^{(m)} > 0, P_{ji}^{(n)} > 0 \]
 \begin{theorem}
-The binary communication relation ``$\comm{}{}$'' is in fact a equivalence relation:
+The binary communication relation ``${}{\comm}$'' is in fact a equivalence relation:
 \begin{itemize}
-    \item Reflexivity $\comm{i}{i}$
-    \item Symmetry $\comm{i}{j} \implies \comm{j}{i}$
-    \item Transitivity $\comm{i}{j}, \comm{j}{k} \implies \comm{i}{k}$
+    \item Reflexivity ${i}\comm{i}$
+    \item Symmetry ${i}\comm{j} \implies {j}\comm{i}$
+    \item Transitivity ${i}\comm{j}, {j}\comm{k} \implies {i}\comm{k}$
 \end{itemize}
 \end{theorem}
 \begin{proof}
 First, reflexivity is easy to prove by definition. Let $n = 0$ and recognize that $P^{(0)}_{ii}$ has a certain probability by definition,
-\[ P^{(0)}_{ii} = 1 \implies \comm{i}{i} \]
+\[ P^{(0)}_{ii} = 1 \implies {i}\comm{i} \]
 Second, symmetry follows by definition,
 \[ P_{ij}^{(m)} > 0, P_{ji}^{(n)} > 0 \Leftrightarrow P_{ji}^{(n)} > 0, P_{ij}^{(m)} > 0 \]
 Third, transitivity can be proving by letting $m$ and $n$ be the unknown quantifiers:
@@ -183,7 +183,7 @@ Then by the CK equation \cref{eq:ck_equation},
 \[ P^{(m+n)}_{ik} = \sum_{l \in S} P^{(m)}_{il}P^{(n)}_{lk} \]
 Let $l = j$ be a single, fixed entry in the summation,
 \[ P^{(m+n)}_{ik} \geq P^{(m)}_{ij}P^{(n)}_{jk} > 0 \]
-Therefore we have that $k$ is accessible from $i$ ($\acc{i}{j}$). Analogously we have that $\acc{i}{j}$ therefore $\comm{i}{k}$. \\
+Therefore we have that $k$ is accessible from $i$ ($\acc{i}{j}$). Analogously we have that $\acc{i}{j}$ therefore ${i}\comm{k}$. \\
 \end{proof}
 The communication equivalence relations then divides the state space $S$ into different equivalence classes. That is, the states in one class comm with each other; the states in different classes do not comm. The equivalent classes form a \textit{partition} of the state space $S$. \\
 
@@ -251,15 +251,16 @@ Additionally, if $P_{ii}^{n} = 0$ holds for all $n > 0$, we say that $d\br{i} = 
 The period of a state is useful do to the following theorem,
 
 \begin{theorem}
-The period of a state is a class property. If $\comm{i}{j}$, then $d\br{i} = d\br{j}$.
+\label{thm:period_class_prop}
+The period of a state is a class property. If ${i}\comm{j}$, then $d\br{i} = d\br{j}$.
 \end{theorem}
 
 \begin{proof}
-If $i = j$ we are already done. If $i \neq j$, since $\comm{i}{j}$, then $\exists n, m$ such that,
+If $i = j$ we are already done. If $i \neq j$, since ${i}\comm{j}$, then $\exists n, m$ such that,
 \[ P_{ij}^{n} > 0 \quad P_{ji}^{m} > 0 \]
 Then for any $l$ such that $P^{l}_{jj} > 0$,
 \[ P_{ii}^{n+m+l} \geq P_{ij}^{n}P_{jj}^{l}P_{ji}^{m} \eq \label{eq:period_class_prop_2} \]
-Because $P_{ij}^{n}P_{jj}^{l}P_{ji}^{m}$ happens to be a specific way for $P_{ii}^{n+m+l}$ to occur. Since $\comm{i}{j}$ and $l$ was chosen carefully,
+Because $P_{ij}^{n}P_{jj}^{l}P_{ji}^{m}$ happens to be a specific way for $P_{ii}^{n+m+l}$ to occur. Since ${i}\comm{j}$ and $l$ was chosen carefully,
 \[ P_{ii}^{n+m+l} > 0 \]
 Moreover, we also have that,
 \[ P_{ii}^{n+m} \geq P_{ij}^{n}P_{ji}^{m} \eq \label{eq:period_class_prop_1}\]
@@ -292,9 +293,103 @@ Evidently $P_{00} = 0$ but we have $d\br{0} = 1$ because $d\br{0} = \gcd\bc{2,3,
 \end{remark}
 
 \begin{remark}
-If the MC is irreducible (having only one class) then all the states have the same period. In this case we ascribe the entire MC the period $d\br{i}$ where $ i \in S$.
+If the MC is irreducible (having only one class) then all the states have the same period. In this case we ascribe the entire MC the period $d\br{i}$ for some representative $ i \in S$.
 \end{remark}
 
+\subsection{Recurrence and Transience}
+For $n \in \Z^{+}$ define,
+\[ f_{ij}^{(n)} = P \br{X_n = j, X_{n-1} \neq j, \cdots, X_{1} \neq j \mid X_O = i} \quad \forall i,j \in S \]
+Intuitively, $f_{ij}^{(n)}$ is the probability that $X$ visits state $j$ at time $n$ for the first time since $X_0 = i$. A looming question: What is the relation between $f_{ij}^{(n)}$ and $P_{ij}^{(n)}$? First notice that,
+\[ P_{ij}^{(n)} \geq f_{ij}^{(n)} \]
+These reads: the probability that $X$ visits $j$ at time $n$ is more larger that the probability that $X$ visits $j$ at time $n$ provided it did not visit $j$ prior. A more detailed equality is the following,
+\[ P_{ij}^{(n)} = \sum_{k = 1}^{n} f_{ij}^{(k)}P_{jj}^{(n-k)} \eq \label{eq:recurrence_form}\]
+Expanded out gives,
+\[ P_{ij}^{(n)} = f_{ij}^{(n)} + \sum_{k = 1}^{n-1} f_{ij}^{(k)}P_{jj}^{(n-k)} \]
+\begin{proof}
+\begin{align*}
+P_{ij}^{(n)} & = P\br{X_n = j \mid X_0 = i} \\
+& = \sum_{k=1}^{n} P\br{X_n = j, \text{$X$ first visits $j$ at time $k$} \mid X_0 = i} \\
+& = \sum_{k=1}^{n} P\br{X_n = j, \mid \text{$X$ first visits $j$ at time $k$}, X_0 = i} \cdot P\br{\text{$X$ first visits $j$ at time $k$} \mid X_0 = i} \\
+& = \sum_{k=1}^{n} P\br{X_n = j, \mid X_k = j, X_{k-1} \neq j, \ldots, X_{1} \neq j, X_0 = i} \cdot P\br{X_k = j, X_{k-1} \neq j, \ldots, X_{1} \neq j \mid X_0 = i} \\
+& = \sum_{k=1}^{n} P\br{X_n = j, \mid X_k = j, X_{k-1} \neq j, \ldots, X_{1} \neq j, X_0 = i} \cdot f_{ij}^{(k)} \\
+& = \sum_{k=1}^{n} P\br{X_n = j, \mid X_k = j} \cdot f_{ij}^{(k)} \note{Markov Condition} \\
+& = \sum_{k=1}^{n} P^{(n-k)}_{jj} \cdot f_{ij}^{(k)}
+\end{align*}
+\end{proof}
+In fact \cref{eq:recurrence_form} defines a recurrence relation to compute $f_{ij}^{(n)}$ from $f_{ij}^{(k)}$ where $k < n$,
+\[ f_{ij}^{(n)} = P_{ij}^{(n)} - \sum_{k=1}^{n-1} f_{ij}^{(k)} P_{jj}^{(n+k)} \]
+We now define $f_{ij}$ \textit{without} the superscript to be,
+\[ f_{ij} = \sum_{n=1}^{\inf} f_{ij}^{(n)} \]
+The probability that $X$ will \textit{ever} reach state $j \in S$ provided it started at $i$ ($f_{ij} \leq 1$). Whether or not $f_{ij}$ is certain or not defines the following two properties.\\
 
+A state $i$ is called \term{transient} if $f_{ii} < 1$; and \term{recurrent} if $f_{ii} = 1$. Intuitively, $f_{ii}$ is the probability the MC returns to state $i$ given it started in state $i$. If $i$ is transient, then there is a non-negative probability that the MC does not return to $i$ and if $f_{ii} = 1$ then the MC always returns to state $i$.\\
 
+Another way to characterize recurrence and transience: Define $M_i$ to be the total number of times the MC (re)visits $i$ after time $0$. In more mathematical terms,
+\[ M_i = \sum_{n=1}^{\inf} \mathbb{I}_{\bs{X_n = i}} \]
+Where $\mathbb{I}_{\bs{X_n = i}}$ is the indicator defined by,
+\[ \mathbb{I}_{\bs{X_n = i}} = \begin{cases}
+    1 & X_n = i \\
+    0 & X_n \neq i
+\end{cases} \]
+If $f_{ii} < 1$ we have that the probability of visiting state $i$ $k$ times is given by,
+\begin{align*}
+    P\br{M_i = k \mid X_0 = i} &= \underbrace{f_{ii} \cdot f_{ii} \cdots f_{ii}}_{k}\underbrace{\br{1 - f_{ii}}}_{\text{never return}}
+\end{align*}
+Where $\br{1 - f_{ii}}$ is necessary because it guarantees that we never return to state $i$ more that $k$ times. Given $X_0 = i$, $M_i$ follows a geometric distribution with parameter $\br{1 - f_{ii}}$. Thus,
+\[ \mathbb{E}\br{M_i \mid X_0 = i} = \f{f_{ii}}{1 - f_{ii}} < \inf \]
+Therefore if $i$ is transient, there a finite number revisits are expected. In contrast if $f_{ii} = 1$ we have that,
+\[ \mathbb{E}\br{M_i \mid X_0 = i} = \lim_{f_{ii} \to 1}\f{f_{ii}}{1 - f_{ii}} \to \inf \]
+Alternatively, we can look at $\mathbb{E}\br{M_i \mid X_0 = i}$ as,
+\[ \mathbb{E}\br{M_i \mid X_0 = i} = \sum_{k=1}^{\inf} P\br{M_i \geq k \mid X_0 = i} \eq \label{eq:Mgeqk}\]
+The proof of \cref{eq:Mgeqk} is left as an exercise to the reader. Clearly if $f_{ii} = 1$,
+\[ P\br{M_i \geq k \mid X_0 = i} = {f_{ii}}^k = 1 \quad \forall k \eq \label{eq:mmmm}\]
+Therefore,
+\[ \mathbb{E}\br{M_i \mid X_0 = i} = \sum_{k=1}^{\inf} 1 = \inf\]
+\begin{theorem}
+Therefore $i$ is recurrent if and only if $P\br{M_i \geq k \mid X_0 = i} = \inf$ and $i$ is transient if and only if only if $P\br{M_i \geq k \mid X_0 = i} < \inf$.
+\end{theorem}
+\begin{remark}
+We actually also have that $i$ is recurrent if and only if $M_i = \inf$. This can be seen from \cref{eq:mmmm}. Since $P\br{M_i \geq k \mid X_0 = i}$ is strictly positive for all $k$, then $M_i = \inf$. Analogously, we have that $i$ is transient if and only if $M_i < \inf$.
+\end{remark}
+Yet \textit{another} way to characterize recurrence and transience is much more tractable. First,
+\begin{theorem}
+    The expectation of the indicator is given by $\mathbb{E}\br{\mathbb{I}_{A}} = P\br{A}$ for any event $A$.
+\end{theorem}
+Therefore,
+\begin{align*}
+\mathbb{E}\br{M_i \mid X_0 = i} &= \mathbb{E}\br{\sum_{n=1}^{\inf} \mathbb{I}_{\bs{X_n = i}} \mid X_0 = i} \\
+&= \sum_{n=1}^{\inf}\mathbb{E}\br{ \mathbb{I}_{\bs{X_n = i}} \mid X_0 = i} \note{Fubini's Theorem} \\
+&= \sum_{n=1}^{\inf}P\br{ X_n = i \mid X_0 = i}\\
+&= \sum_{n=1}^{\inf}P_{ii}^{(n)}
+\end{align*}
+Thus $i$ is recurrent if and only if $\sum_{n=1}^{\inf}P_{ii}^{(n)} = \inf$ and $i$ is transient if and only if $\sum_{n=1}^{\inf}P_{ii}^{(n)} < \inf$.\\
+
+\begin{theorem}
+Recurrence/transience are class properties. If $i \comm j$ and $i$ is recurrent, then $j$ is recurrent.
+\end{theorem}
+\begin{proof}
+    Since $i \comm j$, $\exists m,n \geq 0$ such that,
+    \[ P_{ij}^{(m)} > 0 \qquad P_{ji}^{(n)} > 0 \]
+    We now what to show that $\sum_{s=1}^{\inf}P_{jj}^{(s)}$ is infinite,
+    \[ \sum_{s=1}^{\inf}P_{jj}^{(s)} \geq \sum_{s=n+m+1}^{\inf}P_{jj}^{(s)} \]
+    Now exchange of variables $l = s- n-m$,
+    \[ \sum_{s=1}^{\inf}P_{jj}^{(s)} \geq \sum_{l=1}^{\inf}P_{jj}^{(n+l+m)} \]
+    Then by the \cref{eq:ck_equation},
+    \[ \sum_{l=1}^{\inf}P_{jj}^{(n+l+m)} \geq  \sum_{l=1}^{\inf}P_{ji}^{(n)}P_{ii}^{(l)}P_{ij}^{(m)} = P_{ji}^{(n)}P_{ij}^{(m)}\bc{\sum_{l=1}^{\inf}P_{ii}^{(l)}} \]
+    But since $i$ is recurrent, $\sum_{l=1}^{\inf}P_{ii}^{(l)} = \inf$. Also, $P_{ji}^{(n)}P_{ij}^{(m)} > 0$ by the choice of $m,n$. Therefore $\sum_{l=1}^{\inf}P_{jj}^{(n+l+m)} = \inf$ and thus $\sum_{s=1}^{\inf}P_{jj}^{(s)} = \inf$. Therefore $j$ is also recurrent.
+\end{proof}
+\begin{corollary}
+    If $i \comm j$ and $i$ is transient, then $j$ is transient.
+\end{corollary}
+As a result, if we know that if a MC is irreducible (admitting only one class), then either all states are transient or they are all recurrent. Also, it is \textit{impossible} for all states to be transient if the state space $S$ is finite. If all states are transient then each state $i \in S$ has a time $k$ that is the \textit{last} visit time for all states, this is impossible because $P_{ij} \neq 0$ for at least some choice $i,j \in S$.
+\begin{theorem}
+    If $i$ is recurrent, and $i$ does not communicate with $j$, then $P_{ij} = 0$.
+\end{theorem}
+\begin{proof}
+    Proof by contradiction. Assume that $P_{ij} > 0$. Since $i$ and $j$ do not communicate, then either $j$ is not accessible from $i$ or vice versa. But if $P_{ij}>0$ then $j$ is accessible from $i$. It must be that $i$ is not accessible from $j$. Recall that $f_{ii}$ is the probability that the MC ever revisits the state $i$ given the starting state was $i$. Therefore $1 - f_{ii}$ is the probability that the MC never revisits state $i$.
+    \[ f_{ii} \leq 1 - P_{ij} < 1 \]
+    This inequality holds because if $X_1 = j$ then the MC never revisits $i$ ($i$ is not accessible from $j$). But there are other ways it never revisits $i$. Therefore,
+    \[ P\br{X_1 = j \mid X_0 = i} = P_{ij} \leq P\br{\text{MC never revisits $i$} \mid X_0 = i} \]
+    But if $f_{ii} < 1$, then $i$ is not recurrent; it is transient. Therefore the assumption that $P_{ij} > 0$ is wrong; $P_{ij} = 0$.
+\end{proof}
 \end{document}
