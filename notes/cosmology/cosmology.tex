@@ -106,6 +106,10 @@ Even larger, there are super clusters or voids. These objects are large regions 
 
 Looking at the Universe in other wavelengths ($\ga$/X-ray, UV, IR, $\mu$-waves, radio) allows one to view features that are not visible in the optical spectrum. To see the universe in shorter wavelengths like $\ga$/X-ray, UV, we have had to build telescopes outside the earth's atmosphere. Although many things can be learned from making observations in each spectrum, the $\mu$-waves spectrum is of particular importance to cosmology. \\
 
+\begin{center}
+    \includegraphics[width=.6\textwidth]{figures/Planck_CMB.jpg}
+\end{center}
+
 The \textbf{Cosmic Microwave Background (CMB)} was first discovered by Penzias \& Wilson in 1965 by accident. If the universe is expanding, then at some point in the past hot media would have emitted radiation and cooled to much lower temperatures. The CMB is a isotropic source of radiation that is at a temperature,
 \[ T\tsb{CMB} = \SI{2.725 \pm 0.001}{\K} \]
 Which was first measured in 1992 by COBE-FIRAS. Recall the blackbody spectrum,
@@ -140,4 +144,84 @@ Moreover X-rays are much more energetic than optical light rays,
 The typical temperature of an X-ray is $T\tsb{X} \approx \SI{1e7}{\K}$ which is great for studying clusters of galaxies because most of a clusters mass is in plasma and $T\tsb{plasma} \approx T\tsb{X}$. Clusters are excellent cosmic labs because they are so dense. In fact, our first evidence for dark matter came from studying galaxy clusters via X-rays. \\
 
 Radiowaves are also useful for cosmology because the transition of an electron in a neutral hydrogen atom from spin up to spin down emits weak energy emissions around $\SI{21}{\cm}$. The precision of radiowaves allows one to measure speeds of cosmic bodies by examining shifts in the $\SI{21}{\cm}$ spectrum. The CHIME project is an up-and-coming radiowave telescope.
+
+\subsubsection{Matter in The Universe}
+
+Most of the matter in the universe is made up of particles (with the potential notable exception of dark matter). In truth, the modern perspective on matter is an emergent phenomena of quantum \textit{fields}. From Einstein, we have that,
+\[ E^2 = p^2 c^2 + m^2 c^4 \]
+Where $E$ is the energy of the particle, $p$ is the momentum and $m$ is the rest mass. If $p \ll m c$ we can take the non-relativistic limit $v = \f{p}{m} \ll c$,
+\[ E = \sqrt{p^2 c^2 + m^2 c^4} = mc^2 + \f{1}{2}\f{p^2}{m} + \mathcal{O}\br{m c^2 \f{p^4}{m^4 c^4}} \]
+Clearly $\f{1}{2}\f{p^2}{m}$ refers to the standard classical kinetic energy. Higher order corrections to these formulas typically are on the order of $\mathcal{O}\br{c^{-2}}$. On the other hand, for relativistic particles we have that $E \approx pc$ when $v \approx c$. To retain generality, we define the velocity of a particle to be,
+\[ \ve{v} = \f{\ve{p}c^2}{E} \]
+Here is a breakdown of the contents of the universe: \\
+\textbf{Cosmic Content:}
+\begin{itemize}
+    \item $\%4$ -- baryons/leptons (protons $m\tsb{p} c^2 \approx \SI{}{\giga\eV}$ and electrons $m\tsb{e} c^2 \approx \SI{0.5}{\mega\eV}$)
+    \item $\%0.004$ -- radiation (photons $m_{\ga}c^2 = 0$ and neutrinos $m_{\nu}c^2 \approx \SI{0.1}{\eV}$)
+    \item $\%25$ -- dark matter (clumpy)
+    \item $\%70$ -- dark energy (smooth)
+\end{itemize}
+The main interactions in the universe are due to photons scattering off of free electrons (\term{Thomas Scattering}) and also weakly interacting neutrinos. We have relative densities,
+\[ \rho_{\ga} \approx \rho_{\nu} \approx 10^{-3} \rho_{b} \]
+\[ n_{\ga} \approx n_{\nu} \approx 10^{9} n_{b} \]
+
+
+\subsection{Hubble Law}
+
+The Hubble law (discovered by Hubble) shows that nebulae at further and further distances are moving \textit{away} from us faster and faster. Hubble measured distances (using variable stars) and velocities of spiral nebulae using their Doppler shift (galaxies) using and obtained the following result:
+\begin{center}
+    \includegraphics{figures/hubble.jpg}
+\end{center}
+\[ v_{r} = H r \]
+Where $r$ is the distance to the object, $v_{r}$ is the radial velocity of that object and $H$ is a constant known as \term{Hubble's Constant}. Hubble's constant has numerical value,
+\[ H = 100 \cdot h \SI{}{\km \per \s \per \mega\pc} \]
+Where is a dimensionless number measured to an accuracy $h = \SI{0.68\pm0.02}{}$.
+To measure velocities, Hubble used the Doppler shift,
+\[ 1+ z = \f{\la\tsb{obs}}{\la\tsb{emit}} = \f{1 + \f{v}{c}}{1 - \f{v}{c}} \]
+Where $z$ is called the \term{Redshift} and $v$ is the radial velocity of the object.\footnote{In fact, in a homogeneous universe, the only motion is radial.} As a first order approximation in small $v$,
+\[ 1 + z = 1 + \f{v}{c} + \mathcal{O}\bs{\br{\f{v}{c}}^2} \]
+In the other limiting case, as $v \to c$, we have that ${\la\tsb{obs}}/{\la\tsb{emit}} \to \inf$ which makes $z \to \inf$.\\
+
+To characterize deviations from Hubble's law, we define the peculiar velocity to be,
+\[ \ve{v}_p = \ve{v} - H \ve{r} \]
+Where it is typical to have $\ba{v_p^2}^{1/2} \approx \SI{400}{\km\per\s}$. Hubble's law was one of the first indications for the Big-Bang. It fact the time since the big bang is approximately,
+\[ t\tsb{big bang} = \f{1}{H} \approx \SI{14}{\giga\yr} \]
+Hubble's law gives us a picture of the kinematics of the universe.
+
+\section{Newtonian Cosmology}
+
+Now that we have a rough idea of the contents and kinematics of our universe, we shall start to study the dynamics of the universe. In doing so, we will approach an obstacle; as we look at farther and farther objects, Hubble's law dictates that these objects are moving faster and faster. At some point these objects are moving \textit{faster} than the speed of light. As such, in order to do justice to Cosmology, one should study it through the lens of general relativity.\\
+
+Despite this, we can take a shortcut ($\Phi_N = - {GM}/{r}$).
+\[ \abs{\Phi_{N}}, v^2 \ll c^2 \quad \text{vs.}\quad \abs{\Phi_{N}}, v^2 \approx c^2 \]
+To study local properties of the universe, it is sufficient to use Newtonian physics. Of course, global properties require a relativistic treatment. As such we will first focus on Newtonian Cosmology.\\
+
+Consider two spherical\footnote{Objects that are not spherical exhibit deviations from \cref{eq:next_grav} known as \term{tidal forces}.} masses $M$ and $m$ and the force between them,
+\[ F = \f{G M m}{r^2} \eq \label{eq:next_grav} \]
+As well as the potential energy,
+\[ V = m \Phi_N = -\f{GMm}{r} \]
+Another thing of note is that masses are always positive $m \geq 0$. To contrast Newton, the most important equation in Cosmology is the \term{Friedmann equation}. If the universe is homogeneous we can pick a generic point to be the origin for the universe and define a ball of radius $r$ (growing at rate $\dot{r}$) around this point enclosing a mass $M = \f43 \pi r^3 \rho$. By conservation of energy,
+\begin{align*}
+U &= T + V = \text{const.} \\
+&= \f{1}{2} m \dot{r}^2 - \f{GMm}{r} \\
+&= \f{1}{2} m \dot{r}^2 - \f43 \pi \rho G m r^2 \eq \label{eq:conser_fried_eq}
+\end{align*}
+Next define a \term{co-moving} coordinate $\ve{x}$ such that $\ve{r}\br{\ve{x}, t} = a\br{t} \ve{x}$. For each particle at $\ve{x}$, as the universe expands, $\ve{x}$ follows the location of the particle. The physical coordinate of the particle is $\ve{r}$ and the relevant dimensionless scale factor is $a\br{t}$. These concepts hold for all ``origins'' provided that the universe is homogeneous and isotropic. Substituting the co-moving coordinate into \cref{eq:conser_fried_eq} yields the Friedmann equation,
+\[ \br{\f{\dot{a}}{a}}^2 = \f{8 \pi G}{3} \rho_b - \f{k c^2}{a^2} \eq \label{eq:friedmann_equation} \]
+Where $k$ is defined such that,
+\[ k c^2 = - \f{2 U\br{x}}{m x^2} \]
+In order for the universe to remain homogeneous, it must be that $k$ does not depend on $x$. Therefore $k$ is a constant in a homogeneous universe. By dimensional analysis on \cref{eq:friedmann_equation} it can be seen that $k$ has dimensions $\text{length}^{-2}$. In general relativity $k$ becomes the curvature of the space. Intuitively, a homogeneous universe has the same curvature everywhere. \\
+
+One misconception associated with the expansion of the universe is that \textit{everything} in the universe is expanding. However, object that are close enough can be bound together by interactions in various fields. As such, the expansion of the universe has little to no observable affect on local objects like planets or people or galaxies. \\
+
+\subsection{Solving the Friedmann Equation}
+
+Solving the Friedmann equation corresponds to solving \cref{eq:friedmann_equation} together with the \term{fluid equation}. The fluid equation comes from the first law of thermodynamics ($\dif E + p \dif V = T \dif S = 0$), which translates to,
+\[ E = \pi a^3 x^3 \rho c^2 \qquad V = \f43 \pi a^3 x^3 \]
+Which gives the continuity equation,
+\[ \dot{\rho} + \f{3\dot{a}}{a} \br{\rho + \f{P}{c^2}} = 0 \eq \label{eq:fluid}\]
+Where the pressure $P\br{\rho}$ is determined by the equation of state. Combining \cref{eq:fluid} and \cref{eq:friedmann_equation} gives,
+\[ \f{\ddot{a}}{a} = - \f{4 \pi G}{3} \br{\rho + \f{3P}{c^2}} \]
+Which is a relativistic manifestation of Newton's law. The difference being the term term involving pressure $P$.
+
 \end{document}
