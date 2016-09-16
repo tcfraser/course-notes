@@ -2,8 +2,6 @@
 
 \usepackage{coursenotes}
 
-\usepackage{tikz-3dplot}
-
 \set{AuthorName}{TC Fraser}
 \set{Email}{tcfraser@tcfraser.com}
 \set{Website}{www.tcfraser.com}
@@ -167,7 +165,7 @@ Where $L$ is the self-inductance of the solenoid.
 
 \section{Poynting's Theorem}
 First we begin with two of Maxwell's equations,
-\[ \vdel \times \vec{E} = - \pder{B}{t} \eq \label{eq:poyn_max_1}\]
+\[ \vdel \times \vec{E} = - \pder{\ve B}{t} \eq \label{eq:poyn_max_1}\]
 \[ \vdel \times \vec{B} = \mu_0 \vec{J} + \mu_0 \ep_0 \pder{\vec{E}}{t} \eq \label{eq:poyn_max_2}\]
 Computing the inner product between \cref{eq:poyn_max_1} and $\vec{B}$, and the inner product between \cref{eq:poyn_max_2} and $\vec{E}$ and taking a difference,
 \[ \vec{B} \cdot \br{\vdel \times \vec{E}} - \vec{E} \cdot \br{\vdel \times \vec{B}} = - \pder{}{t}\br{\f{\ep_0}{2} E^2 + \f{1}{2 \mu_0} B^2} = \mu_0 \vec{E} \cdot \vec{J}\]
@@ -265,7 +263,50 @@ Therefore the radiation flux,
 \[ \int_{\s{S}} \dif \vec{a} \cdot \vec{S} = -\f{V_0 I}{2 \pi a \ell} \int_{\s{S}} \dif a = - V_0 I \]
 Which is exactly the amount of Joule heating for a current $I$ though a wire with voltage $V_0$ across it. Using $V = I R$,
 \[ \int_{\s{S}} \dif \vec{a} \cdot \vec{S} = -I^2 R \]
-
+\textbf{Ex 8.2 (Griffiths Problem 8.13):}
+A long thin solenoid of radius $a$ has a time dependent current $I_{s}\br{t}$ flowing around it. Encircling the solenoid is a ring of radius $b$ with current $I_{r}\br{t}$ ($b \gg a$) passing through it. The ring has resistance $R$. There is an induced electro-motive-force in the ring due to the solenoid,
+\[ \s{E} = - \dot{\Phi}_S = - \pder{}{t}\br{\pi a^2 B_S} \]
+Where $B_s = \mu_0 n I_s$. The EMF $\s{E}$ must also equal $\s{E} = I_r R$. Therefore,
+\[ I_r = - \f{1}{R}\br{\mu_0 \pi a^2 n}\dot{I}_S \]
+In order to calculate the electric and magnetic fields just outside solenoid, recognize that $\ve B_s = B_s\br{t} \hat{z}$ point along the axis of the solenoid. Similarly recognize that $\ve E = E \hat{\phi}$. Therefore the Poynting vector is given by,
+\[ \ve S = \f{1}{\mu_0} \ve E \times \ve B_s = \f{1}{\mu_0} E B_{s} \hat{s} = ? \]
+We first need to calculate $\ve E$ and $\ve B_s$. The magnetic field is known to be $\ve B = \mu_0 n I_s \hat{z}$ on axis and $\vdel \times \ve E = - \pder{\ve B}{t}$,
+\[ \int \dif \ve a \cdot \vdel \times \ve E = - \der{}{t} \int \dif \ve a \cdot \ve B \]
+\[ \int \dif \ve \ell \cdot \ve E = - \dot \Phi = 2 \pi a E \]
+Which gives,
+\[ \ve E = \f{\dot \Phi}{2\pi a}\hat{\phi} \]
+The magnetic field off axis and outside the solenoid due to the ring is given by,
+\[ \dif \ve B_r \br{s} = \f{\mu_0 I}{4 \pi} \f{\dif \ve \ell \times \ve \rcurs}{\rcurs^2} \]
+Where $\ve \rcurs = \ve r - \ve r'$ and we take $\ve r ' = b \hat s '$ and $\ve r = z \hat z$.
+\[ \ve \rcurs = z \hat z - b \hat s' \]
+We will take the infinitesimal loop to be $\dif \ve \ell = b\dif \phi'\hat \phi'$.
+\begin{align*}
+\dif \ve \ell \times \ve \rcurs &= \br{b \hat \phi' \dif \hat \phi'}\times\br{z\hat z - b \hat s '} \\
+&= a z \dif \phi' \hat s' + b^2 \dif \phi' \hat z
+\end{align*}
+We integrating around the loop $\s{L}$, all of the contributions in the $\hat{s}'$ directions will cancel out.
+\[ \int_{\s{L}} \dif \ve \ell \times \ve \rcurs = \cdots \]
+Thus,
+\begin{align*}
+\ve B_r &= \f{\mu_0 I_r}{4\pi} \int \f{b^2 \dif \phi' \hat z}{\br{z^2 + b^2}^{3/2}} \\
+&= \f{\mu_0 I_r b^2 2 \pi \hat z}{4\pi \br{z^2 + b^2}^{3/2}} \\
+&= \f{\mu_0 b^2}{2\br{z^2 + b^2}^{3/2}}I_r\hat z
+\end{align*}
+Therefore the Poynting vector points radial outward,
+\begin{align*}
+\ve S &= \f{1}{\mu_0}\ve E_r \times \ve B_r \\
+&= \f{1}{\mu_0}\br{\f{\pi a^2 \mu_0 n \dot I_s}{2 \pi a} \hat \phi} \times \br{\f{\mu_0 b^2}{2\br{z^2 + b^2}^{3/2}}I_r\hat z} \\
+&= \f{\mu_0}{4} a n \dot I_s \f{b^2}{\br{z^2 + b^2}^{3/2}} I_r \hat{s}
+\end{align*}
+Now that the Poynting vector is known, one can calculate the power radiated from the system.
+\begin{align*}
+P &= \int \dif \ve a \cdot \ve S \\
+&= \f{\mu_0}{4} a n \dot I_s I_r b^2 \int \dif z a \dif \phi \hat s \cdot \f{1}{\br{z^2 + b^2}^{3/2}} \hat{s} \\
+&= \f{\mu_0}{4} a n \dot I_s I_r b^2 \br{2 \pi a} \int \dif z \f{1}{\br{z^2 + b^2}^{3/2}} \\
+&= \f{\mu_0}{4} a n \dot I_s I_r b^2 \br{2 \pi a} \f{2}{b^2} \note{Integral Table} \\
+&= \mu_0 \pi a^2 n \dot I_s I_r
+\end{align*}
+But we know that $\mu_0 \pi a^2 n \dot I_s = - I_r R$. Therefore $P = - I_r^2 R$ as expected.
 
 
 \end{document}

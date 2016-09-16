@@ -74,7 +74,7 @@ Therefore eigenkets of Hermitian operators are orthogonal (or can at least be or
 In summary, the set of eigenkets of any Hermitian operator forms a complete orthonormal set of states. Effectively, the set of eigenkets form a basis for the Hilbert space. Consequently, we can write any ket $\ket{\psi}$ in terms of the eigenkets for any Hermitian operator $A$
 \[ \ket{\psi} = \sum_{a'} C_{a'} \ket{a'} \eq \label{eq:complete_basis}\]
 Where $C_{a'} \in \C$ are uniquely defined through acting with the dual eigenket $\bra{a''}$,
-\[ \braket{a''}{\psi} = \sum_{a'} C_{a'} \braket{a''}{a'} = \sum_{a'} C_{a'} \de_{a'', a'} = C_{a''} \implies C_{a'} = \braket{a'}{\psi} \]
+\[ \braket{a''}{\psi} = \sum_{a'} C_{a'} \braket{a''}{a'} = \sum_{a'} C_{a'} \de_{a'', a'} = C_{a''} \implies C_{a'} = \braket{a'}{\psi} \eq \label{eq:coeff_determine}\]
 Physically, the coefficient $C_{a'}$ is called a \textit{probability amplitude}. When a given system is in state $\ket{\psi}$, the probability of measuring the value $a'$ when making the observation or measurement $A$ is given by the square modulus of $C_{a'}$,
 \[ P_{A}\br{a'} = \abs{\braket{a'}{\psi}}^2 \]
 We now have the luxury of re-writing \cref{eq:complete_basis} as a spectral decomposition,
@@ -172,6 +172,7 @@ Where $\ve{p}$ is the generator of infinitesimal translations,
 \[ \bs{x_i, p_j} = i \hbar \de_{ij} \]
 Such that,
 \[ T\br{\dif \vx'} = 1 - \f{i}{\hbar} \ve{p} \cdot \dif \vx' \]
+\subsection{Transformations Between Position and Momentum Representations}
 Calculate for a 1D system,
 \begin{align*}
     T\br{\De x'}\ket{\psi} &= \br{1 - \f{i}{\hbar} p \De x'}\ket{\psi}\\
@@ -212,7 +213,75 @@ Where $N$ is an arbitrary constant. To confirm \cref{eq:four_diff_eqn} check $\p
 As a quick trick notice that,
 \[ \braket{x'}{x''} = \de\br{x' - x''} = \bramidket{x'}{\mathbb{I}}{x''} = \int \dif p' \braket{x'}{p'}\braket{p'}{x'} \]
 Substitute in \cref{eq:xp},
-\[ \de\br{x' - x''} = N^2 \int \dif p' e^{\f{i}{\hbar}p'x'}e^{-\f{i}{\hbar}p'x''} = N^2 \int \dif p' e^{\f{i}{\hbar}p'\br{x' - x''}} \]
+\[ \de\br{x' - x''} = N^2 \int \dif p' e^{\f{i}{\hbar}p'x'}e^{-\f{i}{\hbar}p'x''} = N^2 \int \dif p' e^{\f{i}{\hbar}p'\br{x' - x''}} \eq \label{eq:delta_x_working}\]
 Recall a integral representation of the Dirac-delta function,
-\[ \f{1}{2\pi} \intl_{-\inf}^{\inf} e^{i kx}\dif k = \de\br{x}  \]
+\[ \f{1}{2\pi} \intl_{-\inf}^{\inf} e^{i kx}\dif k = \de\br{x} \eq \label{eq:def_dirac_delta} \]
+Comparing \cref{eq:delta_x_working,eq:def_dirac_delta} (and using $\mu_0 \pi a^2 n \dot I_s$) we have that,
+\newcommand{\stpih}{{\sqrt{2\pi\hbar}}}
+\[ N^2 = \f{1}{2 \pi \hbar} \implies N = \f{1}{\stpih} \]
+This we have that,
+\[ \braket{x'}{p'} = \f1\stpih e^{\f{i}{\hbar} p' x'} \eq \label{eq:plane_wave} \]
+Which refers to the usual plane wave wavefunction. Alternatively, one can obtain this result from the Schrodinger Equation $H \psi = E \psi$ and using a free Hamiltonian $H = \f{p^2}{2m} = - \f{\hbar^2 \dif^2}{2m \dif x^2}$
+Generalizing \cref{eq:plane_wave} to more than one dimension gives (say 3 dimensions),
+\[ \braket{\ve x'}{\ve p'} = \f1{\br{2 \pi \hbar}^{3/2}} e^{\f{i}{\hbar} \ve p'\cdot \ve x'} \]
+This result allows us to convert from the momentum representation $\psi\br{\ve p'}$ to the position representation $\psi\br{\ve x'}$ and backward,
+\begin{align*}
+    \braket{x'}{\psi} &= \int \dif p' \braket{x'}{p'}\braket{p'}{\psi} \\
+    &= \f1\stpih \int \dif p' e^{\f{i}{\hbar} p' x'}\braket{p'}{\psi} \\
+\end{align*}
+Analogously we can rotate state space to give,
+\[ \braket{p'}{\psi} = \f1\stpih \int \dif x' e^{-\f{i}{\hbar} p' x'}\braket{x'}{\psi} \]
+Which is nothing more than the \term{(Inverse) Fourier Transform}.
+\subsection{Time Dependence of Kets}
+Let $\ket{\psi, t_0; t}$ be the state which is $\ket{\psi, t_0} \defined \ket{\psi}$ at time $t_0$ which becomes a different state $\ket{\psi, t_0; t}$ at a later time $t > t_0$. Of course, there must exist an operator that transforms initial states $\ket{\psi, t_0}$ into final state $\ket{\psi, t_0; t}$. Let $U\br{t, t_0}$ be this unknown operator,
+\[ \ket{\psi, t_0; t} = U\br{t, t_0} \ket{\psi, t_0} \]
+Which we will now discover. To do so, we will demand some properties of $U\br{t, t_0}$. Consider some physical quantity with corresponding operator $A$ with eigenkets $\ket{a'}$ and eigenvalues $a'$. Then we can write $\ket{\psi, t_0}$ in terms of the orthonormal set of states defined by $\bc{\ket{a'}}$\footnote{We will also assign all of the time evolution to the coefficients $C_{a'} = C_{a'}\br{t_0}$},
+\[ \ket{\psi, t_0} = \sum_{a'} C_{a'}\br{t_0} \ket{a'} \]
+Analogously at time $t$,
+\[ \ket{\psi, t_0; t} = \sum_{a'} C_{a'}\br{t} \ket{a'} \]
+The coefficients $C_{a'}$ are determined by \cref{eq:coeff_determine},
+\[ \braket{\psi, t_0}{\psi, t_0} = \sum_{a', a''} C^{*}_{a'}\br{t_0}C_{a''}\br{t_0} \underbrace{\braket{a'}{a''}}_{\de_{a', a''}} \]
+Notice that normalization dictates that $\sum_{a'} \abs{C_{a'}\br{t_0}}^2 = 1$. Therefore we can interpret $\abs{C_{a'}\br{t_0}}$ as the probability that a measurement of a physical system $A$ gives $a'$. Analogously at later times $t$,
+\[ \sum_{a'}\abs{C_{a'}\br{t}}^2 = 1 \]
+Therefore it must be that $U\br{t_0; t}$ is unitary.
+\[ \braket{\psi, t_0; t}{\psi, t_0; t} = \bra{\psi, t_0} U^{\dagger}\br{t,t_0}U\br{t,t_0}\ket{\psi, t_0} = \braket{\psi, t_0}{\psi, t_0}\]
+Which holds for all $\ket{\psi}$, thus,
+\[ U^{\dagger}\br{t,t_0}U\br{t,t_0} = \mathbb{I} \implies U^{\dagger}\br{t,t_0} = U^{-1}\br{t,t_0} \eq \label{eq:time_unitary} \]
+Another desired property of the time evolution operator $U\br{t; t_0}$ is \textit{composition}. For $t_2 > t_1 > t_0$,
+\[ U\br{t_2, t_0} = U\br{t_2, t_1} U\br{t_1, t_0} \eq \label{eq:time_compose}\]
+In turns out that \cref{eq:time_unitary,eq:time_compose} uniquely characterize $U\br{t,t_0}$. Consider an infinitesimal time evolution operator $U\br{t_0+\dif t, t_0}$. We now prove that,
+\[ U\br{t_0+\dif t, t_0} = \mathbb{I} - i \Om \dif t \]
+Where $\Om = \Om^{\dagger}$ is an unknown Hermitian operator. Consider,
+\begin{align*}
+U^{\dagger}\br{t_0+\dif t, t_0}U\br{t_0+\dif t, t_0} &= \br{\mathbb{I} + i \Om^{\dagger} \dif t}\br{\mathbb{I} - i \Om \dif t} \\
+&= \mathbb{I} + i \br{\underbrace{\Om^{\dagger} - \Om}_0} \dif t + \cancelto{0}{\s{O}\br{\dif t^2}} \\
+&= \mathbb{I}
+\end{align*}
+Thus satisfying unitary properties. Next examine composition,
+\begin{align*}
+U\br{t_0 + \dif t_1 + \dif t_2, t_0 + \dif t_1}U\br{t_0 + \dif t_1, t_0} &= \br{\mathbb{I} - i \Om \dif t_2}\br{\mathbb{I} - i \Om \dif t_1} \\
+&= \mathbb{I} - i \Om\br{\dif t_1 + \dif t_2} + \s{O}\br{\dif t_1 \dif t_2} \\
+&= U\br{t_0 + \dif t_1 + \dif t_2, t_0}
+\end{align*}
+By dimensional analysis, $\Om$ needs to have dimensions of inverse time or \textit{frequency}. Of course the energy and frequency of a system are related by $E = \hbar \w$. We conclude that,
+\[ \Om = \f{1}{\hbar} H \]
+Where $H$ is the usual Hamiltonian operator. This result is analogous to $\ve K = \f{1}{\hbar} \ve p$. We have that,
+\[ U\br{t_0+\dif t, t_0} = \mathbb{I} - \f{i}{\hbar} H \dif t \]
+Using this result, we will recover the Schrodinger equation. Consider the difference of two time evolution operators,
+\[ U\br{t+\dif t, t_0} - U\br{t, t_0} = - \f{i}{\hbar} H \dif t U\br{t, t_0} \]
+Dividing both sides by $\dif t$ and taking a limit,
+\[ \lim_{\dif t \to 0}\f{U\br{t+\dif t, t_0} - U\br{t, t_0}}{\dif t} = - \f{i}{\hbar} H U\br{t, t_0} \]
+One obtains,
+\[ \pder{}{t}U\br{t, t_0} = - \f{i}{\hbar} H U\br{t, t_0} \]
+Which is identical to the Schrodinger equation for operators,
+\[ i\hbar\pder{}{t}U\br{t, t_0} = H U\br{t, t_0} \]
+We can also recover the more familiar Schrodinger equation for states through the following process,
+\[ i\hbar\pder{}{t}U\br{t, t_0}\ket{\psi, t_0} = H U\br{t, t_0}\ket{\psi, t_0} \]
+\[ i\hbar\pder{}{}\ket{\psi, t_0; t} = H\ket{\psi, t_0; t} \]
+Now multiply by $\bra{\ve x'}$,
+\[ i\hbar\pder{}{}\braket{\ve x'}{\psi, t_0; t} = \bra{\ve x'}H\ket{\psi, t_0; t} \]
+Inserting resolution of identity,
+\[ \bra{\ve x'}H\ket{\psi, t_0; t} = \int \dif^3 x'' \bra{\ve x'}H \ket{\ve x''}\braket{\ve x''}{\psi, t_0 ; t}\]
+Where $\bra{\ve x'}H \ket{\ve x''}$ is the Hamiltonian in terms of the position basis,
+\[ \bra{\ve x'}H \ket{\ve x''} = -\f{\hbar^2}{2m} \vdel \de\br{\ve x' - \ve x''} \]
 \end{document}
