@@ -307,6 +307,56 @@ P &= \int \dif \ve a \cdot \ve S \\
 &= \mu_0 \pi a^2 n \dot I_s I_r
 \end{align*}
 But we know that $\mu_0 \pi a^2 n \dot I_s = - I_r R$. Therefore $P = - I_r^2 R$ as expected.
+\textbf{A2.2:}\\
+a,b) Answers in Griffiths. \\
+c) Consider parallel metal strips with height $h$ and width $w$ where $h \ll w$. A current flows down one plate and up the other. The system will act as a capacitor. The magnetic field outside will be zero and non-negative inside. \\
+d) Griffiths 8.1 \\
+\textbf{A2.3:}\\
+Positive and negative charge build up on the surfaces between the capacitor. Of course, there will be a time varying current $I\br{t}$, electric field $\ve E \br{t}$ and magnetic field $\ve B \br{t}$.
+\section{Stress Energy Tensor}
+
+Last week we looked at conservation laws and we found,
+\[ \vdel \cdot \ve J + \pder{\rho}{t} = 0 \note{(charge)} \]
+and,
+\[ \vdel \cdot \ve S + \pder{u}{t} + \ve J \cdot \ve E = 0 \note{(energy)} \]
+This week we will continue with momentum and angular momentum and then we will examine the Maxwell stress tensor; the field equivalent for force in Newton's second law. But first we will look at momentum.
+\subsection{Momentum}
+Consider two charges $+q_1$ and $-q_2$ with velocities $\ve v_1$ and $\ve v_2$. The electric field at point $2$ due to charge $1$ will be denoted $\ve E_1$. Analogously for $\ve B_1$. The net force acting on charge $q_2$ is then,
+\[ \ve F_{2;E} = q_2 \ve E_1 \qquad \ve F_{2;B} = q_2 \ve v_2 \times \ve B_1 \]
+\[ \ve F_{1;E} = q_1 \ve E_2 \qquad \ve F_{1;B} = q_1 \ve v_1 \times \ve B_2 \]
+One will notice that $\ve F_{1;B}$ and $\ve F_{2;B}$ are not equal and opposite forces like $\ve F_{1;E}$ and $\ve F_{2;E}$ are. What does this say about Newton's third law?
+\[ \sum \dve p_i = \sum \ve F\tsb{net} \]
+We forgot about the fact that the electric and magnetic fields carry not only energy (via $\ve S$) but momentum as well. Recall that for photons,
+\[ E = h f = \hbar \w  \]
+\[ p = \f{h}{\la} = \hbar k \]
+Therefore we have that,
+\[ E = pc \]
+Therefore knowing the energy density of the field gives you then momentum density of the field. The momentum density will be denoted $\ve g$.
+\[ \ve g = \f{1}{c^2} \ve S = \mu_0 \ep_0 \ve S = \f{1}{4 \pi c} \ve E \times \ve B \]
+The force per unit volume $\ve f = \De \ve F / \De \tau$ acting on a particle is given by the Lorrentz force.
+\[ \ve f = \rho \ve E + \ve J \times \ve B\]
+Which when expanded out is,
+\[ \ve f = \ep_0 \br{\vdel \cdot \ve E} \ve E + \br{\f{1}{\mu_0} \vdel \times \ve B - \ep_0 \pder{\ve E}{t}} \times \ve B \]
+\todo[TC]{Inject hand out}
+Which after some algebra yields,
+\[ \ve f = \ep_0 \br{\br{\vdel \cdot \ve E} \ve E + \br{\ve E \cdot \vdel} \ve E} + \f{1}{\mu_0} \br{\br{\vdel \cdot \ve B} \ve B + \br{\ve B \cdot \vdel} \ve B} - \vdel \br{\f{\ep_0}{2} E^2 + \f{1}{2 \mu_0} B^2} - \mu_0 \ep_0 \pder{\ve S}{t} \eq \label{eq:messy}\]
+We now introduce \term{Maxwell's stress energy tensor} $T$ with components,
+\[ T_{ij} = \ep_0 \br{E_i E_j - \f{1}{2} \de_{ij} E^2} + \f{1}{\mu_0} \br{B_i B_j - \f{1}{2} \de_{ij} B^2} \]
+Where $\ve E = \sum_{i} E_i \hat{e}_i$ and $\ve B = \sum_{i} B_i \hat{e}_i$. We now have that \cref{eq:messy} gives,
+\[ \ve f = \vdel \cdot T - \ep_0 \mu_0 \pder{\ve S}{t} \]
+As defined $\ve F = \int_{\s{V}} \dif \tau \ve f$ is the net mechanical force acting on the matter in a volume $\s{V}$. Therefore,
+\begin{align*}
+\der{}{t} \ve p\tsb{mech} &= \int_{\s{V}} \dif \tau \ve f \\
+&= \int_{\s{V}} \dif \tau \br{\vdel \cdot T - \ep_0 \mu_0 \pder{S}{t}} \\
+&= \oint_{\s{S}} \dif a \cdot T - \der{}{t} \int_{\s{V}} \dif \tau \ep_0 \mu_0 \ve S
+\end{align*}
+We usually define the second term here to be the momentum contained in the electromagnetic field,
+\[ \ve p\tsb{em} = \int_{\s{V}} \dif \tau \ep_0 \mu_0 \ve S \]
+Therefore the conservation of momentum is,
+\[ \der{}{t} \br{\ve p\tsb{mech} + \ve p\tsb{em}} = \oint_{\s{S}} \dif a \cdot T \]
+\subsection{Cauchy Stress Tensor}
+The \term{Cauchy stress tensor} is a representation of the total forces acting on a chunk $\s{V}$ of a material due to the neighboring pieces $\s{N}\br{\s{V}}$. Each neighboring chunk $n \br{\s{V}}$ can exert parallel or shear forces on $\s{V}$. This defines a matrix on force components on each face of $\s{V}$. Let $\ve f = \si \cdot \dif \ve a$ where $\ve{\si}$ is a rank 2 (3d) tensor. We call $\si$ the Cauchy stress tensor such that,
+\[ \ve f = \si \cdot \dif \ve a \]
 
 
 \end{document}
