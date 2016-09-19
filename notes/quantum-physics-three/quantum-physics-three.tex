@@ -221,7 +221,7 @@ Comparing \cref{eq:delta_x_working,eq:def_dirac_delta} (and using $\mu_0 \pi a^2
 \[ N^2 = \f{1}{2 \pi \hbar} \implies N = \f{1}{\stpih} \]
 This we have that,
 \[ \braket{x'}{p'} = \f1\stpih e^{\f{i}{\hbar} p' x'} \eq \label{eq:plane_wave} \]
-Which refers to the usual plane wave wavefunction. Alternatively, one can obtain this result from the Schrodinger Equation $H \psi = E \psi$ and using a free Hamiltonian $H = \f{p^2}{2m} = - \f{\hbar^2 \dif^2}{2m \dif x^2}$
+Which refers to the usual plane wave wavefunction. Alternatively, one can obtain this result from the Schrödinger Equation $H \psi = E \psi$ and using a free Hamiltonian $H = \f{p^2}{2m} = - \f{\hbar^2 \dif^2}{2m \dif x^2}$
 Generalizing \cref{eq:plane_wave} to more than one dimension gives (say 3 dimensions),
 \[ \braket{\ve x'}{\ve p'} = \f1{\br{2 \pi \hbar}^{3/2}} e^{\f{i}{\hbar} \ve p'\cdot \ve x'} \]
 This result allows us to convert from the momentum representation $\psi\br{\ve p'}$ to the position representation $\psi\br{\ve x'}$ and backward,
@@ -266,22 +266,100 @@ U\br{t_0 + \dif t_1 + \dif t_2, t_0 + \dif t_1}U\br{t_0 + \dif t_1, t_0} &= \br{
 By dimensional analysis, $\Om$ needs to have dimensions of inverse time or \textit{frequency}. Of course the energy and frequency of a system are related by $E = \hbar \w$. We conclude that,
 \[ \Om = \f{1}{\hbar} H \]
 Where $H$ is the usual Hamiltonian operator. This result is analogous to $\ve K = \f{1}{\hbar} \ve p$. We have that,
-\[ U\br{t_0+\dif t, t_0} = \mathbb{I} - \f{i}{\hbar} H \dif t \]
-Using this result, we will recover the Schrodinger equation. Consider the difference of two time evolution operators,
-\[ U\br{t+\dif t, t_0} - U\br{t, t_0} = - \f{i}{\hbar} H \dif t U\br{t, t_0} \]
+\[ U\br{t_0+\dif t, t_0} = \mathbb{I} - \f{i}{\hbar} H \dif t \eq \label{eq:infinitesimal_time_evolution}\]
+Using this result, we will recover the Schrödinger equation. Consider the difference of two time evolution operators,
+\begin{align*}
+    U\br{t+\dif t, t_0} - U\br{t, t_0} &= U\br{t+\dif t, t}U\br{t,t_0} - U\br{t, t_0}\\
+    &= \br{\mathbb{I} - \f{i}{\hbar} H \dif t}U\br{t,t_0} - U\br{t, t_0}\\
+    &= - \f{i}{\hbar} H \dif t U\br{t,t_0}
+\end{align*}
 Dividing both sides by $\dif t$ and taking a limit,
 \[ \lim_{\dif t \to 0}\f{U\br{t+\dif t, t_0} - U\br{t, t_0}}{\dif t} = - \f{i}{\hbar} H U\br{t, t_0} \]
 One obtains,
 \[ \pder{}{t}U\br{t, t_0} = - \f{i}{\hbar} H U\br{t, t_0} \]
-Which is identical to the Schrodinger equation for operators,
+Which is identical to the Schrödinger equation for operators,
 \[ i\hbar\pder{}{t}U\br{t, t_0} = H U\br{t, t_0} \]
-We can also recover the more familiar Schrodinger equation for states through the following process,
-\[ i\hbar\pder{}{t}U\br{t, t_0}\ket{\psi, t_0} = H U\br{t, t_0}\ket{\psi, t_0} \]
-\[ i\hbar\pder{}{}\ket{\psi, t_0; t} = H\ket{\psi, t_0; t} \]
+We can also recover the more familiar Schrödinger equation for states through the following process,
+\[ i\hbar\pder{}{t}U\br{t, t_0}\ket{\psi, t_0} = H U\br{t, t_0}\ket{\psi, t_0} \eq \label{eq:schro_operator}\]
+\[ i\hbar\pder{}{t}\ket{\psi, t_0; t} = H\ket{\psi, t_0; t} \eq \label{eq:schro_state}\]
 Now multiply by $\bra{\ve x'}$,
-\[ i\hbar\pder{}{}\braket{\ve x'}{\psi, t_0; t} = \bra{\ve x'}H\ket{\psi, t_0; t} \]
+\[ i\hbar\pder{}{t}\braket{\ve x'}{\psi, t_0; t} = \bra{\ve x'}H\ket{\psi, t_0; t} \]
 Inserting resolution of identity,
 \[ \bra{\ve x'}H\ket{\psi, t_0; t} = \int \dif^3 x'' \bra{\ve x'}H \ket{\ve x''}\braket{\ve x''}{\psi, t_0 ; t}\]
 Where $\bra{\ve x'}H \ket{\ve x''}$ is the Hamiltonian in terms of the position basis,
 \[ \bra{\ve x'}H \ket{\ve x''} = -\f{\hbar^2}{2m} \vdel \de\br{\ve x' - \ve x''} \]
+We will now attempt to solve \cref{eq:schro_operator} in order to obtain the time evolution operator explicitly (not as in \cref{eq:infinitesimal_time_evolution}). As a reduction of complexity, we will consider the Hamiltonian $H$ to be time independent $\pder{H}{t} = 0$\footnote{As is common for a particle moving in a static potential.}. The solution to \cref{eq:schro_operator} is then,
+\[ U \br{t, t_0} = e^{-\f{i}{\hbar} H\br{t - t_0}} \eq \label{eq:time_evolution}\]
+Where `$e^A$' is the operator expotential,
+\[ e^{A} = \sum_{n=1}^{\inf} \f{A^n}{n!} \]
+Therefore we have that,
+\[ e^{-\f{i}{\hbar} H\br{t - t_0}} = \mathbb{I} -\f{i}{\hbar} H\br{t - t_0} -\f{1}{2\hbar^2} H^2\br{t - t_0}^2 + \s{O}\br{\br{t-t_0}^{3}}\]
+Whose time derivative is,
+\[ \pder{}{t}e^{-\f{i}{\hbar} H\br{t - t_0}} = -\f{i}{\hbar} H -\f{1}{\hbar^2} H^2\br{t - t_0} + \s{O}\br{\br{t-t_0}^{2}}\]
+Moving the constant term $- \f{i}{\hbar} H$ out,
+\[ \pder{}{t}e^{-\f{i}{\hbar} H\br{t - t_0}} =  - \f{i}{\hbar} H \bs{\mathbb{I} -\f{i}{\hbar} H \br{t -t_0} + \s{O}\br{\br{t-t_0}^{2}}}\]
+Recognizing $e^{-\f{i}{\hbar} H\br{t - t_0}}$,
+\[ \pder{}{t}e^{-\f{i}{\hbar} H\br{t - t_0}} =  - \f{i}{\hbar} H \bs{e^{-\f{i}{\hbar} H\br{t - t_0}}}\]
+Therefore we have that \cref{eq:time_evolution} solves \cref{eq:schro_operator}. Also note that \cref{eq:time_evolution} is consistent with \cref{eq:infinitesimal_time_evolution}. \\
+
+Recall that the eigen-system of the Hamiltonian is given by,
+\[ H \ket{a'} = E_{a'} \ket{a'} \]
+Where $E_{a'}$ are the energy eigenvalues. Therefore $e^{- \f{i}{\hbar} H t}$ can be written as,
+\begin{align*}
+    \mathbb{I} e^{-\f{i}{\hbar} H\br{t - t_0}} \mathbb{I} &= \sum_{a', a''} \ket{a''}\bra{a''} e^{-\f{i}{\hbar} H\br{t - t_0}} \ket{a'}\bra{a'} \eq \label{eq:working}
+\end{align*}
+Where $\bra{a''} e^{-\f{i}{\hbar} H\br{t - t_0}} \ket{a''}$ is given by,
+\begin{align*}
+    \bra{a''} e^{-\f{i}{\hbar} H\br{t - t_0}} \ket{a''} &= \bra{a''} \sum_{n=1}^{\inf} \f{-\f{i}{\hbar} H\br{t - t_0}}{n!} \ket{a'}\\
+    &=  \sum_{n=1}^{\inf} \f{-\f{i}{\hbar} \bra{a''}H\ket{a'}\br{t - t_0}}{n!} \\
+    &=  \sum_{n=1}^{\inf} \f{-\f{i}{\hbar} E_{a'}\braket{a''}{a'}\br{t - t_0}}{n!} \\
+    &=  \sum_{n=1}^{\inf} \f{-\f{i}{\hbar} E_{a'}\de_{a'',a'}\br{t - t_0}}{n!} \\
+    &=  \de_{a'',a'}\sum_{n=1}^{\inf} \f{-\f{i}{\hbar} E_{a'}\br{t - t_0}}{n!} \\
+    &=  \de_{a'',a'}e^{-\f{i}{\hbar} E_{a'}\br{t - t_0}}
+\end{align*}
+Therefore \cref{eq:working} becomes,
+\[ e^{-\f{i}{\hbar} H\br{t - t_0}} = \sum_{a', a''} \ket{a''}\de_{a'',a'}e^{-\f{i}{\hbar} E_{a'}\br{t - t_0}}\bra{a'} \]
+\[ e^{-\f{i}{\hbar} H\br{t - t_0}} = \sum_{a'}e^{-\f{i}{\hbar} E_{a'}\br{t - t_0}}\ket{a'}\bra{a'} \eq \label{eq:time_evol_expansion}\]
+Recall that,
+\[ \ket{\psi, t_0 = 0} = \sum_{a'}\ket{a'} \braket{a'}{\psi} = \sum_{a'} C_{a'}\br{0}\ket{a'} \]
+At some later time $t$,
+\[ \ket{\psi, t_0 = 0; t} = e^{-\f{i}{\hbar} H t} \ket{\psi, t_0 = 0} \]
+Subbing in \cref{eq:time_evol_expansion},
+\[ \ket{\psi, t_0 = 0; t} = \sum_{a'}e^{-\f{i}{\hbar} E_{a'}\br{t - t_0}}\ket{a'}\braket{a'}{\psi, t_0 = 0}  \]
+\[ \ket{\psi, t_0 = 0; t} = \sum_{a'}e^{-\f{i}{\hbar} E_{a'}\br{t - t_0}}\ket{a'}C_{a'}\br{t_0 = 0} \]
+Therefore it must be that,
+\[ C_{a'}\br{t} = e^{-\f{i}{\hbar} E_{a'}\br{t - t_0}} C_{a'}\br{t_0} \]
+The coefficients evolve in the same way that $\ket{\psi}$ does.
+\subsection{Different Pictures for Quantum Mechanics}
+In the Schrödinger picture (as just discussed) the states depend on time, while operators do not. In contrast, the \term{Heisenberg picture} has operators depending on time while the states do not. to illustrate the difference, consider an arbitrary unitary operator $U$ ($U^{\dagger} = U^{-1}$),
+\[ \ket{\psi} \stackrel{U}{\to} U\ket{\psi} \]
+Now consider an arbitrary Hermitian operator $A$ ($A^{\dagger} = A$),
+\[ \bra{\varphi} A \ket{\psi} \stackrel{U}{\to} \bra{\varphi} U^{\dagger}A U\ket{\psi} \]
+The Schrödinger picture would ascribe the evolution to the states,
+\[ \bra{\varphi} A \ket{\psi} \stackrel{U}{\to} \bc{\bra{\varphi} U^{\dagger}}A \bc{U\ket{\psi}} \]
+While the Heisenberg picture applies the action to the operators,
+\[ \bra{\varphi} A \ket{\psi} \stackrel{U}{\to} \bra{\varphi} \bc{U^{\dagger}A U}\ket{\psi} \]
+Therefore instead of transforming states, we may transform operators:
+\[ A \stackrel{U}{\to} U^{\dagger} A U \]
+As an example, if we take the time evolution operator exactly ($U\br{t} = e^{-\f{i}{\hbar} H t}$). Let $A$ under the Heisenberg picture as $A^{(H)}$,
+\[ A^{(H)}\br{t} = U^{\dagger}\br{t} A^{(S)} U\br{t} \eq \label{eq:HS}\]
+We have the useful identities,
+\[ A^{(H)}\br{0} = A^{(S)} \]
+\[ \ket{\psi; t}^{(H)} = \ket{\psi; t_0} \]
+\[ \ket{\psi; t}^{(S)} = U\br{t}\ket{\psi; t_0} \]
+As a final consistency check,
+\begin{align*}
+    \ba{A}^{(S)} &= ^{(S)}\!\!\bra{\psi;t} A^{(S)} \ket{\psi;t}^{(S)} \\
+     &= \bra{\psi;t_0} U^{\dagger}\br{t}A^{(S)}U\br{t} \ket{\psi;t_0} \\
+    &= ^{(H)}\!\!\bra{\psi;t_0} A^{(H)} \ket{\psi;t_0}^{(H)} \\
+    &= \ba{A}^{(H)}
+\end{align*}
+Next we find an equation of motion for $A^{(H)}\br{t}$,
+\begin{align*}
+    \der{}{t} &e^{\f{i}{\hbar} H t}A^{(S)}e^{-\f{i}{\hbar} H t} \\
+    &= \f{i}{\hbar} H e^{\f{i}{\hbar} H t}A^{(S)}e^{-\f{i}{\hbar} H t} - e^{\f{i}{\hbar} H t}A^{(S)} \f{i}{\hbar}He^{-\f{i}{\hbar} H t} \\
+    &= \f{i}{\hbar} H e^{\f{i}{\hbar} H t}A^{(S)}e^{-\f{i}{\hbar} H t} - e^{\f{i}{\hbar} H t}A^{(S)} \f{i}{\hbar}e^{-\f{i}{\hbar} H t} H \note{Commuting $\bs{f\br{H}, H} = 0$} \\
+    &= \f{i}{\hbar} H A^{(H)}\br{t} - \f{i}{\hbar} A^{(H)}\br{t} H  \\
+    &= \f{i}{\hbar} \bs{H, A^{(H)}\br{t}}
+\end{align*}
 \end{document}
