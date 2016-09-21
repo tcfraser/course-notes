@@ -331,7 +331,7 @@ Therefore it must be that,
 \[ C_{a'}\br{t} = e^{-\f{i}{\hbar} E_{a'}\br{t - t_0}} C_{a'}\br{t_0} \]
 The coefficients evolve in the same way that $\ket{\psi}$ does.
 \subsection{Different Pictures for Quantum Mechanics}
-In the Schrödinger picture (as just discussed) the states depend on time, while operators do not. In contrast, the \term{Heisenberg picture} has operators depending on time while the states do not. to illustrate the difference, consider an arbitrary unitary operator $U$ ($U^{\dagger} = U^{-1}$),
+In the Schrödinger picture (as just discussed) the states depend on time, while operators do not. In contrast, the \term{Heisenberg picture} has operators depending on time while the states do not\footnote{The \textit{iteraction picture} shares evolution between states and operators.}. to illustrate the difference, consider an arbitrary unitary operator $U$ ($U^{\dagger} = U^{-1}$),
 \[ \ket{\psi} \stackrel{U}{\to} U\ket{\psi} \]
 Now consider an arbitrary Hermitian operator $A$ ($A^{\dagger} = A$),
 \[ \bra{\varphi} A \ket{\psi} \stackrel{U}{\to} \bra{\varphi} U^{\dagger}A U\ket{\psi} \]
@@ -347,7 +347,7 @@ We have the useful identities,
 \[ A^{(H)}\br{0} = A^{(S)} \]
 \[ \ket{\psi; t}^{(H)} = \ket{\psi; t_0} \]
 \[ \ket{\psi; t}^{(S)} = U\br{t}\ket{\psi; t_0} \]
-As a final consistency check,
+As a final consistency check, observables should be independent of the \textit{picture} used,
 \begin{align*}
     \ba{A}^{(S)} &= ^{(S)}\!\!\bra{\psi;t} A^{(S)} \ket{\psi;t}^{(S)} \\
      &= \bra{\psi;t_0} U^{\dagger}\br{t}A^{(S)}U\br{t} \ket{\psi;t_0} \\
@@ -362,4 +362,70 @@ Next we find an equation of motion for $A^{(H)}\br{t}$,
     &= \f{i}{\hbar} H A^{(H)}\br{t} - \f{i}{\hbar} A^{(H)}\br{t} H  \\
     &= \f{i}{\hbar} \bs{H, A^{(H)}\br{t}}
 \end{align*}
+Therefore,
+\[ \der{A^{(H)}}{t} = \f{i}{\hbar} \bs{H, A^{(H)}} \eq \label{eq:Heisenberg_operator_EOM}\]
+Notice that the Hamiltonian itself is the same in either picture,
+\[ e^{\f{i}{\hbar} Ht} H e^{-\f{i}{\hbar} Ht} = e^{\f{i}{\hbar} Ht} e^{-\f{i}{\hbar} Ht} H = H \]
+Which is simply a manifestation of the conservation of energy.\\
+
+\subsubsection{Conserved Quantities}
+To solve \cref{eq:Heisenberg_operator_EOM}, consider the situation of a free particle with no external potential. Then,
+\[ H = \f{\ve p^2}{2m} \qquad \der{p_i}{t} = \f{i}{\hbar} \bs{H, p_i} \]
+But for a free particle $\bs{H, p_i} =0$. Therefore $\der{p_i}{t} = 0$ and the momentum of a free particle is conserved. In general, any operator $A$ such that $\bs{H, A} = 0$ represents a conserved physical quantity of the system with Hamiltonian $H$. Next consider the position operator $\ve x$ which does not commute with $H$,
+\[ \der{x_i}{t} = \f{i}{\hbar} \bs{H, x_i} \eq \label{eq:velocity} \]
+First recall that $\bs{x_i, p_i} = i\hbar$.
+\[ \ve p^2 = \sum_{i = x,y,z} p_i^2 \]
+Thus,
+\begin{align*}
+    \bs{p_i^2, x_i} &= p_i^2 x_i - x_i p_i^2 \\
+    &= p_i^2 x_i -\br{i \hbar + p_i x_i}p_i \\
+    &= p_i^2 x_i - i \hbar p_i - p_i x_i p_i \\
+    &= \cancel{p_i^2 x_i} - i \hbar p_i - \cancel{p_i^2 x_i} - i \hbar p_i  \\
+    &= - 2i \hbar p_i \eq \label{eq:recurs_commutator}
+\end{align*}
+Which solves \cref{eq:velocity} to be,
+\[ \der{x_i}{t} = \f{i}{\hbar}\br{-\f{2 i \hbar}{2m}} p_i = \f{p_i}{m} \]
+Which acts as a classical velocity. Since $p_i$ is time-independent for a free particle, we can easily integrate to solve this DE,
+\[ x_1\br{t} = x_1\br{0} + \f{p_1}{m}t \]
+In more generality, let us consider a particle interacting with some external potential.
+\[ H = \f{\ve p^2}{2m} + V\br{\ve x} \]
+Therefore,
+\[ \der{p_i}{t} = \f{i}{\hbar} \bs{V\br{\ve x}, p_i} \]
+Which by a similar approach to \cref{eq:recurs_commutator} we compute $\bs{x_i^2, p_i}$,
+\begin{align*}
+    \bs{x_i^2, p_i} &= x_i^2 p_i - p_i x_i^2 \\
+    &= x_i^2 p_i - \br{x_ip_i - i\hbar}x_i \\
+    &= x_i^2 p_i - x_ip_ix_i - i\hbar x_i \\
+    &= x_i^2 p_i - x_i\br{x_i p_i - i \hbar} - i\hbar x_i \\
+    &= 2i \hbar x_i
+\end{align*}
+By extension,
+\[ \bs{x_i, p_i} = i\hbar \quad \bs{x_i^2, p_i} = 2i\hbar x_i \quad \cdots \]
+We arrive at\footnote{This also follows directly from the construction of the momentum operator; being the dual to $x_i$, a derivative in position representation. $\bs{V\br{\ve x}, p_i}\ket{\psi} = V\br{\ve x} p_i \ket{\psi} -  p_i\br{V\br{\ve x} \ket{\psi}} = V\br{\ve x} p_i \ket{\psi} -  \br{p_iV\br{\ve x}} \ket{\psi} - V\br{\ve x} \br{p_i\ket{\psi}}$},
+\[ \bs{V\br{\ve x}, p_i} = i \hbar \pder{}{x_i} V\br{\ve x} \]
+Which yields \term{Ehrenfest's Theorem},
+\[ \der{p_i}{t} = - \pder{}{x_i} V\br{\ve x} \]
+We can further look at the acceleration,
+\begin{align*}
+    \dder{x_i}{t} &= \f{i}{\hbar}\bs{H, \der{x_i}{t}} \\
+    &= \f{i}{\hbar}\bs{H, \f{p_i}{m}} \\
+    &= -\f{1}{m} \pder{}{x_i} V\br{\ve x}
+\end{align*}
+Therefore we recover Newton's law,
+\[ m \dder{x_i}{t} = - \pder{}{x_i} V\br{\ve x} \]
+Similarly,
+\[ i \hbar \pder{}{t} \ket{\psi, t_0;t} = H\ket{\psi, t_0;t} \]
+Hences by multiplying by $\bra{\ve x'}$,
+\[ i \hbar \pder{}{t} \braket{\ve x'}{\psi, t_0;t} =\bra{\ve x'} H\ket{\psi, t_0;t} \]
+Which requires us to solve,
+\[ \bramidket{\ve x'}{\f{\ve p^2}{2m}}{\psi} \qquad \bra{\ve x'} V\br{\ve x'} \ket{\psi} \]
+The details are left as a exercise but,
+\[ \bra{\ve x'} \ve p \ket{\psi} = - i \hbar \vdel' \braket{\ve x'}{\psi} \]
+\[ \bramidket{\ve x'}{\f{\ve p^2}{2m}}{\psi} = -\f{\hbar^2}{2m} \vdel'^2 \braket{\ve x'}{\psi} \]
+Therefore we arrive at the Schrödinger equation for a wavefunction,
+\[ i \hbar \pder{}{t} \braket{\ve x'}{\psi, t_0;t} = -\f{\hbar^2}{2m} \vdel'^2\braket{\ve x'}{\psi, t_0;t} + V\br{\ve x'} \braket{\ve x'}{\psi, t_0; t}\]
+Which in terms of wavefunctions is simply,
+\[ i \hbar \pder{}{t} \psi\br{\ve x', t} = -\f{\hbar^2}{2m} \vdel'^2\psi\br{\ve x', t} + V\br{\ve x'} \psi\br{\ve x', t}\]
+\section{Rotations and Angular Momentum}
+To begin, let us remind ourselves about the algebra of rotations in 3D space. Suppose one has a Cartesian coordinate system $\bc{x,y,z}$. To retain some consistency, we always rotate the physical system with respect to fixed coordinates (i.e. the \textit{active} view of rotations, not the \textit{passive} view).
 \end{document}
