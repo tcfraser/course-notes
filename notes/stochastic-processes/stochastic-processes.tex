@@ -14,6 +14,16 @@
 
 \draftprofile[TC Fraser]{TC}{Purple}
 \newcommand{\val}[1]{X_{#1} = x_{#1}}
+\newcommand{\indep}{\!\!\perp\!\!\!\!\perp\!\!}
+\newcommand{\Cov}{\textsf{Cov}}
+\newcommand{\Var}{\textsf{Var}}
+\newcommand{\Exp}{\mathbb{E}}
+\newcommand{\Ber}{\mathsf{Ber}}
+\newcommand{\Bi}{\mathsf{Bin}}
+\newcommand{\Poi}{\mathsf{Poi}}
+\newcommand{\Mom}{M}
+\newcommand{\Geo}{\mathsf{Geo}}
+\newcommand{\ind}{\mathbf{1}}
 
 \begin{document}
 
@@ -22,6 +32,183 @@
 \tableOfContents
 
 \disclaimer
+
+\section{Review}
+
+If $X \indep Y$ then $\Cov\br{X,Y} = 0$ and,
+\[ \Var\br{X+Y} = \Var\br{X} + \Var\br{Y} \]
+We see that independence implies uncorrelated, but uncorrelation does not imply independence.
+
+\begin{remark}
+    We have that,
+    \[ \Exp\br{X + Y} = \Exp\br{X} + \Exp\br{Y} \eq \label{eq:r11}\]
+    If $X\indep Y$ then we also have that,
+    \[ \Exp\br{XY} = \Exp\br{X}\Exp\br{Y} \eq \label{eq:r21}\]
+    and that,
+    \[ \Var\br{XY} = \Var\br{X}\Var\br{Y} \eq \label{eq:r22}\]
+    It is important to remember that the first result (\cref{eq:r11}) and the other two results (\cref{eq:r21,eq:r22}) have a very different natures. The first is a consequence of the linearity in the definition of expectation and holds unconditionally. However \cref{eq:r21,eq:r22} require that $X \indep Y$. As such it is more appropriate to consider \cref{eq:r21,eq:r22} as properties of independence rather than the properties of expectation and variance.
+\end{remark}
+
+\subsection{Indicator}
+
+A r.v. $\ind$ is called an \term{indicator} for an event $A$ if,
+\[ \ind_A \br{\w} = \begin{cases}
+    1 & \w \in A \\
+    0 & \w \not\in A
+\end{cases} \]
+
+The most important property of the indicator random variable is that the expectation of $\ind_A$ is the same as the probability of the event $A$,
+\[ \Exp\br{\ind_{A}} = P\br{A} \]
+\begin{proof}
+    Since $\ind_A$ is a Bernoulli random variable, the proof is easy. Consider,
+    \begin{align*}
+    P\br{\ind_A = 1} &= P\br{\bc{\w: \ind_A\br{\w} = 1}} \\
+    &= P\br{\bc{\w: \w \in A}} \\
+    &= P\br{A}
+    \end{align*}
+    Therefore the expectation of $\ind_A$ must be,
+    \[ \Exp\br{\ind_A} = 1 \cdot P\br{\ind_A = 1} + 0 \cdot P\br{\ind_A = 0} = P\br{\ind_A = 1} = P\br{A} \]
+\end{proof}
+
+\begin{example}
+    We see $\ind_A$ is just a Bernoulli random variable,
+    \[ \ind_A \sim \Ber\br{P\br{A}} \]
+\end{example}
+
+\begin{example}
+    Let $X \sim \Bi\br{n,p}$; $X$ is the number of successes in $n$ Bernoulli trials, each with a probability $p$ of success.
+    \[ X = \ind_1 + \cdots + \ind_n \eq \label{eq:binary}\]
+    Where $\bc{\ind_1, \ldots, \ind_n}$ are indicators for independent events. $\ind_i = 1$ if the $i$-th trial is a success and $\ind_i = 0$ if the $i$-th trial is a failure. Hence, $I_i$ are \term{iid} (independent and identically distributed) r.v.s. It is known that the expectation of $X$ is given by,
+    \[ \Exp\br{X} = \sum_{k=0}^{n} k \begin{pmatrix}
+        n \\ k
+    \end{pmatrix} p^k \br{1-p}^{n-k} \]
+    However \cref{eq:binary} yields the following approach,
+    \begin{align*}
+    \Exp\br{X} &= \Exp\br{\ind_1 + \cdots + \ind_n} \\
+    &= \Exp\br{\ind_1} + \cdots + \Exp\br{\ind_n} \\
+    &= n\Exp\br{\ind_1} \\
+    &= np
+    \end{align*}
+    Moreover,
+    \begin{align*}
+    \Var\br{X} &= \Var\br{\ind_1 + \cdots + \ind_n} \\
+    &= \Var\br{\ind_1} + \cdots + \Var\br{\ind_n} \note{Independence}\\
+    &= n\Var\br{\ind_1} \\
+    &= np\br{1-p}
+    \end{align*}
+    The variance $\Var\br{I_1}$ is given by,
+    \[ \Var\br{I_1} = \Exp\br{I_1^2} - \br{\Exp\br{I_1}}^2 \]
+    But notice that $I_1^2 = I_1$ is idempotent. Therefore,
+    \[ \Var\br{I_1} = p - p^2 = p\br{1-p} \]
+\end{example}
+\begin{example}
+    Let $X$ be a r.v. taking values in non-negative integers $\bc{0,1,2\ldots}$. Then we find that the expectation of $X$ is given by,
+    \[ \Exp\br{X} = \sum_{n=0}^{\inf} P\br{X > n} \]
+    Note that,
+    \[ X = \sum_{n=0}^{\inf} \ind_n \]
+    Where notationally $\ind_n \defined \ind_{\bc{X > n}}$. The intuition being that if $X = 3$, then $X = 1 + 1 + 1$ since $X = \underbrace{\ind_0 + \ind_1 + \ind_2}_3 + \underbrace{\ind_3}_0 + \ldots$.
+    \begin{align*}
+        \Exp\br{X} &= \Exp\br{\sum_{n=0}^{\inf} \ind_n} \\
+        &= \sum_{n=0}^{\inf}\Exp\br{\ind_n} \note{Fubini's Theorem} \\
+        &= \sum_{n=0}^{\inf}P\br{X > n} \\
+    \end{align*}
+\end{example}
+\begin{example}
+    In particular let $X \sim \Geo\br{p}$ where $\Exp\br{X} = \sum_{k=0}^{\inf} k \br{1-p}^{k-1} p$. More easily we have seen that $P\br{X > n} = \br{1 - p}^n$. Therefore by the geometric series,
+    \[ \Exp\br{X} = \sum_{n=0}^{\inf}P\br{X>n} = \sum_{n=0}^{\inf} \br{1-p}^n = \f{1}{1 - \br{1-p}} = \f{1}{p} \]
+\end{example}
+
+\subsection{Moment Generating Function}
+
+\begin{definition}
+    \label{def:moment_generator}
+    Let $X$ be a r.v. Then the function,
+    \[ \Mom\br{t} = \Exp\br{e^{tX}} \eq \label{eq:moment_generator} \]
+    is called the \term{moment generating function (mgf)} if $X$ if the expectation exists for all $t \in \br{-h, h}$ for some $h > 0$.
+\end{definition}
+
+\begin{remark}
+    The moment generating function $\Mom$ is not always defined. It is important to check the existence of the expectation. \\
+    To compensate this, the latter condition  in \cref{def:moment_generator} is necessary because the expectation $\Exp\br{e^{tX}}$ might not always exist for some $t$. Also notice that $\Mom\br{0} = 1$ always.
+\end{remark}
+
+We will now discuss some important properties of the moment generating function.
+\begin{theorem}
+    The moment generating function generates moments. For $t = 0$,
+    \[ \Mom\br{0} = 1 \]
+    Also,
+    \[ \Mom^{(k)} \br{0} \defined \f{\dif^k}{\dif t^k} \Mom\br{t}\mid_{t=0} \]
+    Has the nice property,
+    \[ \Mom^{(k)} \br{0} = \Exp\br{X^k} \]
+\end{theorem}
+\begin{proof}
+    Evidently,
+    \[ \Mom\br{0} = \Exp\br{e^{0\cdot X}} = \Exp\br{1} = 1 \]
+    Moreover,
+    \begin{align*}
+        \Mom^{(k)} \br{0} &= \f{\dif^k}{\dif t^k} \Mom\br{t}\mid_{t=0} \\
+        &= \f{\dif^k}{\dif t^k} \Exp\br{e^{tX}}\mid_{t=0} \\
+        &= \Exp\br{\f{\dif^k}{\dif t^k} e^{tX}\mid_{t=0}} \note{Dominant convergence theorem.} \\
+        &= \Exp\br{X\f{\dif^{k-1}}{\dif t^{k-1}} e^{tX}\mid_{t=0}} \\
+        &= \cdots \\
+        &= \Exp\br{X^k e^{tX}\mid_{t=0}} \\
+        &= \Exp\br{X^k}
+    \end{align*}
+\end{proof}
+As a result Taylor series gives,
+\begin{align*}
+    M\br{t} &= \sum_{k=0}^{\inf} \f{M^{(k)}\br{0}}{k!}t^k \\
+    &= \sum_{k=0}^{\inf} \f{\Exp\br{X^k}}{k!}t^k \\
+\end{align*}
+Which is a method that can be used to obtain the moment of a mgf.
+\begin{theorem}
+    Let $X\indep Y$ with mgfs $\Mom_x$ and $\Mom_y$ be respective mgfs. Let $\Mom_{X+Y}$ be the mgf of $X+Y$. Then,
+    \[ \Mom_{X+Y} = \Mom_X\Mom_Y \]
+\end{theorem}
+\begin{proof}
+    \begin{align*}
+        \Mom_{X+Y}\br{t} &= \Exp\br{e^{t\br{X+Y}}} \\
+        &= \Exp\br{e^{tX}e^{tY}} \\
+        &= \Exp\br{e^{tX}}\Exp\br{e^{tY}} \note{Independence} \\
+        &= \Mom_X\br{t} \Mom_Y\br{t}
+    \end{align*}
+\end{proof}
+
+\begin{theorem}
+    \label{thm:same_dist}
+    The moment generating function \textit{completely} determines the distribution of a r.v.
+    \[ M_X\br{t} = M_Y\br{t} \quad \forall t \in \br{-h, h} \]
+    For some $h > 0$, then
+    \[ X \stackrel{d}{=} Y \]
+    Which denotes that the random variables have the same distribution.
+\end{theorem}
+
+How can the moment generating function help?
+
+\begin{example}
+    Let $X \sim \Poi\br{\la_1}$ and $Y \sim \Poi\br{\la_2}$ where $X \indep Y$. Find the distribution of $X+Y$.\\
+    To answer this, first derive the moment generating function of a Poisson distribution.
+    \begin{align*}
+        M_X\br{t} &= \Exp\br{e^{tX}} \\
+        &= \sum_{n=0}^{\inf} e^{tn} P\br{X = n} \\
+        &= \sum_{n=0}^{\inf} e^{tn} \f{\la_1^n}{n!} e^{- \la_1} \\
+        &= e^{- \la_1}\sum_{n=0}^{\inf} \f{\br{e^{t}\la_1}^n}{n!}  \\
+        &= e^{- \la_1}e^{\br{e^{t}\la_1}} \note{Taylor series}  \\
+        &= e^{\la_1\br{e^{t}- 1}}  \\
+    \end{align*}
+    Likewise, $M_Y\br{t} = e^{\la_2\br{e^{t} - 1}}$. Therefore since $X \indep Y$,
+    \[ M_{X+Y}\br{t} = M_X\br{t}M_Y\br{t} = e^{\br{\la_1 + \la_2}\br{e^{t} - 1}} \]
+    Therefore by \cref{thm:same_dist}, the distribution of $X+Y$ is the same distribution as $\Poi\br{\la_1 + \la_2}$.
+\end{example}
+
+In general, if $X_1, X_2, \ldots, X_n$ are independent and $X_i \sim \Poi\br{\la_i}$, then,
+\[ \sum_{i=1}^{n} X_i \sim \Poi\br{\sum_{i=1}^{n} \la_i} \]
+
+\begin{definition}
+    Moreover, we define the \term{joint moment generating function (jmgf)} for $X, Y$ random variables to be,
+    \[ \Mom\br{t_1, t_2} = \Exp\br{e^{t_1 X + t_2 Y}} \]
+    Provided that the expectation exists for $t_1 \in \br{-h_1, h_1}$ and $t_2 \in \br{-h_2, h_2}$ for $h_1, h_2 > 0$.
+\end{definition}
 
 \section{DTMC}
 
@@ -89,7 +276,7 @@ There is a simple relation between the n-step transition matrix $P^{(n)}$ and th
 \begin{proof}
 Proof by induction:
 \[ P^{(1)} = P \note{By definition.} \]
-We also have $P^{(0)} = P^{0} = \mathbb{I}$ is the identity matrix. We now assume $P^{(n)} = P^{n}$. Then $\forall i,j \in S$,
+We also have $P^{(0)} = P^{0} = \ind$ is the identity matrix. We now assume $P^{(n)} = P^{n}$. Then $\forall i,j \in S$,
 \begin{align*}
     P_{ij}^{(n+1)} &= P\br{X_{n+1} = j \mid X_{0} = i} \\
     &= \sum_{k \in S} P\br{X_{n+1} = j, X_{n} = k \mid X_{0} = i} \note{Total probability}\\
@@ -325,9 +512,9 @@ The probability that $X$ will \textit{ever} reach state $j \in S$ provided it st
 A state $i$ is called \term{transient} if $f_{ii} < 1$; and \term{recurrent} if $f_{ii} = 1$. Intuitively, $f_{ii}$ is the probability the MC returns to state $i$ given it started in state $i$. If $i$ is transient, then there is a non-negative probability that the MC does not return to $i$ and if $f_{ii} = 1$ then the MC always returns to state $i$.\\
 
 Another way to characterize recurrence and transience: Define $M_i$ to be the total number of times the MC (re)visits $i$ after time $0$. In more mathematical terms,
-\[ M_i = \sum_{n=1}^{\inf} \mathbb{I}_{\bs{X_n = i}} \]
-Where $\mathbb{I}_{\bs{X_n = i}}$ is the indicator defined by,
-\[ \mathbb{I}_{\bs{X_n = i}} = \begin{cases}
+\[ M_i = \sum_{n=1}^{\inf} \ind_{\bs{X_n = i}} \]
+Where $\ind_{\bs{X_n = i}}$ is the indicator defined by,
+\[ \ind_{\bs{X_n = i}} = \begin{cases}
     1 & X_n = i \\
     0 & X_n \neq i
 \end{cases} \]
@@ -336,15 +523,15 @@ If $f_{ii} < 1$ we have that the probability of visiting state $i$ $k$ times is 
     P\br{M_i = k \mid X_0 = i} &= \underbrace{f_{ii} \cdot f_{ii} \cdots f_{ii}}_{k}\underbrace{\br{1 - f_{ii}}}_{\text{never return}}
 \end{align*}
 Where $\br{1 - f_{ii}}$ is necessary because it guarantees that we never return to state $i$ more that $k$ times. Given $X_0 = i$, $M_i$ follows a geometric distribution with parameter $\br{1 - f_{ii}}$. Thus,
-\[ \mathbb{E}\br{M_i \mid X_0 = i} = \f{f_{ii}}{1 - f_{ii}} < \inf \]
+\[ \Exp\br{M_i \mid X_0 = i} = \f{f_{ii}}{1 - f_{ii}} < \inf \]
 Therefore if $i$ is transient, there a finite number revisits are expected. In contrast if $f_{ii} = 1$ we have that,
-\[ \mathbb{E}\br{M_i \mid X_0 = i} = \lim_{f_{ii} \to 1}\f{f_{ii}}{1 - f_{ii}} \to \inf \]
-Alternatively, we can look at $\mathbb{E}\br{M_i \mid X_0 = i}$ as,
-\[ \mathbb{E}\br{M_i \mid X_0 = i} = \sum_{k=1}^{\inf} P\br{M_i \geq k \mid X_0 = i} \eq \label{eq:Mgeqk}\]
+\[ \Exp\br{M_i \mid X_0 = i} = \lim_{f_{ii} \to 1}\f{f_{ii}}{1 - f_{ii}} \to \inf \]
+Alternatively, we can look at $\Exp\br{M_i \mid X_0 = i}$ as,
+\[ \Exp\br{M_i \mid X_0 = i} = \sum_{k=1}^{\inf} P\br{M_i \geq k \mid X_0 = i} \eq \label{eq:Mgeqk}\]
 The proof of \cref{eq:Mgeqk} is left as an exercise to the reader. Clearly if $f_{ii} = 1$,
 \[ P\br{M_i \geq k \mid X_0 = i} = {f_{ii}}^k = 1 \quad \forall k \eq \label{eq:mmmm}\]
 Therefore,
-\[ \mathbb{E}\br{M_i \mid X_0 = i} = \sum_{k=1}^{\inf} 1 = \inf\]
+\[ \Exp\br{M_i \mid X_0 = i} = \sum_{k=1}^{\inf} 1 = \inf\]
 \begin{theorem}
 Therefore $i$ is recurrent if and only if $P\br{M_i \geq k \mid X_0 = i} = \inf$ and $i$ is transient if and only if only if $P\br{M_i \geq k \mid X_0 = i} < \inf$.
 \end{theorem}
@@ -353,12 +540,12 @@ We actually also have that $i$ is recurrent if and only if $M_i = \inf$. This ca
 \end{remark}
 Yet \textit{another} way to characterize recurrence and transience is much more tractable. First,
 \begin{theorem}
-    The expectation of the indicator is given by $\mathbb{E}\br{\mathbb{I}_{A}} = P\br{A}$ for any event $A$.
+    The expectation of the indicator is given by $\Exp\br{\ind_{A}} = P\br{A}$ for any event $A$.
 \end{theorem}
 Therefore,
 \begin{align*}
-\mathbb{E}\br{M_i \mid X_0 = i} &= \mathbb{E}\br{\sum_{n=1}^{\inf} \mathbb{I}_{\bs{X_n = i}} \mid X_0 = i} \\
-&= \sum_{n=1}^{\inf}\mathbb{E}\br{ \mathbb{I}_{\bs{X_n = i}} \mid X_0 = i} \note{Fubini's Theorem} \\
+\Exp\br{M_i \mid X_0 = i} &= \Exp\br{\sum_{n=1}^{\inf} \ind_{\bs{X_n = i}} \mid X_0 = i} \\
+&= \sum_{n=1}^{\inf}\Exp\br{ \ind_{\bs{X_n = i}} \mid X_0 = i} \note{Fubini's Theorem} \\
 &= \sum_{n=1}^{\inf}P\br{ X_n = i \mid X_0 = i}\\
 &= \sum_{n=1}^{\inf}P_{ii}^{(n)}
 \end{align*}

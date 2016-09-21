@@ -341,22 +341,104 @@ Which when expanded out is,
 Which after some algebra yields,
 \[ \ve f = \ep_0 \br{\br{\vdel \cdot \ve E} \ve E + \br{\ve E \cdot \vdel} \ve E} + \f{1}{\mu_0} \br{\br{\vdel \cdot \ve B} \ve B + \br{\ve B \cdot \vdel} \ve B} - \vdel \br{\f{\ep_0}{2} E^2 + \f{1}{2 \mu_0} B^2} - \mu_0 \ep_0 \pder{\ve S}{t} \eq \label{eq:messy}\]
 We now introduce \term{Maxwell's stress energy tensor} $T$ with components,
-\[ T_{ij} = \ep_0 \br{E_i E_j - \f{1}{2} \de_{ij} E^2} + \f{1}{\mu_0} \br{B_i B_j - \f{1}{2} \de_{ij} B^2} \]
+\[ T_{ij} = \ep_0 \br{E_i E_j - \f{1}{2} \de_{ij} E^2} + \f{1}{\mu_0} \br{B_i B_j - \f{1}{2} \de_{ij} B^2} \eq \label{eq:components_of_MST}\]
 Where $\ve E = \sum_{i} E_i \hat{e}_i$ and $\ve B = \sum_{i} B_i \hat{e}_i$. We now have that \cref{eq:messy} gives,
 \[ \ve f = \vdel \cdot T - \ep_0 \mu_0 \pder{\ve S}{t} \]
 As defined $\ve F = \int_{\s{V}} \dif \tau \ve f$ is the net mechanical force acting on the matter in a volume $\s{V}$. Therefore,
 \begin{align*}
 \der{}{t} \ve p\tsb{mech} &= \int_{\s{V}} \dif \tau \ve f \\
 &= \int_{\s{V}} \dif \tau \br{\vdel \cdot T - \ep_0 \mu_0 \pder{S}{t}} \\
-&= \oint_{\s{S}} \dif a \cdot T - \der{}{t} \int_{\s{V}} \dif \tau \ep_0 \mu_0 \ve S
+&= \oint_{\s{S}} \dif \ve a \cdot T - \der{}{t} \int_{\s{V}} \dif \tau \ep_0 \mu_0 \ve S
 \end{align*}
 We usually define the second term here to be the momentum contained in the electromagnetic field,
 \[ \ve p\tsb{em} = \int_{\s{V}} \dif \tau \ep_0 \mu_0 \ve S \]
 Therefore the conservation of momentum is,
-\[ \der{}{t} \br{\ve p\tsb{mech} + \ve p\tsb{em}} = \oint_{\s{S}} \dif a \cdot T \]
-\subsection{Cauchy Stress Tensor}
-The \term{Cauchy stress tensor} is a representation of the total forces acting on a chunk $\s{V}$ of a material due to the neighboring pieces $\s{N}\br{\s{V}}$. Each neighboring chunk $n \br{\s{V}}$ can exert parallel or shear forces on $\s{V}$. This defines a matrix on force components on each face of $\s{V}$. Let $\ve f = \si \cdot \dif \ve a$ where $\ve{\si}$ is a rank 2 (3d) tensor. We call $\si$ the Cauchy stress tensor such that,
+\[ \der{}{t} \br{\ve p\tsb{mech} + \ve p\tsb{em}} = \oint_{\s{S}} \dif \ve a \cdot T \eq \label{eq:conservation_momentum}\]
+
+To draw intuition from continuum mechanics, the \term{Cauchy stress tensor} is a representation of the total forces acting on a chunk $\s{V}$ of a material due to the neighboring pieces $\s{N}\br{\s{V}}$. Each neighboring chunk $n \br{\s{V}}$ can exert parallel or shear forces on $\s{V}$. This defines a matrix on force components on each face of $\s{V}$. Let $\ve f = \si \cdot \dif \ve a$ where $\ve{\si}$ is a rank 2 (3d) tensor. We call $\si$ the Cauchy stress tensor such that,
 \[ \ve f = \si \cdot \dif \ve a \]
+The divergence of the Maxwell stress tensor is,
+\[ \pder{}{x_i} T_{ij} = \ep_0 \br{\pder{E_i}{x_i}E_j + E_i \pder{E_j}{x_i} - \f12 \de_{ij} \pder{E^2}{x_i}} + \f{1}{\mu_0} \br{\pder{B_i}{x_i}B_j + B_i \pder{B_j}{x_i} - \f12 \de_{ij} \pder{B^2}{x_i}} \]
+Which in vector notation is much simplier \todo[TC]{Verify this expression},
+\[ \vdel \cdot T = \ep_0 \br{\br{\vdel \cdot \ve E} \ve E + \br{\ve E \cdot \vdel} \ve E} - \f12 \ep_0 \vdel \cdot \ve E + \f{1}{\mu_0} \br{\br{\vdel \cdot \ve B} \ve B + \br{\ve B \cdot \vdel} \ve B} - \f12 \ep_0 \vdel \cdot \ve B \]
+While the force per unit volume is,
+\[ \ve f = \vdel \cdot T - \ep_0 \mu_0 \pder{\ve S}{t} \]
+Which can be integrated over a volume $\s{V}$ in order to obtain the total force,
+\begin{align*}
+\int_{\s{V}} \dif \tau \ve f &= \int_{\s{V}} \dif \tau \vdel \cdot T \\
+&= \int_{\s{V}} \dif \tau \vdel \cdot T - \mu_0 \ep_0 \der{}{t} \int_{\s{V}} \dif \tau \ve S\\
+\der{\ve p\tsb{mech}}{t}&= \oint_{\s{S}} \dif \ve a \cdot T - \der{}{t} \underbrace{\int_{\s{V}} \dif \tau \ve g}_{\ve p\tsb{em}}
+\end{align*}
+Therefore we recover \cref{eq:conservation_momentum} again,
+\[ \der{}{t} \br{\ve p\tsb{mech} + \ve p\tsb{em}} = \oint_{\s{S}} \dif \ve a \cdot T \]
+This conservation of momentum equation can be interpreted as Newton's second law for E\&M. \\
 
-
+\textbf{Ex 8.4:} Two point charges a distance $2 \ell$ apart. Due to the rotational symmetry of the problem, we can exploit cylindrical coordinates $\ve r = s\hat{s} + z \hat{z}$ because no physical quantities can depend on $\phi$.\\
+\textbf{a)} The electric field in a plane ($\phi = 0$) can be obtained as follows. Let $\ve r'$ be the location of the source $q$ and $\ve r$ be the field location. The origin is between the two identical charges. Let $\ve E_{+}$ be the electric field due to the charge in the $z > 0$ direction.
+\[ \ve r'_{\pm} = \pm \ell \hat{z} \]
+And on the axis perpendicular to $\hat{z}$,
+\[ \ve r = s \hat{s} \]
+Therefore,
+\[ \ve \rcurs = \ve r - \ve r' = s\hat{s} - \ell \hat z \]
+Which gives electric field,
+\begin{align*}
+\ve E_{\pm} &= \f{q_{\pm} \ve \rcurs_\pm}{4 \pi \ep_0 \rcurs_\pm^3} \\
+&= \f{q_{\pm}}{4 \pi \ep_0} \f{s \hs \mp \ell \vz}{\br{ s^2 + \ell^2}^{3/2}}
+\end{align*}
+Therefore,
+\[ \vE_{\bc{z = 0}} = \vE_{+} + \vE_{-} = \f{q_{\pm}}{4 \pi \ep_0} \f{2 s \hs}{\br{ s^2 + \ell^2}^{3/2}} \]
+Upon reflection, the direction of $\vE_{\bc{z = 0}}$ could have only been in the $\hat s$ direction by symmetry. \\
+\textbf{b)} Calculate the Maxwell Stress Tensor using \cref{eq:components_of_MST}. Notice that $\ve = B$ and $\vE_{\bc{z=0}} = E\br{s} \hat{s}$,
+\[ \hat{s} = \hat{x}\cos\phi + \hat{y}\sin\phi \]
+So in Cartesian coordinates,
+\[ \vE_{\bc{z = 0}} = \f{q_{\pm}}{4 \pi \ep_0} \f{2 \sqrt{x^2 + y^2}\br{\hat{x}\cos\phi + \hat{y}\sin\phi}}{\br{ x^2 + y^2 + \ell^2}^{3/2}} \]
+The components of $\ve E$ are then,
+\[ E_1 = E_x = \f{q_{\pm}}{4 \pi \ep_0} \f{2 \sqrt{x^2 + y^2}\cos\phi}{\br{ x^2 + y^2 + \ell^2}^{3/2}} \]
+\[ E_2 = E_y = \f{q_{\pm}}{4 \pi \ep_0} \f{2 \sqrt{x^2 + y^2}\sin\phi}{\br{ x^2 + y^2 + \ell^2}^{3/2}} \]
+\[ E_3 = E_z = 0 \]
+For convenience let,
+\[ E_0 = \f{q_{\pm}}{4 \pi \ep_0} \f{2 \sqrt{x^2 + y^2}}{\br{ x^2 + y^2 + \ell^2}^{3/2}} \eq \label{eq:E_0}\]
+Such that,
+\[ E_1 = E_0 \cos \phi \quad E_2 = E_0 \sin \phi\]
+And also,
+\[ E^2 = E_0^2 \]
+Therefore the components of $T$ are determined by \cref{eq:components_of_MST},
+\[ T = \ep_0 E_0^2 \begin{pmatrix}
+    \cos^2 \phi - \f12 & \sin \phi \cos \phi & 0 \\
+    \cos \phi \sin \phi & \sin^2 \phi - \f12 & 0 \\
+    0 & 0 & - \f12 \\
+\end{pmatrix} \]
+Which by trig-identities becomes,
+\[ T = \f12\ep_0 E_0^2 \begin{pmatrix}
+    \cos\br{2\phi} & \sin \br{2\phi} & 0 \\
+    \sin \br{2\phi} & -\cos\br{2\phi} & 0 \\
+    0 & 0 & - 1 \\
+\end{pmatrix} \]
+\textbf{c)} Construct a closed hemisphere $\s H$ above $z > 0$ enclosing the charge $q_{+}$ but not $q_{-}$. Since the charges are not moving, we have that,
+\[ \der{}{t} \br{\ve p\tsb{mech} + \ve p\tsb{em}} = \ve 0 \]
+Therefore it must be,
+\[ \oint_{\s{H}} \dif \ve a \cdot T = 0 \]
+However, $\s{S}$ does \textit{not} lie in the same plane as the Maxwell stress tensor computed above. Instead, we can take the radius $R$ of the hemisphere to be $R \to \inf$ such that the ``hemisphere'' becomes a flat plane with a central circular region. The net force acting on $q_{+}$ is,
+\[ \ve F_{+} = \int_{\s{V}} \dif \tau \ve f = \int_{\s{V}} \dif \ve a  \vdel \cdot T - \ep_0 \mu_0 \der{}{t} \int_{\s{V}} \dif \tau \cancelto{0}{\ve S} = \int_{\s{S}} \dif \ve a \cdot T \]
+Therefore,
+\begin{align*}
+    \ve F_{+} &= \intl_{-\inf}^{\inf} \dif x \intl_{-\inf}^{\inf} \dif y \f12\ep_0 E_0^2 \begin{pmatrix}
+        0 & 0 & -1
+    \end{pmatrix} \begin{pmatrix}
+        \cos\br{2\phi} & \sin \br{2\phi} & 0 \\
+        \sin \br{2\phi} & -\cos\br{2\phi} & 0 \\
+        0 & 0 & - 1 \\
+    \end{pmatrix}\\
+    &= \intl_{-\inf}^{\inf} \dif x \intl_{-\inf}^{\inf} \dif y \f12\ep_0 E_0^2 \begin{pmatrix}
+        0 \\ 0 \\ 1
+    \end{pmatrix}
+\end{align*}
+Where $E_0 = E_0\br{x,y}$ is given by \cref{eq:E_0}.
+\begin{align*}
+\ve F_{+} &= \f{1}{2} \ep_0 \hat z \intl_{-\inf}^{\inf} \dif x \intl_{-\inf}^{\inf} \dif y E_0^2 \\
+&= \f{1}{2} 2 \pi \ep_0 \br{\f{q}{2 \pi \ep_0}}^2 \hat z \intl_{0}^{\inf} \dif s \f{s \br{s^2}}{\br{s^2+ \ell^2}^{3}} \\
+&= \cdots \\
+&= \f{q^2 \hat z}{4 \pi \ep_0 \br{2 \ell}^2}
+\end{align*}
+Which is simply a result of Columb's law which was expected.
 \end{document}
