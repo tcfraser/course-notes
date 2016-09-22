@@ -224,4 +224,80 @@ Where the pressure $P\br{\rho}$ is determined by the equation of state. Combinin
 \[ \f{\ddot{a}}{a} = - \f{4 \pi G}{3} \br{\rho + \f{3P}{c^2}} \]
 Which is a relativistic manifestation of Newton's law. The difference being the term term involving pressure $P$.
 
+\section{Geometry}
+
+\begin{center}
+\begin{tabular}{|c|c|}
+    \hline
+    Geometry & k \\
+    \hline
+    Hyperbolic & -1 \\
+    Flat & 0 \\
+    Geometry & +1 \\
+    \hline
+\end{tabular}
+\end{center}
+\todo[TC]{Clean up this lecture}
+\[ \ell = \begin{cases}
+    \phi R \sin\br{\f{r}{R}} & k = +1 \\
+    \phi r & k = 0 \\
+    \phi R \sinh\br{\f{r}{R}} & k = -1 \\
+\end{cases} \]
+Introduce the spacial components of the \term{Friedmann Robertson Walker (FRW) metric},
+\[ \dif s^2 = a^2\br{t}\br{\f{\dif r^2}{1 - kr^2} + r^2 \br{\dif \theta^2 + \sin^2 \theta \dif \phi^2}} \eq \label{eq:FLRW}\]
+There is a choice in dimensionality among the terms involved. Typically, $a\br{t}$ is taken to be a dimensionless quantity such that $r$ and $k$ have units. In doing so, we can make the scaling choice of,
+\[ a\br{t\tsb{now}} = a\br{t_0} = a_0 \defined 1 \]
+Where $t_0$ is used to denote the present time. Therefore $r$ has units of length and $k$ necessarily has units of $\text{length}^{-2}$. Considering the different possibilities for $k$ ($\bc{k < 0, k = 0, k > 0}$), observational data has not been able to distinguish the curvature $k$ of our universe. Experiments suggest it is close to zero. \\
+
+Recall that for an isotropic expansion, we need $a\br{t}$ on the ``outside'' of \cref{eq:FLRW} and so $r,\theta,\phi$ (or $x,y,z$ in flat space) are commoving coordinates. We will also see that galaxies have $r, \theta, \phi$ approximately fixed (in a homogeneous universe).\\
+
+\textit{What is the velocity of a galaxy?} Obviously velocity is the derivative of a distance. However there are many different distances to consider in cosmology. One option is to define the distance between two objects at a fixed time called \term{proper time}. To calculate proper time take $\dif s^2$ at fixed time $t$ and integrating over $\dif r$ and setting $r=0$ to be the reference galaxy. Integrating along a radial line $\dif \phi = \dif \theta = 0$. Thus,
+\[ d\tsb{prop} = a\br{t} \underbrace{\intl_{0}^{r} \f{\dif r'^2}{\sqrt{1 - k r'^2}}}_{\chi} \]
+Note that for a galaxy, if $r$ is constant then $\chi$ is constant as well.
+The \term{proper velocity} in this case is of course,
+\[ \dot d\tsb{prop} = \dot a \chi = \dot a \f{d\tsb{prop}}{d} = \br{\f{\dot a}{a}} d\tsb{prop} \]
+Which is identical to Hubble's law,
+\[ \bc{\dot r = H_0 r} \sim \bc{\dot d\tsb{prop} = \br{\f{\dot a}{a}} d\tsb{prop}}  \]
+Therefore it could be that Hubble's constant is a function of time,
+\[ H\br{t} = \f{\dot a}{a} \eq \label{eq:hubble_scale_factor} \]
+\subsection{Summary of General Relativity}
+Without delving into the rigor and formalism of General Relativity, we summarize some of the ideas behind the foundations of GR.\\
+
+The \term{equivalence principle} is best introduced via an analogy to electrostatics. In electrostatics, the force between two charges $Q, q$ is,
+\[ F = \f{1}{4\pi\ep_0}\f{Qq}{r^2} \]
+Therefore the acceleration on the smaller charge $q$ with mass $m$ is,
+\[ a = \f{Qq}{4\pi\ep_0mr^2} = \f{Q}{4\pi\ep_0r^2}\br{\f{q}{m}} \]
+Quite characteristically, the acceleration depends on the ratio $q/m$. Therefore an electron and proton will have a very different acceleration when nearby the same charge $Q$. In contrast, gravity behaves \textit{differently}. In gravity,
+\[ F = \f{GMm}{r^2} = ma \]
+Therefore,
+\[ a = \f{GM}{r^2} \br{\f{m}{m}} = \f{GM}{r^2} \]
+Therefore any object (regardless of its mass) has the same acceleration; hinting at the fact that gravity is \textit{special}. The equivalence of $m\tsb{grav}$ and $m\tsb{inert}$ then suggests the famous elevator thought experiment. Because of the mass equivalence, no experiment can distinguish the difference between an experiment on earth (in a uniform gravitational field) and a uniform acceleration (like in a rocket). Therefore, if the light from a laser in a rocket appears to bend downward in a rocket (due to the acceleration) it must also be the case that light bends downward toward earth! The resolution between this thought experiment and Fermat's optical principle is that space itself is bending in a gravitational field. The light in a gravitational field follows ``straight'' \term{geodesics}. Freely-falling objects (particles, photons) follow geodesics in space-time. \\
+
+There is an important caveat to the equivalence principle. If the rocketships (elevators) has size comparable to the size of the earth, then the body will experience forces in different directions across its extent in a gravitational field but \textit{not} when uniformly accelerating. These forces are known as \term{tidal forces}. So in Gr space time must behave like special relativity on small scales. In SR the spacetime line element is written as,
+\[ \dif s^2 = - c^2 \dif t^2 + \dif x^2 + \dif y^2 + \dif z^2 \]
+Photons taking at speed $c$ has the defining property that,
+\[ \dif s^2_\ga  = 0 \eq \label{eq:null_geodesics}\]
+Which can be stated as: \textit{photons travel on null geodesics}. Therefore the \term{full FRW metric} must be,
+\[ \dif s^2 = - c^2 \dif t^2 + a^2\br{t}\br{\f{\dif r^2}{1 - kr^2}} + r^2 \br{\dif \theta^2 + \sin^2 \theta \dif \phi^2} \eq \label{eq:FRW_full}\]
+To solve for the equations of motion or geodesics of photons, one simply needs to solve \cref{eq:FRW_full} under the constraint that \cref{eq:null_geodesics}. In summary the following comparison holds,
+\begin{center}
+\begin{tabular}{|l|l|}
+    \hline
+    Special Relativity & General Relativity \\
+    \hline
+    Special observers are inertial & Freely falling \\
+    Light follows null geodesics & same \\
+    Particles move in straight lines & Particles follow geodesics \\
+    Empty universe / No curvature & Not empty universe / Curvature \\
+    \hline
+\end{tabular}
+\end{center}
+Note that the ``flat'' universe $(k=0)$ is spatially flat, but curved in space-time. \\
+
+\subsection{Einstein Equation}
+
+The Einstein equation relates functions of the metric $(\dif s^2 = \cdots)$ to the energy content of the universe. Typically, the Einstein equations are $10$ non-linear equations. When applied to a homogeneous universe (as is considered in cosmology), the Einstein equations reduce to $2$ equations. One of which is the Friedmann equation,
+\[ \br{\f{\dot a}{a}}^2 + \f{k c^2}{a^2} = \f{8 \pi G}{3} \rho \]
+Where $kc^3/a^2$ is related to the energy content but here it is related to the curvature as well (same $k$ as in FRW metric).
+
 \end{document}
