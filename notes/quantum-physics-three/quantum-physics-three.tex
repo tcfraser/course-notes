@@ -427,5 +427,103 @@ Therefore we arrive at the Schrödinger equation for a wavefunction,
 Which in terms of wavefunctions is simply,
 \[ i \hbar \pder{}{t} \psi\br{\ve x', t} = -\f{\hbar^2}{2m} \vdel'^2\psi\br{\ve x', t} + V\br{\ve x'} \psi\br{\ve x', t}\]
 \section{Rotations and Angular Momentum}
-To begin, let us remind ourselves about the algebra of rotations in 3D space. Suppose one has a Cartesian coordinate system $\bc{x,y,z}$. To retain some consistency, we always rotate the physical system with respect to fixed coordinates (i.e. the \textit{active} view of rotations, not the \textit{passive} view).
+To begin, let us remind ourselves about the algebra of rotations in 3D space. Suppose one has a Cartesian coordinate system $\bc{x,y,z}$. To retain some consistency, we always rotate the physical system with respect to fixed coordinates (i.e. the \textit{active} view of rotations, not the \textit{passive} view). \\
+
+As an example, consider rotating the system $\ve r$ about the $z$-axis to the vector $\ve r'$. Let the vector perpendicular to $\ve r$ be denoted $\hat z \times \ve r$. Then one can write the vector $\ve r'$ as,
+\[ \ve r' = \ve r \cos \varphi + \hat z \times \ve r \sin \varphi \]
+In terms of components (considering $\ve r$ in the $x,y$-plane),
+\begin{align*}
+\ve r' &= \br{x \hat x + y \hat y} \cos \varphi + \hat z \times \br{x \hat x + y \hat y} \sin \varphi \\
+&= \br{x \hat x + y \hat y} \cos \varphi + \br{x \hat y - y \hat x} \sin \varphi \\
+&= \br{y\cos \varphi + x\sin \varphi} \hat y + \br{x\sin \varphi - y\cos \varphi} \hat x
+\end{align*}
+The rotated components are given by,
+\[ x' = x \cos \varphi - y \sin \varphi  \]
+\[ y' = x \sin \varphi + y \cos \varphi  \]
+\[ z = z' \]
+Which can be written as a matrix,
+\[ \begin{pmatrix}x'\\y'\\z'\end{pmatrix} = R_{z}\br{\varphi} \begin{pmatrix}x\\y\\z\end{pmatrix} \]
+Where the \term{rotation matrix} about the $z$-axis is given by,
+\[ R_{z}\br{\varphi} = \begin{pmatrix}
+    \cos \varphi & - \sin \varphi & 0 \\
+    \sin \varphi & \cos \varphi & 0 \\
+    0 & 0 & 1 \\
+\end{pmatrix} \]
+Analogously one can define,
+\[ R_{x}\br{\varphi} = \begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & \cos \varphi & - \sin \varphi \\
+    0 & \sin \varphi & \cos \varphi \\
+\end{pmatrix} \]
+\[ R_{y}\br{\varphi} = \begin{pmatrix}
+    \cos \varphi & 0 & - \sin \varphi \\
+    0 & 1 & 0 \\
+    \sin \varphi & 0 & \cos \varphi \\
+\end{pmatrix} \]
+Next consider the transpose of a rotation matrix,
+\[ R_{z}^{\intercal}\br{\varphi} = \begin{pmatrix}
+    \cos \varphi & \sin \varphi & 0 \\
+    -\sin \varphi & \cos \varphi & 0 \\
+    0 & 0 & 1 \\
+\end{pmatrix} \]
+Which gives,
+\[ R_{z}^{\intercal}\br{\varphi}R_{z}\br{\varphi} = \begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1 \\
+\end{pmatrix} \]
+Therefore $R_{z}^{\intercal}\br{\varphi} = R_{z}^{-1}\br{\varphi}$. Due to this property we say that $R_{z}\br{\varphi}$ is an \term{orthogonal matrix}. \\
+
+Moreover we have that,
+\[ R_{x}\br{\varphi_1}R_{y}\br{\varphi_2}\neq R_{y}\br{\varphi_2}R_{x}\br{\varphi_1} \]
+Therefore the commutation is,
+\[ \bs{R_{x},R_{y}} \neq 0 \]
+
+Much like we did with translations, consider the infinitesimal rotation ($\varphi = \ep \ll 1$).
+\[ R_{z}\br{\ep} = \begin{pmatrix}
+    1 - \f{\ep^2}{2} & - \ep & 0 \\
+    \ep & 1 - \f{\ep^2}{2} & 0 \\
+    0 & 0 & 1 \\
+\end{pmatrix} \]
+We can now compute the commutation between two infinitesimal rotations.
+\[ R_{x}\br{\ep}R_{y}\br{\ep} = \begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & 1 - \f{\ep^2}{2} & - \ep \\
+    0 & \ep & 1 - \f{\ep^2}{2} \\
+\end{pmatrix}\begin{pmatrix}
+    1 - \f{\ep^2}{2} & 0 & - \ep \\
+    0 & 1 & 0 \\
+    \ep & 0 & 1 - \f{\ep^2}{2} \\
+\end{pmatrix} \]
+Which gives,
+\[ R_{x}\br{\ep}R_{y}\br{\ep} = \begin{pmatrix}
+    1 - \f{\ep^2}{2} & 0 & \ep \\
+    \ep^2 & 1 - \f{\ep^2}{2} & -\ep \\
+    -\ep & \ep & 1 - \ep^2 \\
+\end{pmatrix} \]
+Similarly,
+\[ R_{y}\br{\ep}R_{x}\br{\ep} = \begin{pmatrix}
+    1 - \f{\ep^2}{2} & \ep^2 & \ep \\
+    0 & 1 - \f{\ep^2}{2} & -\ep \\
+    -\ep & \ep & 1 - \ep^2 \\
+\end{pmatrix} \]
+Thus,
+\[ \bs{R_{x}\br{\ep}, R_{y}\br{\ep}} = \begin{pmatrix}
+    0 & \ep^2 & 0 \\
+    \ep^2 & 0 & 0 \\
+    0 & 0 & 0 \\
+\end{pmatrix} \]
+Notice that,
+\[ \bs{R_{x}\br{\ep}, R_{y}\br{\ep}} = R_{x}\br{\ep^2} - \mathbb{I} \]
+\subsection{Rotations in Quantum Mechanics}
+Let the rotation be some operator $D \in \s{B}\br{\s{H}}$ be,
+\[ \ket{\psi}_{R} = D\br{R} \ket{\psi} \]
+Where $D\br{R}$ represents the \term{rotation operator} associated with the rotation $R$. $\ket{\psi}_R$ is the rotated version of $\ket{\psi}$. Say for example, $R$ represents the rotation by an infinitesimal small angle $\dif \varphi$ about an axis $\hat{n}$. Evidently $D\br{R}$ \textit{should} maintain the same properties (\cref{eq:trans_add,eq:unitary_trans}) as the translation operator $T\br{\dif \ve x'}$. Therefore is is acceptable to postulate that,
+\[ D\br{\hat n, \dif \varphi} = \mathbb{I} - \f{i}{\hbar} \ve J \cdot \hat n \dif \varphi \]
+By dimensional analysis, $\ve J$ is the angular momentum of the system. We sat that $\ve J$ is the generator of rotations. \\
+Again we can find the rotation about any angle $\varphi$ (not just $\dif \varphi$) using,
+\[D\br{\hat n, \varphi} = \lim_{N \to \inf} \bs{\mathbb{I} - \f{i}{\hbar} \ve J \cdot \hat n \f{\varphi}{N}}^N \]
+Which gives the familiar result,
+\[D\br{\hat n, \varphi} = e^{-\f{i}{\hbar} \ve J \cdot \hat n \varphi} \]
+
 \end{document}
