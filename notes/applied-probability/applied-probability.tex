@@ -5,9 +5,9 @@
 \set{AuthorName}{TC Fraser}
 \set{Email}{tcfraser@tcfraser.com}
 \set{Website}{www.tcfraser.com}
-\set{ClassName}{Stochastic Processes}
+\set{ClassName}{Applied Probability}
 \set{School}{University of Waterloo}
-\set{CourseCode}{Stat 433}
+\set{CourseCode}{Stat 333}
 \set{InstructorName}{Yi Shen}
 \set{Term}{Fall 2016}
 \set{Version}{1.0}
@@ -162,6 +162,7 @@ As a result Taylor series gives,
 \end{align*}
 Which is a method that can be used to obtain the moment of a mgf.
 \begin{theorem}
+    \label{thm:sum_mgf}
     Let $X\indep Y$ with mgfs $\Mom_x$ and $\Mom_y$ be respective mgfs. Let $\Mom_{X+Y}$ be the mgf of $X+Y$. Then,
     \[ \Mom_{X+Y} = \Mom_X\Mom_Y \]
 \end{theorem}
@@ -209,7 +210,76 @@ In general, if $X_1, X_2, \ldots, X_n$ are independent and $X_i \sim \Poi\br{\la
     \[ \Mom\br{t_1, t_2} = \Exp\br{e^{t_1 X + t_2 Y}} \]
     Provided that the expectation exists for $t_1 \in \br{-h_1, h_1}$ and $t_2 \in \br{-h_2, h_2}$ for $h_1, h_2 > 0$.
 \end{definition}
+Evidently, the joint moment generating function can be defined for any number of random variables. More generally, we can define the joint moment generating function with parameters $t_1, \ldots, t_n$ to be,
+\[ \Mom\br{t_1, \ldots, t_n} = \Exp\br{\exp\br{\sum_{i=1}^{n} t_i X_i}} \]
+For r.v.s $X_1, \ldots, X_n$ provided that the expectation exists for $t_i \in \br{-h_i, h_i}$ for some $h_i > 0$ for $i = 1, \ldots, n$. There are some nice properties of the jmgf. First, it should be possible to obtain the mgf from a particular r.v. $X_i$ from the jmgf which includes $X_i$.\\
 
+Notice that,
+\[ \Mom_X\br{t} = \Exp\br{e^{tX}} = \Exp\br{e^{t\cdot X + 0\cdot Y}} = M_{XY}\br{t, 0} \]
+
+Another property of the jmgf is,
+\[ \f{\di^{m+n}}{\di t_1^m \di t_2^n} M\br{t_1, t_2} \mid_{0,0} = \Exp\br{X^m Y^n} \]
+The proof being very similar to the single r.v. case.
+
+Thirdly, we have that if $X \indep Y$, then,
+\[ \Mom\br{t_1, t_2} = \Mom_{X}\br{t_1}\Mom_{Y}\br{t_2} \eq \label{eq:seperable_indep}\]
+
+\begin{proof}
+    \begin{align*}
+        \Mom\br{t_1, t_2} &= \Exp\br{e^{t_1 X + t_2 Y}} \\
+        &= \Exp\br{e^{t_1 X}e^{t_2 Y}} \\
+        &= \Exp\br{e^{t_1 X}}\Exp\br{e^{t_2 Y}} \note{Independence}\\
+        &= \Mom_X\br{t_1}\Mom_Y\br{t_2}
+    \end{align*}
+\end{proof}
+\begin{remark}
+    It is important not to confuse this result with \cref{thm:sum_mgf}. The difference being that \cref{thm:sum_mgf} is a single argument mgf while \cref{eq:seperable_indep} is a multi-parameter function,
+    \[ \Mom_{X+Y}\br{t} \neq M_{X,Y}\br{t_1, t_2} \]
+    Therefore knowing that $\Mom_{X+Y}\br{t}$ is separable does not imply that $X \indep Y$. \cref{eq:seperable_indep} is a stronger statement than \cref{thm:sum_mgf}.
+\end{remark}
+
+\section{Conditional Distribution and Conditional Expectation}
+\subsection{Conditional Distribution}
+We first begin with the discrete case.
+\begin{definition}
+    Let $X$ and $Y$ ne discrete r.v.s. Then the \term{conditional distribution} of $X$ given $Y$ is given by,
+    \[ P\br{X=x\mid Y=y} = \f{P\br{X=x, Y=y}}{P\br{Y=y}} \]
+    We read this as the probability of the event $\bc{X = x}$ given that $\bc{Y=y}$ holds. We can also write this as a conditional pmf,
+    \[ f_{X\mid Y=y}\br{x} \quad \text{or} \quad f_{X\mid Y}\br{x \mid y} \]
+\end{definition}
+
+The conditional probability is a legitimate pmf. First note that as required,
+\[ f_{X \mid Y=y}\br{x} \geq 0 \quad \forall x \]
+Also it should be clear that,
+\[ \sum_{x}f_{X \mid Y=y}\br{x} = 1 \]
+In fact, $P\br{Y=y}$ acts a \textit{normalization constant} for the probabilities $\sum_{x} P\br{X=x, Y=y}$. Note that given $Y=y$, as $X$ changes, the value of the function $f_{X \mid Y=y}\br{x}$ is proportional to the joint probability $P\br{X=x, Y=y}$.
+\[ f_{X \mid Y=y}\br{x} \propto P\br{X=x, Y=y} \eq \label{eq:prop_cond}\]
+Namely the proportionality constant is of course $\br{P\br{Y=y}}^{-1}$. Although easy to understand, \cref{eq:prop_cond} can be used to solve problems where the denominator $P\br{Y=y}$ is difficult to find.
+
+\begin{example}
+    Let $X_1 \sim \Poi \br{\la_1}$ and $X_2 \sim \Poi \br{\la_2}$ such that $X_1 \indep X_2$ and $Y = X_1 + X_2$. Then we can find $P\br{X_1 = k \mid Y = n} = f_{X \mid Y = y}\br{k}$ using the following process. Notice that $f_{X \mid Y = y}\br{k}$ can only be non-zero when $0 \leq k \leq n$ in order for $Y = X_1 + X_2$. In this case for fixed $n$,
+    \[ P\br{X_1 = k \mid Y = n} = \f{P\br{X_1 = k, Y = n}}{P\br{Y = n}} \propto P\br{X_1 = k, Y = n} \]
+    But since $Y = X_1 + X_2$ it must be that,
+    \begin{align*}
+    P\br{X_1 = k \mid Y = n} &\propto P\br{X_1 = k, X_2 = n - k} \\
+    &= e^{-\la_1} \f{\la_1^k}{k!}e^{-\la_2} \f{\la_2^{n-k}}{\br{n-k}!} \\
+    &\propto \f{\la_1^k}{k!}\f{\la_2^{-k}}{\br{n-k}!} \eq \label{eq:star}
+    \end{align*}
+    If we want to find the exact proportionality constant for \cref{eq:star}, we simply need to normalize $P\br{X_1 = k \mid Y = n}$ by summing over all values of $k$ in \cref{eq:star},
+    \[ P\br{X_1 = k \mid Y=n} = \f{\la_1^k}{k!}\f{\la_2^{-k}}{\br{n-k}!}\bc{\f{\la_1^k}{k!}\f{\sum_{k=0}^{n}\la_2^{-k}}{\br{n-k}!}}^{-1} \]
+    Proceeding using this technique is difficult because of the nasty summation. The easier way is to continue the proportionality analysis. Compare \cref{eq:star} with the known result for common distributions. In particular, let's consider $X \sim \Bin\br{n, p}$,
+    \[ P\br{X=k} = \begin{pmatrix}n\\k\end{pmatrix} p^k \br{1-p}^{n-k} = \f{n!}{k!\br{n-k}!} p^k \br{1-p}^{n-k} \]
+    Removing constants,
+    \[ P\br{X=k} \propto \br{\f{p}{1-p}}^k \br{k! \br{n-k}!}^{-1} \]
+    Choosing $p/\br{1-p} = \la_1/\la_2$, then,
+    \[ P\br{X_1 = k \mid Y = n} \propto P\br{X=k} \]
+    Therefore we can conclude that $P\br{X_1 = k \mid Y = n}$ follows a binomial distribution with parameters $n$ and $p$ given by,
+    \[ \f{p}{1-p} = \f{\la_1}{\la_2} \implies p = \f{\la_1}{\la_1 + \la_2}\]
+    Therefore,
+    \[ P\br{X_1 = k \mid Y = n} = \begin{pmatrix}n\\k\end{pmatrix} \br{\f{\la_1}{\la_1 + \la_2}}^k \br{1-\br{\f{\la_1}{\la_1 + \la_2}}}^{n-k} \]
+\end{example}
+
+% CONTINUE
 \section{DTMC}
 
 \subsection{Review of Probability}
