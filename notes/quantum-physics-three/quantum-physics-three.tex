@@ -514,16 +514,88 @@ Thus,
     0 & 0 & 0 \\
 \end{pmatrix} \]
 Notice that,
-\[ \bs{R_{x}\br{\ep}, R_{y}\br{\ep}} = R_{x}\br{\ep^2} - \mathbb{I} \]
+\[ \bs{R_{x}\br{\ep}, R_{y}\br{\ep}} = R_{x}\br{\ep^2} - \mathbb{I} \eq \label{eq:rotation_infinitesimal} \]
 \subsection{Rotations in Quantum Mechanics}
-Let the rotation be some operator $D \in \s{B}\br{\s{H}}$ be,
+Let the rotation be some operator $D\br{R} \in \s{B}\br{\s{H}}$ be,
 \[ \ket{\psi}_{R} = D\br{R} \ket{\psi} \]
 Where $D\br{R}$ represents the \term{rotation operator} associated with the rotation $R$. $\ket{\psi}_R$ is the rotated version of $\ket{\psi}$. Say for example, $R$ represents the rotation by an infinitesimal small angle $\dif \varphi$ about an axis $\hat{n}$. Evidently $D\br{R}$ \textit{should} maintain the same properties (\cref{eq:trans_add,eq:unitary_trans}) as the translation operator $T\br{\dif \ve x'}$. Therefore is is acceptable to postulate that,
-\[ D\br{\hat n, \dif \varphi} = \mathbb{I} - \f{i}{\hbar} \ve J \cdot \hat n \dif \varphi \]
+\[ D_{\hat n}\br{\dif \varphi} = \mathbb{I} - \f{i}{\hbar} \ve J \cdot \hat n \dif \varphi \]
 By dimensional analysis, $\ve J$ is the angular momentum of the system. We sat that $\ve J$ is the generator of rotations. \\
 Again we can find the rotation about any angle $\varphi$ (not just $\dif \varphi$) using,
-\[D\br{\hat n, \varphi} = \lim_{N \to \inf} \bs{\mathbb{I} - \f{i}{\hbar} \ve J \cdot \hat n \f{\varphi}{N}}^N \]
+\[D_{\hat n}\br{\varphi} = \lim_{N \to \inf} \bs{\mathbb{I} - \f{i}{\hbar} \ve J \cdot \hat n \f{\varphi}{N}}^N \]
 Which gives the familiar result,
-\[D\br{\hat n, \varphi} = e^{-\f{i}{\hbar} \ve J \cdot \hat n \varphi} \]
-
+\[D_{\hat n}\br{\varphi} = e^{-\f{i}{\hbar} \ve J \cdot \hat n \varphi} \]
+The rotation operator \textit{must} have the same multiplicative properties of the rotation matrices. If for example $R_3 = R_1 \cdot R_2$, then it must be that,
+\[ R_3 = R_1 \cdot R_2 \implies D\br{R_3} = D\br{R_1} \cdot D\br{R_2} \]
+Recall the commutation relation for the rotation matrices from \cref{eq:rotation_infinitesimal}. Thus,
+\[ \bs{D_x\br{\ep}, D_y\br{\ep}} = D_z\br{\ep^2} - \mathbb{I} \]
+To demonstrate this, consider $D_x\br{\ep}, D_y\br{\ep}$,
+\begin{align*}
+    D_x\br{\ep} &= \mathbb{I} - \f{i}{\hbar}  J_x \ep - \f{1}{2\hbar^2}J_x^2\ep^2 + \s{O}\br{\ep^3} \\
+    D_y\br{\ep} &= \mathbb{I} - \f{i}{\hbar}  J_y \ep - \f{1}{2\hbar^2}J_y^2\ep^2 + \s{O}\br{\ep^3} \\
+    D_z\br{\ep^2} &= \mathbb{I} - \f{i}{\hbar}  J_z \ep^2 + \s{O}\br{\ep^3} \\
+\end{align*}
+Keeping only first orders of $\ep$,
+\begin{align*}
+    &\bs{D_x\br{\ep} , D_y\br{\ep}} \\
+    &= D_x\br{\ep}D_y\br{\ep} - D_y\br{\ep}D_x\br{\ep} \\
+    &= \br{\mathbb{I} - \f{i}{\hbar}  J_x \ep - \f{1}{2\hbar^2}J_x^2\ep^2}\br{\mathbb{I} - \f{i}{\hbar}  J_y \ep - \f{1}{2\hbar^2}J_y^2\ep^2} - \br{\mathbb{I} - \f{i}{\hbar}  J_y \ep - \f{1}{2\hbar^2}J_y^2\ep^2}\br{\mathbb{I} - \f{i}{\hbar}  J_x \ep - \f{1}{2\hbar^2}J_x^2\ep^2} \\
+    &= \cancel{\mathbb{I}} - \cancel{\f{i}{\hbar} J_y \ep} - \cancel{\f{1}{2\hbar^2} J_y^2 \ep^2}- \cancel{\f{i}{\hbar} J_x \ep} - \cancel{\f{1}{2\hbar^2} J_x^2 \ep^2} - \f{1}{\hbar^2} J_x J_y \ep^2  - \cancel{\mathbb{I}} + \cancel{\f{1}{\hbar} J_x \ep} + \cancel{\f{1}{2\hbar^2} J_x^2} \ep+ \cancel{\f{1}{\hbar} J_y \ep} + \cancel{\f{1}{2\hbar^2} J_y^2 \ep} + \f{1}{\hbar^2} J_yJ_x \ep^2 \\
+    &= -\f{1}{\hbar^2} \bs{J_x, J_y} \ep^2 = D_z\br{\ep^2} - \mathbb{I} = - \f{i}{\hbar} J_z \ep^2
+\end{align*}
+In general,
+\[ \bs{J_i, J_j} = i \hbar \ep_{ijk} J_k \eq \label{eq:rotation}\]
+Where $\ep_{ijk}$ is the fully symmetric tensor,
+\[ \ep_{xyz} = \ep_{zxy} = \ep_{yzx} = 1  \]
+\[ \ep_{xzy} = \ep_{zyx} = \ep_{yxz} = -1  \]
+The commutation relation is in contrast to the commutation of the momentum operator,
+\[ \bs{P_x, P_y} = 0 \]
+Since linear momentum is the generator of translations, different components of momentum commute. We say that the group of translations is \term{abelian}, while the group of rotations is \term{non-abelian} because generators of rotations do not commute.
+\subsection{Spin-1/2 Operators}
+Consider the spin operators $S_{\hat{n}}$ with the commutation relation,
+\[ \bs{S_i, S_j} = i \hbar \ep_{ijk} S_k \]
+Where,
+\[ \ve S = \f{\hbar}{2} \ve \si \]
+Where $\ve \si = \br{\si_x, \si_y, \si_z}$ are the \term{Pauli matrices},
+\[ \si_x = \begin{pmatrix}0 & 1 \\ 1 & 0 \end{pmatrix} \quad \si_y = \begin{pmatrix}0 & -i \\ i & 0 \end{pmatrix} \quad \si_x = \begin{pmatrix}1 & 0 \\ 0 & -1 \end{pmatrix} \]
+Notice that the Pauli matrices have the following nice property,
+\[ \si_i^2 = \mathbb{I} \quad \forall i \in x,y,z \eq \label{eq:pauli_squared_ident} \]
+We can also write the spin operators in a different way.
+\[ S_i = \f{\hbar}{2} \sum_{a,b} \ket{a} \si_{ab} \bra{b} \eq \label{eq:alt_not_for_pauli}\]
+Where $\ket{a}, \ket{b} \in \bc{\ket{\uparrow}, \ket{\downarrow}}$. Expanding out \cref{eq:alt_not_for_pauli},
+\begin{align*}
+    S_x &= \f{\hbar}{2}\br{\ket{\uparrow}\bra{\downarrow} + \ket{\downarrow}\bra{\uparrow}} \\
+    S_y &= \f{i\hbar}{2}\br{-\ket{\uparrow}\bra{\downarrow} + \ket{\downarrow}\bra{\uparrow}} \\
+    S_z &= \f{\hbar}{2}\br{\ket{\uparrow}\bra{\uparrow} - \ket{\downarrow}\bra{\downarrow}}
+\end{align*}
+Expectations of the spin operator are transformed by rotations,
+\begin{align*}
+    \ba{S_x}_R &= \prescript{}{R}{\bra{\psi}} S_x \ket{\psi}_R \\
+    &= \bra{\psi} D^{\dagger}_z\br{\varphi} S_x D_z\br{\varphi} \ket{\psi}
+\end{align*}
+Where the operator $D^{\dagger}_z\br{\varphi} S_x D_z\br{\varphi}$ can be commuted directly,
+\begin{align*}
+    D^{\dagger}_z\br{\varphi} S_x D_z\br{\varphi} &= e^{\f{i}{\hbar} S_z \varphi } S_x e^{-\f{i}{\hbar} S_z \varphi } \\
+    &= \f{\hbar}{2} e^{\f{i}{2} \si_z \varphi } \si_x e^{-\f{i}{2} \si_z \varphi } \eq \label{eq:return_to}
+\end{align*}
+Making use of the Taylor series,
+\[ e^{-\f{i}{2} \si_z \varphi} = \sum_{n=0}^{\inf} \f{1}{n!}\br{-\f{i}{2} \si_z \varphi }^n \]
+Breaking up even and odd powers of this series,
+\[ e^{-\f{i}{2} \si_z \varphi} = \sum_{n=0}^{\inf} \f{1}{\br{2n}!}\br{-\f{i}{2} \si_z \varphi }^{2n} + \sum_{n=0}^{\inf} \f{1}{\br{2n + 1}!}\br{-\f{i}{2} \si_z \varphi }^{2n + 1} \]
+Using \cref{eq:pauli_squared_ident},
+\[ e^{-\f{i}{2} \si_z \varphi} = \mathbb{I} \sum_{n=0}^{\inf} \f{1}{\br{2n}!}\br{-\f{i}{2} \varphi }^{2n} + \si_z\sum_{n=0}^{\inf} \f{1}{\br{2n + 1}!}\br{-\f{i}{2} \varphi }^{2n + 1} \]
+Reorganizing yields,
+\[ e^{-\f{i}{2} \si_z \varphi} = \mathbb{I} \sum_{n=0}^{\inf} \f{\br{-1}^n}{\br{2n}!}\br{\f{\varphi}{2}  }^{2n} - i \si_z\sum_{n=0}^{\inf} \f{\br{-1}^n}{\br{2n + 1}!}\br{\f{\varphi}{2}}^{2n + 1} \]
+Recognizing the Taylor series for $\sin x, \cos x$ where $x = \varphi / 2$ we have that,
+\[ e^{-\f{i}{2} \si_z \varphi} =  \cos\br{\f{\varphi}{2}}\mathbb{I} - i \sin\br{\f{\varphi}{2}} \si_z \]
+This result holds for any Pauli by \cref{eq:pauli_squared_ident},
+\[ e^{-\f{i}{2} \ve \si \cdot \hat n \varphi} =  \cos\br{\f{\varphi}{2}}\mathbb{I} - i \sin\br{\f{\varphi}{2}} \si \cdot \hat n \]
+Therefore returning to \cref{eq:return_to},
+\begin{align*}
+    e^{\f{i}{2} \si_z \varphi } \si_x e^{-\f{i}{2} \si_z \varphi } &=
+    \br{\cos\br{\f{\varphi}{2}}\mathbb{I} + i \sin\br{\f{\varphi}{2}} \si_z} \si_x \br{\cos\br{\f{\varphi}{2}}\mathbb{I} - i \sin\br{\f{\varphi}{2}} \si_z} \\
+    &= \si_x \cos^2 \f{\varphi}{2} - i \cos \f{\varphi}{2} \sin \f{\varphi}{2} \si_x \si_z + i \cos \f{\varphi}{2} \sin \f{\varphi}{2} \si_z \si_x + \sin^2 \f{\varphi}{2} \si_z \si_x \si_z
+\end{align*}
+By hand,
+\[ \si_x \si_z = \begin{pmatrix}0 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix}1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix}0 & -1 \\ 1 & 0 \end{pmatrix} = -i\begin{pmatrix}0 & -i \\ i & 0 \end{pmatrix} = -i \si_y\]
 \end{document}
