@@ -294,10 +294,93 @@ To solve for the equations of motion or geodesics of photons, one simply needs t
 \end{center}
 Note that the ``flat'' universe $(k=0)$ is spatially flat, but curved in space-time. \\
 
-\subsection{Einstein Equation}
+In summary, general relativity is composed of a Lorentzian space-time,
+\[ \De s^2 = - \br{c \De t}^2 + \De x^2 + \De y^2 + \De z^2\]
+And the notion that gravity is consequence of the curvature of space-time. The particulars of how matter and curvature are harmonious is embodied in Einstein's Equations. As a high level summary, Einstein's equations dictate the following relationship.
+
+\[ \text{curvature} = \br{\f{8\pi G}{c^2}} \cdot \text{energy-momentum-pressure density} \]
+
+\subsection{Einstein's Equations and Cosmology}
+
+In cosmology (and under the cosmological principle), there is a unique solution to Einstein's equations. It is the FRW metric previously derived above in \cref{eq:FRW_full}
+\[ \De s^2 = - c^2 \De t^2 + a^2\br{t}\br{\f{\De r^2}{1 - kr^2}} + r^2 \br{\De \theta^2 + \sin^2 \theta \De \phi^2} \]
+Where $k$ determines the geometry of the spacial parts of the universe,
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+    \hline
+    k & Geometry & Boundary \\
+    \hline
+    -1 & Hyperbolic & Open \\
+    0  & Flat & Open \\
+    +1 & Geometry & Closed \\
+    \hline
+\end{tabular}
+\end{center}
+
+As far as we can tell, $k\approx 0$. Another possibility is that the universe has a non-trivial topology; albeit no observable evidence suggests this.
 
 The Einstein equation relates functions of the metric $(\dif s^2 = \cdots)$ to the energy content of the universe. Typically, the Einstein equations are $10$ non-linear equations. When applied to a homogeneous universe (as is considered in cosmology), the Einstein equations reduce to $2$ equations. One of which is the Friedmann equation,
 \[ \br{\f{\dot a}{a}}^2 + \f{k c^2}{a^2} = \f{8 \pi G}{3} \rho \]
 Where $kc^3/a^2$ is related to the energy content but here it is related to the curvature as well (same $k$ as in FRW metric).
+
+\subsection{Review}
+As a review we have the following set of cosmological equations.
+The Friedmann equation:
+\[ H^2 + \f{k}{a^2} = \f{8\pi G}{3} \rho \eq \label{eq:review_friedmann}\]
+Where the Hubble parameter is,
+\[ H = \f{\dot a}{a} \]
+The Fluid equation:
+\[ \dot \rho + 3 H \br{\rho + p} = 0 \eq \label{eq:review_fluid} \]
+Combining \cref{eq:review_friedmann,eq:review_fluid} we arrive at,
+\[ \f{\ddot a}{a} = - \f{4 \pi G}{3}\br{\rho + \f{3P}{c^2}} \]
+
+\section{Redshift \& Expansion}
+So far we have looked at Doppler shift as a source for redshift. Of course redshift is also caused by an expanding universe. At small velocities we have,
+\[ \f{\De \la}{\la} = \f{v}{c} = \f{H \De r}{c} \]
+Where $\De r$ is a physical local distance $\De r = c \De t$,
+\[ \f{\De \la}{\la} = \f{\dot a \De t}{a} = \f{\De a}{a} \]
+Integration gives us that,
+\[ \la \propto a \]
+Intuitively, the length of waves in the universe scales with the size of the universe.
+\[ 1 + z = \f{\la\tsb{obs}}{\la\tsb{emit}} = \f{a\br{t\tsb{obs}}}{a\br{t\tsb{emit}}}  \]
+Where $t\tsb{obs}$ is typically taken to be today. The quantity is $z$ is known as redshift. As an example, the farthest galaxy that we can see has a redshift of approximately $z \approx 7-8$. In contrast, the redshift of the cosmic microwave background is at $z \approx 1100$.
+
+\section{Equations of State}
+All ``materials'' in the universe have different equations of state $P\br{\rho}$. Matter or dust has effectively a pressure of zero ($P = 0$). This is because the actual pressure is much less that the characteristic pressure of $\rho c^2$, meaning we can omit it from the fluid equation,
+\[ \dot\rho = \f{3 \dot a}{a} \br{\rho + \f{P}{c^2}} \approx \f{3 \dot a}{a} \br{\rho} \]
+Therefore for dust and matter,
+\[ \f{\dot \rho}{\rho} = 3\f{\dot a}{a} \implies \rho = \f{\rho_a}{a^3} \]
+Plugging this into the Friedmann equation gives us that,
+\[ \dot a^2 = \f{8\pi G \rho_a}{3a} \implies a = \br{\f{t}{t_0}}^{2/3} \]
+By convention, we take $t_0$ to be today and $a\br{t_0} = 1$ when making observations. We have that $1 + z = \f{1}{a}$. Therefore in a matter dominated universe, $a$ scales as $t^{2/3}$. Therefore Hubble's parameter scales as,
+\[ H = \f{\dot a}{a} = \f{2}{3t} \]
+However for radiation, we have that $P = \f{1}{3} \rho c^2$ (this holds for photons and neutrinos). A similar analysis yields the relationship,
+\[ \rho = \f{\rho_a}{a^4} \]
+Plugging into the Friedmann equation once again gives,
+\[ \dot a^2 = \f{8\pi G \rho_a}{3a} \implies a = \br{\f{t}{t_0}}^{1/2} \]
+Which indicates that $H = 1/2t$. \\
+
+Additionally, we can incorporate dark energy (cosmological constant fluid) to obtain,
+\[ P = - \rho c^2 \implies \rho = \rho_{*} \implies a = e^{Ht}\]
+Our discovery of the acceleration of the expansion of the universe indicates that there is a dark energy contribution to the expansion of the universe. Depending on the composition of the universe, there are different behaviors for the expansion of the universe. Initially, (when $a$ is smaller) radiation is dominating. Latter matter will dominate and then finally dark energy.
+\begin{center}
+    \begin{tikzpicture}
+        \draw[->] (0,0) -- (0,3) node[above]{$\rho \propto H^2$};
+        \draw[->] (0,0) -- (4,0) node[right]{$a$};
+        \draw [cyan] plot [smooth, tension=0.7] coordinates { (0.1,2.7) (1,1.6) (3.1,0.7)};
+        \draw [cyan] (3.1,0.7) -- (4,0.7);
+        \draw [cyan] (0.7, 2.4) node[]{$\f{1}{a^4}$};
+        \draw [cyan] (2, 1.5) node[]{$\f{1}{a^3}$};
+        \draw [cyan] (3.7, 1.1) node[]{$\text{const.}$};
+    \end{tikzpicture}
+\end{center}
+The number density of particles scales as,
+\[ n = \f{n_0}{a^3} \]
+While the number density or energy density of photons is given by,
+\[ E_{\ga} = \f{hc}{\la} \propto \f{1}{a} \]
+Looking at the Friedmann equation we have that,
+\[ \underbrace{\f{1}{2} \dot a^2}_{\text{K.E.}} - \underbrace{\f{4 \pi G}{3} \rho a^2}_{\text{P.E.}} = -\f{k}{2} = E\tsb{tot} \]
+
 
 \end{document}
