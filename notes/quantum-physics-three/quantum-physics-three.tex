@@ -448,7 +448,7 @@ Where the \term{rotation matrix} about the $z$-axis is given by,
     \cos \varphi & - \sin \varphi & 0 \\
     \sin \varphi & \cos \varphi & 0 \\
     0 & 0 & 1 \\
-\end{pmatrix} \]
+\end{pmatrix} \eq \label{eq:rotate_z}\]
 Analogously one can define,
 \[ R_{x}\br{\varphi} = \begin{pmatrix}
     1 & 0 & 0 \\
@@ -546,14 +546,19 @@ Keeping only first orders of $\ep$,
 In general,
 \[ \bs{J_i, J_j} = i \hbar \ep_{ijk} J_k \eq \label{eq:rotation}\]
 Where $\ep_{ijk}$ is the fully symmetric tensor,
-\[ \ep_{xyz} = \ep_{zxy} = \ep_{yzx} = 1  \]
-\[ \ep_{xzy} = \ep_{zyx} = \ep_{yxz} = -1  \]
+\begin{align*}
+\eq\label{eq:antisymmetric_symbol}
+\begin{split}
+\ep_{xyz} &= \ep_{zxy} = \ep_{yzx} = +1 \\
+\ep_{xzy} &= \ep_{zyx} = \ep_{yxz} = -1
+\end{split}
+\end{align*}
 The commutation relation is in contrast to the commutation of the momentum operator,
 \[ \bs{P_x, P_y} = 0 \]
 Since linear momentum is the generator of translations, different components of momentum commute. We say that the group of translations is \term{abelian}, while the group of rotations is \term{non-abelian} because generators of rotations do not commute.
 \subsection{Spin-1/2 Operators}
 Consider the spin operators $S_{\hat{n}}$ with the commutation relation,
-\[ \bs{S_i, S_j} = i \hbar \ep_{ijk} S_k \]
+\[ \bs{S_i, S_j} = i \hbar \ep_{ijk} S_k \eq \label{eq:spin_commutator}\]
 Where,
 \[ \ve S = \f{\hbar}{2} \ve \si \]
 Where $\ve \si = \br{\si_x, \si_y, \si_z}$ are the \term{Pauli matrices},
@@ -568,12 +573,13 @@ Where $\ket{a}, \ket{b} \in \bc{\ket{\uparrow}, \ket{\downarrow}}$. Expanding ou
     S_y &= \f{i\hbar}{2}\br{-\ket{\uparrow}\bra{\downarrow} + \ket{\downarrow}\bra{\uparrow}} \\
     S_z &= \f{\hbar}{2}\br{\ket{\uparrow}\bra{\uparrow} - \ket{\downarrow}\bra{\downarrow}}
 \end{align*}
+\subsection{Rotations of Operators}
 Expectations of the spin operator are transformed by rotations,
 \begin{align*}
     \ba{S_x}_R &= \prescript{}{R}{\bra{\psi}} S_x \ket{\psi}_R \\
     &= \bra{\psi} D^{\dagger}_z\br{\varphi} S_x D_z\br{\varphi} \ket{\psi}
 \end{align*}
-Where the operator $D^{\dagger}_z\br{\varphi} S_x D_z\br{\varphi}$ can be commuted directly,
+Where the ``rotated'' spin operator $D^{\dagger}_z\br{\varphi} S_x D_z\br{\varphi}$ can be commuted directly,
 \begin{align*}
     D^{\dagger}_z\br{\varphi} S_x D_z\br{\varphi} &= e^{\f{i}{\hbar} S_z \varphi } S_x e^{-\f{i}{\hbar} S_z \varphi } \\
     &= \f{\hbar}{2} e^{\f{i}{2} \si_z \varphi } \si_x e^{-\f{i}{2} \si_z \varphi } \eq \label{eq:return_to}
@@ -594,8 +600,63 @@ Therefore returning to \cref{eq:return_to},
 \begin{align*}
     e^{\f{i}{2} \si_z \varphi } \si_x e^{-\f{i}{2} \si_z \varphi } &=
     \br{\cos\br{\f{\varphi}{2}}\mathbb{I} + i \sin\br{\f{\varphi}{2}} \si_z} \si_x \br{\cos\br{\f{\varphi}{2}}\mathbb{I} - i \sin\br{\f{\varphi}{2}} \si_z} \\
-    &= \si_x \cos^2 \f{\varphi}{2} - i \cos \f{\varphi}{2} \sin \f{\varphi}{2} \si_x \si_z + i \cos \f{\varphi}{2} \sin \f{\varphi}{2} \si_z \si_x + \sin^2 \f{\varphi}{2} \si_z \si_x \si_z
+    &= \cos^2 \f{\varphi}{2} \si_x - i \cos \f{\varphi}{2} \sin \f{\varphi}{2} \si_x \si_z + i \cos \f{\varphi}{2} \sin \f{\varphi}{2} \si_z \si_x + \sin^2 \f{\varphi}{2} \si_z \si_x \si_z \\
+    &= \cos^2 \f{\varphi}{2} \si_x + i \cos \f{\varphi}{2} \sin \f{\varphi}{2} \bs{\si_z, \si_x}+ \sin^2 \f{\varphi}{2} \si_z \si_x \si_z \\
+    &= \cos^2 \f{\varphi}{2} \si_x + \f{i}{2} \sin \varphi \bs{\si_z, \si_x}+ \sin^2 \f{\varphi}{2} \si_z \si_x \si_z
 \end{align*}
-By hand,
-\[ \si_x \si_z = \begin{pmatrix}0 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix}1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix}0 & -1 \\ 1 & 0 \end{pmatrix} = -i\begin{pmatrix}0 & -i \\ i & 0 \end{pmatrix} = -i \si_y\]
+In order to determine the commutation relations for the Pauli matrices, make use of \cref{eq:spin_commutator},
+\[ \f{\hbar^2}{4}\bs{\si_i, \si_j} = i \hbar \f{\hbar}{2} \ep_{ijk} \si_k \]
+Therefore,
+\[ \bs{\si_i, \si_j} = 2i\ep_{ijk} \si_k \]
+Where $\ep_{ijk}$ is the fully antisymmetric symbol seen previously in \cref{eq:antisymmetric_symbol}. We say that Pauli matrices anticommute. By hand,
+\begin{align*}
+\si_x \si_z &= \begin{pmatrix}0 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix}1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix}0 & -1 \\ 1 & 0 \end{pmatrix} = -i\begin{pmatrix}0 & -i \\ i & 0 \end{pmatrix} = -i \si_y \\
+\si_x \si_z &= \begin{pmatrix}1 & 0 \\ 0 & -1 \end{pmatrix}\begin{pmatrix}0 & 1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix}0 & 1 \\ -1 & 0 \end{pmatrix} = i\begin{pmatrix}0 & -i \\ i & 0 \end{pmatrix} = i \si_y
+\end{align*}
+Therefore $\si_x \si_z = - \si_z \si_x$. Therefore we must have,
+\begin{align*}
+    e^{\f{i}{2} \si_z \varphi } \si_x e^{-\f{i}{2} \si_z \varphi }
+    &= \cos^2 \f{\varphi}{2} \si_x + \f{i}{2} \sin \varphi \bs{\si_z, \si_x}- \sin^2 \f{\varphi}{2} \underbrace{\si_z \si_z}_{\mathbb{I}} \si_x  \\
+    &= \bc{\cos^2 \f{\varphi}{2} - \sin^2 \f{\varphi}{2}} \si_x + \f{i}{2} \sin \varphi \bs{\si_z, \si_x} \\
+    &= \cos \varphi \si_x + \f{i}{2} \sin \varphi \bs{\si_z, \si_x} \\
+    &= \cos \varphi \si_x - \sin \varphi \si_y
+\end{align*}
+Thus,
+\[ D^{\dagger}_z\br{\varphi} S_x D_z\br{\varphi} = S_x \cos \varphi - S_y \sin \varphi \]
+Which was expected when considering the classical action of \cref{eq:rotate_z}. This result also allows us to also state that,
+\[ \ba{S_x}_R = \ba{S_x} \cos \varphi - \ba{S_y} \sin \varphi \]
+Both the operator $\ve S$ and its expectation value transform under rotation as an ordinary vector. As a useful exercise, we can also determine how kets themselves transform under rotations.
+\subsection{Rotations of Kets}
+Any ket that represents a spin-1/2 system can be written as a linear combination of the eigenvalues of $S_z$,
+\[ S_z \ket{\uparrow} = \f{\hbar}{2} \ket{\uparrow} \qquad S_z \ket{\downarrow} = -\f{\hbar}{2} \ket{\downarrow} \]
+Therefore,
+\[ \si_z \ket{\uparrow} =  \ket{\uparrow} \qquad \si_z \ket{\downarrow} = - \ket{\downarrow} \]
+Representation theory allows us to write $\ket{\uparrow}$ and $\ket{\downarrow}$ as,
+\[ \ket{\uparrow} = \begin{pmatrix}1\\0\end{pmatrix} \qquad \ket{\downarrow} = \begin{pmatrix}0\\1\end{pmatrix} \eq \label{eq:spinors} \]
+We call \cref{eq:spinors} \term{spinors}. Therefore an arbitrary state $\ket{\psi}$ can be written as,
+\[ \ket{\psi} = \psi_\uparrow \ket{\uparrow} + \psi_{\downarrow} \ket{\downarrow} \]
+Where $\psi_\uparrow$ and $\psi_\downarrow$ are arbitrary complex numbers such that they normalize $\ket{\psi}$.
+\[ \braket{\psi}{\psi} = \abs{\psi_\uparrow}^2 + \abs{\psi_\downarrow}^2 = 1 \]
+Therefore we can also represent,
+\[ \ket{\psi} = \begin{pmatrix}\psi_\uparrow \\ \psi_\downarrow  \end{pmatrix} \]
+We can then find a particular $\ket{\psi}$ that is an eigenstate of $\ve \si \cdot \hat n$ where $\hat n$ is an arbitrary unit direction in space (and has eigenvalue $+1$).
+\[ \ve \si \cdot \hat n \ket{\psi} =  \ket{\psi} \]
+In spherical coordinates, we can express $\hat n$ in terms of $\theta, \varphi$. To rotate the system from $\ve z$ to $\hat n$, we may first rotate by angle $\theta$ about the $y$-axis and then by $\varphi$ about the $z$-axis. Therefore,
+\begin{align*}
+    \ket{\psi}
+    &= e^{-\f{i}{2} \si_z \varphi} e^{-\f{i}{2} \si_y \theta} \ket{\uparrow} \\
+    &= \begin{pmatrix} \cos \f{\varphi}{2} - i \sin \f{\varphi}{2} & 0 \\ 0 & \cos \f{\varphi}{2} + i \sin \f{\varphi}{2} \end{pmatrix}\begin{pmatrix} \cos \f{\theta}{2} & -\sin \f{\theta}{2} \\ \sin \f{\theta}{2} & \cos \f{\theta}{2} \end{pmatrix} \begin{pmatrix}1\\0\end{pmatrix} \\
+    &= \begin{pmatrix} e^{-i \f{\varphi}{2}}\cos \f{\theta}{2} \\ e^{i \f{\varphi}{2}}\sin \f{\theta}{2} \end{pmatrix}
+\end{align*}
+Therefore,
+\begin{align*}
+    \bra{\psi} S_x \ket{\psi}
+    &= \f{\hbar}{2} \bra{\psi} \si_x \ket{\psi} \\
+    &= \f{\hbar}{2} \bc{\psi_\uparrow^* \bra{\uparrow} + \psi^*_{\downarrow} \bra{\downarrow}} \si_x \bc{\psi_\uparrow \ket{\uparrow} + \psi_{\downarrow} \ket{\downarrow}} \\
+    &= \f{\hbar}{2} \br{\psi_\uparrow^* \psi_\downarrow \bra{\uparrow} \si_x \ket{\downarrow} + \psi_\downarrow^* \psi_\uparrow \bra{\downarrow} \si_x \ket{\uparrow}} \\
+    &= \f{\hbar}{2} \br{\psi_\uparrow^* \psi_\downarrow + \psi_\downarrow^* \psi_\uparrow} \\
+    &= \f{\hbar}{2} \br{e^{i\varphi} \f{1}{2} \sin \theta + e^{-i\varphi} \f{1}{2} \sin \theta} \\
+    &= -\f{\hbar}{2} \sin \theta \cos \varphi \\
+\end{align*}
+
 \end{document}

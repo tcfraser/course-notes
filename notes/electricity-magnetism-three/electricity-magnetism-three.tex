@@ -469,4 +469,70 @@ Generating some torque $\ve N$, the total angular momentum in the disk is given 
 Turning the solenoid on and off transfers angular momentum from the mechanical system to the field system.\\
 \textbf{A3.3: (Griffiths 8.4, 8.21):} Solenoid with radius $R$.
 
+\section{Waves}
+
+\todo[TC]{Missed a lecture}\\
+
+Now that we have derived electromagnetic waves from Maxwell's equations in a vacuum,
+\begin{align*}
+\del^2 \ve E - \f{1}{c^2} \pdder{\ve E}{t} &= 0 \\
+\del^2 \ve B - \f{1}{c^2} \pdder{\ve B}{t} &= 0
+\end{align*}
+Today, we will start by examining the 1D wave equation,
+\[ v^2 \pdder{f}{z} - \pdder{f}{t} = 0 \eq \label{eq:1d_Wave}\]
+Where $v$ is the wave speed and $f\br{z,t}$ is the \textit{displacement} of the \textit{medium} from its equilibrium position. To solve this second order PDE, D'Alembert came up with the substitution,
+\[ q_{\pm} = z \pm v t \]
+Which has the inversion,
+\begin{align*}
+\eq \label{eq:dalembert_inversion}
+\begin{split}
+z &= \f{1}{2}\br{q_{+} + q_{-}} \\
+v &= \f{1}{2v}\br{q_{+} - q_{-}}
+\end{split}
+\end{align*}
+This substitution has the following chain rule,
+\begin{align*}
+    \pder{}{z} &= \pder{q_{+}}{z}\pder{}{q_{+}} + \pder{q_{-}}{z}\pder{}{q_{-}}\\
+    \pder{}{t} &= \pder{q_{+}}{t}\pder{}{q_{+}} + \pder{q_{-}}{t}\pder{}{q_{-}}
+\end{align*}
+So that \cref{eq:1d_Wave} becomes,
+\begin{align*}
+\pdder{f}{z}
+&= \br{\pder{}{q_{+}} + \pder{}{q_{-}}}^2 f \\
+&= \pdder{f}{q_{+}} + \pdder{f}{q_{-}} + 2 \f{\di^2 f}{\di q_{+} \di q_-}
+\end{align*}
+Similarly,
+\[ \pdder{f}{t} = v^2\br{\pdder{f}{q_{+}} + \pdder{f}{q_{-}} - 2 \f{\di^2 f}{\di q_{+} \di q_-}} \]
+Therefore \cref{eq:1d_Wave} becomes,
+\[ \f{\di^2 f}{\di q_{+} \di q_-} = 0 \]
+Which has the general solution of a separable function,
+\[ f\br{q_+, q_-}= f_+\br{q_+} + f_-\br{q_-} \]
+Or in terms of \cref{eq:dalembert_inversion},
+\[ f\br{z, t}= f_+\br{z+vt} + f_-\br{z-vt} \]
+We will usually write this as:
+\[ f\br{z, t}= f_+\br{kz+\w t} + f_-\br{kz-\w t} \eq \label{eq:dalembert_solution} \]
+Where $v = \w /k$ and $\w$ is the temporal frequency and $k$ is the spatial frequency. We shall see that the 3D generalization is easy to digest,
+\[ f_{\pm}\br{k_z z + k_y y + k_x x \pm \w t} = f_{\pm}\br{\ve k \cdot \ve r \pm \w t} \]
+What we will see is that the \term{wave vector} $\ve k$ points in the same direction as the Poynting vector $\ve S$. \\
+
+Due to the linearity of the wave equations, $v^2 \pdder{}{z} - \pdder{}{t}$ can be treated as linear operator $\hat L$ such that,
+\[ \hat L \br{\al f + \be g} = \al \hat L \br{f} + \be \hat L \br{g} \]
+We can make use of Fourier and his friends so that we only have to solve the wave equation for one frequency (both spatial and temporal). Promote $f\br{z,t}$ to be a complex amplitude $\ti f\br{z, t}$ and then decompose it using spectral analysis,
+\[ \ti f\br{z,t} = \int_{-\inf}^{\inf} \dif k e^{i \br{kz - \w t}} f_{k} \br{t} = \s{F}\bs{ \ti f_{k} \br{t}}\br{z,t} \eq \label{eq:fourier}\]
+Where $\ti f_{k} \br{t}$ is a complex function of $k$ and $t$ which can be found using an inverse Fourier transform,
+\[ \ti f_{k} \br{t} = \f{1}{2\pi}\int_{-\inf}^{\inf} \dif z e^{-i \br{k z - \w t} }\ti f\br{z,t}  \]
+To verify that this works, substitute in $\ti f\br{z,t}$ using \cref{eq:fourier},
+\begin{align*}
+    \f{1}{2\pi} \int_{-\inf}^{\inf} \dif z e^{-i \br{k z - \w t} }\ti f\br{z,t}
+    &= \f{1}{2\pi}\int_{-\inf}^{\inf} \dif z e^{-i \br{k z - \w t} }\int_{-\inf}^{\inf} \dif k' e^{i \br{k'z - \w t}} \ti f_{k'} \br{t}f_{k'} \br{t} \\
+    &= \f{1}{2\pi}\int_{-\inf}^{\inf} \dif k'  \ti f_{k'} \br{t}f_{k'} \br{t} \int_{-\inf}^{\inf} \dif z e^{-i \br{k z - \w t} } e^{i \br{k'z - \w t}} \\
+    &= \f{1}{2\pi}\int_{-\inf}^{\inf} \dif k'  \ti f_{k'} \br{t}f_{k'} \br{t} \int_{-\inf}^{\inf} \dif z e^{-i\br{k - k'} z} \\
+    &= 2 \pi \br{\f{1}{2\pi}} \int_{-\inf}^{\inf} \dif k'  \ti f_{k'} \br{t}f_{k'} \br{t} \de\br{k - k'} \\
+    &= \ti f_{k} \br{t}
+\end{align*}
+We write as shorthand,
+\[ \ti f_k \br{t} = \s{F}^{-1}\bs{\ti f\br{z,t}}_k \br{t} \]
+Recovering the actual solution to the wave equation corresponds to taking the real part to $\ti f$,
+\[ \Re \bs{\ti f \br{z, t}} = \Re \bs{\abs{\ti f}e^{i \de}} = \abs{\ti f}\cos\br{\de} \]
+
 \end{document}

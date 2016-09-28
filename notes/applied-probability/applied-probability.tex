@@ -21,6 +21,7 @@
 \newcommand{\Ber}{\mathsf{Ber}}
 \newcommand{\Bi}{\mathsf{Bin}}
 \newcommand{\Poi}{\mathsf{Poi}}
+\newcommand{\Ex}{\mathsf{Exp}}
 \newcommand{\Mom}{M}
 \newcommand{\Geo}{\mathsf{Geo}}
 \newcommand{\ind}{\mathbf{1}}
@@ -279,7 +280,125 @@ Namely the proportionality constant is of course $\br{P\br{Y=y}}^{-1}$. Although
     \[ P\br{X_1 = k \mid Y = n} = \begin{pmatrix}n\\k\end{pmatrix} \br{\f{\la_1}{\la_1 + \la_2}}^k \br{1-\br{\f{\la_1}{\la_1 + \la_2}}}^{n-k} \]
 \end{example}
 
-% CONTINUE
+We introduce the following notation. Denoted $X,Y \mid \bc{Z = k} \stackrel{\text{iid}}{\sim}\cdots$, this means that $X$ and $Y$ are \term{conditionally independent} and follows a certain distribution. i.e. the conditional joint cdf/pmf/pdf equals to the product of conditional (marginal) cdfs/pmfs/pdfs.
+
+\subsection{Conditional Expectation}
+We have seen that conditional pmf/pdf are legitimate pmf/pdf. Correspondingly, a conditional distribution is nothing else but a probability distribution. It is simply a potentially different distribution from the original unconditional distribution, since it takes more information into account. \\
+
+As a result, we can define everything which are previously defined for unconditional distributions for conditional distributions. In particular, it is natural to define the conditional expectation as follows.
+\begin{definition}
+    The \term{conditional expectation} of $g\br{X}$ given $Y=y$ is defined as,
+    \[ \Exp\br{g\br{X} \mid Y = y} = \begin{cases}
+        \sum_{n=1}^{\inf} g\br{x_i}P\br{X=x_i \mid Y=y} & X \mid Y=y \text{ is discrete}\\
+        \int_{-\inf}^{+\inf} g\br{x} f_{X\mid Y}\br{x \mid y} \dif x & X \mid Y=y \text{ is continuous}
+    \end{cases} \]
+\end{definition}
+The conditional expectation is nothing else but the expectation taken under the conditional distribution. There are of course different way t understand conditional expectations.
+\begin{enumerate}
+    \item Fix a value $y$, $\Exp\br{g\br{X} \mid Y = y}$ is a number
+    \item As y changes $\Exp\br{g\br{X} \mid Y = y}$ is a \textit{function} of $y$
+    \item Since $Y$ is actually a random variable, we can define $\Exp\br{g\br{X} \mid Y} = h\br{Y}$ as a random variable itself.
+    \[ \Exp\br{g\br{X} \mid Y}_{(\w)} = \Exp\br{g\br{X} \mid Y = Y_{(\w)}} \]
+    This random variable takes value $\Exp\br{g\br{X} \mid Y = y}$ when $Y=y$.
+\end{enumerate}
+
+\begin{theorem}
+    Properties of conditional expectation:
+    \begin{enumerate}
+        \item Linearity (inherited from expectation)
+        \[ \Exp\br{aX+b \mid Y=y} = a\Exp\br{X \mid Y=y} + b \]
+        \[ \Exp\br{X+Z \mid Y=y} = \Exp\br{X \mid Y=y} + \Exp\br{Z \mid Y=y} \]
+        \item $\Exp\br{g\br{X,Y} \mid Y = y} = \Exp\br{g\br{X,y} \mid Y = y}$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    (Discrete Case)
+    \begin{align*}
+        \Exp\br{g\br{X,Y} \mid Y = y} &= \sum_{x_i}\sum_{y_j} g\br{x_i, y_j} P\br{X=x_i, Y=y_j \mid Y=y}
+    \end{align*}
+    Where $P\br{X=x_i, Y=y_j \mid Y=y}$ is self-contradictory if $y_j \neq y$. Therefore,
+    \[ P\br{X=x_i, Y=y_i \mid Y=y} = \begin{cases}
+        0 & y_j \neq y \\
+        P\br{X=x_i \mid Y=y} & y_j = y
+    \end{cases} \]
+    Therefore,
+    \begin{align*}
+        \Exp\br{g\br{X,Y} \mid Y = y} &= \sum_{x_i}g\br{x_i, y_j} P\br{X=x_i \mid Y=y} \\
+        &= \Exp\br{g\br{X,y} \mid Y = y}
+    \end{align*}
+    Where $g\br{X,y}$ is simply regarded as a function of $X$.
+\end{proof}
+
+\begin{remark}
+    In particular if $g\br{X,Y}$ is separable, we have that,
+    \[ \Exp\br{g\br{X}h\br{Y} \mid Y = y} = h\br{y}\Exp\br{g\br{X} \mid Y = y}  \]
+    Which implies that,
+    \[ \Exp\br{g\br{X}h\br{Y} \mid Y} = h\br{Y}\Exp\br{g\br{X} \mid Y}  \]
+\end{remark}
+
+\begin{theorem}
+    If $X \indep Y$ then,
+    \[ \Exp\br{g\br{X} \mid Y= y} = \Exp\br{g\br{X}} \]
+\end{theorem}
+
+\begin{proof}
+    If $X \indep Y$ then the conditional distribution of $X$ given $Y=y$ is the same as the unconditional distribution of $X$. We can easily prove this for the pmf in the discrete case.
+    \[ P\br{X = x_i \mid Y = y} = \f{P\br{X = x_i, Y = y}}{Y=y} = \f{P\br{X = x_i}P\br{Y = y}}{Y=y} = P\br{X = x_i} \]
+\end{proof}
+
+\begin{theorem}
+    \label{thm:interated}
+    \term{Law of interated expectation:}
+    \[ \Exp\br{\Exp\br{X \mid Y}} = \Exp\br{X} \]
+\end{theorem}
+
+The law of interated expectation is easy to digest when one understands that $\Exp\br{X \mid Y}$ is r.v. function of $Y$.
+\begin{proof}
+    (Discrete Case) We know that when $Y=y_j$,
+    \begin{align*}
+    \Exp\br{X \mid Y=y_j}
+    &=\sum_{x_i} x_i P\br{X = x_i \mid Y=y_j} \\
+    \end{align*}
+    This happens with probability that $Y=y_j$. Therefore,
+    \begin{align*}
+        \Exp\br{\Exp\br{X \mid Y}}
+        &= \sum_{y_j} \br{\Exp\br{X \mid Y = y_j}} P\br{Y = y_j} \\
+        &= \sum_{y_j} \br{\sum_{x_i} x_i P\br{X = x_i \mid Y=y_j}} P\br{Y = y_j} \\
+        &= \sum_{x_i} x_i \sum_{y_j} P\br{X = x_i \mid Y=y_j} P\br{Y = y_j} \\
+        &= \sum_{x_i} x_i \sum_{y_j} P\br{X = x_i, Y=y_j} \\
+        &= \sum_{x_i} x_i P\br{X = x_i} \\
+        &= \Exp\br{X}
+    \end{align*}
+\end{proof}
+
+\begin{example}
+    Let's say that $Y$ is the number of claims received by an insurance company and $X \sim \Ex\br{\la}$ is some random parameter. We know that $Y \mid X \sim \Poi\br{X}$ which denotes that,
+    \[ \forall x : Y \mid X=x \sim \Poi\br{x} \]
+    What then is $\Exp\br{Y}$? Since $Y \mid X \sim \Poi\br{X}$ we have that,
+    \[ \Exp\br{Y \mid X =x} = x \implies \Exp\br{Y \mid X} = X \]
+    Therefore by \cref{thm:interated},
+    \[ \Exp\br{Y} = \Exp\br{\Exp\br{Y\mid X}} = \Exp\br{X} = \f{1}{\la} \]
+    What then is $P\br{Y = n}$?
+    \begin{align*}
+        P\br{Y = n}
+        &= \int_{0}^{\inf}  P\br{Y = n \mid X = x} f_{X}\br{x} \dif x \\
+        &= \int_{0}^{\inf}  \f{e^{-x}\la^n}{n!} \la e^{-\la x} \dif x \\
+        &= \f{\la}{n!} \int_{0}^{\inf} x^n e^{-\br{\la + 1} x} \dif x \\
+        &= \f{\la}{\br{\la+1}^{n+1}n!} \int_{0}^{\inf} \br{\br{\la+1} x}^{n} e^{-\br{\la + 1} x} \dif \br{\la + 1}x \\
+        &= \f{\la}{\br{\la+1}^{n+1}n!} \Ga \br{n+1} \\
+        &= \f{\la}{\br{\la+1}^{n+1}n!}n! \\
+        &= \f{\la}{\br{\la+1}^{n+1}} \\
+        &= \br{\f{1}{1 + \la}}^n \br{1 - \f{1}{\la + 1}}
+    \end{align*}
+    Therefore $Y+1 \sim \Geo\br{\la / \la +1}$.
+\end{example}
+
+\todo[TC]{Finish this lecture.}
+\begin{theorem}
+    \term{Decomposition of Variance (EVVE's law):}
+\end{theorem}
+
 \section{DTMC}
 
 \subsection{Review of Probability}
