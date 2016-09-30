@@ -440,7 +440,7 @@ Where $E_0 = E_0\br{x,y}$ is given by \cref{eq:E_0}.
 &= \cdots \\
 &= \f{q^2 \hat z}{4 \pi \ep_0 \br{2 \ell}^2}
 \end{align*}
-Which is simply a result of Columb's law which was expected.
+Which is simply a result of Coulomb's law which was expected.
 
 \subsection{Method of Images}
 
@@ -534,5 +534,112 @@ We write as shorthand,
 \[ \ti f_k \br{t} = \s{F}^{-1}\bs{\ti f\br{z,t}}_k \br{t} \]
 Recovering the actual solution to the wave equation corresponds to taking the real part to $\ti f$,
 \[ \Re \bs{\ti f \br{z, t}} = \Re \bs{\abs{\ti f}e^{i \de}} = \abs{\ti f}\cos\br{\de} \]
+
+\textbf{Ex. 9.1:}
+\textbf{a)}
+\[ \cos \br{A + B} = \cos \br{A} \cos \br{B} - \sin \br{A} \sin \br{B} \]
+Therefore,
+\[ y_1\br{x,t} = A_1 \cos\br{kx - \w t} \cos S_1 - A_1 \sin\br{kx - \w t} \sin S_1 \]
+\[ y_2\br{x,t} = A_2 \cos\br{kx - \w t} \cos S_2 - A_2 \sin\br{kx - \w t} \sin S_2 \]
+Combining yields, \\
+\textbf{b)}
+\[ y\br{x,t} = \underbrace{\br{A_1 \cos S_1 + A_2 \cos S_2}}_{a}\cos\br{k x - \w t} - \underbrace{\br{A_1 \sin S_1 + A_2 \sin S_2}}_{b}\sin\br{k x - \w t} \]
+\textbf{c)}
+\[ y\br{x,t} = \sqrt{a^2 + b^2} \br{\f{a}{\sqrt{a^2 + b^2}} \cos \br{kx - \w t} - \f{b}{\sqrt{a^2 + b^2}} \sin \br{kx - \w t}} \]
+\textbf{d)}
+\[ y\br{x,t} = A \cos \br{kx - \w t + \de} \]
+Where,
+\[ A = \sqrt{a^2 + b^2} \quad \de = \tan^{-1}\br{\f{b}{a}} \]
+\textbf{e)}
+\[ y\br{x,t} = \sqrt{A_1^2 + A_2^2 + 2 A_1 A_2 \cos \br{\de_1 - \de_2}}\sin\br{kx - \w t + \tan^{-1}\br{\f{A_1 \sin \de_1 + A_2 \sin \de_2}{A_1 \cos \de_1 + A_2 \cos \de_2}}} \]
+\textbf{f)}
+\[ y_1 = \Re \bc{A_1 e^{i \de_1} e^{i \br{kx - \w t}}} \]
+\[ y_2 = \Re \bc{A_2 e^{i \de_2} e^{i \br{kx - \w t}}} \]
+Abusing notation a little bit,
+\[ y = y_1 + y_2 = \Re\bc{\br{A_1 e^{i\de_1} + A_2 e^{i\de_2}} e^{i \br{kx - \w t}}} \]
+\begin{align*}
+A^2
+&= \br{A_1 e^{i \de_1} + A_2 e^{i \de_2}}\br{A_1 e^{-i \de_1} + A_2 e^{-i \de_2}} \\
+&= \cdots \\
+&= A_1^2 + A_2^2 + 2 A_1A_2 \cos \br{\de_1 - \de_2}
+\end{align*}
+\begin{align*}
+\tan \de
+&= \f{\Im\bc{A_1 e^{i \de_1} + A_2 e^{i \de_2}}}{\Re\bc{A_1 e^{i \de_1} + A_2 e^{i \de_2}}} \\
+&= \cdots \\
+&= \f{A_1 \sin \de_1 + A_2 \sin \de_2}{A_1 \cos \de_1 + A_2 \cos \de_2}
+\end{align*}
+
+\textbf{Ex. 9.2:}
+\begin{center}
+    \begin{tikzpicture}
+        \draw (0, -1) -- (0, 1);
+        \draw [blue,decorate, decoration=snake] (-2, 0) -- (0,0);
+        \draw [blue,decorate, decoration=snake] (0, 0.4) -- (-2,0.4);
+        \draw [blue,decorate, decoration=snake] (0, 0) -- (2,0);
+        \draw [blue, ->, thick] (-1, 0) -- node[below]{$I$} (-0.5,0);
+        \draw [blue, ->, thick] (0.5, 0) -- node[below]{$T$} (1,0);
+        \draw [blue, ->, thick] (-0.5, 0.4) -- node[above]{$R$} (-1,0.4);
+        \draw [red] (-1, -0.5) node[]{$\mu_1$};
+        \draw [red] (1, -0.5) node[]{$\mu_2$};
+    \end{tikzpicture}
+\end{center}
+
+\[ y_I\br{x,t} = A_I \sin \br{k_1 \br{x - v_1 t}} \]
+\[ y_R\br{x,t} = A_R \sin \br{k_1 \br{x + v_1 t}} \]
+\[ y_T\br{x,t} = A_T \sin \br{k_2 \br{x - v_2 t}} \]
+\textbf{a)}
+\[ \w_1 = \w_2 \implies k_1 v_1 = k_2 v_2 \]
+This means that the ``knot'' at the interface is a ``good'' knot -- i.e. the string at either side of the interface ($x=0$) move with the same frequency -- i.e. the strings are connected.\\
+
+\textbf{b)}
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw[fill] (0,0) circle (0.05);
+        \draw[thick,->] (0,0) -- (1,1) node[above right]{$\ve F_2$};
+        \draw[thick,->] (0,0) -- (-1,-0.6) node[below left]{$\ve F_1$};
+    \end{tikzpicture}
+\end{center}
+
+\[ m \ve a\tsb{net} = \ve F_1 + \ve F_2 \]
+If the slopes are the same then $\ve F_1 \parallel \ve F_2$ and so $\ve a\tsb{net}$ is also parallel.
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw[fill] (0,0) circle (0.05);
+        \draw[red] (-0.1,0) node[above]{$\ve a\tsb{net}$};
+        \draw[thick,->] (0,0) -- (1,0.6) node[above right]{$\ve F_2$};
+        \draw[thick,->] (0,0) -- (-1,-0.6) node[below left]{$\ve F_1$};
+        \draw[thick,red, ->] (0,0) -- (0.5,0.3);
+    \end{tikzpicture}
+\end{center}
+By the principle of superposition the equations for the waves in the first medium can be simply added together,
+\[ y_1 \br{x,t} = y_I\br{x,t} + y_R\br{x,t} \]
+\[ y_2 \br{x,t} = y_T\br{x,t} \]
+Introduce the constraints of a good string,
+\[ y_1\br{x=0, t} = y_2\br{x=0, t} \]
+Therefore,
+\[ A_I \sin\br{-k_1 v_1 t} + A_R \sin\br{k_1 v_1 t} = A_T \sin\br{-k_2 v_2 t} \]
+Therefore,
+\[ - A_I + A_R = - A_T \]
+Equivalently,
+\[ A_I = A_R + A_T \]
+\textbf{d)}
+The next constraint imposes,
+\[ \pder{}{x}y_1\br{x=0, t} = \pder{}{x}y_2\br{x=0, t} \]
+\[ k_1A_I \cos\br{-k_1 v_1 t} + k_1A_R \cos\br{k_1 v_1 t} = k_2A_T \cos\br{-k_2 v_2 t} \]
+Thus,
+\[ k_1 A_I + k_2 A_R = k_2 A_T \]
+Now solve for the reflected and transmitted $A_R, A_T$ in terms of the given incidence amplitude. So,
+\[ A_R = \f{v_1 - v_2}{v_1 + v_2} A_I \]
+\[ A_T = \f{2v_2}{v_1 + v_2} A_I \]
+\textbf{e)}
+If $v_2 > v_1$ then $A_R \propto - \br{A_I}$.
+
+\section{Polarization}
+So far, we have only considered 1D waves. However, the electric and magnetic fields are vector quantities. Consider the vector amplitude,
+\[ \ti {\ve f}\br{z, t} = \ti f_{k} \hat n e^{i\br{kz - \w t}} \]
+Where $e^{i\br{kz - \w t}}$ acts as the traveling wave, $\hat n$ is the polarization and $\ti f_{k}$ is the amplitude and phase.
 
 \end{document}

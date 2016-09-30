@@ -399,6 +399,30 @@ The law of interated expectation is easy to digest when one understands that $\E
     \term{Decomposition of Variance (EVVE's law):}
 \end{theorem}
 
+\section{Stochastic Process}
+
+To begin, the entomology of \textit{stochastic} is that it comes an Asian word which means to \textit{aim (at)}. As an example, in archery, aiming at a target is related to the idea of guessing where the target will be. In short, stochastic should be taken as a synonym for \textit{random}. A \textit{process} is something that changes over time.  In conclusion, a \term{stochastic process} is a system that random changes over time. \\
+
+As a simple system consider the system in question to be a number. There are two distinct ways to understand the definition of a stochastic process.
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw (0, 3) node[](num){Number};
+        \draw (0, 0) node[](fot){Function of Time};
+        \draw (4, 0) node[](sto){Stochastic Process};
+        \draw (4, 3) node[](rv){Random Variable};
+        \draw[->] (num) -- (rv);
+        \draw[->] (num) -- (fot);
+        \draw[->] (fot) -- (sto);
+        \draw[->] (rv) -- (sto);
+    \end{tikzpicture}
+\end{center}
+Therefore the two interpretations of a stochastic process are as follows:
+\begin{enumerate}
+    \item A sequence of random variables
+    \item A random function
+\end{enumerate}
+Attempts to formulate the second interpretation have faced many difficulties. As such, we define a stochastic process as:
 \section{DTMC}
 
 \subsection{Review of Probability}
