@@ -80,7 +80,7 @@ Physically, the coefficient $C_{a'}$ is called a \textit{probability amplitude}.
 We now have the luxury of re-writing \cref{eq:complete_basis} as a spectral decomposition,
 \[ \ket{\psi} = \sum_{a'} \ket{a'} \braket{a'}{\psi} \eq \label{eq:spectral_decomp_ket} \]
 Since $\ket{\psi}$ is \textit{arbitrary}, we obtain a closure relation (otherwise known as the resolution of identity).
-\[ \sum_{a'} \ket{a'} \bra{a'} = \mathbb{I} \eq \label{eq:closure} \]
+\[ \sum_{a'} \ket{a'} \bra{a'} = \ident \eq \label{eq:closure} \]
 We define the projection operator $\Lambda_{a'} = \ket{a'}\bra{a'}$.
 \[ \La_{a''}\ket{\psi} = \ket{a''}\braket{a''}{\psi} = \sum_{a'} \ket{a'}\underbrace{\braket{a'}{a''}}_{\de_{a', a''}}\braket{a''}{\psi} = \braket{a''}{\psi}\ket{a''} \]
 As such, $\La_{a}$ \textit{projects} $\ket{\psi}$ into the direction of $\ket{a}$. Using the closure operation \cref{eq:closure} and the spectral decomposition of a ket \cref{eq:spectral_decomp_ket} one can recover the spectral decomposition of an operator $A$. For each eigenket $\ket{a'}$, multiply \cref{eq:review_eig1} by $\bra{a'}$,
@@ -88,7 +88,7 @@ As such, $\La_{a}$ \textit{projects} $\ket{\psi}$ into the direction of $\ket{a}
 And summing over all eigenkets,
 \[ A = \sum_{a'} a' \ket{a'}\bra{a'} \]
 Additionally consider another operator $B$,
-\[ B = \mathbb{I} \cdot B \cdot \mathbb{I} = \sum_{a', a''} \ket{a''}\bramidket{a''}{B}{a'}\bra{a'} \]
+\[ B = \ident \cdot B \cdot \ident = \sum_{a', a''} \ket{a''}\bramidket{a''}{B}{a'}\bra{a'} \]
 Where $\bramidket{a''}{B}{a'}$ can be interpreted as a matrix indexed by $\ket{a''}$ and $\ket{a'}$,
 \[ \bramidket{a''}{B}{a'} = B_{a'', a'} \]
 Where refer to $B_{a'', a'}$ as the matrix elements of an operator $B$ with respect to the a complete orthonormal set of eigenstates of a Hermitian operator $A$. The entries in $B_{a'', a'}$ have the following property,
@@ -112,10 +112,10 @@ Where $\de{\vx'}$ is defined as,
 Where $f\br{\vx'} : \R^3 \to \R$ is a function on $\R^3$. \\
 
 The closure relation becomes,
-\[ \mathbb{I} = \int_{\R^3} \dif^3 x' \ket{\vx'} \bra{\vx'} \]
+\[ \ident = \int_{\R^3} \dif^3 x' \ket{\vx'} \bra{\vx'} \]
 
 Therefore we have that,
-\[ \ket{\psi} = \mathbb{I} \cdot \ket{\psi} = \int_{\R^3} \dif^3 x' \ket{\vx'} \braket{\vx'}{\psi} \]
+\[ \ket{\psi} = \ident \cdot \ket{\psi} = \int_{\R^3} \dif^3 x' \ket{\vx'} \braket{\vx'}{\psi} \]
 
 Now let $\ket{\phi}$ be another space in the same Hilbert space as $\ket{\psi}$,
 \begin{align*}
@@ -137,29 +137,29 @@ T\br{\dif \vx'}\ket{\psi} &= T\br{\dif \vx'} \bc{\int_{\R^3} \dif^3 x' \ket{\vx'
 Next without loss of generality, let $\ket{\psi}$ be normalized $\braket{\psi}{\psi} = 1$. Moreover, we may let $T\br{\dif \vx'}\ket{\psi}$ be normalized as well.
 \[ \bra{\psi}T^{\dagger}\br{\dif \vx'} T\br{\dif \vx'}\ket{\psi} \eq \label{eq:TT}\]
 If we wish for \cref{eq:TT} to hold for all states $\ket{\psi}$, it must be that $T\br{\dif \vx'}$ is \textit{unitary}.
-\[ T^{\dagger}\br{\dif \vx'} T\br{\dif \vx'} = \mathbb{I} \implies T^{\dagger}\br{\dif \vx'} = T^{-1}\br{\dif \vx'} \eq\label{eq:unitary_trans}\]
+\[ T^{\dagger}\br{\dif \vx'} T\br{\dif \vx'} = \ident \implies T^{\dagger}\br{\dif \vx'} = T^{-1}\br{\dif \vx'} \eq\label{eq:unitary_trans}\]
 Another desired property of translations $T\br{\dif \vx'}$ is that they are additive,
 \[ T\br{\dif \vx'}T\br{\dif \vx''} = T\br{\dif \vx' + \dif \vx''} \eq \label{eq:trans_add}\]
 Consequently,
-\[ T^{-1}\br{\dif \vx'} = T\br{-\dif \vx'} \qquad T\br{\ve{0}} = \mathbb{I} \]
+\[ T^{-1}\br{\dif \vx'} = T\br{-\dif \vx'} \qquad T\br{\ve{0}} = \ident \]
 All of the above properties are satisfied if,
-\[ T\br{\dif \vx'} = \mathbb{I} - i \ve{K} \cdot \dif \vx' \]
+\[ T\br{\dif \vx'} = \ident - i \ve{K} \cdot \dif \vx' \]
 Where $\ve{K} = \br{K_x, K_y, K_z}$ is a vetor operator that is Hermitian ($\ve{K}^{\dagger} = \ve{K}$) to be determined. First we demonstrate that such a $T\br{\dif \vx'}$ is unitary (\cref{eq:unitary_trans}),
 \begin{align*}
-T^{\dagger}\br{\dif \vx'} T\br{\dif \vx'} &= \br{\mathbb{I} + i \ve{K}^{\dagger} \cdot \dif \vx'}\br{\mathbb{I} - i \ve{K} \cdot \dif \vx'} \\
-&= \mathbb{I} + \underbrace{i \ve{K}^{\dagger} \cdot \dif \vx' - i \ve{K} \cdot \dif \vx'}_{0} + \cancelto{0}{\s{O}\br{\abs{\dif \vx'}^2}} \\
-&= \mathbb{I}
+T^{\dagger}\br{\dif \vx'} T\br{\dif \vx'} &= \br{\ident + i \ve{K}^{\dagger} \cdot \dif \vx'}\br{\ident - i \ve{K} \cdot \dif \vx'} \\
+&= \ident + \underbrace{i \ve{K}^{\dagger} \cdot \dif \vx' - i \ve{K} \cdot \dif \vx'}_{0} + \cancelto{0}{\s{O}\br{\abs{\dif \vx'}^2}} \\
+&= \ident
 \end{align*}
 Next we demonstrate additivity (\cref{eq:trans_add}),
 \begin{align*}
-T\br{\dif \vx''} T\br{\dif \vx'} &= \br{\mathbb{I} - i \ve{K} \cdot \dif \vx''}\br{\mathbb{I} - i \ve{K} \cdot \dif \vx'} \\
-&= \mathbb{I} - i \ve{K} \cdot \dif \vx'' - i \ve{K} \cdot \dif \vx' + \cancelto{0}{\s{O}\br{\abs{\dif \vx'}^2}} \\
-&= \mathbb{I} - i \ve{K} \cdot \br{\dif \vx'' + \dif \vx'} \\
+T\br{\dif \vx''} T\br{\dif \vx'} &= \br{\ident - i \ve{K} \cdot \dif \vx''}\br{\ident - i \ve{K} \cdot \dif \vx'} \\
+&= \ident - i \ve{K} \cdot \dif \vx'' - i \ve{K} \cdot \dif \vx' + \cancelto{0}{\s{O}\br{\abs{\dif \vx'}^2}} \\
+&= \ident - i \ve{K} \cdot \br{\dif \vx'' + \dif \vx'} \\
 &= T\br{\dif \vx'' + \dif \vx'}
 \end{align*}
 In order to illuminate the specific form of $\ve{K}$, we calculate the commutator $\bs{\vx, T\br{\dif \vx'}}$,
 \begin{align*}
-\bs{\vx, T\br{\dif \vx'}} &= \bs{\vx, \mathbb{I} - i \ve{K}\cdot\dif\vx'} \\
+\bs{\vx, T\br{\dif \vx'}} &= \bs{\vx, \ident - i \ve{K}\cdot\dif\vx'} \\
 &= -i \vx \ve{K} \dif \vx' + i \ve{K} \dif \vx' \vx
 \end{align*}
 Choose $\dif \vx' = \dif x' \hat{x}_j$ and $\ve{K} \cdot \hat{x}_j = K_j$ where $\hat{x}_j$ is the unit vetor in the direction of one of the basis vectors.
@@ -195,9 +195,9 @@ Which in turn implies that,
 Since a given ket $\ket{\psi}$ can be written in \textit{any} basis or representation, we can transform $\ket{\psi}$ in the momentum basis. Recall the momentum eigenkets form a complete orthonormal set of states,
 \[ \ve{p} \ket{\ve{p}'} = \ve{p}'\ket{\ve{p}'} \qquad \braket{\ve{p}'}{\ve{p}''} = \de\br{\ve{p}' - \ve{p}''} \]
 Moreover we have the resolution of identity,
-\[ \mathbb{I} = \int \dif^3 p' \ket{\ve{p}'}\bra{\ve{p}'} \]
+\[ \ident = \int \dif^3 p' \ket{\ve{p}'}\bra{\ve{p}'} \]
 Therefore we have that,
-\[ \ket{\psi} = \mathbb{I} \cdot \ket{\psi} = \int \dif^3 p' \ket{\ve{p}'}\braket{\ve{p}'}{\psi} \]
+\[ \ket{\psi} = \ident \cdot \ket{\psi} = \int \dif^3 p' \ket{\ve{p}'}\braket{\ve{p}'}{\psi} \]
 So we define the wavefunction in momentum representation $\braket{\ve{p}'}{\psi} = \psi\br{\ve{p}'}$. We will now discover how to transform from $\psi\br{\ve{p}'}$ to $\psi\br{\ve{x}'}$ in 1D. By definition we have that,
 \[ \bramidket{x'}{p}{\psi} = - i \hbar \pder{}{x'} \braket{x'}{\psi} \]
 We now choose $\ket{\psi} = \ket{p'}$,
@@ -211,7 +211,7 @@ Which has the well known solution,
 Where $N$ is an arbitrary constant. To confirm \cref{eq:four_diff_eqn} check $\pder{f}{x'}$
 \[ \pder{f}{x'} = N \f{i}{\hbar}p'e^{\f{i}{\hbar}p'x'} = \f{i}{\hbar} p' f\br{x'}\]
 As a quick trick notice that,
-\[ \braket{x'}{x''} = \de\br{x' - x''} = \bramidket{x'}{\mathbb{I}}{x''} = \int \dif p' \braket{x'}{p'}\braket{p'}{x'} \]
+\[ \braket{x'}{x''} = \de\br{x' - x''} = \bramidket{x'}{\ident}{x''} = \int \dif p' \braket{x'}{p'}\braket{p'}{x'} \]
 Substitute in \cref{eq:xp},
 \[ \de\br{x' - x''} = N^2 \int \dif p' e^{\f{i}{\hbar}p'x'}e^{-\f{i}{\hbar}p'x''} = N^2 \int \dif p' e^{\f{i}{\hbar}p'\br{x' - x''}} \eq \label{eq:delta_x_working}\]
 Recall a integral representation of the Dirac-delta function,
@@ -246,31 +246,31 @@ Notice that normalization dictates that $\sum_{a'} \abs{C_{a'}\br{t_0}}^2 = 1$. 
 Therefore it must be that $U\br{t_0; t}$ is unitary.
 \[ \braket{\psi, t_0; t}{\psi, t_0; t} = \bra{\psi, t_0} U^{\dagger}\br{t,t_0}U\br{t,t_0}\ket{\psi, t_0} = \braket{\psi, t_0}{\psi, t_0}\]
 Which holds for all $\ket{\psi}$, thus,
-\[ U^{\dagger}\br{t,t_0}U\br{t,t_0} = \mathbb{I} \implies U^{\dagger}\br{t,t_0} = U^{-1}\br{t,t_0} \eq \label{eq:time_unitary} \]
+\[ U^{\dagger}\br{t,t_0}U\br{t,t_0} = \ident \implies U^{\dagger}\br{t,t_0} = U^{-1}\br{t,t_0} \eq \label{eq:time_unitary} \]
 Another desired property of the time evolution operator $U\br{t; t_0}$ is \textit{composition}. For $t_2 > t_1 > t_0$,
 \[ U\br{t_2, t_0} = U\br{t_2, t_1} U\br{t_1, t_0} \eq \label{eq:time_compose}\]
 In turns out that \cref{eq:time_unitary,eq:time_compose} uniquely characterize $U\br{t,t_0}$. Consider an infinitesimal time evolution operator $U\br{t_0+\dif t, t_0}$. We now prove that,
-\[ U\br{t_0+\dif t, t_0} = \mathbb{I} - i \Om \dif t \]
+\[ U\br{t_0+\dif t, t_0} = \ident - i \Om \dif t \]
 Where $\Om = \Om^{\dagger}$ is an unknown Hermitian operator. Consider,
 \begin{align*}
-U^{\dagger}\br{t_0+\dif t, t_0}U\br{t_0+\dif t, t_0} &= \br{\mathbb{I} + i \Om^{\dagger} \dif t}\br{\mathbb{I} - i \Om \dif t} \\
-&= \mathbb{I} + i \br{\underbrace{\Om^{\dagger} - \Om}_0} \dif t + \cancelto{0}{\s{O}\br{\dif t^2}} \\
-&= \mathbb{I}
+U^{\dagger}\br{t_0+\dif t, t_0}U\br{t_0+\dif t, t_0} &= \br{\ident + i \Om^{\dagger} \dif t}\br{\ident - i \Om \dif t} \\
+&= \ident + i \br{\underbrace{\Om^{\dagger} - \Om}_0} \dif t + \cancelto{0}{\s{O}\br{\dif t^2}} \\
+&= \ident
 \end{align*}
 Thus satisfying unitary properties. Next examine composition,
 \begin{align*}
-U\br{t_0 + \dif t_1 + \dif t_2, t_0 + \dif t_1}U\br{t_0 + \dif t_1, t_0} &= \br{\mathbb{I} - i \Om \dif t_2}\br{\mathbb{I} - i \Om \dif t_1} \\
-&= \mathbb{I} - i \Om\br{\dif t_1 + \dif t_2} + \s{O}\br{\dif t_1 \dif t_2} \\
+U\br{t_0 + \dif t_1 + \dif t_2, t_0 + \dif t_1}U\br{t_0 + \dif t_1, t_0} &= \br{\ident - i \Om \dif t_2}\br{\ident - i \Om \dif t_1} \\
+&= \ident - i \Om\br{\dif t_1 + \dif t_2} + \s{O}\br{\dif t_1 \dif t_2} \\
 &= U\br{t_0 + \dif t_1 + \dif t_2, t_0}
 \end{align*}
 By dimensional analysis, $\Om$ needs to have dimensions of inverse time or \textit{frequency}. Of course the energy and frequency of a system are related by $E = \hbar \w$. We conclude that,
 \[ \Om = \f{1}{\hbar} H \]
 Where $H$ is the usual Hamiltonian operator. This result is analogous to $\ve K = \f{1}{\hbar} \ve p$. We have that,
-\[ U\br{t_0+\dif t, t_0} = \mathbb{I} - \f{i}{\hbar} H \dif t \eq \label{eq:infinitesimal_time_evolution}\]
+\[ U\br{t_0+\dif t, t_0} = \ident - \f{i}{\hbar} H \dif t \eq \label{eq:infinitesimal_time_evolution}\]
 Using this result, we will recover the Schrödinger equation. Consider the difference of two time evolution operators,
 \begin{align*}
     U\br{t+\dif t, t_0} - U\br{t, t_0} &= U\br{t+\dif t, t}U\br{t,t_0} - U\br{t, t_0}\\
-    &= \br{\mathbb{I} - \f{i}{\hbar} H \dif t}U\br{t,t_0} - U\br{t, t_0}\\
+    &= \br{\ident - \f{i}{\hbar} H \dif t}U\br{t,t_0} - U\br{t, t_0}\\
     &= - \f{i}{\hbar} H \dif t U\br{t,t_0}
 \end{align*}
 Dividing both sides by $\dif t$ and taking a limit,
@@ -293,11 +293,11 @@ We will now attempt to solve \cref{eq:schro_operator} in order to obtain the tim
 Where `$e^A$' is the operator expotential,
 \[ e^{A} = \sum_{n=1}^{\inf} \f{A^n}{n!} \]
 Therefore we have that,
-\[ e^{-\f{i}{\hbar} H\br{t - t_0}} = \mathbb{I} -\f{i}{\hbar} H\br{t - t_0} -\f{1}{2\hbar^2} H^2\br{t - t_0}^2 + \s{O}\br{\br{t-t_0}^{3}}\]
+\[ e^{-\f{i}{\hbar} H\br{t - t_0}} = \ident -\f{i}{\hbar} H\br{t - t_0} -\f{1}{2\hbar^2} H^2\br{t - t_0}^2 + \s{O}\br{\br{t-t_0}^{3}}\]
 Whose time derivative is,
 \[ \pder{}{t}e^{-\f{i}{\hbar} H\br{t - t_0}} = -\f{i}{\hbar} H -\f{1}{\hbar^2} H^2\br{t - t_0} + \s{O}\br{\br{t-t_0}^{2}}\]
 Moving the constant term $- \f{i}{\hbar} H$ out,
-\[ \pder{}{t}e^{-\f{i}{\hbar} H\br{t - t_0}} =  - \f{i}{\hbar} H \bs{\mathbb{I} -\f{i}{\hbar} H \br{t -t_0} + \s{O}\br{\br{t-t_0}^{2}}}\]
+\[ \pder{}{t}e^{-\f{i}{\hbar} H\br{t - t_0}} =  - \f{i}{\hbar} H \bs{\ident -\f{i}{\hbar} H \br{t -t_0} + \s{O}\br{\br{t-t_0}^{2}}}\]
 Recognizing $e^{-\f{i}{\hbar} H\br{t - t_0}}$,
 \[ \pder{}{t}e^{-\f{i}{\hbar} H\br{t - t_0}} =  - \f{i}{\hbar} H \bs{e^{-\f{i}{\hbar} H\br{t - t_0}}}\]
 Therefore we have that \cref{eq:time_evolution} solves \cref{eq:schro_operator}. Also note that \cref{eq:time_evolution} is consistent with \cref{eq:infinitesimal_time_evolution}. \\
@@ -306,7 +306,7 @@ Recall that the eigen-system of the Hamiltonian is given by,
 \[ H \ket{a'} = E_{a'} \ket{a'} \]
 Where $E_{a'}$ are the energy eigenvalues. Therefore $e^{- \f{i}{\hbar} H t}$ can be written as,
 \begin{align*}
-    \mathbb{I} e^{-\f{i}{\hbar} H\br{t - t_0}} \mathbb{I} &= \sum_{a', a''} \ket{a''}\bra{a''} e^{-\f{i}{\hbar} H\br{t - t_0}} \ket{a'}\bra{a'} \eq \label{eq:working}
+    \ident e^{-\f{i}{\hbar} H\br{t - t_0}} \ident &= \sum_{a', a''} \ket{a''}\bra{a''} e^{-\f{i}{\hbar} H\br{t - t_0}} \ket{a'}\bra{a'} \eq \label{eq:working}
 \end{align*}
 Where $\bra{a''} e^{-\f{i}{\hbar} H\br{t - t_0}} \ket{a''}$ is given by,
 \begin{align*}
@@ -514,34 +514,34 @@ Thus,
     0 & 0 & 0 \\
 \end{pmatrix} \]
 Notice that,
-\[ \bs{R_{x}\br{\ep}, R_{y}\br{\ep}} = R_{x}\br{\ep^2} - \mathbb{I} \eq \label{eq:rotation_infinitesimal} \]
+\[ \bs{R_{x}\br{\ep}, R_{y}\br{\ep}} = R_{x}\br{\ep^2} - \ident \eq \label{eq:rotation_infinitesimal} \]
 \subsection{Rotations in Quantum Mechanics}
 Let the rotation be some operator $D\br{R} \in \s{B}\br{\s{H}}$ be,
 \[ \ket{\psi}_{R} = D\br{R} \ket{\psi} \]
 Where $D\br{R}$ represents the \term{rotation operator} associated with the rotation $R$. $\ket{\psi}_R$ is the rotated version of $\ket{\psi}$. Say for example, $R$ represents the rotation by an infinitesimal small angle $\dif \varphi$ about an axis $\hat{n}$. Evidently $D\br{R}$ \textit{should} maintain the same properties (\cref{eq:trans_add,eq:unitary_trans}) as the translation operator $T\br{\dif \ve x'}$. Therefore is is acceptable to postulate that,
-\[ D_{\hat n}\br{\dif \varphi} = \mathbb{I} - \f{i}{\hbar} \ve J \cdot \hat n \dif \varphi \]
+\[ D_{\hat n}\br{\dif \varphi} = \ident - \f{i}{\hbar} \ve J \cdot \hat n \dif \varphi \]
 By dimensional analysis, $\ve J$ is the angular momentum of the system. We sat that $\ve J$ is the generator of rotations. \\
 Again we can find the rotation about any angle $\varphi$ (not just $\dif \varphi$) using,
-\[D_{\hat n}\br{\varphi} = \lim_{N \to \inf} \bs{\mathbb{I} - \f{i}{\hbar} \ve J \cdot \hat n \f{\varphi}{N}}^N \]
+\[D_{\hat n}\br{\varphi} = \lim_{N \to \inf} \bs{\ident - \f{i}{\hbar} \ve J \cdot \hat n \f{\varphi}{N}}^N \]
 Which gives the familiar result,
 \[D_{\hat n}\br{\varphi} = e^{-\f{i}{\hbar} \ve J \cdot \hat n \varphi} \]
 The rotation operator \textit{must} have the same multiplicative properties of the rotation matrices. If for example $R_3 = R_1 \cdot R_2$, then it must be that,
 \[ R_3 = R_1 \cdot R_2 \implies D\br{R_3} = D\br{R_1} \cdot D\br{R_2} \]
 Recall the commutation relation for the rotation matrices from \cref{eq:rotation_infinitesimal}. Thus,
-\[ \bs{D_x\br{\ep}, D_y\br{\ep}} = D_z\br{\ep^2} - \mathbb{I} \]
+\[ \bs{D_x\br{\ep}, D_y\br{\ep}} = D_z\br{\ep^2} - \ident \]
 To demonstrate this, consider $D_x\br{\ep}, D_y\br{\ep}$,
 \begin{align*}
-    D_x\br{\ep} &= \mathbb{I} - \f{i}{\hbar}  J_x \ep - \f{1}{2\hbar^2}J_x^2\ep^2 + \s{O}\br{\ep^3} \\
-    D_y\br{\ep} &= \mathbb{I} - \f{i}{\hbar}  J_y \ep - \f{1}{2\hbar^2}J_y^2\ep^2 + \s{O}\br{\ep^3} \\
-    D_z\br{\ep^2} &= \mathbb{I} - \f{i}{\hbar}  J_z \ep^2 + \s{O}\br{\ep^3} \\
+    D_x\br{\ep} &= \ident - \f{i}{\hbar}  J_x \ep - \f{1}{2\hbar^2}J_x^2\ep^2 + \s{O}\br{\ep^3} \\
+    D_y\br{\ep} &= \ident - \f{i}{\hbar}  J_y \ep - \f{1}{2\hbar^2}J_y^2\ep^2 + \s{O}\br{\ep^3} \\
+    D_z\br{\ep^2} &= \ident - \f{i}{\hbar}  J_z \ep^2 + \s{O}\br{\ep^3} \\
 \end{align*}
 Keeping only first orders of $\ep$,
 \begin{align*}
     &\bs{D_x\br{\ep} , D_y\br{\ep}} \\
     &= D_x\br{\ep}D_y\br{\ep} - D_y\br{\ep}D_x\br{\ep} \\
-    &= \br{\mathbb{I} - \f{i}{\hbar}  J_x \ep - \f{1}{2\hbar^2}J_x^2\ep^2}\br{\mathbb{I} - \f{i}{\hbar}  J_y \ep - \f{1}{2\hbar^2}J_y^2\ep^2} - \br{\mathbb{I} - \f{i}{\hbar}  J_y \ep - \f{1}{2\hbar^2}J_y^2\ep^2}\br{\mathbb{I} - \f{i}{\hbar}  J_x \ep - \f{1}{2\hbar^2}J_x^2\ep^2} \\
-    &= \cancel{\mathbb{I}} - \cancel{\f{i}{\hbar} J_y \ep} - \cancel{\f{1}{2\hbar^2} J_y^2 \ep^2}- \cancel{\f{i}{\hbar} J_x \ep} - \cancel{\f{1}{2\hbar^2} J_x^2 \ep^2} - \f{1}{\hbar^2} J_x J_y \ep^2  - \cancel{\mathbb{I}} + \cancel{\f{1}{\hbar} J_x \ep} + \cancel{\f{1}{2\hbar^2} J_x^2} \ep+ \cancel{\f{1}{\hbar} J_y \ep} + \cancel{\f{1}{2\hbar^2} J_y^2 \ep} + \f{1}{\hbar^2} J_yJ_x \ep^2 \\
-    &= -\f{1}{\hbar^2} \bs{J_x, J_y} \ep^2 = D_z\br{\ep^2} - \mathbb{I} = - \f{i}{\hbar} J_z \ep^2
+    &= \br{\ident - \f{i}{\hbar}  J_x \ep - \f{1}{2\hbar^2}J_x^2\ep^2}\br{\ident - \f{i}{\hbar}  J_y \ep - \f{1}{2\hbar^2}J_y^2\ep^2} - \br{\ident - \f{i}{\hbar}  J_y \ep - \f{1}{2\hbar^2}J_y^2\ep^2}\br{\ident - \f{i}{\hbar}  J_x \ep - \f{1}{2\hbar^2}J_x^2\ep^2} \\
+    &= \cancel{\ident} - \cancel{\f{i}{\hbar} J_y \ep} - \cancel{\f{1}{2\hbar^2} J_y^2 \ep^2}- \cancel{\f{i}{\hbar} J_x \ep} - \cancel{\f{1}{2\hbar^2} J_x^2 \ep^2} - \f{1}{\hbar^2} J_x J_y \ep^2  - \cancel{\ident} + \cancel{\f{1}{\hbar} J_x \ep} + \cancel{\f{1}{2\hbar^2} J_x^2} \ep+ \cancel{\f{1}{\hbar} J_y \ep} + \cancel{\f{1}{2\hbar^2} J_y^2 \ep} + \f{1}{\hbar^2} J_yJ_x \ep^2 \\
+    &= -\f{1}{\hbar^2} \bs{J_x, J_y} \ep^2 = D_z\br{\ep^2} - \ident = - \f{i}{\hbar} J_z \ep^2
 \end{align*}
 In general,
 \[ \bs{J_i, J_j} = i \hbar \ep_{ijk} J_k \eq \label{eq:rotation}\]
@@ -564,7 +564,7 @@ Where,
 Where $\ve \si = \br{\si_x, \si_y, \si_z}$ are the \term{Pauli matrices},
 \[ \si_x = \begin{pmatrix}0 & 1 \\ 1 & 0 \end{pmatrix} \quad \si_y = \begin{pmatrix}0 & -i \\ i & 0 \end{pmatrix} \quad \si_x = \begin{pmatrix}1 & 0 \\ 0 & -1 \end{pmatrix} \]
 Notice that the Pauli matrices have the following nice property,
-\[ \si_i^2 = \mathbb{I} \quad \forall i \in x,y,z \eq \label{eq:pauli_squared_ident} \]
+\[ \si_i^2 = \ident \quad \forall i \in x,y,z \eq \label{eq:pauli_squared_ident} \]
 We can also write the spin operators in a different way.
 \[ S_i = \f{\hbar}{2} \sum_{a,b} \ket{a} \si_{ab} \bra{b} \eq \label{eq:alt_not_for_pauli}\]
 Where $\ket{a}, \ket{b} \in \bc{\ket{\uparrow}, \ket{\downarrow}}$. Expanding out \cref{eq:alt_not_for_pauli},
@@ -589,17 +589,17 @@ Making use of the Taylor series,
 Breaking up even and odd powers of this series,
 \[ e^{-\f{i}{2} \si_z \varphi} = \sum_{n=0}^{\inf} \f{1}{\br{2n}!}\br{-\f{i}{2} \si_z \varphi }^{2n} + \sum_{n=0}^{\inf} \f{1}{\br{2n + 1}!}\br{-\f{i}{2} \si_z \varphi }^{2n + 1} \]
 Using \cref{eq:pauli_squared_ident},
-\[ e^{-\f{i}{2} \si_z \varphi} = \mathbb{I} \sum_{n=0}^{\inf} \f{1}{\br{2n}!}\br{-\f{i}{2} \varphi }^{2n} + \si_z\sum_{n=0}^{\inf} \f{1}{\br{2n + 1}!}\br{-\f{i}{2} \varphi }^{2n + 1} \]
+\[ e^{-\f{i}{2} \si_z \varphi} = \ident \sum_{n=0}^{\inf} \f{1}{\br{2n}!}\br{-\f{i}{2} \varphi }^{2n} + \si_z\sum_{n=0}^{\inf} \f{1}{\br{2n + 1}!}\br{-\f{i}{2} \varphi }^{2n + 1} \]
 Reorganizing yields,
-\[ e^{-\f{i}{2} \si_z \varphi} = \mathbb{I} \sum_{n=0}^{\inf} \f{\br{-1}^n}{\br{2n}!}\br{\f{\varphi}{2}  }^{2n} - i \si_z\sum_{n=0}^{\inf} \f{\br{-1}^n}{\br{2n + 1}!}\br{\f{\varphi}{2}}^{2n + 1} \]
+\[ e^{-\f{i}{2} \si_z \varphi} = \ident \sum_{n=0}^{\inf} \f{\br{-1}^n}{\br{2n}!}\br{\f{\varphi}{2}  }^{2n} - i \si_z\sum_{n=0}^{\inf} \f{\br{-1}^n}{\br{2n + 1}!}\br{\f{\varphi}{2}}^{2n + 1} \]
 Recognizing the Taylor series for $\sin x, \cos x$ where $x = \varphi / 2$ we have that,
-\[ e^{-\f{i}{2} \si_z \varphi} =  \cos\br{\f{\varphi}{2}}\mathbb{I} - i \sin\br{\f{\varphi}{2}} \si_z \]
+\[ e^{-\f{i}{2} \si_z \varphi} =  \cos\br{\f{\varphi}{2}}\ident - i \sin\br{\f{\varphi}{2}} \si_z \]
 This result holds for any Pauli by \cref{eq:pauli_squared_ident},
-\[ e^{-\f{i}{2} \ve \si \cdot \hat n \varphi} =  \cos\br{\f{\varphi}{2}}\mathbb{I} - i \sin\br{\f{\varphi}{2}} \si \cdot \hat n \]
+\[ e^{-\f{i}{2} \ve \si \cdot \hat n \varphi} =  \cos\br{\f{\varphi}{2}}\ident - i \sin\br{\f{\varphi}{2}} \si \cdot \hat n \]
 Therefore returning to \cref{eq:return_to},
 \begin{align*}
     e^{\f{i}{2} \si_z \varphi } \si_x e^{-\f{i}{2} \si_z \varphi } &=
-    \br{\cos\br{\f{\varphi}{2}}\mathbb{I} + i \sin\br{\f{\varphi}{2}} \si_z} \si_x \br{\cos\br{\f{\varphi}{2}}\mathbb{I} - i \sin\br{\f{\varphi}{2}} \si_z} \\
+    \br{\cos\br{\f{\varphi}{2}}\ident + i \sin\br{\f{\varphi}{2}} \si_z} \si_x \br{\cos\br{\f{\varphi}{2}}\ident - i \sin\br{\f{\varphi}{2}} \si_z} \\
     &= \cos^2 \f{\varphi}{2} \si_x - i \cos \f{\varphi}{2} \sin \f{\varphi}{2} \si_x \si_z + i \cos \f{\varphi}{2} \sin \f{\varphi}{2} \si_z \si_x + \sin^2 \f{\varphi}{2} \si_z \si_x \si_z \\
     &= \cos^2 \f{\varphi}{2} \si_x + i \cos \f{\varphi}{2} \sin \f{\varphi}{2} \bs{\si_z, \si_x}+ \sin^2 \f{\varphi}{2} \si_z \si_x \si_z \\
     &= \cos^2 \f{\varphi}{2} \si_x + \f{i}{2} \sin \varphi \bs{\si_z, \si_x}+ \sin^2 \f{\varphi}{2} \si_z \si_x \si_z
@@ -616,7 +616,7 @@ Where $\ep_{ijk}$ is the fully antisymmetric symbol seen previously in \cref{eq:
 Therefore $\si_x \si_z = - \si_z \si_x$. Therefore we must have,
 \begin{align*}
     e^{\f{i}{2} \si_z \varphi } \si_x e^{-\f{i}{2} \si_z \varphi }
-    &= \cos^2 \f{\varphi}{2} \si_x + \f{i}{2} \sin \varphi \bs{\si_z, \si_x}- \sin^2 \f{\varphi}{2} \underbrace{\si_z \si_z}_{\mathbb{I}} \si_x  \\
+    &= \cos^2 \f{\varphi}{2} \si_x + \f{i}{2} \sin \varphi \bs{\si_z, \si_x}- \sin^2 \f{\varphi}{2} \underbrace{\si_z \si_z}_{\ident} \si_x  \\
     &= \bc{\cos^2 \f{\varphi}{2} - \sin^2 \f{\varphi}{2}} \si_x + \f{i}{2} \sin \varphi \bs{\si_z, \si_x} \\
     &= \cos \varphi \si_x + \f{i}{2} \sin \varphi \bs{\si_z, \si_x} \\
     &= \cos \varphi \si_x - \sin \varphi \si_y
@@ -648,7 +648,7 @@ In spherical coordinates, we can express $\hat n$ in terms of $\theta, \varphi$.
     &= \begin{pmatrix} \cos \f{\varphi}{2} - i \sin \f{\varphi}{2} & 0 \\ 0 & \cos \f{\varphi}{2} + i \sin \f{\varphi}{2} \end{pmatrix}\begin{pmatrix} \cos \f{\theta}{2} & -\sin \f{\theta}{2} \\ \sin \f{\theta}{2} & \cos \f{\theta}{2} \end{pmatrix} \begin{pmatrix}1\\0\end{pmatrix} \\
     &= \begin{pmatrix} e^{-i \f{\varphi}{2}}\cos \f{\theta}{2} \\ e^{i \f{\varphi}{2}}\sin \f{\theta}{2} \end{pmatrix}
 \end{align*}
-Therefore,
+Next let's check if this result makes sense. Consider the expectation value of $S_x$,
 \begin{align*}
     \bra{\psi} S_x \ket{\psi}
     &= \f{\hbar}{2} \bra{\psi} \si_x \ket{\psi} \\
@@ -656,7 +656,122 @@ Therefore,
     &= \f{\hbar}{2} \br{\psi_\uparrow^* \psi_\downarrow \bra{\uparrow} \si_x \ket{\downarrow} + \psi_\downarrow^* \psi_\uparrow \bra{\downarrow} \si_x \ket{\uparrow}} \\
     &= \f{\hbar}{2} \br{\psi_\uparrow^* \psi_\downarrow + \psi_\downarrow^* \psi_\uparrow} \\
     &= \f{\hbar}{2} \br{e^{i\varphi} \f{1}{2} \sin \theta + e^{-i\varphi} \f{1}{2} \sin \theta} \\
-    &= -\f{\hbar}{2} \sin \theta \cos \varphi \\
+    &= \f{\hbar}{2} \sin \theta \sin \varphi \\
 \end{align*}
+Similarly,
+\begin{align*}
+    \bra{\psi} S_y \ket{\psi}
+    &= -\f{i\hbar}{2} \bra{\psi} \si_y \ket{\psi} \\
+    &= -\f{i\hbar}{2} \bc{\psi_\uparrow^* \bra{\uparrow} + \psi^*_{\downarrow} \bra{\downarrow}} \si_y \bc{\psi_\uparrow \ket{\uparrow} + \psi_{\downarrow} \ket{\downarrow}} \\
+    &= -\f{i\hbar}{2} \br{\psi_\uparrow^* \psi_\downarrow \bra{\uparrow} \si_y \ket{\downarrow} + \psi_\downarrow^* \psi_\uparrow \bra{\downarrow} \si_y \ket{\uparrow}} \\
+    &= -\f{i\hbar}{2} \br{\psi_\uparrow^* \psi_\downarrow - \psi_\downarrow^* \psi_\uparrow} \\
+    &= -\f{i\hbar}{2} \br{e^{i\varphi} \f{1}{2} \sin \theta - e^{-i\varphi} \f{1}{2} \sin \theta} \\
+    &= \f{\hbar}{2} \sin \theta \sin \varphi \\
+\end{align*}
+Also,
+\[ \bra{\psi} S_y \ket{\psi} = \cdots = \f{\hbar}{2}\cos\br{\theta} \]
+In summary we have the following,
+\[ \bra{\psi} \ve S \ket{\psi} = \f{\hbar}{2} \br{\sin \theta \cos \varphi, \sin \theta \sin \varphi, \cos \theta} = \f{\hbar}{2}\hat{n} \]
+We write an arbitrary direction as,
+\[ \hat{n} = \sum_{a,b} \psi^*_{a} \ve \si_{ab} \psi_b \]
+Where $a,b = \uparrow, \downarrow$ such that $\abs{\psi_{\uparrow}}^2 + \abs{\psi_{\downarrow}}^2 = 1$.
+\subsection{Euler Angles}
+The way we have represented rotations so far was using a unit vector $\ve n$ and a rotation about that axis of an amount $\varphi$. Generally, we need $3$ angles to specific the most arbitrary of rotations in $\R^3$. Another choice different from $\bc{\hat n, \varphi}$ are called \term{Euler Angles} $\al, \be, \ga$.
+\[ R\br{\al, \be, \ga} = R_{z'}\br{\ga}R_{y'}\br{\be}R_{z}\br{\al} \]
+\begin{enumerate}
+    \item Rotate about the $z$ axis an angle $\al$ creating new $x,y$ axises denoted $x', y'$
+    \item Rotate about the $y'$ axis an angle $\be$ creating new $z, x'$ axises denoted $z', x''$
+    \item Rotate about the $z'$ axis an angle $\ga$ creating new $x'', y'$ axises denoted $x''', y''$
+\end{enumerate}
+How can be re-write $R\br{\al, \be, \ga}$ in terms of $3$ rotations but with respect to axes of a \textit{fixed} coordinate system. To do this consider the geometry (or the group algebra),
+\[ R_{y'}\br{\be} = R_{z}\br{\al}R_{y}\br{\be}R^{-1}_{z}\br{\al} \]
+Moreover,
+\begin{align*}
+R_{z'}\br{\ga}
+&= R_{y'}\br{\be} R_{z}\br{\ga} R^{-1}_{y'}\br{\be} \\
+&= \br{R_z\br{\al}R_{y}\br{\be}R^{-1}_{z}\br{\al}} R_{z}\br{\ga} \br{R_{z}\br{\al}R_{y}\br{\be}R^{-1}_{z}\br{\al}}^{-1} \\
+&= R_z\br{\al}R_{y}\br{\be}R^{-1}_{z}\br{\al} R_{z}\br{\ga} R_{z}\br{\al}R^{-1}_{y}\br{\be}R^{-1}_{z}\br{\al} \\
+&= R_z\br{\al}R_{y}\br{\be}R_{z}\br{\ga + \al - \al}R^{-1}_{y}\br{\be}R^{-1}_{z}\br{\al} \\
+&= R_z\br{\al}R_{y}\br{\be}R_{z}\br{\ga}R^{-1}_{y}\br{\be}R^{-1}_{z}\br{\al}
+\end{align*}
+Therefore,
+\begin{align*}
+    R\br{\al, \be, \ga}
+    &= R_{z'}\br{\ga}R_{y'}\br{\be}R_{z}\br{\al}\\
+    &= R_z\br{\al}R_{y}\br{\be}R_{z}\br{\ga}R^{-1}_{y}\br{\be}R^{-1}_{z}\br{\al}R_{z}\br{\al}R_{y}\br{\be}R^{-1}_{z}\br{\al}R_{z}\br{\al}\\
+    &= R_z\br{\al}R_{y}\br{\be}R_{z}\br{\ga}R^{-1}_{y}\br{\be}R_{y}\br{\be}\\
+    &= R_z\br{\al}R_{y}\br{\be}R_{z}\br{\ga}
+\end{align*}
+For spin systems,
+\begin{align*}
+    D\br{\al, \be, \ga}
+    &= D_z\br{\ga}D_y\br{\be}D_z\br{\al} \\
+    &= e^{-\f{i}{2} \si_z \al}e^{-\f{i}{2} \si_y \be}e^{-\f{i}{2} \si_z \ga}  \\
+    &= \br{\ident \cos \f{\al}{2} - i \si_z \sin \f{\al}{2}}\br{\ident \cos \f{\al}{2} - i \si_z \sin \f{\al}{2}}\br{\ident \cos \f{\al}{2} - i \si_z \sin \f{\al}{2}}\\
+    &=
+    \begin{pmatrix}
+        e^{-i\f{\al}{2}} & 0 \\
+        0 & e^{i\f{\al}{2}} \\
+    \end{pmatrix}
+    \begin{pmatrix}
+        \cos \f{\be}{2} & -\sin \f{\be}{2} \\
+        \sin \f{\be}{2} & \cos \f{\be}{2} \\
+    \end{pmatrix}
+    \begin{pmatrix}
+        e^{-i\f{\ga}{2}} & 0 \\
+        0 & e^{i\f{\ga}{2}} \\
+    \end{pmatrix}
+    \\
+    &=
+    \begin{pmatrix}
+        e^{-i\f{\al}{2}} & 0 \\
+        0 & e^{i\f{\al}{2}} \\
+    \end{pmatrix}
+    \begin{pmatrix}
+        \cos \f{\be}{2}e^{-i\f{\ga}{2}} & -\sin \f{\be}{2}e^{+i\f{\ga}{2}} \\
+        \sin \f{\be}{2}e^{-i\f{\ga}{2}} & \cos \f{\be}{2}e^{+i\f{\ga}{2}} \\
+    \end{pmatrix}
+    \\
+    &=
+    \begin{pmatrix}
+        \cos \f{\be}{2}e^{-i\f{\ga}{2}}e^{-i\f{\al}{2}} & -\sin \f{\be}{2}e^{+i\f{\ga}{2}}e^{-i\f{\al}{2}} \\
+        \sin \f{\be}{2}e^{-i\f{\ga}{2}}e^{+i\f{\al}{2}} & \cos \f{\be}{2}e^{+i\f{\ga}{2}}e^{+i\f{\al}{2}} \\
+    \end{pmatrix}
+    \\
+    &= \begin{pmatrix}
+        \cos \f{\be}{2}e^{-i\f{\ga+\al}{2}} & -\sin \f{\be}{2}e^{+i\f{\ga-\al}{2}} \\
+        \sin \f{\be}{2}e^{-i\f{\ga - \al}{2}} & \cos \f{\be}{2}e^{+i\f{\ga+\al}{2}} \\
+    \end{pmatrix}
+    \\
+\end{align*}
+This is the operator of rotation by $3$ Euler angles for a spin-1/2 system. This is a 2D representation of the albegra of rotations in 3D space. How can we generalize these results to different angular momentum?
+
+\subsection{Theory of Angular Momentum of Arbitrary Size}
+Consider the angular momentum operator $\ve J$ and its square,
+\[ \ve J^2 = J_x^2 + J_y^2 + J_z^2 \]
+Next consider the communtator with $J_z$,
+\begin{align*}
+\bs{\ve J^2, J_z}
+&= \bs{J_x^2 + J_y^2 + J_z^2, J_z} \\
+&= \bs{J_x^2 + J_y^2, J_z} \\
+&= J_x^2 J_z - J_z J_x^2 + J_y^2 J_z - J_z J_y^2
+\end{align*}
+This can be written in terms of other communtators,
+\begin{align*}
+    J_x \bs{J_x, J_z} + \bs{J_x, J_z} J_x
+    &=  J_x \br{J_xJ_z - J_zJ_x} + \br{J_xJ_z - J_zJ_x} J_x  \\
+    &=  \br{J_xJ_xJ_z - J_xJ_zJ_x} + \br{J_xJ_zJ_x - J_zJ_xJ_x}  \\
+    &=  J_xJ_xJ_z - J_zJ_xJ_x  \\
+    &=  J_x^2J_z - J_zJ_x^2
+\end{align*}
+Return to te above equation and making use of $\bs{J_i, J_j} = i\hbar \ep_{ijk} J_k$,
+\begin{align*}
+\bs{\ve J^2, J_z}
+&= J_x\bs{J_x, J_z} + \bs{J_x, J_z}J_x + J_y\bs{J_y, J_z}+ \bs{J_y, J_z}J_y \\
+&= i\hbar\br{-J_xJ_y - J_yJ_x + J_yJ_x+ J_xJ_y} \\
+&= 0
+\end{align*}
+Therefore the $J_z$ commutes with $\ve J^2$. This also holds for all other components,
+\[ \bs{\ve J^2, J_x} = \bs{\ve J^2, J_y} = \bs{\ve J^2, J_z} = 0 \]
 
 \end{document}
