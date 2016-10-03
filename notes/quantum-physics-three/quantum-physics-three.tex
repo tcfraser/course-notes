@@ -773,5 +773,115 @@ Return to te above equation and making use of $\bs{J_i, J_j} = i\hbar \ep_{ijk} 
 \end{align*}
 Therefore the $J_z$ commutes with $\ve J^2$. This also holds for all other components,
 \[ \bs{\ve J^2, J_x} = \bs{\ve J^2, J_y} = \bs{\ve J^2, J_z} = 0 \]
+Compactly we may write,
+\[ \bs{\ve J^2, \ve J}= 0 \]
+This result means we can choose angular momentum eigenstates to be simultaneous eigenstates of $\ve J^2$ and $J_z$. Let us explicitly calculate those eigenstates. Let $\ket{a,b}$ be this eigenstate where $a$ is the eigenvalue of $\ve J^2$ and $b$ is the eigenvalue of $J_z$,
+\begin{align*}
+    \eq\label{eq:rotation_system}
+    \begin{split}
+    \ve J^2 \ket{a,b} &= a \ket{a,b} \\
+    J_z \ket{a,b} &= b \ket{a,b}
+    \end{split}
+\end{align*}
+In order to solve for $\ket{a,b}$, define the following operators,
+\[ J_{\pm} = J_x \pm i J_y \]
+Note that $J_{\pm}$ are \textit{not} Hermitian operators,
+\[ J_{\pm}^{\dagger} = J_{\mp} \]
+We have the following properties,
+\begin{align*}
+    \bs{J_+, J_-}
+    &= \bs{J_x + i J_y, J_x - i J_y} \\
+    &= -i\bs{J_x, J_y} +i\bs{J_y, J_x} \\
+    &= -2i\bs{J_x, J_y} \\
+    &= -2i\br{i \hbar J_z} \\
+    &= 2\hbar J_z \eq \label{eq:comJpJm}
+\end{align*}
+Also,
+\begin{align*}
+    \bs{J_z, J_{\pm}}
+    &= \bs{J_z, J_x \pm i J_y} \\
+    &= \bs{J_z, J_x} \pm i \bs{J_z, J_y} \\
+    &= i \hbar \ep_{zxy} J_y \pm i^2 \hbar \ep_{zyx} J_x \\
+    &= i \hbar J_y - \mp \hbar J_x \\
+    &= i \hbar J_y \pm \hbar J_x \\
+    &= \pm \hbar J_{\pm} \eq \label{eq:comJzJpm}
+\end{align*}
+Finally,
+\[ \bs{\ve J^2, J_{\pm}} = 0 \]
+We now solve \cref{eq:rotation_system},
+\begin{align*}
+    J_z J_+ \ket{a,b}
+    &= \br{\bs{J_z, J_+} + J_+ J_z} \ket{a,b} \\
+    &= \br{\hbar J_+ + J_+ J_z} \ket{a,b} \note{Using \cref{eq:comJzJpm}}\\
+    &= \br{\hbar J_+ + b J_+} \ket{a,b} \note{Using \cref{eq:rotation_system}}\\
+    &= \br{\hbar + b }J_+ \ket{a,b}
+\end{align*}
+Thus $J_+ \ket{a,b}$ is still an eigenket of $J_z$ but with eigenvalue of $b+\hbar$. Analogously,
+\[ J_z J_- \ket{a,b} = \br{b - \hbar} J_- \ket{a,b} \]
+In conclusion, $J_+$ increases the eigenvalue of $J_z$ by $\hbar$ while $J_-$ decreases it by $\hbar$. $J_{\pm}$ are called \term{ladder operators} (raising and lowering operators) because of this property. What about the eigenvalues of $\ve J^2$?
+\[ \ve J^2 J_+ \ket{a,b} = J_+ \ve J^2 \ket{a,b} = a J_+\ket{a,b} \]
+No, $J_+$ doesn't affect the eigenvalues of $\ve J^2$.\\
+
+Is there an upper limit to the eigenvalues of $J_z$? Notice that,
+\begin{align*}
+\ve J^2 - J_z^2
+&= J_x^2 + J_y^2 \\
+&= \bc{\f{1}{2} \br{J_+ + J_-}}^2 + \bc{\f{1}{2i} \br{J_+ - J_-}}^2 \\
+&= \f{1}{4}\bc{\br{J_+ + J_-}^2 - \br{J_+ - J_-}^2} \\
+&= \f{1}{4}\br{J_+^2 + J_-^2 + J_+J_- + J_-J_+ - J_+^2 - J_-^2 + J_+J_- + J_-J_+} \\
+&= \f{1}{2}\br{J_+J_- + J_-J_+} \\
+&= \f{1}{2}\br{J_+J_+^{\dagger} + J_+^{\dagger}J_+}
+\end{align*}
+Looking at matrix elements,
+\begin{align*}
+    \bra{a,b} \ve J^2 - J_z^2 \ket{a,b}
+    &= \br{a - b^2} \\
+    &= \f{1}{2}\bra{a,b}\br{J_+J_+^{\dagger} + J_+^{\dagger}J_+}\ket{a,b} \\
+    &= \f{1}{2}\bra{a,b}J_+J_+^{\dagger}\ket{a,b} + \f{1}{2}\bra{a,b}J_+^{\dagger}J_+\ket{a,b} \\
+\end{align*}
+Notice that $\bra{a,b}J_+J_+^{\dagger}\ket{a,b}$ can be written,
+\[ \bra{a,b}J_+J_+^{\dagger}\ket{a,b} = \bc{\bra{a,b}J_+}\bc{J_+^{\dagger}\ket{a,b}} = \abs{J_+^{\dagger}\ket{a,b}}^2 \geq 0 \]
+Therefore,
+\[ \br{a - b^2} = \f{1}{2} \br{\abs{J_+^{\dagger}\ket{a,b}}^2 + \abs{J_+\ket{a,b}}^2} \geq 0 \]
+\[ b^2 \leq a \]
+\[ - a \leq b \leq a \]
+This is nothing more than a consequence of $\ba{\ve J^2} \geq \ba{J_z^2}$. We can conclude that there must be some eigenvalue $b\tsb{max}$ that is the maximum eigenvalue of $J_z$ such that,
+\[ J_+ \ket{a, b\tsb{max}} = 0 \]
+We also obtain,
+\[ J_-J_+ \ket{a, b\tsb{max}} = J_- \cdot 0 = 0 \]
+On the other hand,
+\begin{align*}
+    J_-J_+ \ket{a, b\tsb{max}}
+    &= \br{J_x - i J_y}\br{J_x + i J_y} \ket{a, b\tsb{max}} \\
+    &= \br{J_x^2 + J_y^2 + i J_x J_y- i J_y J_x} \ket{a, b\tsb{max}} \\
+    &= \br{J_x^2 + J_y^2 + i \bs{J_x, J_y}} \ket{a, b\tsb{max}} \\
+    &= \br{\ve J^2 - J_z^2 - \hbar J_z} \ket{a, b\tsb{max}} \\
+    &= \br{a - b\tsb{max}^2 - \hbar b\tsb{max}} \ket{a, b\tsb{max}}
+\end{align*}
+Therefore,
+\[ \br{a - b\tsb{max}^2 - \hbar b\tsb{max}} = 0 \implies a = b\tsb{max}\br{b\tsb{max} + \hbar} \eq \label{eq:bmax}\]
+Analogously we must have $b\tsb{min}$ such that,
+\[ J_- \ket{a, b\tsb{min}} = 0 \]
+Skipping details we have the following property,
+\[ a = b\tsb{min}\br{b\tsb{min} - \hbar} \eq \label{eq:bmin}\]
+Combining \cref{eq:bmin,eq:bmax},
+\[ a = b\tsb{min}\br{b\tsb{min} - \hbar} = b\tsb{max}\br{b\tsb{max} + \hbar} \]
+This is only possible if $b\tsb{min} = -b\tsb{max}$. Imagine that one starts from $\ket{a, b\tsb{min}}$. After a certain number of repeated applications of $J_+$, one must arise at $\ket{a, b\tsb{max}}$.
+\[ J_+^{n} \ket{a, b\tsb{min}} = \br{b\tsb{min} + n\hbar} \ket{a, b\tsb{min}+ n\hbar} = b\tsb{max}\ket{a, b\tsb{max}} \]
+Therefore,
+\[ 2 b\tsb{max} = n \hbar \implies b\tsb{max} = \f{n\hbar}{2} \]
+Defining $j = b\tsb{max} / \hbar$ we have that,
+\[ j = \f{n}{2} \]
+Which is either an integer or a half-integer. Making use of \cref{eq:bmax},
+\[ a = b\tsb{max}\br{b\tsb{max} + \hbar} = \hbar j \br{\hbar j + \hbar} = \hbar^2 j\br{j+1} \]
+Similarly we can say that $b = m \hbar$ where $m$ ranges from $-j$ to $j$.
+\[  m = -j, -j +1, \cdots, j-1, j \]
+Thus there are $2j+1$ potential values for $m$. Moving forward, we replace \cref{eq:rotation_system} we the more familiar,
+\begin{gather*}
+    \ve J^2 \ket{j,m} = \hbar^2 j \br{j+1} \ket{j,m}\\
+    J_z^2 \ket{j,m} = \hbar m \ket{j,m}\\
+    -j \leq m \leq j
+\end{gather*}
+Where $j$ is the magnitude of the angular momentum.
 
 \end{document}
