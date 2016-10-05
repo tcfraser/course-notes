@@ -172,6 +172,10 @@ The Hubble law (discovered by Hubble) shows that nebulae at further and further 
 \begin{center}
     \includegraphics{figures/hubble.jpg}
 \end{center}
+More recent measurements are depicted below:
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{figures/Modern_Hubble.jpg}
+\end{center}
 \[ v_{r} = H r \]
 Where $r$ is the distance to the object, $v_{r}$ is the radial velocity of that object and $H$ is a constant known as \term{Hubble's Constant}. Hubble's constant has numerical value,
 \[ H = 100 \cdot h \SI{}{\km \per \s \per \mega\pc} \]
@@ -219,7 +223,7 @@ One misconception associated with the expansion of the universe is that \textit{
 Solving the Friedmann equation corresponds to solving \cref{eq:friedmann_equation} together with the \term{fluid equation}. The fluid equation comes from the first law of thermodynamics ($\dif E + p \dif V = T \dif S = 0$), which translates to,
 \[ E = \pi a^3 x^3 \rho c^2 \qquad V = \f43 \pi a^3 x^3 \]
 Which gives the continuity equation,
-\[ \dot{\rho} + \f{3\dot{a}}{a} \br{\rho + \f{P}{c^2}} = 0 \eq \label{eq:fluid}\]
+\[ \dot{\rho} - \f{3\dot{a}}{a} \br{\rho + \f{P}{c^2}} = 0 \eq \label{eq:fluid}\]
 Where the pressure $P\br{\rho}$ is determined by the equation of state. Combining \cref{eq:fluid} and \cref{eq:friedmann_equation} gives,
 \[ \f{\ddot{a}}{a} = - \f{4 \pi G}{3} \br{\rho + \f{3P}{c^2}} \]
 Which is a relativistic manifestation of Newton's law. The difference being the term term involving pressure $P$.
@@ -397,6 +401,10 @@ A better technique for measuring distances is to make use of \term{standard cand
 \[ F = \f{L_s}{4 \pi r^2} \]
 Where the luminosity $L_s$ can be determined based on some standard process or model and the flux $F$ is easily measured with instruments near earth. The best standard candles that are used today are variable Cepheids stars and type 1a supernovae. We say that these processes are standardizable. All of these methods of measuring distance form a cosmic distance ladder that can be used to perform calibrations and consistency checks.\\
 
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{figures/cosmic_ladder.jpg}
+\end{center}
+
 Our most precise measurements today are as follows.
 \begin{center}
 \begin{tabular}{|c|c|c|}
@@ -490,5 +498,77 @@ One of the earliest indications of the presence of $\La$ was from measuring the 
 \[ t_H = \f{1}{H_0} = 9.77 h^{-1} \SI{}{\giga \yr} \approx \SI{14}{\giga \yr} \]
 However if $\Om_m = 1$,
 \[ a \propto t^{2/3} \implies H_0 = \f{2}{3 t_0} \implies t_0 = \f{2}{3}t_H \approx \SI{9.3}{\giga \yr} \]
-Which would not have been a problem until measurements on the ages of globular clusters indicated ages of roughly $t \approx \SI{10}{\giga \yr} - \SI{13}{\giga \yr}$
+Which would not have been a problem until measurements on the ages of globular clusters indicated ages of roughly $t \approx \SI{10}{\giga \yr} - \SI{13}{\giga \yr}$.
+\section{Geodesics}
+So far we have talked about the Friedmann equations and how to solve them for various density contributions. This gives us $a\br{t}$. Alternatively one could measure distances to galaxies to determine how $a\br{t}$ changes with time. Unfortunately, the timescales for doing this accurately are very large. \\
+
+Alternatively, we can make use of the FRW metric,
+\[ \dif s^2 = - c^2 \dif t^2 + a^2\br{t} \bs{\f{\dif r^2}{1 - k r^2} + r^2 \dif \te^2 + r^2 \sin^2 \te \dif \phi^2} \]
+The distance between two points (say $A,B$) can be obtained by integrating $\dif s$,
+\[ \s{S} = \int_A^B \dif s \]
+If $\s{S}$ is real, then the distance is space-like and the two locations can not communicate. Alternatively if $\s{S}$ is imaginary then we say that the two locations are time-like separated. Finally, a light ray has null distance.
+\begin{center}
+\begin{tabular}{|c|c|c|}
+    \hline
+    $\s{S}$ & Separation & Communication \\
+    \hline
+    Real & Space-Like & Not Possible \\
+    Imaginary & Time-Like & Possible \\
+    0 & Null & -- \\
+    \hline
+\end{tabular}
+\end{center}
+Geodesics can be found by extremizing $\s{S}$ (i.e. either maximizing or minimizing). In particular, time-like geodesics maximum the time contributions to distance while space-like geodesics minimize $\s{S}$. We define the \term{proper time} of a geodesic to be $\tau$ such that,
+\[ -c^2 \dif \tau^2 = \dif s^2 \]
+In cosmology we are interested in the light that travels to us from distant galaxies. Let $r=r_g$ be the distance to a distant galaxy.
+\begin{center}
+\begin{tikzpicture}
+    \begin{scope}
+        \tikzstyle{every node}=[fill=black, draw=black, circle, thick, text=black, scale=0.3]
+        \node (us) at (0,2) {};
+        \node (gal) at (2,0) {};
+    \end{scope}
+    \draw (us) node[above]{$r_0 = 0$};
+    \draw (gal) node[below]{$r_{g} = r$};
+    \draw[dashed, ->] (gal) -- node[below left]{$\dot \te, \dot \phi = 0$} (us);
+\end{tikzpicture}
+\end{center}
+Since the light ray has no angular deviation, the FRW metric reduces to,
+\[ \dif s^2 = - c^2 \dif t^2 + \f{a^2 \dif r^2}{1 - kr^2} \]
+Solving this metric gives,
+\[ \f{c \dif t}{a\br{t}} = - \f{\dif r}{\sqrt{1 - kr^2}} \]
+\[ c\int_{t}^{t_0} \f{\dif t'}{a\br{t'}} = \int_{0}^{r} \f{\dif r'}{\sqrt{1 - kr^2}} = \begin{cases}
+    r & k = 0 \\
+    \f{1}{\sqrt{k}}\sin^{-1}\br{\sqrt{k}r} & k > 0\\
+    \f{1}{\sqrt{-k}}\sinh^{-1}\br{\sqrt{-k}r} & k < 0\\
+\end{cases} \]
+Solving the time integral is impossible without knowing the behaviour of $a\br{t}$. Recall that for $\La = k = 0$ we have that,
+\[ a\br{t} = \br{\f{t}{t_0}}^{2/3} \]
+This gives us,
+\[ r = c \int_{t}^{t_0} \br{\f{t'}{t_0}}^{-2/3} \dif t' = 3 c t_0 \]
+It is important to note that $r$ is not a physical distance. Instead it is just a co-moving coordinate. As such, it should be alarming that $ r / t_0 = 3 c > c $ seems to be faster than the speed of light. \\
+
+Next consider a detector that aims to measure light coming from a distance galaxy. Let this detector subtend a solid angle of $\dif \Om$. Then the distance to the galaxy can be measured using,
+\[ \dif_L^2 = \f{L}{4\pi F} \]
+Where $L$ is the luminosity of the object ($\bs{\text{E}}/\bs{\text{T}}$) while $F$ is the observed flux on the detector ($\bs{\text{E}}/\bs{\text{T}}\bs{\text{Area}}$). In flat space $d_L$ corresponds to a regular distance. However in a curved spacetime, this is not generally the case. The flux observed can be directly computed from the number of photons emitted.
+\[  F = \f{N_{\ga} E_{0,\ga}}{\De t_0 a_0^2 r^2 \dif \Om} \]
+Where as the number of photons emitted can be determined from the luminosity,
+\[ N_{\ga} = \f{L \De t}{E_\ga} \f{\dif \Om}{4 \pi} \]
+Combining these results yields (and that $\De t_0 / \De t = E_\ga / E_{0, \ga} = 1 + z$),
+\[ F = \br{\f{E_{0,\ga}}{E_{\ga}}} \br{\f{\De t}{\De t_0}} \f{L}{4 \pi \br{a_0 r}^2} \]
+Therefore $d_L$ in general is,
+\[ d_L = a_0 r\br{1 + z} \]
+Relating this to the acceleration parameter,
+\[ a\br{t} = a_0 + \dot a \br{t-t_0} + \f{1}{2} \ddot a \br{t- t_0}^2\]
+\[ q = -\f{a \ddot a}{\dot a^2} \]
+Therefore for $k=0$,
+\[ r\br{z} = \int\f{c \dif t}{a\br{t}} \]
+We recover the Hubble law \todo[TC]{This might not be correct},
+\[ H_0 d_L = z + \br{\f{1}{2} - q} z^2 + \s{O}\br{z^3} \]
+This can be used to measure $\La$,
+\[ q = \f{\Om_m}{2} - \Om_\La \]
+Alternatively we can measure distances via angular size,
+\[ d_A = ar = \f{r}{1+z} \]
+There are two ways of measuring distances in cosmology $d_A, d_L$.
+
 \end{document}

@@ -784,7 +784,7 @@ This result means we can choose angular momentum eigenstates to be simultaneous 
     \end{split}
 \end{align*}
 In order to solve for $\ket{a,b}$, define the following operators,
-\[ J_{\pm} = J_x \pm i J_y \]
+\[ J_{\pm} = J_x \pm i J_y \eq \label{eq:defjpjm}\]
 Note that $J_{\pm}$ are \textit{not} Hermitian operators,
 \[ J_{\pm}^{\dagger} = J_{\mp} \]
 We have the following properties,
@@ -882,6 +882,95 @@ Thus there are $2j+1$ potential values for $m$. Moving forward, we replace \cref
     J_z^2 \ket{j,m} = \hbar m \ket{j,m}\\
     -j \leq m \leq j
 \end{gather*}
-Where $j$ is the magnitude of the angular momentum.
-
+Where $j = n/2$ is the magnitude of the angular momentum. As an example, $j = 1/2$ is the spin of the electron. The matrix elements for $\ve J^2$ and $J_z$ can be computed easily,
+\begin{align*}
+    \bra{j', m'} \ve J^2 \ket{j,m}
+    &= \hbar^2 j \br{j+1} \braket{j', m'}{j,m} \\
+    &= \hbar^2 j \br{j+1} \de_{jj'}\de_{mm'}
+\end{align*}
+\begin{align*}
+    \bra{j', m'} J_z \ket{j,m}
+    &= \hbar m \br{j+1} \braket{j', m'}{j,m} \\
+    &= \hbar m \br{j+1} \de_{jj'}\de_{mm'}
+\end{align*}
+Moreover we can compute expectations for $J_-J_+$,
+\begin{align*}
+    \bra{j,m}J_-J_+\ket{j,m}
+    &= \bra{j,m}J_+^{\dagger}J_+\ket{j,m} \\
+    &= \bra{j,m}\ve J^2 - J_z^2 - \hbar J_z\ket{j,m} \\
+    &= \hbar^2 j \br{j+1} - \hbar^2 m^2 - \hbar^2 m \\
+    &= \hbar^2 j \br{j+1} - \hbar^2 m\br{m+1} \eq \label{eq:jmpexp}
+\end{align*}
+For completeness, we should also calculate the expectations for $J_+$ and $J_-$. We know that the raising and lower operators satisfy,
+\begin{align*}
+J_+ \ket{j,m} &= C^{+}_{jm} \ket{j, m+1} \\
+J_- \ket{j,m} &= C^{-}_{jm} \ket{j, m-1}
+\end{align*}
+Being clever, recognize that \cref{eq:jmpexp} is related to $J_+ \ket{j,m}$,
+\[ \abs{J_+ \ket{j,m}}^2 = \abs{C^{+}_{jm}}^2 = \hbar^2 j \br{j+1} - \hbar^2 m\br{m+1} \]
+Choose $C^{+}_{jm}$ to be real and positive,
+\[C^{+}_{jm} = \hbar \sqrt{j \br{j+1} - m \br{m+1}} \]
+Which allows us to write,
+\[ J_+ \ket{j,m} = \hbar \sqrt{\br{j-m}\br{j+m+1}} \ket{j, m+1} \]
+A similar analysis of $J_-$ gives the relation,
+\[ J_- \ket{j,m} = \hbar \sqrt{\br{j+m}\br{j-m+1}} \ket{j, m-1} \]
+This result is sufficient for determining the matrix elements of $J_+, J_-$,
+\begin{align*}
+    \bra{j',m'} J_+ \ket{j,m} &= \hbar \sqrt{\br{j-m}\br{j+m+1}} \de_{jj'}\de_{m', m+1}\\
+    \bra{j',m'} J_- \ket{j,m} &= \hbar \sqrt{\br{j+m}\br{j-m+1}} \de_{jj'}\de_{m', m-1}
+\end{align*}
+Recalling the definition of $J_+, J_-$ (\cref{eq:defjpjm}),
+\[ J_x = \f{1}{2}\br{J_+ + J_-} \qquad J_y = \f{1}{2i}\br{J_+ - J_-} \]
+Therefore we now know explicitly what the matrix elements of $J_x, J_y$ are. $J_z$ has matrix elements,
+\begin{align*}
+    J_z \ket{\psi} = \sum_{i,m,j',m'} \ket{j',m'} \bra{j',m'} J_z \ket{j,m} \braket{j_m}{\psi}
+\end{align*}
+Returning to the rotation representations,
+\[ D\br{R} = e^{-\f{i}{\hbar} \ve J \cdot \hat n \varphi} \]
+Since $\ve J^2$ commutes with any component of $\ve J$,
+\[ \bs{\ve J^2, D\br{R}} = 0 \]
+Therefore we can determine $D\br{R}\ket{j,m}$ by first examining,
+\[ \ve J^2D\br{R}\ket{j,m} = D\br{R}\ve J^2\ket{j,m} = \hbar^2 j \br{j+1} D\br{R} \ket{j,m} \]
+This rotated eigenket of $\ve J^2$ is still an eigenket of $\ve J^2$ with the same eigenvalue $\hbar^2 j \br{j+1}$. However, $D\br{R}$ is general does not commute with $J_z$,
+\[ \bs{J_z, D\br{R}} \neq 0 \]
+\begin{align*}
+    D\br{R} \ket{j,m}
+    &= \sum_{j',m'} \ket{j', m'}\bra{j', m'} D\br{R} \ket{j,m} \\
+    &= \sum_{j,m'} \ket{j, m'}\bra{j, m'} D\br{R} \ket{j,m} \note{Orthogonal}\\
+    &= \sum_{j,m'} \ket{j, m'}D^{(j)}_{m'm} \br{R} \note{Notation}
+\end{align*}
+We refer to this as a $2j+1$ dimensional representation of the group of rotations. $D^{(j)}_{m'm} \br{R}$ is a $\br{2j+1}\times\br{2j+1}$ matrix of probability amplitudes to find the system in a state $\ket{j,m'}$ after a rotation. Recalling Euler angles,
+\[ D\br{\al, \be, \ga} = e^{-\f i \hbar J_z \al}e^{-\f i \hbar J_y \be}e^{-\f i \hbar J_z \ga} \]
+We can write $D^{(j)}_{m'm} \br{R}$ in terms of $\al, \be, \ga$,
+\[ D^{(j)}_{m'm} \br{\al, \be, \ga} = \bra{j,m'}e^{-\f i \hbar J_z \al}e^{-\f i \hbar J_y \be}e^{-\f i \hbar J_z \ga} \ket{j,m} \]
+This is very useful because $J_z$ has $\ket{j,m}$ as an eigenket. The only non-trivial operator is $e^{-\f i \hbar J_y \be}$. Replacing $J_z$ with relevant eigenvalues,
+\[ D^{(j)}_{m'm} \br{\al, \be, \ga} = \bra{j,m'}e^{-\f i \hbar \br{\hbar m'} \al}e^{-\f i \hbar J_y \be}e^{-\f i \hbar \br{\hbar m} \ga} \ket{j,m} \]
+Extracting out constants,
+\begin{align*}
+D^{(j)}_{m'm} \br{\al, \be, \ga}
+&= e^{-\f i \hbar \br{\hbar m'} \al}e^{-\f i \hbar \br{\hbar m} \ga}\bra{j,m'}e^{-\f i \hbar J_y \be} \ket{j,m} \\
+&= e^{-i \br{m' \al + m \ga}}\underbrace{\bra{j,m'}e^{-\f i \hbar J_y \be} \ket{j,m}}_{d^{(j)}_{m'm}\br{\be}}
+\end{align*}
+Compactly we write $d^{(j)}_{m'm}$ as the matrix elements for $e^{-\f i \hbar J_y \be}$,
+\[ D^{(j)}_{m'm} \br{\al, \be, \ga} = e^{-i \br{m' \al + m \ga}}d^{(j)}_{m'm}\br{\be} \]
+Compare this with the $j = 1/2$ result,
+\begin{align*}
+    D^{(1/2)}\br{\al,\be,\ga}
+    &= \begin{pmatrix}
+        e^{- i \f{\al+\ga}{2}}\cos\f{\be}{2} & -e^{- i \f{\al-\ga}{2}}\sin\f{\be}{2} \\
+        e^{ i \f{\al-\ga}{2}}\sin\f{\be}{2} & e^{ i \f{\al+\ga}{2}}\cos\f{\be}{2} \\
+    \end{pmatrix}
+\end{align*}
+Where we used the basis of the eigenstates of $S_z$ ($\bc{\ket{\uparrow}, \ket{\downarrow}}$). In this case $j = 1/2$ and $m=\pm 1/2$.
+\[ \ket{\uparrow} = \ket{m=1/2} \qquad \ket{\downarrow} = \ket{m=-1/2} \]
+\[ d_{m'm}^{1/2}\br{\be} = \begin{pmatrix}
+    \cos \f{\be}{2} & -\sin \f{\be}{2} \\
+    \sin \f{\be}{2} & \cos \f{\be}{2} \\
+\end{pmatrix} \]
+\subsection{Orbital and Spin Angular Momentum}
+Up until now we have only discuss the total angular momentum $\ve J$ and the spin angular momentum $\ve S$. They are related to the \term{orbital angular momentum} $\ve L$,
+\[ \ve J = \ve L + \ve S \]
+The orbital angular momentum is defined in terms of its classic definition,
+\[ \ve L = \ve r \times \ve p \]
+Where $\ve r$ and $\ve p$ are both operators.
 \end{document}
