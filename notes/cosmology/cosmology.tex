@@ -569,6 +569,104 @@ This can be used to measure $\La$,
 \[ q = \f{\Om_m}{2} - \Om_\La \]
 Alternatively we can measure distances via angular size,
 \[ d_A = ar = \f{r}{1+z} \]
-There are two ways of measuring distances in cosmology $d_A, d_L$.
+There are two ways of measuring distances in cosmology $d_A, d_L$. Fundamentally the luminosity distance and angular distance are related,
+\[ \f{d_L}{1 + z} = r = d_{A} \br{1 + z} \]
+It is important to note that $d_A$ does not tend to infinity as $z$ tends to infinity. We demonstrate this explicitly for a standard cosmology $k=0$.
+\[ H^2 = \f{8 \pi G}{3} \rho =\f{8 \pi G}{3} \br{\f{\rho_{m, 0}}{a^3} + \rho_\La}\]
+\[ H_0^2 = \f{8 \pi G}{3} \rho_{c, 0} \]
+Together gives,
+\[ \f{H^2}{H_0^2} = \Om_{0, m} \br{1+z^3} + \Om_{0, \La} \]
+Therefore,
+\[  a\br{t}\dif r = c\dif t = c \f{H_0}{\dif t H} = \f{c \dif h_0 a}{H} =- \f{c \dif h \br{1+z}}{H_0 \sqrt{\Om_{0,m} \br{1 + z}^3 + \Om_{0,\La}}} \]
+Which implies,
+\[ r\tsb{max} = \f{c}{H_0} \int_{0}^{z\tsb{max}} \f{\dif z}{\sqrt{\Om_{0,m} \br{1 + z}^3 + \Om_{0,\La}}} \]
+Which is an integral that can be solved numerically quite easily.
+\section{Dark Matter}
+We have talked about how cosmology behaves with different material components (matter, radiation, dark energy, curvature). For the last century, we have been trying to understand the behaviors of each of these components; dark energy being one of the latest problems to tackle. \\
+
+The universe has turns out to be much simpler than we previously thought; namely that the universe is homogeneous and isotropic on large scales. On the contrary, the universe is far more complicated and exotic than we previously thought. The current matter density in the universe is given by the current critical density,
+\[ \rho_{c,0} = \f{3 H_0^2}{8 \pi G} = h^2\times\SI{1.88e-26}{\kg \per \m^3} \quad h \approx 0.7 \]
+One of the objectives of cosmologists is to compare this critical density to observed densities in the universe. The first method used to measure the typical mass content of the universe was to look at stars. The main source of energy in stars is nuclear fusion. In the early 1930's this property started to become well understand. Astronomers are able the color, luminosity and temperature in order to determine the mass of a star. The theory of stellar mass and evolution reveals a the mass to luminosity ratio of main sequence stars (to first order) is,
+\[ \f{M}{L} \propto \f{M_{\astrosun}}{L_{\astrosun}} \]
+In order to measure mass, we measure the flux received from a large cluster or collection of stars. Over a solid angle in the sky $\de \Om$,
+\[ \text{Flux} = \br{\f{M}{L}}^{-1} \int \f{\br{\de \Om r^2 \dif r} \rho_{*}}{4 \pi \dif^2_L} \]
+Rearranging and rewriting $\rho_{*}$ in terms of $\Om_{*}$ (also let $z \ll 1$),
+\[ \text{Flux} = \br{\f{M}{L}}^{-1} \int \f{ \dif r}{1 + z} \Om_{*} \rho_c \]
+\[ \text{Flux} = \br{\f{M}{L}}^{-1} r\tsb{max} \Om_{*} 3 \f{3H_0^2}{8 \pi G} \]
+By observationally measuring the flux (and using $H_0, r\tsb{max}, M/L \propto M_{\astrosun} / L_{\astrosun}$), cosmologists calculate
+\[ \Om_{*} = \SI{0.005}{} \]
+
+So the question remains, what is the source of the rest of the mass associated with $\Om_{m} \approx 0.23$?
+\subsection{Dark/Faint Baryons}
+One possibility is that the rest of the mass is made up of faint baryonic matter that we do not see like intergalactic plasma. This possibly is the leading theory for what is termed the \term{missing baryon problem}. \\
+
+Another possibility is that the remaining mass is made up of brown dwarfs (massive objects that aren't quite large enough to be stars). Brown dwarfs are very faint, but are still slightly luminous. Of the nearby brown dwarfs that we can see, there is not sufficient evidence to suggest that the source of missing mass is brown dwarfs.\\
+
+Another possible is related to Big Bang nucleosynthesis. Most of the elements in the universe are hydrogen and helium; unlike here on earth where there is an assortment of elements. There is a very nice way of explaining the abundance of lighter elements in the universe. The only way that stars get there energy is through nuclear fusion; turning hydrogen into helium. Big Bang nucleosynthesis suggests that the Big Bang is a source for much heavier elements. The Big Bang is so hot that it is feasible to produce heavier elements like Helium, Deterium, and Lithium. In particular there is a seminal paper by Alfa, Betha, and Gammow that demonstrates there would only be enough time to produce small amounts of $\text{H}, \text{He}, \text{D}, \text{Li}$.
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        Substance & Portion \\
+        \hline
+        H & $75\%$\\
+        He & $25\%$\\
+        D & $10^{-5}$\\
+        Li & $10^{-7}$\\
+        \hline
+    \end{tabular}
+\end{center}
+Comparing these densities with those measured today, we can get an estimate on the rough density of baryons in the universe,
+\[ 0.021 \leq \Om_{b}h^2 \leq 0.025 \]
+Therefore,
+\[ 0.04 \leq \Om_B \leq 0.05 \]
+This upper limit demonstrates that $\Om_B$ could \textit{not} be larger than $0.05$ (otherwise there would a different production of heavier elements during the big bang). Therefore, baryons could never explain the discrepancy between $\Om_{*}$ and $\Om_m$. \\
+
+In summary, the usual suspects are not sufficient to explain the missing mass problem.
+
+\subsection{Dynamical Cosmology}
+
+In the 1930's Oort started looking at the dynamics (velocity) of stars in the solar neighborhood and Zwicky began observing the velocities of galaxies in the Virgo cluster of galaxies. By looking at the oscillations of stars about the bulk mass of a cluster of stars, one can measure the bulk mass of the cluster itself. Moreover, measuring the radial velocity (through deviations in the redshift) of galaxies in the Virgo cluster one can determine the velocities relative to the cluster.
+\[ v^2 = \f{G M\br{< R}}{R} \]
+In the 1960's and 1970's Rubin and others started looking at the rotation curves of spiral galaxies. What they found was the following profile for rotational velocities in galaxies,
+\begin{center}
+    \begin{tikzpicture}
+        \draw[->] (0,0) -- (0,3) node[above]{$v$};
+        \draw[->] (0,0) -- (4,0) node[right]{$d$};
+        \draw [red] plot [smooth, tension=0.4] coordinates { (0,0) (1,2.2) (3,2.2) (4,2.2)};
+    \end{tikzpicture}
+\end{center}
+The galaxies were rotating much faster than would be allowed by the stellar mass observed. For a time, his results were not taken too seriously.
+Oort's results suggested,
+\[ \f{M}{L} \approx \br{3-4} \f{M_{\astrosun}}{L_{\astrosun}} \]
+Zwicky's results suggest that,
+\[ \f{M}{L} \approx 400 \f{M_{\astrosun}}{L_{\astrosun}} \]
+While Rubin's results demonstrate that ${M\tsb{tot}}/{M_{*}} > 3$. \\
+
+All of these results are the foundations for believing in the existence of dark matter. Within spiral galaxies, the mass of dark matter to the mass of stars is typically comparable. Albeit at very large scales the measured proportion of dark matter is much much larger. \\
+
+All of these results suggests a very peculiar property of dark matter: dark matter is dissipation-less. Dark matter does not cool and lose energy. Regular matter can cool down and form very dense objects while dark matter cannot. Our current understanding is that dark matter sits in \term{Halos} around galaxies. There is more and more dark matter the further one looks outside a galaxies.
+
+\subsection{Clusters of Galaxies}
+
+The intergalactic plasma between galaxies in a cluster is typically held at,
+\[ T \sim \SI{1e7}{\K} - \SI{1e8}{\K} \]
+With density $\rho \sim \SI{1e3}{}\rho_c$. In the intergalactic plasma, the mass of baryons is $M_B = 5-10 M_{*}$. Therefore we can write,
+\[ \f{\Om_B}{\Om_m} = \f{M_B}{M\tsb{tot}} \]
+Which gives us a great way of measuring $\Om_m$. Modeling the intergalactic plasma as a gas in hydrostatic equilibrium we have that,
+\[ \f{\dif P\tsb{gas}}{r} = \rho\tsb{gas} \f{GM\br{<r}}{r} \]
+Which provides an avenue for measuring $M\br{<r} \approx M\tsb{tot}$.\footnote{The pressure can be determined from X-ray emissions.} The Chandra satellite has measured the relevant components of intergalactic plasma. These results yield the estimate of,
+\[ \Om_M = 0.4 \]
+
+\subsection{Structure Formation and CMB}
+
+In the early universe, it is believe that there are two components of the universe,
+\begin{enumerate}
+    \item Dark Matter
+    \item Baryons \& Photons
+\end{enumerate}
+We clump baryons and photons together because they are constantly interacting in the early universe. Since dark matter is very cold, energy does not propagate through dark matter. This is distinct from baryons and photons because they are very hot permitting sound waves to travel. Using the CMB, we can get the most precise measurement of $\Om_M / \Om_B$.
+\[ \Om_B = \SI{0.049\pm0.001}{} \qquad \Om_M = \SI{0.315\pm0.017}{} \]
+Adding the cosmological contributions $\Om_{\La} = 0.7$ predicts,
+\[ \Om\tsb{tot} = 1.00 \pm 0.01 \]
 
 \end{document}
