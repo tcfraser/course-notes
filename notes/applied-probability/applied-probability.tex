@@ -348,12 +348,12 @@ The conditional expectation is nothing else but the expectation taken under the 
 \end{proof}
 
 \begin{theorem}
-    \label{thm:interated}
-    \term{Law of interated expectation:}
+    \label{thm:iterated}
+    \term{Law of iterated expectation:}
     \[ \Exp\br{\Exp\br{X \mid Y}} = \Exp\br{X} \]
 \end{theorem}
 
-The law of interated expectation is easy to digest when one understands that $\Exp\br{X \mid Y}$ is r.v. function of $Y$.
+The law of iterated expectation is easy to digest when one understands that $\Exp\br{X \mid Y}$ is r.v. function of $Y$.
 \begin{proof}
     (Discrete Case) We know that when $Y=y_j$,
     \begin{align*}
@@ -377,7 +377,7 @@ The law of interated expectation is easy to digest when one understands that $\E
     \[ \forall x : Y \mid X=x \sim \Poi\br{x} \]
     What then is $\Exp\br{Y}$? Since $Y \mid X \sim \Poi\br{X}$ we have that,
     \[ \Exp\br{Y \mid X =x} = x \implies \Exp\br{Y \mid X} = X \]
-    Therefore by \cref{thm:interated},
+    Therefore by \cref{thm:iterated},
     \[ \Exp\br{Y} = \Exp\br{\Exp\br{Y\mid X}} = \Exp\br{X} = \f{1}{\la} \]
     What then is $P\br{Y = n}$?
     \begin{align*}
@@ -396,7 +396,9 @@ The law of interated expectation is easy to digest when one understands that $\E
 
 \todo[TC]{Finish this lecture.}
 \begin{theorem}
-    \term{Decomposition of Variance (EVVE's law):}
+    \term{Decomposition of Variance (EVE's law):} Let $X, Y$ be random variables. Then,
+    \[ \Var \br{Y} = \Exp\br{\Var\br{Y \mid X}} + \Var\br{\Exp\br{Y \mid X}} \]
+
 \end{theorem}
 
 \section{Stochastic Process}
@@ -457,11 +459,12 @@ We use capital letters $X$ to denote the random variable and lower case letters 
     \textit{Given the present, the future and the past are independent.}
 \end{center}
 
+% === Notes for GONGCHEN ===
 \subsection{Transition Probability}
 
 The \term{transition probability} from a state $i \in S$ at time $n$ to state $j \in S$ (at time $n+1$) is given by,
 \[ P_{n, i, j} \defined P \br{X_{n+1}= j \mid X_{n} = i} \qquad n = 0, 1, 2, \ldots \eq \label{eq:trans_prob}\]
-In full generality, the transition probability could depend on time $n$ but in this course we will restrict ourselves to transition probabilities that \textit{do not} depend on time $n$ ($P_{n, i, j} = P_{i, j}$). We say that the MC is \term{(time-)homogeneous} if this property holds. From now on, this will be our default setting. \\
+In full generality, the transition probability could depend on time $n$ but in this course we will restrict ourselves to transition probabilities that \textit{do not} depend on time $n$ ($P_{n, i, j} = P_{i, j}$). We say that the markov chain is \term{(time-)homogeneous} if this property holds. From now on, this will be our default setting. \\
 
 The matrix of all transition probabilities $P = \bc{P_{i,j} \mid i,j \in S}$ is called the \term{one-step transition (probability) matrix} for $\bc{X_{n} \mid n \in T}$.
 \[ P = \begin{pmatrix}
@@ -471,13 +474,16 @@ P_{10} & P_{11} & \cdots & P_{1j} & \cdots \\
 P_{i0} & P_{i1} & \cdots & P_{ij} & \cdots \\
 \vdots & \vdots & \vdots & \vdots & \ddots
 \end{pmatrix} \]
-The one-step transition matrix $P$ has the following properties,
-\[ P_{i,j} \geq 0 \eq \label{eq:trans_positive_entries} \]
-\[ \forall i : \sum_{j \in S} P_{ij} = 1 \eq \label{eq:trans_row_sum}\]
-The entries are non-negative because they represent probabilities and the row sums for $P$ are always unitary.\\
+The one-step transition matrix $P$ has the following properties:
+\begin{enumerate}
+    \item The entries of $P$ are non-negative:
+    \[ P_{i,j} \geq 0 \eq \label{eq:trans_positive_entries} \]
+    \item The rows of $P$ sum to unity:
+    \[ \forall i : \sum_{j \in S} P_{ij} = 1 \eq \label{eq:trans_row_sum} \]
+\end{enumerate}
 
 The \term{n-step transition probability} is defined via the homogeneous property,
-\[ \forall i,j \in S : P_{ij}^{(n)} \defined P\br{X_{n+m} = j \mid X_{n} = i} = P\br{X_{n} = j \mid X_{0} = i} \]
+\[ \forall i,j \in S : P_{ij}^{(n)} \defined P\br{X_{n+m} = j \mid X_{n} = i} = P\br{X_{n} = j \mid X_{m} = i} \]
 Analogously, the \term{n-step transition matrix} is the matrix,
 \[ P^{(n)} = \bc{P_{ij}^{(n)} \mid i, j \in S} \]
 
@@ -501,15 +507,50 @@ We also have $P^{(0)} = P^{0} = \ind$ is the identity matrix. We now assume $P^{
     &= \br{P \cdot P^{(n)}}_{ij} \note{Matrix product}\\
     &= \br{P^{n+1}}_{ij} \note{Inductive Hypothesis}
 \end{align*}
-There we have proved that $P^{(n+1)} = P^{n+1}$ and so we have a complete proof that $P^{(n)} = P^{n}$.\\
+There we have proved that $P^{(n+1)} = P^{n+1}$ and so we have a completed the proof that $P^{(n)} = P^{n}$.\\
 \end{proof}
+
+This result is very fundamental. We now have a relationship between the $n$-step transition matrix and the $1$-step transition matrix (namely $P^{(n)} = P^n$). It is important to not to be confused by notation ($P^{(n)} = P^n$ is not a tautology). $P^{(n)}$ is a single matrix with entries populated by $n$-step transition probabilities while $P^n$ is a single matrix multiplied by itself $n-1$ times.
 
 \begin{corollary}
 As a corollary, we have obtained that,
 \[ P^{(n)} = P^{(m)} \cdot P^{(n-m)} \quad \forall 0 \leq m \leq n \]
-Or equivalently the \textbf{Chapman-Kolmogorov Equation} or simply C-K equation,
+Or equivalently the \textbf{Chapman-Kolmogorov (C-K) Equation},
 \[ P^{(n)}_{ij} = \sum_{k \in S} P^{(m)}_{ik} P^{(n-m)}_{kj} \quad \forall i,j \in S, \forall 0 \leq m \leq n \eq \label{eq:ck_equation} \]
 \end{corollary}
+
+It is very common to use the entry-wise form of the C-K equation (\cref{eq:ck_equation}) instead of the more compact but less expressive matrix form ($P^{(n)} = P^{(m)} \cdot P^{(n-m)}$). Pictorially the C-K gives reveals the following picture that holds for all Markov chains,
+
+\begin{center}
+    \begin{tikzpicture}
+    \begin{scope}
+        \tikzstyle{every node}=[fill=black, draw=black, circle, inner sep=1.2pt]
+        \node[label=left:$i$] (i) at (0,0) {};
+        \node[label=right:$j$] (j) at (4,0) {};
+        \node[label=above right:$0$] (k0) at (2,2) {};
+        \node[label=above right:$1$] (k1) at (2,1) {};
+        \node[label=above:$k-1$] (kkm1) at (2,-1) {};
+        \node[label=below right:$k$] (kk) at (2,-2) {};
+    \end{scope}
+    \begin{scope}[decoration={markings, mark=at position 0.5 with {\arrow{>}}}]
+        \draw[postaction={decorate}] (i) -- node[above left]{$P^{(m)}_{i0}$} (k0);
+        \draw[postaction={decorate}] (i) -- (k1);
+        \draw[postaction={decorate}] (i) -- (kkm1);
+        \draw[postaction={decorate}] (k0) -- node[above right]{$P^{(n)}_{0j}$} (j);
+        \draw[postaction={decorate}] (k1) -- (j);
+        \draw[postaction={decorate}] (kkm1) -- (j);
+
+        \draw[postaction={decorate}] (i) -- node[below left]{$P^{(m)}_{ik}$}(kk);
+        \draw[postaction={decorate}] (kk) -- node[below right]{$P^{(n)}_{kj}$} (j);
+    \end{scope}
+    \draw[dashed] (2, 2.5) -- (2, -2.5);
+    \draw[dashed] (0, 2.5) -- (0, -2.5);
+    \draw[dashed] (4, 2.5) -- (4, -2.5);
+    \draw[] (2, 2.5) node[above]{$m$};
+    \draw[] (4, 2.5) node[above]{$m+n$};
+    \draw[] (0, 2.5) node[above]{$0$};
+    \end{tikzpicture}
+\end{center}
 
 So far, we have only been discussing transition probabilities. We will now divert our attention to actual distributions for a stochastic process. \\
 
@@ -552,12 +593,76 @@ First recognize the first term on the RHS ($P\br{X_{0} = x_{0}} = \al_{0, x_0}$)
 Even more generally, for $0 \leq t_1 < t_2 < \cdots < t_n$,
 \[ P\br{\val{t_n}, \val{t_{n-1}}, \ldots, \val{t_{1}}} = P\br{\val{t_1}} \br{P^{t_2 - t_1}}_{x_{t_1}x_{t_2}}\br{P^{t_3 - t_2}}_{x_{t_2}x_{t_3}}\cdots\br{P^{t_{n} - t_{n-1}}}_{x_{t_{n-1}}x_{t_{n}}}  \]
 Since $P\br{\val{t_1}} = \al_{t_1 x_{t_1}} = \sum_{k \in S} \al_{0, k} P^{t_1}_{k, x_{t_1}}$,
-\[ \al_{t_1} = \al_{0} \cdot P^{t_1} \]
-This means the probabilistic properties of a DTMC are fully characterized by two things:
+\[ \al_{t_1} = \al_{0} \cdot P^{t_1} \eq \label{eq:distribution_fundamentals} \]
+\begin{remark}
+\Cref{eq:transition_dist} carries a very important interpretation. The probabilistic properties of a Discrete-Time Markov Chain (DTMC) are fully characterized by two things:
 \begin{enumerate}
     \item The initial distribution $\al_{0}$
     \item Transition matrix $P$
 \end{enumerate}
+Knowing both the initial distribution and transition matrix fully determines the distribution $\al_{n}$ for all times $n$.
+\end{remark}
+
+\subsection{Stationary Distribution (Invariant Distribution)}
+In this section, we are interested in determining which distributions $\al_{0}$ remain unchanged for all time $n \in T$.
+\begin{definition}
+    A probability distribution $\pi = \br{\pi_0, \pi_1, \cdots}$ is called a \term{stationary (invariant) distribution} of the DTMC $\bc{X_n}_{n = 0,1, \cdots}$ with transition matrix $P$ if the following conditions hold,
+    \begin{enumerate}
+        \item The transition matrix does not change $\pi$:
+        \[  \pi = \pi \cdot P \eq \label{eq:invariant}\]
+        \item The vector $\pi$ is a valid probability distribution,
+        \[ \sum_{i \in S} \pi_i = 1 \qquad \pi_i \geq 0 \eq \label{eq:prob_dist_requirements}\]
+    \end{enumerate}
+\end{definition}
+Notice that if we posit that $\pi$ is a probability distribution, then the second condition is already satisfied. Nonetheless, in practice we are able to find candidate $\pi$'s using the the first condition and then we need to check these candidates against the second condition. In general, if $\sum_{i \in S} \pi_i$ is bounded (i.e. $\sum_{i \in S} \pi_i < \inf$) then it is possible to normalize the candidate $\pi$ in order to satisfy \cref{eq:prob_dist_requirements}. \\
+
+\textit{Why are such $\pi$'s called stationary/invariant distributions?} Notice that \cref{eq:invariant} completely answers this question. Assume that the MC starts with initial distribution $\al_0 = \pi$ for $X_0$. In this case, the distribution of $X_1$ is determined by $P$,
+\[ \al_1 = \al_0 \cdot P \]
+But since $\al_0$ is $\pi$ and $\pi$ satisfies \cref{eq:invariant},
+\[ \al_1 = \pi \cdot P = \pi \]
+The distribution for $X_1$ is the \textit{same} as the distribution for $X_0$. This process continues,
+\[ \al_2 = \al_1 \cdot P = \pi \cdot P = \pi \]
+\[ \al_n = \al_0 \cdot P^n = \pi \cdot P^n = \pi \cdot P^{n-1} = \cdots = \pi \]
+Thus if the Markov chain starts with a stationary/invariant distribution then its marginal distribution will \textit{never change}; hence why we refer $\pi$ as stationary. Also not that this \textit{does not} indicate that the value of $X_i$ does not change over time (it almost certainly will), but its distribution does.
+
+\begin{example}
+    Consider an electron with two states: ground $(0)$ and excited $(1)$. Let $X_n$ be the state at time $n$. At each step, with probability $\al$ the MC chains state if it is in the ground state. With probability $\be$ the MC will transition to the ground state if it is in the excited state. Then $\bc{X_n}_{n=0,1,\ldots}$ is a DTMC and its transition matrix is,
+    \[ P = \kbordermatrix{
+         & (0) & (1) \\
+        (0) & 1 - \al & \al \\
+        (1) & \be & 1 - \be \\
+    } \]
+    Now let us solve for the stationary distribution $\pi$.
+    \[ \pi = \pi \cdot P \qquad \pi = \br{\pi_0, \pi_1} \qquad \pi_0 + \pi_1 = 1 \]
+    Therefore,
+    \begin{align*}
+    \pi_0 &= \br{1 - \al} \pi_0 + \be \pi_1 \eq \label{eq:qe1}\\
+    \pi_1 &= \al \pi_0 + \br{1 - \be} \pi_1 \eq \label{eq:qe2}
+    \end{align*}
+    However note that these two equations are not linearly independent. This is evident because summing \cref{eq:qe1} with \cref{eq:qe2} results in the trivial statement of $\pi_0 + \pi_1 = \pi_0 + \pi_1$. Nonetheless rearranging \cref{eq:qe1} gives,
+    \[ \al \pi_0 = \be \pi_1 \implies \f{\pi_0}{\pi_1} = \f{\be}{\al} \]
+    This is where we need $\pi_0 + \pi_1 = 1$.
+    \[ \pi_0 = \f{\be}{\al+\be} \qquad \pi_1 = \f{\al}{\al+\be} \]
+    Where $\al + \be$ is considered the normalizing constant.
+\end{example}
+
+An important remark: sometimes the candidate distribution is not normalizable. In particular, there are configurations where \cref{eq:invariant} is satisfiable but \cref{eq:prob_dist_requirements} is not. In the above example, there exists a unique stationary distribution,
+\[ \pi = \br{\f{\al}{\al + \be} ,\f{\be}{\al + \be}} \]
+If $\al_0 = \pi$ then we know immediately that,
+\[ P\br{X_n = 0} = \f{\be}{\al+\be} \qquad P\br{X_n = 1} = \f{\al}{\al+\be} \qquad \forall n = 1, 2, \ldots\]
+\begin{remark}
+    By the above procedure of solving for stationary distribution is typical.
+    \begin{enumerate}
+        \item Use \cref{eq:invariant} to get proportions between different components of $\pi$.
+        \item Use \cref{eq:prob_dist_requirements} to normalize $\pi$ and get exact values.
+    \end{enumerate}
+\end{remark}
+\begin{remark}
+    Note that if $\be = 2 \al$ then $\pi$ is always $\br{2/3, 1/3}$ regardless the actual value of $\al$.
+\end{remark}
+% === Notes for GONGCHEN ===
+% === CONTINUE ===
+
 \subsection{Classification of States}
 \newcommand{\comm}{\leftrightarrow}
 \newcommand{\acc}[2]{#1 \to #2}
@@ -595,6 +700,7 @@ The family $\bc{S_1, S_2, \ldots S_n}$ is a \term{partition} of $S$ if,
 \end{enumerate}
 
 We can find the equivalent classes by drawing a graph where the states in $S$ are the nodes of the graph and a directed edge is placed going from $i$ to $j$ if $j$ is accessible from $i$ in one-step: $P_{ij} > 0$. Then identifying the the equivalent classes corresponds to identifying the loops of this graph within one step. \\
+
 
 \begin{example}
 
@@ -642,11 +748,45 @@ Where the loops of $S = \bc{0,1,2,3,4}$ form the following partition,
 
 These equivalent classes are useful for Markov chains because it allows one to separate the behaviour of the equivalence classes and study them individually. A MC which has only one equivalent class is called \term{irreducible}. \\
 
+\begin{example}
+    \[ P = \kbordermatrix{
+          & 0 & 1 & 2 & 3 \\
+        0 & 0 & 1 & 0 & 0 \\
+        1 & 0.5 & 0 & 0.5 & 0 \\
+        2 & 0 & 0.5 & 0 & 0.5 \\
+        3 & 0 & 0 & 1 & 0 \\
+    } \]
+    \begin{center}
+    \begin{tikzpicture}
+        \begin{scope}
+            \tikzstyle{every node}=[fill=white, draw=black, circle, thick, text=black, scale=1.0]
+            \node (0) at (0,0) {$0$};
+            \node (1) at (2,0) {$1$};
+            \node (2) at (4,0) {$2$};
+            \node (3) at (6,0) {$3$};
+        \end{scope}
+        \begin{scope}
+            \tikzstyle{every edge}=[draw, thick, ->]
+            \path
+            (0) edge[bend left] (1)
+            (1) edge[bend left] (2)
+            (2) edge[bend left] (3)
+            (3) edge[bend left] (2)
+            (2) edge[bend left] (1)
+            (1) edge[bend left] (0)
+            ;
+        \end{scope}
+    \end{tikzpicture}
+    \end{center}
+    Clearly if we start at state $0$, we can only go back to $0$ in $2,4,6,\ldots$ (i.e. an even number of) steps.
+\end{example}
 Furthermore, let us define the \term{period} of state $i$ as,
 
-\[ d\br{i} = \gcd \bc{n \in \Z^{+} \mid P_{ij}^{n} > 0} \]
+\[ d\br{i} = \gcd \bc{n \in \Z^{+} \mid P_{ii}^{n} > 0} \]
 
 Additionally, if $P_{ii}^{n} = 0$ holds for all $n > 0$, we say that $d\br{i} = \inf$. If the period of $i$ happens to be $d\br{i} = 1$ then the state $i$ is said to be \term{aperiodic}. Alternatively, locus of steps that we can go back by are \textit{co-prime}. A MC is called aperiodic if all its states $S$ are aperiodic.\\
+
+Note that $P_{ii} < 0$ then the greatest common divisor must be one. This implies that $d_i = 1$. In this case, the state is immediately aperiodic.\\
 
 The period of a state is useful do to the following theorem,
 
@@ -684,21 +824,115 @@ It is important to note that $d\br{i} = k \not\Rightarrow P_{ii}^{(k)} > 0$. As 
         \path
         (0) edge[bend right] (1)
         (1) edge[bend right] (0)
-        (0) edge[bend right] (2)
+        (2) edge[bend left] (0)
         (1) edge[bend left] (2);
     \end{scope}
 \end{tikzpicture}
 \end{center}
-Evidently $P_{00} = 0$ but we have $d\br{0} = 1$ because $d\br{0} = \gcd\bc{2,3,\ldots}$.
+Evidently,
+\[ P^{(2)}_{00} > 0 \quad P^{(3)}_{00} > 0 \]
+So we have $d\br{0} = 1$ because $d\br{0} = \gcd\bc{2,3,\ldots}$. However this doesn't imply that $P_{00}^{(1)} > 0$ because we do have that $P^{(1)}_{00} = 0$
 \end{remark}
 
 \begin{remark}
 If the MC is irreducible (having only one class) then all the states have the same period. In this case we ascribe the entire MC the period $d\br{i}$ for some representative $ i \in S$.
 \end{remark}
 
+\begin{remark}
+    If the period of $i$ is $d_i = 1$ then there exists some $N$ such that $P_{ii}^{(n)} > 0$ for any $n \geq N$. Intuitively, if state $i$ is aperiodic then after a long time, the probability of going back to $i$ is always positive.
+\end{remark}
+
 \subsection{Recurrence and Transience}
+In order to define transience and recurrence, let $T_i$ be the waiting time of a MC to visit/revisit state $i$ for the first time since time $0$.
+\[ T_i = \min \bc{n > 0 : X_n = i} \]
+Of course we have that $\bc{n > 0 : X_n = i}$ is a random collection of numbers and also $\min\bc{n > 0 : X_n = i}$ is a random number. Therefore $T_i$ is a random variable. Notice that if $T_i = \inf$ if the MC never returns to state $i$.
+\begin{definition}
+    A state $i$ is called \term{transient} if,
+    \[ P\br{T_i < \inf \mid X_0 = i} < 1 \]
+    Or equivalently,
+    \[ P\br{T_i = \inf \mid X_0 = i} > 0 \]
+    We say that the MC never goes back to state $i$ with positive probability.
+\end{definition}
+Moreover,
+\begin{definition}
+    A state $i$ is \term{recurrent} if,
+    \[ P\br{T_i < \inf \mid X_0 = i} = 1 \]
+    Or equivalently,
+    \[ P\br{T_i = \inf \mid X_0 = i} = 0 \]
+    We say that the MC always goes back to $i$.
+\end{definition}
+\begin{remark}
+    If we have that $P\br{T < \inf} = 1$ then it does not imply that $\Exp\br{T} < \inf$. As a counter example, let $s_p = 2^{p}$ for $p = 1, \ldots, \inf$,
+    \[ P\br{T = s_p} = \f{1}{s_p} \]
+    Where the expectation of $T$ is unbounded,
+    \[ \Exp\br{T} = \sum_{p=1}^{\inf} s_p \f{1}{s_p} = \sum_{p=1}^{\inf} 1 = \inf \]
+\end{remark}
+To make the distinction,
+\begin{definition}
+    A recurrent state $i$ is said to be \term{positive recurrent} if,
+    \[ \Exp\br{T_i \mid X_0 = i} < \inf \]
+    A recurrent state $i$ is said to be \term{null recurrent} if,
+    \[ \Exp\br{T_i \mid X_0 = i} = \inf \]
+\end{definition}
+
+\begin{example}
+    Consider the following example with transition matrix,
+    \[ P \kbordermatrix{
+          & 0 & 1 & 2 \\
+        0 & \f12 & \f12 & 0 \\
+        1 & 0 & \f12 & \f12 \\
+        2 & 0 & 0 & 1 \\
+    } \]
+    And MC graphically expressed as,
+    \begin{center}
+    \begin{tikzpicture}
+        \begin{scope}
+            \tikzstyle{every node}=[fill=white, draw=black, circle, thick, text=black, scale=1.0]
+            \node (0) at (0,0) {$0$};
+            \node (1) at (2,0) {$1$};
+            \node (2) at (4,0) {$2$};
+        \end{scope}
+        \begin{scope}
+            \tikzstyle{every edge}=[draw, thick, ->]
+            \path
+            (0) edge[] (1)
+            (1) edge[] (2)
+            (0) edge[loop above] (0)
+            (1) edge[loop above] (1)
+            (2) edge[loop above] (2);
+        \end{scope}
+    \end{tikzpicture}
+    \end{center}
+    Given that $X_0 = 0$ there are only two possibilities for transitions,
+    \[ P\br{\underbrace{X_1 = 0 \mid X_0 = 0}_{T_0 = 1}} = P\br{\underbrace{X_1 = 1 \mid X_0 = 0}_{T_0 = \inf}} = \f12 \]
+    The second term is recognized as $T_0 = \inf$ because after transitioning to state $1$, it is impossible to return to state $0$. This tells us that,
+    \[ P\br{T_0 < \inf \mid X_0 = 0} = \f{1}{2} < 1 \]
+    Therefore state $0$ is said to be transient. Analogously we have that state $1$ is also transient. Given $X_0 = 2$, $P\br{\underbrace{X_1 = 2 \mid X_0 = 2}_{T_2=1}} = 1$ we have that,
+    \[ P\br{T_2 < \inf \mid X_0 = 2} - 1 \]
+    Which tells is that state $2$ is recurrent.
+\end{example}
+In general, the distribution of $T_i$ is very hard to derive. In particular it will be hard to know whether $T_i$ takes value $\inf$ and with what probability. This suggests that we will need handier criteria for recurrence/transience. \\
+
+To facilitate this define $f_{ii} = P\br{T_i < \inf \mid X_0 = i}$ and,
+\[ f_{ij} = P\br{T_j < \inf \mid X_0 = i} \]
+We also defined $V_i$ to be the number of times that the MC visits state $i$,
+\[ V_i = \sum_{n=1}^{\inf} \ident_{\bc{X_n = i}} \]
+First consider the case that $i$ is transient. If $i$ is transient, then it must be that $f_{ii} < 1$. This can be seen from the definition of $T_i$. The PMF is,
+\[ P\br{V_i = k \mid X_0 = i} = f_{ii}^{k} \br{1 - f_{ii}} \]
+This can be derived by considering that if the MC is to visit state $i$ exactly $k$ times but not more than $k$ times.
+\[ P\br{V_i = k \mid X_0 = i} = \bs{P\br{T_i < \inf \mid X_0 = i}}^{k} \bs{P\br{T_i = \inf \mid X_0 = i}} \]
+This PMF tells us that $V_i + 1$ follows a geometric distribution with parameter $1 - f_{ii}$,
+\[ V_i + 1 \sim \Geo\br{1 - f_{ii}} \]
+In particular, $P\br{V_i < \inf \mid X_0 = i} = 1$. Therefore if $i$ is transient, it is visited only finitely many times with probability $1$. Afterwards, the MC will leave state $i$ forever sooner or later.\\
+
+Second consider the case that $i$ is recurrent. If state $i$ is recurrent, then $f_{ii} = 1$ by definition. The we have that,
+\[P\br{V_i = k\mid X_0 = i} = 0 \quad \forall k = 0, 1, \ldots  \]
+Since $V_i$ can not take on any finite values, it must be that
+\[ P\br{V_i = \inf\mid X_0 = i} = 1 \]
+If the MC starts from recurrent state $i$ is will visit that state infinitely many times. Before identifying our more versatile criteria, we generalize some of these notions.
+\subsection{Recurrence and Transience Again}
 For $n \in \Z^{+}$ define,
-\[ f_{ij}^{(n)} = P \br{X_n = j, X_{n-1} \neq j, \cdots, X_{1} \neq j \mid X_O = i} \quad \forall i,j \in S \]
+\[ f_{ij}^{(n)} = P \br{X_n = j, X_{n-1} \neq j, \cdots, X_{1} \neq j \mid X_0 = i} \quad \forall i,j \in S \]
 Intuitively, $f_{ij}^{(n)}$ is the probability that $X$ visits state $j$ at time $n$ for the first time since $X_0 = i$. A looming question: What is the relation between $f_{ij}^{(n)}$ and $P_{ij}^{(n)}$? First notice that,
 \[ P_{ij}^{(n)} \geq f_{ij}^{(n)} \]
 These reads: the probability that $X$ visits $j$ at time $n$ is more larger that the probability that $X$ visits $j$ at time $n$ provided it did not visit $j$ prior. A more detailed equality is the following,
@@ -724,8 +958,8 @@ The probability that $X$ will \textit{ever} reach state $j \in S$ provided it st
 
 A state $i$ is called \term{transient} if $f_{ii} < 1$; and \term{recurrent} if $f_{ii} = 1$. Intuitively, $f_{ii}$ is the probability the MC returns to state $i$ given it started in state $i$. If $i$ is transient, then there is a non-negative probability that the MC does not return to $i$ and if $f_{ii} = 1$ then the MC always returns to state $i$.\\
 
-Another way to characterize recurrence and transience: Define $M_i$ to be the total number of times the MC (re)visits $i$ after time $0$. In more mathematical terms,
-\[ M_i = \sum_{n=1}^{\inf} \ind_{\bs{X_n = i}} \]
+Another way to characterize recurrence and transience: Define $V_i$ to be the total number of times the MC (re)visits $i$ after time $0$. In more mathematical terms,
+\[ V_i = \sum_{n=1}^{\inf} \ind_{\bs{X_n = i}} \]
 Where $\ind_{\bs{X_n = i}}$ is the indicator defined by,
 \[ \ind_{\bs{X_n = i}} = \begin{cases}
     1 & X_n = i \\
@@ -733,23 +967,47 @@ Where $\ind_{\bs{X_n = i}}$ is the indicator defined by,
 \end{cases} \]
 If $f_{ii} < 1$ we have that the probability of visiting state $i$ $k$ times is given by,
 \begin{align*}
-    P\br{M_i = k \mid X_0 = i} &= \underbrace{f_{ii} \cdot f_{ii} \cdots f_{ii}}_{k}\underbrace{\br{1 - f_{ii}}}_{\text{never return}}
+    P\br{V_i = k \mid X_0 = i} &= \underbrace{f_{ii} \cdot f_{ii} \cdots f_{ii}}_{k}\underbrace{\br{1 - f_{ii}}}_{\text{never return}}
 \end{align*}
-Where $\br{1 - f_{ii}}$ is necessary because it guarantees that we never return to state $i$ more that $k$ times. Given $X_0 = i$, $M_i$ follows a geometric distribution with parameter $\br{1 - f_{ii}}$. Thus,
-\[ \Exp\br{M_i \mid X_0 = i} = \f{f_{ii}}{1 - f_{ii}} < \inf \]
+Where $\br{1 - f_{ii}}$ is necessary because it guarantees that we never return to state $i$ more that $k$ times. Given $X_0 = i$, $V_i$ follows a geometric distribution with parameter $\br{1 - f_{ii}}$. Thus,
+\[ \Exp\br{V_i \mid X_0 = i} = \f{f_{ii}}{1 - f_{ii}} < \inf \]
 Therefore if $i$ is transient, there a finite number revisits are expected. In contrast if $f_{ii} = 1$ we have that,
-\[ \Exp\br{M_i \mid X_0 = i} = \lim_{f_{ii} \to 1}\f{f_{ii}}{1 - f_{ii}} \to \inf \]
-Alternatively, we can look at $\Exp\br{M_i \mid X_0 = i}$ as,
-\[ \Exp\br{M_i \mid X_0 = i} = \sum_{k=1}^{\inf} P\br{M_i \geq k \mid X_0 = i} \eq \label{eq:Mgeqk}\]
+\[ \Exp\br{V_i \mid X_0 = i} = \lim_{f_{ii} \to 1}\f{f_{ii}}{1 - f_{ii}} \to \inf \]
+Recalling our construction of the random variable $V_i$ we can alternatively write $\Exp\br{V_i \mid X_0 = i}$ as,
+\begin{align*}
+    \Exp\br{V_i \mid X_0 = i}
+    &= \Exp\br{\sum_{n=1}^{\inf} \ident_{\bc{X_n = i}} \mid X_0 = i}  \\
+    &= \sum_{n=1}^{\inf}\Exp\br{ \ident_{\bc{X_n = i}} \mid X_0 = i}  \\
+    &= \sum_{n=1}^{\inf}P\br{X_n = i \mid X_0 = i}  \\
+    &= \sum_{n=1}^{\inf}P_{ii}^{(n)}  \\
+    &= \sum_{n=1}^{\inf}P_{ii}^{n}
+\end{align*}
+Therefore we have equivalent criteria for recurrent and transience for a state $i$.
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        recurrent & transient \\
+        \hline
+        $P\br{T_i < \inf \mid X_0 = i} = 1$ & $P\br{T_i < \inf \mid X_0 = i} < 1$ \\
+        $P\br{V_i = \inf \mid X_0 = i} = 1$ & $P\br{V_i < \inf \mid X_0 = i} = 1$ \\
+        $\Exp\br{V_i \mid X_0 = i} = \inf$ & $\Exp\br{V_i \mid X_0 = i} < \inf$ \\
+        $\sum_{n=1}^{\inf}P_{ii}^{n} = \inf$ & $\sum_{n=1}^{\inf}P_{ii}^{n} < \inf$ \\
+        \hline
+    \end{tabular}
+\end{center}
+The final criteria being the easiest to use. \\
+
+A final criteria we can consider is,
+\[ \Exp\br{V_i \mid X_0 = i} = \sum_{k=1}^{\inf} P\br{V_i \geq k \mid X_0 = i} \eq \label{eq:Mgeqk}\]
 The proof of \cref{eq:Mgeqk} is left as an exercise to the reader. Clearly if $f_{ii} = 1$,
-\[ P\br{M_i \geq k \mid X_0 = i} = {f_{ii}}^k = 1 \quad \forall k \eq \label{eq:mmmm}\]
+\[ P\br{V_i \geq k \mid X_0 = i} = {f_{ii}}^k = 1 \quad \forall k \eq \label{eq:mmmm}\]
 Therefore,
-\[ \Exp\br{M_i \mid X_0 = i} = \sum_{k=1}^{\inf} 1 = \inf\]
+\[ \Exp\br{V_i \mid X_0 = i} = \sum_{k=1}^{\inf} 1 = \inf\]
 \begin{theorem}
-Therefore $i$ is recurrent if and only if $P\br{M_i \geq k \mid X_0 = i} = \inf$ and $i$ is transient if and only if only if $P\br{M_i \geq k \mid X_0 = i} < \inf$.
+Therefore $i$ is recurrent if and only if $P\br{V_i \geq k \mid X_0 = i} = \inf$ and $i$ is transient if and only if only if $P\br{V_i \geq k \mid X_0 = i} < \inf$.
 \end{theorem}
 \begin{remark}
-We actually also have that $i$ is recurrent if and only if $M_i = \inf$. This can be seen from \cref{eq:mmmm}. Since $P\br{M_i \geq k \mid X_0 = i}$ is strictly positive for all $k$, then $M_i = \inf$. Analogously, we have that $i$ is transient if and only if $M_i < \inf$.
+We actually also have that $i$ is recurrent if and only if $V_i = \inf$. This can be seen from \cref{eq:mmmm}. Since $P\br{V_i \geq k \mid X_0 = i}$ is strictly positive for all $k$, then $V_i = \inf$. Analogously, we have that $i$ is transient if and only if $V_i < \inf$.
 \end{remark}
 Yet \textit{another} way to characterize recurrence and transience is much more tractable. First,
 \begin{theorem}
@@ -757,7 +1015,7 @@ Yet \textit{another} way to characterize recurrence and transience is much more 
 \end{theorem}
 Therefore,
 \begin{align*}
-\Exp\br{M_i \mid X_0 = i} &= \Exp\br{\sum_{n=1}^{\inf} \ind_{\bs{X_n = i}} \mid X_0 = i} \\
+\Exp\br{V_i \mid X_0 = i} &= \Exp\br{\sum_{n=1}^{\inf} \ind_{\bs{X_n = i}} \mid X_0 = i} \\
 &= \sum_{n=1}^{\inf}\Exp\br{ \ind_{\bs{X_n = i}} \mid X_0 = i} \note{Fubini's Theorem} \\
 &= \sum_{n=1}^{\inf}P\br{ X_n = i \mid X_0 = i}\\
 &= \sum_{n=1}^{\inf}P_{ii}^{(n)}

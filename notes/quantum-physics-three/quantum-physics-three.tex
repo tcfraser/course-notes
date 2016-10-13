@@ -972,5 +972,113 @@ Up until now we have only discuss the total angular momentum $\ve J$ and the spi
 \[ \ve J = \ve L + \ve S \]
 The orbital angular momentum is defined in terms of its classic definition,
 \[ \ve L = \ve r \times \ve p \]
-Where $\ve r$ and $\ve p$ are both operators.
+Where $\ve r$ and $\ve p$ are both operators. We must have the canonical commutatotion relation,
+\[ \bs{L_i, L_j} = i\hbar \ep_{ijk}L_k \]
+We can check this relation by examining $\bs{L_x, L_y}$ directly,
+\begin{align*}
+    \bs{L_x, L_y}
+    &= \bs{y p_z - z p_y, zp_x - x p_z} \\
+    &= \bs{y p_z, zp_x} - \bs{y p_z, xp_z} - \bs{z p_y, zp_x} + \bs{z p_y, xp_z}\\
+    &= \bs{y p_z, zp_x} - \cancelto{0}{\bs{y, x}}p_z - z\cancelto{0}{\bs{ p_y, p_x}} + \bs{z p_y, xp_z}\\
+    &= \bs{y p_z, zp_x} + \bs{z p_y, xp_z}\\
+    &= yp_x\bs{p_z, z} + p_y x \bs{z, p_z}\\
+    &= -i\hbar \br{yp_x - xp_y}\\
+    &= i \hbar L_z
+\end{align*}
+Next consider spin-less infinitesimal rotations about the $z$-axis. In such spin-less cases $\ve J = \ve L$.
+\[ D_z \br{\de \varphi} = e^{- \f{i}{\hbar} L_z \de \varphi} = \ident - \f i \hbar L_z \de \varphi + \s{O}\br{{\de \varphi}^2} \]
+In terms of the linear momentum operators,
+Acting on a position eigenket $\ket{\ve x'}$ is,
+\begin{align*}
+D_z \br{\de \varphi}\ket{\ve x'}
+&= D_z \br{\de \varphi}\ket{x', y', z'} \\
+&= \bs{\ident - \f i \hbar \br{xp_y - yp_x}\de \varphi}\ket{x', y', z'}
+\end{align*}
+Recalling that,
+\[ T\br{\dif \ve x'} = \ident - \f i \hbar \ve p \cdot \dif \ve x' \]
+We have that,
+\[ T\br{\dif \ve x'}\ket{\ve x'} = \ket{\ve x' + \dif \ve x'} \]
+Returning to the rotation operator,
+\begin{align*}
+D_z \br{\de \varphi}\ket{\ve x'}
+&= \ket{x' - \de \varphi y', y' + \de \varphi x', z'}
+\end{align*}
+This is exactly the classical action of rotating a vector $\ve x'$. Recall the infinitesimal rotation matrix,
+\[ R_z\br{\de \varphi}\cdot\ve x' = \begin{pmatrix}
+    \cos \de \varphi & -\sin \de \varphi & 0 \\
+    \sin \de \varphi & \cos \de \varphi & 0 \\
+    0 & 0 & 1 \\
+\end{pmatrix}\begin{pmatrix}
+    x' \\ y' \\ z'
+\end{pmatrix} = \begin{pmatrix}
+    1 & -\de \varphi & 0 \\
+    \de \varphi & 1 & 0 \\
+    0 & 0 & 1 \\
+\end{pmatrix}\begin{pmatrix}
+    x' \\ y' \\ z'
+\end{pmatrix}
+= \begin{pmatrix}
+    x' - \de \varphi y' \\ y' + \de \varphi x' \\ z'
+\end{pmatrix} \]
+What affect does rotation have on wave functions $\psi\br{\ve x'} = \braket{\ve x'}{\psi}$?
+\begin{align*}
+    \bra{\ve x'} \ident - \f i\hbar L_z \de \varphi \ket{\psi}
+    &= \bc{\bra{\psi} \ident + \f i\hbar L_z \de \varphi \ket{\ve x'}}^{*} \\
+    &= \bc{\bra{\psi} \ident + \f i\hbar \br{x p_y - y p_x} \de \varphi \ket{x',y',z'}}^{*} \\
+    &= \bc{\braket{\psi}{x' + \de \varphi y',y' - \de \varphi x',z'}}^{*} \\
+    &= \braket{x' + \de \varphi y',y' - \de \varphi x',z'}{\psi}
+\end{align*}
+It will be helpful (as it is classically) to represent these types of rotations in spherical coordinates.
+\[ \ve x' = x' \hat x + y' \hat y + z' \hat z = r \hat r \]
+Where,
+\begin{align*}
+    x' &= r \sin \te \cos \varphi \\
+    y' &= r \sin \te \sin \varphi \\
+    z' &= r \cos \te \\
+    r &= \sqrt{x'^2 + y'^2 + z'^2}
+\end{align*}
+The only effect of rotation about the $z$-axis is that $\varphi \mapsto \varphi - \de \varphi$.
+\[ \bra{r, \te, \varphi} \ident - \f i \hbar L_z \de \varphi \ket{\psi} = \braket{r, \te, \varphi - \de \varphi}{\psi} \]
+As a first order Taylor series,
+\begin{align*}
+    \braket{r, \te, \varphi - \de \varphi}{\psi}
+    &= \braket{r, \te, \varphi}{\psi} - \de \varphi \pder{}{\varphi} \braket{r, \te, \varphi}{\psi} \\
+    &= \braket{r, \te, \varphi}{\psi} - \f i \hbar \de \varphi \bra{r, \te, \varphi}L_z\ket{\psi}
+\end{align*}
+Therefore,
+\[ L_z = - i \hbar \pder{}{\varphi} \]
+In spherical coordinates,
+\begin{align*}
+    \hat r &= \hat x \sin \te \cos \varphi + \hat y \sin \te \sin \varphi + \hat z \cos \te \\
+    \hat \varphi &= - \hat x \sin \varphi + \hat y \cos \varphi \\
+    \hat \te &= \hat x \cos \varphi \cos \te + \hat y \sin \varphi \cos \te - \hat z \sin \te
+\end{align*}
+These unit directions can be used to determine,
+\begin{align*}
+L_z &= y p_z - z p_y = - i \hbar \br{y \pder{}{z} - z \pder{}{y}} \\
+L_y &= z p_x - x p_z = - i \hbar \br{z \pder{}{x} - x \pder{}{z}}
+\end{align*}
+Or more compactly,
+\begin{align*}
+\vdel
+&= \hat x \pder{}{x} + \hat y \pder{}{y} + \hat z \pder{}{z} \\
+&= \hat r \pder{}{r} + \hat \varphi \f{1}{r \sin \te} \pder{}{\varphi} + \hat \te \f{1}{r}\pder{}{\te}
+\end{align*}
+Therefore derivatives in the $x,y,z$ directions can be written in terms of $\te, \varphi$ derivatives,
+\begin{align*}
+    \pder{}{z} &= \cos \te \pder{}{r} - \f{1}{r} \sin \te \pder{}{\te}\\
+    \pder{}{y} &=  \sin \te \sin \varphi \pder{}{r} + \f{\cos \varphi}{r \sin \te} \pder{}{\varphi} + \f{\cos \te \sin \varphi}{r} \pder{}{\te}
+\end{align*}
+Therefore,
+\[ \ve L^2 = L_x^2 + L_y^2 + L_z^2 = - \hbar^2 \bs{\f{1}{\sin^2 \te} \pdder{}{\varphi} + \f{1}{\sin \te} \pder{}{\te} \br{\sin \te \pder{}{\te}}} \]
+Moreover in just the same way that $\bs{\ve J^2, J_z} = 0$ we have that,
+\[ \bs{\ve L^2, L_z} = 0 \]
+This can also be derived by noticing that $\ve L^2$ is only a function of $\ve \te$. We can find common eigenstates of $\ve L^2, L_z$.
+\begin{align*}
+    \ve L^2 \ket{\ell, m} &= \hbar^2 \ell \br{\ell + 1} \ket{\ell, m} \\
+    L_z \ket{\ell, m} &= \hbar m \ket{\ell, m}
+\end{align*}
+Where $m = -\ell, -\ell +1, \cdots, \ell - 1, \ell$. We can also define the wave function,
+\[ \braket{\te ,\varphi}{l,m} = Y^{m}_{\ell}\br{\te, \varphi} \]
+
 \end{document}

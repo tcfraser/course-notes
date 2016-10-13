@@ -1,0 +1,232 @@
+\documentclass{article}
+
+\usepackage{coursenotes}
+
+\set{AuthorName}{TC Fraser}
+\set{Email}{tcfraser@tcfraser.com}
+\set{Website}{www.tcfraser.com}
+\set{ClassName}{Applied Probability}
+\set{School}{University of Waterloo}
+\set{CourseCode}{Stat 333}
+\set{InstructorName}{Yi Shen}
+\set{Term}{Fall 2016}
+\set{Version}{1.0}
+
+\draftprofile[TC Fraser]{TC}{Purple}
+\newcommand{\val}[1]{X_{#1} = x_{#1}}
+\newcommand{\indep}{\!\!\perp\!\!\!\!\perp\!\!}
+\newcommand{\Cov}{\textsf{Cov}}
+\newcommand{\Var}{\textsf{Var}}
+\newcommand{\Exp}{\mathbb{E}}
+\newcommand{\Ber}{\mathsf{Ber}}
+\newcommand{\Bi}{\mathsf{Bin}}
+\newcommand{\Poi}{\mathsf{Poi}}
+\newcommand{\Ex}{\mathsf{Exp}}
+\newcommand{\Mom}{M}
+\newcommand{\Geo}{\mathsf{Geo}}
+\newcommand{\ind}{\mathbf{1}}
+
+\begin{document}
+
+\section{Notes for Gongchen}
+\subsection{Transition Probability}
+
+The \term{transition probability} from a state $i \in S$ at time $n$ to state $j \in S$ (at time $n+1$) is given by,
+\[ P_{n, i, j} \defined P \br{X_{n+1}= j \mid X_{n} = i} \qquad n = 0, 1, 2, \ldots \eq \label{eq:trans_prob}\]
+In full generality, the transition probability could depend on time $n$ but in this course we will restrict ourselves to transition probabilities that \textit{do not} depend on time $n$ ($P_{n, i, j} = P_{i, j}$). We say that the markov chain is \term{(time-)homogeneous} if this property holds. From now on, this will be our default setting. \\
+
+The matrix of all transition probabilities $P = \bc{P_{i,j} \mid i,j \in S}$ is called the \term{one-step transition (probability) matrix} for $\bc{X_{n} \mid n \in T}$.
+\[ P = \begin{pmatrix}
+P_{00} & P_{01} & \cdots & P_{0j} & \cdots \\
+P_{10} & P_{11} & \cdots & P_{1j} & \cdots \\
+\vdots & \vdots & \ddots & \vdots & \cdots \\
+P_{i0} & P_{i1} & \cdots & P_{ij} & \cdots \\
+\vdots & \vdots & \vdots & \vdots & \ddots
+\end{pmatrix} \]
+The one-step transition matrix $P$ has the following properties:
+\begin{enumerate}
+    \item The entries of $P$ are non-negative:
+    \[ P_{i,j} \geq 0 \eq \label{eq:trans_positive_entries} \]
+    \item The rows of $P$ sum to unity:
+    \[ \forall i : \sum_{j \in S} P_{ij} = 1 \eq \label{eq:trans_row_sum} \]
+\end{enumerate}
+
+The \term{n-step transition probability} is defined via the homogeneous property,
+\[ \forall i,j \in S : P_{ij}^{(n)} \defined P\br{X_{n+m} = j \mid X_{n} = i} = P\br{X_{n} = j \mid X_{m} = i} \]
+Analogously, the \term{n-step transition matrix} is the matrix,
+\[ P^{(n)} = \bc{P_{ij}^{(n)} \mid i, j \in S} \]
+
+\begin{theorem}
+There is a simple relation between the n-step transition matrix $P^{(n)}$ and the one step transition matrix $P$.
+\[ P^{(n)} = P^{(n-1)} \cdot P = \underbrace{P \cdot P \cdot \cdots \cdot P}_{n} = P^n \]
+\end{theorem}
+
+\begin{proof}
+Proof by induction:
+\[ P^{(1)} = P \note{By definition.} \]
+We also have $P^{(0)} = P^{0} = \ind$ is the identity matrix. We now assume $P^{(n)} = P^{n}$. Then $\forall i,j \in S$,
+\begin{align*}
+    P_{ij}^{(n+1)} &= P\br{X_{n+1} = j \mid X_{0} = i} \\
+    &= \sum_{k \in S} P\br{X_{n+1} = j, X_{n} = k \mid X_{0} = i} \note{Total probability}\\
+    &= \sum_{k \in S} \f{P\br{X_{n+1} = j, X_{n} = k, X_{0} = i}}{P\br{X_{0} = i}} \\
+    &= \sum_{k \in S} \f{P\br{X_{n+1} = j, X_{n} = k, X_{0} = i}}{P\br{X_{n} = k, X_{0} = i}}\f{P\br{X_{n} = k, X_{0} = i}}{P\br{X_{0} = i}} \\
+    &= \sum_{k \in S} P\br{X_{n+1} = j \mid X_{n} = k, X_{0} = i} \cdot P\br{X_{n} = k \mid X_{0} = i} \note{Conditional total probability}\\
+    &= \sum_{k \in S} P\br{X_{n+1} = j \mid X_{n} = k} \cdot P\br{X_{n} = k \mid X_{0} = i} \note{Use Markov Property}\\
+    &= \sum_{k \in S} P_{kj} \cdot P_{ik}^{(n)} \note{Matrix terms}\\
+    &= \br{P \cdot P^{(n)}}_{ij} \note{Matrix product}\\
+    &= \br{P^{n+1}}_{ij} \note{Inductive Hypothesis}
+\end{align*}
+There we have proved that $P^{(n+1)} = P^{n+1}$ and so we have a completed the proof that $P^{(n)} = P^{n}$.\\
+\end{proof}
+
+This result is very fundamental. We now have a relationship between the $n$-step transition matrix and the $1$-step transition matrix (namely $P^{(n)} = P^n$). It is important to not to be confused by notation ($P^{(n)} = P^n$ is not a tautology). $P^{(n)}$ is a single matrix with entries populated by $n$-step transition probabilities while $P^n$ is a single matrix multiplied by itself $n-1$ times.
+
+\begin{corollary}
+As a corollary, we have obtained that,
+\[ P^{(n)} = P^{(m)} \cdot P^{(n-m)} \quad \forall 0 \leq m \leq n \]
+Or equivalently the \textbf{Chapman-Kolmogorov (C-K) Equation},
+\[ P^{(n)}_{ij} = \sum_{k \in S} P^{(m)}_{ik} P^{(n-m)}_{kj} \quad \forall i,j \in S, \forall 0 \leq m \leq n \eq \label{eq:ck_equation} \]
+\end{corollary}
+
+Pictorially the C-K gives reveals the following picture that holds for all Markov chains,
+
+\begin{center}
+    \begin{tikzpicture}
+    \begin{scope}
+        \tikzstyle{every node}=[fill=black, draw=black, circle, inner sep=1.2pt]
+        \node[label=left:$i$] (i) at (0,0) {};
+        \node[label=right:$j$] (j) at (4,0) {};
+        \node[label=above right:$0$] (k0) at (2,2) {};
+        \node[label=above right:$1$] (k1) at (2,1) {};
+        \node[label=above:$k-1$] (kkm1) at (2,-1) {};
+        \node[label=below right:$k$] (kk) at (2,-2) {};
+    \end{scope}
+    \begin{scope}[decoration={markings, mark=at position 0.5 with {\arrow{>}}}]
+        \draw[postaction={decorate}] (i) -- node[above left]{$P^{(m)}_{i0}$} (k0);
+        \draw[postaction={decorate}] (i) -- (k1);
+        \draw[postaction={decorate}] (i) -- (kkm1);
+        \draw[postaction={decorate}] (k0) -- node[above right]{$P^{(n)}_{0j}$} (j);
+        \draw[postaction={decorate}] (k1) -- (j);
+        \draw[postaction={decorate}] (kkm1) -- (j);
+
+        \draw[postaction={decorate}] (i) -- node[below left]{$P^{(m)}_{ik}$}(kk);
+        \draw[postaction={decorate}] (kk) -- node[below right]{$P^{(n)}_{kj}$} (j);
+    \end{scope}
+    \draw[dashed] (2, 2.5) -- (2, -2.5);
+    \draw[dashed] (0, 2.5) -- (0, -2.5);
+    \draw[dashed] (4, 2.5) -- (4, -2.5);
+    \draw[] (2, 2.5) node[above]{$m$};
+    \draw[] (4, 2.5) node[above]{$m+n$};
+    \draw[] (0, 2.5) node[above]{$0$};
+    \end{tikzpicture}
+\end{center}
+
+So far, we have only been discussing transition probabilities. We will now divert our attention to actual distributions for a stochastic process. \\
+
+Let $\al_n = \br{\al_{n, 0}, \al_{n, 1}, \ldots}$ be the \term{probability distribution vector} for $X_n$ at time $n$.
+\[ \al_{n,k} = P\br{X_n = k} \qquad \forall k \in S \]
+Note that $\al_{n,k} \geq 0$ and $\sum_{k\in S} \al_{n, k} = 1$ and $n = 0, 1, 2,\ldots$. We also define the initial distribution $\al_0$,
+\[ \al_0 = \br{P\br{X_0 = 0}, P\br{X_0 = 1}, \ldots} \]
+\begin{theorem}
+The transition probability matrix reveals the following relationship between the distribution $\al_n$ at time $n$ and the distribution $\al_0$ at time $0$,
+\[ \al_n = \al_0 \cdot P^{n} \eq \label{eq:transition_dist}\]
+\end{theorem}
+\begin{proof}
+The proof \cref{eq:transition_dist} is quite trivial:
+\begin{align*}
+    \forall j \in S \quad \al_{n, j} &= P\br{X_n = j} \\
+     &= \sum_{i \in S} P\br{X_n = j \mid X_0 = i} \cdot P\br{X_0 = i} \\
+     &= \sum_{i \in S} \al_{0, i} \cdot P_{ij}^{n} \\
+     &= \al_{0, 0} \cdot P_{0j}^{n} + \al_{0, 1} \cdot P_{1j}^{n} + \ldots \\
+     &= \br{\al_{0} \cdot P^{n}}_j
+\end{align*}
+\end{proof}
+More generally, for any $n = 1, 2, \ldots$ the finite dimensional distribution can be obtained from the following process iterative process,
+\begin{align*}
+&\hspace{-0.5in}P\br{X_n=x_n, X_{n-1}=x_{n-1}, \ldots, X_{0}=x_{0}} = \\
+&P\br{X_{0} = x_{0}} \cdot\\
+&P\br{X_{1} = x_{1} \mid X_0 = x_0} \cdot\\
+&P\br{\val{2} \mid \val{1}, \val{0}} \cdots \\
+&P\br{\val{n} \mid \val{n-1}, \ldots, \val{0}}
+\end{align*}
+But by the Markov condition, it must be that,
+\begin{align*}
+&\hspace{-0.5in}P\br{X_n=x_n, X_{n-1}=x_{n-1}, \ldots, X_{0}=x_{0}} = \\
+&P\br{X_{0} = x_{0}} \cdot\\
+&P\br{X_{1} = x_{1} \mid X_0 = x_0} \cdot \\
+&P\br{\val{2} \mid \val{1}} \cdots \\
+&P\br{\val{n} \mid \val{n-1}}
+\end{align*}
+First recognize the first term on the RHS ($P\br{X_{0} = x_{0}} = \al_{0, x_0}$), and also the remaining terms are transition probabilities as per \cref{eq:trans_prob}. Therefore it must be that,
+\[ P\br{X_n=x_n, X_{n-1}=x_{n-1}, \ldots, X_{0}=x_{0}} = \al_{0, x_0} P_{x_0x_1}P_{x_1x_2}\cdots P_{x_{n-1}x_n} \]
+Even more generally, for $0 \leq t_1 < t_2 < \cdots < t_n$,
+\[ P\br{\val{t_n}, \val{t_{n-1}}, \ldots, \val{t_{1}}} = P\br{\val{t_1}} \br{P^{t_2 - t_1}}_{x_{t_1}x_{t_2}}\br{P^{t_3 - t_2}}_{x_{t_2}x_{t_3}}\cdots\br{P^{t_{n} - t_{n-1}}}_{x_{t_{n-1}}x_{t_{n}}}  \]
+Since $P\br{\val{t_1}} = \al_{t_1 x_{t_1}} = \sum_{k \in S} \al_{0, k} P^{t_1}_{k, x_{t_1}}$,
+\[ \al_{t_1} = \al_{0} \cdot P^{t_1} \eq \label{eq:distribution_fundamentals} \]
+\begin{remark}
+\Cref{eq:transition_dist} carries a very important interpretation. The probabilistic properties of a Discrete-Time Markov Chain (DTMC) are fully characterized by two things:
+\begin{enumerate}
+    \item The initial distribution $\al_{0}$
+    \item Transition matrix $P$
+\end{enumerate}
+Knowing these two things fully characterizes the distribution $\al_{n}$ for all times $n$.
+\end{remark}
+
+\subsection{Stationary Distribution (Invariant Distribution)}
+In this section, we are interested in determining which distributions $\al_{0}$ remain unchanged for all time $n \in T$.
+\begin{definition}
+    A probability distribution $\pi = \br{\pi_0, \pi_1, \cdots}$ is called a \term{stationary (invariant) distribution} of the DTMC $\bc{X_n}_{n = 0,1, \cdots}$ with transition matrix $P$ if the following conditions hold,
+    \begin{enumerate}
+        \item The transition matrix does not change $\pi$:
+        \[  \pi = \pi \cdot P \eq \label{eq:invariant}\]
+        \item The vector $\pi$ is a valid probability distribution,
+        \[ \sum_{i \in S} \pi_i = 1 \qquad \pi_i \geq 0 \eq \label{eq:prob_dist_requirements}\]
+    \end{enumerate}
+\end{definition}
+Notice that if we posit that $\pi$ is a probability distribution, then the second condition is already satisfied. Nonetheless, in practice we are able to find candidate $\pi$'s using the the first condition and then we need to check these candidates against the second condition. \\
+
+\textit{Why are such $\pi$'s called stationary/invariant distributions?} Notice that \cref{eq:invariant} completely answers this question. Assume that the MC starts with initial distribution $\al_0 = \pi$ for $X_0$. In this case, the distribution of $X_1$ is determined by $P$,
+\[ \al_1 = \al_0 \cdot P \]
+But since $\al_0$ is $\pi$ and $\pi$ satisfies \cref{eq:invariant},
+\[ \al_1 = \pi \cdot P = \pi \]
+The distribution for $X_1$ is the \textit{same} as the distribution for $X_0$. This process continues,
+\[ \al_2 = \al_1 \cdot P = \pi \cdot P = \pi \]
+\[ \al_n = \al_0 \cdot P^n = \pi \cdot P^n = \pi \cdot P^{n-1} = \cdots = \pi \]
+Thus if the Markov chain starts with a stationary/invariant distribution then its marginal distribution will \textit{never change}; hence why we refer $\pi$ as stationary. Also not that this \textit{does not} indicate that the value of $X_i$ does not change over time (it almost certainly will), but its distribution does.
+
+\begin{example}
+    Consider an electron with two states: ground $(0)$ and excited $(1)$. Let $X_n$ be the state at time $n$. At each step, with probability $\al$ the MC chains state if it is in the ground state. With probability $\be$ the MC will transition to the ground state if it is in the excited state. Then $\bc{X_n}_{n=0,1,\ldots}$ is a DTMC and its transition matrix is,
+    \[ P = \kbordermatrix{
+         & (0) & (1) \\
+        (0) & 1 - \al & \al \\
+        (1) & \be & 1 - \be \\
+    } \]
+    Now let us solve for the stationary distribution $\pi$.
+    \[ \pi = \pi \cdot P \qquad \pi = \br{\pi_0, \pi_1} \qquad \pi_0 + \pi_1 = 1 \]
+    Therefore,
+    \begin{align*}
+    \pi_0 &= \br{1 - \al} \pi_0 + \be \pi_1 \eq \label{eq:qe1}\\
+    \pi_1 &= \al \pi_0 + \br{1 - \be} \pi_1 \eq \label{eq:qe2}
+    \end{align*}
+    However note that these two equations are not linearly independent. This is evident because summing \cref{eq:qe1} with \cref{eq:qe2} results in the trivial statement of $\pi_0 + \pi_1 = \pi_0 + \pi_1$. Nonetheless rearranging \cref{eq:qe1} gives,
+    \[ \al \pi_0 = \be \pi_1 \implies \f{\pi_0}{\pi_1} = \f{\be}{\al} \]
+    This is where we need $\pi_0 + \pi_1 = 1$.
+    \[ \pi_0 = \f{\be}{\al+\be} \qquad \pi_1 = \f{\al}{\al+\be} \]
+    Where $\al + \be$ is considered the normalizing constant.
+\end{example}
+
+An important remark: sometimes the candidate distribution is not normalizable. In particular, there are configurations where \cref{eq:invariant} is satisfiable but \cref{eq:prob_dist_requirements} is not. In the above example, there exists a unique stationary distribution,
+\[ \pi = \br{\f{\al}{\al + \be} ,\f{\be}{\al + \be}} \]
+If $\al_0 = \pi$ then we know immediately that,
+\[ P\br{X_n = 0} = \f{\be}{\al+\be} \qquad P\br{X_n = 1} = \f{\al}{\al+\be} \qquad \forall n = 1, 2, \ldots\]
+\begin{remark}
+    By the above procedure of solving for stationary distribution is typical.
+    \begin{enumerate}
+        \item Use \cref{eq:invariant} to get proportions between different components of $\pi$.
+        \item Use \cref{eq:prob_dist_requirements} to normalize $\pi$ and get exact values.
+    \end{enumerate}
+\end{remark}
+\begin{remark}
+    Note that if $\be = 2 \al$ then $\pi$ is always $\br{2/3, 1/3}$ regardless the actual value of $\al$.
+\end{remark}
+\end{document}

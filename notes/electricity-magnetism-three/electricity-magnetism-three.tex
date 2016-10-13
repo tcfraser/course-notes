@@ -717,4 +717,49 @@ Monochrome plane waves in vacuum traveling in the $\hat k$ direction are,
     &= c u\tsb{EM} \hat z\\
 \end{align*}
 
+\subsection{Electromagnetic Waves in Media}
+
+\todo[TC]{Missed a lecture}
+
+In alternative media that are linear, isotropic, and homogeneous, Maxwell's equations are nearly identical; the only necessary modification is to replace the speed of propagation $c$ with a speed $v$ that is dependent on the material.
+\[ c = \f{1}{\sqrt{\ep_0 \mu_0}} \mapsto v = \f{1}{\sqrt{\ep \mu}} \]
+
+In a higher level course, one would explore how to modify Maxwell's equations for materials that do not obey the assumptions of linearity, isotropy, and homogeneity. Doing so is of great importance; material sciences are a very versatile field of physics with countless applications. \\
+
+If one has a dielectric media adjacent to vacuum and a light source emanating isotropically, there are two contributions to light incident on an observer sitting on the interface: the source ray, and the ray reflected off the vacuum dielectric interface.
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw[] (-3, 0) -- (3,0);
+        \draw (3,2) node[](source){$S$};
+        \draw (-2,0.5) node[](obs){$O$};
+        \coordinate (r) at (-0.2,0);
+        \begin{scope}[decoration={markings, mark=at position 0.5 with {\arrow{>}}}]
+            \draw[thick, postaction={decorate}] (source) -- node[below right]{$\ve k$} (r);
+            \draw[thick, postaction={decorate}] (r) -- (obs);
+            \draw[thick, postaction={decorate}] (source) -- (obs);
+            \draw[dashed, thick, postaction={decorate}] (r) -- (-1.6, -1);
+        \end{scope}
+        \draw (2,0) node[above right]{Vacuum};
+        \draw (2,0) node[below right]{Dielectric};
+        \draw (r) -- (-0.2, 2);
+        \draw (-0.2, 0.2) node[above left]{$\te_{R}$};
+        \draw (-0.2, 0.2) node[above right]{$\te_{I}$};
+    \end{tikzpicture}
+\end{center}
+
+The reflected ray is polarized horizontally upon reflecting off the surface of the medium.
+
+\subsection{Conductors}
+
+Inside a conductor we have,
+\[ \ve J_f = \si \ve E \eq \label{eq:ohms_law}\]
+Where $\si$ is the conductivity, $\ve J_f$ is the free current density and $\ve E$ is the electric field. More generally $\si$ can be a tensor that has components for every pair of directions. However for homogeneous and isotropic media, we can take the conductivity to be a scalar quantity. In contrast, the bound current density $\ve J_b$ is the set of moving charges that are bound to atoms in the material. Specifically the \textit{ensemble} of electrons bound orbitally to atoms contribute a current that flows through the medium (typically surface currents).\\
+
+\Cref{eq:ohms_law} is called \term{Ohm's law}. Ohm's law is typically introduced as $V = IR$. The $V = IR$ equation is a consequence of the local equation that is \cref{eq:ohms_law} together with the assumptions of homogeneity and isotropy. \\
+
+Recall that for constant electric fields, Ohm's law holds initially. However, the electric field with polarize the material to the point where the internal induced electric field exactly cancels the applied electric field. The system approaches equilibrium. \\
+
+However for time depended electric fields, the material's polarization with be a function of time as well. Considering the applied field as an oscillation at frequency $f$, the material's amplitude of oscillation will peak at its resonant frequency. Moreover, there will be a phase shift at the resonant frequency as well.
+
 \end{document}
