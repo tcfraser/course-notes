@@ -762,4 +762,32 @@ Recall that for constant electric fields, Ohm's law holds initially. However, th
 
 However for time depended electric fields, the material's polarization with be a function of time as well. Considering the applied field as an oscillation at frequency $f$, the material's amplitude of oscillation will peak at its resonant frequency. Moreover, there will be a phase shift at the resonant frequency as well.
 
+\subsection{Absorption \& Dispersion}
+
+Inside a conductor we have $\ve J_f = \si \ve E$ where $\si$ is the conductivity (resistivity is $1/\rho$). Maxwell's equations now take the form,
+\begin{align*}
+    \vdel \cdot \ve E &= \f{1}{\ep} \rho_{f} \\
+    \vdel \cdot \ve B &= 0 \\
+    \vdel \times \ve E &= -\pder{\ve B}{t} \\
+    v^2\vdel \times \ve B &= \pder{\ve E}{t} + \f{1}{\ep} \ve J_f
+\end{align*}
+We now replace the final term in the last maxwell equation and write,
+\[ v^2\vdel \times \ve B = \pder{\ve E}{t} + \f{\si}{\ep} \ve E \]
+From this we are able to derive wave equations,
+\[ \vdel \times \br{\vdel \times \ve E} = - \pder{}{t}\br{\vdel \times \ve B} \]
+\[ \vdel \br{\vdel \cdot \ve E} - \del^2 \ve E = -\f{1}{v^2} \pder{}{t}\br{\pder{\ve E}{t} + \f{\si}{\ep} \ve E} \]
+But we have that $\vdel \cdot \ve E = \f{1}{\ep} \rho_{f}$. In a conductor $\rho_{f} \approx 0$ because the time scale to equilibriate which is $\tau_{d} = \f{\ep}{\si} \approx \SI{1e-20}{\s}$ (of course if your frequency is $f \geq \tau_d^{-1}$ this approximation doesn't hold).
+Therefore we arrive at,
+\[ v^2 \del^2 \ve E = \pdder{E}{t} + \f{\si}{\ep} \pder{\ve E}{t} \]
+The ansatz is (for a 1D system) is identical to the dispersion-less case but with $k \to \ti k$,
+\[ \ti{\ve E}\br{z,t} = \ti{\ve E}_0 e^{i\br{\ti k z - \w t}} \]
+The imaginary component of $\ti k$ introduces an exponential dampening. This leads to an auxiliary equation,
+\[ \ti k^2 = \mu \ep \w^2 + i \mu \si \w \]
+Which has solution $\ti k = k + i \kappa$ where,
+\begin{align*}
+    k &= \w \sqrt{\f{\ep \mu}{2}} \sqrt{\sqrt{1 + \br{\f{\si}{\ep \w}}^2}+1} \\
+    \kappa &= \w \sqrt{\f{\ep \mu}{2}} \sqrt{\sqrt{1 + \br{\f{\si}{\ep \w}}^2}-1}
+\end{align*}
+Notice that $\f{\si}{\ep \w}$ is dimensionless. Note that $k \neq \abs{\ti k}$
+
 \end{document}
