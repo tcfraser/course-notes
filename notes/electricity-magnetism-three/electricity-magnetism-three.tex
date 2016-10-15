@@ -153,7 +153,7 @@ Taking the divergence of the above equation,
 \[ \cancelto{0}{\vdel \cdot \br{\vdel \times \vec{B}}} = \mu_0 \vdel \cdot \vec{J} + \mu_0 \ep_0 \pder{}{t}\br{\vdel \cdot \vec{E}} \]
 Luckily, the divergence of a curl is always $0$. Dividing by relevant constants we obtain the following conservation law,
 \[ 0 = \vdel \cdot \vec{J} + \pder{\rho}{t} \eq \label{eq:conservation_charge}\]
-This is a conservation of charge. It is a \textbf{local} conservation law because it holds for all points in space $\vec{r}$. Intuitively, is claims that the rate of charge of charge at a point is equal to the amount of current following in or out of the take point. \\
+This is a conservation of charge. It is a \textit{local} conservation law because it holds for all points in space $\vec{r}$. Intuitively, it claims that the rate of change of charge at a point is equal to the amount of current following in or out of the take point. \\
 
 \textbf{A2.1}: Again using cylindrical coordinates $\vec{r} = s \hat{s} + \zeta \hat{\zeta}$. Let the current flow in such a way that the magnetic field points along the $\zeta$-axis. Let $\s{L}$ be an Amperian loop with one side at distance $\abs{\vec{r}} \to \inf$,
 \[ \int_{\s{L}} \dif \vec{\ell} \cdot \vec{B} = \mu_0 I\tsb{enc} \]
@@ -221,7 +221,7 @@ As an illustrative example, consider a parallel plate capacitor with an electric
     \draw[red] (1, -0.5) node[right]{$\vec{B}\br{t}$};
 \end{tikzpicture}
 \end{center}
-We ave that the magnetic field points in the $\hat{\phi}$ direction, $\vec{B} = V \hat{\phi}$. The electric field $\vec{E} = E \hat{\zeta}$, and Poynting vector are $\vec{S} = S \hat{s}$. We have that the radiation through the surface $\s{S}$,
+We have that the magnetic field points in the $\hat{\phi}$ direction, $\vec{B} = V \hat{\phi}$. The electric field $\vec{E} = E \hat{\zeta}$, and Poynting vector are $\vec{S} = S \hat{s}$. We have that the radiation through the surface $\s{S}$,
 \[ \int_{\s{S}} \dif \vec{a} \cdot \vec{S} = - \br{2 \pi a h} S \]
 Therefore $\pder{U}{t} = - \br{2 \pi a h} S$ corresponding to the amount of energy flowing out of the capacitor and therefore,
 \[ U = \intl_{0}^{\inf} \dif t \br{- 2 \pi a h S} = \f12 C V^2 \]
@@ -333,7 +333,7 @@ Therefore we have that,
 \[ E = pc \]
 Therefore knowing the energy density of the field gives you then momentum density of the field. The momentum density will be denoted $\ve g$.
 \[ \ve g = \f{1}{c^2} \ve S = \mu_0 \ep_0 \ve S = \f{1}{4 \pi c} \ve E \times \ve B \]
-The force per unit volume $\ve f = \De \ve F / \De \tau$ acting on a particle is given by the Lorrentz force.
+The force per unit volume $\ve f = \De \ve F / \De \tau$ acting on a particle is given by the Lorentz force.
 \[ \ve f = \rho \ve E + \ve J \times \ve B\]
 Which when expanded out is,
 \[ \ve f = \ep_0 \br{\vdel \cdot \ve E} \ve E + \br{\f{1}{\mu_0} \vdel \times \ve B - \ep_0 \pder{\ve E}{t}} \times \ve B \]
@@ -355,11 +355,11 @@ We usually define the second term here to be the momentum contained in the elect
 Therefore the conservation of momentum is,
 \[ \der{}{t} \br{\ve p\tsb{mech} + \ve p\tsb{em}} = \oint_{\s{S}} \dif \ve a \cdot T \eq \label{eq:conservation_momentum}\]
 
-To draw intuition from continuum mechanics, the \term{Cauchy stress tensor} is a representation of the total forces acting on a chunk $\s{V}$ of a material due to the neighboring pieces $\s{N}\br{\s{V}}$. Each neighboring chunk $n \br{\s{V}}$ can exert parallel or shear forces on $\s{V}$. This defines a matrix on force components on each face of $\s{V}$. Let $\ve f = \si \cdot \dif \ve a$ where $\ve{\si}$ is a rank 2 (3d) tensor. We call $\si$ the Cauchy stress tensor such that,
+To draw intuition from continuum mechanics, the \term{Cauchy stress tensor} is a representation of the total forces acting on a chunk $\s{V}$ of a material due to the neighboring pieces $\s{N}\br{\s{V}}$. Each neighboring chunk $n \br{\s{V}}$ can exert parallel or shear forces on $\s{V}$. This defines a matrix on force components on each face of $\s{V}$. Let $\ve f = \si \cdot \dif \ve a$ where $\ve{\si}$ is a rank 2 (3D) tensor. We call $\si$ the Cauchy stress tensor such that,
 \[ \ve f = \si \cdot \dif \ve a \]
 The divergence of the Maxwell stress tensor is,
 \[ \pder{}{x_i} T_{ij} = \ep_0 \br{\pder{E_i}{x_i}E_j + E_i \pder{E_j}{x_i} - \f12 \de_{ij} \pder{E^2}{x_i}} + \f{1}{\mu_0} \br{\pder{B_i}{x_i}B_j + B_i \pder{B_j}{x_i} - \f12 \de_{ij} \pder{B^2}{x_i}} \]
-Which in vector notation is much simplier \todo[TC]{Verify this expression},
+Which in vector notation is much simpler \todo[TC]{Verify this expression},
 \[ \vdel \cdot T = \ep_0 \br{\br{\vdel \cdot \ve E} \ve E + \br{\ve E \cdot \vdel} \ve E} - \f12 \ep_0 \vdel \cdot \ve E + \f{1}{\mu_0} \br{\br{\vdel \cdot \ve B} \ve B + \br{\ve B \cdot \vdel} \ve B} - \f12 \ep_0 \vdel \cdot \ve B \]
 While the force per unit volume is,
 \[ \ve f = \vdel \cdot T - \ep_0 \mu_0 \pder{\ve S}{t} \]
@@ -776,7 +776,7 @@ We now replace the final term in the last maxwell equation and write,
 From this we are able to derive wave equations,
 \[ \vdel \times \br{\vdel \times \ve E} = - \pder{}{t}\br{\vdel \times \ve B} \]
 \[ \vdel \br{\vdel \cdot \ve E} - \del^2 \ve E = -\f{1}{v^2} \pder{}{t}\br{\pder{\ve E}{t} + \f{\si}{\ep} \ve E} \]
-But we have that $\vdel \cdot \ve E = \f{1}{\ep} \rho_{f}$. In a conductor $\rho_{f} \approx 0$ because the time scale to equilibriate which is $\tau_{d} = \f{\ep}{\si} \approx \SI{1e-20}{\s}$ (of course if your frequency is $f \geq \tau_d^{-1}$ this approximation doesn't hold).
+But we have that $\vdel \cdot \ve E = \f{1}{\ep} \rho_{f}$. In a conductor $\rho_{f} \approx 0$ because the time scale to equilibrate $\tau_{d} = \f{\ep}{\si} \approx \SI{1e-20}{\s}$ is short (of course if your frequency is $f \geq \tau_d^{-1}$ this approximation doesn't hold).
 Therefore we arrive at,
 \[ v^2 \del^2 \ve E = \pdder{E}{t} + \f{\si}{\ep} \pder{\ve E}{t} \]
 The ansatz is (for a 1D system) is identical to the dispersion-less case but with $k \to \ti k$,
