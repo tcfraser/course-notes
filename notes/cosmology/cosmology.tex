@@ -172,6 +172,10 @@ The Hubble law (discovered by Hubble) shows that nebulae at further and further 
 \begin{center}
     \includegraphics{figures/hubble.jpg}
 \end{center}
+More recent measurements are depicted below:
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{figures/Modern_Hubble.jpg}
+\end{center}
 \[ v_{r} = H r \]
 Where $r$ is the distance to the object, $v_{r}$ is the radial velocity of that object and $H$ is a constant known as \term{Hubble's Constant}. Hubble's constant has numerical value,
 \[ H = 100 \cdot h \SI{}{\km \per \s \per \mega\pc} \]
@@ -219,7 +223,7 @@ One misconception associated with the expansion of the universe is that \textit{
 Solving the Friedmann equation corresponds to solving \cref{eq:friedmann_equation} together with the \term{fluid equation}. The fluid equation comes from the first law of thermodynamics ($\dif E + p \dif V = T \dif S = 0$), which translates to,
 \[ E = \pi a^3 x^3 \rho c^2 \qquad V = \f43 \pi a^3 x^3 \]
 Which gives the continuity equation,
-\[ \dot{\rho} + \f{3\dot{a}}{a} \br{\rho + \f{P}{c^2}} = 0 \eq \label{eq:fluid}\]
+\[ \dot{\rho} - \f{3\dot{a}}{a} \br{\rho + \f{P}{c^2}} = 0 \eq \label{eq:fluid}\]
 Where the pressure $P\br{\rho}$ is determined by the equation of state. Combining \cref{eq:fluid} and \cref{eq:friedmann_equation} gives,
 \[ \f{\ddot{a}}{a} = - \f{4 \pi G}{3} \br{\rho + \f{3P}{c^2}} \]
 Which is a relativistic manifestation of Newton's law. The difference being the term term involving pressure $P$.
@@ -397,6 +401,10 @@ A better technique for measuring distances is to make use of \term{standard cand
 \[ F = \f{L_s}{4 \pi r^2} \]
 Where the luminosity $L_s$ can be determined based on some standard process or model and the flux $F$ is easily measured with instruments near earth. The best standard candles that are used today are variable Cepheids stars and type 1a supernovae. We say that these processes are standardizable. All of these methods of measuring distance form a cosmic distance ladder that can be used to perform calibrations and consistency checks.\\
 
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{figures/cosmic_ladder.jpg}
+\end{center}
+
 Our most precise measurements today are as follows.
 \begin{center}
 \begin{tabular}{|c|c|c|}
@@ -490,5 +498,175 @@ One of the earliest indications of the presence of $\La$ was from measuring the 
 \[ t_H = \f{1}{H_0} = 9.77 h^{-1} \SI{}{\giga \yr} \approx \SI{14}{\giga \yr} \]
 However if $\Om_m = 1$,
 \[ a \propto t^{2/3} \implies H_0 = \f{2}{3 t_0} \implies t_0 = \f{2}{3}t_H \approx \SI{9.3}{\giga \yr} \]
-Which would not have been a problem until measurements on the ages of globular clusters indicated ages of roughly $t \approx \SI{10}{\giga \yr} - \SI{13}{\giga \yr}$
+Which would not have been a problem until measurements on the ages of globular clusters indicated ages of roughly $t \approx \SI{10}{\giga \yr} - \SI{13}{\giga \yr}$.
+\section{Geodesics}
+So far we have talked about the Friedmann equations and how to solve them for various density contributions. This gives us $a\br{t}$. Alternatively one could measure distances to galaxies to determine how $a\br{t}$ changes with time. Unfortunately, the timescales for doing this accurately are very large. \\
+
+Alternatively, we can make use of the FRW metric,
+\[ \dif s^2 = - c^2 \dif t^2 + a^2\br{t} \bs{\f{\dif r^2}{1 - k r^2} + r^2 \dif \te^2 + r^2 \sin^2 \te \dif \phi^2} \]
+The distance between two points (say $A,B$) can be obtained by integrating $\dif s$,
+\[ \s{S} = \int_A^B \dif s \]
+If $\s{S}$ is real, then the distance is space-like and the two locations can not communicate. Alternatively if $\s{S}$ is imaginary then we say that the two locations are time-like separated. Finally, a light ray has null distance.
+\begin{center}
+\begin{tabular}{|c|c|c|}
+    \hline
+    $\s{S}$ & Separation & Communication \\
+    \hline
+    Real & Space-Like & Not Possible \\
+    Imaginary & Time-Like & Possible \\
+    0 & Null & -- \\
+    \hline
+\end{tabular}
+\end{center}
+Geodesics can be found by extremizing $\s{S}$ (i.e. either maximizing or minimizing). In particular, time-like geodesics maximum the time contributions to distance while space-like geodesics minimize $\s{S}$. We define the \term{proper time} of a geodesic to be $\tau$ such that,
+\[ -c^2 \dif \tau^2 = \dif s^2 \]
+In cosmology we are interested in the light that travels to us from distant galaxies. Let $r=r_g$ be the distance to a distant galaxy.
+\begin{center}
+\begin{tikzpicture}
+    \begin{scope}
+        \tikzstyle{every node}=[fill=black, draw=black, circle, thick, text=black, scale=0.3]
+        \node (us) at (0,2) {};
+        \node (gal) at (2,0) {};
+    \end{scope}
+    \draw (us) node[above]{$r_0 = 0$};
+    \draw (gal) node[below]{$r_{g} = r$};
+    \draw[dashed, ->] (gal) -- node[below left]{$\dot \te, \dot \phi = 0$} (us);
+\end{tikzpicture}
+\end{center}
+Since the light ray has no angular deviation, the FRW metric reduces to,
+\[ \dif s^2 = - c^2 \dif t^2 + \f{a^2 \dif r^2}{1 - kr^2} \]
+Solving this metric gives,
+\[ \f{c \dif t}{a\br{t}} = - \f{\dif r}{\sqrt{1 - kr^2}} \]
+\[ c\int_{t}^{t_0} \f{\dif t'}{a\br{t'}} = \int_{0}^{r} \f{\dif r'}{\sqrt{1 - kr^2}} = \begin{cases}
+    r & k = 0 \\
+    \f{1}{\sqrt{k}}\sin^{-1}\br{\sqrt{k}r} & k > 0\\
+    \f{1}{\sqrt{-k}}\sinh^{-1}\br{\sqrt{-k}r} & k < 0\\
+\end{cases} \]
+Solving the time integral is impossible without knowing the behaviour of $a\br{t}$. Recall that for $\La = k = 0$ we have that,
+\[ a\br{t} = \br{\f{t}{t_0}}^{2/3} \]
+This gives us,
+\[ r = c \int_{t}^{t_0} \br{\f{t'}{t_0}}^{-2/3} \dif t' = 3 c t_0 \]
+It is important to note that $r$ is not a physical distance. Instead it is just a co-moving coordinate. As such, it should be alarming that $ r / t_0 = 3 c > c $ seems to be faster than the speed of light. \\
+
+Next consider a detector that aims to measure light coming from a distance galaxy. Let this detector subtend a solid angle of $\dif \Om$. Then the distance to the galaxy can be measured using,
+\[ \dif_L^2 = \f{L}{4\pi F} \]
+Where $L$ is the luminosity of the object ($\bs{\text{E}}/\bs{\text{T}}$) while $F$ is the observed flux on the detector ($\bs{\text{E}}/\bs{\text{T}}\bs{\text{Area}}$). In flat space $d_L$ corresponds to a regular distance. However in a curved spacetime, this is not generally the case. The flux observed can be directly computed from the number of photons emitted.
+\[  F = \f{N_{\ga} E_{0,\ga}}{\De t_0 a_0^2 r^2 \dif \Om} \]
+Where as the number of photons emitted can be determined from the luminosity,
+\[ N_{\ga} = \f{L \De t}{E_\ga} \f{\dif \Om}{4 \pi} \]
+Combining these results yields (and that $\De t_0 / \De t = E_\ga / E_{0, \ga} = 1 + z$),
+\[ F = \br{\f{E_{0,\ga}}{E_{\ga}}} \br{\f{\De t}{\De t_0}} \f{L}{4 \pi \br{a_0 r}^2} \]
+Therefore $d_L$ in general is,
+\[ d_L = a_0 r\br{1 + z} \]
+Relating this to the acceleration parameter,
+\[ a\br{t} = a_0 + \dot a \br{t-t_0} + \f{1}{2} \ddot a \br{t- t_0}^2\]
+\[ q = -\f{a \ddot a}{\dot a^2} \]
+Therefore for $k=0$,
+\[ r\br{z} = \int\f{c \dif t}{a\br{t}} \]
+We recover the Hubble law \todo[TC]{This might not be correct},
+\[ H_0 d_L = z + \br{\f{1}{2} - q} z^2 + \s{O}\br{z^3} \]
+This can be used to measure $\La$,
+\[ q = \f{\Om_m}{2} - \Om_\La \]
+Alternatively we can measure distances via angular size,
+\[ d_A = ar = \f{r}{1+z} \]
+There are two ways of measuring distances in cosmology $d_A, d_L$. Fundamentally the luminosity distance and angular distance are related,
+\[ \f{d_L}{1 + z} = r = d_{A} \br{1 + z} \]
+It is important to note that $d_A$ does not tend to infinity as $z$ tends to infinity. We demonstrate this explicitly for a standard cosmology $k=0$.
+\[ H^2 = \f{8 \pi G}{3} \rho =\f{8 \pi G}{3} \br{\f{\rho_{m, 0}}{a^3} + \rho_\La}\]
+\[ H_0^2 = \f{8 \pi G}{3} \rho_{c, 0} \]
+Together gives,
+\[ \f{H^2}{H_0^2} = \Om_{0, m} \br{1+z^3} + \Om_{0, \La} \]
+Therefore,
+\[  a\br{t}\dif r = c\dif t = c \f{H_0}{\dif t H} = \f{c \dif h_0 a}{H} =- \f{c \dif h \br{1+z}}{H_0 \sqrt{\Om_{0,m} \br{1 + z}^3 + \Om_{0,\La}}} \]
+Which implies,
+\[ r\tsb{max} = \f{c}{H_0} \int_{0}^{z\tsb{max}} \f{\dif z}{\sqrt{\Om_{0,m} \br{1 + z}^3 + \Om_{0,\La}}} \]
+Which is an integral that can be solved numerically quite easily.
+\section{Dark Matter}
+We have talked about how cosmology behaves with different material components (matter, radiation, dark energy, curvature). For the last century, we have been trying to understand the behaviors of each of these components; dark energy being one of the latest problems to tackle. \\
+
+The universe has turns out to be much simpler than we previously thought; namely that the universe is homogeneous and isotropic on large scales. On the contrary, the universe is far more complicated and exotic than we previously thought. The current matter density in the universe is given by the current critical density,
+\[ \rho_{c,0} = \f{3 H_0^2}{8 \pi G} = h^2\times\SI{1.88e-26}{\kg \per \m^3} \quad h \approx 0.7 \]
+One of the objectives of cosmologists is to compare this critical density to observed densities in the universe. The first method used to measure the typical mass content of the universe was to look at stars. The main source of energy in stars is nuclear fusion. In the early 1930's this property started to become well understand. Astronomers are able the color, luminosity and temperature in order to determine the mass of a star. The theory of stellar mass and evolution reveals a the mass to luminosity ratio of main sequence stars (to first order) is,
+\[ \f{M}{L} \propto \f{M_{\astrosun}}{L_{\astrosun}} \]
+In order to measure mass, we measure the flux received from a large cluster or collection of stars. Over a solid angle in the sky $\de \Om$,
+\[ \text{Flux} = \br{\f{M}{L}}^{-1} \int \f{\br{\de \Om r^2 \dif r} \rho_{*}}{4 \pi \dif^2_L} \]
+Rearranging and rewriting $\rho_{*}$ in terms of $\Om_{*}$ (also let $z \ll 1$),
+\[ \text{Flux} = \br{\f{M}{L}}^{-1} \int \f{ \dif r}{1 + z} \Om_{*} \rho_c \]
+\[ \text{Flux} = \br{\f{M}{L}}^{-1} r\tsb{max} \Om_{*} 3 \f{3H_0^2}{8 \pi G} \]
+By observationally measuring the flux (and using $H_0, r\tsb{max}, M/L \propto M_{\astrosun} / L_{\astrosun}$), cosmologists calculate
+\[ \Om_{*} = \SI{0.005}{} \]
+
+So the question remains, what is the source of the rest of the mass associated with $\Om_{m} \approx 0.23$?
+\subsection{Dark/Faint Baryons}
+One possibility is that the rest of the mass is made up of faint baryonic matter that we do not see like intergalactic plasma. This possibly is the leading theory for what is termed the \term{missing baryon problem}. \\
+
+Another possibility is that the remaining mass is made up of brown dwarfs (massive objects that aren't quite large enough to be stars). Brown dwarfs are very faint, but are still slightly luminous. Of the nearby brown dwarfs that we can see, there is not sufficient evidence to suggest that the source of missing mass is brown dwarfs.\\
+
+Another possible is related to Big Bang nucleosynthesis. Most of the elements in the universe are hydrogen and helium; unlike here on earth where there is an assortment of elements. There is a very nice way of explaining the abundance of lighter elements in the universe. The only way that stars get there energy is through nuclear fusion; turning hydrogen into helium. Big Bang nucleosynthesis suggests that the Big Bang is a source for much heavier elements. The Big Bang is so hot that it is feasible to produce heavier elements like Helium, Deterium, and Lithium. In particular there is a seminal paper by Alfa, Betha, and Gammow that demonstrates there would only be enough time to produce small amounts of $\text{H}, \text{He}, \text{D}, \text{Li}$.
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        Substance & Portion \\
+        \hline
+        H & $75\%$\\
+        He & $25\%$\\
+        D & $10^{-5}$\\
+        Li & $10^{-7}$\\
+        \hline
+    \end{tabular}
+\end{center}
+Comparing these densities with those measured today, we can get an estimate on the rough density of baryons in the universe,
+\[ 0.021 \leq \Om_{b}h^2 \leq 0.025 \]
+Therefore,
+\[ 0.04 \leq \Om_B \leq 0.05 \]
+This upper limit demonstrates that $\Om_B$ could \textit{not} be larger than $0.05$ (otherwise there would a different production of heavier elements during the big bang). Therefore, baryons could never explain the discrepancy between $\Om_{*}$ and $\Om_m$. \\
+
+In summary, the usual suspects are not sufficient to explain the missing mass problem.
+
+\subsection{Dynamical Cosmology}
+
+In the 1930's Oort started looking at the dynamics (velocity) of stars in the solar neighborhood and Zwicky began observing the velocities of galaxies in the Virgo cluster of galaxies. By looking at the oscillations of stars about the bulk mass of a cluster of stars, one can measure the bulk mass of the cluster itself. Moreover, measuring the radial velocity (through deviations in the redshift) of galaxies in the Virgo cluster one can determine the velocities relative to the cluster.
+\[ v^2 = \f{G M\br{< R}}{R} \]
+In the 1960's and 1970's Rubin and others started looking at the rotation curves of spiral galaxies. What they found was the following profile for rotational velocities in galaxies,
+\begin{center}
+    \begin{tikzpicture}
+        \draw[->] (0,0) -- (0,3) node[above]{$v$};
+        \draw[->] (0,0) -- (4,0) node[right]{$d$};
+        \draw [red] plot [smooth, tension=0.4] coordinates { (0,0) (1,2.2) (3,2.2) (4,2.2)};
+    \end{tikzpicture}
+\end{center}
+The galaxies were rotating much faster than would be allowed by the stellar mass observed. For a time, his results were not taken too seriously.
+Oort's results suggested,
+\[ \f{M}{L} \approx \br{3-4} \f{M_{\astrosun}}{L_{\astrosun}} \]
+Zwicky's results suggest that,
+\[ \f{M}{L} \approx 400 \f{M_{\astrosun}}{L_{\astrosun}} \]
+While Rubin's results demonstrate that ${M\tsb{tot}}/{M_{*}} > 3$. \\
+
+All of these results are the foundations for believing in the existence of dark matter. Within spiral galaxies, the mass of dark matter to the mass of stars is typically comparable. Albeit at very large scales the measured proportion of dark matter is much much larger. \\
+
+All of these results suggests a very peculiar property of dark matter: dark matter is dissipation-less. Dark matter does not cool and lose energy. Regular matter can cool down and form very dense objects while dark matter cannot. Our current understanding is that dark matter sits in \term{Halos} around galaxies. There is more and more dark matter the further one looks outside a galaxies.
+
+\subsection{Clusters of Galaxies}
+
+The intergalactic plasma between galaxies in a cluster is typically held at,
+\[ T \sim \SI{1e7}{\K} - \SI{1e8}{\K} \]
+With density $\rho \sim \SI{1e3}{}\rho_c$. In the intergalactic plasma, the mass of baryons is $M_B = 5-10 M_{*}$. Therefore we can write,
+\[ \f{\Om_B}{\Om_m} = \f{M_B}{M\tsb{tot}} \]
+Which gives us a great way of measuring $\Om_m$. Modeling the intergalactic plasma as a gas in hydrostatic equilibrium we have that,
+\[ \f{\dif P\tsb{gas}}{r} = \rho\tsb{gas} \f{GM\br{<r}}{r} \]
+Which provides an avenue for measuring $M\br{<r} \approx M\tsb{tot}$.\footnote{The pressure can be determined from X-ray emissions.} The Chandra satellite has measured the relevant components of intergalactic plasma. These results yield the estimate of,
+\[ \Om_M = 0.4 \]
+
+\subsection{Structure Formation and CMB}
+
+In the early universe, it is believe that there are two components of the universe,
+\begin{enumerate}
+    \item Dark Matter
+    \item Baryons \& Photons
+\end{enumerate}
+We clump baryons and photons together because they are constantly interacting in the early universe. Since dark matter is very cold, energy does not propagate through dark matter. This is distinct from baryons and photons because they are very hot permitting sound waves to travel. Using the CMB, we can get the most precise measurement of $\Om_M / \Om_B$.
+\[ \Om_B = \SI{0.049\pm0.001}{} \qquad \Om_M = \SI{0.315\pm0.017}{} \]
+Adding the cosmological contributions $\Om_{\La} = 0.7$ predicts,
+\[ \Om\tsb{tot} = 1.00 \pm 0.01 \]
+
 \end{document}

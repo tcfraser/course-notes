@@ -105,7 +105,7 @@ It is important not to get confused about notation:
 \end{itemize}
 The wave function $\psi\br{\vx'}$ is the probability amplitude to find a particle in a state $\ket{\psi}$ at position $\vx'$ and is defined as,
 \[ \braket{\vx'}{\psi} = \psi\br{\vx'} \]
-We also have the ability to generalize \cref{eq:orthonormality_discrete} to a continuous spectrum. The continous generalization of the Kronecker delta is the Dirac delta function.
+We also have the ability to generalize \cref{eq:orthonormality_discrete} to a continuous spectrum. The continuous generalization of the Kronecker delta is the Dirac delta function.
 \[ \braket{\vx'}{\vx''} = \de\br{\vx' - \vx''} \]
 Where $\de{\vx'}$ is defined as,
 \[ \int_{\R^3} \dif^3 x' f\br{\vx'} \de\br{\vx'} = f\br{\ve{0}} \]
@@ -128,7 +128,7 @@ Now let $\ket{\phi}$ be another space in the same Hilbert space as $\ket{\psi}$,
 
 The operator of infinitesimal translations $T$ is defined as,
 \[ T\br{\dif \vx'}\ket{\vx'} = \ket{\vx' + \dif \vx'} \]
-Where $\dif \vx'$ is an infinitesimally small vetor. Acting on an arbitrary state $\ket{\psi}$,
+Where $\dif \vx'$ is an infinitesimally small vector. Acting on an arbitrary state $\ket{\psi}$,
 \begin{align*}
 T\br{\dif \vx'}\ket{\psi} &= T\br{\dif \vx'} \bc{\int_{\R^3} \dif^3 x' \ket{\vx'} \braket{\vx'}{\psi}} \\
 &= \int_{\R^3} \dif^3 x' \ket{\vx' + \dif \vx'} \braket{\vx'}{\psi} \\
@@ -144,7 +144,7 @@ Consequently,
 \[ T^{-1}\br{\dif \vx'} = T\br{-\dif \vx'} \qquad T\br{\ve{0}} = \ident \]
 All of the above properties are satisfied if,
 \[ T\br{\dif \vx'} = \ident - i \ve{K} \cdot \dif \vx' \]
-Where $\ve{K} = \br{K_x, K_y, K_z}$ is a vetor operator that is Hermitian ($\ve{K}^{\dagger} = \ve{K}$) to be determined. First we demonstrate that such a $T\br{\dif \vx'}$ is unitary (\cref{eq:unitary_trans}),
+Where $\ve{K} = \br{K_x, K_y, K_z}$ is a vector operator that is Hermitian ($\ve{K}^{\dagger} = \ve{K}$) to be determined. First we demonstrate that such a $T\br{\dif \vx'}$ is unitary (\cref{eq:unitary_trans}),
 \begin{align*}
 T^{\dagger}\br{\dif \vx'} T\br{\dif \vx'} &= \br{\ident + i \ve{K}^{\dagger} \cdot \dif \vx'}\br{\ident - i \ve{K} \cdot \dif \vx'} \\
 &= \ident + \underbrace{i \ve{K}^{\dagger} \cdot \dif \vx' - i \ve{K} \cdot \dif \vx'}_{0} + \cancelto{0}{\s{O}\br{\abs{\dif \vx'}^2}} \\
@@ -162,7 +162,7 @@ In order to illuminate the specific form of $\ve{K}$, we calculate the commutato
 \bs{\vx, T\br{\dif \vx'}} &= \bs{\vx, \ident - i \ve{K}\cdot\dif\vx'} \\
 &= -i \vx \ve{K} \dif \vx' + i \ve{K} \dif \vx' \vx
 \end{align*}
-Choose $\dif \vx' = \dif x' \hat{x}_j$ and $\ve{K} \cdot \hat{x}_j = K_j$ where $\hat{x}_j$ is the unit vetor in the direction of one of the basis vectors.
+Choose $\dif \vx' = \dif x' \hat{x}_j$ and $\ve{K} \cdot \hat{x}_j = K_j$ where $\hat{x}_j$ is the unit vector in the direction of one of the basis vectors.
 \[ \bs{\vx, T\br{\dif \vx'}} = -i \vx \ve{K} \dif \vx' + i \ve{K} \dif \vx' \vx \]
 Moreover $\bs{X_i, K_j} = 0$ whenever $i \neq j$.
 \[ -i x_j K_j + i K_j x_j = 1 \implies -i \bs{x_j, K_j} = 1 \implies \bs{x_j, K_j} = i \]
@@ -198,7 +198,7 @@ Moreover we have the resolution of identity,
 \[ \ident = \int \dif^3 p' \ket{\ve{p}'}\bra{\ve{p}'} \]
 Therefore we have that,
 \[ \ket{\psi} = \ident \cdot \ket{\psi} = \int \dif^3 p' \ket{\ve{p}'}\braket{\ve{p}'}{\psi} \]
-So we define the wavefunction in momentum representation $\braket{\ve{p}'}{\psi} = \psi\br{\ve{p}'}$. We will now discover how to transform from $\psi\br{\ve{p}'}$ to $\psi\br{\ve{x}'}$ in 1D. By definition we have that,
+So we define the wave-function in momentum representation $\braket{\ve{p}'}{\psi} = \psi\br{\ve{p}'}$. We will now discover how to transform from $\psi\br{\ve{p}'}$ to $\psi\br{\ve{x}'}$ in 1D. By definition we have that,
 \[ \bramidket{x'}{p}{\psi} = - i \hbar \pder{}{x'} \braket{x'}{\psi} \]
 We now choose $\ket{\psi} = \ket{p'}$,
 \[ \bramidket{x'}{p}{p'} = - i \hbar \pder{}{x'} \braket{x'}{p'} \]
@@ -221,7 +221,7 @@ Comparing \cref{eq:delta_x_working,eq:def_dirac_delta} (and using $\mu_0 \pi a^2
 \[ N^2 = \f{1}{2 \pi \hbar} \implies N = \f{1}{\stpih} \]
 This we have that,
 \[ \braket{x'}{p'} = \f1\stpih e^{\f{i}{\hbar} p' x'} \eq \label{eq:plane_wave} \]
-Which refers to the usual plane wave wavefunction. Alternatively, one can obtain this result from the Schrödinger Equation $H \psi = E \psi$ and using a free Hamiltonian $H = \f{p^2}{2m} = - \f{\hbar^2 \dif^2}{2m \dif x^2}$
+Which refers to the usual plane wave wave-function. Alternatively, one can obtain this result from the Schrödinger Equation $H \psi = E \psi$ and using a free Hamiltonian $H = \f{p^2}{2m} = - \f{\hbar^2 \dif^2}{2m \dif x^2}$
 Generalizing \cref{eq:plane_wave} to more than one dimension gives (say 3 dimensions),
 \[ \braket{\ve x'}{\ve p'} = \f1{\br{2 \pi \hbar}^{3/2}} e^{\f{i}{\hbar} \ve p'\cdot \ve x'} \]
 This result allows us to convert from the momentum representation $\psi\br{\ve p'}$ to the position representation $\psi\br{\ve x'}$ and backward,
@@ -290,7 +290,7 @@ Where $\bra{\ve x'}H \ket{\ve x''}$ is the Hamiltonian in terms of the position 
 \[ \bra{\ve x'}H \ket{\ve x''} = -\f{\hbar^2}{2m} \vdel \de\br{\ve x' - \ve x''} \]
 We will now attempt to solve \cref{eq:schro_operator} in order to obtain the time evolution operator explicitly (not as in \cref{eq:infinitesimal_time_evolution}). As a reduction of complexity, we will consider the Hamiltonian $H$ to be time independent $\pder{H}{t} = 0$\footnote{As is common for a particle moving in a static potential.}. The solution to \cref{eq:schro_operator} is then,
 \[ U \br{t, t_0} = e^{-\f{i}{\hbar} H\br{t - t_0}} \eq \label{eq:time_evolution}\]
-Where `$e^A$' is the operator expotential,
+Where `$e^A$' is the operator exponential,
 \[ e^{A} = \sum_{n=1}^{\inf} \f{A^n}{n!} \]
 Therefore we have that,
 \[ e^{-\f{i}{\hbar} H\br{t - t_0}} = \ident -\f{i}{\hbar} H\br{t - t_0} -\f{1}{2\hbar^2} H^2\br{t - t_0}^2 + \s{O}\br{\br{t-t_0}^{3}}\]
@@ -331,7 +331,7 @@ Therefore it must be that,
 \[ C_{a'}\br{t} = e^{-\f{i}{\hbar} E_{a'}\br{t - t_0}} C_{a'}\br{t_0} \]
 The coefficients evolve in the same way that $\ket{\psi}$ does.
 \subsection{Different Pictures for Quantum Mechanics}
-In the Schrödinger picture (as just discussed) the states depend on time, while operators do not. In contrast, the \term{Heisenberg picture} has operators depending on time while the states do not\footnote{The \textit{iteraction picture} shares evolution between states and operators.}. to illustrate the difference, consider an arbitrary unitary operator $U$ ($U^{\dagger} = U^{-1}$),
+In the Schrödinger picture (as just discussed) the states depend on time, while operators do not. In contrast, the \term{Heisenberg picture} has operators depending on time while the states do not\footnote{The \textit{interaction picture} shares evolution between states and operators.}. to illustrate the difference, consider an arbitrary unitary operator $U$ ($U^{\dagger} = U^{-1}$),
 \[ \ket{\psi} \stackrel{U}{\to} U\ket{\psi} \]
 Now consider an arbitrary Hermitian operator $A$ ($A^{\dagger} = A$),
 \[ \bra{\varphi} A \ket{\psi} \stackrel{U}{\to} \bra{\varphi} U^{\dagger}A U\ket{\psi} \]
@@ -422,9 +422,9 @@ Which requires us to solve,
 The details are left as a exercise but,
 \[ \bra{\ve x'} \ve p \ket{\psi} = - i \hbar \vdel' \braket{\ve x'}{\psi} \]
 \[ \bramidket{\ve x'}{\f{\ve p^2}{2m}}{\psi} = -\f{\hbar^2}{2m} \vdel'^2 \braket{\ve x'}{\psi} \]
-Therefore we arrive at the Schrödinger equation for a wavefunction,
+Therefore we arrive at the Schrödinger equation for a wave-function,
 \[ i \hbar \pder{}{t} \braket{\ve x'}{\psi, t_0;t} = -\f{\hbar^2}{2m} \vdel'^2\braket{\ve x'}{\psi, t_0;t} + V\br{\ve x'} \braket{\ve x'}{\psi, t_0; t}\]
-Which in terms of wavefunctions is simply,
+Which in terms of wave-functions is simply,
 \[ i \hbar \pder{}{t} \psi\br{\ve x', t} = -\f{\hbar^2}{2m} \vdel'^2\psi\br{\ve x', t} + V\br{\ve x'} \psi\br{\ve x', t}\]
 \section{Rotations and Angular Momentum}
 To begin, let us remind ourselves about the algebra of rotations in 3D space. Suppose one has a Cartesian coordinate system $\bc{x,y,z}$. To retain some consistency, we always rotate the physical system with respect to fixed coordinates (i.e. the \textit{active} view of rotations, not the \textit{passive} view). \\
@@ -608,7 +608,7 @@ In order to determine the commutation relations for the Pauli matrices, make use
 \[ \f{\hbar^2}{4}\bs{\si_i, \si_j} = i \hbar \f{\hbar}{2} \ep_{ijk} \si_k \]
 Therefore,
 \[ \bs{\si_i, \si_j} = 2i\ep_{ijk} \si_k \]
-Where $\ep_{ijk}$ is the fully antisymmetric symbol seen previously in \cref{eq:antisymmetric_symbol}. We say that Pauli matrices anticommute. By hand,
+Where $\ep_{ijk}$ is the fully antisymmetric symbol seen previously in \cref{eq:antisymmetric_symbol}. We say that Pauli matrices anti-commute. By hand,
 \begin{align*}
 \si_x \si_z &= \begin{pmatrix}0 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix}1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix}0 & -1 \\ 1 & 0 \end{pmatrix} = -i\begin{pmatrix}0 & -i \\ i & 0 \end{pmatrix} = -i \si_y \\
 \si_x \si_z &= \begin{pmatrix}1 & 0 \\ 0 & -1 \end{pmatrix}\begin{pmatrix}0 & 1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix}0 & 1 \\ -1 & 0 \end{pmatrix} = i\begin{pmatrix}0 & -i \\ i & 0 \end{pmatrix} = i \si_y
@@ -744,19 +744,19 @@ For spin systems,
     \end{pmatrix}
     \\
 \end{align*}
-This is the operator of rotation by $3$ Euler angles for a spin-1/2 system. This is a 2D representation of the albegra of rotations in 3D space. How can we generalize these results to different angular momentum?
+This is the operator of rotation by $3$ Euler angles for a spin-1/2 system. This is a 2D representation of the algebra of rotations in 3D space. How can we generalize these results to different angular momentum?
 
 \subsection{Theory of Angular Momentum of Arbitrary Size}
 Consider the angular momentum operator $\ve J$ and its square,
 \[ \ve J^2 = J_x^2 + J_y^2 + J_z^2 \]
-Next consider the communtator with $J_z$,
+Next consider the commutator with $J_z$,
 \begin{align*}
 \bs{\ve J^2, J_z}
 &= \bs{J_x^2 + J_y^2 + J_z^2, J_z} \\
 &= \bs{J_x^2 + J_y^2, J_z} \\
 &= J_x^2 J_z - J_z J_x^2 + J_y^2 J_z - J_z J_y^2
 \end{align*}
-This can be written in terms of other communtators,
+This can be written in terms of other commutators,
 \begin{align*}
     J_x \bs{J_x, J_z} + \bs{J_x, J_z} J_x
     &=  J_x \br{J_xJ_z - J_zJ_x} + \br{J_xJ_z - J_zJ_x} J_x  \\
@@ -764,7 +764,7 @@ This can be written in terms of other communtators,
     &=  J_xJ_xJ_z - J_zJ_xJ_x  \\
     &=  J_x^2J_z - J_zJ_x^2
 \end{align*}
-Return to te above equation and making use of $\bs{J_i, J_j} = i\hbar \ep_{ijk} J_k$,
+Return to the above equation and making use of $\bs{J_i, J_j} = i\hbar \ep_{ijk} J_k$,
 \begin{align*}
 \bs{\ve J^2, J_z}
 &= J_x\bs{J_x, J_z} + \bs{J_x, J_z}J_x + J_y\bs{J_y, J_z}+ \bs{J_y, J_z}J_y \\
@@ -773,5 +773,369 @@ Return to te above equation and making use of $\bs{J_i, J_j} = i\hbar \ep_{ijk} 
 \end{align*}
 Therefore the $J_z$ commutes with $\ve J^2$. This also holds for all other components,
 \[ \bs{\ve J^2, J_x} = \bs{\ve J^2, J_y} = \bs{\ve J^2, J_z} = 0 \]
+Compactly we may write,
+\[ \bs{\ve J^2, \ve J}= 0 \]
+This result means we can choose angular momentum eigenstates to be simultaneous eigenstates of $\ve J^2$ and $J_z$. Let us explicitly calculate those eigenstates. Let $\ket{a,b}$ be this eigenstate where $a$ is the eigenvalue of $\ve J^2$ and $b$ is the eigenvalue of $J_z$,
+\begin{align*}
+    \eq\label{eq:rotation_system}
+    \begin{split}
+    \ve J^2 \ket{a,b} &= a \ket{a,b} \\
+    J_z \ket{a,b} &= b \ket{a,b}
+    \end{split}
+\end{align*}
+In order to solve for $\ket{a,b}$, define the following operators,
+\[ J_{\pm} = J_x \pm i J_y \eq \label{eq:defjpjm}\]
+Note that $J_{\pm}$ are \textit{not} Hermitian operators,
+\[ J_{\pm}^{\dagger} = J_{\mp} \]
+We have the following properties,
+\begin{align*}
+    \bs{J_+, J_-}
+    &= \bs{J_x + i J_y, J_x - i J_y} \\
+    &= -i\bs{J_x, J_y} +i\bs{J_y, J_x} \\
+    &= -2i\bs{J_x, J_y} \\
+    &= -2i\br{i \hbar J_z} \\
+    &= 2\hbar J_z \eq \label{eq:comJpJm}
+\end{align*}
+Also,
+\begin{align*}
+    \bs{J_z, J_{\pm}}
+    &= \bs{J_z, J_x \pm i J_y} \\
+    &= \bs{J_z, J_x} \pm i \bs{J_z, J_y} \\
+    &= i \hbar \ep_{zxy} J_y \pm i^2 \hbar \ep_{zyx} J_x \\
+    &= i \hbar J_y - \mp \hbar J_x \\
+    &= i \hbar J_y \pm \hbar J_x \\
+    &= \pm \hbar J_{\pm} \eq \label{eq:comJzJpm}
+\end{align*}
+Finally,
+\[ \bs{\ve J^2, J_{\pm}} = 0 \]
+We now solve \cref{eq:rotation_system},
+\begin{align*}
+    J_z J_+ \ket{a,b}
+    &= \br{\bs{J_z, J_+} + J_+ J_z} \ket{a,b} \\
+    &= \br{\hbar J_+ + J_+ J_z} \ket{a,b} \note{Using \cref{eq:comJzJpm}}\\
+    &= \br{\hbar J_+ + b J_+} \ket{a,b} \note{Using \cref{eq:rotation_system}}\\
+    &= \br{\hbar + b }J_+ \ket{a,b}
+\end{align*}
+Thus $J_+ \ket{a,b}$ is still an eigenket of $J_z$ but with eigenvalue of $b+\hbar$. Analogously,
+\[ J_z J_- \ket{a,b} = \br{b - \hbar} J_- \ket{a,b} \]
+In conclusion, $J_+$ increases the eigenvalue of $J_z$ by $\hbar$ while $J_-$ decreases it by $\hbar$. $J_{\pm}$ are called \term{ladder operators} (raising and lowering operators) because of this property. What about the eigenvalues of $\ve J^2$?
+\[ \ve J^2 J_+ \ket{a,b} = J_+ \ve J^2 \ket{a,b} = a J_+\ket{a,b} \]
+No, $J_+$ doesn't affect the eigenvalues of $\ve J^2$.\\
+
+Is there an upper limit to the eigenvalues of $J_z$? Notice that,
+\begin{align*}
+\ve J^2 - J_z^2
+&= J_x^2 + J_y^2 \\
+&= \bc{\f{1}{2} \br{J_+ + J_-}}^2 + \bc{\f{1}{2i} \br{J_+ - J_-}}^2 \\
+&= \f{1}{4}\bc{\br{J_+ + J_-}^2 - \br{J_+ - J_-}^2} \\
+&= \f{1}{4}\br{J_+^2 + J_-^2 + J_+J_- + J_-J_+ - J_+^2 - J_-^2 + J_+J_- + J_-J_+} \\
+&= \f{1}{2}\br{J_+J_- + J_-J_+} \\
+&= \f{1}{2}\br{J_+J_+^{\dagger} + J_+^{\dagger}J_+}
+\end{align*}
+Looking at matrix elements,
+\begin{align*}
+    \bra{a,b} \ve J^2 - J_z^2 \ket{a,b}
+    &= \br{a - b^2} \\
+    &= \f{1}{2}\bra{a,b}\br{J_+J_+^{\dagger} + J_+^{\dagger}J_+}\ket{a,b} \\
+    &= \f{1}{2}\bra{a,b}J_+J_+^{\dagger}\ket{a,b} + \f{1}{2}\bra{a,b}J_+^{\dagger}J_+\ket{a,b} \\
+\end{align*}
+Notice that $\bra{a,b}J_+J_+^{\dagger}\ket{a,b}$ can be written,
+\[ \bra{a,b}J_+J_+^{\dagger}\ket{a,b} = \bc{\bra{a,b}J_+}\bc{J_+^{\dagger}\ket{a,b}} = \abs{J_+^{\dagger}\ket{a,b}}^2 \geq 0 \]
+Therefore,
+\[ \br{a - b^2} = \f{1}{2} \br{\abs{J_+^{\dagger}\ket{a,b}}^2 + \abs{J_+\ket{a,b}}^2} \geq 0 \]
+\[ b^2 \leq a \]
+\[ - a \leq b \leq a \]
+This is nothing more than a consequence of $\ba{\ve J^2} \geq \ba{J_z^2}$. We can conclude that there must be some eigenvalue $b\tsb{max}$ that is the maximum eigenvalue of $J_z$ such that,
+\[ J_+ \ket{a, b\tsb{max}} = 0 \]
+We also obtain,
+\[ J_-J_+ \ket{a, b\tsb{max}} = J_- \cdot 0 = 0 \]
+On the other hand,
+\begin{align*}
+    J_-J_+ \ket{a, b\tsb{max}}
+    &= \br{J_x - i J_y}\br{J_x + i J_y} \ket{a, b\tsb{max}} \\
+    &= \br{J_x^2 + J_y^2 + i J_x J_y- i J_y J_x} \ket{a, b\tsb{max}} \\
+    &= \br{J_x^2 + J_y^2 + i \bs{J_x, J_y}} \ket{a, b\tsb{max}} \\
+    &= \br{\ve J^2 - J_z^2 - \hbar J_z} \ket{a, b\tsb{max}} \\
+    &= \br{a - b\tsb{max}^2 - \hbar b\tsb{max}} \ket{a, b\tsb{max}}
+\end{align*}
+Therefore,
+\[ \br{a - b\tsb{max}^2 - \hbar b\tsb{max}} = 0 \implies a = b\tsb{max}\br{b\tsb{max} + \hbar} \eq \label{eq:bmax}\]
+Analogously we must have $b\tsb{min}$ such that,
+\[ J_- \ket{a, b\tsb{min}} = 0 \]
+Skipping details we have the following property,
+\[ a = b\tsb{min}\br{b\tsb{min} - \hbar} \eq \label{eq:bmin}\]
+Combining \cref{eq:bmin,eq:bmax},
+\[ a = b\tsb{min}\br{b\tsb{min} - \hbar} = b\tsb{max}\br{b\tsb{max} + \hbar} \]
+This is only possible if $b\tsb{min} = -b\tsb{max}$. Imagine that one starts from $\ket{a, b\tsb{min}}$. After a certain number of repeated applications of $J_+$, one must arise at $\ket{a, b\tsb{max}}$.
+\[ J_+^{n} \ket{a, b\tsb{min}} = \br{b\tsb{min} + n\hbar} \ket{a, b\tsb{min}+ n\hbar} = b\tsb{max}\ket{a, b\tsb{max}} \]
+Therefore,
+\[ 2 b\tsb{max} = n \hbar \implies b\tsb{max} = \f{n\hbar}{2} \]
+Defining $j = b\tsb{max} / \hbar$ we have that,
+\[ j = \f{n}{2} \]
+Which is either an integer or a half-integer. Making use of \cref{eq:bmax},
+\[ a = b\tsb{max}\br{b\tsb{max} + \hbar} = \hbar j \br{\hbar j + \hbar} = \hbar^2 j\br{j+1} \]
+Similarly we can say that $b = m \hbar$ where $m$ ranges from $-j$ to $j$.
+\[  m = -j, -j +1, \cdots, j-1, j \]
+Thus there are $2j+1$ potential values for $m$. Moving forward, we replace \cref{eq:rotation_system} we the more familiar,
+\begin{gather*}
+    \ve J^2 \ket{j,m} = \hbar^2 j \br{j+1} \ket{j,m}\\
+    J_z^2 \ket{j,m} = \hbar m \ket{j,m}\\
+    -j \leq m \leq j
+\end{gather*}
+Where $j = n/2$ is the magnitude of the angular momentum. As an example, $j = 1/2$ is the spin of the electron. The matrix elements for $\ve J^2$ and $J_z$ can be computed easily,
+\begin{align*}
+    \bra{j', m'} \ve J^2 \ket{j,m}
+    &= \hbar^2 j \br{j+1} \braket{j', m'}{j,m} \\
+    &= \hbar^2 j \br{j+1} \de_{jj'}\de_{mm'}
+\end{align*}
+\begin{align*}
+    \bra{j', m'} J_z \ket{j,m}
+    &= \hbar m \br{j+1} \braket{j', m'}{j,m} \\
+    &= \hbar m \br{j+1} \de_{jj'}\de_{mm'}
+\end{align*}
+Moreover we can compute expectations for $J_-J_+$,
+\begin{align*}
+    \bra{j,m}J_-J_+\ket{j,m}
+    &= \bra{j,m}J_+^{\dagger}J_+\ket{j,m} \\
+    &= \bra{j,m}\ve J^2 - J_z^2 - \hbar J_z\ket{j,m} \\
+    &= \hbar^2 j \br{j+1} - \hbar^2 m^2 - \hbar^2 m \\
+    &= \hbar^2 j \br{j+1} - \hbar^2 m\br{m+1} \eq \label{eq:jmpexp}
+\end{align*}
+For completeness, we should also calculate the expectations for $J_+$ and $J_-$. We know that the raising and lower operators satisfy,
+\begin{align*}
+J_+ \ket{j,m} &= C^{+}_{jm} \ket{j, m+1} \\
+J_- \ket{j,m} &= C^{-}_{jm} \ket{j, m-1}
+\end{align*}
+Being clever, recognize that \cref{eq:jmpexp} is related to $J_+ \ket{j,m}$,
+\[ \abs{J_+ \ket{j,m}}^2 = \abs{C^{+}_{jm}}^2 = \hbar^2 j \br{j+1} - \hbar^2 m\br{m+1} \]
+Choose $C^{+}_{jm}$ to be real and positive,
+\[C^{+}_{jm} = \hbar \sqrt{j \br{j+1} - m \br{m+1}} \]
+Which allows us to write,
+\[ J_+ \ket{j,m} = \hbar \sqrt{\br{j-m}\br{j+m+1}} \ket{j, m+1} \]
+A similar analysis of $J_-$ gives the relation,
+\[ J_- \ket{j,m} = \hbar \sqrt{\br{j+m}\br{j-m+1}} \ket{j, m-1} \]
+This result is sufficient for determining the matrix elements of $J_+, J_-$,
+\begin{align*}
+    \bra{j',m'} J_+ \ket{j,m} &= \hbar \sqrt{\br{j-m}\br{j+m+1}} \de_{jj'}\de_{m', m+1}\\
+    \bra{j',m'} J_- \ket{j,m} &= \hbar \sqrt{\br{j+m}\br{j-m+1}} \de_{jj'}\de_{m', m-1}
+\end{align*}
+Recalling the definition of $J_+, J_-$ (\cref{eq:defjpjm}),
+\[ J_x = \f{1}{2}\br{J_+ + J_-} \qquad J_y = \f{1}{2i}\br{J_+ - J_-} \]
+Therefore we now know explicitly what the matrix elements of $J_x, J_y$ are. $J_z$ has matrix elements,
+\begin{align*}
+    J_z \ket{\psi} = \sum_{i,m,j',m'} \ket{j',m'} \bra{j',m'} J_z \ket{j,m} \braket{j_m}{\psi}
+\end{align*}
+Returning to the rotation representations,
+\[ D\br{R} = e^{-\f{i}{\hbar} \ve J \cdot \hat n \varphi} \]
+Since $\ve J^2$ commutes with any component of $\ve J$,
+\[ \bs{\ve J^2, D\br{R}} = 0 \]
+Therefore we can determine $D\br{R}\ket{j,m}$ by first examining,
+\[ \ve J^2D\br{R}\ket{j,m} = D\br{R}\ve J^2\ket{j,m} = \hbar^2 j \br{j+1} D\br{R} \ket{j,m} \]
+This rotated eigenket of $\ve J^2$ is still an eigenket of $\ve J^2$ with the same eigenvalue $\hbar^2 j \br{j+1}$. However, $D\br{R}$ is general does not commute with $J_z$,
+\[ \bs{J_z, D\br{R}} \neq 0 \]
+\begin{align*}
+    D\br{R} \ket{j,m}
+    &= \sum_{j',m'} \ket{j', m'}\bra{j', m'} D\br{R} \ket{j,m} \\
+    &= \sum_{j,m'} \ket{j, m'}\bra{j, m'} D\br{R} \ket{j,m} \note{Orthogonal}\\
+    &= \sum_{j,m'} \ket{j, m'}D^{(j)}_{m'm} \br{R} \note{Notation}
+\end{align*}
+We refer to this as a $2j+1$ dimensional representation of the group of rotations. $D^{(j)}_{m'm} \br{R}$ is a $\br{2j+1}\times\br{2j+1}$ matrix of probability amplitudes to find the system in a state $\ket{j,m'}$ after a rotation. Recalling Euler angles,
+\[ D\br{\al, \be, \ga} = e^{-\f i \hbar J_z \al}e^{-\f i \hbar J_y \be}e^{-\f i \hbar J_z \ga} \]
+We can write $D^{(j)}_{m'm} \br{R}$ in terms of $\al, \be, \ga$,
+\[ D^{(j)}_{m'm} \br{\al, \be, \ga} = \bra{j,m'}e^{-\f i \hbar J_z \al}e^{-\f i \hbar J_y \be}e^{-\f i \hbar J_z \ga} \ket{j,m} \]
+This is very useful because $J_z$ has $\ket{j,m}$ as an eigenket. The only non-trivial operator is $e^{-\f i \hbar J_y \be}$. Replacing $J_z$ with relevant eigenvalues,
+\[ D^{(j)}_{m'm} \br{\al, \be, \ga} = \bra{j,m'}e^{-\f i \hbar \br{\hbar m'} \al}e^{-\f i \hbar J_y \be}e^{-\f i \hbar \br{\hbar m} \ga} \ket{j,m} \]
+Extracting out constants,
+\begin{align*}
+D^{(j)}_{m'm} \br{\al, \be, \ga}
+&= e^{-\f i \hbar \br{\hbar m'} \al}e^{-\f i \hbar \br{\hbar m} \ga}\bra{j,m'}e^{-\f i \hbar J_y \be} \ket{j,m} \\
+&= e^{-i \br{m' \al + m \ga}}\underbrace{\bra{j,m'}e^{-\f i \hbar J_y \be} \ket{j,m}}_{d^{(j)}_{m'm}\br{\be}}
+\end{align*}
+Compactly we write $d^{(j)}_{m'm}$ as the matrix elements for $e^{-\f i \hbar J_y \be}$,
+\[ D^{(j)}_{m'm} \br{\al, \be, \ga} = e^{-i \br{m' \al + m \ga}}d^{(j)}_{m'm}\br{\be} \]
+Compare this with the $j = 1/2$ result,
+\begin{align*}
+    D^{(1/2)}\br{\al,\be,\ga}
+    &= \begin{pmatrix}
+        e^{- i \f{\al+\ga}{2}}\cos\f{\be}{2} & -e^{- i \f{\al-\ga}{2}}\sin\f{\be}{2} \\
+        e^{ i \f{\al-\ga}{2}}\sin\f{\be}{2} & e^{ i \f{\al+\ga}{2}}\cos\f{\be}{2} \\
+    \end{pmatrix}
+\end{align*}
+Where we used the basis of the eigenstates of $S_z$ ($\bc{\ket{\uparrow}, \ket{\downarrow}}$). In this case $j = 1/2$ and $m=\pm 1/2$.
+\[ \ket{\uparrow} = \ket{m=1/2} \qquad \ket{\downarrow} = \ket{m=-1/2} \]
+\[ d_{m'm}^{1/2}\br{\be} = \begin{pmatrix}
+    \cos \f{\be}{2} & -\sin \f{\be}{2} \\
+    \sin \f{\be}{2} & \cos \f{\be}{2} \\
+\end{pmatrix} \]
+\subsection{Orbital and Spin Angular Momentum}
+Up until now we have only discuss the total angular momentum $\ve J$ and the spin angular momentum $\ve S$. They are related to the \term{orbital angular momentum} $\ve L$,
+\[ \ve J = \ve L + \ve S \]
+The orbital angular momentum is defined in terms of its classic definition,
+\[ \ve L = \ve r \times \ve p \]
+Where $\ve r$ and $\ve p$ are both operators. We must have the canonical commutation relation,
+\[ \bs{L_i, L_j} = i\hbar \ep_{ijk}L_k \]
+We can check this relation by examining $\bs{L_x, L_y}$ directly,
+\begin{align*}
+    \bs{L_x, L_y}
+    &= \bs{y p_z - z p_y, zp_x - x p_z} \\
+    &= \bs{y p_z, zp_x} - \bs{y p_z, xp_z} - \bs{z p_y, zp_x} + \bs{z p_y, xp_z}\\
+    &= \bs{y p_z, zp_x} - \cancelto{0}{\bs{y, x}}p_z - z\cancelto{0}{\bs{ p_y, p_x}} + \bs{z p_y, xp_z}\\
+    &= \bs{y p_z, zp_x} + \bs{z p_y, xp_z}\\
+    &= yp_x\bs{p_z, z} + p_y x \bs{z, p_z}\\
+    &= -i\hbar \br{yp_x - xp_y}\\
+    &= i \hbar L_z
+\end{align*}
+Next consider spin-less infinitesimal rotations about the $z$-axis. In such spin-less cases $\ve J = \ve L$.
+\[ D_z \br{\de \varphi} = e^{- \f{i}{\hbar} L_z \de \varphi} = \ident - \f i \hbar L_z \de \varphi + \s{O}\br{{\de \varphi}^2} \]
+In terms of the linear momentum operators,
+Acting on a position eigenket $\ket{\ve x'}$ is,
+\begin{align*}
+D_z \br{\de \varphi}\ket{\ve x'}
+&= D_z \br{\de \varphi}\ket{x', y', z'} \\
+&= \bs{\ident - \f i \hbar \br{xp_y - yp_x}\de \varphi}\ket{x', y', z'}
+\end{align*}
+Recalling that,
+\[ T\br{\dif \ve x'} = \ident - \f i \hbar \ve p \cdot \dif \ve x' \]
+We have that,
+\[ T\br{\dif \ve x'}\ket{\ve x'} = \ket{\ve x' + \dif \ve x'} \]
+Returning to the rotation operator,
+\begin{align*}
+D_z \br{\de \varphi}\ket{\ve x'}
+&= \ket{x' - \de \varphi y', y' + \de \varphi x', z'}
+\end{align*}
+This is exactly the classical action of rotating a vector $\ve x'$. Recall the infinitesimal rotation matrix,
+\[ R_z\br{\de \varphi}\cdot\ve x' = \begin{pmatrix}
+    \cos \de \varphi & -\sin \de \varphi & 0 \\
+    \sin \de \varphi & \cos \de \varphi & 0 \\
+    0 & 0 & 1 \\
+\end{pmatrix}\begin{pmatrix}
+    x' \\ y' \\ z'
+\end{pmatrix} = \begin{pmatrix}
+    1 & -\de \varphi & 0 \\
+    \de \varphi & 1 & 0 \\
+    0 & 0 & 1 \\
+\end{pmatrix}\begin{pmatrix}
+    x' \\ y' \\ z'
+\end{pmatrix}
+= \begin{pmatrix}
+    x' - \de \varphi y' \\ y' + \de \varphi x' \\ z'
+\end{pmatrix} \]
+What affect does rotation have on wave functions $\psi\br{\ve x'} = \braket{\ve x'}{\psi}$?
+\begin{align*}
+    \bra{\ve x'} \ident - \f i\hbar L_z \de \varphi \ket{\psi}
+    &= \bc{\bra{\psi} \ident + \f i\hbar L_z \de \varphi \ket{\ve x'}}^{*} \\
+    &= \bc{\bra{\psi} \ident + \f i\hbar \br{x p_y - y p_x} \de \varphi \ket{x',y',z'}}^{*} \\
+    &= \bc{\braket{\psi}{x' + \de \varphi y',y' - \de \varphi x',z'}}^{*} \\
+    &= \braket{x' + \de \varphi y',y' - \de \varphi x',z'}{\psi}
+\end{align*}
+It will be helpful (as it is classically) to represent these types of rotations in spherical coordinates.
+\[ \ve x' = x' \hat x + y' \hat y + z' \hat z = r \hat r \]
+Where,
+\begin{align*}
+    x' &= r \sin \te \cos \varphi \\
+    y' &= r \sin \te \sin \varphi \\
+    z' &= r \cos \te \\
+    r &= \sqrt{x'^2 + y'^2 + z'^2}
+\end{align*}
+The only effect of rotation about the $z$-axis is that $\varphi \mapsto \varphi - \de \varphi$.
+\[ \bra{r, \te, \varphi} \ident - \f i \hbar L_z \de \varphi \ket{\psi} = \braket{r, \te, \varphi - \de \varphi}{\psi} \]
+As a first order Taylor series,
+\begin{align*}
+    \braket{r, \te, \varphi - \de \varphi}{\psi}
+    &= \braket{r, \te, \varphi}{\psi} - \de \varphi \pder{}{\varphi} \braket{r, \te, \varphi}{\psi} \\
+    &= \braket{r, \te, \varphi}{\psi} - \f i \hbar \de \varphi \bra{r, \te, \varphi}L_z\ket{\psi}
+\end{align*}
+Therefore,
+\[ L_z = - i \hbar \pder{}{\varphi} \]
+In spherical coordinates,
+\begin{align*}
+    \hat r &= \hat x \sin \te \cos \varphi + \hat y \sin \te \sin \varphi + \hat z \cos \te \\
+    \hat \varphi &= - \hat x \sin \varphi + \hat y \cos \varphi \\
+    \hat \te &= \hat x \cos \varphi \cos \te + \hat y \sin \varphi \cos \te - \hat z \sin \te
+\end{align*}
+These unit directions can be used to determine,
+\begin{align*}
+L_z &= y p_z - z p_y = - i \hbar \br{y \pder{}{z} - z \pder{}{y}} \\
+L_y &= z p_x - x p_z = - i \hbar \br{z \pder{}{x} - x \pder{}{z}}
+\end{align*}
+Or more compactly,
+\begin{align*}
+\vdel
+&= \hat x \pder{}{x} + \hat y \pder{}{y} + \hat z \pder{}{z} \\
+&= \hat r \pder{}{r} + \hat \varphi \f{1}{r \sin \te} \pder{}{\varphi} + \hat \te \f{1}{r}\pder{}{\te}
+\end{align*}
+Therefore derivatives in the $x,y,z$ directions can be written in terms of $\te, \varphi$ derivatives,
+\begin{align*}
+    \pder{}{z} &= \cos \te \pder{}{r} - \f{1}{r} \sin \te \pder{}{\te}\\
+    \pder{}{y} &=  \sin \te \sin \varphi \pder{}{r} + \f{\cos \varphi}{r \sin \te} \pder{}{\varphi} + \f{\cos \te \sin \varphi}{r} \pder{}{\te}
+\end{align*}
+Therefore,
+\[ \ve L^2 = L_x^2 + L_y^2 + L_z^2 = - \hbar^2 \bs{\f{1}{\sin^2 \te} \pdder{}{\varphi} + \f{1}{\sin \te} \pder{}{\te} \br{\sin \te \pder{}{\te}}} \]
+Moreover in just the same way that $\bs{\ve J^2, J_z} = 0$ we have that,
+\[ \bs{\ve L^2, L_z} = 0 \]
+Just as we derived eigenstates common to both $\ve J^2$ and $J_z$, we derive eigenstates of $\ve L^2$ and $L_z$. This can also be derived by noticing that $\ve L^2$ is only a function of $\ve \te$. The common eigenstates of $\ve L^2, L_z$ are,
+\begin{align*}
+    \ve L^2 \ket{\ell, m} &= \hbar^2 \ell \br{\ell + 1} \ket{\ell, m} \\
+    L_z \ket{\ell, m} &= \hbar m \ket{\ell, m}
+\end{align*}
+Where $m = -\ell, -\ell +1, \cdots, \ell - 1, \ell$. We can also define the wave function,
+\[ \braket{\te ,\varphi}{l,m} = Y^{m}_{\ell}\br{\te, \varphi} \]
+Such that $\abs{Y^{m}_{\ell}\br{\te, \varphi}}^2$ is the probability of finding a particle in state $\ket{\ell, m}$ at $\ket{\te, \varphi}$. We call $Y^{m}_{\ell}$ \term{spherical harmonics}. They have a number of useful properties,
+\begin{align*}
+L_z \ket{\ell, m} &= \hbar m \ket{\ell, m} \\
+- i \hbar \pder{}{\varphi} Y_{\ell}^{m}\br{\te, \varphi} &= \hbar m Y_{\ell}^{m}\br{\te, \varphi}
+\end{align*}
+This differential equation fixes the $\varphi$ dependence of $Y_{\ell}^{m}\br{\te, \varphi}$ to be,
+\[ Y_{\ell}^{m}\br{\te, \varphi} \sim e^{i m \varphi} \]
+Now since $\ve L^2$ only depends on $\te$,
+\begin{align*}
+    - \hbar^2 \bs{\f{1}{\sin^2 \te} \pdder{}{\varphi} + \f{1}{\sin \te} \pder{}{\te} \br{\sin \te \pder{}{\te}}} Y_{\ell}^{m}\br{\te, \varphi} = \hbar^2 \ell \br{\ell+1}Y_{\ell}^{m}\br{\te, \varphi}
+\end{align*}
+Using separation of variables (for $\te, \varphi$) we get,
+\[ \bs{\f{1}{\sin \te }\pder{}{\te}\br{\sin \te \pder{}{\te}} - \f{m^2}{\sin^2 \te} + \ell \br{\ell+1 }}Y_{\ell}^{m}\br{\te, \varphi} = 0 \]
+Whose solutions are the spherical harmonics. The solution has the following form,
+\[ Y_{\ell}^{m}\br{\te, \varphi} = \br{-1}^{m} \sqrt{\f{\br{2 \ell + 1}\br{\ell - m}!}{4 \pi \br{\ell + m }!}} P_{\ell}^{m}\br{\cos \te} e^{i m \varphi} \eq \label{eq:spherical_harm}\]
+Where $P_{\ell}^{m}\br{x}$ are the \term{Legendre Polynomials}. Remember that for the total angular momentum $\ve J$ had magnitude $j$ where $j$ was either an integer or half-integer. A question is posed: \textit{Does this also hold true for $\ell$?} It turns out it is not true. Consider that there is a rotational symmetry $\varphi \mapsto \varphi + 2\pi$. Therefore,
+\[ Y_{\ell}^{m}\br{\te, \varphi} = Y_{\ell}^{m}\br{\te, \varphi + 2 \pi} \]
+Inspecting \cref{eq:spherical_harm} and this rotational property, one should see that,
+\[ e^{im\varphi} = e^{im\br{\varphi + 2 \pi}} \implies e^{2 \pi i m} = 1 \]
+This implies that $m$ must be an integer which enforces that $\ell$ is also an integer. $\ell$ cannot be a half-integer.
+
+\section{Symmetries in Quantum Mechanics}
+Suppose $S$ is a transformation operation, such as $T$ or $D$. For an infinitesimal transformation,
+\[ S = \ident - \f{i \ep}{\hbar} G \]
+Where $G$ is a Hermitian operator (this is a consequence of $S$ being assumed unitary) and $\ep \ll 1$. Suppose the Hamiltonian $H$ is invariant with respect to $S$,
+\[ S^{\dagger} H S = H \]
+As an example $H = \ve p^2 / 2m$ has $T^{\dagger} \br{\ve a} H T \br{\ve a} = H$ symmetry. Also $H = \ve p^2 / 2m + V\br{r}$ has $D^{\dagger} H D = H$ rotational symmetry (provided $V$ is spherically symmetric). In general,
+\begin{align*}
+    S^{\dagger} H S
+    &= \br{\ident + \f{i \ep}{\hbar} G} H \br{\ident - \f{i \ep}{\hbar} G} \\
+    &= H + \f{i\ep}{\hbar} GH - \f{i\ep}{\hbar} HG + \ident \cdot \s{O}\br{\ep^2} \\
+    &= H + \f{i\ep}{\hbar} \bs{G, H}
+\end{align*}
+If $S$ is to be a symmetry, $\bs{G, H} = 0$. The generator $G$ of $S$ must commute with $H$. The Heisenberg equation of motion for $G$ then becomes,
+\[ \der{G}{t} = \f{i}{\hbar} \bs{H,G} = 0 \]
+$G$ represents a conserved physical quantity. If a system is invariant with respect to symmetry transformation $S$, the generator of $S$ is a conserved quantity. Since $S$ is unitary,
+\[ S^{\dagger} H S = S^{-1} H S = H \implies \bs{H,S}=0 \]
+This allows us to consider energy eigenkets $\ket{n}$ of $H$ with eigenvalue $E_n$.
+\begin{align*}
+    H\ket{n} &= E_n \ket{n} \\
+    HS\ket{n} &= S H\ket{n} = E_n S\ket{n}
+\end{align*}
+Therefore $S\ket{n}$ is also an eigenket of $H$ with eigenvalue $E_n$. Therefore $\ket{n}$ and $S\ket{n}$ are degenerate eigenkets of $H$. Symmetries in quantum mechanics are always associated with degeneracies. \\
+
+As a case study, consider a rotationally invariant system,
+\[ H = \f{\ve p^2}{2m} + V\br{r} \]
+Such that $\bs{H, D\br{R}}$. This implies that $\ve J$ (the generator of $D$) is,
+\[ \bs{H, \ve J} = 0 \]
+Therefore $\ket{j,m}$ are also eigenstates of $H$.
+\[ H\ket{n,j,m} = E_n \ket{n,j,m} \]
+We have that $D\br{R} \ket{n,j,m}$ is also and eigenket of $H$. Multiplying by the closure relation,
+\[ D\br{R}\ket{n,j,m} = \sum_{m'}\ket{n,j,m'}\underbrace{\bra{n,j,m'}D\br{R}\ket{n,j,m}}_{D^{(j)}_{m'm}\br{R}} \]
+This can only be true for arbitrary rotations $D\br{R}$ if,
+\[ H \ket{n,j,m} = E_n \ket{n,j,m} \quad \forall m = -j, \ldots, j\]
+All eigenstates of $H$ are at least $2j+1$-fold degenerate.\\
+
+Rotations are an example of continuous symmetry. There are also discrete symmetries (example: parity)
 
 \end{document}

@@ -638,8 +638,156 @@ Now solve for the reflected and transmitted $A_R, A_T$ in terms of the given inc
 If $v_2 > v_1$ then $A_R \propto - \br{A_I}$.
 
 \section{Polarization}
-So far, we have only considered 1D waves. However, the electric and magnetic fields are vector quantities. Consider the vector amplitude,
+So far, we have only considered 1D waves. However, the electric and magnetic fields are vector quantities. As we shall see shortly, EM radiation has field components that are perpendicular to the direction of propagation. We can thus write a traveling wave as
 \[ \ti {\ve f}\br{z, t} = \ti f_{k} \hat n e^{i\br{kz - \w t}} \]
-Where $e^{i\br{kz - \w t}}$ acts as the traveling wave, $\hat n$ is the polarization and $\ti f_{k}$ is the amplitude and phase.
+Where $e^{i\br{kz - \w t}}$ acts as the traveling wave, $\hat n$ is the polarization and $\ti f_{k}$ is the amplitude and phase. Note that $\ti f_{k}$ is not a function of position $\ve r$ and time $t$. The possible polarizations of this plane wave are $\hat x, \hat y$ or a linear combination thereof. An important linear combination is,
+\[ \hat n_{\pm} = \hat x \pm i \hat y = \hat x \pm e^{i \pi / 2} \hat y \]
+So that,
+\[ \hat n_{\pm} e^{i\br{kz - wt}} = \hat x e^{i\br{kz - wt}} \pm \hat y e^{i\br{kz - wt + \pi/2}}\]
+Which makes the total wave,
+\begin{align*}
+\Re\bc{\ti f_{k}\hat n_{\pm} e^{i\br{kz - wt}}}
+&= \Re\bc{\abs{\ti f_{k}} e^{i \de} \hat n_{\pm} e^{i\br{kz - wt}}} \\
+&= \abs{\ti f_{k}}\Re\bc{\br{\hat x + i \hat y} \br{\cos \br{kz - wt + \de} + i\sin \br{kz - wt + \de}}} \\
+&= \abs{\ti f_{k}}\br{\hat x \cos \br{kz - wt + \de} - \hat y\sin \br{kz - wt + \de}} \\
+\end{align*}
+
+\begin{center}
+    \begin{tikzpicture}
+        \pgfmathsetmacro\rs{1.5}
+        \draw (-2, 0) -- (2, 0) node[right]{$x$};
+        \draw (0, -2) -- (0, 2) node[above]{$y$};
+        \draw[red, ->] (0,0) -- (\rs, 0) node[above right]{$t = 0$};
+        \draw[green, ->] (0,0) -- ({cos(60)*\rs}, {sin(60)*\rs}) node[above right]{$t = 2\De t$};
+        \draw[green, ->] (0,0) -- ({cos(90)*\rs}, {sin(90)*\rs}) node[above]{$t = 3\De t$};
+        \draw[green, ->] (0,0) -- ({cos(30)*\rs}, {sin(30)*\rs}) node[above right]{$t = \De t$};
+    \end{tikzpicture}
+\end{center}
+
+\subsection{EM Plane Waves}
+While this is sufficient for a generic wave equation however, for those satisfying Maxwell's Equations there are further conditions to impose. In particular, for a plane wave traveling in the $z$-direction we have,
+\[ \ti {\ve E} \br{z, t} = \ti{\ve E}_0 e^{i\br{k z - \w t}} \]
+With derivatives,
+\[ \pder{}{x} \ti {\ve E} = \pder{}{y} \ti {\ve E} = \ve 0 \]
+\[ \pder{}{z} \ti {\ve E} = ik \ti {\ve E} \]
+\[ \pder{}{t} \ti {\ve E} = -i\w \ti {\ve E} \]
+We will write,
+\[ \ti{{\ve E}}_0 = \hat x \ti {E}_{0, x} + \hat y \ti {E}_{0, y} + \hat z \ti {E}_{0, z} \]
+And similarly for the magnetic field,
+\[ \ti {\ve B}_0 = \hat x \ti {B}_{0, x} + \hat y \ti {B}_{0, y} + \hat z \ti {B}_{0, z} \]
+Note that this is not the same as the electric field itself,
+\[ \ti E_x = \ti{\ve E} \cdot \hat x = \ti{\ve E}_0 \cdot \hat x e^{i \br{kz - \w t}} = \ti{E}_{0,x} e^{i \br{kz - \w t}} \]
+Next make use of Gauss's law (in vacuum),
+\[ 0 = \vdel \cdot \ve E = \ti E_{0,z} i k e^{i\br{kz - \w t}} \implies \ti E_{0,z} = 0 \]
+Similarly for $\ve B$,
+\[ \ti B_{0,z} = 0 \]
+So that EM waves are \textit{transverse} and $\ti {\ve E}_0$ only has components in the $\hat x$ and $\hat y$ directions.\\
+
+Moreover make use of Faraday's law,
+\[ \vdel \times \ve E = - \pder{\ve B}{t} \]
+Which gives,
+\[ - i k \hat x \ti E_y + i k \hat y \ti E_x = i \w \br{ \hat x \ti B_x + \hat y \ti B_y + \hat z \ti B_z} \]
+Therefore matching components,
+\begin{align*}
+    -i k \ti E_y &= i \w \ti B_x \\
+    i k \ti E_x &= i \w \ti B_y \\
+    0 &= i \w \ti B_z
+\end{align*}
+Which makes,
+\begin{align*}
+    \ti E_y &= - \f{\w}{k} \ti B_x = - c \ti B_x \\
+    \ti E_x &= + \f{\w}{k} \ti B_y = + c \ti B_y
+\end{align*}
+And so $\ti{\ve E}$ and $\ti{\ve B}$ have the same phase but are in the different direction. The set $\bc{\ti{\ve E} , \ti{\ve B} , \hat z}$ for a right-hand set. Recall that $\mu_0 \ve S = \ve E \times \ve B$. We can generalize this to a plane wave traveling in an arbitrary direction by introducing the \term{wave vector} $\ve k = k_x \hat x + k_y \hat y + k_z \hat z$. Also,
+\[ \ve k = k \hat k = \sqrt{k_x^2 + k_y^2 + k_z^2} \hat k \]
+The recurring relation $k z - \w t$ becomes,
+\[ \ve k \cdot \ve r - \w t  \]
+Monochrome plane waves in vacuum traveling in the $\hat k$ direction are,
+\[ \ti{\ve E}\br{\ve r , t} = \ti{\ve E}_0 e^{i\br{\ve k \cdot \ve r - \w t}} \]
+\[ c\ti{\ve B}\br{\ve r , t} = \hat k \times \ti{\ve E}\br{\ve r , t} \]
+\subsection{Energy and Momentum}
+\begin{align*}
+    u\tsb{EM}
+    &= \f{1}{2 \mu_0} \br{\ep_0 \mu_0 E^2 + B^2} \\
+    &= \f{\ep_0}{2} \br{E^2 + c^2B^2} \\
+    &= \ep_0 E^2 \\
+    &= \ep_0 E_0^2 \cos^2\br{kz - \w t + \de} \\
+    \ve S &= \f{1}{\mu_0} \ve E \times \ve B \\
+    &= c \ep_0 E^2 \hat z \\
+    &= c u\tsb{EM} \hat z\\
+\end{align*}
+
+\subsection{Electromagnetic Waves in Media}
+
+\todo[TC]{Missed a lecture}
+
+In alternative media that are linear, isotropic, and homogeneous, Maxwell's equations are nearly identical; the only necessary modification is to replace the speed of propagation $c$ with a speed $v$ that is dependent on the material.
+\[ c = \f{1}{\sqrt{\ep_0 \mu_0}} \mapsto v = \f{1}{\sqrt{\ep \mu}} \]
+
+In a higher level course, one would explore how to modify Maxwell's equations for materials that do not obey the assumptions of linearity, isotropy, and homogeneity. Doing so is of great importance; material sciences are a very versatile field of physics with countless applications. \\
+
+If one has a dielectric media adjacent to vacuum and a light source emanating isotropically, there are two contributions to light incident on an observer sitting on the interface: the source ray, and the ray reflected off the vacuum dielectric interface.
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw[] (-3, 0) -- (3,0);
+        \draw (3,2) node[](source){$S$};
+        \draw (-2,0.5) node[](obs){$O$};
+        \coordinate (r) at (-0.2,0);
+        \begin{scope}[decoration={markings, mark=at position 0.5 with {\arrow{>}}}]
+            \draw[thick, postaction={decorate}] (source) -- node[below right]{$\ve k$} (r);
+            \draw[thick, postaction={decorate}] (r) -- (obs);
+            \draw[thick, postaction={decorate}] (source) -- (obs);
+            \draw[dashed, thick, postaction={decorate}] (r) -- (-1.6, -1);
+        \end{scope}
+        \draw (2,0) node[above right]{Vacuum};
+        \draw (2,0) node[below right]{Dielectric};
+        \draw (r) -- (-0.2, 2);
+        \draw (-0.2, 0.2) node[above left]{$\te_{R}$};
+        \draw (-0.2, 0.2) node[above right]{$\te_{I}$};
+    \end{tikzpicture}
+\end{center}
+
+The reflected ray is polarized horizontally upon reflecting off the surface of the medium.
+
+\subsection{Conductors}
+
+Inside a conductor we have,
+\[ \ve J_f = \si \ve E \eq \label{eq:ohms_law}\]
+Where $\si$ is the conductivity, $\ve J_f$ is the free current density and $\ve E$ is the electric field. More generally $\si$ can be a tensor that has components for every pair of directions. However for homogeneous and isotropic media, we can take the conductivity to be a scalar quantity. In contrast, the bound current density $\ve J_b$ is the set of moving charges that are bound to atoms in the material. Specifically the \textit{ensemble} of electrons bound orbitally to atoms contribute a current that flows through the medium (typically surface currents).\\
+
+\Cref{eq:ohms_law} is called \term{Ohm's law}. Ohm's law is typically introduced as $V = IR$. The $V = IR$ equation is a consequence of the local equation that is \cref{eq:ohms_law} together with the assumptions of homogeneity and isotropy. \\
+
+Recall that for constant electric fields, Ohm's law holds initially. However, the electric field with polarize the material to the point where the internal induced electric field exactly cancels the applied electric field. The system approaches equilibrium. \\
+
+However for time depended electric fields, the material's polarization with be a function of time as well. Considering the applied field as an oscillation at frequency $f$, the material's amplitude of oscillation will peak at its resonant frequency. Moreover, there will be a phase shift at the resonant frequency as well.
+
+\subsection{Absorption \& Dispersion}
+
+Inside a conductor we have $\ve J_f = \si \ve E$ where $\si$ is the conductivity (resistivity is $1/\rho$). Maxwell's equations now take the form,
+\begin{align*}
+    \vdel \cdot \ve E &= \f{1}{\ep} \rho_{f} \\
+    \vdel \cdot \ve B &= 0 \\
+    \vdel \times \ve E &= -\pder{\ve B}{t} \\
+    v^2\vdel \times \ve B &= \pder{\ve E}{t} + \f{1}{\ep} \ve J_f
+\end{align*}
+We now replace the final term in the last maxwell equation and write,
+\[ v^2\vdel \times \ve B = \pder{\ve E}{t} + \f{\si}{\ep} \ve E \]
+From this we are able to derive wave equations,
+\[ \vdel \times \br{\vdel \times \ve E} = - \pder{}{t}\br{\vdel \times \ve B} \]
+\[ \vdel \br{\vdel \cdot \ve E} - \del^2 \ve E = -\f{1}{v^2} \pder{}{t}\br{\pder{\ve E}{t} + \f{\si}{\ep} \ve E} \]
+But we have that $\vdel \cdot \ve E = \f{1}{\ep} \rho_{f}$. In a conductor $\rho_{f} \approx 0$ because the time scale to equilibriate which is $\tau_{d} = \f{\ep}{\si} \approx \SI{1e-20}{\s}$ (of course if your frequency is $f \geq \tau_d^{-1}$ this approximation doesn't hold).
+Therefore we arrive at,
+\[ v^2 \del^2 \ve E = \pdder{E}{t} + \f{\si}{\ep} \pder{\ve E}{t} \]
+The ansatz is (for a 1D system) is identical to the dispersion-less case but with $k \to \ti k$,
+\[ \ti{\ve E}\br{z,t} = \ti{\ve E}_0 e^{i\br{\ti k z - \w t}} \]
+The imaginary component of $\ti k$ introduces an exponential dampening. This leads to an auxiliary equation,
+\[ \ti k^2 = \mu \ep \w^2 + i \mu \si \w \]
+Which has solution $\ti k = k + i \kappa$ where,
+\begin{align*}
+    k &= \w \sqrt{\f{\ep \mu}{2}} \sqrt{\sqrt{1 + \br{\f{\si}{\ep \w}}^2}+1} \\
+    \kappa &= \w \sqrt{\f{\ep \mu}{2}} \sqrt{\sqrt{1 + \br{\f{\si}{\ep \w}}^2}-1}
+\end{align*}
+Notice that $\f{\si}{\ep \w}$ is dimensionless. Note that $k \neq \abs{\ti k}$
 
 \end{document}
