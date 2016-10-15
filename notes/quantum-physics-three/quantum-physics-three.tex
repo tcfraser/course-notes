@@ -595,7 +595,7 @@ Reorganizing yields,
 Recognizing the Taylor series for $\sin x, \cos x$ where $x = \varphi / 2$ we have that,
 \[ e^{-\f{i}{2} \si_z \varphi} =  \cos\br{\f{\varphi}{2}}\ident - i \sin\br{\f{\varphi}{2}} \si_z \]
 This result holds for any Pauli by \cref{eq:pauli_squared_ident},
-\[ e^{-\f{i}{2} \ve \si \cdot \hat n \varphi} =  \cos\br{\f{\varphi}{2}}\ident - i \sin\br{\f{\varphi}{2}} \si \cdot \hat n \]
+\[ e^{-\f{i}{2} \ve \si \cdot \hat n \varphi} =  \cos\br{\f{\varphi}{2}}\ident - i \sin\br{\f{\varphi}{2}} \ve \si \cdot \hat n \]
 Therefore returning to \cref{eq:return_to},
 \begin{align*}
     e^{\f{i}{2} \si_z \varphi } \si_x e^{-\f{i}{2} \si_z \varphi } &=
@@ -707,7 +707,7 @@ For spin systems,
     D\br{\al, \be, \ga}
     &= D_z\br{\ga}D_y\br{\be}D_z\br{\al} \\
     &= e^{-\f{i}{2} \si_z \al}e^{-\f{i}{2} \si_y \be}e^{-\f{i}{2} \si_z \ga}  \\
-    &= \br{\ident \cos \f{\al}{2} - i \si_z \sin \f{\al}{2}}\br{\ident \cos \f{\al}{2} - i \si_z \sin \f{\al}{2}}\br{\ident \cos \f{\al}{2} - i \si_z \sin \f{\al}{2}}\\
+    &= \br{\ident \cos \f{\al}{2} - i \si_z \sin \f{\al}{2}}\br{\ident \cos \f{\be}{2} - i \si_z \sin \f{\be}{2}}\br{\ident \cos \f{\ga}{2} - i \si_z \sin \f{\ga}{2}}\\
     &=
     \begin{pmatrix}
         e^{-i\f{\al}{2}} & 0 \\
