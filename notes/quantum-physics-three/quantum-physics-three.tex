@@ -1136,6 +1136,107 @@ This can only be true for arbitrary rotations $D\br{R}$ if,
 \[ H \ket{n,j,m} = E_n \ket{n,j,m} \quad \forall m = -j, \ldots, j\]
 All eigenstates of $H$ are at least $2j+1$-fold degenerate.\\
 
-Rotations are an example of continuous symmetry. There are also discrete symmetries (example: parity)
+Rotations are an example of continuous symmetry. There are also discrete symmetries (example: parity).
 
+\subsection{Parity Symmetry}
+Consider the parity operator $\pi$,
+\[ \ket{\psi} \mapsto \pi \ket{\psi} \]
+We define the parity operator to reverse the sign of position expectations,
+\[ \bra{\psi} \pi^{\dagger} \ve x \pi \ket{\psi} = - \bra{\psi} \ve x \ket{\psi} \]
+Which is equivalent to $\pi^{\dagger} \ve x \pi = - \ve x$.
+\[ \bra{\psi} \pi^{\dagger} \pi \ket{\psi} = \braket{\psi}{\psi} = 1 \implies \pi^{\dagger} \pi = \ident\]
+Therefore $\pi^{\dagger} = \pi^{-1}$ is a unitary operator.
+\[ \pi^{-1} \ve x \pi = - \ve x \]
+\[ \ve x \pi = - \pi \ve x \]
+\[ \ve x \pi + \pi \ve x = \bc{\ve x, \pi} = 0 \]
+We say that $\pi$ and $\ve x$ anti-commute. When acting on position eigenkets,
+\[ \ve x \pi \ket{\ve x'} = - \pi \ve x \ket{\ve x'} = - \pi \ve x' \ket{\ve x'}= - \ve x' \pi \ket{\ve x'} \]
+This result demonstrates that $\pi \ket{\ve x'}$ is an eigenket of $\ve x$ with eigenvalue $-\ve x'$. We may choose an arbitrary phase $\de$ such that $\pi \ket{\ve x'} = e^{i \de}$ so we choose $e^{i \de} = 1$.
+\[ \pi \ket{\ve x'} = \ket{- \ve x'} \]
+Thus $\pi^2$ has a determinined form,
+\[ \pi^2 \ket{\ve x'} = \pi\ket{- \ve x'} = \ket{\ve x'} \]
+Since $\pi^2 = \ident$, $\pi^{-1} = \pi = \pi^{\dagger}$. The parity operator is not only unitary, but also Hermitian. The eigenvalues of $\pi$ are $\pm 1$. Notice that the order of party and translation operators matters.
+\begin{center}
+    \begin{tikzpicture}
+        \draw[->] (-3, 0) -- (3, 0) node[right]{$x$};
+        \draw[->] (0, -3) -- (0, 3) node[above]{$y$};
+        \draw[dashed, ->] (0,0) -- (2,2);
+        \draw[->] (0,0) -- node[below]{$\ve x'$} (2,1.6);
+        \draw[->] (2, 1.6) -- node[right]{$\dif \ve x'$} (2,2);
+        \draw[dashed, ->] (0,0) -- (-2,-2);
+        \draw[->] (0,0) -- node[above]{$-\ve x'$} (-2,-1.6);
+        \draw[->] (-2, -1.6) -- node[left]{$-\dif \ve x'$} (-2,-2);
+    \end{tikzpicture}
+\end{center}
+Explicitly,
+\[ \pi T\br{\dif \ve x'} = T\br{- \dif \ve x'} \pi \implies \pi T\br{\dif \ve x'} \pi^{\dagger} = T\br{- \dif \ve x'} \]
+As an infinitesimal translation,
+\[  \pi \br{\ident - \f{i}{\hbar} \ve p \cdot \dif \ve x'}\pi^{\dagger} = \br{\ident + \f{i}{\hbar} \ve p \cdot \dif \ve x'} \]
+\[  \pi \pi^{\dagger} - \f i \hbar \pi \ve p \pi^\dagger \cdot \dif \ve x' = \ident + \f i \hbar \ve p \cdot \dif \ve x'\]
+\[ \pi \ve p \pi^{\dagger} = \pi^{\dagger} \ve p \pi = - \ve p \]
+Both position $\ve x$ and momentum $\ve p$ operators have odd symmetry under parity. This leads us to see that $\ve L = \ve x \times \ve p$ is even under parity.
+\[ \pi^{\dagger} \ve L \pi = \ve L \]
+As a matrix, we can represent the parity operator as,
+\[ R_{\pi} = \begin{pmatrix}
+    -1 & 0 & 0 \\
+    0 & -1 & 0 \\
+    0 & 0 & -1 \\
+\end{pmatrix}  \]
+$R_{\pi}$ will commute with any rotation matrix $R$.
+\[ \bs{R_{\pi}, R} = 0 \implies \bs{\pi, D\br{R}} = 0 \]
+As an infinitesimal rotation,
+\[ D\br{R} = \ident - \f i \hbar \ve J \cdot \hat n \dif \varphi \]
+We have that,
+\[ \pi^{\dagger} \br{\ident - \f i \hbar \ve J \cdot \hat n \dif \varphi} \pi = \ident - \f i \hbar \ve J \cdot \hat n \dif \varphi \]
+\[ \pi^\dagger \ve J \pi = \ve J \]
+$\ve J$ is even under parity. We say that $\ve x$ and $\ve p$ are polar vectors ad $\ve J$ is an axial vector. Scalar operators that change sign under parity are called \term{pseudoscalars}.
+\begin{align*}
+    \text{Scalar:} \quad \pi^\dagger \ve p \cdot \ve x \pi &= \ve p \cdot \ve x \\
+    \text{Pseudoscalar:} \quad \pi^\dagger \ve J \cdot \ve x \pi &= -\ve J \cdot \ve x \\
+\end{align*}
+
+How does parity affect the wave function $\psi\br{\ve x'}= \braket{\ve x'}{\psi}$?
+\[ \bra{\ve x'} \pi \ket{\psi} = \bra{\psi} \pi^\dagger \ket{\ve x'}^* = \bra{\psi} \pi \ket{\ve x'}^* = \braket{\psi}{-\ve x'}^* = \braket{-\ve x'}{\psi} = \psi\br{- \ve x'} \]
+Now consider that $\ket{\psi}$ is a eigenket of $\pi$ ($\pi \ket{\psi} = \pm \ket{\psi}$).
+\[ \bra{\ve x'} \pi \ket{\psi} = \psi\br{- \ve x'} = \pm \bra{\ve x'}{\psi} = \pm \psi\br{\ve x'} \]
+Therefore the wavefunction of a parity eigenstate is either an even function or an odd function. For example, an eigenstate of $\ve p$ can never be a parity eigenstate because $\pi$ and $\ve p$ do not commute,
+\[ \pi^\dagger \ve p \pi = - \ve p \implies \bs{\pi, \ve p} \neq 0 \]
+In contrast, the angular momentum operator does commute with $\pi$,
+\[ \pi^\dagger \ve L \pi = \ve L \implies \bs{\pi, \ve L} = 0\]
+Therefore the eigenstates of $\ve L$ are simultaneously eigenstates of $\pi$ and thus have definite parity. \\
+
+How do the Spherical Harmonics transform under parity?
+\begin{align*}
+    \ve L^2 Y_{\ell}^m \br{\te, \varphi} &= \hbar^2 \ell \br{\ell + 1}Y_{\ell}^m \br{\te, \varphi} \\
+    L_z Y_{\ell}^m \br{\te, \varphi} &= \hbar m Y_{\ell}^m \br{\te, \varphi}
+\end{align*}
+It should be clear that under parity, $\te \mapsto \pi - \te$ and $\varphi \mapsto \varphi + \pi$. A property of the Legendre Polynomials gives the following relationship,
+\[ Y_{\ell}^m \br{\pi - \te, \varphi + \pi} = \br{-1}^{\ell} Y_{\ell}^m \br{\te, \varphi} \]
+Therefore,
+\[ \pi\ket{\ell, m} = \br{-1}^{\ell} \ket{\ell, m} \]
+States with even integer angular momentum $\ell$ are parity even while states with odd integer $\ell$ are always parity odd. \\
+
+Let us assume that $H$ commutes with $\pi$ ($\bs{H, \pi} = 0$). For example,
+\[ H = \f{\ve p^2}{2m} + V\br{\ve x} \]
+If $\pi^\dagger V\br{\ve x} \pi = V\br{\ve x}$ then we have $\pi^\dagger H \pi = H$. Next consider an eigenket of this Hamiltonian,
+\[ H \ket{n} = E_n \ket{n} \]
+Further condition $\ket{n}$ to be non-degenerate. We will now show that $\ket{n}$ is also a parity eigenstate (i.e. either parity even or parity odd). Consider the state $\f{1}{2}\br{\ident \pm \pi} \ket{n}$ and the action of $\pi$ on it,
+\[ \pi \f{1}{2}\br{\ident \pm \pi} \ket{n} = \f{1}{2}\br{\pi \pm \ident} \ket{n} = \pm\f{1}{2}\br{\ident \pm \pi} \ket{n} \]
+Therefore $\f{1}{2}\br{\ident \pm \pi} \ket{n}$ is an eigenstate of $\pi$. Now examine the action of $H$ on this special state. Since $H$ commutes with $\pi$,
+\[ H\f{1}{2}\br{\ident \pm \pi} \ket{n} = \f{1}{2}\br{\ident \pm \pi} H\ket{n} = E_n\f{1}{2}\br{\ident \pm \pi} \ket{n} \]
+Therefore $\f{1}{2}\br{\ident \pm \pi} \ket{n}$ is an eigenstate of $H$ with eigenvalue $E_n$. Since the eigenstates of $H$ are assumed non-degenerate,
+\[ \f{1}{2}\br{\ident \pm \pi} \ket{n} = \ket{n} \implies \pi \ket{n} = \pm \ket{n} \]
+As an example, suppose we have the following system.
+
+\begin{center}
+    \begin{tikzpicture}
+        \pgfmathsetmacro{\side}{1};
+        \draw[] (0,0) -- (0, 2*\side) -- (2*\side, 2*\side) -- (2*\side, 0) -- cycle;
+        \draw[] (\side,0) -- (\side, 2*\side);
+        \draw (\side/2, \side) node[]{$L$};
+        \draw (3*\side/2, \side) node[]{$R$};
+    \end{tikzpicture}
+\end{center}
+Where $\ket{L}$ indicates that the particle is on the left half and $\ket{R}$ indicates that the particle is on the right half. The tunneling Hamiltonian becomes,
+\[ H = - \De \br{\ket{L} \bra{R} + \ket{R}\bra{L}} \]
 \end{document}
