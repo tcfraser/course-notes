@@ -669,4 +669,67 @@ We clump baryons and photons together because they are constantly interacting in
 Adding the cosmological contributions $\Om_{\La} = 0.7$ predicts,
 \[ \Om\tsb{tot} = 1.00 \pm 0.01 \]
 
+Another possibility to explain dark matter is not to consider dark matter as actual matter at all. Although we will not discuss these in this course, but they typically involve modifications to Einstein's general theory of relativity (or in some cases Newton's gravity).
+
+\section{Cosmic Microwave Background (CMB)}
+The cosmic microwave background represents our best evidence of big bang cosmology to date. Today we understand Hubble's law as a consequence of the cosmological principle. In the past, cosmology hit a fork in interpretation. The homogeneity of space in the universe and Einstein's special relativity (placing space and time on equal footing) should suggest that time is also homogeneous. The desire to make cosmology and special relativity compatible naturally led to the idea of a \term{steady-state cosmology} (Bondi, Gold, \& Hoyle) however the steady-state cosmology ran into problems of energy conservation. The competing theory at a similar time was \term{big bang cosmology} (Gamow \& others). One of the predictions of big bang cosmologists was big bang nucleosynthesis which agrees with measurements on the current baryon densities of the universe. More convincingly, big bang cosmology predicted left-over radiation from the early universe and was discovered by Penzias \& Wilson to be a perfect blackbody with temperature $T = \SI{2.725\pm0.001}{\K}$. The radiation energy density is then,
+\[ \ep_{\ga} = \al T\tsb{CMB}^4 = \SI{4.17e-19}{\J\per\m^3} \]
+And thus,
+\[ \Om_{\ga} = \f{\ep_\ga}{\rho_c c^2} = \SI{5.04e-5}{} \]
+Recall that the density of fluids in the universe scale with $a$ as,
+\[ \rho_{\ga} \propto \f{1}{a^4} \quad \rho_{m} \propto \f{1}{a^3} \quad\rho_{\Ga} \propto 1 \quad\rho_{k} \propto \f{1}{a^2} \]
+Which means that in the early universe when $a$ was smallest, radiation was dominant. The redshift at which matter and radiation were on equal scales is current $z\tsb{eq} \approx 3400$. For a black body,
+\[ \ep\br{f} \dif f \propto \f{f \dif f}{e^{hf /k T} - 1} \]
+But $f \propto a^{-1} = 1 + z$ and $T \propto a^{-1}$ and thus $\ep\br{f} \propto a^{-4}$. Therefore we know that the blackbody spectrum for radiation is \textit{not} affected by cosmic redshift. This is a very special property of radiation which enables us to know that the CMB was a blackbody in the early universe because it is a blackbody today.\\
+
+We can also look at the CMB using number densities of photons. The number density of photons is,
+\[ n_\ga = \f{\ep_\ga}{3 k T} \approx \SI{3e8}{\m^{-3}} \]
+And the number density of baryons,
+\[ n_B = \f{\Om_B \rho_c}{m_B} \approx \SI{0.26}{\m^{-3}} \]
+Therefore there are nearly 2 billion more photons than baryons.
+\[ \f{n_\ga}{n_B} \approx \SI{1.7e9}{} \]
+To contrast, there are roughly $\SI{1e31}{}$ particles of matter in a single cubic meter. Although there are many more photons, the majority of energy is in baryons. \\
+
+\subsection{Formation of the CMB}
+
+To figure out how the CMB formed we need to think a little bit about the hydrogen atom. Most of the material we see in the universe today is neutral and in the form of atoms or molecules. At high enough temperatures, this neutral atoms would have been ionized. From quantum mechanics, we know that if the temperature scale is larger that $k T > \SI{13.6}{\eV}$ then the electron of the neutral atom will escape. From the previous section we know that the energy of photons in the universe behaves like,
+\[ E_\ga = 3 k T = \f{\SI{7e-4}{\eV}}{a} \]
+Which means that $E_\ga = \SI{13.6}{\eV}$ at a scale $a^{-1} = 1+ z = \SI{2e4}{}$. The cross section of a photon is the Thomson cross-section $\si_T = \SI{6.65e-29}{m^2}$ which means the mean-free path for photons is,
+\[ \la_\ga = \f{1}{n_e \si_T} \]
+From this, we can conclude that the Hubble distance scale for a photon $d_H = \f{c}{H}$ scales as $t$ while the mean free path scales as $t^2$. We have that $\la_\ga \ll d_H$ which means that at the photons scatter many times over the cosmic time scales which means that the universe would be opaque. \\
+
+At low temperatures electrons and protons have low enough energies to form bound atoms. As it turns out, this does not occur at exactly the moment when $E_\ga = \SI{13.6}{\eV}$. Nonetheless when hydrogen atoms are formed at low enough temperatures, the approximate cross section for photons drops because only photons of very specific frequencies can be absorbed by electrons,
+\[ \si_R = \si_T \br{\f{E}{\SI{10}{\eV}}}^{4} \]
+Which is known as the Rayleigh cross section. When the temperature decreases below the characteristic energy $\SI{10}{\eV}$ photons become approximately transparent and can travel freely. However, interactions between photons and matter are more complicated. Recombination refers to the time when $\f{n_p}{n_H} = \f{n_e}{n_H} < 0.1$ when all of the free particles combine to form atoms. There is also the decoupling process,
+\[ \dif t = \f{H \dif t}{H} = \f{\dif h a}{H} = \f{\dif a}{\br{1 + z} H\br{z}} \]
+\[ 1 = \int_0^z n_e\br{z} \si_T \br{z} c \dif t = \int_0^z n_\ga\br{z} \si_T \br{z} c \f{\dif a}{\br{1 + z} H\br{z}} \]
+This is the time in which the scattering of photons off electrons roughly ceases.
+\[ \f{n_\ga}{n_b}e^{-\f{\SI{13.6}{\eV}}{kT}} \sim 1 \implies kT = \f{\SI{13.6}{\eV}}{\rho_m \underbrace{\br{n_\ga / n_B}}_{\SI{1e9}{}}} \sim \SI{0.65}{\eV} = k \cdot \SI{7400}{\K} \]
+This is very approximate, order of magnitude guess at this temperature. More accurately we can compute,
+\[ T\tsb{rec} \simeq \SI{3600}{\K} \quad T\tsb{dec} \simeq \SI{3000}{\K} \]
+\[ z\tsb{dec} \approx \SI{1100}{\K} \quad r\tsb{dec} \approx \SI{14}{\giga\pc} \quad t\tsb{dec} \approx \SI{3.5e5}{\yr} \]
+These better estimates come from the \term{Saha Equation}. In thermal equilibrium, the following process is in complete equilibrium,
+\begin{center}
+    \begin{tikzpicture}
+        \draw (-1, 1) node[](e){$e^{-}$};
+        \draw (-1, -1) node[](p){$p^{+}$};
+        \draw (1, -1) node[](H){$H$};
+        \draw (1, 1) node[](ga){$\ga$};
+        \draw (0, 0) node[](o){};
+        \draw[<->] (e) -- (o);
+        \draw[<->] (p) -- (o);
+        \draw[<->] (ga) -- (o);
+        \draw[<->] (H) -- (o);
+    \end{tikzpicture}
+\end{center}
+
+\[ N_e = N_p \]
+\[ \f{N_e + N_p}{2} + N_H = \text{const.}  \]
+\[ \mu_e + \mu_p = \mu_H = \SI{13.6}{\eV} \]
+\[ X \defined \f{n_e}{n_B} = \f{n_p}{n_B} \]
+\[ \br{1 - X}n_B = n_H \]
+Therefore,
+\[ \f{1 - X}{X^2} = 3.8 \f{n_B}{n_\ga}\br{\f{kT}{m_B c^2}}^{3/2}  e^{\f{\SI{13.6}{\eV}}{kT}} \]
+Setting $X = 0.1$ and solving this equation numerical gives $T \simeq \SI{3600}{\K}$
+
 \end{document}
