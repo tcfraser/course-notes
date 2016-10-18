@@ -667,8 +667,9 @@ If $\al_0 = \pi$ then we know immediately that,
 \newcommand{\comm}{\leftrightarrow}
 \newcommand{\acc}[2]{#1 \to #2}
 
-State $j$ is \term{accessible} from state $i$ (denoted $\acc{i}{j}$) if there exists $n = 0, 1, \ldots$ such that $P^{(n)}_{ij} > 0$. Intuitively, one can transition from state $i$ to state $j$ in finite steps $n$ with positive probability. If $i$ is also accessible from $j$, then we say $i$ and $j$ \term{communicate}, denoted as ${i}\comm{j}$.
-\[ {i}\comm{j} \Leftrightarrow \exists m, n \geq 0, P_{ij}^{(m)} > 0, P_{ji}^{(n)} > 0 \]
+Let $\bc{X_n}_{n=0,1,\ldots}$ be a DTMC with state space $S$. State $j$ is \term{accessible} from state $i$ (denoted $\acc{i}{j}$) if there exists $n = 0, 1, \ldots$ such that $P^{(n)}_{ij} > 0$. Intuitively, one can transition from state $i$ to state $j$ in finite steps $n$ with positive probability. If $i$ is also accessible from $j$, then we say $i$ and $j$ \term{communicate}, denoted as ${i}\comm{j}$.
+\[ {i}\comm{j} \iff \exists m, n \geq 0, P_{ij}^{(m)} > 0, P_{ji}^{(n)} > 0 \]
+The relation ``$\comm$'' either holds or does not hold for every state $i \in S$.
 \begin{theorem}
 The binary communication relation ``${}{\comm}$'' is in fact a equivalence relation:
 \begin{itemize}
@@ -682,7 +683,7 @@ First, reflexivity is easy to prove by definition. Let $n = 0$ and recognize tha
 \[ P^{(0)}_{ii} = 1 \implies {i}\comm{i} \]
 Second, symmetry follows by definition,
 \[ P_{ij}^{(m)} > 0, P_{ji}^{(n)} > 0 \Leftrightarrow P_{ji}^{(n)} > 0, P_{ij}^{(m)} > 0 \]
-Third, transitivity can be proving by letting $m$ and $n$ be the unknown quantifiers:
+Third, transitivity can be proven by letting $m$ and $n$ be the unknown quantifiers:
 \[ \exists m \quad P_{ij}^{(m)} > 0, \exists n \quad P_{jk}^{(n)} > 0 \]
 Then by the CK equation \cref{eq:ck_equation},
 \[ P^{(m+n)}_{ik} = \sum_{l \in S} P^{(m)}_{il}P^{(n)}_{lk} \]
@@ -690,7 +691,7 @@ Let $l = j$ be a single, fixed entry in the summation,
 \[ P^{(m+n)}_{ik} \geq P^{(m)}_{ij}P^{(n)}_{jk} > 0 \]
 Therefore we have that $k$ is accessible from $i$ ($\acc{i}{j}$). Analogously we have that $\acc{i}{j}$ therefore ${i}\comm{k}$. \\
 \end{proof}
-The communication equivalence relations then divides the state space $S$ into different equivalence classes. That is, the states in one class comm with each other; the states in different classes do not comm. The equivalent classes form a \textit{partition} of the state space $S$. \\
+The communication equivalence relations then divides the state space $S$ into different \term{equivalence classes}. That is, the states in one class comm with each other; the states in different classes do not comm. The equivalent classes form a \textit{partition} of the state space $S$. \\
 
 The family $\bc{S_1, S_2, \ldots S_n}$ is a \term{partition} of $S$ if,
 \begin{enumerate}
@@ -744,6 +745,89 @@ The associated one-step accessibility graph is then,
 
 Where the loops of $S = \bc{0,1,2,3,4}$ form the following partition,
 \[ S_1 = \bc{0,1} \quad S_2 = \bc{2} \quad S_3 = \bc{3, 4} \]
+\end{example}
+
+\begin{example}
+
+As another example, consider the transition matrix $P$.
+
+\[ P = \kbordermatrix{
+    & 0 & 1 & 2 & 3 \\
+    0& 0.5 & 0.5 & 0 & 0 \\
+    1& 0.5 & 0.5 & 0 & 0 \\
+    2& 0.25 & 0.25 & 0.25 & 0.25 \\
+    3& 0 & 0 & 0 & 1
+ } \]
+
+The associated one-step accessibility graph is then,
+\begin{center}
+\begin{tikzpicture}
+    \begin{scope}
+        \tikzstyle{every node}=[fill=white, draw=black, circle, thick, text=black, scale=1.0]
+        \node (0) at (0,0) {$0$};
+        \node (1) at (2,0) {$1$};
+        \node (2) at (0,-2) {$2$};
+        \node (3) at (2,-2) {$3$};
+    \end{scope}
+    \begin{scope}
+        \tikzstyle{every edge}=[draw, thick, ->]
+        \path
+        (0) edge[loop above] (0)
+        (1) edge[loop above] (1)
+        (2) edge[loop below] (2)
+        (3) edge[loop below] (3)
+        (2) edge[bend left] (0)
+        (2) edge[] (3)
+        (2) edge[] (1)
+        (0) edge[bend left] (1)
+        (1) edge[bend left] (0)
+        ;
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+While the loops of $S = \bc{0,1,2,3}$ form the following partition,
+\[ S_1 = \bc{0,1}\quad S_2 = \bc{2} \quad S_3 = \bc{3} \]
+\end{example}
+
+\begin{example}
+
+As another example, consider the transition matrix $P$.
+
+\[ P = \kbordermatrix{
+    & 0 & 1 & 2 & 3 \\
+    0& 0.5 & 0.5 & 0 & 0 \\
+    1& 0.5 & 0 & 0.5 & 0 \\
+    2& 0.5 & 0 & 0 & 0.5 \\
+    3& 0 & 0  & 0.5 & 0.5
+ } \]
+
+The associated one-step accessibility graph is then,
+\begin{center}
+\begin{tikzpicture}
+    \begin{scope}
+        \tikzstyle{every node}=[fill=white, draw=black, circle, thick, text=black, scale=1.0]
+        \node (0) at (0,0) {$0$};
+        \node (1) at (2,0) {$1$};
+        \node (2) at (0,-2) {$2$};
+        \node (3) at (2,-2) {$3$};
+    \end{scope}
+    \begin{scope}
+        \tikzstyle{every edge}=[draw, thick, ->]
+        \path
+        (0) edge[loop above] (0)
+        (3) edge[loop below] (3)
+        (2) edge[bend left] (0)
+        (2) edge[bend left] (3)
+        (3) edge[bend left] (2)
+        (2) edge[] (1)
+        (0) edge[bend left] (1)
+        (1) edge[bend left] (0)
+        ;
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+This contrasts with the previous example because $P_{01}, P_{12}, P_{20} > 0$ implies that $0,1,2$ are in the same class and $P_{23}, P_{32} > 0$ implies that $2,3$ are in the same class. By transitivity $0,1,2,3$ are all in the same class.
+\[ S_1 = \bc{0,1,2,3} \]
 \end{example}
 
 These equivalent classes are useful for Markov chains because it allows one to separate the behaviour of the equivalence classes and study them individually. A MC which has only one equivalent class is called \term{irreducible}. \\
@@ -1023,23 +1107,34 @@ Therefore,
 Thus $i$ is recurrent if and only if $\sum_{n=1}^{\inf}P_{ii}^{(n)} = \inf$ and $i$ is transient if and only if $\sum_{n=1}^{\inf}P_{ii}^{(n)} < \inf$.\\
 
 \begin{theorem}
-Recurrence/transience are class properties. If $i \comm j$ and $i$ is recurrent, then $j$ is recurrent.
+Recurrence/transience are class properties. If $i \comm j$ and $i$ is recurrent (transient), then $j$ is recurrent (transient).
 \end{theorem}
 \begin{proof}
-    Since $i \comm j$, $\exists m,n \geq 0$ such that,
+    Since $i \comm j$, there must be times $\exists m,n \geq 0$ that permit $i$ to access $j$ and $j$ to access $i$,
     \[ P_{ij}^{(m)} > 0 \qquad P_{ji}^{(n)} > 0 \]
-    We now what to show that $\sum_{s=1}^{\inf}P_{jj}^{(s)}$ is infinite,
+    Suppose that $i$ is recurrent, then $\sum_{l=1}^{\inf}P_{ii}^{(l)} = \inf$. We now what to show that $\sum_{s=1}^{\inf}P_{jj}^{(s)}$ is infinite as well. Since $m,n \geq 0$ we can drop positive terms to get,
     \[ \sum_{s=1}^{\inf}P_{jj}^{(s)} \geq \sum_{s=n+m+1}^{\inf}P_{jj}^{(s)} \]
-    Now exchange of variables $l = s- n-m$,
+    Now exchange the variables of summation by letting $l = s- n-m$,
     \[ \sum_{s=1}^{\inf}P_{jj}^{(s)} \geq \sum_{l=1}^{\inf}P_{jj}^{(n+l+m)} \]
-    Then by the \cref{eq:ck_equation},
+    Then by the C-K equation (\cref{eq:ck_equation}) a example path from $j$ to $j$ is to transition $j \to i \to i \to j$ in steps $m, l, n$ respectively,
     \[ \sum_{l=1}^{\inf}P_{jj}^{(n+l+m)} \geq  \sum_{l=1}^{\inf}P_{ji}^{(n)}P_{ii}^{(l)}P_{ij}^{(m)} = P_{ji}^{(n)}P_{ij}^{(m)}\bc{\sum_{l=1}^{\inf}P_{ii}^{(l)}} \]
     But since $i$ is recurrent, $\sum_{l=1}^{\inf}P_{ii}^{(l)} = \inf$. Also, $P_{ji}^{(n)}P_{ij}^{(m)} > 0$ by the choice of $m,n$. Therefore $\sum_{l=1}^{\inf}P_{jj}^{(n+l+m)} = \inf$ and thus $\sum_{s=1}^{\inf}P_{jj}^{(s)} = \inf$. Therefore $j$ is also recurrent.
 \end{proof}
 \begin{corollary}
     If $i \comm j$ and $i$ is transient, then $j$ is transient.
 \end{corollary}
-As a result, if we know that if a MC is irreducible (admitting only one class), then either all states are transient or they are all recurrent. Also, it is \textit{impossible} for all states to be transient if the state space $S$ is finite. If all states are transient then each state $i \in S$ has a time $k$ that is the \textit{last} visit time for all states, this is impossible because $P_{ij} \neq 0$ for at least some choice $i,j \in S$.
+As a result, if we know that if a MC is irreducible (admitting only one class), then either all states are transient or they are all recurrent. In such cases we can say that the MC itself is recurrent/transient.
+
+\begin{theorem}
+    If an irreducible MC has a finite state space, then it is recurrent.
+\end{theorem}
+
+To see why this is true, if all states are transient then each state $i \in S$ has a time $k$ that is the \textit{last} visit time for all states, this is impossible because $P_{ij} \neq 0$ for at least some choice $i,j \in S$.
+
+\begin{remark}
+    We can actually show that the MC must be positive recurrent if the state space is finite and the MC is irreducible.
+\end{remark}
+
 \begin{theorem}
     If $i$ is recurrent, and $i$ does not communicate with $j$, then $P_{ij} = 0$.
 \end{theorem}
@@ -1050,4 +1145,17 @@ As a result, if we know that if a MC is irreducible (admitting only one class), 
     \[ P\br{X_1 = j \mid X_0 = i} = P_{ij} \leq P\br{\text{MC never revisits $i$} \mid X_0 = i} \]
     But if $f_{ii} < 1$, then $i$ is not recurrent; it is transient. Therefore the assumption that $P_{ij} > 0$ is wrong; $P_{ij} = 0$.
 \end{proof}
+
+\subsection{Limiting Distribution}
+
+In this section we are interested in the \term{limiting transition probability} and the \term{limiting distribution} of a MC.
+\[ \lim_{n \to \inf} P^{(n)}_{ij} \qquad \lim_{n \to \inf} P{X_n = j} \]
+To keep things simple, we assume that the process $\bc{X_n}_{n=0,1,2,\dots}$ is irreducible.
+
+\begin{theorem}
+    \term{Basic Limit Theorem:} Let $\bc{X_n}_{n=0,1,\ldots}$ be an irreducible, aperiodic and positive recurrent DTMC, then a stationary distribution $\pi = \bc{\pi_0, \pi_1, \ldots}$ exists. Moreover we have,
+    \[ \lim_{n \to \inf} P^{(n)}_{ij} = \lim_{n \to \inf} \f{\sum_{k=1}^{n} \ident_{\bc{X_k - j}}}{n} = \f{1}{\Exp\br{T_j \mid X_0 = j}} = \pi_j \qquad \forall i,j \in S \]
+    Where $T_j = \min\bc{n > 0, X_n = j}$. In words, the limiting distribution is equal to the long-run fraction of time spent in $j$ is equal to the stationary distribution. Note that this does not depend on the starting state $i$.
+\end{theorem}
+
 \end{document}
