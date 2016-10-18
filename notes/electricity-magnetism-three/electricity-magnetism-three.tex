@@ -333,14 +333,25 @@ Therefore we have that,
 \[ E = pc \]
 Therefore knowing the energy density of the field gives you then momentum density of the field. The momentum density will be denoted $\ve g$.
 \[ \ve g = \f{1}{c^2} \ve S = \mu_0 \ep_0 \ve S = \f{1}{4 \pi c} \ve E \times \ve B \]
-The force per unit volume $\ve f = \De \ve F / \De \tau$ acting on a particle is given by the Lorentz force.
+Let $\ve f = \De \ve F / \De \tau$ be the force per \textit{unit volume} acting on a particle. The Lorentz force determines the $\ve f$.
 \[ \ve f = \rho \ve E + \ve J \times \ve B\]
-Which when expanded out is,
+We can eliminate the dependence on the source terms $\rho$ and $\ve J$ by invoking Maxwell's equations,
 \[ \ve f = \ep_0 \br{\vdel \cdot \ve E} \ve E + \br{\f{1}{\mu_0} \vdel \times \ve B - \ep_0 \pder{\ve E}{t}} \times \ve B \]
-\todo[TC]{Inject hand out}
-Which after some algebra yields,
-\[ \ve f = \ep_0 \br{\br{\vdel \cdot \ve E} \ve E + \br{\ve E \cdot \vdel} \ve E} + \f{1}{\mu_0} \br{\br{\vdel \cdot \ve B} \ve B + \br{\ve B \cdot \vdel} \ve B} - \vdel \br{\f{\ep_0}{2} E^2 + \f{1}{2 \mu_0} B^2} - \mu_0 \ep_0 \pder{\ve S}{t} \eq \label{eq:messy}\]
-We now introduce \term{Maxwell's stress energy tensor} $T$ with components,
+By product rule,
+\[ \pder{}{t}\br{\ve E \times \ve B} = \ve E \times \pder{\ve B}{t} + \pder{\ve E}{t} \times \ve B \]
+Invoke Maxwell's equation again $\vdel \times \ve E = - \pder{\ve B}{t}$,
+\[ \pder{}{t}\br{\ve E \times \ve B} = -\ve E \times \br{\vdel \times \ve E} + \pder{\ve E}{t} \times \ve B \]
+Therefore,
+\begin{align*}
+\ve f
+&= \ep_0 \br{\vdel \cdot \ve E} \ve E + \f{1}{\mu_0} \br{\vdel \times \ve B} \times \ve B - \ep_0 \pder{\ve E}{t}\times\ve B  \\
+&= \ep_0 \br{\vdel \cdot \ve E} \ve E + \f{1}{\mu_0} \br{\vdel \times \ve B} \times \ve B - \ep_0 \pder{}{t}\br{\ve E \times \ve B} - \ep_0\ve E \times \br{\vdel \times \ve E}
+\end{align*}
+Recognize the Poynting vector $\mu_0 \ve S = \ve E \times \ve B$. We will also make use of the product rule for the gradient,
+\[ \vdel E^2 = 2 \br{\ve E \cdot \vdel} \ve E + 2 \ve E \times \br{\vdel \times \ve E} \]
+After some algebra we arrive at,
+\[ \ve f = \ep_0 \bs{\br{\vdel \cdot \ve E} \ve E + \br{\ve E \cdot \vdel} \ve E} + \f{1}{\mu_0} \bs{\br{\vdel \cdot \ve B} \ve B + \br{\ve B \cdot \vdel} \ve B} - \vdel \br{\f{\ep_0}{2} E^2 + \f{1}{2 \mu_0} B^2} - \mu_0 \ep_0 \pder{\ve S}{t} \eq \label{eq:messy}\]
+We now introduce \term{Maxwell's stress-energy tensor} $T$ with components,
 \[ T_{ij} = \ep_0 \br{E_i E_j - \f{1}{2} \de_{ij} E^2} + \f{1}{\mu_0} \br{B_i B_j - \f{1}{2} \de_{ij} B^2} \eq \label{eq:components_of_MST}\]
 Where $\ve E = \sum_{i} E_i \hat{e}_i$ and $\ve B = \sum_{i} B_i \hat{e}_i$. We now have that \cref{eq:messy} gives,
 \[ \ve f = \vdel \cdot T - \ep_0 \mu_0 \pder{\ve S}{t} \]
