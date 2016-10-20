@@ -802,4 +802,43 @@ Which has solution $\ti k = k + i \kappa$ where,
 Notice that $\f{\si}{\ep \w}$ is dimensionless. Note that $k \neq \abs{\ti k}$
 \todo[TC]{Missed a lecture}
 
+\textbf{A6.1:} \textbf{a)} We have that,
+\[ \ve E_I \br{\ve r, t} = \ve E_{I_0} e ^{i \br{\ve k_I \cdot \ve r - \w t}} \]
+Where $\ve E_{I_0} = E_0 \hat e_1$ and $\ve k_{\mp} = k \hat e_2$ and the $\hat e_i$ are unit vectors. What are the $\hat e_1$ and $\ve e_2$.
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw (-3, 0) -- (3, 0);
+        \coordinate (o) at (0, 0);
+        \coordinate (I) at (-1, 2);
+        \coordinate (R) at (1, 2);
+        \begin{scope}[decoration={markings, mark=at position 0.5 with {\arrow{>}}}]
+            \draw[thick, postaction={decorate}] (I) -- node[left]{$\ve k_I$} (o);
+            \draw[thick, postaction={decorate}] (o) -- node[right]{$\ve k_R$} (R);
+        \end{scope}
+        \draw[->] (I) -- ($(I) + (0.5, 0.25)$) node[above]{$\ve E_I$};
+        \draw[->] (R) -- ($(R) + (-0.5, 0.25)$) node[above]{$\ve E_R$};
+        \draw[dashed] (o) -- ($(o) + (0, 3)$);
+        \draw ($(o) + (-0.2, 1)$) node[]{$\te$};
+        \draw (2, 0) node[above]{vacuum};
+        \draw (2, 0) node[below]{conductor};
+    \end{tikzpicture}
+\end{center}
+
+\textbf{b)} For the reflected ray,
+\[ \ve E_R \br{\ve r, t} = \ve E_{R_0} e^{i \br{\ve k_R \cdot \ve r - \w t}} \]
+where $\ve E_{R_0} = E_0 \hat e_3$ and $\ve k_R = k \hat e_4$. What are the the $\hat e_i$?\\
+\textbf{c)} What are the $\ve E$ and $\ve B$ boundary conditions and where do they come from? Make pill boxes on the interface. \\
+\textbf{d)} What is $\ve E \mid_{z = 0}$ in terms of $E_0, k, \te, x, y, t$ and $\hat x, \hat y, \hat z$. Hint: we know that it is parallel to the plane of incidence by construction for really there is no need to consider $\hat x, \hat y$ directions. Since $\ve k_R \cdot \ve r = k \hat e_4 \cdot \ve r = kx \hat e_4 \cdot \hat x = kx \sin \te$
+\[ \ve E \mid_{z= 0} = 2 E_0 \hat z \sin \te \cos \br{kx\sin\te - \w t} \]
+\textbf{e)} What is $\si = ?$ \\
+\textbf{f)} Recall that $\ve B = \f{\ve k}{\w} \times \ve E = \f{\hat k}{c} \times \ve E$ and then find $\ve B_I \br{\ve r, t}$? \\
+\textbf{g)} The reflected $\ve B_R\br{\ve r, t}$ can be calculated as well. \\
+\textbf{h)} What are the $\ve B$ boundary conditions at the inteface? \\
+\textbf{i)} What is $\ve B \mid_{z = 0}$? \\
+\textbf{j)} We have that $\mu_0 \ve K = \ve B \times \hat n$ which means that $\ve K$ is in the $\hat x$ direction. \\
+\textbf{k)} What is the velocity $\ve v$ of the charge at the surface? Does this make sense?
+
+
+
 \end{document}
