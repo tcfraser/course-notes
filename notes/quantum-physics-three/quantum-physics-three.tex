@@ -12,6 +12,22 @@
 \set{Term}{Fall 2016}
 \set{Version}{1.0}
 
+\pgfplotsset{
+    standardplot/.style={
+        axis x line=middle,
+        axis y line=middle,
+        enlarge x limits=0.05,
+        enlarge y limits=0.05,
+        every axis x label/.style={at={(current axis.right of origin)},anchor=north east},
+        every axis y label/.style={at={(current axis.above origin)},anchor=north east},
+        ytick=\empty,
+        xtick=\empty,
+        width=3in,
+        height=2.5in,
+        axis line style=thick,
+    }
+}
+
 \draftprofile[TC Fraser]{TC}{Purple}
 
 \newcommand{\hilb}{\mathcal{H}}
@@ -1300,6 +1316,7 @@ As a foundational example, consider a 1D periodic potential.
         \draw[scale=0.5,domain=-3*pi:3*pi,smooth, variable=\x,blue] plot ({\x},{sin(deg(6*\x))});
         \draw[<->] (-3 + 0.25, -0.8) -- node[below]{$a$} (-3+ 0.25 + pi/2, -0.8);
         \draw[] (1.97, -0.8-0.05) node[below]{$n$-th minimum} -- (1.97, -0.8+0.5);
+        \draw[blue] (-2, +0.8+0.05) node[]{$V\br{x}$};
     \end{tikzpicture}
 \end{center}
 
@@ -1309,7 +1326,7 @@ We also have that $T^{\dagger}\br{a} \f{\ve p^2}{2m} T\br{a}$ so that $T\br{a} H
 \[ \bs{H, T\br{a}} = 0 \]
 We can find eigenstates of $H$ which are also eigenstate of $T\br{a}$. We will look at the limit of infinite barrier height; the particle has to be stuck in any of the minimal of the potential. Let $\ket n$ be the state in which the particle is in the $n$-th minimum.
 \[ H\ket n = E_0 \ket n \]
-And $T\br{a} \ket n = \ket {n+1}$ which implies that $\ket n$ is not an eigenstate of $T\br{a}$. Instead consider,
+And $T\br{a} \ket n = \ket {n+1}$ which implies that $\ket n$ is not an eigenstate of $T\br{a}$. Instead consider the state $\ket \te$ that is a sum over eigenstates of $H$,
 \[ \ket \te = \sum_{n = -\inf}^{\inf} e^{i n \te} \ket n \]
 Since $\te \mapsto \te + 2 \pi m$, where $m$ is an integer does not change $e^{i n \te}$ (for all $ -\pi \leq \te \leq \pi$). The transition operator acting on $\ket \te$ is,
 \begin{align*}
@@ -1320,15 +1337,72 @@ Since $\te \mapsto \te + 2 \pi m$, where $m$ is an integer does not change $e^{i
     &= e^{-i\te}\sum_{n' = - \inf}^{\inf} e^{i n' \te} \ket {n'} \\
     &= e^{-i\te}\ket \te
 \end{align*}
-Therefore have that $T\br{a} \ket \te = e^{i \te} \ket \te$ is an eigenstate of $T\br{a}$ with eigenstate $e^{i \te}$. By linearity $\ket \te$ is \textit{also} and eigenstate of $H$.\\
+Therefore have that $T\br{a} \ket \te = e^{i \te} \ket \te$ is an eigenstate of $T\br{a}$ with eigenstate $e^{i \te}$. But since $\bs{T\br{a}, H} = 0$ so that $\ket \te$ is \textit{also} and eigenstate of $H$.
+\[ H \ket{\te} = E_{0} \ket {\te} \]
 
-To generalize this analysis assume that the barrier height is finite but large enough so that particles may only tunnel between nearest neighbor minimum. In this case our Hamiltonian will be very similar to the ``left/right'' tunneling amplitude discussed earlier. The matrix elements of $H$ for this system are $\bra{+1} H \ket{n}$. We assign to them the probability $- \De$ to be the probability amplitude for tunneling between nearest neighbor minima. We also assume define that $\ket n$ be an eigenstate $\bra n H \ket n = E_0$. Therefore,
+To generalize this analysis assume that the barrier height is finite but large enough so that particles may only tunnel between nearest neighbor minimum. This is called the \term{tight binding approximation}. In this case our Hamiltonian will be very similar to the ``left/right'' tunneling amplitude discussed earlier. The matrix elements of $H$ for this system are $\bra{+1} H \ket{n}$. We assign to them the probability $- \De$ to be the probability amplitude for tunneling between nearest neighbor minima. We also assume define that $\ket n$ be an eigenstate $\bra n H \ket n = E_0$. Therefore,
 \[H\br{n} = E_0 \ket n - \De \ket {n+1} - \De \ket{n-1} \]
 Which means that $H$ acting on the translation eigenstate $\ket \te  = \sum_n = e^{i n \te} \ket n$ becomes,
 \begin{align*}
 H\ket \te
 &= \sum_{n=-\inf}^{\inf} e^{i n \te} H \ket n \\
 &= \sum_{n=-\inf}^{\inf} e^{i n \te} \br{E_0 \ket n - \De \ket {n+1} - \De \ket{n-1}} \\
-&= \sum_{n=-\inf}^{\inf} e^{i n \te} E_0 \ket n - \sum_{n=-\inf}^{\inf} e^{i n \te} \De \ket {n+1} - \sum_{n=-\inf}^{\inf} e^{i n \te} \De \ket{n-1}
+&= \sum_{n=-\inf}^{\inf} e^{i n \te} E_0 \ket n - \sum_{n=-\inf}^{\inf} e^{i n \te} \De \ket {n+1} - \sum_{n=-\inf}^{\inf} e^{i n \te} \De \ket{n-1} \\
+&= E_0\sum_{n=-\inf}^{\inf} e^{i n \te} \ket n - \De\sum_{n=-\inf}^{\inf} e^{i n \te} \ket {n+1} - \De\sum_{n=-\inf}^{\inf} e^{i n \te} \ket{n-1} \\
+&= E_0\sum_{n=-\inf}^{\inf} e^{i n \te} \ket n - \De\sum_{n=-\inf}^{\inf} e^{i \br{n-1} \te} \ket {n} - \De\sum_{n=-\inf}^{\inf} e^{i \br{n-1} \te} \ket{n} \\
+&= E_0\sum_{n=-\inf}^{\inf} e^{i n \te} \ket n - \De e^{-i \te}\sum_{n=-\inf}^{\inf} e^{i n \te} \ket {n} - e^{i \te}\De\sum_{n=-\inf}^{\inf} e^{i n \te} \ket{n} \\
+&= \br{E_0 - \De e^{-i \te} - e^{i \te}\De}\sum_{n=-\inf}^{\inf} e^{i n \te} \ket{n} \\
+&= \br{E_0 - \De e^{-i \te} - e^{i \te}\De}\ket \te \\
+&= \br{E_0 - 2 \De \cos \te}\ket \te
 \end{align*}
+Therefore $\ket \te$ is an eigenvalue of $H$ with eigenvalue $E\br{\te}$,
+\[ E\br{\te} = E_0 - 2 \De \cos \te \]
+
+\begin{center}
+\begin{tikzpicture}
+    \draw[->] (0,0) -- (0,3) node[above]{$E\br{\te}$};
+    \draw[->] (0,0) -- (3,0) node[right]{$\De$};
+    \draw[thick, blue, fill, fill opacity=0.4] (2.5,1.5) -- (0,2) -- (2.5,2.5);
+    \draw[] (0,2) node[left]{$E_0$};
+    \draw[|<->|] (2.5+0.4,2.5) -- node[right]{$4 \De$} (2.5+0.4,1.5);
+\end{tikzpicture}
+\end{center}
+Notice that when there is no tunneling, $\De = 0$, we recover a single eigen-energy $E_0$. However when tunneling is introduced, the parameter $\te$ allows for a range of eigen-energies between $E_0 \pm 2 \De$. Next consider the wave function $\braket{x'}{\te}$,
+\[ \bra{x'} T\br{a} \ket{\te} = \bra{\te} T^{\dagger}\br{a} \ket{x'}^* = \braket{\te}{x' - a}^* = \braket{x' - a}{\te} \]
+But we also know that $T\br{a} \ket{\te} = e^{-i \te}$. Therefore,
+\[ \braket{x' - a}{\te} = e^{-i\te}\braket{x'}{\te} \]
+The most general solution to this equation is,
+\[ \braket{x'}{\te} = e^{i k x'} u_k \br{x'} \]
+Where $u_k \br{x'}$ is a \term{Bloch wavefunction} with $\te = k a$. Bloch wavefunctions have the property that,
+\[ u_k \br{x'+a} = u_k\br{x'} \]
+When means that,
+\[ e^{ik\br{x' -a}} u_k\br{x'-a} = e^{- i k a} u_k\br{x'} e^{i k x'} \]
+If $\te \in \bs{-\pi, \pi}$ then $k \in \bs{-\f{\pi}{a}, \f{\pi}{2}}$. This interval is called the \term{first Brillouin zone}. We call $\hbar k$ the crystal momentum and its conservation is a consequence of discrete symmetry with respect to translations by $a$, which still remains in the crystal. The energy of a particle in a crystal with wavenumber $k$ is given by,
+\[ E\br{k} = E_0 - 2 \De \cos \br{k a} \]
+\subsection{Time-reversal Symmetry}
+The formalism of quantum time-reversal symmetries is more subtle and complicated than the other symmetries considered thus-far. To introduce time-reversal symmetries, we initially consider the classical case.
+\begin{center}
+    \begin{tikzpicture}
+        \pgfmathsetmacro{\shift}{4};
+        \draw[dashed] plot [smooth, tension=1] coordinates {(0,0) (2, -0.3) (3, -2)};
+        \draw[thick, ->] (2, -0.3) node[above right]{$t = 0$} -- (2+0.5, -0.3-0.4) node[right]{$\ve p$};
+        \draw[dashed] plot [smooth, tension=1] coordinates {(0+\shift,0) (2+\shift, -0.3) (3+\shift, -2)};
+        \draw[thick, ->] (2+\shift, -0.3) node[above right]{$t = 0$} -- (2-0.5+\shift, -0.3+0.3) node[above]{$-\ve p$};
+    \end{tikzpicture}
+\end{center}
+
+We consider a particle moving on a trajectory. Suppose that we have the ability to stop the particle and run time backward. In the absence of friction the particle will simply retrace its trajectory backward.
+\[ m \dder{\ve x}{t} = - \vdel V \br{\ve x} \]
+Under the time-reversal map $t \mapsto -t$, the equations of motion do not change. Both $\ve x\br{t}$ and $\ve x\br{-t}$ are solutions to the equations of motion.
+\[ \ve p = m \der{\ve x}{t} \stackrel{t \mapsto -t}{\implies} \ve p \mapsto - \ve p \]
+An example of the lack of time-reversal symmetry is a charged particle in a magnetic field. Let $\ve B$ face into the board. The Lorentz force is $\ve F = \f{e}{c} \ve v \times \ve B$. When the force in question is $- \vdel V \br{\ve x}$ then $\ve F \mapsto \ve F$. However since $\ve v \mapsto -\ve v$ and $\ve B \mapsto \ve B$, we have that $\ve F \mapsto - \ve F$. \\
+
+In the quantum mechanic case, equations of motion are determined by the Schrödinger equation,
+\[ i \hbar \pder{\psi\br{\ve x, t}}{t} = \bs{-\f{\hbar^2 \del^2}{2m} + V \br{\ve x}} \psi \br{\ve x, t} \eq \label{eq:schro_reg_time}\]
+If $\psi \br{\ve x, t}$ is a solution of the Schrödinger equation, will $\psi \br{\ve x, -t}$ also be a solution? Reversing time,
+\[ -i \hbar \pder{\psi\br{\ve x, -t}}{t} = \bs{-\f{\hbar^2 \del^2}{2m} + V \br{\ve x}} \psi \br{\ve x, -t} \eq \label{eq:schro_rev_time}\]
+\Cref{eq:schro_rev_time} is an \textit{identical} equation to \cref{eq:schro_reg_time} except that the sign of the LHS. Therefore it does not follow that $\psi\br{\ve x, - t}$ is a solution of the time-reversed SE. Instead take the complex conjugate of \cref{eq:schro_rev_time},
+\[ i \hbar \pder{\psi^*\br{\ve x, -t}}{t} = \bs{-\f{\hbar^2 \del^2}{2m} + V \br{\ve x}} \psi^* \br{\ve x, -t} \]
+This is identical to \cref{eq:schro_reg_time}. Therefore we can then say that if $\psi\br{\ve x, t}$ is a solution to \cref{eq:schro_reg_time} then $\psi^*\br{\ve x, t}$ is solution to \cref{eq:schro_reg_time} as well.
+
 \end{document}
