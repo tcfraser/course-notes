@@ -45,7 +45,9 @@
 \subsection{Discrete Spectrum}
 States in quantum mechanics are vectors in Hilbert space $\hilb$. In Dirac notation, states are denoted as \textit{kets} $\ket{\psi}$. Observables in quantum mechanics are operators $A : \hilb \to \hilb$ such that $\ket{\psi} \mapsto A \ket{\psi}$. Every operator $A$ has a set of eigenkets $\bc{\ket{a'}}$,
 \[ A \ket{a'} = a' \ket{a'} \]
-The eigenvalue corresponding to the eigenket $\ket{a'}$ is denoted $a' \in \R$. The dual Hilbert space will be called the bra space and elements of the bra space will be denoted with a ket space $\ket{\varphi}$.\\
+The eigenvalue corresponding to the eigenket $\ket{a'}$ is denoted $a' \in \R$. \\
+
+The dual Hilbert space will be called the bra space and elements of the bra space will be denoted with a bra $\bra{\varphi}$.\\
 
 We will denoted the \textit{inner product} (scalar product) to be $\braket{\varphi}{\psi}$. By definition,
 \[ \braket{\varphi}{\psi} = \braket{\psi}{\varphi}^{*} \]
@@ -76,7 +78,7 @@ Conjugating each term,
 Since \cref{eq:review_gen_varphi} is true for an arbitrary $\bra{\varphi}$, it must be that
 \[ \bra{a''}A = a''^{*} \bra{a''} \eq \label{eq:review_gen_varphi_dropped} \]
 Combining \cref{eq:review_gen_varphi_dropped,eq:review_eig1}, and recognizing that $A$ is Hermitian,
-\[ \underbrace{\bramidket{a''}{A}{a'} - \bramidket{a''}{A^\dagger}{a'}}_{0} = a' \braket{a''}{a'} = a''^{*} \braket{a''}{a'} \]
+\[ \underbrace{\bramidket{a''}{A}{a'} - \bramidket{a''}{A^\dagger}{a'}}_{0} = a' \braket{a''}{a'} - a''^{*} \braket{a''}{a'} \]
 Therefore,
 \[ \br{a' - a''^{*}}\braket{a''}{a'} = 0 \eq \label{eq:review_aa}\]
 As an example, we can chose $\ket{a''} = \ket{a'}$ to see that
@@ -123,7 +125,7 @@ The wave function $\psi\br{\vx'}$ is the probability amplitude to find a particl
 \[ \braket{\vx'}{\psi} = \psi\br{\vx'} \]
 We also have the ability to generalize \cref{eq:orthonormality_discrete} to a continuous spectrum. The continuous generalization of the Kronecker delta is the Dirac delta function.
 \[ \braket{\vx'}{\vx''} = \de\br{\vx' - \vx''} \]
-Where $\de{\vx'}$ is defined as,
+Where $\de\br{\vx'}$ is defined as,
 \[ \int_{\R^3} \dif^3 x' f\br{\vx'} \de\br{\vx'} = f\br{\ve{0}} \]
 Where $f\br{\vx'} : \R^3 \to \R$ is a function on $\R^3$. \\
 
@@ -174,20 +176,21 @@ T\br{\dif \vx''} T\br{\dif \vx'} &= \br{\ident - i \ve{K} \cdot \dif \vx''}\br{\
 &= T\br{\dif \vx'' + \dif \vx'}
 \end{align*}
 In order to illuminate the specific form of $\ve{K}$, we calculate the commutator $\bs{\vx, T\br{\dif \vx'}}$,
+\[ \bs{\vx, T\br{\dif \vx'}}\ket{\ve x'} = \vx T\br{\dif \vx'}\ket{\ve x'} - T\br{\dif \vx'}\vx\ket{\ve x'} = \dif \ve x' \ket{\ve x' + \dif \ve x'} \approx \dif \ve x' \ket{\ve x'}\]
+Alternatively we have,
 \begin{align*}
 \bs{\vx, T\br{\dif \vx'}} &= \bs{\vx, \ident - i \ve{K}\cdot\dif\vx'} \\
-&= -i \vx \ve{K} \dif \vx' + i \ve{K} \dif \vx' \vx
+&= -i \vx \ve{K} \cdot \dif \vx' + i \ve{K} \cdot \dif \vx' \vx \\
+&= \dif \ve x'
 \end{align*}
 Choose $\dif \vx' = \dif x' \hat{x}_j$ and $\ve{K} \cdot \hat{x}_j = K_j$ where $\hat{x}_j$ is the unit vector in the direction of one of the basis vectors.
-\[ \bs{\vx, T\br{\dif \vx'}} = -i \vx \ve{K} \dif \vx' + i \ve{K} \dif \vx' \vx \]
-Moreover $\bs{X_i, K_j} = 0$ whenever $i \neq j$.
-\[ -i x_j K_j + i K_j x_j = 1 \implies -i \bs{x_j, K_j} = 1 \implies \bs{x_j, K_j} = i \]
+\[ \bs{\vx, T\br{\dif \vx'}}_i = -i x_i K_j \dif x' + i K_j \dif x' x_i = \de_{ij} \dif x'\]
 Therefore,
 \[ \bs{x_i, K_j} = i \de_{ij} \implies \ve{K} = \f{1}{\hbar} \ve{p} \]
 Where $\ve{p}$ is the generator of infinitesimal translations,
 \[ \bs{x_i, p_j} = i \hbar \de_{ij} \]
 Such that,
-\[ T\br{\dif \vx'} = 1 - \f{i}{\hbar} \ve{p} \cdot \dif \vx' \]
+\[ T\br{\dif \vx'} = \ident - \f{i}{\hbar} \ve{p} \cdot \dif \vx' \]
 \subsection{Transformations Between Position and Momentum Representations}
 Calculate for a 1D system,
 \begin{align*}
@@ -525,12 +528,12 @@ Similarly,
 \end{pmatrix} \]
 Thus,
 \[ \bs{R_{x}\br{\ep}, R_{y}\br{\ep}} = \begin{pmatrix}
-    0 & \ep^2 & 0 \\
+    0 & -\ep^2 & 0 \\
     \ep^2 & 0 & 0 \\
     0 & 0 & 0 \\
 \end{pmatrix} \]
 Notice that,
-\[ \bs{R_{x}\br{\ep}, R_{y}\br{\ep}} = R_{x}\br{\ep^2} - \ident \eq \label{eq:rotation_infinitesimal} \]
+\[ \bs{R_{x}\br{\ep}, R_{y}\br{\ep}} = R_{z}\br{\ep^2} - \ident \eq \label{eq:rotation_infinitesimal} \]
 \subsection{Rotations in Quantum Mechanics}
 Let the rotation be some operator $D\br{R} \in \s{B}\br{\s{H}}$ be,
 \[ \ket{\psi}_{R} = D\br{R} \ket{\psi} \]
@@ -570,7 +573,7 @@ Where $\ep_{ijk}$ is the fully symmetric tensor,
 \end{split}
 \end{align*}
 The commutation relation is in contrast to the commutation of the momentum operator,
-\[ \bs{P_x, P_y} = 0 \]
+\[ \bs{p_x, p_y} = 0 \]
 Since linear momentum is the generator of translations, different components of momentum commute. We say that the group of translations is \term{abelian}, while the group of rotations is \term{non-abelian} because generators of rotations do not commute.
 \subsection{Spin-1/2 Operators}
 Consider the spin operators $S_{\hat{n}}$ with the commutation relation,
@@ -595,7 +598,7 @@ Expectations of the spin operator are transformed by rotations,
     \ba{S_x}_R &= \prescript{}{R}{\bra{\psi}} S_x \ket{\psi}_R \\
     &= \bra{\psi} D^{\dagger}_z\br{\varphi} S_x D_z\br{\varphi} \ket{\psi}
 \end{align*}
-Where the ``rotated'' spin operator $D^{\dagger}_z\br{\varphi} S_x D_z\br{\varphi}$ can be commuted directly,
+Where the ``rotated'' spin operator $D^{\dagger}_z\br{\varphi} S_x D_z\br{\varphi}$ can be computed directly,
 \begin{align*}
     D^{\dagger}_z\br{\varphi} S_x D_z\br{\varphi} &= e^{\f{i}{\hbar} S_z \varphi } S_x e^{-\f{i}{\hbar} S_z \varphi } \\
     &= \f{\hbar}{2} e^{\f{i}{2} \si_z \varphi } \si_x e^{-\f{i}{2} \si_z \varphi } \eq \label{eq:return_to}
@@ -627,7 +630,7 @@ Therefore,
 Where $\ep_{ijk}$ is the fully antisymmetric symbol seen previously in \cref{eq:antisymmetric_symbol}. We say that Pauli matrices anti-commute. By hand,
 \begin{align*}
 \si_x \si_z &= \begin{pmatrix}0 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix}1 & 0 \\ 0 & -1 \end{pmatrix} = \begin{pmatrix}0 & -1 \\ 1 & 0 \end{pmatrix} = -i\begin{pmatrix}0 & -i \\ i & 0 \end{pmatrix} = -i \si_y \\
-\si_x \si_z &= \begin{pmatrix}1 & 0 \\ 0 & -1 \end{pmatrix}\begin{pmatrix}0 & 1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix}0 & 1 \\ -1 & 0 \end{pmatrix} = i\begin{pmatrix}0 & -i \\ i & 0 \end{pmatrix} = i \si_y
+\si_z \si_x &= \begin{pmatrix}1 & 0 \\ 0 & -1 \end{pmatrix}\begin{pmatrix}0 & 1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix}0 & 1 \\ -1 & 0 \end{pmatrix} = i\begin{pmatrix}0 & -i \\ i & 0 \end{pmatrix} = i \si_y
 \end{align*}
 Therefore $\si_x \si_z = - \si_z \si_x$. Therefore we must have,
 \begin{align*}
@@ -672,7 +675,7 @@ Next let's check if this result makes sense. Consider the expectation value of $
     &= \f{\hbar}{2} \br{\psi_\uparrow^* \psi_\downarrow \bra{\uparrow} \si_x \ket{\downarrow} + \psi_\downarrow^* \psi_\uparrow \bra{\downarrow} \si_x \ket{\uparrow}} \\
     &= \f{\hbar}{2} \br{\psi_\uparrow^* \psi_\downarrow + \psi_\downarrow^* \psi_\uparrow} \\
     &= \f{\hbar}{2} \br{e^{i\varphi} \f{1}{2} \sin \theta + e^{-i\varphi} \f{1}{2} \sin \theta} \\
-    &= \f{\hbar}{2} \sin \theta \sin \varphi \\
+    &= \f{\hbar}{2} \sin \theta \cos \varphi \\
 \end{align*}
 Similarly,
 \begin{align*}
@@ -685,7 +688,7 @@ Similarly,
     &= \f{\hbar}{2} \sin \theta \sin \varphi \\
 \end{align*}
 Also,
-\[ \bra{\psi} S_y \ket{\psi} = \cdots = \f{\hbar}{2}\cos\br{\theta} \]
+\[ \bra{\psi} S_z \ket{\psi} = \cdots = \f{\hbar}{2}\cos\te \]
 In summary we have the following,
 \[ \bra{\psi} \ve S \ket{\psi} = \f{\hbar}{2} \br{\sin \theta \cos \varphi, \sin \theta \sin \varphi, \cos \theta} = \f{\hbar}{2}\hat{n} \]
 We write an arbitrary direction as,
@@ -718,10 +721,10 @@ Therefore,
     &= R_z\br{\al}R_{y}\br{\be}R_{z}\br{\ga}R^{-1}_{y}\br{\be}R_{y}\br{\be}\\
     &= R_z\br{\al}R_{y}\br{\be}R_{z}\br{\ga}
 \end{align*}
-For spin systems,
+For spin-$1/2$ systems,
 \begin{align*}
     D\br{\al, \be, \ga}
-    &= D_z\br{\ga}D_y\br{\be}D_z\br{\al} \\
+    &= D_z\br{\al}D_y\br{\be}D_z\br{\ga} \\
     &= e^{-\f{i}{2} \si_z \al}e^{-\f{i}{2} \si_y \be}e^{-\f{i}{2} \si_z \ga}  \\
     &= \br{\ident \cos \f{\al}{2} - i \si_z \sin \f{\al}{2}}\br{\ident \cos \f{\be}{2} - i \si_z \sin \f{\be}{2}}\br{\ident \cos \f{\ga}{2} - i \si_z \sin \f{\ga}{2}}\\
     &=
@@ -790,7 +793,7 @@ Return to the above equation and making use of $\bs{J_i, J_j} = i\hbar \ep_{ijk}
 Therefore the $J_z$ commutes with $\ve J^2$. This also holds for all other components,
 \[ \bs{\ve J^2, J_x} = \bs{\ve J^2, J_y} = \bs{\ve J^2, J_z} = 0 \]
 Compactly we may write,
-\[ \bs{\ve J^2, \ve J}= 0 \]
+\[ \bs{\ve J^2, \ve J}= \ve 0 \]
 This result means we can choose angular momentum eigenstates to be simultaneous eigenstates of $\ve J^2$ and $J_z$. Let us explicitly calculate those eigenstates. Let $\ket{a,b}$ be this eigenstate where $a$ is the eigenvalue of $\ve J^2$ and $b$ is the eigenvalue of $J_z$,
 \begin{align*}
     \eq\label{eq:rotation_system}
@@ -860,7 +863,7 @@ Notice that $\bra{a,b}J_+J_+^{\dagger}\ket{a,b}$ can be written,
 Therefore,
 \[ \br{a - b^2} = \f{1}{2} \br{\abs{J_+^{\dagger}\ket{a,b}}^2 + \abs{J_+\ket{a,b}}^2} \geq 0 \]
 \[ b^2 \leq a \]
-\[ - a \leq b \leq a \]
+\[ - \sqrt{a} \leq b \leq \sqrt{a} \]
 This is nothing more than a consequence of $\ba{\ve J^2} \geq \ba{J_z^2}$. We can conclude that there must be some eigenvalue $b\tsb{max}$ that is the maximum eigenvalue of $J_z$ such that,
 \[ J_+ \ket{a, b\tsb{max}} = 0 \]
 We also obtain,
@@ -891,7 +894,7 @@ Defining $j = b\tsb{max} / \hbar$ we have that,
 Which is either an integer or a half-integer. Making use of \cref{eq:bmax},
 \[ a = b\tsb{max}\br{b\tsb{max} + \hbar} = \hbar j \br{\hbar j + \hbar} = \hbar^2 j\br{j+1} \]
 Similarly we can say that $b = m \hbar$ where $m$ ranges from $-j$ to $j$.
-\[  m = -j, -j +1, \cdots, j-1, j \]
+\[  m = -j, -j +1, \ldots, j-1, j \]
 Thus there are $2j+1$ potential values for $m$. Moving forward, we replace \cref{eq:rotation_system} we the more familiar,
 \begin{gather*}
     \ve J^2 \ket{j,m} = \hbar^2 j \br{j+1} \ket{j,m}\\
@@ -906,8 +909,8 @@ Where $j = n/2$ is the magnitude of the angular momentum. As an example, $j = 1/
 \end{align*}
 \begin{align*}
     \bra{j', m'} J_z \ket{j,m}
-    &= \hbar m \br{j+1} \braket{j', m'}{j,m} \\
-    &= \hbar m \br{j+1} \de_{jj'}\de_{mm'}
+    &= \hbar m \braket{j', m'}{j,m} \\
+    &= \hbar m \de_{jj'}\de_{mm'}
 \end{align*}
 Moreover we can compute expectations for $J_-J_+$,
 \begin{align*}
@@ -1071,7 +1074,7 @@ In spherical coordinates,
 \end{align*}
 These unit directions can be used to determine,
 \begin{align*}
-L_z &= y p_z - z p_y = - i \hbar \br{y \pder{}{z} - z \pder{}{y}} \\
+L_x &= y p_z - z p_y = - i \hbar \br{y \pder{}{z} - z \pder{}{y}} \\
 L_y &= z p_x - x p_z = - i \hbar \br{z \pder{}{x} - x \pder{}{z}}
 \end{align*}
 Or more compactly,
@@ -1083,7 +1086,8 @@ Or more compactly,
 Therefore derivatives in the $x,y,z$ directions can be written in terms of $\te, \varphi$ derivatives,
 \begin{align*}
     \pder{}{z} &= \cos \te \pder{}{r} - \f{1}{r} \sin \te \pder{}{\te}\\
-    \pder{}{y} &=  \sin \te \sin \varphi \pder{}{r} + \f{\cos \varphi}{r \sin \te} \pder{}{\varphi} + \f{\cos \te \sin \varphi}{r} \pder{}{\te}
+    \pder{}{y} &=  \sin \te \sin \varphi \pder{}{r} + \f{\cos \varphi}{r \sin \te} \pder{}{\varphi} + \f{\cos \te \sin \varphi}{r} \pder{}{\te}\\
+    \pder{}{x} &=  \sin \te \cos \varphi \pder{}{r} - \f{\sin \varphi}{r \sin \te} \pder{}{\varphi} + \f{\cos \te \cos \varphi}{r} \pder{}{\te}
 \end{align*}
 Therefore,
 \[ \ve L^2 = L_x^2 + L_y^2 + L_z^2 = - \hbar^2 \bs{\f{1}{\sin^2 \te} \pdder{}{\varphi} + \f{1}{\sin \te} \pder{}{\te} \br{\sin \te \pder{}{\te}}} \]
@@ -1098,8 +1102,7 @@ Where $m = -\ell, -\ell +1, \cdots, \ell - 1, \ell$. We can also define the wave
 \[ \braket{\te ,\varphi}{l,m} = Y^{m}_{\ell}\br{\te, \varphi} \]
 Such that $\abs{Y^{m}_{\ell}\br{\te, \varphi}}^2$ is the probability of finding a particle in state $\ket{\ell, m}$ at $\ket{\te, \varphi}$. We call $Y^{m}_{\ell}$ \term{spherical harmonics}. They have a number of useful properties,
 \begin{align*}
-L_z \ket{\ell, m} &= \hbar m \ket{\ell, m} \\
-- i \hbar \pder{}{\varphi} Y_{\ell}^{m}\br{\te, \varphi} &= \hbar m Y_{\ell}^{m}\br{\te, \varphi}
+\bra{\te, \varphi} L_z \ket{\ell, m} = - i \hbar \pder{}{\varphi} Y_{\ell}^{m}\br{\te, \varphi} &= \hbar m Y_{\ell}^{m}\br{\te, \varphi}
 \end{align*}
 This differential equation fixes the $\varphi$ dependence of $Y_{\ell}^{m}\br{\te, \varphi}$ to be,
 \[ Y_{\ell}^{m}\br{\te, \varphi} \sim e^{i m \varphi} \]
@@ -1142,7 +1145,7 @@ Therefore $S\ket{n}$ is also an eigenket of $H$ with eigenvalue $E_n$. Therefore
 
 As a case study, consider a rotationally invariant system,
 \[ H = \f{\ve p^2}{2m} + V\br{r} \]
-Such that $\bs{H, D\br{R}}$. This implies that $\ve J$ (the generator of $D$) is,
+Such that $\bs{H, D\br{R}} = 0$. This implies that $\ve J$ (the generator of $D$) is,
 \[ \bs{H, \ve J} = 0 \]
 Therefore $\ket{j,m}$ are also eigenstates of $H$.
 \[ H\ket{n,j,m} = E_n \ket{n,j,m} \]

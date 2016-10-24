@@ -28,7 +28,7 @@ A clever choice of coordinates systems typically makes solving a problem conside
 \[ \der{}{t}\br{\pder{L}{\dot{q}}} - \pder{L}{q} = 0 \implies \pder{L}{\dot{q}} = \textrm{const.} \implies L \propto \dot{q} \]
 As such, the number of equations that remain to solved has been reduced.
 
-\section{First Assignment?}
+\section{Review Problems}
 
 \newcommand{\coord}[4]{\coordinate (#1) at (#2,#3,#4);}
 \newcommand{\cylindcoord}[4]{\coordinate (#1) at ({#2*cos(#3)},{#2*sin(#3)},{#4});}
@@ -355,6 +355,8 @@ We now introduce \term{Maxwell's stress-energy tensor} $T$ with components,
 \[ T_{ij} = \ep_0 \br{E_i E_j - \f{1}{2} \de_{ij} E^2} + \f{1}{\mu_0} \br{B_i B_j - \f{1}{2} \de_{ij} B^2} \eq \label{eq:components_of_MST}\]
 Where $\ve E = \sum_{i} E_i \hat{e}_i$ and $\ve B = \sum_{i} B_i \hat{e}_i$. We now have that \cref{eq:messy} gives,
 \[ \ve f = \vdel \cdot T - \ep_0 \mu_0 \pder{\ve S}{t} \]
+Where the divergence of $T$ can be written as,
+\[ \pder{T_{ij}}{x_i} = \ep_0 \br{\pder{E_i}{x_i} E_j + E_i \pder{E_j}{x_i} - \f12 \pder{E^2}{x_j}} + \f{1}{\mu_0} \br{\pder{B_i}{x_i} B_j + B_i \pder{B_j}{x_i} - \f12 \pder{B^2}{x_j}} \]
 As defined $\ve F = \int_{\s{V}} \dif \tau \ve f$ is the net mechanical force acting on the matter in a volume $\s{V}$. Therefore,
 \begin{align*}
 \der{}{t} \ve p\tsb{mech} &= \int_{\s{V}} \dif \tau \ve f \\
@@ -370,9 +372,9 @@ To draw intuition from continuum mechanics, the \term{Cauchy stress tensor} is a
 \[ \ve f = \si \cdot \dif \ve a \]
 The divergence of the Maxwell stress tensor is,
 \[ \pder{}{x_i} T_{ij} = \ep_0 \br{\pder{E_i}{x_i}E_j + E_i \pder{E_j}{x_i} - \f12 \de_{ij} \pder{E^2}{x_i}} + \f{1}{\mu_0} \br{\pder{B_i}{x_i}B_j + B_i \pder{B_j}{x_i} - \f12 \de_{ij} \pder{B^2}{x_i}} \]
-Which in vector notation is much simpler \todo[TC]{Verify this expression},
-\[ \vdel \cdot T = \ep_0 \br{\br{\vdel \cdot \ve E} \ve E + \br{\ve E \cdot \vdel} \ve E} - \f12 \ep_0 \vdel \cdot \ve E + \f{1}{\mu_0} \br{\br{\vdel \cdot \ve B} \ve B + \br{\ve B \cdot \vdel} \ve B} - \f12 \ep_0 \vdel \cdot \ve B \]
-While the force per unit volume is,
+The divergence can also be written in vector notation.
+\[ \vdel \cdot T = \ep_0 \bs{\br{\vdel \cdot \ve E} \ve E + \br{\ve E \cdot \vdel} \ve E} - \f12 \ep_0 \vdel E^2 + \f{1}{\mu_0} \br{\br{\vdel \cdot \ve B} \ve B + \br{\ve B \cdot \vdel} \ve B} - \f12 \ep_0 \vdel B^2 \]
+We have just derived that the force per unit volume $\ve f$ satisfies the following equation,
 \[ \ve f = \vdel \cdot T - \ep_0 \mu_0 \pder{\ve S}{t} \]
 Which can be integrated over a volume $\s{V}$ in order to obtain the total force,
 \begin{align*}
@@ -399,7 +401,7 @@ Which gives electric field,
 Therefore,
 \[ \vE_{\bc{z = 0}} = \vE_{+} + \vE_{-} = \f{q_{\pm}}{4 \pi \ep_0} \f{2 s \hs}{\br{ s^2 + \ell^2}^{3/2}} \]
 Upon reflection, the direction of $\vE_{\bc{z = 0}}$ could have only been in the $\hat s$ direction by symmetry. \\
-\textbf{b)} Calculate the Maxwell Stress Tensor using \cref{eq:components_of_MST}. Notice that $\ve = B$ and $\vE_{\bc{z=0}} = E\br{s} \hat{s}$,
+\textbf{b)} Calculate the Maxwell Stress Tensor using \cref{eq:components_of_MST}. Notice that $\ve B = \ve 0 $ and $\vE_{\bc{z=0}} = E\br{s} \hat{s}$,
 \[ \hat{s} = \hat{x}\cos\phi + \hat{y}\sin\phi \]
 So in Cartesian coordinates,
 \[ \vE_{\bc{z = 0}} = \f{q_{\pm}}{4 \pi \ep_0} \f{2 \sqrt{x^2 + y^2}\br{\hat{x}\cos\phi + \hat{y}\sin\phi}}{\br{ x^2 + y^2 + \ell^2}^{3/2}} \]
@@ -482,14 +484,28 @@ Turning the solenoid on and off transfers angular momentum from the mechanical s
 
 \section{Waves}
 
-\todo[TC]{Missed a lecture}\\
+As it turns out, Maxwell's equations in a vacuum reduce to a pair of similar wave equations. We begin with Maxwell's equations in free space,
+\begin{align*}
+    \vdel \cdot \ve E &= 0 \\
+    \vdel \times \ve E &= -\pder{\ve B}{t} \\
+    \vdel \times \ve B &= 0 \\
+    \vdel \times \ve B &= \mu_0 \ep_0 \pder{\ve E}{t}
+\end{align*}
 
-Now that we have derived electromagnetic waves from Maxwell's equations in a vacuum,
+It is possible to solve these equations by exploiting some vector identities. For an arbitrary vector field $\ve A$,
+\[  \vdel \times \br{\vdel \times \ve A} = \vdel \br{\vdel \cdot \ve A} - \vdel^2 A \]
+Then take the curl of Faraday's law,
+\[ \vdel \times \br{\vdel \times \ve E} = \vdel \times \br{-\pder{\ve B}{t}} \]
+Therefore $\vdel \times \br{\vdel \times \ve E} = \vdel \br{\vdel \cdot \ve E} - \vdel^2 E = - \vdel^2 E$,
+\[  - \del^2 \ve E = \vdel \times \br{-\pder{\ve B}{t}} \]
+But Ampere's law tells us $\vdel \times \ve B$. Therefore,
+\[  - \del^2 \ve E = \mu_0 \ep_0 \pdder{\ve E}{t} \]
+But we know that $c^2 = 1/\mu_0 \ep_0$ is the speed of the wave. We have derived electromagnetic waves from Maxwell's equations in a vacuum,
 \begin{align*}
 \del^2 \ve E - \f{1}{c^2} \pdder{\ve E}{t} &= 0 \\
 \del^2 \ve B - \f{1}{c^2} \pdder{\ve B}{t} &= 0
 \end{align*}
-Today, we will start by examining the 1D wave equation,
+Which is in practice a system of $6$ equations one for each component $f = \bc{E_x, E_y, E_z, B_x, B_y, B_z}$. Today, we will start by examining the 1D wave equation,
 \[ v^2 \pdder{f}{z} - \pdder{f}{t} = 0 \eq \label{eq:1d_Wave}\]
 Where $v$ is the wave speed and $f\br{z,t}$ is the \textit{displacement} of the \textit{medium} from its equilibrium position. To solve this second order PDE, D'Alembert came up with the substitution,
 \[ q_{\pm} = z \pm v t \]
@@ -648,7 +664,7 @@ Now solve for the reflected and transmitted $A_R, A_T$ in terms of the given inc
 \textbf{e)}
 If $v_2 > v_1$ then $A_R \propto - \br{A_I}$.
 
-\section{Polarization}
+\subsection{Polarization}
 So far, we have only considered 1D waves. However, the electric and magnetic fields are vector quantities. As we shall see shortly, EM radiation has field components that are perpendicular to the direction of propagation. We can thus write a traveling wave as
 \[ \ti {\ve f}\br{z, t} = \ti f_{k} \hat n e^{i\br{kz - \w t}} \]
 Where $e^{i\br{kz - \w t}}$ acts as the traveling wave, $\hat n$ is the polarization and $\ti f_{k}$ is the amplitude and phase. Note that $\ti f_{k}$ is not a function of position $\ve r$ and time $t$. The possible polarizations of this plane wave are $\hat x, \hat y$ or a linear combination thereof. An important linear combination is,
@@ -709,30 +725,40 @@ Which makes,
     \ti E_y &= - \f{\w}{k} \ti B_x = - c \ti B_x \\
     \ti E_x &= + \f{\w}{k} \ti B_y = + c \ti B_y
 \end{align*}
-And so $\ti{\ve E}$ and $\ti{\ve B}$ have the same phase but are in the different direction. The set $\bc{\ti{\ve E} , \ti{\ve B} , \hat z}$ for a right-hand set. Recall that $\mu_0 \ve S = \ve E \times \ve B$. We can generalize this to a plane wave traveling in an arbitrary direction by introducing the \term{wave vector} $\ve k = k_x \hat x + k_y \hat y + k_z \hat z$. Also,
+And so $\ti{\ve E}$ and $\ti{\ve B}$ have the same phase but are in the different directions. In this case, we can write $c \ti{\ve B} = \hat z \times \ti{\ve E}$ so that the set $\bc{\ti{\ve E} , \ti{\ve B} , \hat z}$ form a right-hand set (which was already known from $\mu_0 \ve S = \ve E \times \ve B$). We can generalize this to a plane wave traveling in an arbitrary direction by introducing the \term{wave vector} $\ve k = k_x \hat x + k_y \hat y + k_z \hat z$. Also,
 \[ \ve k = k \hat k = \sqrt{k_x^2 + k_y^2 + k_z^2} \hat k \]
 The recurring relation $k z - \w t$ becomes,
 \[ \ve k \cdot \ve r - \w t  \]
 Monochrome plane waves in vacuum traveling in the $\hat k$ direction are,
-\[ \ti{\ve E}\br{\ve r , t} = \ti{\ve E}_0 e^{i\br{\ve k \cdot \ve r - \w t}} \]
-\[ c\ti{\ve B}\br{\ve r , t} = \hat k \times \ti{\ve E}\br{\ve r , t} \]
-\subsection{Energy and Momentum}
 \begin{align*}
-    u\tsb{EM}
-    &= \f{1}{2 \mu_0} \br{\ep_0 \mu_0 E^2 + B^2} \\
-    &= \f{\ep_0}{2} \br{E^2 + c^2B^2} \\
-    &= \ep_0 E^2 \\
-    &= \ep_0 E_0^2 \cos^2\br{kz - \w t + \de} \\
-    \ve S &= \f{1}{\mu_0} \ve E \times \ve B \\
-    &= c \ep_0 E^2 \hat z \\
-    &= c u\tsb{EM} \hat z\\
+\ti{\ve E}\br{\ve r , t} &= \ti{\ve E}_0 e^{i\br{\ve k \cdot \ve r - \w t}} \\
+c\ti{\ve B}\br{\ve r , t} &= \hat k \times \ti{\ve E}\br{\ve r , t}
 \end{align*}
+The quantity $\ti{\ve E}_0 = \hat x \ti{E}_{0,x} + \hat y \ti{E}_{0,y} + \hat z \ti{E}_{0,z} = \hat n E_0 e^{i \de}$ represents the polarization, amplitude, and phase of the wave but contains no space or time dependence.
+\subsection{Energy and Momentum}
+We are now equipped with the general setting of a monochromatic plane wave traveling in a direction $\hat k$. It has already been seen that $\hat k$ is in the same direction as the Poynting vector $\ve S$ which points in the direction of electromagnetic radiation. $\ve S$ satisfies Poynting's theorem,
+\[ \vdel \cdot \ve S + \pder{u}{t} + \ve E \cdot \ve J = 0 \]
+Which in a vacuum indicates that $\ve S \cdot \dif \ve a$ is the amount of energy flowing out of a point in a time $\dif t$. Therefore the electromagnetic waves previously discussed are carrying electromagnetic energy. The electromagnetic energy density is,
+\[ u = \f{\ep_0}{2}E^2 + \f{1}{2 \mu_0} B^2 \]
+But for electromagnetic waves, $B^2 = \mu_0 \ep_0 E^2$. Thus
+\begin{align*}
+    u = \f{\ep_0}{2} E^2 + \f{1}{2\mu_0} \mu_0 \ep_0 E^2 = \ep_0 E^2
+\end{align*}
+Which for a monochromatic 1D wave becomes,
+\[  u = \ep_0 E_0^2 \cos^2\br{kz - \w t + \de} \]
+At a point $z$ at time $t$ there is local energy density of $u\br{z,t}$ stored in the electromagnetic field. The Poynting vector however is,
+\[ \ve S = \f{1}{\mu_0} \ve E \times \ve B = \f{1}{\mu_0} \ve E \times \br{\f{1}{c} \ve k \times \ve E} \]
+Which by a triple product vector identity $\ve A \times \br{\ve B \times \ve C} = \ve B \br{\ve A \cdot \ve C} - \ve C \br{\ve A \cdot \ve B}$ yields,
+\[ \ve S = \f{1}{c \mu_0} \bs{\ve k E^2 - \ve E \br{\ve E \cdot \ve k}} \]
+But $\ve k$ is orthogonal to $\ve E$,
+\[ \ve S = \f{1}{c\mu_0} E^2 \ve k = c\ep_0 E^2 \ve k = c u \ve k \]
+This is remarkable. The Poynting vector indicates that there is a flow of energy per unit area per unit time of $c u$ in the $\ve k$ direction.
 
 \subsection{Electromagnetic Waves in Media}
 
 \todo[TC]{Missed a lecture}
 
-In alternative media that are linear, isotropic, and homogeneous, Maxwell's equations are nearly identical; the only necessary modification is to replace the speed of propagation $c$ with a speed $v$ that is dependent on the material.
+In alternative media that are not linear, isotropic, and homogeneous, Maxwell's equations are nearly identical; the only necessary modification is to replace the speed of propagation $c$ with a speed $v$ that is dependent on the material.
 \[ c = \f{1}{\sqrt{\ep_0 \mu_0}} \mapsto v = \f{1}{\sqrt{\ep \mu}} \]
 
 In a higher level course, one would explore how to modify Maxwell's equations for materials that do not obey the assumptions of linearity, isotropy, and homogeneity. Doing so is of great importance; material sciences are a very versatile field of physics with countless applications. \\
