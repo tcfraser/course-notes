@@ -815,7 +815,7 @@ From this we are able to derive wave equations,
 \[ \vdel \br{\vdel \cdot \ve E} - \del^2 \ve E = -\f{1}{v^2} \pder{}{t}\br{\pder{\ve E}{t} + \f{\si}{\ep} \ve E} \]
 But we have that $\vdel \cdot \ve E = \f{1}{\ep} \rho_{f}$. In a conductor $\rho_{f} \approx 0$ because the time scale to equilibrate $\tau_{d} = \f{\ep}{\si} \approx \SI{1e-20}{\s}$ is short (of course if your frequency is $f \geq \tau_d^{-1}$ this approximation doesn't hold).
 Therefore we arrive at,
-\[ v^2 \del^2 \ve E = \pdder{E}{t} + \f{\si}{\ep} \pder{\ve E}{t} \]
+\[ v^2 \del^2 \ve E = \pdder{\ve E}{t} + \f{\si}{\ep} \pder{\ve E}{t} \]
 The ansatz is (for a 1D system) is identical to the dispersion-less case but with $k \to \ti k$,
 \[ \ti{\ve E}\br{z,t} = \ti{\ve E}_0 e^{i\br{\ti k z - \w t}} \]
 The imaginary component of $\ti k$ introduces an exponential dampening. This leads to an auxiliary equation,
