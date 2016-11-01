@@ -1149,13 +1149,149 @@ To see why this is true, if all states are transient then each state $i \in S$ h
 \subsection{Limiting Distribution}
 
 In this section we are interested in the \term{limiting transition probability} and the \term{limiting distribution} of a MC.
-\[ \lim_{n \to \inf} P^{(n)}_{ij} \qquad \lim_{n \to \inf} P{X_n = j} \]
+\[ \lim_{n \to \inf} P^{(n)}_{ij} \qquad \lim_{n \to \inf} P\br{X_n = j} \]
 To keep things simple, we assume that the process $\bc{X_n}_{n=0,1,2,\dots}$ is irreducible.
 
 \begin{theorem}
-    \term{Basic Limit Theorem:} Let $\bc{X_n}_{n=0,1,\ldots}$ be an irreducible, aperiodic and positive recurrent DTMC, then a stationary distribution $\pi = \bc{\pi_0, \pi_1, \ldots}$ exists. Moreover we have,
-    \[ \lim_{n \to \inf} P^{(n)}_{ij} = \lim_{n \to \inf} \f{\sum_{k=1}^{n} \ident_{\bc{X_k - j}}}{n} = \f{1}{\Exp\br{T_j \mid X_0 = j}} = \pi_j \qquad \forall i,j \in S \]
+    \term{Basic Limit Theorem:} Let $\bc{X_n}_{n=0,1,\ldots}$ be an irreducible, aperiodic and positive recurrent DTMC, then a stationary distribution $\pi = \br{\pi_0, \pi_1, \ldots}$ exists. Moreover we have,
+    \[ \lim_{n \to \inf} P^{(n)}_{ij} = \lim_{n \to \inf} \f{\sum_{k=1}^{n} \ident_{\bc{X_k = j}}}{n} = \f{1}{\Exp\br{T_j \mid X_0 = j}} = \pi_j \qquad \forall i,j \in S \]
     Where $T_j = \min\bc{n > 0, X_n = j}$. In words, the limiting distribution is equal to the long-run fraction of time spent in $j$ is equal to the stationary distribution. Note that this does not depend on the starting state $i$.
 \end{theorem}
+
+\todo[TC]{Missed a lecture}
+By examining foil theorems, we have seen that irreducibility is related to the uniqueness of the stationary distribution, aperiodicity is related to the existence of $\lim_{n \to \inf} P^{(n)}_{ij}$ and positive recurrence is related to the existence of stationary distribution. \\
+
+\begin{example}
+    Let us have an electron with two states and $P$ given by,
+    \[ P = \begin{pmatrix}
+        1 - \al & \al \\
+       \be & 1 - \be \\
+    \end{pmatrix} \]
+    Where $\lim_{n \to \inf} P^n$ becomes,
+    \[ \lim_{n \to \inf} P^n = \begin{pmatrix}
+        \f{\al}{\al + \be} & \f{\be}{\al + \be} \\
+        \f{\al}{\al + \be} & \f{\be}{\al + \be} \\
+    \end{pmatrix} \]
+    It is important to notice that $\lim_{n \to \inf} P^n$ does not depend on the row considered (i.e. the initial state $i$ considered). We have the stationary distribution is,
+    \[ \pi = \begin{pmatrix}
+        \f{\al}{\al + \be} & \f{\be}{\al + \be} \\
+    \end{pmatrix} \]
+    So we verify that $\pi_j = \lim_{n \to \inf} P_{ij}^{(n)}$. Also given that we start from state $X_0 = 0$, then clearly,
+    \begin{align*}
+        P\br{T_0 = 1 \mid X_0 = 0} &= 1 - \al \\
+        P\br{T_0 = 2 \mid X_0 = 0} &= \al \be \\
+        P\br{T_0 = 3 \mid X_0 = 0} &= \al \br{1 - \be} \be \\
+        P\br{T_0 = k \mid X_0 = 0} &= \al  \br{1 - \be}^{k-2}  \be   \quad \forall k= 2, 3, \ldots
+    \end{align*}
+    Where $\al$ represents leaving state $0$ and $\be$ represents returning to state $0$ at step $k$. $\br{1- \be}^{k-2}$ represents not returning to $0$ until step $k$. We then obtain the expectation,
+    \[ \Exp\br{T_0 \mid X_0 = 0} = 1 - \al + \sum_{k=2}^{\inf} \al \br{1- \be}^{k-2} \be k \]
+    We then split this sum into two components,
+    \[ \Exp\br{T_0 \mid X_0 = 0} = 1 - \al + \sum_{k=2}^{\inf} \al \br{1- \be}^{k-2} \be \br{k - 1} + \sum_{k=2}^{\inf} \al \br{1- \be}^{k-2} \be\]
+    We then notice that $\br{1- \be}^{k-2} \be$ is the pmf of $\Geo\br{\be}$ while the first sum ($\sum_{k=2}^{\inf} \br{1- \be}^{k-2} \be \br{k - 1}$) is simply the expectation of $\Geo\br{\be}$. Therefore,
+    \[ \Exp\br{T_0 \mid X_0 = 0} = 1 - \al + \al \f{1}{\be} + \al = 1 + \f{\al}{\be} = \f{\al + \be}{\be}\]
+    We verify that $\Exp\br{T_0 \mid X_0 = 0} = \f{1}{\pi_0}$. Of course, this is one of the few cases where we can explicitly verify the predictions of the Basic Limit Theorem. In the future, we will accept the BLT and move forward.
+    \end{example}
+
+    \subsection{Generating Function}
+    Before defining the generating function we recall the moment generating function $\Mom_k\br{t} = \Exp\br{e^{t X}}$. The moment generating function is defined for any distribution $X$. However the generating function is defined for distributions over the non-negative integers.
+    \begin{definition}
+        Let $p = \br{p_0, p_1, \ldots}$ be a distribution over the non-negative integers $\bc{0,1,2,\ldots}$ such that $p_i \geq 0$ and $\sum_{i} p_i = 1$. Let $\xi$ be a random variable following distribution $p : \xi \sim p$. Then the generating function of $\xi$ (or for $p$) is defined as,
+        \[ \varphi\br{s} = \Exp\br{s^{\xi}} = \sum_{k = 0}^{\inf} s^k p_k \quad \forall 0 \leq s \leq 1\]
+    \end{definition}
+    The generating function is useful for the following properties.
+    \begin{enumerate}
+        \item The generating function always intersects two points: $\varphi\br{0} = p_0$, $\varphi\br{1} = 1$
+        \item The generating function determines the distribution:
+        \[ p_k = \f{1}{k!} \f{\dif^k \varphi \br{s}}{\dif s^k} \bigg|_{s=0} \]
+        \begin{proof}
+            In order to proof the second property, simply take $\varphi\br{s}$ as a sum,
+            \[ \varphi\br{s} = p_0 + p_1 s^1 + \cdots + p_{k-1} s^{k-1}+ p_{k} s^{k}+ p_{k+1} s^{k+1} + \cdots \]
+            Then the $k$-th derivative of $\varphi\br{s}$ is,
+            \[ \f{\dif^k \varphi \br{s}}{\dif s^k} = k ! p_{k} s^{0} + \f{\br{k+1}!}{1!} p_{k+1} s^{1} + \f{\br{k+2}!}{2!} p_{k+2} s^{2} + \cdots \eq \label{eq:generating_sum}\]
+            But when evaluated at $s = 0$,
+            \[ \f{\dif^k \varphi \br{s}}{\dif s^k} \bigg|_{s=0} = k! p_k \]
+        \end{proof}
+        \begin{remark}
+            In particular, if we restrict ourselves to $s \geq 0$ \cref{eq:generating_sum} determines,
+            \begin{align*}
+            \varphi'\br{s} \geq 0 &\implies \varphi\br{s} \text{ is increasing} \\
+            \varphi''\br{s} \geq 0 &\implies \varphi\br{s} \text{ is convex} \\
+            \end{align*}
+        \end{remark}
+        \item Let $\xi_1, \xi_2, \ldots, \xi_n$ be independent random variables with generating functions $\varphi_1, \ldots, \varphi_2$. Then if $X = \xi_1 + \cdots + \xi_n$ then,
+        \[ \varphi_X\br{s} = \varphi_1 \br{s} \cdots \varphi_n \br{s} \]
+        \begin{proof}
+            The proof of which is similar to the analogous property for moment generating functions.
+            \begin{align*}
+                \varphi_X\br{s}
+                &= \Exp\br{s^{X}}\\
+                &= \Exp\br{s^{\xi_1 + \cdots + \xi_n}}\\
+                &= \Exp\br{s^{\xi_1}\cdots s^{\xi_n}}\\
+                &= \Exp\br{s^{\xi_1}}\cdots \Exp\br{s^{\xi_n}} \note{Independence}\\
+                &= \varphi_1\br{s}\cdots\varphi_n\br{s}
+            \end{align*}
+        \end{proof}
+        \item If we take the derivative evaluated at the point $s = 1$ then,
+        \[ \f{\dif^k \varphi\br{s}}{\dif s^k} \bigg|_{s=1} = \f{\dif^k \Exp\br{s^{\xi}}}{\dif s^k} \bigg|_{s=1} = \Exp\br{ \f{\dif^k s^{\xi}}{\dif s^k}} \bigg|_{s=1} = \Exp\br{\xi\br{\xi-1}\cdots\br{\xi - k + 1}s^{\xi - k}}\bigg|_{s=1} = \Exp\br{\f{\xi!}{k!}} \]
+        Clearly this is not the moment generating function but it is intimately related. In particular $\Exp\br{\xi} = \varphi\br{1}$ and,
+        \begin{align*}
+        \Var\br{\xi}
+        &= \Exp\br{\xi^2} - \br{\Exp\br{\xi}}^2 \\
+        &= \Exp\br{\xi\br{\xi - 1}} + \Exp\br{\xi} - \br{\Exp\br{\xi}}^2 \\
+        &= \varphi'\br{1} + \varphi'\br{1} - \br{\varphi'\br{1}}^2
+        \end{align*}
+    \end{enumerate}
+    A characteristic plot is depicted below.
+    \begin{center}
+        \begin{tikzpicture}
+            \draw[<->] (3, 0) node[right]{$s$} -- (0,0) -- (0, 3) node[above]{$\varphi\br{s}$};
+            \draw [red] plot [smooth, tension=0.7] coordinates { (0,0.5) (1+0.4,1-0.2) (2.5, 2.5)};
+            \draw[dashed] (2.5, 0) node[below]{$1$} -- (2.5,2.5) -- (0, 2.5) node[left]{$1$};
+            \draw (0, 0.5) node[left]{$p_0$};
+        \end{tikzpicture}
+    \end{center}
+
+    \subsection{Branching Processes}
+    Consider a population of organism such that each organism, at the end of its lifetime, produces a random number of $\xi$ offsprings with probability $P\br{\xi = k} = p_k$ for $k = 0, 1, 2, \ldots$ such that $p_k \geq 0$ and $\sum_k p_k = 1$. The number of offsprings between different individuals are independent. We consider the first set of organisms the \term{ancestor generation} and each subsequent generation, \term{generation $1,2,3,\ldots$}. \\
+
+    We let $X_n$ be the number of individuals or the population in the $n$-th generation. We restrict or focus to $X_0 = 1$. Then $X_{n+1}$ is,
+    \[ X_{n+1} = \xi^{(n)}_1 + \cdots + \xi^{(n)}_{X_n} \]
+    Where $\xi^{(n)}_1, \ldots, \xi^{(n)}_{X_n}$ are the independent copies of $\xi$ and $\xi_{i}^{(n)}$ is the number of offsprings of the $i$-th individual in generation $n$. \\
+
+    What is the mean and variance of $X_n$? First assume that $\Exp\br{\xi} = \mu$ and $\Var\br{\xi} = \si^2$. Remember that $\xi$ is the number of offspring produced by an individual of the population. To find $\Exp\br{E_n}$ first make use of the $\Exp\br{X_{n+1}}$.
+    \begin{align*}
+    \Exp\br{X_{n+1}}
+    &= \Exp\br{\xi^{(n)}_1 + \cdots + \xi^{(n)}_{X_n}}\\
+    &= \Exp\br{\Exp\br{\xi^{(n)}_1 + \cdots + \xi^{(n)}_{X_n}\mid X_n}}\\
+    &= \Exp\br{\mu X_n}\\
+    &= \mu \Exp\br{X_n}
+    \end{align*}
+    Recursively if $\Exp\br{X_{n+1}} = \mu \Exp\br{X_n}$, then we have that,
+    \[ \Exp\br{X_n} = \mu^n \Exp\br{X_0} = \mu^n  \quad \forall n = 0, 1, 2, \ldots \]
+    Next we find $\Var\br{X_{n+1}}$ using,
+    \[ \Var\br{X_{n+1}} = \Exp\br{\Var\br{X_{n+1} \mid X_n}} + \Var\br{\Exp\br{X_{n+1} \mid X_n}} \]
+    Examine the first term and make use of Wald's identity,
+    \begin{align*}
+        \Exp\br{\Var\br{X_{n+1} \mid X_n}}
+        &= \Exp\br{\Var\br{\xi^{(n)}_1 + \cdots + \xi^{(n)}_{X_n} \mid X_n}} \\
+        &= \Exp\br{\si^2 X_n} \\
+        &= \si^2 \mu
+    \end{align*}
+    \[ \Var\br{\Exp\br{X_{n+1} \mid X_n}} = \Var\br{\mu X_n} = \mu \Var\br{X_n} \]
+    Combining these results and we arrive at the recursive relation,
+    \[ \Var\br{X_{n+1}} = \si^2 \mu^n + \mu^2 \Var\br{X_n} \]
+    With initial variance $\Var\br{X_1} = \si^2$. Therefore,
+    \[ \Var\br{X_2} = \si^2 \mu^1 + \mu^2 \si^2 = \si^2 \br{\mu^1 + \mu^2} \]
+    Similarly for $n = 3$,
+    \[ \Var\br{X_3} = \mu^2 \si^2  + \mu^2 \Var\br{X_2} = \si^2 \br{\mu^2 + \mu^3 + \mu^4} \]
+    Altogether,
+    \[ \Var\br{X_n} = \si^2 \br{\mu^{n-1} + \cdots + \mu^{2n-2}} \]
+    Which becomes,
+    \[ \Var\br{X_n} = \begin{cases}
+        \si^2 \mu^{n-1}\f{1 - \mu^n}{1 - \mu} & \mu \neq 1 \\
+        \si^2n & \mu = 1 \\
+    \end{cases} \]
+
+
 
 \end{document}

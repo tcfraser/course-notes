@@ -730,6 +730,90 @@ These better estimates come from the \term{Saha Equation}. In thermal equilibriu
 \[ \br{1 - X}n_B = n_H \]
 Therefore,
 \[ \f{1 - X}{X^2} = 3.8 \f{n_B}{n_\ga}\br{\f{kT}{m_B c^2}}^{3/2}  e^{\f{\SI{13.6}{\eV}}{kT}} \]
-Setting $X = 0.1$ and solving this equation numerical gives $T \simeq \SI{3600}{\K}$
+Setting $X = 0.1$ and solving this equation numerical gives $T \simeq \SI{3600}{\K}$.
+
+\todo[TC]{Missed a lecture: structure formation of cmb, anisotropies from cosmology, download data}\\
+
+\section{Early Universe}
+
+It is a cosmological triumph that we can describe the entire universe using $6$ free parameters. Early universe cosmological is relatively simple; it is governed by linear equations and is absent of complex structures. This is in contrast to other areas of study like weather or evolutionary biology where the equations are non-linear and messy. The CMB dominates the radiation density of the Universe,
+\begin{align*}
+    T\tsb{CMB} &= \SI{2.725}{\K}\\
+    \Om\tsb{rad} &= \SI{5.0e-5}{}
+\end{align*}
+In addition to photon contributions, the entire universe was also occupied by neutrinos. Neutrinos we first discovered in the 1930's because neutrinos are only weakly interact with matter. \\
+
+\subsection{Neutrinos}
+
+On small scales, gravity is the weakest force interacting with matter. However, on larger scales, gravity dominates. The strong nuclear force is the strongest force by far on the scale of nuclei. The weak force is the second weakest force, next to gravity. Neutrinos interact though gravity and the weak force. The Higgs boson also interacts through the weak force. As an example, an isolated neutron is unstable and decays via the following process,
+\[ n \to p^+ + e^- + \bar \nu \]
+Where $p^+$ is a proton, $e^-$ is an electron and $\bar \nu$ is a neutrino. This process has an approximate half-life of $t_{1/2} \sim \SI{10}{\min}$. It is important to note that no other process (outside weak interactions) converts neutrinos to protons. In 1998 we discovered $\nu$'s have mass. Art McDonald won the Nodel Prize in 2015 for this discovery. The interaction cross-section of neutrinos as a function of energy is $\si\br{E} \propto E^2$ which means that neutrinos become less reactive at low temperatures. In the early universe, photons and neutrinos are thought to be in thermal equilibrium. This assumption fixes the temperature of neutrinos.
+\[ T_{\nu} = \br{\f{4}{11}}^{1/3} T\tsb{rad} = \SI{1.95}{\K} \]
+Where the energy density is,
+\[ \Om_{\nu} = 3 \times \f{7}{8} \times \br{\f{4}{11}}^{4/3} \Om\tsb{rad} = \SI{0.68}{}\cdot\Om\tsb{rad} \]
+Where the ``$3\times$'' is due to the the fact that neutrinos have three generations or varieties. The ``$7/8$'' is due to the fact that neutrinos are fermions. This tells us that $41\%$ of the energy is due to neutrinos while photons are responsible for the remaining $59\%$.\\
+
+Boson statistics differ from fermion statistics (Bose-Einstein vs. Fermi-Dirac),
+\[ \ep_\ga\br{f} \propto \f{f^3 \dif f}{e^{hf/kT} - 1} \quad \ep_\nu\br{f} \propto \f{f^3 \dif f}{e^{hf/kT} + 1} \]
+Roughly speaking the number density of neutrinos is,
+\[ n_\nu = \f{1}{e^{h f/kT} + 1} \]
+Which is always greater than $1$. This is a manifestation of the Pauli-Exclusion principle. \\
+
+Heretofore, we have been treating neutrinos as essentially massless. In reality we have lower bounds on the masses of neutrinos,
+\[ m_\nu^1 > \SI{0.05}{\eV} \quad m_\nu^2 > \SI{0.02}{\eV} \quad m_\nu^3 > 0 \]
+The reason why we only have lower bounds is because neutrino oscillation experiments can detect the difference in the squares of the masses of neutrinos $\br{m^i}^2 - \br{m^j}^2 \neq 0$. From this knowledge we suspect that at least $2$ $\nu$'s are non-relativistic now. We we ignore the neutrino mass, we calculate that,
+\[ \f{\Om_r\br{a}}{\Om_m\br{a}} = \f{\Om_\ga + \Om_\nu}{\Om_m} \times \f{1}{a} \implies 1 + z\tsb{eq} = \f{1}{a\tsb{eq}} = \SI{3400}{} \]
+This means that $T\tsb{eq} = \f{\SI{2.725}{\K}}{a\tsb{eq}} = \SI{9700}{\K}$. Of course the only time we need to consider neutrino masses is for late times $z \lesssim 100$. In this case we need to add,
+\[ \Om_{\nu, 0} = \f{\sum_i m_\nu^i}{\SI{46}{\eV}} + 0.68 \cdot \Om_{r} \]
+In order to calculate the time at equality we need to make use of the Friedmann equation,
+\[ H^2 = \f{8\pi G}{3}\br{\rho_m + \rho_r + \rho_\La} \]
+Doing so is left as an exercise. The time at equality is,
+\[ t\tsb{eq} = \SI{5.8e4}{\yr} \]
+Compare this to the time of decoupling which occurs slightly after,
+\[ t\tsb{de} = \SI{3.5e5}{\yr} \]
+
+
+\subsection{Before the CMB}
+In the radiation dominated era,
+\[ \br{\f{1}{a}}^2 = H^2 = \f{8 \pi G}{3} \rho = \f{8 \pi G}{3} \cdot \SI{1.68}{} \times \al T_\ga^2 \]
+This implies that,
+\[ \br{\f{t}{\SI{1}{\s}}}^{-3/2} = \f{k T}{\SI{1.1}{\mega \eV}} = \f{T}{\SI{1.3e10}{\K}}  \]
+This allows us to draw a one-to-one correspondence between time-scales and temperature-scales.
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw[->] (-7, 0) -- (7, 0);
+        \draw (-6, 0) node[below]{today} -- (-6, 2) node[above]{$\SI{e-4}{\eV}$};
+        \draw (-5, -1) node[below]{re-ionization (stars form)} -- (-5, 3) node[above]{$\SI{e-3}{\eV}$};
+        \draw (-3, 0) node[below]{$\nu$'s non-relativistic} -- (-3, 2) node[above]{$\SI{e-2}{\eV}$};
+        \draw (-1, -0.5) node[below]{decoupling} -- (-1, 2.5) node[above]{$\SI{0.3}{\eV}$};
+        \draw (1.5, 0) node[below]{equality} -- (1.5, 2) node[above]{$\SI{1}{\eV}$};
+        \draw (3.5, 0) node[below]{nuclear reactions} -- (3.5, 2) node[above]{$\SI{30}{\kilo\eV}$ -- $\SI{1}{\mega\eV}$};
+        \draw (6, 0) node[below]{quark-hadron} -- (6, 2) node[above]{$\SI{100}{\mega\eV}$};
+        \draw[|->] (-5, 1) -- node[above]{ionized} (-5.8, 1);
+        \draw[|->] (-5, 1) -- node[below]{neutral} (-4.2, 1);
+        \draw[|->] (-1, 1) -- node[above]{plasma} (-1+0.8, 1);
+        \draw[|->] (-1, 1) -- node[below]{neutral} (-1-0.8, 1);
+        \draw (2.5, 1) node{nuclei};
+        \draw (5, 1) node{nucleon};
+        \draw (7, 1) node{quarks};
+    \end{tikzpicture}
+\end{center}
+
+In particle accelerators have reached energies on the order of $\sim\SI{}{\tera \eV}$. This represents the limit of known physics. We also suspect that quantum gravity becomes important on the Plank energy scales ($\SI{e21}{\mega \eV}$). The most massive particles we know of are the top quark ($\SI{180}{\giga \eV}$) and the Higgs boson ($\SI{125}{\giga \eV}$).
+
+\subsection{Baryongenesis}
+Why is it that almost everything around us is matter and not anti-matter. The Baryongenesis program aims to answer this question. We suspect that Baryongenesis occurs when $T \gtrsim \SI{e12}{\eV}$. Recall that the ratio of baryons to photons today is,
+\[ \f{n_B}{n_\ga} = \SI{e-9}{} \]
+Despite the abundance of photons, most of the energy is in matter today. It must be that in the early universe the number of baryons is slightly more than the number of anti-baryons.
+\[ \f{n_B - n_{\bar B}}{n_B} \sim \SI{e-9}{} \]
+All of the processes in the standard model conserve baryon number. This means that we should expect the \textit{exact} same number of baryons and anti-baryons. It is shocking that there remains a non-zero difference. The Sakharov conditions outline how this is possible,
+\begin{enumerate}
+    \item A Baryon number violating process
+    \item Charge Conjugation (C) and Charge-Parity (CP) violating process
+    \item Departure from thermal equilibrium
+\end{enumerate}
+
+Charge Conjugation indicates a process that occurs the exact same way if one exchanges all positive charges with negative charges. The Charge-Parity condition indicates a process that occurs the same way when all momentum and charges are flipped. Altogether, the Sakharov conditions suggest that we need to look for processes outside the standard model.
 
 \end{document}

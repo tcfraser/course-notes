@@ -865,6 +865,59 @@ where $\ve E_{R_0} = E_0 \hat e_3$ and $\ve k_R = k \hat e_4$. What are the the 
 \textbf{j)} We have that $\mu_0 \ve K = \ve B \times \hat n$ which means that $\ve K$ is in the $\hat x$ direction. \\
 \textbf{k)} What is the velocity $\ve v$ of the charge at the surface? Does this make sense?
 
+\subsection{Frequency Dependence of Permittivity}
+Electromagnetic wave propagation depends on $\ep, \mu$ and $\si$ and we have, so far, assumed that these are frequency independent. If we elevate $\mu, \ep$ and $\si$ to depend on $\w$ we have that,
+\[ v\br{\w} = \f{1}{\sqrt{\mu\br{\w} \ep \br{\w}}} \]
+This phenomena is know as \term{dispersion}. The index of refraction is modified also,
+\[ n \br{\w} = \f{c}{v\br{\w}} \]
+Any wave packet will have a \term{phase velocity} (the speed of the surfaces of constant phase),
+\[ v = \f{\w}{k} = f \la \]
+While the \term{group velocity} is the speed of the wave packet.
+\[ v_g = \der{\w}{k} = \f{\dif E / \dif k}{\dif E / \dif \w} \]
+We will learn that $v v_g = c^2$ always.\\
 
+In order to get a mathematical model for this, let's look at the 1D, damped, driven, harmonic oscillator.
+\[ m \ddot {\ti x} = - m\w_0^2 {\ti x} - m \ga \dot {\ti x} + F_0 e^{i \w t} \]
+Where $m \ga \dot {\ti x}$ and $F_0 e^{i \w t}$ is a driven force. This equation motivates the ansatz,
+\[ x\br{t} = \Re\br{\ti x_0 e^{i\w t}} \]
+Which induces the auxiliary equation,
+\[ - \w^2 \ti x_0 - i \ga \w \ti x_0 + \w_0^2 \ti x_0 = \f{F_0}{m} \]
+Rearranging,
+\[ \ti x_0 = \f{F_0}{m} \f{1}{\w_0^2 - \w^2 - i \ga \w} = \f{F_0}{m} \f{\br{\w_0^2 - \w^2} + i \ga \w}{\br{\w_0^2 - \w^2} + \br{\ga \w}^2} = x_0 e^{i \de} \]
+If $\ti{F}\br{t} = w E_0 e^{i \w t}$ then the dipole moment of the oscillator will be the real part of $\ti p \br{t} = \w \ti x \br{t}$ where $\ti p \br{t}$ is,
+\[ \ti p \br{t} = \f{q^2 E_0 e^{i \w t}}{m} \f{1}{\w_0^2 - \w^2 - i \ga \w} = \f{q^2 E_0 e^{i \w t}}{m} \f{\br{\w_0^2 - \w^2} + i \ga \w}{\br{\w_0^2 - \w^2} + \br{\ga \w}^2} \]
+So that $\ti p \br{t}$ an $\ti E\br{t}$ will have a phase difference,
+\[ \de = \tan^{-1} \br{\f{\ga \w}{\w_0^2 - \w^2}} \]
+So that the phase difference itself is frequency dependent. \\
 
+We now have the result for a damped, driven, harmonic oscillator and found the  polarization to be,
+\[ \ti{p}\br{t} = \f{q^2 E_0 e^{-i\w t}}{\ep_0 m} \f{1}{\w_0^2 - \w^2 - i \ga \w} \]
+This result holds for a single oscillator with natural frequency $\w_0$ and damping $\ga$ ($\w$ is the frequency of the driving force and $\w_0$ is the natural frequency).\\
+
+For polarizable media we have many oscillators and we can write the polarization density as,
+\[ \ti{\ve P}\br{\w} = \f{N q^2}{\ep_0 m} \bc{\sum_{j} \f{f_j}{\w_j^2 - \w^2 - i \ga_j \w}} \ti{\ve E}\br{\w} \]
+Recall that $\ve E = \ve D - \ve P$ and $\ve E = \ep \ve D, \ve P = \ep_0 \chi \ve E$. Where the susceptibility is,
+\[ \chi = \f{N q^2}{\ep_0 m} \bc{\sum_{j} \f{f_j}{\w_j^2 - \w^2 - i \ga_j \w}} \]
+Previously, this was taken to be a constant but now it is frequency dependent $\chi \mapsto \chi\br{\w}$. It is convenient to introduce the complex dielectric constant,
+\[ \ti \ep = \ep_0 \br{1 + \ti \chi} \]
+We make the approximation that $\ti \chi$ is reasonably small such that we can make the approximation,
+\[ \sqrt{\ti \ep} \approx \sqrt{\ep} \br{1 + \f12 \ti \chi} \]
+And the wave equation can be rewritten as,
+\[ \del^2 \ti{\ve E} = \ti \ep \mu_0 \pdder{\ti{\ve E}}{t} \]
+With solution,
+\[ \ti{\ve E}\br{z, t} = \ti{\ve E}_0 e^{i\br{\ti k z - \w t}} = \ti{\ve E}_0 e^{- \Im\br{\ti k} z} e^{i\br{\Re\br{\ti k} z - \w t}} \]
+Where,
+\[ \ti k = \w \sqrt{\ti \ep \mu_0} = \f{\w \sqrt{\ti \ep \mu_0}}{c \sqrt{\ep \mu_0}} = \f{\w}{c}\br{1 + \f{N q^2}{2 m \ep_0} \sum_j \f{f_j}{\w_j^2 - \w^2 - i \ga_j \w}} \]
+And the refractive index is,
+\[ n = \f{c}{v} = \f{ck}{\w} = \f{c}{\w} \Re\br{\ti k} \]
+\[ n \approx 1 + \f{N q^2}{2 m \ep_0} \sum_j \f{f_j\br{\w_0^2 - \w^2}}{\br{\w_j^2 - \w^2}^2 + \br{\ga_j \w}^2} \]
+We make a distinction: \term{Normal Dispersion} occurs when $\dif n / \dif \la > 0$ while \term{Anomalous Dispersion} occurs when $\dif n / \dif \la < 0$. (do not get confused here; $n = \f{c}{v} = \f{c}{\la f} = \f{c k}{\w}$ holds for always)\\
+While the absorption coefficient is $\al = 2 \Im\br{\ti k}$,
+\[ \al \approx \f{N q^2 \w^2 }{m c \ep_0} \sum_j \f{f_j \ga_j}{\br{\w_j^2 - \w^2}^2 + \br{\ga_j \w}^2} \]
+\subsection{Plasma Frequency}
+In the high frequency limit we can expand the sum.
+\[ \ti k \sqrt{\ti \ep \mu_0} \w = \f{\w}{c} \sqrt{\ti \ep} = \f{\w}{c} \br{1 + \f{N q^2}{m} \sum_j \f{f_j}{\w_j^2 - \w^2 - i \ga_j \w}} \approx \f{\w}{c}\br{1 - \f{NZ q^2}{m \w^2}} \]
+Where $Z = \sum_j f_j$ is the number of electrons per unit volume. This can be wrtitten as $\ti n = \f{c \ti k}{\w} = 1 - \f{\w_p^2}{\w^2}$ where,
+\[ \w_p^2 = \f{Nq^2 Z}{m} \]
+Is the \term{plasma frequency}.
 \end{document}

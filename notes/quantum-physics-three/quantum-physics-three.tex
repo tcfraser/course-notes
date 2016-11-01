@@ -12,6 +12,22 @@
 \set{Term}{Fall 2016}
 \set{Version}{1.0}
 
+\pgfplotsset{
+    standardplot/.style={
+        axis x line=middle,
+        axis y line=middle,
+        enlarge x limits=0.05,
+        enlarge y limits=0.05,
+        every axis x label/.style={at={(current axis.right of origin)},anchor=north east},
+        every axis y label/.style={at={(current axis.above origin)},anchor=north east},
+        ytick=\empty,
+        xtick=\empty,
+        width=3in,
+        height=2.5in,
+        axis line style=thick,
+    }
+}
+
 \draftprofile[TC Fraser]{TC}{Purple}
 
 \newcommand{\hilb}{\mathcal{H}}
@@ -649,7 +665,7 @@ In spherical coordinates, we can express $\hat n$ in terms of $\theta, \varphi$.
     \ket{\psi}
     &= e^{-\f{i}{2} \si_z \varphi} e^{-\f{i}{2} \si_y \theta} \ket{\uparrow} \\
     &= \begin{pmatrix} \cos \f{\varphi}{2} - i \sin \f{\varphi}{2} & 0 \\ 0 & \cos \f{\varphi}{2} + i \sin \f{\varphi}{2} \end{pmatrix}\begin{pmatrix} \cos \f{\theta}{2} & -\sin \f{\theta}{2} \\ \sin \f{\theta}{2} & \cos \f{\theta}{2} \end{pmatrix} \begin{pmatrix}1\\0\end{pmatrix} \\
-    &= \begin{pmatrix} e^{-i \f{\varphi}{2}}\cos \f{\theta}{2} \\ e^{i \f{\varphi}{2}}\sin \f{\theta}{2} \end{pmatrix}
+    &= \begin{pmatrix} e^{-i \f{\varphi}{2}}\cos \f{\theta}{2} \\ e^{i \f{\varphi}{2}}\sin \f{\theta}{2} \end{pmatrix} \eq \label{eq:directional_eigenket}
 \end{align*}
 Next let's check if this result makes sense. Consider the expectation value of $S_x$,
 \begin{align*}
@@ -1303,6 +1319,7 @@ As a foundational example, consider a 1D periodic potential.
         \draw[scale=0.5,domain=-3*pi:3*pi,smooth, variable=\x,blue] plot ({\x},{sin(deg(6*\x))});
         \draw[<->] (-3 + 0.25, -0.8) -- node[below]{$a$} (-3+ 0.25 + pi/2, -0.8);
         \draw[] (1.97, -0.8-0.05) node[below]{$n$-th minimum} -- (1.97, -0.8+0.5);
+        \draw[blue] (-2, +0.8+0.05) node[]{$V\br{x}$};
     \end{tikzpicture}
 \end{center}
 
@@ -1312,7 +1329,7 @@ We also have that $T^{\dagger}\br{a} \f{\ve p^2}{2m} T\br{a}$ so that $T\br{a} H
 \[ \bs{H, T\br{a}} = 0 \]
 We can find eigenstates of $H$ which are also eigenstate of $T\br{a}$. We will look at the limit of infinite barrier height; the particle has to be stuck in any of the minimal of the potential. Let $\ket n$ be the state in which the particle is in the $n$-th minimum.
 \[ H\ket n = E_0 \ket n \]
-And $T\br{a} \ket n = \ket {n+1}$ which implies that $\ket n$ is not an eigenstate of $T\br{a}$. Instead consider,
+And $T\br{a} \ket n = \ket {n+1}$ which implies that $\ket n$ is not an eigenstate of $T\br{a}$. Instead consider the state $\ket \te$ that is a sum over eigenstates of $H$,
 \[ \ket \te = \sum_{n = -\inf}^{\inf} e^{i n \te} \ket n \]
 Since $\te \mapsto \te + 2 \pi m$, where $m$ is an integer does not change $e^{i n \te}$ (for all $ -\pi \leq \te \leq \pi$). The transition operator acting on $\ket \te$ is,
 \begin{align*}
@@ -1323,15 +1340,227 @@ Since $\te \mapsto \te + 2 \pi m$, where $m$ is an integer does not change $e^{i
     &= e^{-i\te}\sum_{n' = - \inf}^{\inf} e^{i n' \te} \ket {n'} \\
     &= e^{-i\te}\ket \te
 \end{align*}
-Therefore have that $T\br{a} \ket \te = e^{i \te} \ket \te$ is an eigenstate of $T\br{a}$ with eigenstate $e^{i \te}$. By linearity $\ket \te$ is \textit{also} and eigenstate of $H$.\\
+Therefore have that $T\br{a} \ket \te = e^{i \te} \ket \te$ is an eigenstate of $T\br{a}$ with eigenstate $e^{i \te}$. But since $\bs{T\br{a}, H} = 0$ so that $\ket \te$ is \textit{also} and eigenstate of $H$.
+\[ H \ket{\te} = E_{0} \ket {\te} \]
 
-To generalize this analysis assume that the barrier height is finite but large enough so that particles may only tunnel between nearest neighbor minimum. In this case our Hamiltonian will be very similar to the ``left/right'' tunneling amplitude discussed earlier. The matrix elements of $H$ for this system are $\bra{+1} H \ket{n}$. We assign to them the probability $- \De$ to be the probability amplitude for tunneling between nearest neighbor minima. We also assume define that $\ket n$ be an eigenstate $\bra n H \ket n = E_0$. Therefore,
+To generalize this analysis assume that the barrier height is finite but large enough so that particles may only tunnel between nearest neighbor minimum. This is called the \term{tight binding approximation}. In this case our Hamiltonian will be very similar to the ``left/right'' tunneling amplitude discussed earlier. The matrix elements of $H$ for this system are $\bra{+1} H \ket{n}$. We assign to them the probability $- \De$ to be the probability amplitude for tunneling between nearest neighbor minima. We also assume define that $\ket n$ be an eigenstate $\bra n H \ket n = E_0$. Therefore,
 \[H\br{n} = E_0 \ket n - \De \ket {n+1} - \De \ket{n-1} \]
 Which means that $H$ acting on the translation eigenstate $\ket \te  = \sum_n = e^{i n \te} \ket n$ becomes,
 \begin{align*}
 H\ket \te
 &= \sum_{n=-\inf}^{\inf} e^{i n \te} H \ket n \\
 &= \sum_{n=-\inf}^{\inf} e^{i n \te} \br{E_0 \ket n - \De \ket {n+1} - \De \ket{n-1}} \\
-&= \sum_{n=-\inf}^{\inf} e^{i n \te} E_0 \ket n - \sum_{n=-\inf}^{\inf} e^{i n \te} \De \ket {n+1} - \sum_{n=-\inf}^{\inf} e^{i n \te} \De \ket{n-1}
+&= \sum_{n=-\inf}^{\inf} e^{i n \te} E_0 \ket n - \sum_{n=-\inf}^{\inf} e^{i n \te} \De \ket {n+1} - \sum_{n=-\inf}^{\inf} e^{i n \te} \De \ket{n-1} \\
+&= E_0\sum_{n=-\inf}^{\inf} e^{i n \te} \ket n - \De\sum_{n=-\inf}^{\inf} e^{i n \te} \ket {n+1} - \De\sum_{n=-\inf}^{\inf} e^{i n \te} \ket{n-1} \\
+&= E_0\sum_{n=-\inf}^{\inf} e^{i n \te} \ket n - \De\sum_{n=-\inf}^{\inf} e^{i \br{n-1} \te} \ket {n} - \De\sum_{n=-\inf}^{\inf} e^{i \br{n-1} \te} \ket{n} \\
+&= E_0\sum_{n=-\inf}^{\inf} e^{i n \te} \ket n - \De e^{-i \te}\sum_{n=-\inf}^{\inf} e^{i n \te} \ket {n} - e^{i \te}\De\sum_{n=-\inf}^{\inf} e^{i n \te} \ket{n} \\
+&= \br{E_0 - \De e^{-i \te} - e^{i \te}\De}\sum_{n=-\inf}^{\inf} e^{i n \te} \ket{n} \\
+&= \br{E_0 - \De e^{-i \te} - e^{i \te}\De}\ket \te \\
+&= \br{E_0 - 2 \De \cos \te}\ket \te
 \end{align*}
+Therefore $\ket \te$ is an eigenvalue of $H$ with eigenvalue $E\br{\te}$,
+\[ E\br{\te} = E_0 - 2 \De \cos \te \]
+
+\begin{center}
+\begin{tikzpicture}
+    \draw[->] (0,0) -- (0,3) node[above]{$E\br{\te}$};
+    \draw[->] (0,0) -- (3,0) node[right]{$\De$};
+    \draw[thick, blue, fill, fill opacity=0.4] (2.5,1.5) -- (0,2) -- (2.5,2.5);
+    \draw[] (0,2) node[left]{$E_0$};
+    \draw[|<->|] (2.5+0.4,2.5) -- node[right]{$4 \De$} (2.5+0.4,1.5);
+\end{tikzpicture}
+\end{center}
+Notice that when there is no tunneling, $\De = 0$, we recover a single eigen-energy $E_0$. However when tunneling is introduced, the parameter $\te$ allows for a range of eigen-energies between $E_0 \pm 2 \De$. Next consider the wave function $\braket{x'}{\te}$,
+\[ \bra{x'} T\br{a} \ket{\te} = \bra{\te} T^{\dagger}\br{a} \ket{x'}^* = \braket{\te}{x' - a}^* = \braket{x' - a}{\te} \]
+But we also know that $T\br{a} \ket{\te} = e^{-i \te}$. Therefore,
+\[ \braket{x' - a}{\te} = e^{-i\te}\braket{x'}{\te} \]
+The most general solution to this equation is,
+\[ \braket{x'}{\te} = e^{i k x'} u_k \br{x'} \]
+Where $u_k \br{x'}$ is a \term{Bloch wavefunction} with $\te = k a$. Bloch wavefunctions have the property that,
+\[ u_k \br{x'+a} = u_k\br{x'} \]
+When means that,
+\[ e^{ik\br{x' -a}} u_k\br{x'-a} = e^{- i k a} u_k\br{x'} e^{i k x'} \]
+If $\te \in \bs{-\pi, \pi}$ then $k \in \bs{-\f{\pi}{a}, \f{\pi}{2}}$. This interval is called the \term{first Brillouin zone}. We call $\hbar k$ the crystal momentum and its conservation is a consequence of discrete symmetry with respect to translations by $a$, which still remains in the crystal. The energy of a particle in a crystal with wavenumber $k$ is given by,
+\[ E\br{k} = E_0 - 2 \De \cos \br{k a} \]
+\subsection{Time-reversal Symmetry}
+The formalism of quantum time-reversal symmetries is more subtle and complicated than the other symmetries considered thus-far. To introduce time-reversal symmetries, we initially consider the classical case.
+\begin{center}
+    \begin{tikzpicture}
+        \pgfmathsetmacro{\shift}{4};
+        \draw[dashed] plot [smooth, tension=1] coordinates {(0,0) (2, -0.3) (3, -2)};
+        \draw[thick, ->] (2, -0.3) node[above right]{$t = 0$} -- (2+0.5, -0.3-0.4) node[right]{$\ve p$};
+        \draw[dashed] plot [smooth, tension=1] coordinates {(0+\shift,0) (2+\shift, -0.3) (3+\shift, -2)};
+        \draw[thick, ->] (2+\shift, -0.3) node[above right]{$t = 0$} -- (2-0.5+\shift, -0.3+0.3) node[above]{$-\ve p$};
+    \end{tikzpicture}
+\end{center}
+
+We consider a particle moving on a trajectory. Suppose that we have the ability to stop the particle and run time backward. In the absence of friction the particle will simply retrace its trajectory backward.
+\[ m \dder{\ve x}{t} = - \vdel V \br{\ve x} \]
+Under the time-reversal map $t \mapsto -t$, the equations of motion do not change. Both $\ve x\br{t}$ and $\ve x\br{-t}$ are solutions to the equations of motion.
+\[ \ve p = m \der{\ve x}{t} \stackrel{t \mapsto -t}{\implies} \ve p \mapsto - \ve p \]
+An example of the lack of time-reversal symmetry is a charged particle in a magnetic field. Let $\ve B$ face into the board. The Lorentz force is $\ve F = \f{e}{c} \ve v \times \ve B$. When the force in question is $- \vdel V \br{\ve x}$ then $\ve F \mapsto \ve F$. However since $\ve v \mapsto -\ve v$ and $\ve B \mapsto \ve B$, we have that $\ve F \mapsto - \ve F$. \\
+
+In the quantum mechanic case, equations of motion are determined by the Schrödinger equation,
+\[ i \hbar \pder{\psi\br{\ve x, t}}{t} = \bs{-\f{\hbar^2 \del^2}{2m} + V \br{\ve x}} \psi \br{\ve x, t} \eq \label{eq:schro_reg_time}\]
+If $\psi \br{\ve x, t}$ is a solution of the Schrödinger equation, will $\psi \br{\ve x, -t}$ also be a solution? Reversing time,
+\[ -i \hbar \pder{\psi\br{\ve x, -t}}{t} = \bs{-\f{\hbar^2 \del^2}{2m} + V \br{\ve x}} \psi \br{\ve x, -t} \eq \label{eq:schro_rev_time}\]
+\Cref{eq:schro_rev_time} is an \textit{identical} equation to \cref{eq:schro_reg_time} except that the sign of the LHS. Therefore it does not follow that $\psi\br{\ve x, - t}$ is a solution of the time-reversed SE. Instead take the complex conjugate of \cref{eq:schro_rev_time},
+\[ i \hbar \pder{\psi^*\br{\ve x, -t}}{t} = \bs{-\f{\hbar^2 \del^2}{2m} + V \br{\ve x}} \psi^* \br{\ve x, -t} \]
+This is identical to \cref{eq:schro_reg_time}. Therefore we can then say that if $\psi\br{\ve x, t}$ is a solution to \cref{eq:schro_reg_time} then $\psi^*\br{\ve x, t}$ is solution to \cref{eq:schro_reg_time} as well. \\
+
+Motivated by this we introduce the \term{time-reversal} operator $\Theta$ taking kets $\ket \psi$ to $\Theta \ket \psi$. Let's look at some desired properties: If a ket starts at $t = 0$, we can apply the infinitesimal time translation operator,
+\[ \ket{\psi, t = \de t} = \br{\ident - \f i \hbar H \de t} \ket{\psi} \]
+Now suppose at time $t = 0$ we perform a time-reversal operation such that,
+\begin{align*}
+\br{\ident - \f i \hbar H \de t} \Theta \ket{\psi}
+&= \Theta \ket{\psi, t = - \de t} \\
+&= \Theta \br{\ident - \f i \hbar H {-\de t}} \ket{\psi} \\
+&= \Theta \br{\ident + \f i \hbar H \de t} \ket{\psi}
+\end{align*}
+This fixes a relationship between $H$ and $\Theta$, namely,
+\[ -\f i \hbar H \de t \Theta \ket{\psi} = + \Theta \f i \hbar H \de t  \ket{\psi} \]
+Since $\ket{\psi}$ is arbitrary and $\hbar$ and $\de t$ are real constants,
+\[ -iH \Theta = + \Theta iH  \eq \label{eq:time_reversal}\]
+You might wonder why we can't also cancel $i$. Suppose we also canceled $i$ such that $-H \Theta = \Theta H$. Then if we consider energy eigenstates $\ket{n}$,
+\[ H \Theta \ket n = - \Theta H \ket n = - E_n \Theta \ket n \]
+This means that $\Theta \ket{n}$ is an eigenket of $H$ with negative energy $E_n$. However for a free particle, the energy is always positive! Therefore we \textit{cannot} cancel the $i$'s in \cref{eq:time_reversal}.\footnote{Alternatively we could resolve this conundrum by asserting that $\Theta \ket n = 0$ for all eigenstates. But this is only possible if $\Theta = 0$ is the null operator.} This is resolved by recognizing that $\Theta$ is not a unitary operator and is instead an anti-unitary operator. Recall that unitary operators $U$ act on kets such that,
+\[ \braket{\ti \varphi}{\ti \psi} = \bra{\varphi}U^{\dagger} U\ket{\psi} = \braket{\varphi}{\psi} \]
+Since $U^{\dagger}U = \ident$ defines unitary operators, unitary operators preserve inner products. However anti-unitary operators $\theta$ have the dual characterization,
+\[ \braket{\ti \varphi}{\ti \psi} = \braket{\varphi}{\psi}^* = \braket{\psi}{\varphi} \]
+Which conjugates inner products. This means that,
+\[ \theta \br{c_1  \ket{\psi} + c_2 \ket{\varphi}} = c_1^* \theta \ket{\psi} + c_2^* \theta \ket{\varphi} \]
+Anti-unitary operators conjugate coefficients. We define the \term{complex conjugation operator} $K$ such that if $\ket{\psi} = \sum_a \ket{a}\braket{a}{\psi}$, then,
+\[ K \ket{\psi} = \sum_{a} \ket{a} \braket{a}{\psi}^* \]
+In this way we can define the time-reversal operator as $\Theta = U K$. Returning to \cref{eq:time_reversal},
+\[ \Theta i = U K i = U \br{-i} K = - i U K = - i \Theta \]
+Which means that the time reversal operator commutes with the Hamiltonian,
+\[ \bs{\Theta, H} = 0 \]
+How does $\Theta$ act on Hermitian operators? Well, consider two kets,
+\[ \ket{\ti \varphi} = \Theta \ket{\varphi} \quad \ket{\ti \psi} = \Theta \ket{\psi} \]
+And a generic Hermitian operator $A$ such that,
+\begin{align*}
+\ket{\xi} &= A^{\dagger} \ket{\varphi} = A \ket{\varphi} \\
+\bra{\xi} &= \bra{\varphi}A = \bra{\varphi}A^{\dagger}
+\end{align*}
+Therefore,
+\begin{align*}
+    \bra{\varphi} A \ket{\psi}
+    &= \braket{\xi}{\psi} \\
+    &= \braket{\ti \xi}{\ti \psi}^* \\
+    &= \braket{\ti \psi}{\ti \xi} \\
+    &= \bra{\ti \psi}\Theta\ket{\xi} \\
+    &= \bra{\ti \psi}\Theta A\ket{\varphi} \\
+    &= \bra{\ti \psi}\Theta A \Theta^{-1} \Theta \ket{\varphi} \\
+    &= \bra{\ti \psi}\Theta A \Theta^{-1} \ket{\ti \varphi}
+\end{align*}
+Such that the time reversed operator of $A$ is denoted $\Theta A \Theta^{-1}$. In fact there are two possibilities for $\Theta A \Theta^{-1}$. If $\Theta A \Theta^{-1} = A$ then we say that $A$ is \textit{time reversal even} and if $\Theta A \Theta^{-1} = - A$ we say that $A$ is \textit{time reversal odd}. As examples,
+\begin{alignat*}{2}
+    \Theta \ve p \Theta^{-1} &= - \ve p \qquad &&\text{Time Reversal Odd} \\
+    \Theta \ve x \Theta^{-1} &= \ve x \qquad &&\text{Time Reversal Even}
+\end{alignat*}
+What about the operator $\bs{x_i, p_j}$? We know that,
+\[ \bs{x_i, p_j} \ket{\psi} = i\hbar \de_{ij} \ket{\psi} \]
+Under time-reversal,
+\[ \Theta \bs{x_i, p_j} \ket{\psi} = \Theta i\hbar \de_{ij} \ket{\psi} \]
+Since $\Theta$ conjugates,
+\[ \Theta \bs{x_i, p_j} \ket{\psi} = - i\hbar \de_{ij} \Theta \ket{\psi} \]
+Therefore $\Theta \bs{x_i, p_j} \Theta^{-1} = - \bs{x_i, x_j}$. What about $\bs{J_i, J_k} = i \hbar \ep_{ijk} J_k$? Since both $J_i$ and $J_k$ are time reversal odd,
+\[ \Theta \bs{J_i, J_j} \Theta^{-1} = \bs{J_i, J_j} \]
+While,
+\[ \Theta \ve J \Theta^{-1} = - \ve J \]
+In confirmation with all of these results, lets check $\ket{\psi}$ written in the position basis,
+\[ \ket{\psi} = \int \dif \ve x' \ket{\ve x'}\braket{\ve x'}{\psi} \]
+Under the action of $\Theta$,
+\[ \Theta \ket{\psi} = \int \dif \ve x' \Theta \ket{\ve x'}\braket{\ve x'}{\psi} = \int \dif \ve x' \ket{\ve x'}\braket{\ve x'}{\psi}^* \]
+Which makes,
+\[ \bra{\ve x''}\Theta \ket{\psi} = \braket{\ve x''}{\psi}^* \]
+However for $\ve p$ we have that,
+\[ \bra{\ve p''}\Theta \ket{\psi} = \braket{-\ve p''}{\psi}^* \]
+\subsection{Time-Reversal of Spin-1/2 System}
+Consider an eigenket of the spin operator in some arbitrary direction $\hat n$,
+\[ \hat n = \br{\sin\te \cos \varphi, \sin \te \sin \varphi, \cos \te} \]
+We can find an eigenket of $\ve S \cdot \hat n$ by finding an eigenket of $S_z$ and rotating it to the direction $\hat n$. This result was previously obtained as \cref{eq:directional_eigenket}.
+We define the eigenket as,
+\[ \ket{\hat n; \uparrow} = e^{- \f i \hbar S_z \varphi}e^{- \f i \hbar S_y \theta} \ket{\uparrow} \]
+How does $\Theta$ act on $\ket{\hat n; \uparrow}$?
+\[ \Theta \ket{\hat n; \uparrow} = \Theta e^{- \f i \hbar S_z \varphi}e^{- \f i \hbar S_y \theta} \ket{\uparrow}  \]
+Note that $\Theta \ve S = - \ve S \Theta$ is time reversal odd (but $\Theta i = - i \Theta$ so the factors cancel out). Therefore,
+\[ \Theta \ket{\hat n; \uparrow} = e^{- \f i \hbar S_z \varphi}e^{- \f i \hbar S_y \theta} \Theta\ket{\uparrow} \]
+What then is $\Theta\ket{\uparrow}$?
+\[ S_z \Theta \ket{\uparrow} = - \Theta S_z \ket{\uparrow} = - \f \hbar 2 \Theta \ket{\uparrow} \]
+There $\Theta \ket{\uparrow}$ is the eigenket of $S_z$ with eigenvalue $-\hbar/2$. This is nothing more that $\ket{\downarrow}$. More specifically,
+\[ \Theta \ket{\uparrow} = e^{i \eta} \ket{\downarrow} \]
+Where $\eta$ is just an arbitrary phase factor. Therefore,
+\[ \Theta \ket{\hat n; \uparrow} = e^{- \f i \hbar S_z \varphi}e^{- \f i \hbar S_y \theta} e^{i\eta}\ket{\downarrow} \]
+Recognize that $e^{- \f i \hbar S_z \varphi}e^{- \f i \hbar S_y \theta} \ket{\downarrow} = \ket{\hat n, \downarrow}$ where,
+\[ \ket{\hat n, \downarrow} = \begin{pmatrix}
+    - e^{i\f{\varphi}{2} \sin \f{\te}{2}} \\
+    e^{i\f{\varphi}{2} \cos \f{\te}{2}}
+\end{pmatrix} \]
+Therefore,
+\[ \ket{\hat n \br{\te, \varphi} ; \downarrow} = \ket{\hat n\br{\te + \pi, \varphi}; \uparrow} \]
+Explicitly this means that $\Theta$ can be written as,
+\[ \Theta \ket{\hat n; \uparrow} = \Theta e^{- \f i \hbar S_z \varphi} e^{- \f i \hbar S_y \theta} \ket{\uparrow} = e^{i \eta}e^{-\f i \hbar S_z \varphi}e^{-\f i \hbar S_y \br{\te + \pi}} \ket{\uparrow} \]
+Which means that,
+\begin{align*}
+\Theta
+&= U K \\
+&= e^{i \eta} e^{- \f i \hbar S_y \pi} K \\
+&= e^{i \eta} e^{- \f i 2 \si_y \pi} K \\
+&= e^{i \eta} \br{\cos \f{\pi}{2} - i \si_y \sin \f{\pi}{2}} K \\
+&= -ie^{i \eta}\si_y K
+\end{align*}
+This allows use to determine how $\Theta$ affects $\ket{\uparrow}$ and $\ket{\downarrow}$ directly,\footnote{Since $\ket{\uparrow}$ is a real spinor, the charge conjugation operator doesn't affect it: $K \ket{\uparrow} = \ket{\uparrow}$.}
+\begin{align*}
+\Theta \ket{\uparrow}
+&= - i e^{i \eta} \si_y \begin{pmatrix} 1 \\ 0 \end{pmatrix} \\
+&= - i e^{i \eta} \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} \begin{pmatrix} 1 \\ 0 \end{pmatrix} \\
+&= - i e^{i \eta} \begin{pmatrix} 0 \\ i \end{pmatrix} \\
+&= e^{i \eta} \begin{pmatrix} 0 \\ 1 \end{pmatrix} \\
+&= e^{i \eta} \ket{\uparrow}
+\end{align*}
+This is a result we have seen previously. Next consider how $\Theta$ affects $\ket{\downarrow}$.
+\begin{align*}
+\Theta \ket{\downarrow}
+&= - i e^{i \eta} \si_y \begin{pmatrix} 0 \\ 1 \end{pmatrix} \\
+&= - i e^{i \eta} \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} \begin{pmatrix} 0 \\ 1 \end{pmatrix} \\
+&= - i e^{i \eta} \begin{pmatrix} -i \\ 0 \end{pmatrix} \\
+&= -e^{i \eta} \ket{\downarrow}
+\end{align*}
+For an arbitrary spinor $\ket{z} = z_{\uparrow} \ket{\uparrow} + z_{\downarrow} \ket{\downarrow}$.
+\[ \Theta \ket{z} = z_{\uparrow}^{*} e^{i \eta} \ket{\downarrow} - z_{\downarrow}^{*} e^{i \eta} \ket{\uparrow} \]
+Applying $\Theta$ twice gives,
+\[ \Theta^2 \ket{z} = - \ket{z} \]
+Therefore for spin-1/2 particles,
+\[ \Theta^2 = - 1 \]
+In general for a spin $j$ particles,
+\[ \Theta^2 = \br{-1}^{2j} \eq \label{eq:time_reversal_spin} \]
+\subsection{Time-Reversal Invariant System With Half-integer Spin}
+A time reversal invariant system is one whereby $\bs{\Theta, H} = 0$. In this case we can also say that $H$ is time reversal even,
+\[ \Theta H \Theta^{-1} = H \]
+For this case consider the eigen-system $H\ket{n} = E_n\ket{n}$. Therefore,
+\[ H \Theta \ket{n} = \Theta H \ket{n} = E_n \Theta \ket{n} \]
+Assuming that $\ket{n}$ is non-degenerate,
+\[ \Theta \ket{n} = e^{i \de} \ket{n} \]
+\[ \Theta^2 \ket{n} = e^{-i\de} \Theta \ket{n} = e^{-i\de}e^{i\de} \ket{n} = \ket{n} \]
+Therefore $\Theta^2 = 1$. But \cref{eq:time_reversal_spin} contradicts this. If $j$ is a half integer, then $\Theta^2 = -1$. Therefore the assumption that $\ket{n}$ was non-degenerate is wrong.\\
+
+\term{Kramer's Theorem:} In a time-reversal invariant system with half integer spin $j$, all energy eigenstates are degenerate.\\
+
+For $j = 1/2$, $\ket{\uparrow}$ and $\downarrow$ always have the same energy (degeneracy $2$).
+
+\section{Time-Dependent Hamiltonian}
+So far we have assumed that $H$ is time-independent (i.e. $\pder{H}{t} = 0$).
+\[ H = \f{\ve p^2}{2m} + V\br{\ve x} \]
+However in generality, $H$ can be time-dependent through $V\br{\ve x, t}$. To facilitate the discussions, we isolate the time-dependent component of the Hamiltonian,
+\[ H = H_0 + V\br{t} \]
+Recall that in the Schrödinger picture,
+\[ \ket{\psi, t}_S = e^{- \f i \hbar H t}\ket{\psi} \]
+This only holds if $H$ is independent of time. In the Heisenberg picture,
+\[ \ket{\psi}_H = \ket{\psi} = e^{- \f i \hbar H t} \ket{\psi, t}_S \]
+With $A^{(H)}\br{t} = e^{\f i \hbar H t} A^{(S)} e^{-\f i \hbar H t}$ and,
+\[ \der{A^{(H)}}{t} = \f{i}{\hbar} \bs{H, A^{(H)}} \]
+We now introduce the \term{interaction picture} which is an intermediate between the Schrödinger and Heisenberg pictures.
+\[ \ket{\psi, t}_I = e^{\f i \hbar H_0 t} \ket{\psi, t}_S \]
+Which reduces to the Heisenberg representation is $V\br{t} = 0$.
 \end{document}
