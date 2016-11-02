@@ -1324,8 +1324,8 @@ As a foundational example, consider a 1D periodic potential.
 \end{center}
 
 Where $V\br{x + a} = V\br{x}$. We have symmetry of translations by $a$ or any integer multiple of $a$. Therefore,
-\[ T^{\dagger}\br{a}T^{\dagger} = V\br{x + a} = V\br{x} \]
-We also have that $T^{\dagger}\br{a} \f{\ve p^2}{2m} T\br{a}$ so that $T\br{a} H = H T\br{a}$.
+\[ T^{\dagger}\br{a}V\br{x}T\br{a} = V\br{x + a} = V\br{x} \]
+We also have that $T^{\dagger}\br{a} \f{\ve p^2}{2m} T\br{a} = \f{\ve p^2}{2m}$ so that $T\br{a} H = H T\br{a}$.
 \[ \bs{H, T\br{a}} = 0 \]
 We can find eigenstates of $H$ which are also eigenstate of $T\br{a}$. We will look at the limit of infinite barrier height; the particle has to be stuck in any of the minimal of the potential. Let $\ket n$ be the state in which the particle is in the $n$-th minimum.
 \[ H\ket n = E_0 \ket n \]
@@ -1340,11 +1340,11 @@ Since $\te \mapsto \te + 2 \pi m$, where $m$ is an integer does not change $e^{i
     &= e^{-i\te}\sum_{n' = - \inf}^{\inf} e^{i n' \te} \ket {n'} \\
     &= e^{-i\te}\ket \te
 \end{align*}
-Therefore have that $T\br{a} \ket \te = e^{i \te} \ket \te$ is an eigenstate of $T\br{a}$ with eigenstate $e^{i \te}$. But since $\bs{T\br{a}, H} = 0$ so that $\ket \te$ is \textit{also} and eigenstate of $H$.
+Therefore have that $T\br{a} \ket \te = e^{-i \te} \ket \te$ is an eigenstate of $T\br{a}$ with eigenstate $e^{i \te}$. But since $\bs{T\br{a}, H} = 0$ so that $\ket \te$ is \textit{also} and eigenstate of $H$.
 \[ H \ket{\te} = E_{0} \ket {\te} \]
 
 To generalize this analysis assume that the barrier height is finite but large enough so that particles may only tunnel between nearest neighbor minimum. This is called the \term{tight binding approximation}. In this case our Hamiltonian will be very similar to the ``left/right'' tunneling amplitude discussed earlier. The matrix elements of $H$ for this system are $\bra{+1} H \ket{n}$. We assign to them the probability $- \De$ to be the probability amplitude for tunneling between nearest neighbor minima. We also assume define that $\ket n$ be an eigenstate $\bra n H \ket n = E_0$. Therefore,
-\[H\br{n} = E_0 \ket n - \De \ket {n+1} - \De \ket{n-1} \]
+\[H\ket{n} = E_0 \ket n - \De \ket {n+1} - \De \ket{n-1} \]
 Which means that $H$ acting on the translation eigenstate $\ket \te  = \sum_n = e^{i n \te} \ket n$ becomes,
 \begin{align*}
 H\ket \te
@@ -1372,7 +1372,7 @@ Therefore $\ket \te$ is an eigenvalue of $H$ with eigenvalue $E\br{\te}$,
 \end{center}
 Notice that when there is no tunneling, $\De = 0$, we recover a single eigen-energy $E_0$. However when tunneling is introduced, the parameter $\te$ allows for a range of eigen-energies between $E_0 \pm 2 \De$. Next consider the wave function $\braket{x'}{\te}$,
 \[ \bra{x'} T\br{a} \ket{\te} = \bra{\te} T^{\dagger}\br{a} \ket{x'}^* = \braket{\te}{x' - a}^* = \braket{x' - a}{\te} \]
-But we also know that $T\br{a} \ket{\te} = e^{-i \te}$. Therefore,
+But we also know that $T\br{a} \ket{\te} = e^{-i \te} \ket \te$. Therefore,
 \[ \braket{x' - a}{\te} = e^{-i\te}\braket{x'}{\te} \]
 The most general solution to this equation is,
 \[ \braket{x'}{\te} = e^{i k x'} u_k \br{x'} \]
@@ -1380,7 +1380,7 @@ Where $u_k \br{x'}$ is a \term{Bloch wavefunction} with $\te = k a$. Bloch wavef
 \[ u_k \br{x'+a} = u_k\br{x'} \]
 When means that,
 \[ e^{ik\br{x' -a}} u_k\br{x'-a} = e^{- i k a} u_k\br{x'} e^{i k x'} \]
-If $\te \in \bs{-\pi, \pi}$ then $k \in \bs{-\f{\pi}{a}, \f{\pi}{2}}$. This interval is called the \term{first Brillouin zone}. We call $\hbar k$ the crystal momentum and its conservation is a consequence of discrete symmetry with respect to translations by $a$, which still remains in the crystal. The energy of a particle in a crystal with wavenumber $k$ is given by,
+If $\te \in \bs{-\pi, \pi}$ then $k \in \bs{-\f{\pi}{a}, \f{\pi}{a}}$. This interval is called the \term{first Brillouin zone}. We call $\hbar k$ the crystal momentum and its conservation is a consequence of discrete symmetry with respect to translations by $a$, which still remains in the crystal. The energy of a particle in a crystal with wavenumber $k$ is given by,
 \[ E\br{k} = E_0 - 2 \De \cos \br{k a} \]
 \subsection{Time-reversal Symmetry}
 The formalism of quantum time-reversal symmetries is more subtle and complicated than the other symmetries considered thus-far. To introduce time-reversal symmetries, we initially consider the classical case.
