@@ -1547,14 +1547,14 @@ Therefore $\Theta^2 = 1$. But \cref{eq:time_reversal_spin} contradicts this. If 
 
 \term{Kramer's Theorem:} In a time-reversal invariant system with half integer spin $j$, all energy eigenstates are degenerate.\\
 
-For $j = 1/2$, $\ket{\uparrow}$ and $\downarrow$ always have the same energy (degeneracy $2$).
+For $j = 1/2$, $\ket{\uparrow}$ and $\ket{\downarrow}$ always have the same energy (degeneracy $2$).
 
 \section{Time-Dependent Hamiltonian}
 So far we have assumed that $H$ is time-independent (i.e. $\pder{H}{t} = 0$).
 \[ H = \f{\ve p^2}{2m} + V\br{\ve x} \]
 However in generality, $H$ can be time-dependent through $V\br{\ve x, t}$. To facilitate the discussions, we isolate the time-dependent component of the Hamiltonian,
 \[ H = H_0 + V\br{t} \]
-Recall that in the Schrödinger picture,
+This type of perturbation is typical when attempting to experimentally probe a given system. Recall that in the Schrödinger picture,
 \[ \ket{\psi, t}_S = e^{- \f i \hbar H t}\ket{\psi} \]
 This only holds if $H$ is independent of time. In the Heisenberg picture,
 \[ \ket{\psi}_H = \ket{\psi} = e^{- \f i \hbar H t} \ket{\psi, t}_S \]
@@ -1562,5 +1562,86 @@ With $A^{(H)}\br{t} = e^{\f i \hbar H t} A^{(S)} e^{-\f i \hbar H t}$ and,
 \[ \der{A^{(H)}}{t} = \f{i}{\hbar} \bs{H, A^{(H)}} \]
 We now introduce the \term{interaction picture} which is an intermediate between the Schrödinger and Heisenberg pictures.
 \[ \ket{\psi, t}_I = e^{\f i \hbar H_0 t} \ket{\psi, t}_S \]
-Which reduces to the Heisenberg representation is $V\br{t} = 0$.
+Which reduces to the Heisenberg representation is $V\br{t} = 0$. Notice that $\ket{\psi, t}_S$ is only time-evolved by the time-independent components of the Hamiltonian. What happens to operators in the interaction picture?
+\begin{align*}
+    _S\bra{\psi, t} A^{(S)} \ket{\psi, t}_S
+    &= _I\bra{\psi, t} e^{\f i \hbar H_0 t}A^{(S)} e^{-\f i \hbar H_0 t} \ket{\psi, t}_I
+\end{align*}
+This leads us to define,
+\[ A^{(I)} = e^{\f i \hbar H_0 t}A^{(S)} e^{-\f i \hbar H_0 t} \]
+Which would coincide with $A^{(H)}\br{t}$ if $H = H_0$. The Schrödinger equation is modified as well,
+\[ i \hbar \pder{}{t} \ket{\psi, t}_I = i \hbar \pder{}{t} e^{\f i \hbar H_0 t} \ket{\psi, t}_S \]
+Using product rule,
+\[ i \hbar \pder{}{t} \ket{\psi, t}_I = - H_0 e^{\f i \hbar H_0 t} \ket{\psi, t}_S + e^{\f i \hbar H_0 t} i \hbar \pder{}{t} \ket{\psi, t}_S \]
+We now make use of the Schrödinger equation for $\ket{\psi, t}_S$,
+\[ i \hbar \pder{}{t} \ket{\psi, t}_I = - H_0 e^{\f i \hbar H_0 t} \ket{\psi, t}_S + e^{\f i \hbar H_0 t} \br{H_0 + V\br{t}} \ket{\psi, t}_S \]
+Canceling terms in $H_0$ gives,
+\[ i \hbar \pder{}{t} \ket{\psi, t}_I = e^{\f i \hbar H_0 t} V\br{t} \ket{\psi, t}_S \]
+We insert $\ident = e^{-\f i \hbar H_0 t} e^{\f i \hbar H_0 t}$ to the right of $V\br{t}$,
+\[ i \hbar \pder{}{t} \ket{\psi, t}_I = \underbrace{e^{\f i \hbar H_0 t} V\br{t} e^{-\f i \hbar H_0 t}}_{V^{(I)}\br{t}} e^{\f i \hbar H_0 t} \ket{\psi, t}_S \]
+Which gives the Schrödinger equation for $\ket{\psi, t}_I$,
+\[ i \hbar \pder{}{t} \ket{\psi, t}_I = V^{(I)}\br{t} \ket{\psi, t}_I \eq \label{eq:schro_eqn_interaction} \]
+The time-dependence of $\ket{\psi, t}$ is entirely governed by the potential $V^{(I)}\br{t}$. Analogously to the Heisenberg equations of motion for operators, we have the interaction equations of motion,
+\[ \pder{A^{(I)}}{t} = \f i \hbar \bs{H_0, A^{(I)}} \]
+To solve the equations of motion, consider the eigen-system for $H_0$. Namely,
+\[ H_0 \ket{n} =E_n \ket{n} \]
+From this complete orthonormal basis, we write $\ket{\psi, t}_I$ as,
+\[ \ket{\psi ,t}_I = \sum_{n} c_n\br{t} \ket{n} \]
+We can now arrive at a version of \cref{eq:schro_eqn_interaction} for the coefficients $c_n\br{t}$.
+\[ i \hbar \pder{}{t} \ket{\psi, t}_I = V^{(I)}\br{t} \bc{\sum_{m} c_m\br{t} \ket{m}}\]
+Applying the bra $\ket{n}$,
+\[ \bra{n} i \hbar \pder{}{t} \ket{\psi, t}_I = \bra{n} V^{(I)}\br{t} \bc{\sum_{m} c_m\br{t} \ket{m}}\]
+Since $\ket{n}$ is time independent,
+\[ i \hbar \pder{}{t} \braket{n}{\psi, t}_I = i \hbar \pder{c_n\br{t}}{t}  = \sum_{m} c_m\br{t} \bra{n} V^{(I)}\br{t} \ket{m} \]
+The matrix elements $\bra{n} V^{(I)}\br{t} \ket{m}$ can be expressed in a more expressive manner,
+\begin{align*}
+\bra{n} V^{(I)}\br{t} \ket{m}
+&= \bra{n}  e^{\f i \hbar H_0 t} V\br{t} e^{-\f i \hbar H_0 t} \ket{m} \\
+&=   e^{\f i \hbar E_n t} \bra{n} V\br{t} \ket{m} e^{-\f i \hbar E_m t}  \\
+&=   e^{i \w_{nm} t} \bra{n} V\br{t} \ket{m} \\
+&=   e^{i \w_{nm} t} V_{nm}\br{t}
+\end{align*}
+Where the transition frequency is,
+\[ \w_{nm} = \f{E_n - E_m}{\hbar} \]
+To conclude we have,
+\[ i\hbar \der{c_n}{t} = \sum_m e^{i \w_{nm} t} V_{nm}\br{t} c_m\br{t} \eq\label{eq:coeff_eom}\]
+There are very few systems that omit analytic solutions to \cref{eq:coeff_eom}. These systems will be the immediate focus.
+
+\subsection{Two-State Harmonic Potential}
+Consider a two-state problem on a harmonic potential. We call these states $\ket{1}, \ket{2}$ together with energies $E_1, E_2$,
+\[ H_0 = E_1 \ket{1}\bra{1} + E_2 \ket{2}\bra{2}  \]
+The time dependent potential is constructed in such a way to induce transitions between $\ket{1}$ and $\ket{2}$,
+\[ V\br{t} = \ga e^{i \w t} \ket{1} \bra{2} + \ga e^{- i \w t} \ket{2}\bra{1} \]
+This means that $\bra{1} V\br{t} \ket{2} = \ga e^{- i\w t}$ is the probability amplitude for $V\br{t}$ to produce a transition from $\ket{2}$ to $\ket{1}$. The equations of motion can be worked out explicitly,
+\begin{align*}
+    i \hbar \der{c_1}{t} &= V_{12}\br{t} e^{i \w_{12} t} c_2 = \ga e^{i\br{\w - \w_{21} t}}c_2 \\
+    i \hbar \der{c_2}{t} &= V_{21}\br{t} e^{i \w_{21} t} c_1 = \ga e^{-i\br{\w - \w_{21} t}}c_1
+\end{align*}
+Without loss of generality we let $E_2 > E_1$ so that $\w_{21} = \br{E_2 - E_1}/ \hbar > 0$. We also have the symmetry,
+\[ \w_{12} = \f{E_1 - E_2}{\hbar} = - \w_{21} \]
+By inspection we can expect the solution to have the ansatz form,
+\begin{align*}
+c_1 \br{t} &= c_1 e^{i \la t + \f{i}{2} \br{\w - \w_{21}} t} \\
+c_2 \br{t} &= c_2 e^{i \la t - \f{i}{2} \br{\w - \w_{21}} t}
+\end{align*}
+Substitute to check if this solution is permissible,
+\begin{align*}
+i \hbar \der{}{t} \br{c_1 e^{i \la t + \f{i}{2} \br{\w - \w_{21}} t}}
+&= \ga e^{i \br{\w - w_{21}}t} c_2 e^{i \la t - \f{i}{2} \br{\w - \w_{21}} t} \\
+- \hbar c_1 \br{\la + \f{\w - \w_{21}}{2}}e^{i \la t + \f{i}{2} \br{\w - \w_{21}} t} &= \ga c_2 e^{i \la t + \f{i}{2} \br{\w - \w_{21}} t} \\
+- \hbar c_1 \br{\la + \f{\w - \w_{21}}{2}} &= \ga c_2
+\end{align*}
+Similarly we arrive at an equation for $\der{c_2}{t}$,
+\[ - \hbar c_2 \br{\la - \f{\w - \w_{21}}{2}} = \ga c_1 \]
+We now have a linear system over $c_1, c_2$ and $\la$. Rearranged, our system is,
+\begin{align*}
+    \br{\la + \f{\w - \w_{21}}{2}} c_1 + \f{\ga}{\hbar} c_2 &= 0 \\
+    \br{\la - \f{\w - \w_{21}}{2}} c_2 + \f{\ga}{\hbar} c_1 &= 0
+\end{align*}
+This is a homogeneous system over $c_1$ and $c_2$. The only want to have a non-trivial solution is if the determinant is zero. This singularity condition fixes $\la$.
+\[ 0 = \det \begin{pmatrix}
+    \br{\la + \f{\w - \w_{21}}{2}} & \f{\ga}{\hbar} \\
+    \f{\ga}{\hbar} & \br{\la - \f{\w - \w_{21}}{2}} \\
+\end{pmatrix} = \la^2 - \br{\f{\w - \w_{21}}{2}}^2 - \br{\f{\ga}{\hbar}}^2 \]
+
 \end{document}

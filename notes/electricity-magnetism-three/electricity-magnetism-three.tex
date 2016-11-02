@@ -923,4 +923,38 @@ Is the \term{plasma frequency}.
 
 \todo[TC]{Missed 3 lectures}
 
+Last time we were examining TE waves and found that the transvere part, $\ti{\ve E}_{\perp}$, was the same as for the DC system we investigated earlier and the longitudinal part $\hat z \ti{B}_z$, was a traveling wave. The boundary conditions led us to the ansatz,
+\[ \ti{\ve E}\br{\ve r, t} = \hat y E_0 \sin\br{k_x x} e^{i\br{k_z z - \w t}} \eq \label{eq:rect_waveguide_ansatz}\]
+For a traveling wave in a rectangular waveguide we substitute \cref{eq:rect_waveguide_ansatz} into Maxwell's equations,
+\[ \vdel \cdot \ve E = \pder{}{y}E_y = 0 \]
+Which is satisfied by \cref{eq:rect_waveguide_ansatz}. Next we would like to check this ansatz against $\vdel \times \ve E = - \pder{\ve B}{t}$ but this can get messy. Instead check the wave equation for $\ve E$,
+\[ \del^2 \ti{\ve E} - \mu \ep \pdder{\ti{\ve E}}{t} = 0 \]
+In Cartesian coordinates,
+\[ \br{\pdder{}{x} + \pdder{}{y} + \pdder{}{z} - \mu \ep \pdder{}{t}}\ti{\ve E} = 0 \]
+This leading operator is the \term{D'Alembertian operator}\footnote{Sometimes you will see this written as $\Box$ or $\Box^2$. This is reminiscent of special relativity where $\de_\mu = \br{\mu \ep \pder{}{t}, \vdel}$},
+\[ \Box^2 = \pdder{}{x} + \pdder{}{y} + \pdder{}{z} - \mu \ep \pdder{}{t} \]
+Applying the wave equation we obtain an auxiliary equation.
+\[ \Box^2 \ti{\ve E} = \br{- k_x^2 + 0 - k_y^2 + \mu \ep \w^2} \ti{\ve E} = 0 \]
+Avoiding the trivial solution, we require that,
+But in order to meet the boundary conditions of the rectangular waveguide,
+\[ k_x = \f{m \pi}{a} \quad m \in \N \]
+So that $k_z$ is fixed as well,
+\[ k_z = \sqrt{\mu \ep \w^2 - \br{\f{m \pi}{a}}^2} \]
+\[ k_z = \f{\w}{v}\sqrt{1 - \br{\f{m \pi v}{\w a}}^2} \]
+Recall that in a vacuum $k_z = \w/ v$. However in the waveguide $k_z$ will be less than $\w / v$. The wavelength is,
+\[ \la = \f{2 \pi}{k_z} = \f{2 \pi v}{\w}\br{1 - \br{\f{m \pi v}{\w a}}^2}^{-1/2} \]
+Let $\la_0 = 2 \pi v/ \w$ be the vacuum wavelength.
+\[ \la = \la_0\br{1 - \br{\f{m \pi v}{\w a}}^2}^{-1/2} \]
+Where $\la > \la_0$ is the guide wavelength. And Maxwell's equations for wave guides give,
+\begin{align*}
+\ti B_z &= B_0 \cos \br{k_x x} \cos\br{k_y y} e^{i\br{k_z z - \w t}} \\
+\ti B_x &= \f{-iB_0}{\br{\w/c}^2 - k^2} k k_x \sin \br{k_x x} \cos\br{k_y y} e^{i\br{k_z z - \w t}} \\
+\ti B_y &= \f{-iB_0}{\br{\w/c}^2 - k^2} k k_y \cos \br{k_x x} \cos\br{k_y y} e^{i\br{k_z z - \w t}}
+\end{align*}
+We can also write \cref{eq:rect_waveguide_ansatz} in a different way,
+\[ \ti{\ve E}\br{\ve r, t} = \f{1}{2i} E_0 \hat y \br{e^{ik_x x} - e^{-ik_x x}} e^{i \br{k_z z - \w t}} \]
+This is nothing more that the sum of two traveling waves,
+\[ \ti{\ve E}\br{\ve r, t} = \f{1}{2i} E_0 \hat y \br{e^{i\br{k_x x + k_z z - \w t}} - e^{i\br{-k_x x + k_z z - \w t}}} \]
+Where $\ve k_1 = \br{k_x \hat x + k_z \hat z}$ and $\ve k_2 = \br{- k_x x + k_z z}$. These two traveling waves travel down the the cavity in the $\hat z$ direction but are bouncing back and forth off of the boundaries in the $\hat x$ directions.
+
 \end{document}
