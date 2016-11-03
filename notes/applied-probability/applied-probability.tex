@@ -22,6 +22,7 @@
 \newcommand{\Bi}{\mathsf{Bin}}
 \newcommand{\Poi}{\mathsf{Poi}}
 \newcommand{\Ex}{\mathsf{Exp}}
+\newcommand{\Unif}{\mathsf{Unif}}
 \newcommand{\Mom}{M}
 \newcommand{\Geo}{\mathsf{Geo}}
 \newcommand{\ind}{\mathbf{1}}
@@ -1378,7 +1379,7 @@ By examining foil theorems, we have seen that irreducibility is related to the u
     \subsection{Properties of Poisson Processes}
     To begin, we will define the continuous-time Markov property,
     \begin{definition}
-        \term{Continuous-Time Markov Property:}
+        \term{Continuous-Time Markov Property:} \label{def:ctmp}
         \[ P\br{\underbrace{N\br{t_m} = j}_{\text{future}} \mid \underbrace{N\br{t_{m-1}} = i}_{\text{present}}, \underbrace{N\br{t_{m-2}} = i_{m-2}, N\br{t_{1}} = 1}_{\text{past}}} = P\br{N\br{t_{m}} = j \mid N\br{t_{m-1}} = i} \]
         For any $m$, $t_1 < \cdots < t_{m-1} < t_m$ and $i_1, i_2, \ldots, i_{m-2}, i, j \in S$.
     \end{definition}
@@ -1449,5 +1450,145 @@ By examining foil theorems, we have seen that irreducibility is related to the u
     \[ P\br{N=n} = \f{1}{n!} e^{-\la \br{t_2 - t_1}} \br{\al \br{t_2 - t_1}}^n \]
     Which is nothing more than the pmf for $\Poi\br{\la\br{t_2 - t_1}}$.
     \end{proof}
+    In particular we often look at the interval between $0$ and $t$ such that,
+    \[ N\br{t} = N\br{t} - N\br{0} \sim \Poi\br{\la t} \]
+    Consequently, we have that the expectation of $N\br{t}$ is the expectation of $\Poi\br{\la t}$,
+    \[ \Ex\br{N\br{t}} = \la \]
+    On average, we have $\la$ arrivals in a unit of time $t$. This interpretation motivates us to call $\la$ the \term{intensity} of $N\br{t}$.\\
+
+    \subsection{Combining and Thinning Poisson Processes}
+
+    Suppose we have two Poisson processes $\bc{N_1\br{t}} \sim \Poi \br{\la_1 t}$ and $\bc{N_2\br{t}} \sim \Poi \br{\la_2 t}$. We can combine $N_1\br{t}$ and $N_2\br{t}$ in the following way. For any event $s_{1,i}$ in $N_1$ or $s_{2,i}$ in $N_2$, we attribute all events to $N\br{t}$. Mathematically,
+    \[ N\br{t} = N_1\br{t} + N_2\br{t} \]
+
+    \begin{definition}
+        \term{Combining:} Let $\bc{N_1\br{t}} \sim \Poi \br{\la_1 t}$ and $\bc{N_2\br{t}} \sim \Poi \br{\la_2 t}$ be two Poisson processes with intensities $\la_1$ and $\la_2$ where $N_1\br{t} \indep N_2\br{t}$. Then,
+        \[ \bc{N\br{t}}_{t \geq 0} \sim \Poi\br{\br{\la_1 + \la_2}t} \]
+    \end{definition}
+
+    Intuitively if $N\br{t}$ is defined in this way, the sum of two Poisson processes is also a Poisson process. The reason being that this is a combination of two properties of exponential random variables. The first property being the memoryless property of exponential distributions and the second being that if $W_1 \sim \Ex\br{\la_1}$ and $W_2 \sim \Ex\br{\la_2}$ are two independent exponential random variables $W_1 \indep W_2$,
+    \[ \min \br{W_1, W_2} \sim \Ex\br{\la_1 + \la_2} \]
+    The combined process is the counting process of events interarrival times following i.i.d $\Ex\br{\la_1 + \la_2}$ which means that $\bc{N\br{t}} \sim \Poi\br{\br{\la_1 + \la_2} t}$ where the combined intensity is $\la_1 + \la_2$. From this analysis we can interpret the intensity as the expected number of events in a unit time.\\
+
+    Thinning a Poisson process is dual to combining a Poisson process. Instead of combining together two or many Poisson processes, thinning a Poisson process reduces the intensity of the process. To do this we classify the events within a Poisson process.
+    \begin{definition}
+        \term{Thinning:} Let $\bc{N\br{t}} \sim \Poi\br{\la t}$. Each arrival is then labeled as type $1$ or type $2$ with probability $p$ and $1-p$ independently from others. Then we can count each type separately. Let $N_1\br{t}$ and $N_2\br{t}$ be the number of customers of type $1$ and type $2$ who arrived before time $t$. The result of this separation is predictable.
+        \begin{align*}
+            \bc{N_1\br{t}} &\sim \Poi\br{p\la t} \\
+            \bc{N_2\br{t}} &\sim \Poi\br{\br{1-p}\la t}
+        \end{align*}
+        Less predictability we have that $\bc{N_1\br{t}} \indep \bc{N_2\br{t}}$. The counter-intuition being that if an event is not classified as type 1 then it is classified as type 2 with certainty.
+    \end{definition}
+    The reason for their independence is that thinning is the inverse procedure of combining two independent Poisson processes into one Poisson process.
+
+    \subsection{Order Statistic Property}
+
+    Let $X_1, \ldots, X_n$ be i.i.d r.v.s. The \term{order statistics} of $X_1, \ldots, X_n$ are random variables defined as follows. The first order statistic:
+    \[ X_{(1)} = \min\bc{X_1, \ldots, X_n} \]
+    While the $X_{(2)}$ is the second smallest value,
+    \[ X_{(2)} = \min\bc{\bc{X_1, \ldots, X_n} \setminus \min\bc{{X_1, \ldots, X_n}}} \]
+    Continuing we define $X_{(n)}$ to be the maximum value,
+    \[ X_{(n)} = \max\bc{X_1, \ldots, X_n} \]
+    \begin{theorem}
+        Let $\bc{N\br{t}} \sim \Poi\br{\la t}$. Condition on $N\br{t} = n$, the points/arrivals of $N$ in $\bs{0, t}$ are distributed as the order statistics of $n$ i.i.d uniform r.v.s on $\bs{0, t}$. That is,
+        \[ \bc{s_1, \ldots, s_n \mid N\br{t} = n} \stackrel{d}{=} \br{U_{(1)}, \ldots, U_{(n)}} \]
+        Where `$\stackrel{d}{=}$' denotes that the two quantities share the same distribution. Also,
+        \[ U_{1}, \ldots, U_{n} \stackrel{\text{i.i.d}}{\sim} \Unif\bs{0,t} \]
+        and $U_{(1)}, \ldots, U_{(n)}$ are their order statistics.
+    \end{theorem}
+
+    \begin{example}
+        Given $N\br{t} = 5$,
+        \begin{center}
+            \begin{tikzpicture}
+                \draw[|->] (0,0) node[left]{$0$} -- (6, 0) node[right]{$t$};
+                \draw[fill] (1, 0) node[below]{$U_2$} circle (0.05);
+                \draw[fill] (2, 0) node[below]{$U_4$} circle (0.05);
+                \draw[fill] (3, 0) node[below]{$U_1$} circle (0.05);
+                \draw[fill] (4, 0) node[below]{$U_3$} circle (0.05);
+                \draw[fill] (5, 0) node[below]{$U_5$} circle (0.05);
+                \draw[->] (1, -0.5) -- (1, -1.2) node[below]{$U_{(1)}$};
+                \draw[->] (2, -0.5) -- (2, -1.2) node[below]{$U_{(2)}$};
+                \draw[->] (3, -0.5) -- (3, -1.2) node[below]{$U_{(3)}$};
+                \draw[->] (4, -0.5) -- (4, -1.2) node[below]{$U_{(4)}$};
+                \draw[->] (5, -0.5) -- (5, -1.2) node[below]{$U_{(5)}$};
+                \draw (1, -2) node[below]{$s_{1}$};
+                \draw (2, -2) node[below]{$s_{2}$};
+                \draw (3, -2) node[below]{$s_{3}$};
+                \draw (4, -2) node[below]{$s_{4}$};
+                \draw (5, -2) node[below]{$s_{5}$};
+            \end{tikzpicture}
+        \end{center}
+    \end{example}
+
+    Let us see the reason with $N\br{t} = 1$. Suppose we have that $s_1 = s$ and then $W_2 > t - s$ since the second event has not occurs in $\bs{0, t}$. Then we have the pdf,
+    \[ f_{s_1 \mid N\br{t} = 1} \br{s} = \f{f_{s_1}\br{s} P\br{W_2 > t - s}}{P\br{N\br{t} = 1}} \ident_{\bs{0, t}}\br{s} \]
+    But we know that $W_2$ is distributed exponentially,
+    \begin{align*}
+    f_{s_1 \mid N\br{t} = 1} \br{s}
+    &= \f{ \la e^{-\la s} e^{-\la\br{t - s}}}{\la t e^{-\la t}} \ident_{\bs{0, t}}\br{s} \\
+    &= \f{1}{t}\ident_{\bs{0, t}}\br{s}
+    \end{align*}
+    This is nothing more than the pdf for $\Unif\bs{0, t}$.
+    \[ s_1 \mid N\br{t} = 1 \sim \Unif\bs{0, t} \]
+    As a result of the order statistics property, we have the following.
+    \begin{theorem}
+        \[ N\br{s} \mid N\br{t} = n \sim \Bi\br{n, \f{s}{t}} \quad \text{for } s \leq t\]
+    \end{theorem}
+    The reason being that given $N\br{t} = n$, the order statistics property gives,
+    \begin{align*}
+        N\br{s}
+        &= \# \bc{S_i : S_i \leq s, i = 1, \ldots, n} \\
+        &= \# \bc{U_{(i)} : U_{(i)} \leq s, i = 1, \ldots, n} \\
+        &= \# \bc{U_{i} : U_{i} \leq s, i = 1, \ldots, n}
+    \end{align*}
+    The last step validated by the fact that $\bc{U_{(i)}}$ is just a particular permutation of $\bc{U_{i}}$. Therefore $U_i \stackrel{\text{i.i.d}}{\sim} \Unif\bs{0, t}$ because,
+    \[ P\br{U_i \leq s} = \f{s}{t} \quad i = 1, \ldots, n \]
+
+    \section{Continuous-time Markov chain}
+
+    The Poisson process is the simplest example of a continuous time process that happens to be a counting process.
+    \begin{definition}
+        A \term{continuous time stochastic process} $\bc{X\br{t}}_{t \geq 0}$ is called a \term{continuous-time Markov chain} is its state space is at most countable and t satisfies the \term{continuous-time Markov property}.
+    \end{definition}
+    Recall the continuous-time Markov property (\cref{def:ctmp}),
+    \[ P\br{X\br{t_m} = j \mid X\br{t_{m-1}} = i, X\br{t_{m-2}} = i_{m-2}, \ldots, X\br{t_1} = 1} = P\br{X\br{t_{m}} = i \mid X\br{t_{m-1}} = i} \]
+    For any $m, t_1 < \cdots < t_m, i_1, \ldots, i_{m-2}, i, j \in S$. As DTMC, $S$ can be considered as finite $\bc{0, \ldots, M}$ or $\bc{1, \ldots, M}$ or countably infinite $\bc{0, 1, \ldots}$, $\bc{0, \pm 1, \pm 2, \ldots} = \Z$. For a CTMC, time is continuous, but the state space is only countable and thus this discrete. Since time is continuous and the state space is discrete, the CTMC must linger or stay at a given state for a finite amount of time and then jump to another state instantaneously.
+
+    \begin{center}
+        \begin{tikzpicture}
+            \pgfmathsetmacro{\sa}{1};
+            \pgfmathsetmacro{\sb}{2};
+            \pgfmathsetmacro{\sc}{2.5};
+            \pgfmathsetmacro{\sd}{3};
+            \pgfmathsetmacro{\se}{3.4};
+            \pgfmathsetmacro{\sf}{4};
+            \pgfmathsetmacro{\tick}{0.1};
+            \pgfmathsetmacro{\jump}{0.4};
+            \draw[<->] (0, 3) node[above]{$X\br{t}$} -- (0, 0)node[left]{$0$} -- (5, 0) node[right]{$t$};
+            \draw[] (\sa, -\tick) node[below]{$t_1$} -- (\sa, \tick);
+            \draw[] (\sb, -\tick) node[below]{$t_2$} -- (\sb, \tick);
+            \draw[] (\sc, -\tick) node[below]{$t_3$} -- (\sc, \tick);
+            \draw[] (\sd, -\tick) node[below]{$t_4$} -- (\sd, \tick);
+            \draw[] (\se, -\tick) node[below]{$t_5$} -- (\se, \tick);
+            \draw[] (\sf, -\tick) node[below]{$t_6$} -- (\sf, \tick);
+            \draw[thick] (0,\jump) --
+            (\sa, 1*\jump) -- (\sa, 3*\jump) --
+            (\sb, 3*\jump) -- (\sb, 5*\jump) --
+            (\sc, 5*\jump) -- (\sc, 1*\jump) --
+            (\sd, 1*\jump) -- (\sd, 4*\jump) --
+            (\se, 4*\jump) -- (\se, 2*\jump) --
+            (\sf, 2*\jump) -- (\sf, 1*\jump) --
+            (5, 1*\jump)
+            ;
+        \end{tikzpicture}
+    \end{center}
+
+    Therefore we need to specify two things:
+    \begin{enumerate}
+        \item When the jumps happen and how long the process stays in a state?
+        \item When it jumps, where does it jump to?
+    \end{enumerate}
+    To answer the first question, given the process is in state $i$, it will stay in this state for an exponential random time, with parameter denoted $\la_i$. This distribution is fixed by the Markov property. When the process will jump in the future only depends on its current state, not on how long it has been there. Therefore the waiting time must be exponentially distributed. Moreover theMarkov property enforces that the exponential parameter can only depend on state $i$.
 
 \end{document}

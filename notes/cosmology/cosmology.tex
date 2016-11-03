@@ -816,4 +816,112 @@ All of the processes in the standard model conserve baryon number. This means th
 
 Charge Conjugation indicates a process that occurs the exact same way if one exchanges all positive charges with negative charges. The Charge-Parity condition indicates a process that occurs the same way when all momentum and charges are flipped. Altogether, the Sakharov conditions suggest that we need to look for processes outside the standard model.
 
+\todo[TC]{Missed Two Lectures}
+
+\subsection{Origin of Structure in the Universe}
+\todo[TC]{Beginning of this lecture is weak}
+
+Quantum fluctuations during inflation are on the order of,
+\[  \f{\de T}{T} = \SI{e-5}{}\]
+This means that,
+\[ \f{H}{M_p} \sim \br{\f{k T\tsb{rad}}{M_p c^2}}^2 \implies k T\tsb{rad} = \SI{e15}{\giga\eV} \]
+At the end of inflation the universe begins a phase of reheating. This means that $\La\tsb{inf}$ has to go away in order to begin a radiation dominated era. The $w$ parameter ($w = \f{p}{\rho c^2}$)
+\begin{alignat*}{2}
+    w &< -\f13 \quad &&\text{Inflation}\\
+    w &\approx -1 \quad &&\text{Inflation can end}\\
+    w &= -1 \quad &&\text{exact $\La$}
+\end{alignat*}
+
+\[ H = \br{8 \pi G}{3} \rho \]
+\[ \dot \rho + 3 H \br{\rho + p c^2} = 0 \implies \f{\dif \ln \rho}{\dif \ln a} + 3 \br{1 + w} = 0 \]
+Therefore,
+\[ \rho \propto a^{- 3\br{1 + w}} \]
+Since we know that $\rho + p c^2 > 0$, it must be that $w > -1$. This is known as the \textit{null energy condition}.
+\[ \der{\ln a}{t} \propto a^{- \f{3\br{1 + w}}{2}} \]
+Integrating gives,
+\[ t \propto \int e^{\f32 \br{1 + w} \ln a} \dif \la a = \f{2}{3 \br{1 + w}} a^{\f{3\br{1 + w}}{2}} - t_{*} \]
+This means that $a$ has time dependence,
+\[ a \propto \br{t - t_{*}}^{\f{2}{3\br{1 + w}}} \]
+This means that regardless of the content of the universe, there exists a time $t_{*}$ where the scale goes to $a = 0$. This is the time of the Big Bang singularity. There are a number of caveats or loopholes to this result. First of course, there is always the possibility of $w = -1$. As it turns out, this universe is unstable. Second, if we have $k = 0$ then the universe is not spherical. In this case intuition suggests that a materials in the universe come closer and closer together as $a \to 0$, there remains the possibility of everything passing through each other and $a < 0$. As it turns out, in the 70's Penrose and Hawking demonstrated some singularity theorems that rule out this loophole. \\
+
+Recall that classical electromagnetism predicted that the an electron orbiting a proton would continue to emit radiation until it reached the proton emitting an infinite amount of energy. In some sense, this can be considered as a singularity as well. It was quantum mechanics that resolved this issue and it is a hope that quantum gravity will resolve some of the issues with the Big Bang singularity in much the same way. \\
+
+\subsection{Big Bang and Black Holes}
+
+Black holes are best understood in turns of \textit{Penrose diagrams}. A Penrose diagram is a space time diagram that is deformed in such a way that light travels at $45^{o}$ and infinite distances and times become finite. A black hole can be depicted as,
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw[]  (0,0) -- (0, 3);
+        \draw[]  (0,0) -- (2, 2) node[right]{$d = \inf$};
+        \draw[]  (2,2) -- (1, 3);
+        \draw[decorate, decoration=snake] (0, 3) -- node[above]{Singularity} (1, 3);
+        \draw[dashed]  (0,2) -- (1, 3);
+        \path[] (0, 0) edge[bend right] (0.5 - 0.07, 3 + 0.07);
+    \end{tikzpicture}
+\end{center}
+
+Another example is an eternal black hole,
+\begin{center}
+    \begin{tikzpicture}
+        \draw[]  (0,1) -- (0, 3);
+        \draw[]  (1,1) -- (2, 2);
+        \draw[]  (2,2) -- (1, 3);
+        \draw[decorate, decoration=snake] (0, 3) -- node[above]{} (1, 3);
+        \draw[decorate, decoration=snake] (0, 1) -- node[below]{} (1, 1);
+        \draw[dashed]  (0,2) -- (1, 3);
+        \draw[dashed]  (0,2) -- (1, 1);
+    \end{tikzpicture}
+\end{center}
+\begin{center}
+    \begin{tikzpicture}
+        \draw[]  (0,0) -- (-2, -2);
+        \draw[]  (0,0) -- (2, -2);
+        \draw[dashed]  (0, -1) node[above]{us} -- (1, -2);
+        \draw[dashed]  (0, -1) -- (-1, -2);
+        \draw[decorate, decoration=snake] (-2, -2) --node[below]{Big Bang} (2, -2);
+    \end{tikzpicture}
+\end{center}
+\subsection{What's Wrong with Singularities}
+
+A good enough analogy to singularities in spacetime is a classical electron around a proton. If the electron has frequency $\w$, we can approximate the acceleration of the electron,
+\[ \f{e^2}{4 \pi \ep_0 r^2} = \f{m_e v^2}{r} = m_e \w^2 r \]
+This means that the frequency scales with $r$,
+\[ \w = \f{e}{\sqrt{4 \pi \ep_0 m_e } r^{3/2}} \]
+The electron's electric field is then oscillating at the same frequency $\w$ which means that the emitted light has frequency $\w$. The energy of the electron is the potential energy due to the photon,
+\[ E_e \sim \f{e^2}{4 \pi \ep_0 r} \]
+This means that the energy lost has to go into the number of photons that are emitted,
+\[ \# \text{Photons} = \f{e^2}{4 \pi \ep_0 r \hbar \w} \propto r^{1/2} \]
+This means that at some point the number of photons emitted becomes fractional. However photons are quantized. Therefore we can roughly assume that the ground state of the hydrogen atom occurs when $\# \text{Photons} \sim 1$. \\
+
+It is also possible to perform a similar analysis to the entire universe. What is the number of photons per horizon or Hubble radius. The reduced Planck mass is,
+\[ M_p c^2 = E_p = \sqrt{\f{\hbar c}{8 \pi G}} = \SI{e18}{\giga \eV} \]
+The number density of photons is roughly $T^3$ times the contained volume. With natural units,
+\[ N \sim T^3 \times \f{1}{H^3} \]
+But from the Friedmann equation $H^2 \sim T^4 / M_p^2$. Therefore,
+\[ N \sim T^3 \times \f{M_p^3}{T^6} \sim \br{\f{M_p c^2}{k T}}^3 \]
+This means that classical physics breaks down when $N \sim 1$ or when,
+\[ kT \geq M_p c^2 \sim \SI{e18}{\giga \eV} \]
+
+\subsection{Quantum Gravity}
+
+What is Quantum Gravity? Quantum gravity is just an idea or collection of many ideas and not a theory like general relativity or quantum mechanics is. In order to solve or figure out quantum gravity, we need to determine what are the right ingredients or degrees of freedom. \\
+
+The most popular theory of quantum gravity is string theory. The principle component being the idea that particles are not fundamental but are instead everything is made out of fundamental strings. The appeal or advantage of string theory is that fundamental strings can be quantized. However, string theory requires an additional $6$ extra dimensions. This makes the total number of dimensions $3 + 6 + 1 = 10$. This can be considered a failed prediction of string theory, although there is active research trying to hide these extra dimensions.\\
+
+Alternatively, we can adopt the approach of discretizing space. Some attempts include loop quantum gravity or dynamical triangulation. \\
+
+Additionally one can attempt to discretize \textit{spacetime} which forms causal sets. \\
+
+Another possibility is \textit{emergent gravity}. This idea considers the possibility that Lorentz invariance is not fundamental and that at high enough energies, Lorentz symmetry breaks down. This allows for the possibility of superluminal propagations or information.
+
+\subsection{Big Bang in Quantum Gravity}
+
+There are a number of possibilities for the fate or nature of a ``Big Bang'' under the different theories of quantum gravity. Some of these include:
+\begin{enumerate}
+    \item Big Bounce: the contraction of space bounces off the singularity
+    \item Quantum Geometry
+    \item Big Bang is the start of time itself
+\end{enumerate}
+
 \end{document}
