@@ -924,4 +924,141 @@ There are a number of possibilities for the fate or nature of a ``Big Bang'' und
     \item Big Bang is the start of time itself
 \end{enumerate}
 
+\todo[TC]{Missed a Lecture}
+
+\section{Precision Cosmology}
+
+\subsection{Six Parameters}
+An important question to ask is: \textit{If we have a model that we believe is correct, how can we test it and assign a confidence to it?}\\
+
+In the early stages of cosmology, there were a number of uncertainties within the observed data and disagreements between cosmologists. However recently, the later decades of cosmology have been marked by a heightened degree of precision and maturity. \\
+
+To summarize what we have discussed so far, there are in practice $6$ parameters that characterize the simplest cosmological models. This is sometimes referred to as \textit{vanilla} $\La$CDM. These values are referenced from \url{https://arxiv.org/pdf/1502.01589v3.pdf}.
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+    \hline
+    Number & Parameter & Value & Source \\
+    \hline
+    1 & Hubble $h$ & $\SI{0.673\pm0.012}{}$ & expansion, $3\si$ with supernovae \\
+    2 & Dark Matter $\Om\tsb{dm}h^2$ & $\SI{0.1198\pm0.0026}{}$ & CDM density \\
+    3 & Baryons $\Om\tsb{b}h^2$ & $\SI{0.02207\pm0.00027}{}$ & Baryon density \\
+    4 & Tilt $n_s$ & $\SI{0.965\pm0.005}{}$ &  \\
+    5 & Amplitude $\De_0^2$ & ${\SI{2.143\pm0.052}{}} \times \SI{e-9}{}$ &  \\
+    6 & Optical Depth to Re-ionization $\tau$ & ${\SI{0.078\pm0.019}{}}$ &  \\
+    \hline
+\end{tabular}
+\end{center}
+
+Where $n_s$ and $\De_0^2$ are fluctuation parameters associated with the primordial density fluctuations of baryons,
+\[ \ba{\br{\f{\de \rho}{\rho}}^2}\tsb{primordial}\br{r} \approx \De_0^2 \br{\f{r}{\SI{20}{\mega\pc}}}^{1-n_s} \]
+Notice that if $n_s = 1$, then there would be the same structure at all radial scales. \\
+
+The final parameter $\tau$ is the optical depth to re-ionization and can in principle be deduced from the previous $5$ parameters. However, a measurement depends on astrophysical phenomena. Recall that the last scattering surface (LSS) is at a farther distance than the re-ionization surface. As photons travel from LSS towards us, they are scattered by ionized material within the RIS.
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw[red, fill, fill opacity=0.2] (0,0) circle (1);
+        \draw (0,0) circle (2);
+        \draw (0, 2) node[above]{LSS};
+        \draw (0, 1) node[above]{RIS};
+        \draw[fill] (0,0) circle (0.1) node[above]{Us};
+        \draw[thick, ->, decorate, decoration=snake] (-2, 0) -- (-0.3,0);
+    \end{tikzpicture}
+\end{center}
+
+The remainder of cosmological parameters can we calculated from the above $6$ via simple or complicated equations. For example,
+\begin{align*}
+    \text{Age} &\simeq \SI{13.8}{\giga\yr} \\
+    D\tsb{LSS} &\simeq \SI{14}{\giga\pc} \\
+    \Om_{\La} &\simeq \SI{0.69}{} \\
+    \Om_{m} &\simeq \SI{0.31}{}
+\end{align*}
+
+\subsection{Auxiliary Parameters}
+There are also a number of auxiliary parameters that can be measured directly and are currently in agreement with a vanilla $\La$CDM. For example spatial curvature is nearly zero.
+\[ \abs{\Om_{k}} \lesssim \SI{0.005}{} \]
+There are also parameters associated with neutrino. First the total neutrino masses are constrained by neutrino oscillations and other observations,
+\[ \SI{0.05}{\eV} < \sum {m_{\nu}} < \SI{0.2}{\eV} \]
+The effective number density is also an auxiliary parameter,
+\[ N\tsb{eff} = \SI{3.04\pm0.33}{} \]
+Moreover the Helium abundance can be measured directly but can be calculated with consistency from BBN,
+\[ Y_4 \simeq \SI{0.249\pm0.025}{} \]
+Another parameter is the contribution of gravity waves from the Big Bang. These gravitational waves are at much longer wavelengths than those measured by LIGO. In principle these waves could be measured but no direct measurements have currently been made.
+\[ r < 0.113 \]
+It turns out that some inflation models predict Big Bang gravitational waves.\\
+
+Another auxiliary parameter is the $w$ dark energy equation of state $w = - P / \rho c^2$
+\[ w = - \SI{1.02\pm0.008}{} \]
+Recall that our models predict a cosmological constant $w = -1$ but one could assume this parameter is not fixed and measure it directly. \\
+
+Precision cosmology current only requires the main $6$ parameters and the remainder can be calculated. However, more precise models might require the addition of some of these extra parameters.
+
+\subsection{Data}
+
+The CMB anisotropies are the most important data set we have for constraining the $6$ parameters of a vanilla $\La$CMB. This is due to the following facts:
+\begin{enumerate}
+    \item Relatively easy to observe
+    \item Clean source
+    \item Governed by linear equations
+\end{enumerate}
+In terms of the CMB we talked a lot about temperature $T$ and their anisotropies. In addition to temperatures, we can also measure the polarization of of the photons coming from the CMB. Furthermore, it is possible to measure the affects of gravitational lensing due to the materials and energy between us and the surface of last scattering.\\
+
+The CMB, however, does not completely determine all cosmological parameters. The CMB is not entirely sensitive to certain parameters. As a result, other observations are necessary to compliment the CMB. A number of Galaxy surveys have accomplished this. \\
+
+As an example, Baryonic Acoustic Oscillations (BAO) are used as a standard ruler to measure the tomography of the universe. Additionally, measurements of supernovae (specifically type $1a$), Hubble measurements and the counting of galaxy clusters embellish the CMB nicely. Nonetheless, these later methods are based on non-linear dynamics and less understand and thus more contested.
+
+\subsection{Statistics}
+
+Statistics are the primal component of assigning confidence to physical models. \term{Bayesian Analysis} is useful in nearly all fields of scientific analysis. Bayes theorem determines a relationship between conditional probabilities.
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw[] (0,0) -- (0,2) -- (3,2) -- (3,0) -- cycle;
+        \draw (1,1) circle (0.7);
+        \draw (1,1) node[]{$A$};
+        \draw (2,1) circle (0.7);
+        \draw (2,1) node[]{$B$};
+    \end{tikzpicture}
+\end{center}
+
+Bayes theorem says,
+\[ P\br{A \mid B} = \f{P\br{A,B}}{P\br{B}} \]
+And as a corollary,
+\[ P\br{A \mid B} P\br{B} = P\br{B \mid A}P\br{A} \]
+When applied to physical models,
+\[ P\br{\text{params}\mid\text{data}}\propto P\br{\text{data}\mid\text{params}}P\br{\text{params}} \]
+Where we refer to different components of this equation with special names,
+\begin{center}
+    \begin{tabular}{cc}
+        posterior & $P\br{\text{params}\mid\text{data}}$ \\
+        likelihood & $P\br{\text{data}\mid\text{params}}$ \\
+        prior & $P\br{\text{params}}$ \\
+    \end{tabular}
+\end{center}
+
+The most common model for likelihood estimation is a Gaussian model,
+\[ P\br{\text{data}\mid\text{params}} \propto \exp\br{-\f12 \sum_i \f{\bs{D_i - M_i\br{p}}}{\si_i^2}} \]
+Where $\si_i^2$ is the error in the data/model and $D_i$ is the observed data and $M_i\br{p}$ is the model-predicted value associated with measured data $D_i$. In order to maximize the likelihood, one simply varies the parameters $p$ in order to match the data. The set of parameters $p$ can be any size (and is $6$ in the case of precision cosmology). To visualize the process, consider the parameter space determined by $\Om_b h^2$ and $\Om_m h^2$.
+\begin{center}
+    \begin{tikzpicture}
+        \pgfmathsetmacro{\pad}{0.5}
+        \draw[<->] (0,3) node[above]{$\Om_b h^2$} -- (0, 0) -- (3, 0) node[right]{$\Om_m h^2$};
+        \draw[dashed, thick] (0 + \pad, 3 - \pad) -- (0 + \pad,0 + \pad) -- (3 - \pad, 0 + \pad) -- (3 - \pad,3 - \pad) -- cycle;
+        \draw[thick, red] (1.4,1.4) ellipse (0.2 and 0.15);
+        \draw[thick, orange] (1.4,1.4) ellipse (0.4 and 0.3);
+        \draw[thick, yellow] (1.4,1.4) ellipse (0.8 and 0.6);
+    \end{tikzpicture}
+\end{center}
+First one normalizes the parameter space $\int P\dif p = 1$ and then determine $\si$ ranges,
+\begin{align*}
+    \int\tsb{region} P\br{p \mid D} \dif p
+    &\simeq 68\% \quad 1\si \text{ region} \\
+    &\simeq 95\% \quad 2\si \text{ region} \\
+    &\simeq 99\% \quad 3\si \text{ region} \\
+\end{align*}
+A \textit{good} model with $N$ data points subtract the number of parameters, the $\chi^2$ value is,
+\[ \chi^2 \simeq N \pm \sqrt{2N} \]
+Then the reduced $\chi^2$ value is,
+\[ \chi\tsb{red}^2 \simeq 1 \pm \sqrt{\f2N} \]
+
 \end{document}

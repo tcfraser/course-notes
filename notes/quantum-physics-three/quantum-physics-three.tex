@@ -1621,8 +1621,11 @@ Without loss of generality we let $E_2 > E_1$ so that $\w_{21} = \br{E_2 - E_1}/
 \[ \w_{12} = \f{E_1 - E_2}{\hbar} = - \w_{21} \]
 By inspection we can expect the solution to have the ansatz form,
 \begin{align*}
+\eq \label{eq:c1c2_twostate_perturb}
+\begin{split}
 c_1 \br{t} &= c_1 e^{i \la t + \f{i}{2} \br{\w - \w_{21}} t} \\
 c_2 \br{t} &= c_2 e^{i \la t - \f{i}{2} \br{\w - \w_{21}} t}
+\end{split}
 \end{align*}
 Substitute to check if this solution is permissible,
 \begin{align*}
@@ -1635,13 +1638,90 @@ Similarly we arrive at an equation for $\der{c_2}{t}$,
 \[ - \hbar c_2 \br{\la - \f{\w - \w_{21}}{2}} = \ga c_1 \]
 We now have a linear system over $c_1, c_2$ and $\la$. Rearranged, our system is,
 \begin{align*}
-    \br{\la + \f{\w - \w_{21}}{2}} c_1 + \f{\ga}{\hbar} c_2 &= 0 \\
-    \br{\la - \f{\w - \w_{21}}{2}} c_2 + \f{\ga}{\hbar} c_1 &= 0
+\eq\label{eq:c10c20_perturb}
+\begin{split}
+\br{\la + \f{\w - \w_{21}}{2}} c_1 + \f{\ga}{\hbar} c_2 &= 0 \\
+\br{\la - \f{\w - \w_{21}}{2}} c_2 + \f{\ga}{\hbar} c_1 &= 0
+\end{split}
 \end{align*}
 This is a homogeneous system over $c_1$ and $c_2$. The only want to have a non-trivial solution is if the determinant is zero. This singularity condition fixes $\la$.
 \[ 0 = \det \begin{pmatrix}
     \br{\la + \f{\w - \w_{21}}{2}} & \f{\ga}{\hbar} \\
     \f{\ga}{\hbar} & \br{\la - \f{\w - \w_{21}}{2}} \\
 \end{pmatrix} = \la^2 - \br{\f{\w - \w_{21}}{2}}^2 - \br{\f{\ga}{\hbar}}^2 \]
+Therefore,
+\[ \la = \pm \sqrt{\br{\f{\w - \w_{21}}{2}}^2 + \br{\f{\ga}{\hbar}}^2} = \pm \Om \]
+Where $\Om$ is the \term{Rabi-frequency}. Each $\la$ induces a solution for $c_1\br{t}$ and $c_2\br{t}$. Plugging $\la = +\Om$ back into \cref{eq:c10c20_perturb} we can solve for coefficients $c_{1, +}$ and $c_{2, +}$,
+\[ c_{1,+} = - c_{2,+} \f{\ga / \hbar}{\Om + \f{\w - \w_{21}}{2}} \]
+This equation fixes $c_{1,+}$ given $c_{2,+}$ but their relationship enforces normalization as well,
+\[  \abs{c_{1,+}}^2 + \abs{c_{2,+}}^2 = 1 \]
+Therefore,
+\begin{align*}
+1
+&= \abs{c_{2,+}}^2 + \abs{c_{2,+}}^2\f{\br{\ga / \hbar}^2}{\br{\Om + \f{\w - \w_{21}}{2}}^2} \\
+&= \abs{c_{2,+}}^2 \f{\Om^2 + 2 \f{\w - \w_{21}}{2} \Om + \br{\f{\w - \w_{21}}{2}}^2 \Om^2 + \br{\f{\ga}{\hbar}}^2}{\br{\Om + \f{\w - \w_{21}}{2}}^2} \\
+&= \abs{c_{2,+}}^2 \f{2\Om^2 + 2 \f{\w - \w_{21}}{2} \Om}{\br{\Om + \f{\w - \w_{21}}{2}}^2} \\
+&= \abs{c_{2,+}}^2 \f{2\Om}{\Om + \f{\w - \w_{21}}{2}}
+\end{align*}
+Therefore,
+\[ \abs{c_{2,+}}^2 = \f12 \br{1 + \f{\w - \w_{21}}{2 \Om}} \]
+We choice $c_{2,+}$ to be real and positive,
+\[ c_{2,+} = \sqrt{\f12 \br{1 + \f{\w - \w_{21}}{2 \Om}}} \]
+Similarly,
+\[ c_{1,+} = -\sqrt{\f12 \br{1 - \f{\w - \w_{21}}{2 \Om}}} \]
+
+The solution corresponding to $\la = - \Om$ is,
+\begin{align*}
+c_{1,-} = \sqrt{\f12 \br{1 + \f{\w - \w_{21}}{2 \Om}}} \\
+c_{2,-} = \sqrt{\f12 \br{1 - \f{\w - \w_{21}}{2 \Om}}}
+\end{align*}
+Plugging $\la$ back into \cref{eq:c1c2_twostate_perturb}. The general solution is,
+\begin{align*}
+c_1\br{t} &= A c_{1,+} e^{i \br{\Om + \f{\w - \w_{21}}{2}} t} + B c_{1,-} e^{-i \br{\Om - \f{\w - \w_{21}}{2}} t} \\
+c_2\br{t} &= A c_{2,+} e^{i \br{\Om - \f{\w - \w_{21}}{2}} t} + B c_{2,-} e^{-i \br{\Om + \f{\w - \w_{21}}{2}} t}
+\end{align*}
+Where $A, B$ are determined by initial conditions. As an example suppose that the state of the particle is initially $\ket{1}$. This means that,
+\[  c_1\br{t=0} = 1 \quad c_2\br{t = 0} = 0 \]
+Therefore,
+\begin{align*}
+    Ac_{1, +} + Bc_{1, -} &= 1 \\
+    Ac_{2, +} + Bc_{2, -} &= 0
+\end{align*}
+Therefore,
+\[ B = - A\f{c_{2, +}}{c_{2, -}} \]
+And $A$ is fully determined,
+\[ A = \f{c_{2, -}}{c_{1, +}c_{2, -} - c_{1, -}c_{2, +}} \]
+Where the denominator can be greatly simplified,
+\begin{align*}
+    c_{1, +}c_{2, -} - c_{1, -}c_{2, +}
+    &= -c_{1, +}c_{1, +} - c_{2, +}c_{2, +} \\
+    &= -\br{c^2_{1, +} + c^2_{2, +}} \\
+    &= -1
+\end{align*}
+Therefore,
+\begin{align*}
+    A &= - \sqrt{\f{1}{2}\br{1 - \f{\w -\w_{21}}{2\Om}}} \\
+    B &= \sqrt{\f{1}{2}\br{1 + \f{\w -\w_{21}}{2\Om}}}
+\end{align*}
+Altogether,
+\[ c_2\br{t} = i \f{\ga}{\hbar\Om} e^{-i \f{\w - \w_{21}}{2} t} \sin\br{\Om t}\]
+Which means that,
+\[ \abs{c_2\br{t}}^2 = \f{\br{\f{\ga}{\hbar}}^2}{\br{\f{\w - \w_{21}}{2}}^2 + \br{\f{\ga}{\hbar}}^2} \sin^2\br{\Om t} \]
+Where $\abs{c_1\br{t}}^2 = 1 - \abs{c_2\br{t}}^2$. Physically this means that the probability of finding the particle in state $i$ ($\abs{c_i \br{t}}^2$) oscillates with frequency $\Om$. Recall that $\w$ is the frequency of the driving potential. When $\w = \w_{21}$ we have two phenomena occurring:
+\begin{enumerate}
+    \item The amplitude of Rabi oscillations is maximal and equal to $1$,
+    \[ \f{\br{\f{\ga}{\hbar}}^2}{\br{\f{\w - \w_{21}}{2}}^2 + \br{\f{\ga}{\hbar}}^2} \to \f{\br{\f{\ga}{\hbar}}^2}{\br{\f{\ga}{\hbar}}^2} = 1\]
+    \item The Rabi frequency can be set by the strength of the applied potential $\ga$; $\Om$ becomes equal to $\ga/\hbar$,
+    \[ \sqrt{\br{\f{\w - \w_{21}}{2}}^2 + \br{\f{\ga}{\hbar}}^2} \to \f{\ga}{\hbar} \]
+\end{enumerate}
+
+The most well-known application of this model is to Magnetic Resonance Imaging (MNR). In the cause of medical MNR, we image the nuclei of the hydrogen atoms in water in one's body. In this case the frequency associated with the unperturbed system is the spin of the hydrogen atom. Our Hamiltonian in this case is,
+\[ H_0 = - \ve \mu \cdot \ve B_0 \]
+Where $\ve B_0$ is a time-independent magnetic field where $\ve B_0 = B_0 \hat z$. The magnetic dipole of a proton is,
+\[ \ve \mu = \f{e}{mc} \ve S \]
+Therefore,
+\[ H_0 = -\f{e}{mc} B_0 S_z = -\f{e B_0 \hbar}{2mc} \br{\ket{\uparrow} \bra{\uparrow} - \ket{\downarrow} \bra{\downarrow}}\]
+
+\todo[TC]{Missed two lectures}
 
 \end{document}
