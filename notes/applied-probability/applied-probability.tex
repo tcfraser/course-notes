@@ -1593,4 +1593,154 @@ By examining foil theorems, we have seen that irreducibility is related to the u
 
     \todo[TC]{Missed a lecture}
 
+    The transition probability when \textit{a jump happens} is defined as,
+    \[ q_{ij} \defined P\br{X\br{t} \text{ jumps to } j \mid X\br{t} \text{ jumps from } i} \]
+    The transition probability at a jump has the following properties,
+    \[ q_{ii} = 0 \quad q_{ij} \geq 0 \quad j\neq i \]
+    \[ \sum_{j \in S}q_{ij} = \sum_{j \neq i} q_{ij} = 1 \]
+    A CTMC is fully characterized by $\bc{\la_i}_{i \in S}$ and $a = \bc{q_{ij}}_{i,j \in S}$. Moreover the transition probability at a time $t$ is given by,
+    \begin{align*}
+        P_{ij}\br{t}
+        &= P\br{X\br{t} = j \mid X\br{0} = i} \\
+        &= P\br{X\br{t+s} = j \mid X\br{s} = i}
+    \end{align*}
+    And we define the transition matrix at time $t$ to be,
+    \[ P\br{t} = \bc{P_{ij}\br{t}}_{i,j \in S} \]
+    The continuous C-K equation is simply,
+    \[ P\br{t+s} = P\br{t}P\br{s} \]
+    \begin{definition}
+        The limit
+        \[ R \defined \lim_{h \to 0^{+}} \f{P\br{h} - P\br{0}}{h} = \lim_{j \to 0^+} \f{P\br{h} - \ident}{h} \]
+        exists, and is called the \term{(infinitesimal) generator matrix} of $\bc{X\br{t}}_{t \geq 0}$.
+        \[ R_{ii} = - \la_{i} \quad R_{ij} = \la_i q_{ij} \quad j \neq i \]
+        The row sums of $R$ are $0$.
+    \end{definition}
+    \[ R = \begin{pmatrix}
+        -\la_0 & \la_0 q_{01} & \la_0 q_{02} & \cdots \\
+        \la_1q_{10} & -\la_{1} & \la_1q_{12} & \cdots \\
+        \la_2q_{20} & \la_2q_{21} & -\la_2 & \cdots \\
+        \vdots & \vdots & \vdots & \ddots \\
+    \end{pmatrix} \]
+    The entires of $R$ admit the following intuitive interpretations:
+    \begin{itemize}
+        \item $-\la_i$: rate/ probability flow going out of state $i$
+        \item $\la_i q_{ij}$: rate/ probability flow going from $i$ to $j$
+    \end{itemize}
+    It is possible to recover $\la_i$ and $q_{ij}$ from $R$. Explicitly,
+    \[ \la_i = - R_{ii} \quad q_{ij} = -\f{R_{ij}}{R_{ii}} \quad j \neq i \]
+    As we learned previously, the complete set of $\la_i$ and $q_{ij}$ completely characterize the behaviour of the CTMC. Thus, there is a one-to-one relation between $\bc{\la_i}_{i \in S}$ and $\bc{q_{ij}}_{i,j \in S}$. The generator $R$ itself also fully characterizes the CTMC. Therefore,
+    \[ \bc{\la_i}_{i \in S} \cup \bc{q_{ij}}_{i,j \in S} \text{ and } \bc{R_{ij}}_{i,j \in S}\]
+    are two sets of parameters that can be used to specify a CTMC.
+
+    \begin{example}
+        Consider the Poisson process,
+        \[ \la_i = \la \quad i = 0, 1, \ldots \]
+        \[ Q = \begin{pmatrix}
+            0 & 1 & 0 & \cdots \\
+            0 & 0 & 1 & \cdots \\
+            0 & 0 & 0 & \cdots \\
+            \vdots & \vdots & \vdots & \ddots \\
+        \end{pmatrix} \]
+        From $Q = \bc{q_{ij}}_{i,j \in S}$ and $\bc{\la_i}_{i \in S}$ we can compute $R$:
+        \[ R_{ii} = - \la_i = - \la \quad i = 0, 1, \ldots\]
+        \[ R_{ij} = \la_i q_{ij} = \begin{cases}
+            \la & j = i+1 \\
+            0 & j \neq i, i+1 \\
+        \end{cases} \]
+        \[ R = \begin{pmatrix}
+            -\la & \la & 0 & \cdots \\
+            0 & -\la & \la & \cdots \\
+            0 & 0 & -\la & \cdots \\
+            \vdots & \vdots & \vdots & \ddots \\
+        \end{pmatrix} \]
+        In a Poisson process, the $R_{ij}$ terms are either $-\la, \la$ or $0$.
+    \end{example}
+    \begin{example}
+        Let there be 3 tables in a restaurant. Parties of customers arrive according to a Poisson process with intensity $\la$. Upon arrival, if there are free tables, the party is served and spends an exponential amount of time with average $\f{1}{\mu}$ (parameter $\mu$).\\
+
+        If there are no free tables, the party leaves immediately. Let $X\br{t}$ be the number of occupied tables at time $t$. We know that $S = \bc{0,1,2,3}$ because there are only $3$ tables.\\
+
+        Before we begin, we first need to prove that this process can be modeled as a CTMC. Doing so explicitly is difficult; one would need to prove the Markov Property. Instead we justify that $\bc{X\br{t}}_{t \geq 0}$ by recognizing that all of the interarrival times and service times are independent and exponentially distributed. This assumption generally holds provided that the exponential waiting times are independent. \\
+
+        First find $\la_i$ and $q_{ij}$. First ($i = 0$) $\la_0$ is very easy. The distribution of leaving state $0$ is exponential with parameter corresponding to one party arriving,
+        \[ \la_0 = \la \quad \text{leave state $0$ $\iff$ one party arrives}\]
+        Moreover,
+        \[ q_{01} = 1 \quad \text{zero tables $\implies$ one table} \]
+        There is no possible transition from $0$ tables to $i > 1$ tables,
+        \[ q_{02} = q_{03} = 0 \]
+        For $i = 1$, a new customer can arrive or the current customer can leave,
+        \begin{align*}
+            1 &\to 2 \quad \text{if next party arrives first} \sim \Ex\br{\la} = T \\
+            1 &\to 0 \quad \text{if a service is completed} \sim \Ex\br{\mu} = S
+        \end{align*}
+        Which one happens first depends on which time is smaller. Recall the property of exponential distribution: $T, S$ are independent,
+        \[ T \sim \Ex\br{\la}, S \sim \Ex\br{\mu}, T \indep S \]
+        Then,
+        \[ P\br{T < S} = \f{\la}{\la + \mu} \quad P\br{S < T} = \f{\mu}{\la + \mu} \]
+        Moreover the minimum is exponentially distributed,
+        \[ \min\br{T,S} \sim \Ex\br{\la + \mu} \]
+        Thus $q_{12} = P\br{T < S} = \la / \br{\la + \mu}$. Additionally,
+        \[ q_{10} = 1 - q_{12} = 1 - P\br{T < S} = P\br{S < T} = \f{\mu}{\la + \mu} \]
+        We know that $q_{11}$ is zero by definition and $q_{13}$ is zero because that transition is impossible. We also have that $q_{1} = \la + \mu$.\\
+
+        Similarly when two tables are occupied ($i = 2$) there are three possible things that can happen. Let $T \sim \Ex\br{\la}$ be the time until the next arrival just as before. However, there are two possible tables that could leave,
+        \[ S_1 \sim \Ex\br{\mu} : \text{service time for table $1$} \]
+        \[ S_2 \sim \Ex\br{\mu} : \text{service time for table $2$} \]
+        Where $T,S_1,S_2$ are all jointly independent. There are three things that can change the state of the Markov chain.
+        \[ \min \br{T, S_1, S_2} \sim \Ex\br{\la + 2 \mu} \]
+        We jump from state $2$ to $3$ if there is an arrival before the two services finish.
+        \[ P\br{T < S_1, S_2} = \f{\la}{\la+2\mu}\]
+        Thus $\la_2 = \la +2\mu$ and,
+        \[ q_{23} = \f{\la}{\la+2\mu} \quad q_{21} = \f{2\mu}{\la + 2\mu} \quad q_{20} = q_{22} = 0 \]
+        Finally for $i = 3$ no more arrivals can affect the state of the CTMC. Instead there are three possible tables that can complete service. Hence $\la_3 = 3 \mu$ and,
+        \[ q_{32} = 1 \quad q_{30} = q_{31} = q_{33} = 0 \]
+        Altogether,
+        \[ Q = \begin{pmatrix}
+            0 & 1 & 0 & 0 \\
+            \f{\mu}{\la + \mu} & 0 & \f{\la}{\la + \mu} & 0 \\
+            0 & \f{2\mu}{\la + \mu} & 0 & \f{\la}{\la + 2\mu} \\
+            0 & 0 & 1 & 0 \\
+        \end{pmatrix} \]
+        While the intensities are,
+        \[ \la_0 = \la \quad \la_1 = \la + \mu \quad \la_2 = \la + 2 \mu \quad \la_3 = 3 \mu \]
+        We are also able to calculate the generating matrix $R$.
+        \[ R = \begin{pmatrix}
+            -\la & \la & 0 & 0 \\
+            \mu & -\br{\la + \mu} & \la & 0 \\
+            0 & 2 \mu & -\br{\la + 2 \mu} & \la \\
+            0 & 0 & 3 \mu & -3\mu \\
+        \end{pmatrix} \]
+        The entries in $R$ correspond to rates of transition. For example $R_{21}$ is the rate of transition from $2 \to 1$ which equals the total service rate.
+    \end{example}
+    \begin{remark}
+        As can be seen from the previous example, the generating matrix $R$ has a simpler form than $Q$. Actually, $R_{ij}$, $j \neq i$ directly corresponds to the \textit{rate} in which the process moves from state $i$ to $j$. The generating matrix $R$ is also more intuitive. In most cases, the driving force and decaying forces in a CTMC come from different sources. In these cases $R$ is far easier to write down that $Q$. In practice, we often directly model $R$ rather than getting $\bc{\la_i}_{i \in S}$ and $Q = \bc{q_{ij}}_{i,j \in S}$ first.
+    \end{remark}
+    \begin{example}
+        A population model: Each individual gives birth to an offspring with exponential rate $\la$. (i.e. the waiting time until it gets the next offspring $\sim \Ex\br{\la}$). Each individual dies with exponential rate $\mu$. Let $X\br{t}$ be the population at time $t$. When $X\br{t}= i$ there are two possible things that can happen next: either a new birth occurs or a new death occurs. This time until the next (potential) birth is the smallest among the $i$ i.i.d exponential birth times. This means that the ``rate'' from $i$ to $i + 1$ is $i \la$. Similarly, the ``rate'' from $i$ to $i-1$ is $i\mu$.
+        \[ R_{i, i+1} = i \la \quad i = 0, 1, \ldots \qquad R_{i, i -1} = i \mu \quad i = 1, 2, \ldots\]
+        All of the remaining entires of $R$ will be zero except for the diagonal entires which must fix the row sums of $R$ to be zero.
+        \[ R_{ii} = - \br{R_{i, i+1} + R_{i, i-1}} = -i\br{\la + \mu} \]
+        Therefore,
+        \[ R = \begin{pmatrix}
+            0 & 0 & 0 & 0 & \cdots \\
+            \mu & -\br{\la+\mu} & \la & 0 & \cdots \\
+            0 & 2\mu & -2\br{\la+\mu} & 2\la & \cdots \\
+            0 & 0 & 3 \mu & -3\br{\la+\mu} & \cdots \\
+            \vdots & \vdots & \vdots & \vdots & \ddots \\
+        \end{pmatrix} \]
+        Note that the first row is all zeros. Intuitively this corresponds to the fact that state $0$ is an absorbing state. If the population is empty, then no changes can occur to the CTMC. At this point we have completely modeled the CTMC. Albeit if we do need to know $\bc{\la_i}_{i \in S}$ and $Q$ we have that,
+        \[ \la_i = - R_{ii} = i \br{\la + \mu} \]
+        And,
+        \[ q_{i, i+1} = \f{R_{i, i+1}}{- R_{ii}} = \f{i \la}{ i  \br{\la + \mu}} = \f{\la}{\la + \mu} \quad i \geq 1 \]
+        Similarly,
+        \[ q_{i, i-1} = \f{\mu}{\la + \mu} \quad i \geq 1 \]
+        The boundary term $q_{01} = 1$ is arbitrary since $\la_0 = 0$ anyway.
+        \[ Q = \begin{pmatrix}
+            0 & 1 & 0 & 0 & \cdots \\
+            \f{\mu}{\la + \mu} & 0 & \f{\la}{\la + \mu} & 0 & \cdots \\
+            0 & \f{\mu}{\la + \mu} & 0 & \f{\la}{\la + \mu} & \cdots \\
+            0 & 0 & \f{\mu}{\la + \mu} & 0 & \cdots \\
+            \vdots & \vdots & \vdots & \vdots & \ddots \\
+        \end{pmatrix} \]
+    \end{example}
 \end{document}
