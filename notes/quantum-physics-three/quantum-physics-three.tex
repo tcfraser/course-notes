@@ -1722,6 +1722,74 @@ Where $\ve B_0$ is a time-independent magnetic field where $\ve B_0 = B_0 \hat z
 Therefore,
 \[ H_0 = -\f{e}{mc} B_0 S_z = -\f{e B_0 \hbar}{2mc} \br{\ket{\uparrow} \bra{\uparrow} - \ket{\downarrow} \bra{\downarrow}}\]
 
-\todo[TC]{Missed two lectures}
+\todo[TC]{Missed 2 lectures}
 
+\subsection{Time-Dependent Perturbation Theory}
+
+For a time-dependent potential $V\br{t}$, the complete solution to the time evolution of the system is,
+\[ \ket{\psi, t}_{I} = U\br{t} \ket{\psi} \]
+Where $U\br{t}$ is determined by the \term{Dyson series},
+\[ U\br{t} = \ident - \f i \hbar \intl_{0}^{t} \dif t' V\br{t'} + \cdots + \br{\f i \hbar}^n \intl_{0}^{t} \dif t' \intl_{0}^{t'} \dif t'' \cdots \intl_{0}^{t^{(n-1)}} \dif t^{(n)} V\br{t'} \cdots V\br{t^{(n)}} + \cdots \]
+Solving this series is frequently impossible/intractable. However for the purposes of perturbation theory we are only interested in calculating the lower-order corrections in order to get an approximation. Write $\ket{\psi, t}_I$ in turns of the unperturbed energy eigen-system $H_0 \ket n = E_n \ket n$
+\[ \ket{\psi, t}_{I} = \sum_n c_n\br{t} \ket{n} = \sum_n \ket n \underbrace{\bra n U\br{t} \ket \psi}_{c_n\br{t}} \]
+Then we have that $c_n\br{t} = \bra{n} U\br{t} \ket{\psi}$ and,
+\[ c_n\br{t} = c_n^{(0)}\br{t} + c_n^{(1)}\br{t} + c_n^{(2)}\br{t} + \cdots\]
+Where $c_n^{(0)} \sim V^{0}\br{t}$ and $c_n^{(1)} \sim V\br{t}$. Suppose that our initial state was in state $\ket i$,
+\[ \ket \psi = \ket i \qquad H_0 \ket i = E_i \ket i \]
+In this case $c_n^{(0)} = \de_{ni}$: the initial state is $\ket{i}$ with certainty. In order to calculate $\ket{\psi, t}_I$ we simply need to calculate,
+\begin{align*}
+    c_n^{(1)}\br{t}
+    &= - \f i \hbar \intl_{0}^{t} \dif t' \bra n V^{(I)} \br{t'} \ket i \\
+    &= - \f i \hbar \intl_{0}^{t} \dif t' \bra n e^{\f i \hbar H_0 t'} V \br{t'}  e^{-\f i \hbar H_0 t'}\ket i \\
+    &= - \f i \hbar \intl_{0}^{t} \dif t' e^{i \w_{ni} t'}  \bra n V \br{t'}\ket i \qquad \w_{ni} = \f{E_n - E_i}{\hbar} \\
+    &= - \f i \hbar \intl_{0}^{t} \dif t' e^{i \w_{ni} t'}  V_{ni}\br{t'}
+\end{align*}
+Moreover we can calculate $c_n^{(2)}$ but inserting a resolution of identity,
+\begin{align*}
+    c_n^{(2)}\br{t}
+    &= \br{-\f{i}{\hbar}}^2 \intl_{0}^{t} \dif t' \intl_{0}^{t'} \dif t'' \bra n V^{(I)}\br{t'} V^{(I)}\br{t''} \ket i  \\
+    &= \br{-\f{i}{\hbar}}^2  \sum_{m}\intl_{0}^{t} \dif t' \intl_{0}^{t'} \dif t'' \bra n V^{(I)}\br{t'} \ket m \bra m V^{(I)}\br{t''} \ket i  \\
+    &= \br{-\f{i}{\hbar}}^2  \sum_{m}\intl_{0}^{t} \dif t' \intl_{0}^{t'} \dif t'' e^{i \w_{nm} t'}e^{i \w_{mi} t''} \bra n V\br{t'} \ket m \bra m V\br{t''} \ket i  \\
+    &= \br{-\f{i}{\hbar}}^2  \sum_{m}\intl_{0}^{t} \dif t' \intl_{0}^{t'} \dif t'' e^{i \w_{nm} t'}e^{i \w_{mi} t''} V_{nm}\br{t'}V_{mi}\br{t''}
+\end{align*}
+These two example illuminate how it is possible to write down the correct terms for any order. As an exercise, let us find the probability of transition from $\ket i$ to $\ket n$ at time $t$,
+\[ P\br{i \to n} = \abs{c_{n}^{(1)}\br{t} + c_{n}^{(2)}\br{t} + \cdots }^2 \]
+We will calculate this in a first-order perturbation theory by only considering the first term,
+\begin{align*}
+P\br{i \to n}
+&= \abs{c_{n}^{(1)}\br{t}}^2 \\
+&= \abs{- \f i \hbar \intl_{0}^{t} \dif t' e^{i \w_{ni} t'}  V_{ni}\br{t'}}^2 \\
+&= \f{1}{\hbar^2} \abs{\intl_{0}^{t} \dif t' e^{i \w_{ni} t'}  V_{ni}\br{t'}}^2
+\end{align*}
+Let us choose a specific example for $V\br{t'}$; the harmonic perturbation:
+\[ V\br{t} = V e^{i \w t} + V^{\dagger} e^{-i \w t} \]
+Where $V$ is just come operator with the same dimension as $H_0$.
+\begin{align*}
+    c_n^{(1)}\br{t}
+    &= - \f i \hbar \intl_{0}^{t} \dif t' e^{i \w_{ni} t'} V_{ni}\br{t'} \\
+    &= - \f i \hbar \intl_{0}^{t} \dif t' e^{i \w_{ni} t'} \bs{V_{ni} e^{i \w t'} + V^{\dagger}_{ni} e^{- i \w t'}} \\
+    &= - \f i \hbar \bs{V_{ni} \f{e^{i \br{\w_{ni} + \w} t} - 1}{i\br{\w_{ni} + \w}} + V^{\dagger}_{ni} \f{e^{i \br{\w_{ni} - \w} t} - 1}{i\br{\w_{ni} - \w}}}\\
+    &= - \f i \hbar \bs{V_{ni} \f{e^{i \br{\w_{ni} + \w} t} - 1}{i\br{\w_{ni} + \w}} + V^{*}_{in} \f{e^{i \br{\w_{ni} - \w} t} - 1}{i\br{\w_{ni} - \w}}}
+\end{align*}
+This coefficient has two resonances; $c_n^{(1)}\br{t}$ is large only when $\w \simeq \w_{ni}$ or when $\w \simeq - \w_{ni}$. Let us restrict ourselves to the former condition ($\w \simeq \w_{ni}$). Here,
+\begin{align*}
+    c_n^{(1)}\br{t}
+    &\simeq - \f {V^{*}_{in}} \hbar { \f{e^{i \br{\w_{ni} - \w} t} - 1}{\w_{ni} - \w}}
+\end{align*}
+Which determined the transition probability,
+\begin{align*}
+    P\br{i \to n}
+    &= \abs{c_n^{(1)}\br{t}}^2 \\
+    &= \f {\abs{V^{*}_{in}}^2} {\hbar^2} \abs{ \f{e^{i \br{\w_{ni} - \w} t} - 1}{\w_{ni} - \w}}^2 \\
+    &= \f {\abs{V_{in}}^2} {\hbar^2  \br{\w_{ni} - \w}^2} \bs{\br{\cos \br{\w_{ni} - \w} t - 1}^2 + \sin^2 \br{\w_{ni} - \w} t}^2 \\
+    &= \f {\abs{V_{in}}^2} {\hbar^2  \br{\w_{ni} - \w}^2} \bs{2 - 2 \cos \br{\w_{ni} - \w} t} \\
+    &= \f {4\abs{V_{in}}^2} {\hbar^2  \br{\w_{ni} - \w}^2} \sin^2 \br{\f{\w_{ni} - \w}{2} t} \\
+    &= \f {\abs{V_{in}}^2} {\hbar^2} \f{\sin^2 \br{\f{\w_{ni} - \w}{2} t}}{\br{\f{\w_{ni} - \w}{2} t}^2} t^2
+\end{align*}
+We define $\al = \f{\w_{ni} - \w}{2}$ and examine the transition probability at large times,
+\[ f\br{\al} = \lim_{t \to \inf}\f{\sin^2 \br{\al t}}{\pi \br{\al}^2 t} = 0 \qquad \al \neq 0 \]
+\[ f\br{0} = \lim_{t \to \inf} \lim_{\al \to 0} \f{\sin^2 \br{\al t}}{\pi \br{\al}^2 t} = \lim_{t \to \inf} \lim_{\al \to 0} \f{\br{\al t}^2}{\pi \br{\al}^2 t} = \inf \]
+Clearly $f\br{\al} \propto \de\br{\al}$ is related to the Dirac delta function.
+\[ \intl_{-\inf}^{\inf} \dif \al f\br{\al} = \lim_{t \to \inf} \dif \al \f{\sin^2 \br{\al t}}{\pi \al^2 t} = 1 \]
+There the factor of $\pi$ makes $f\br{\al} = \de \br{\al}$ precisely.
 \end{document}

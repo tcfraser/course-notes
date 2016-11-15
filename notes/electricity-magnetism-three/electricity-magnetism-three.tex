@@ -1011,5 +1011,58 @@ Where the Minkowski metric is $g_{\mu\nu}$ taken to be,
 \end{pmatrix} \]
 Such that $\Box^2 = \di^{\mu}\di_{\mu} = g_{\mu\nu} \di^{\mu}\di^{\nu}$. Another useful Gauge is the \textit{Coulomb Gauge} where we set $\ve E= - \vdel V$ such that $\del^2 V = - \f{\rho}{\ep_0}$.
 
-\todo[TC]{Missed 2 lectures}
+\todo[TC]{Missed 2+1+0.5 lectures}
+
+\subsection{Liénard-Wiechert Potentials}
+
+We have,
+\[ V\br{\ve r, t} = \f{1}{4 \pi \ep_0} \int \dif \tau' \f{\rho\br{\ve r', t - \rcurs/c}}{\rcurs} \]
+Where $\ve \rcurs = \ve r - \ve r'$ and $t' = t - \rcurs/c$ is the retarded time.\\
+
+It would seem reasonable that for a point charge,
+\[ \rho\br{\ve r', t'} = q \de\br{\ve r' - \dot{\ve r}' t} \]
+That the potential would be,
+\[ V\br{\ve r, t} \stackrel{?}{=} \f{q}{4 \pi \rho_0 \rcurs} \]
+However, this is \textit{incorrect}! The actual result is,
+\[ V\br{\ve r, t} = \f{q}{4 \pi \ep_0 \rcurs} \f{1}{1 - \f{\ve v \cdot \ve \rcurs}{c}} \]
+Consider the \term{information collecting sphere (ICS)} and a charge density consisting of a small rot of length $\ell$ so that,
+\[ \dif q = \rho \dif \tau' = \la \dif x' \quad \la \defined \f{q}{\ell} \]
+\begin{center}
+    \begin{tikzpicture}
+        \pgfmathsetmacro{\boxh}{1.0}
+        \pgfmathsetmacro{\boxv}{0.2}
+        \pgfmathsetmacro{\R}{4}
+        \draw[] (0,0) circle (\R);
+        \draw[dashed] (0,0) circle (\R*0.65);
+        \draw[dashed] (0,0) circle (\R*0.6);
+        \draw[] (0,0+\R*0.65) node[above]{$t$};
+        \draw[] (0,0+\R*0.6) node[below]{$t + \dif t$};
+        \draw[red, thick] (-2 + \boxh,0 + \boxv) -- (-2 - \boxh,0 + \boxv) -- (-2 - \boxh,0 - \boxv) -- (-2 + \boxh,0 - \boxv) -- cycle;
+        \draw[red] (-2, 0) node[]{$\la$};
+        \draw[->] (-2 + \boxh, 0) -- node[above]{$\ve v$}(-2 + \boxh + 0.5, 0);
+        \draw[fill] (0,0) circle (0.05) node[below]{$\ve r$};
+        \draw[dashed] ({-\R*cos(40)}, {\R*sin(40)}) -- (0,0);
+        \draw[->] ({-\R*cos(40)}, {\R*sin(40)}) node[right]{$\dot{\ve r}' = c \hat r$} -- ({-(\R- 1)*cos(40)}, {(\R- 1)*sin(40)});
+    \end{tikzpicture}
+\end{center}
+Dealing with point charge is evidently complicated. The potential at a point charge is seemingly infinite. One could attempt to resolve these issues with quantum mechanics where the position of a point charge is smeared out across space. However this description suffers from similar problems. Therefore this analysis should not be taken too seriously as more accurate descriptions exist. Nonetheless if the charge is stationary the amount of charge crossed by the ICS in time $\dif t$ would be,
+\[ \dif q = \la \dif \rcurs = c \la \dif t \]
+Bu since the charge is moving towards the field point we have instead,
+\[ \dif q = \la \br{\dif \rcurs - v \dif t} = \la \br{1 - \f{v}{c}} \dif \rcurs \]
+In this case we have,
+\[ \f{\la \dif \rcurs}{\rcurs} = \f{\dif q}{\rcurs \br{1 - \f{v}{c}}} \]
+Since the potential is due to the charge distribution $\la \br{x', t'}$ we get,
+\begin{align*}
+    V\br{x,t}
+    &= \f{1}{4\pi\ep_0} \int \f{\la \dif \rcurs}{\rcurs} \\
+    &= \f{1}{4\pi\ep_0} \int \f{\dif q}{\rcurs \br{1 - \f{v}{c}}} \\
+    &= \f{q}{4\pi\ep_0 \rcurs \br{1 - \f{v}{c}}}
+\end{align*}
+and we see that the potential is increased by a factor of $\br{1 - v/c}^{-1}$. This is a geometric effet and is independent o f the size and/or shape of the charge distribution (despite what this derivation suggests). \\
+
+As the ICS sweeps past the charge it ``sees'' approaching charge for \footnote{See also Feynman's lectures VII, Section 21.5 and Griffiths Section 10.3 p. 451.}. This result can be generalized for a point charge to,
+\[ V\br{\ve r, t} = \f{qc}{4 \pi \ep_0 \ve \rcurs \cdot \br{c \hat \rcurs - \ve v}} \]
+and similarly to,
+\[ \ve A \br{\ve r, t} = \f{\ve v}{c} V\br{\ve r, t} = \f{\mu_0}{4 \pi}\f{q \ve v}{\ve \rcurs \cdot \br{c \hat \rcurs - \ve v}} \]
+
 \end{document}
