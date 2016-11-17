@@ -1786,10 +1786,90 @@ Which determined the transition probability,
     &= \f {4\abs{V_{in}}^2} {\hbar^2  \br{\w_{ni} - \w}^2} \sin^2 \br{\f{\w_{ni} - \w}{2} t} \\
     &= \f {\abs{V_{in}}^2} {\hbar^2} \f{\sin^2 \br{\f{\w_{ni} - \w}{2} t}}{\br{\f{\w_{ni} - \w}{2} t}^2} t^2
 \end{align*}
-We define $\al = \f{\w_{ni} - \w}{2}$ and examine the transition probability at large times,
+An important feature of this transition probability is its long term behaviour. We should be carful moving forward however; the time-dependent perturbation becomes less and less valid at later times. Therefore we qualify our analysis by saying that we are looking at large times, but not too large that the perturbation breaks down. We define $\al = \f{\w_{ni} - \w}{2}$ and examine the transition probability at large times,
 \[ f\br{\al} = \lim_{t \to \inf}\f{\sin^2 \br{\al t}}{\pi \br{\al}^2 t} = 0 \qquad \al \neq 0 \]
 \[ f\br{0} = \lim_{t \to \inf} \lim_{\al \to 0} \f{\sin^2 \br{\al t}}{\pi \br{\al}^2 t} = \lim_{t \to \inf} \lim_{\al \to 0} \f{\br{\al t}^2}{\pi \br{\al}^2 t} = \inf \]
 Clearly $f\br{\al} \propto \de\br{\al}$ is related to the Dirac delta function.
-\[ \intl_{-\inf}^{\inf} \dif \al f\br{\al} = \lim_{t \to \inf} \dif \al \f{\sin^2 \br{\al t}}{\pi \al^2 t} = 1 \]
-There the factor of $\pi$ makes $f\br{\al} = \de \br{\al}$ precisely.
+\[ \intl_{-\inf}^{\inf} \dif \al f\br{\al} = \lim_{t \to \inf} \intl_{-\inf}^{\inf} \dif \al \f{\sin^2 \br{\al t}}{\pi \al^2 t} = 1 \]
+As it turns out, the factor of $\pi$ present in the denominator makes $f\br{\al} = \de \br{\al}$ precisely. Therefore the transition probability can be written,
+\[ P\br{i \to n} = \f {\abs{V_{in}}^2} {\hbar^2} \f{\sin^2 \br{\al t}}{\br{\al t}^2} t^2\]
+We define the transition rate (probability of transition per unit time),
+\[ W_{i \to n} = \der{P\br{i \to n}}{t} \]
+In this way, the long term behaviour of $W_{i \to n}$ is set by $f\br{\al}$,
+\[ W_{i \to n} = \f {\abs{V_{in}}^2} {\hbar^2} \de\br{\al} \pi \]
+Recall that $\de\br{ax} = \f{1}{a} \de\br{x}$,
+\[ \intl_{-\inf}^{\inf} f\br{x} \de\br{a x} \dif x = \intl_{-\inf}^{\inf} f\br{\f{y}{a}} \de\br{y} \f{\dif y}{a} = \f{1}{a} \intl_{-\inf}^{\inf} f\br{\f{y}{a}} \de\br{y} \dif y = \f{1}{a}f\br{0} \]
+Applying this to $W_{i \to n}$,
+\[ W_{i \to n} = \f {2 \pi \abs{V_{in}}^2} {\hbar^2} \de\br{\w_{ni}- \w}\]
+Or in terms of energies,
+\[ W_{i \to n} = \f {2 \pi \abs{V_{in}}^2} {\hbar^2} \de\br{\f{1}{\hbar}\br{E_{n} - E_{i} - \hbar\w}}\]
+Pull out the factor of $\hbar^{-1}$,
+\[ W_{i \to n} = \f {2 \pi \abs{V_{in}}^2} {\hbar} \de\br{{E_{n} - E_{i} - \hbar\w}}\]
+This result is so important is in known as \term{Fermi's golden rule}. Physically, the $\de$-function expresses energy conservation in the sense that it is only non-zero if $E_n - E_i = \hbar \w$. For example, if the energy of the final state is larger than the energy of the initial state, $E_n > E_i$ then the only way to transition from $i$ to $n$ is to absorb a quanta of energy with the amount $\hbar \w$. This phenomena is called \term{absorbtion}. Similarly when $E_i > E_n$ we have \term{stimulated emissions}. \\
+
+The probability under a time independent perturbation can be computed by seting $\w = 0$. The transition frequency in this case becomes,
+\[ P\br{i \to n}= \f{\abs{V_{in}}^2}{\hbar^2} \f{\sin^2\br{\f{\w_{ni}}{2}t}}{\br{\f{\w_{ni}}{2}}^2} \]
+Where the function,
+\[ f\br{\w_{ni}} = \f{\sin^2\br{\f{\w_{ni}}{2}t}}{\br{\f{\w_{ni}}{2}}^2} \]
+Can be plotted for different times $t_1 < t_2 < t$,
+
+\begin{center}
+    \begin{tikzpicture}
+        \pgfmathdeclarefunction{sinc}{1}{%
+            \pgfmathparse{abs(#1)<0.01 ? int(1) : int(0)}%
+            \ifnum\pgfmathresult>0 \pgfmathparse{1}\else\pgfmathparse{sin(#1 r)/#1}\fi%
+        }
+        \pgfmathsetmacro{\tick}{0.3};
+        \pgfmathsetmacro{\time}{0.5};
+        \draw[scale=1,domain=-6*pi:6*pi,samples=250, variable=\x,blue] plot ({4*\x/(6*pi)},{3*(sinc(\x))^2});
+        \draw[scale=1,domain=-6*pi:6*pi,samples=250, variable=\x,red] plot ({4*\x/(6*pi)},{0.5*3*(sinc(0.5*\x))^2});
+        \draw[scale=1,domain=-6*pi:6*pi,samples=250, variable=\x,green] plot ({4*\x/(6*pi)},{0.1*3*(sinc(0.1*\x))^2});
+        \draw[green] (2, 0.5) node{$t_1$};
+        \draw[red] (0.75, 1.2) node{$t_2$};
+        \draw[blue] (0.75, 2) node{$t$};
+        \draw[<->] (-4, 0) -- node[below]{$0$} (+4, 0) node[right]{$\w_{ni}$};
+        \draw[->] (0,0) -- (0, 4) node[above]{$f$};
+        \draw[] (-\tick, 3) -- (+\tick, 3) node[right]{$t^2$};
+    \end{tikzpicture}
+\end{center}
+
+At $\w_{ni}= 0$,
+\[ f\br{0} = \lim_{\w_{ni} \to 0}\f{\sin^2\br{\f{\w_{ni}}{2}t}}{\br{\f{\w_{ni}}{2}}^2} = t^2 \]
+As time increases, the height of the central peak increases as $t^2$ while its width decreases as $\f{2\pi}{t}$. At long times $P\br{i \to n}$ is significant only when,
+\[ \abs{w_{ni}} < \f{2 \pi}{t} \quad \abs{\f{E_n - E_i}{\hbar}} \sim \f{2\pi}{t} \]
+Which means that,
+\[ \abs{E_n - E_i} t \sim 2 \pi \hbar \]
+This is similar to the energy-uncertainty relation $\De E \De t \sim \hbar$. \\
+
+What happens to the state $\ket{i}$ itself? Consider a gradual turn-on of the perturbation,
+\[ V\br{t} = e^{\eta t} V \quad \eta > 0, \eta \to 0^{+}\]
+For any finite $\eta$, $V\br{t \to -\inf} = 0$. The perturbation is absent at $t \to -\inf$ and is slowly turned on. In this case,
+\begin{align*}
+c^{(1)}_n\br{t}
+&= - \f{i}{\hbar} V_{ni}\intl_{-\inf}^{t} \dif t' e^{\eta t'} e^{i \w_{ni} t'} \\
+&= - \f{i}{\hbar} V_{ni} \bre{\f{e^{\br{\eta + i \w_{ni}} t'}}{\eta + i \w_{ni}}}_{-\inf}^{t} \\
+&= - \f{i}{\hbar} V_{ni} {\f{e^{\br{\eta + i \w_{ni}} t}}{\eta + i \w_{ni}}} \\
+\abs{c^{(1)}_n\br{t}}^2 &= \f{\abs{V_{ni}}^2}{\hbar^2} \f{e^{2\eta t}}{\eta^2 +\w_{ni}^2} = P\br{i \to n}
+\end{align*}
+Therefore the transition rate is,
+\[ W_{i \to n} = \der{P\br{i \to n}}{t} = \f{2 \abs{V_{ni}}^2}{\hbar^2} \f{\eta e^{2 \eta t}}{\eta^2 + \w_{ni}^2} \]
+Which in the limit of $\eta \to 0$ is,
+\[ \lim_{\eta \to 0} \f{\eta}{\eta^2 + \w_{ni}^2} = \begin{cases}
+    0 & \w_{ni} \neq 0 \\
+    \inf & \w_{ni} = 0
+\end{cases} \]
+Also note that,
+\[ \intl_{-\inf}^{\inf} \dif \w_{ni} \f{\eta}{\eta^2 + \w_{ni}^2} = \pi \]
+Therefore,
+\[ W_{i \to n} = \f{2 \pi }{\hbar^2} \abs{V_{ni}}^2 \de\br{\w_{ni}} = \f{2 \pi}{\hbar}\abs{V_{ni}}^2 \de\br{E_n - E_i} \]
+This is another instance of Fermi's golden rule.
+We can then calculate,
+\[ c_i^{(0)} = 1 \]
+\[ c_{i}^{(1)} = - \f i \hbar V_{ii} \intl_{0}^{t} \dif t' e^{\eta t'} = - \f i {\hbar \eta} V_{ii} e^{\eta t} \]
+And the second order coefficient,
+\begin{align*}
+    c_{i}^{(2)}
+    &= \br{-\f{i}{\hbar}}^2 \sum_{m} \intl_{-\inf}^{t} \dif t' \intl_{-\inf}^{t'} \dif t'' e^{i \w_{in} t'} e^{i \w_{im} t''} V_{im} V_{mi} e^{\eta t'} e^{\eta t''} \\
+    &= \br{-\f{i}{\hbar}}^2 \sum_{m} \abs{V_{im}}^2 \intl_{-\inf}^{t} \dif t' \intl_{-\inf}^{t'} \dif t'' e^{\br{\eta + i\w_{in}} t'} e^{\br{\eta + i\w_{im}} t''}\\
+\end{align*}
 \end{document}

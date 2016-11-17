@@ -1060,9 +1060,60 @@ Since the potential is due to the charge distribution $\la \br{x', t'}$ we get,
 \end{align*}
 and we see that the potential is increased by a factor of $\br{1 - v/c}^{-1}$. This is a geometric effet and is independent o f the size and/or shape of the charge distribution (despite what this derivation suggests). \\
 
-As the ICS sweeps past the charge it ``sees'' approaching charge for \footnote{See also Feynman's lectures VII, Section 21.5 and Griffiths Section 10.3 p. 451.}. This result can be generalized for a point charge to,
+As the ICS sweeps past the charge it ``sees'' approaching charge for \footnote{See also Feynman's lectures VII, Section 21.5 and Griffiths Section 10.3 p. 451.}. This result can be generalized for a point charge to the \term{Liénard-Wiechert potential},
 \[ V\br{\ve r, t} = \f{qc}{4 \pi \ep_0 \ve \rcurs \cdot \br{c \hat \rcurs - \ve v}} \]
 and similarly to,
 \[ \ve A \br{\ve r, t} = \f{\ve v}{c} V\br{\ve r, t} = \f{\mu_0}{4 \pi}\f{q \ve v}{\ve \rcurs \cdot \br{c \hat \rcurs - \ve v}} \]
+
+\textbf{Griffith Ex. 10.3:} Find the potential of a point charge moving with a constant velocity. Let thhe course position be,
+\[ \ve r' \br{t'} = \ve v t' \]
+so that it is at the origin at $t = 0$. The retarded time is (recall $t = t' - \rcurs / c$),
+\[ r' = t + \f{\rcurs}{c} \]
+Which gives,
+\[ \rcurs =c\br{t' - t} = \abs{\ve r - \ve r'} \]
+so that we have,
+\begin{align*}
+c^2 \br{t^2 - 2tt' + t'^2}
+&= r^2 +r'^2 - 2 \ve r\cdot \ve r' \\
+&= r^2 + v^2 t'^2- 2 t' \ve r \cdot \ve v \\
+\br{v^2 - c^2} t'^2 + \br{2 c^2 t - 2 \ve r \cdot \ve v} t' + \br{r^2 - c^2 t^2} &= 0
+\end{align*}
+Solving the quadratic for $t'$,
+\[ t' = \f{\br{c^2 t - \ve r \cdot \ve v} \pm \sqrt{\br{c^2 t - \ve r \cdot \ve v}^2 - \br{v^2 - c^2}\br{r^2 - c^2 t^2}}}{-v^2 + c^2}\]
+What sign is physically appropriate? If we have $v = 0$,
+\[ t' = \f{\br{c^2 t} \pm \sqrt{\br{c^2 t}^2 - \br{c^2}\br{r^2 - c^2 t^2}}}{c^2} = t\pm \f{r}{c}\]
+Physically, the upper ($+$) solution corresponds to an incorrect expression for the retarded time, namely $t = t' - \rcurs / c$. This corresponds to retrocausation and thus should be discarded. We take the lower sign solution ($-$). We can write the discriminant,
+\[ \sqrt{\br{c^2 t - \ve r \cdot \ve v}^2 - \br{v^2 - c^2}\br{r^2 - c^2 t^2}} = \br{c^2 t - \ve r \cdot \ve v} - \br{c^2 - v^2} t' \]
+From,
+\[ \hat \rcurs = \f{\ve r - \ve r'}{\abs{\ve r' - \ve r'}}= \f{\ve r - \ve v t}{c\br{t - t'}} \]
+And consider,
+\begin{align*}
+c\rcurs \br{1 - \hat \rcurs \cdot \f{\ve v}{c}}
+&= c^2 \br{t - t'} \br{1 - \f{\ve v}{c} \cdot \f{\br{\ve r - \ve v t}}{c \br{t - t'}}} \\
+&= c^2 \br{t - t'} -  \ve v \cdot \ve r - v^2 t' \\
+&= \br{c^2 t - \ve r \cdot \ve v} - \br{c^2 - v^2 }t'
+\end{align*}
+And finally,
+\[ V\br{\ve r, t}= \f{1}{4 \pi \ep_0} \f{q}{\sqrt{\br{c^2 t - \ve r \cdot \ve v}^2 + \cdots}} \]
+And the vector potential is simply,
+\[ \ve A \br{\ve r, t} = \f{\ve v V}{c} \]
+The fields of a moving point charge are,
+\[ \ve E \br{\ve r, t} = \f{q}{4 \pi \ep_0} \f{\rcurs}{\br{\ve \rcurs \cdot \ve u}^3} \br{\br{c^2 - v^2} \ve u + \ve \rcurs \times \br{\ve u \times \ve a}} \]
+Where $\ve u$ is shorthand,
+\[ \ve u = c \hat \rcurs - \ve v \]
+And $\ve a$ is the acceleration,
+\[ \ve a = \dot{\ve v} \]
+The magnetic field can be obtained via,
+\[ \ve B\br{\ve r, t} = \f{\hat \rcurs}{c} \times \ve E \]
+
+\section{Radiation}
+
+We have the the \term{Jefimenko} equations,
+\[ \ve E \br{\ve r, t} = \f{1}{4 \pi\ep_0} \int \dif \tau' \br{\f{\rho \hat \rcurs}{\rcurs^2} + \f{\dot \rho \hat \rcurs}{c \rcurs}- \f{\ve J}{c^2 \rcurs}}  \]
+\[ \ve B \br{\ve r, t} = \f{\mu_0}{4 \pi} \int \dif \tau' \br{\f{\ve J}{\rcurs^2} + \f{\dot {\ve J}}{c \rcurs}}\times \hat \rcurs \]
+So the Poynting vector is $\ve S = \f{1}{\mu_0} \ve E \times \ve B$ and the power is,
+\[ P\br{\ve r, t} = \oint \dif \ve a \cdot \ve S = \f{1}{\mu_0} \int \dif \ve a \cdot \ve E\times \ve B \]
+When considering radiation we are only considered the far-field affects ($\rcurs \to \inf$) so that only the terms $\sim \f{1}{\rcurs}$ remain (because the areas increases as $\rcurs^2$). This chapter is concerned largely with this \textit{far field limit}. In the limit energy leaves the sources and does \textit{not} return.
+
 
 \end{document}

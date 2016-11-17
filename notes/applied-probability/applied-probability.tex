@@ -402,7 +402,7 @@ The law of iterated expectation is easy to digest when one understands that $\Ex
 
 \end{theorem}
 
-\section{Stochastic Process}
+\subsection{Stochastic Process}
 
 To begin, the entomology of \textit{stochastic} is that it comes an Asian word which means to \textit{aim (at)}. As an example, in archery, aiming at a target is related to the idea of guessing where the target will be. In short, stochastic should be taken as a synonym for \textit{random}. A \textit{process} is something that changes over time.  In conclusion, a \term{stochastic process} is a system that random changes over time. \\
 
@@ -1743,5 +1743,272 @@ By examining foil theorems, we have seen that irreducibility is related to the u
             \vdots & \vdots & \vdots & \vdots & \ddots \\
         \end{pmatrix} \]
     \end{example}
+    So far our population model only incorporated births and deaths of individuals. We can further add immigration to the system. Individuals are added to the population according to a Poisson process with intensity $\al$. It is important to note that this augmentation will not change the ``rate'' of transitions from $i$ to $i-1$. Intuitively, the immigration rate does not affect the death rate of the population. Instead, the immigration model changes the rate of transition from $i$ to $i + 1$. \\
+
+    If we look at the time until the next increase in population, it now the minimum of two random variables (time until next birth, time until next immigration) following,
+    \[ \Ex\br{i \la} \text{ and } \Ex\br{\al} \]
+    Where $\Ex\br{i \la}$ is associated to the birth rate. Each of the $i$ individuals can give birth with intensity $\la$. The immigration interarrival times are $\Ex\br{\al}$ and are independent of $i$. Therefore the rate from $i$ to $i+1$ is now $i \la + \al$,
+    \[ R = \begin{pmatrix}
+        -\al & \al & 0 & 0 & \cdots \\
+        \mu & -\br{\la+\mu}-\al & \la + \al & 0 & \cdots \\
+        0 & 2\mu & -2\br{\la+\mu}-\al & 2\la + \al & \cdots \\
+        0 & 0 & 3 \mu & -3\br{\la+\mu}-\al & \cdots \\
+        \vdots & \vdots & \vdots & \vdots & \ddots \\
+    \end{pmatrix} \]
+    Entry-wise,
+    \[ R_{i, i-1} = i \mu \quad i = 1,2,\ldots \]
+    \[ R_{i, i+1} = i \la + \al \quad i = 0,2,\ldots \]
+    $\bc{\la_i}_{i \in S}$ and $Q$ will change accordingly.
+
+    \subsection{Classification of States}
+
+    Just as we classified states in a DTMC, we attempt to classify states in a CTMC in an analogous manner. We will do this by examining properties of $Q$. Recall that,
+    \[ q_{ij} = P\br{X\br{t} \text{ jumps to $j$ } \mid X\br{t} \text{ jumps from $i$ } } \]
+    Where $q_{ij} \geq 0$ and $\sum_{j\in S} q_{ij} = 1$. If we collect all of the entries $\bc{q_{ij}}_{i,j\in S}$ into $Q$, $Q$ becomes a legitimate transition matrix of a DTMC. \\
+
+    To see how the CTMC is related to the corresponding DTMC, consider the following arbitrary depiction of a CTMC $\bc{X\br{t}}_{t \geq 0}$,
+    \begin{center}
+        \begin{tikzpicture}
+            \pgfmathsetmacro{\sa}{1};
+            \pgfmathsetmacro{\sb}{2};
+            \pgfmathsetmacro{\sc}{2.5};
+            \pgfmathsetmacro{\sd}{3};
+            \pgfmathsetmacro{\se}{3.4};
+            \pgfmathsetmacro{\sf}{4};
+            \pgfmathsetmacro{\tick}{0.1};
+            \pgfmathsetmacro{\jump}{0.4};
+            \draw[<->] (0, 3) node[above]{$X\br{t}$} -- (0, 0)node[left]{$0$} -- (5, 0) node[right]{$t$};
+            \draw[] (\sa, -\tick) node[below]{$t_1$} -- (\sa, \tick);
+            \draw[] (\sb, -\tick) node[below]{$t_2$} -- (\sb, \tick);
+            \draw[] (\sc, -\tick) node[below]{$t_3$} -- (\sc, \tick);
+            \draw[] (\sd, -\tick) node[below]{$t_4$} -- (\sd, \tick);
+            \draw[] (\se, -\tick) node[below]{$t_5$} -- (\se, \tick);
+            \draw[] (\sf, -\tick) node[below]{$t_6$} -- (\sf, \tick);
+            \draw[] (-\tick, 1*\jump) node[left]{$1$} -- (\tick, 1*\jump);
+            \draw[] (-\tick, 2*\jump) node[left]{$2$} -- (\tick, 2*\jump);
+            \draw[] (-\tick, 3*\jump) node[left]{$3$} -- (\tick, 3*\jump);
+            \draw[] (-\tick, 4*\jump) node[left]{$4$} -- (\tick, 4*\jump);
+            \draw[] (-\tick, 5*\jump) node[left]{$5$} -- (\tick, 5*\jump);
+            \draw[] (-\tick, 6*\jump) node[left]{$6$} -- (\tick, 6*\jump);
+            \draw[thick] (0,4*\jump) --
+            (\sa, 4*\jump) -- (\sa, 2*\jump) --
+            (\sb, 2*\jump) -- (\sb, 5*\jump) --
+            (\sc, 5*\jump) -- (\sc, 1*\jump) --
+            (\sd, 1*\jump) -- (\sd, 6*\jump) --
+            (\se, 6*\jump) -- (\se, 2*\jump) --
+            (\sf, 2*\jump) -- (\sf, 1*\jump) --
+            (5, 1*\jump)
+            ;
+        \end{tikzpicture}
+    \end{center}
+    We can construct a DTMC by ignoring the interarrival times $t_{k+1} - t_{k}$ and only record the states at each interarrival time. The $1$-step transition probability matrix is given by $Q$. It contains all of the state changes but forgets the temporal information. This DTMC is called the \term{discrete skeleton} or \term{embedded DTMC} of the CTMC.\\
+
+    Since accessibility is the notion that $i$ can go to $j$ in an arbitrary time, we naturally define accessibility in a CTMC between $i$ and $j$ if they are accessible in the discrete skeleton. Moreover communication, irreducibility are derivative of the notion of accessibility and thus we extend the notion as well. \\
+
+    Additionally, the notion of recurrence/transience are also independent of the notion of time and thus are the same in the CTMC as they are in the discrete skeleton. \\
+
+    Since accessibility, communication, irreducibility, recurrence/transience are only related to the change of states, not about time, these properties will be the same for a CTMC and its discrete skeleton. For a CTMC $\bc{X\br{t}}_{t \geq 0}$ we call ``state $j$ accessible from state $i$'' or ``$i$ and $j$ communicate'', ``the process is irreducible'', ``$i$ is recurrent/transient'' if and only if this is the case for its discrete skeleton. \\
+
+    Note that since positive/null recurrence do involve the (expected) amount of time, we can indeed have different results for a CTMC and its discrete skeleton. In particular we need to define positive/null recurrence for a CTMC.
+    \begin{definition}
+        Let $R_{ii}$ be the amount of (continuous) time until the MC revisits state $i$ given $X\br{0}= i$. A recurrent state $i$ is called positive recurrent if $\Exp\br{R_{ii}}< \inf$.
+        \[\text{$i$ is positive recurrent: } \quad \Exp\br{R_{ii}}< \inf\]
+        It is called null recurrent if $\Exp\br{R_{ii}} = \inf$.
+        \[\text{$i$ is null recurrent: } \quad \Exp\br{R_{ii}} = \inf\]
+    \end{definition}
+    \begin{center}
+        \begin{tikzpicture}
+            \pgfmathsetmacro{\sa}{1};
+            \pgfmathsetmacro{\sb}{2};
+            \pgfmathsetmacro{\sc}{2.5};
+            \pgfmathsetmacro{\sd}{3};
+            \pgfmathsetmacro{\se}{3.4};
+            \pgfmathsetmacro{\sf}{4};
+            \pgfmathsetmacro{\tick}{0.1};
+            \pgfmathsetmacro{\jump}{0.4};
+            \draw[<->] (0, 3) node[above]{$X\br{t}$} -- (0, 0)node[left]{$0$} -- (5, 0) node[right]{$t$};
+            \draw[] (\sa, -\tick) -- (\sa, \tick);
+            \draw[] (\sb, -\tick) -- (\sb, \tick);
+            \draw[] (\sc, -\tick) -- (\sc, \tick);
+            \draw[] (\sd, -\tick) -- (\sd, \tick);
+            \draw[] (\se, -\tick) -- (\se, \tick);
+            \draw[] (\sf, -\tick) node[below]{$R_{ii}$} -- (\sf, \tick);
+            \draw[] (-\tick,4*\jump) node[left]{$i$} -- (\tick, 4*\jump);
+            \draw[thick] (0,4*\jump) -- (\sa, 4*\jump);
+            \draw[thick, dashed] (\sa, 4*\jump) -- (\sa, 2*\jump);
+            \draw[thick, dashed] (\sa, 2*\jump) -- (\sb, 2*\jump);
+            \draw[thick, dashed] (\sb, 2*\jump) -- (\sb, 5*\jump);
+            \draw[thick, dashed] (\sb, 5*\jump) -- (\sc, 5*\jump);
+            \draw[thick, dashed] (\sc, 5*\jump) -- (\sc, 1*\jump);
+            \draw[thick, dashed] (\sc, 1*\jump) -- (\sd, 1*\jump);
+            \draw[thick, dashed] (\sd, 1*\jump) -- (\sd, 6*\jump);
+            \draw[thick, dashed] (\sd, 6*\jump) -- (\se, 6*\jump);
+            \draw[thick, dashed] (\se, 6*\jump) -- (\se, 2*\jump);
+            \draw[thick, dashed] (\se, 2*\jump) -- (\sf, 2*\jump);
+            \draw[thick, dashed] (\sf, 2*\jump) -- (\sf, 4*\jump);
+            \draw[thick] (\sf, 4*\jump) -- (5, 4*\jump) -- (5, 4*\jump);
+        \end{tikzpicture}
+    \end{center}
+    As in the discrete case positive recurrence, null recurrence and transience are class properties. However positive/null recurrences can be different for a DTMC and its discrete skelton, but they are still class properties.
+    \subsection{Stationary Distribution}
+    \begin{definition}
+        A distribution $\pi = \br{\pi_0, \pi_1, \ldots}$ is called a \term{stationary distribution} of a CTMC $\bc{\la\br{t}}_{t \geq 0}$ with generator $R$, iff it satisfies:
+        \[ \pi \cdot R = 0 \quad \sum_{i} \pi_i = \pi \cdot \ve 1 = 1 \]
+        Notice that the first condition differs from the discrete case where $\pi \cdot P = \pi$.
+    \end{definition}
+    Why do we call $\pi$ stationary distributions? To see that $\pi$ is fixed, assume that the process starts by initial distribution $\al^{(0)} = \pi$:
+    \[ P\br{X\br{0} =  i} = \pi_i \]
+    The distribution of this process at time $t$ is given by,
+    \[ \al^{(t)} = \al^{(0)} \cdot P\br{t} = \pi \cdot P \br{t} \]
+    This is obtained by looking at $\al_{j}^{(t)}$:
+    \begin{align*}
+    \al_j^{(t)}
+    &= P\br{X\br{t} = j} \\
+    &= \sum_{i\in S}P\br{X\br{t} = j \mid X\br{0} = i}P\br{X\br{0} = i} \\
+    &= \sum_{i\in S}P_{ij}\br{t}\al_{i}^{(0)} \\
+    &= \br{\al^{(0)} \cdot P\br{t}}_{j}
+    \end{align*}
+    To show that $\al^{(t)}$ is constant in time, examine,
+    \begin{align*}
+        \der{\al^{(t)}}{t}
+        &= \der{}{t} \br{\al^{(0)} \cdot P\br{t}}\\
+        &= \der{}{t} \br{\pi \cdot P\br{t}}\\
+        &= \pi \cdot \der{}{t} P\br{t} \\
+        &= \pi \cdot \br{\lim_{h \to 0^{+}} \f{P\br{t + h} - P\br{t}}{h}} \\
+        &= \pi \cdot \br{\lim_{h \to 0^{+}} \f{P\br{t}\cdot P\br{h} - P\br{t}}{h}} \quad \text{C-K equation} \\
+        &= \pi \cdot \br{\lim_{h \to 0^{+}} \f{P\br{h} - \ident}{h}} \cdot P\br{t} \\
+        &= \pi \cdot R \cdot P\br{t} \\
+        &= \ve 0\cdot P\br{t} \\
+        &= \ve 0
+    \end{align*}
+    This means that $\al^{(t)}$ does not change with time. It is a constant vector. In other words, the distribution of $X\br{t}$ will not change over time if the MC starts from the stationary distribution.
+    \begin{theorem}
+        If a CTMC starts from a stationary distribution $\pi$, then its distribution will never change.
+    \end{theorem}
+    \begin{theorem}
+        \label{thm:bltctmc}
+        \term{Basic Limit Theorem for CTMC}: Let $\bc{X\br{t}}_{t \geq 0}$ be an irreducible, recurrent CTMC. Then $\pi_{j}$ exists and also:
+        \[ \lim_{t \to \inf} P_{ij}\br{t} = \pi_{j} = \f{\Exp\br{T_j}}{\Exp\br{R_{jj}}} = \f{1 / \la_{j}}{\Exp\br{R_{jj}}} \quad \forall i, j \in S \]
+        In addition, the MC is positive recurrent if and only if a unique stationary distribution exists. In this case, the unique stationary distribution is the $\pi = \br{\pi_{0}, \pi_{1}, \ldots}$ where $\pi_j$ is mentioned above.
+    \end{theorem}
+    Note that the last equality in \cref{thm:bltctmc} holds because $T_{j}$ is distributed exponentially will expectation $1 / \la_j$. Most of the terms and relations that hold for \cref{thm:bltctmc} are analogous to the discrete case.
+    \begin{remark}
+        The long-run fraction of time spent in state $j$ is given by $\Exp\br{T_j}/ \Exp\br{R_{jj}}$. The idea being that $R_{jj}$ represents the amount of time until the first return to state $j$ given that we started in state $j$ at time $0$.
+        \begin{center}
+            \begin{tikzpicture}
+                \draw[|->] (0,0) node[below]{$0$} -- (5, 0) node[right]{$t$};
+                \draw[red,thick,|-|] (0,0) -- node[below]{$T_j$} (2, 0);
+                \draw[|->, red,thick] (4,0) node[below]{$R_{jj}$} -- (5, 0);
+            \end{tikzpicture}
+        \end{center}
+        For each interval of length $R_{jj}$, $T_{j}$ is the portion of time spent in state $j$.
+    \end{remark}
+
+    \subsection{Birth and Death Process}
+    \begin{definition}
+        A \term{birth and death process} is a CTMC such that,
+        \[ S = \bc{0, 1,\ldots,m} \text{ or } S = \bc{0, 1,\ldots} \]
+        and that,
+        \[ q_{i, i - 1} + q_{i, i + 1} = 1 \quad \forall i \in S\]
+        This later condition is identical to enforcing that,
+        \[ q_{ij} = 0 \quad \forall j \in S, \br{j \neq i \pm 1} \]
+        The process can only change to the neighboring states.
+    \end{definition}
+    For a birth and death process we use a new set of parameters. Denote:
+    \[ \la_i = R_{i, i + 1} \quad i = 0, 1, 2, \ldots \]
+    \[ \mu_i = R_{i, i - 1} \quad \mu = 1, 2, \ldots \]
+    \[ R = \begin{pmatrix}
+        - \la_0 & \la_0 & 0 & 0 & 0 & \ldots \\
+        \mu_1 & -\br{\la_1 + \mu_1} & \la_1 & 0 & 0 & \ldots \\
+        0 & \mu_2 & -\br{\la_2 + \mu_2} & \la_2 & 0 & \ldots \\
+        0 & 0 & \mu_3 & -\br{\la_3 + \mu_3} & \la_4 & \ldots \\
+        0 & 0 & 0 & \mu_4 & -\br{\la_4 + \mu_4} & \ldots \\
+        \vdots & \vdots & \vdots & \vdots & \vdots & \ddots \\
+    \end{pmatrix} \]
+    Where $R_{00} = - \la_0$ always and $R_{ii} = -\br{\la_i + \mu_i}$ for all entries where $i = 1,2,\ldots$. We have the following interpretation of the entires,
+    \[ \text{$\la_{i}$'s are called \term{birth rates}} \]
+    \[ \text{$\mu_{i}$'s are called \term{death rates}} \]
+    Most of the processes we have consider thus far are actually birth and death processes.
+    \begin{example}
+        Consider our previous example of the restaurant with three tables.
+        \[ R = \begin{pmatrix}
+            - \la & \la & 0 & 0 \\
+            1\mu & -\br{\la + \mu} & \la & 0 \\
+            0 & 2\mu & -\br{\la + 2\mu} & \la \\
+            0 & 0 & 3\mu & -3\mu \\
+        \end{pmatrix} \]
+        This is a birth and death process with the following rates.
+        \[ \text{Birth rate:} \quad \la_i = \la \quad i = 0, 1, 2\ldots  \]
+        \[ \text{Death rate:} \quad \mu_i = i\mu \quad i = 1, 2\ldots  \]
+    This birth and death system is actually part of a larger family of processes. In general consider a \term{$m/m/s$ queuing system}. The first $m$ indicates that there is an exponential interarrival time $\stackrel{\text{i.i.d}}{\sim} \Ex\br{\la}$. The second $m$ indicates that there is an exponential service time $\stackrel{\text{i.i.d}}{\sim} \Ex\br{\mu}$. The final $s$ indicates that there are $s$ servers. There are two limiting/degenerate cases for $s$. In the case that $s$ equals $1$, then there is only one server and the queue is trivial. Alternatively, if $s = \inf$ then all customers that arrive are served. In general we let $X\br{t}$ be the number of customers in the system at time $t$. A queuing system is a birth and death system because a birth rate corresponds to the arrival times of customers.
+    \[ \la_i = \la \quad i = 0, 1, \ldots\]
+    Moreover the death rate corresponds to the completion of a service. When there are $X\br{t} = i$ customers in the system there are two cases,
+    \begin{enumerate}
+        \item If $i \leq s$ then $i$ servers are busy each with $\sim \Ex\br{\mu}$. The total death rate,
+        \[ \mu_i = i \mu \]
+        \item If $i \geq s$ then all $s$ servers will be busy and we will have a queue. The total death rate is capped,
+        \[ \mu_i = s \mu \]
+    \end{enumerate}
+    Thus for an $m/m/s$ queue we have,
+    \begin{align*}
+    \la_i &= \la \qquad i = 0, 1,\ldots  \\
+    \mu_i &= \begin{cases}
+        i \mu & i\leq s \\
+        s \mu & i > s
+    \end{cases}
+    \end{align*}
+    \end{example}
+    \begin{example}
+        Consider an actual population model where the birth and death process is literal.
+        \[ R = \begin{pmatrix}
+            - \al & \al & 0 & 0 & \ldots \\
+            \mu & -\br{\la +\mu + \al} & \la+ \al & 0 & \ldots \\
+            0 & 2\mu & -\br{2{\la +\mu} + \al} & 2\la +\al & \ldots \\
+            \vdots & \vdots & \vdots & \vdots  & \ddots \\
+        \end{pmatrix} \]
+        The birth rate is at state $i$ is $i \la + \mu$ where $i = 0, 1,\ldots$. Note that this is not the \textit{biological} birth rate but the total rate by which the process goes from $i$ to $i + 1$. The death rate is simply $\mu_i = i \mu$ for $i = 1,2,\ldots$.
+    \end{example}
+    As we see, there are two main types of birth and deaths processes: queuing system and population model.
+    A queuing system and the population model are both birth and death processes by have a few qualitative differences.
+    The key difference between them is that the birth rate in the queuing system is typically a constant (the number of customers arriving doesn't depend on the number of existing customers; it does not depend on state $i$) while the birth rate in the population model increases was $i$ increases. \\
+
+    Both these models are worth studying for practical reasons but there is also an analytic advantage; in these simple systems, the form of the generating matrix $R$ is not complicated. As it turns out, it is possible to analytically calculate the stationary distribution.\\
+
+    To find the stationary distribution of a birth and death process we need to find $\pi$ such that,
+    \[ \pi \cdot R = 0 \qquad \pi \cdot \ve 1 = 1 \quad \pi = \br{\pi_0, \pi_1, \ldots} \]
+    Where we recall that $R$ has the generic form,
+    \[ R = \begin{pmatrix}
+        - \la_0 & \la_0 & 0 & 0 & 0 & \ldots \\
+        \mu_1 & -\br{\la_1 + \mu_1} & \la_1 & 0 & 0 & \ldots \\
+        0 & \mu_2 & -\br{\la_2 + \mu_2} & \la_2 & 0 & \ldots \\
+        0 & 0 & \mu_3 & -\br{\la_3 + \mu_3} & \la_4 & \ldots \\
+        0 & 0 & 0 & \mu_4 & -\br{\la_4 + \mu_4} & \ldots \\
+        \vdots & \vdots & \vdots & \vdots & \vdots & \ddots \\
+    \end{pmatrix} \]
+    The first row gives us,
+    \[ -\la_0 \pi_0 + \mu_1 \pi_1 = 0 \implies \pi_1 = \f{\la_0}{\mu_1} \pi_0 \]
+    The second row gives us a more involved result,
+    \[ -\la_0 \pi_0 - \br{\mu_1 + \la_1} \pi_1 + \mu_2 \pi_2 = 0 \]
+    If we add this to the first equation we get,
+    \[ -\la_1 \pi_1 + \mu_2 \pi_2 = 0 \implies \pi_2 = \f{\la_1}{\mu_2} \pi_1 \]
+    But we already know that $\pi_1$ can be written in terms of $\pi_0$,
+    \[ \pi_2 = \f{\la_1 \la_0}{\mu_2 \mu_1} \pi_0 \]
+    If we continue this process, we arrive at the general term of,
+    \[ \pi_n = \f{\la_0 \cdots \la_{n-1}}{\mu_1 \cdots \mu_n} \pi_0 = \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j} \pi_0 \]
+    These equations fix all entries of $\pi$ up to a normalization. If we sum over all entries (taking the special case of $\pi_i$ into account),
+    \[ 1 = \sum_{n=0}^{\inf} \pi_n = \br{1+ \sum_{n=0}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j}} \pi_0 \]
+    Therefore we have $\pi_0$,
+    \[ \pi_0 = \br{1+ \sum_{n=0}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j}}^{-1} \]
+    While the remaining entries are,
+    \[ \pi_n = \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j}\br{1+ \sum_{n=0}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j}}^{-1} \]
+    Of course, the uniqueness of a stationary distribution is contingent on the fact that the CTMC is positive recurrent. It is not true for all birth and death processes so it must be that positive recurrence can be determined by the convergence of $\pi_0$. Therefore we have that a stationary distribution $\pi$ exists (and thus MC is positive recurrent) and is normalizable if,
+    \[ \sum_{n=0}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j} < \inf \]
+    One would fear that these expressions are quite complicated and would be difficult to work out explicitly. However consider the case of a $m/m/s$ queue. Recall that $\la_i = \la$ and $\mu_i = i \mu$ if $i \leq s$ and $\mu_i = s \mu$ if $i \geq s$. Therefore,
+    \[ \sum_{n=0}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j} = \f{\la}{\mu} + \f{\la}{\mu} \f{\la}{2\mu} + \cdots + \f{\la}{\mu}\f{\la}{2\mu}\cdots \f{\la}{s\mu} + \f{\la}{\mu}\f{\la}{2\mu}\cdots \br{\f{\la}{s\mu}}^2 +\cdots \]
+    The first $s$ terms correspond to a finite sum and is thus finite. The remaining terms are,
+    \[ \sum_{n=0}^{\inf} \prod_{j=s}^{n}\f{\la_{j-1}}{\mu_j} = \f{\la}{\mu}\f{\la}{2\mu}\cdots \br{\f{\la}{s\mu}}^2 + \f{\la}{\mu}\f{\la}{2\mu}\cdots \br{\f{\la}{s\mu}}^3 + \cdots \]
+    Which is a geometric series we parameter $\f{\la}{s\mu}$. Therefore the sum is finite if and only if $\la < s \mu$. The process is positive recurrent if and only if,
+    \[ \la < s \mu \]
+
 
 \end{document}
