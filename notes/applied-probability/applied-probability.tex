@@ -2118,6 +2118,116 @@ By examining foil theorems, we have seen that irreducibility is related to the u
         A stochastic process $\bc{X\br{t}}_{t \geq 0}$ is called a \term{Gaussian process} if all its finite dimensional distributions are jointly normal. That is $\forall n$, $t_1, \ldots, t_n$, $\br{X\br{t_1}, \ldots, X\br{t_n}}$ is jointly normal.
         \[ \forall n: t_1, \ldots, t_n, a_1, \ldots, a_n \in \R: a_1X\br{t_1} + \cdots a_nX\br{t_n} \quad \text{is normal}\]
     \end{definition}
-    Since a jointly normal distribution is fully characterized by its expectation and variance, covariance structure, a Gaussian process $\bc{X\br{t}}_{t \geq 0}$ is also fully characterized by $\Exp\br{X\br{t}}, t \geq 0$ and $\Cov\br{X\br{s}, X\br{t}}, t, s \geq 0$
+    Since a jointly normal distribution is fully characterized by its expectation and variance, covariance structure, a Gaussian process $\bc{X\br{t}}_{t \geq 0}$ is also fully characterized by $\Exp\br{X\br{t}}, t \geq 0$ and $\Cov\br{X\br{s}, X\br{t}}, t, s \geq 0$.
 
+    \begin{theorem}
+        The Brownian motion is a Gaussian process.
+    \end{theorem}
+    \begin{proof}
+        Clearly, $\forall n, t_1 < \cdots < t_n, a_1, \ldots, a_n \in \R$:
+        \begin{align*}
+            a_1 B\br{t_1} + \cdots + a_n B\br{t_n}
+            &= a_1 B\br{t_1} + a_2 \bs{B\br{t_1} + \br{B\br{t_2} - B\br{t_1}}} + \cdots \\
+            &\quad \cdots + a_n \bs{B\br{t_1} + \br{B\br{t_2} - B\br{t_1}} + \cdots + \br{B\br{t_n} - B\br{t_{n-1}}}} \\
+            &= \br{a_1 + a_2 + \cdots + a_n} B\br{t_1} + \\
+            &\quad + \br{a_2 + a_3 + \cdots + a_n} \br{B\br{t_2} - B\br{t_1}} + \\
+            &\quad + \ldots + \\
+            &\quad + a_n \br{B\br{t_n} - B\br{t_{n-1}}}
+        \end{align*}
+        But $B\br{t_1}, B\br{t_2} - B\br{t_1}$ and $B\br{t_n} - B\br{t_{n-1}}$ are independent, normal r.v.s. Therefore, $a_1 B\br{t_1} + \cdots + a_n B\br{t_n}$ is normal.
+    \end{proof}
+    The expectation and variance-covariance function of Brownian motion is,
+    \[ \Exp\br{B\br{t}} = 0 \qquad B\br{t} \sim \s{N}\br{0, t} \]
+    While the covariance structure is (for $s \leq t$),
+    \begin{align*}
+       \Cov\br{B\br{s}, B\br{t}}
+       &= \Cov\br{B\br{s}, B\br{s} + \br{B\br{t} - B\br{s}}} \\
+       &= \Var\br{B\br{s}} + \Cov\br{B\br{s}, B\br{t} - B\br{s}}
+    \end{align*}
+    But $B\br{t} - B\br{s} \indep B\br{s}$. Therefore,
+    \[ \Cov\br{B\br{s}, B\br{t}} = \Var\br{B\br{s}} = s \]
+    Symmetrically, if $t < s$ then we have that $\Cov\br{B\br{s}, B\br{t}} = t$. These two cases can be combined,
+    \[ \Cov\br{B\br{s}, B\br{t}} = \min\bc{s, t} \]
+    Since this fully characterizes a Gaussian process, we have:
+    \begin{theorem}
+        \label{thm:necc_suff_brownian}
+        A Gaussian process $\bc{X\br{t}}_{t \geq 0}$ is a Brownian motion if and only if,
+        \[ \Exp\br{X\br{t}} = 0 \quad \forall t \]
+        \[ \Cov\br{X\br{s}, X\br{t}} = \min \bc{s, t}\]
+    \end{theorem}
+    Brownian motion is not a CTMC because its state space is $S = \R$ and is uncountable. However it is a Markov process in the sense that is has continuous time Markov property,
+    \[ B\br{t + s} \mid B\br{t} = x, B\br{u} = x_u, u \in \left[ 0, t \right) \stackrel{d}{=} B\br{t + s} \mid B\br{t} = x \]
+    The Markov property is inherited from the simple random walks. If fact Brownian motion is a \textit{martingale}.
+    \subsubsection{Martingales}
+    \begin{definition}
+        A continuous time process $\bc{X\br{t}}_{t \geq 0}$ is called a martingale if,
+        \[ \Exp\br{X\br{t} \mid X\br{s} = x_s, X\br{u} = x_u, u \in \left[0, s\right)} = x_s \]
+        For all $s < t$, $x_s \in \R$. Or more simply,
+        \[ \Exp\br{X\br{t} \mid X\br{u}, u \in \left[0, s\right]} = X\br{s} \]
+    \end{definition}
+    The concept of a martingale comes from the idea of a \textit{fair game}: on average, the gamble does not win or lose; the expected future wealth is equal to the current wealth. We can now proof that Brownian motion is martingale.
+    \begin{align*}
+        \Exp\br{X\br{t} \mid X\br{s} = x_s, X\br{u} = x_u, u \in \left[0, s\right)}
+        &= \Exp\br{X\br{t} \mid X\br{s} = x_s} \qquad \text{Markov Property} \\
+        &= \Exp\br{X\br{s} + X\br{t} - X\br{s} \mid X\br{s} = x_s} \\
+        &= \Exp\br{X\br{s} \mid X\br{s} = x_s} + \Exp\br{X\br{t} - X\br{s} \mid X\br{s} = x_s} \\
+        &= x_s + \Exp\br{X\br{t} - X\br{s} \mid X\br{s} = x_s} \\
+        &= x_s + \Exp\br{X\br{t} - X\br{s}} \qquad \text{Independence} \\
+        &= x_s
+    \end{align*}
+    \subsubsection{Self-Similarity}
+    Let $\bc{B\br{t}}_{t \geq 0}$ be a Brownian motion, then define a new process $\bc{Y\br{t}}_{t \geq 0}$ such that,
+    \[ \bc{Y\br{t} = \f{1}{\sqrt{c}} B\br{c t}}_{t \geq 0} \]
+    Where $c$ is a positive constant. This new process $\bc{Y\br{t}}_{t \geq 0}$ is also a Brownian motion. The purpose of $c$ is to rescale space by a factor of $1/\sqrt{c}$ and to rescale time by a factor of $1/c$.
+    \begin{proof}
+        $\forall n, t_1, \ldots, t_n, a_1, \ldots, a_n, \in \R$,
+        \begin{align*}
+        a_1 Y\br{t_1} + \cdots + a_n Y\br{t_n}
+        &= \f{a_1}{\sqrt{c}} B\br{c t_1} + \cdots + \f{a_n}{\sqrt{c}} B\br{c t_n}
+        \end{align*}
+        Which is simply a linear combination of $B\br{t}$ at some time points. Since $B$ is a Brownian motion, $B$ is also a Gaussian process. Therefore $a_1 Y\br{t_1} + \cdots + a_n Y\br{t_n}$ is normal. Since this holds for all $n, t_1, \ldots, t_n, a_1, \ldots, a_n, \in \R$, $Y$ is also a Gaussian process. We can now make use of \cref{thm:necc_suff_brownian} to prove that $Y$ is a Brownian motion.
+        \[ \Exp\br{Y\br{t}} = \Exp\br{\f{1}{\sqrt{c}}\underbrace{B\br{ct}}_{\s{N}\br{0, ct}}} = 0 \]
+        Whereas the covariance structure is,
+        \begin{align*}
+        \Cov\br{Y\br{s}, Y\br{t}}
+        &= \Cov\br{\f{1}{\sqrt{c}}B\br{cs}, \f{1}{\sqrt{c}}B\br{ct}} \\
+        &= \f{1}{c}\Cov\br{B\br{cs}, B\br{ct}} \\
+        &= \f{1}{c}\min\bc{cs, ct} \\
+        &= \min\bc{s, t}
+        \end{align*}
+        Where he last equality requires $c \geq 0$. We conclude that $Y$ is a Brownian motion.
+    \end{proof}
+    \subsubsection{Time Inversion}
+    If we define $\bc{Z\br{t}}_{t \geq 0}$ such that,
+    \[ Z\br{t} = t B\br{\f1t} \qquad Z\br{0} = 0 \]
+    then $\bc{Z\br{t}}_{t \geq 0}$ is a Brownian motion.
+    \begin{proof}
+        As in the previous proof, we first demonstrate that $\bc{Z\br{t}}_{t \geq 0}$ is a Gaussian process and then make use of \cref{thm:necc_suff_brownian}.\\
+
+        $\forall n, t_1, \ldots, t_n, a_1, \ldots, a_n \in \R$,
+        \[ a_1 Z\br{t_1} + \cdots + a_n\br{t_n} = a_1 t_1 B\br{\f{1}{t_1}} + \cdots + a_n t_n B\br{\f{1}{t_n}} \]
+        Which is just a linear combination of $B$ which must be normal because $B$ is Gaussian. We therefore have that $Z$ is also a Gaussian process. Next we check the expectation and covariance structure,
+        \[ \Exp\br{Z\br{t}} = \Exp\br{t \underbrace{B\br{\f{1}{t}}}_{\s{N}\br{0, \f{1}{t}}}} = 0 \]
+        Whereas the covariance is,
+        \begin{align*}
+            \Cov\br{Z\br{s}, Z\br{t}}
+            &= \Cov\br{sB\br{\f{1}{s}}, tB\br{\f{1}{t}}} \\
+            &= st \Cov\br{B\br{\f{1}{s}}, B\br{\f{1}{t}}} \\
+            &= st \min\bc{\f{1}{s}, \f{1}{t}} \\
+            &= \min\bc{\f{st}{s}, \f{st}{t}} \\
+            &= \min\bc{t, s}
+        \end{align*}
+        Therefore $Z$ is Brownian motion.
+    \end{proof}
+    \subsubsection{Differentiability}
+    One thing that is evident is that Brownian motion fluctuates often. If fact it fluctuates infinitely often. From this we can proof that Brownian motion is nowhere differentiable.
+    \begin{proof}
+        Since the Brownian motion has stationary increments, it suffices to consider the differentiability of a single point in order to classify differentiability everywhere. We choose this point to be $t=0$. Suppose $B\br{t}$ is differentiable at $0$.
+        \[ B'\br{0} = \lim_{t \to 0} \f{B\br{t} - B\br{0}}{t - 0} = \lim_{t \to 0} \f{B\br{t}}{t} \]
+        We will now show that his is not the case. Recall that $\bc{Z\br{t} = t B\br{1/t}}_{t \geq 0}$  is a Brownian motion. Clearly, there exhibits duality to the time inversion.
+        \[ B\br{t} = t Z\br{\f{1}{t}} \]
+        Therefore,
+        \[ B'\br{0} = \lim_{t \to 0} \f{t Z\br{\f{1}{t}}}{t} = \lim_{t \to 0} Z\br{\f{1}{t}} = \lim_{t \to \inf} Z\br{t} \]
+        However $Z\br{t}$ diverges from $Z\br{0}$ as $t \in \inf$. $Z\br{t}$ does not converge to any limit as $t \to \inf$. Thus we conclude that $B$ is not differentiable at $0$, hence it is not differentiable at any point.
+    \end{proof}
 \end{document}
