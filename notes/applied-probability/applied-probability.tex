@@ -464,7 +464,7 @@ We use capital letters $X$ to denote the random variable and lower case letters 
 \subsection{Transition Probability}
 
 The \term{transition probability} from a state $i \in S$ at time $n$ to state $j \in S$ (at time $n+1$) is given by,
-\[ P_{n, i, j} \defined P \br{X_{n+1}= j \mid X_{n} = i} \qquad n = 0, 1, 2, \ldots \eq \label{eq:trans_prob}\]
+\[ P_{n, i, j} \defined P \br{X_{n+1}= j \mid X_{n} = i} \qquad n = 0, 1, 2, \ldots \eq \label{eq:tranS_prob}\]
 In full generality, the transition probability could depend on time $n$ but in this course we will restrict ourselves to transition probabilities that \textit{do not} depend on time $n$ ($P_{n, i, j} = P_{i, j}$). We say that the markov chain is \term{(time-)homogeneous} if this property holds. From now on, this will be our default setting. \\
 
 The matrix of all transition probabilities $P = \bc{P_{i,j} \mid i,j \in S}$ is called the \term{one-step transition (probability) matrix} for $\bc{X_{n} \mid n \in T}$.
@@ -478,9 +478,9 @@ P_{i0} & P_{i1} & \cdots & P_{ij} & \cdots \\
 The one-step transition matrix $P$ has the following properties:
 \begin{enumerate}
     \item The entries of $P$ are non-negative:
-    \[ P_{i,j} \geq 0 \eq \label{eq:trans_positive_entries} \]
+    \[ P_{i,j} \geq 0 \eq \label{eq:tranS_positive_entries} \]
     \item The rows of $P$ sum to unity:
-    \[ \forall i : \sum_{j \in S} P_{ij} = 1 \eq \label{eq:trans_row_sum} \]
+    \[ \forall i : \sum_{j \in S} P_{ij} = 1 \eq \label{eq:tranS_row_sum} \]
 \end{enumerate}
 
 The \term{n-step transition probability} is defined via the homogeneous property,
@@ -589,7 +589,7 @@ But by the Markov condition, it must be that,
 &P\br{\val{2} \mid \val{1}} \cdots \\
 &P\br{\val{n} \mid \val{n-1}}
 \end{align*}
-First recognize the first term on the RHS ($P\br{X_{0} = x_{0}} = \al_{0, x_0}$), and also the remaining terms are transition probabilities as per \cref{eq:trans_prob}. Therefore it must be that,
+First recognize the first term on the RHS ($P\br{X_{0} = x_{0}} = \al_{0, x_0}$), and also the remaining terms are transition probabilities as per \cref{eq:tranS_prob}. Therefore it must be that,
 \[ P\br{X_n=x_n, X_{n-1}=x_{n-1}, \ldots, X_{0}=x_{0}} = \al_{0, x_0} P_{x_0x_1}P_{x_1x_2}\cdots P_{x_{n-1}x_n} \]
 Even more generally, for $0 \leq t_1 < t_2 < \cdots < t_n$,
 \[ P\br{\val{t_n}, \val{t_{n-1}}, \ldots, \val{t_{1}}} = P\br{\val{t_1}} \br{P^{t_2 - t_1}}_{x_{t_1}x_{t_2}}\br{P^{t_3 - t_2}}_{x_{t_2}x_{t_3}}\cdots\br{P^{t_{n} - t_{n-1}}}_{x_{t_{n-1}}x_{t_{n}}}  \]
@@ -876,7 +876,7 @@ Note that $P_{ii} < 0$ then the greatest common divisor must be one. This implie
 The period of a state is useful do to the following theorem,
 
 \begin{theorem}
-\label{thm:period_class_prop}
+\label{thm:period_clasS_prop}
 The period of a state is a class property. If ${i}\comm{j}$, then $d\br{i} = d\br{j}$.
 \end{theorem}
 
@@ -884,12 +884,12 @@ The period of a state is a class property. If ${i}\comm{j}$, then $d\br{i} = d\b
 If $i = j$ we are already done. If $i \neq j$, since ${i}\comm{j}$, then $\exists n, m$ such that,
 \[ P_{ij}^{n} > 0 \quad P_{ji}^{m} > 0 \]
 Then for any $l$ such that $P^{l}_{jj} > 0$,
-\[ P_{ii}^{n+m+l} \geq P_{ij}^{n}P_{jj}^{l}P_{ji}^{m} \eq \label{eq:period_class_prop_2} \]
+\[ P_{ii}^{n+m+l} \geq P_{ij}^{n}P_{jj}^{l}P_{ji}^{m} \eq \label{eq:period_clasS_prop_2} \]
 Because $P_{ij}^{n}P_{jj}^{l}P_{ji}^{m}$ happens to be a specific way for $P_{ii}^{n+m+l}$ to occur. Since ${i}\comm{j}$ and $l$ was chosen carefully,
 \[ P_{ii}^{n+m+l} > 0 \]
 Moreover, we also have that,
-\[ P_{ii}^{n+m} \geq P_{ij}^{n}P_{ji}^{m} \eq \label{eq:period_class_prop_1}\]
-Since $d\br{i}$ divides both $n+m$ and $n+m+l$ by \cref{eq:period_class_prop_1,eq:period_class_prop_2}, then $d\br{i}$ also divides $l$. This holds for all $l$ such that $P_{ii}^{l}>0$. This implies that $d\br{i}$ is a common divisor of $\bc{l \mid P_{jj}^{l} > 0}$ an thus $d\br{i}$ divides,
+\[ P_{ii}^{n+m} \geq P_{ij}^{n}P_{ji}^{m} \eq \label{eq:period_clasS_prop_1}\]
+Since $d\br{i}$ divides both $n+m$ and $n+m+l$ by \cref{eq:period_clasS_prop_1,eq:period_clasS_prop_2}, then $d\br{i}$ also divides $l$. This holds for all $l$ such that $P_{ii}^{l}>0$. This implies that $d\br{i}$ is a common divisor of $\bc{l \mid P_{jj}^{l} > 0}$ an thus $d\br{i}$ divides,
 \[ d\br{j} = \gcd \bc{l \mid P_{jj}^{l} > 0} \]
 By symmetry $d\br{j}$ divides $d\br{i}$. Therefore $d\br{i} = d\br{j}$. \\
 \end{proof}
@@ -947,10 +947,10 @@ Moreover,
     We say that the MC always goes back to $i$.
 \end{definition}
 \begin{remark}
-    If we have that $P\br{T < \inf} = 1$ then it does not imply that $\Exp\br{T} < \inf$. As a counter example, let $s_p = 2^{p}$ for $p = 1, \ldots, \inf$,
-    \[ P\br{T = s_p} = \f{1}{s_p} \]
+    If we have that $P\br{T < \inf} = 1$ then it does not imply that $\Exp\br{T} < \inf$. As a counter example, let $S_p = 2^{p}$ for $p = 1, \ldots, \inf$,
+    \[ P\br{T = S_p} = \f{1}{S_p} \]
     Where the expectation of $T$ is unbounded,
-    \[ \Exp\br{T} = \sum_{p=1}^{\inf} s_p \f{1}{s_p} = \sum_{p=1}^{\inf} 1 = \inf \]
+    \[ \Exp\br{T} = \sum_{p=1}^{\inf} S_p \f{1}{S_p} = \sum_{p=1}^{\inf} 1 = \inf \]
 \end{remark}
 To make the distinction,
 \begin{definition}
@@ -1155,7 +1155,7 @@ To keep things simple, we assume that the process $\bc{X_n}_{n=0,1,2,\dots}$ is 
 
 \begin{theorem}
     \term{Basic Limit Theorem:} Let $\bc{X_n}_{n=0,1,\ldots}$ be an irreducible, aperiodic and positive recurrent DTMC, then a stationary distribution $\pi = \br{\pi_0, \pi_1, \ldots}$ exists. Moreover we have,
-    \[ \lim_{n \to \inf} P^{(n)}_{ij} = \lim_{n \to \inf} \f{\sum_{k=1}^{n} \ident_{\bc{X_k = j}}}{n} = \f{1}{\Exp\br{T_j \mid X_0 = j}} = \pi_j \qquad \forall i,j \in S \]
+    \[ \lim_{n \to \inf} P^{(n)}_{ij} = \lim_{n \to \inf} \f{\sum_{k=1}^{n} \ident_{\bc{X_k = j}}}{n} = \f{1}{\Exp\br{T_j \mid X_0 = i}} = \pi_j \qquad \forall i,j \in S \]
     Where $T_j = \min\bc{n > 0, X_n = j}$. In words, the limiting distribution is equal to the long-run fraction of time spent in $j$ is equal to the stationary distribution. Note that this does not depend on the starting state $i$.
 \end{theorem}
 
@@ -1259,7 +1259,7 @@ By examining foil theorems, we have seen that irreducibility is related to the u
     \[ X_{n+1} = \xi^{(n)}_1 + \cdots + \xi^{(n)}_{X_n} \]
     Where $\xi^{(n)}_1, \ldots, \xi^{(n)}_{X_n}$ are the independent copies of $\xi$ and $\xi_{i}^{(n)}$ is the number of offsprings of the $i$-th individual in generation $n$. \\
 
-    What is the mean and variance of $X_n$? First assume that $\Exp\br{\xi} = \mu$ and $\Var\br{\xi} = \si^2$. Remember that $\xi$ is the number of offspring produced by an individual of the population. To find $\Exp\br{E_n}$ first make use of the $\Exp\br{X_{n+1}}$.
+    What is the mean and variance of $X_n$? First assume that $\Exp\br{\xi} = \mu$ and $\Var\br{\xi} = \si^2$. Remember that $\xi$ is the number of offspring produced by an individual of the population. To find $\Exp\br{X_n}$ first make use of the $\Exp\br{X_{n+1}}$.
     \begin{align*}
     \Exp\br{X_{n+1}}
     &= \Exp\br{\xi^{(n)}_1 + \cdots + \xi^{(n)}_{X_n}}\\
@@ -1278,7 +1278,7 @@ By examining foil theorems, we have seen that irreducibility is related to the u
         &= \Exp\br{\si^2 X_n} \\
         &= \si^2 \mu
     \end{align*}
-    \[ \Var\br{\Exp\br{X_{n+1} \mid X_n}} = \Var\br{\mu X_n} = \mu \Var\br{X_n} \]
+    \[ \Var\br{\Exp\br{X_{n+1} \mid X_n}} = \Var\br{\mu X_n} = \mu^2 \Var\br{X_n} \]
     Combining these results and we arrive at the recursive relation,
     \[ \Var\br{X_{n+1}} = \si^2 \mu^n + \mu^2 \Var\br{X_n} \]
     With initial variance $\Var\br{X_1} = \si^2$. Therefore,
@@ -1299,14 +1299,14 @@ By examining foil theorems, we have seen that irreducibility is related to the u
         An irreducible DTMC with finite state space must be positive recurrent.
     \end{theorem}
 
-    For a branching process, extinction happens with probability $u < 1$ if $\Exp\br{\xi} > 1$, where $u$ is the smallest solution between $0$ and $1$ of $\varphi\br{s} = s$ (where $\varphi$ is the generating function for $\xi$). Extinction happens with probability $1$ is $\Exp\br{\xi} \leq 1$. \\
+    For a branching process, extinction happens with probability $u < 1$ if $\Exp\br{\xi} > 1$, where $u$ is the smallest solution between $0$ and $1$ of $\varphi\br{s} = s$ (where $\varphi$ is the generating function for $\xi$). Extinction happens with probability $1$ if $\Exp\br{\xi} \leq 1$. \\
 
     \section{Continuous Time Process}
     Recall that a continuous process is one where $\bc{X\br{t}}_{t \geq 0}$. A counting process is one where,
-    \[ 0 \leq s_1 \leq s_2 \leq \cdots \]
+    \[ 0 \leq S_1 \leq S_2 \leq \cdots \]
     Is the occurrence time of the events.
-    \[ N\br{t} = \# \bc{n : s_n \leq t} = \sum_{n=1}^{\inf} \ident_{\bc{s_n \leq t}} \]
-    Is the counting process of the events $\bc{s_n}_{n=1,2,\ldots}$. Properties:
+    \[ N\br{t} = \# \bc{n : S_n \leq t} = \sum_{n=1}^{\inf} \ident_{\bc{S_n \leq t}} \]
+    Is the counting process of the events $\bc{S_n}_{n=1,2,\ldots}$. Properties:
     \begin{enumerate}
         \item $N\br{t} \leq 0$ where $t \geq 0$
         \item $N\br{t} \in \Z$
@@ -1316,7 +1316,7 @@ By examining foil theorems, we have seen that irreducibility is related to the u
     \[ N\br{0} = 0 \]
     Which means that we do not expect any events to be happening at time $0$ (or earlier). The second assumption is that $N\br{t}$ only changes over time with size $1$; i.e. $N\br{t}$ \textit{jumps} one at a time. This assumption amounts to the assumption that no two events occur at \textit{exactly} the same time. Thirdly we claim that $N\br{t}$ is \term{right-continuous}.
     \[ N\br{t} = \lim_{x \to t^{+}} N\br{s} \]
-    As it turns out that this is not an assumption; since $N\br{t} = \# \bc{n : s_n \leq t}$, $N\br{t}$ \textit{must} be right-continuous.
+    As it turns out that this is not an assumption; since $N\br{t} = \# \bc{n : S_n \leq t}$, $N\br{t}$ \textit{must} be right-continuous.
 
     \begin{center}
         \begin{tikzpicture}
@@ -1329,12 +1329,12 @@ By examining foil theorems, we have seen that irreducibility is related to the u
             \pgfmathsetmacro{\tick}{0.1};
             \pgfmathsetmacro{\jump}{0.4};
             \draw[<->] (0, 3) node[above]{$N\br{t}$} -- (0, 0)node[left]{$0$} -- (5, 0) node[right]{$t$};
-            \draw[] (\sa, -\tick) node[below]{$s_1$} -- (\sa, \tick);
-            \draw[] (\sb, -\tick) node[below]{$s_2$} -- (\sb, \tick);
-            \draw[] (\sc, -\tick) node[below]{$s_3$} -- (\sc, \tick);
-            \draw[] (\sd, -\tick) node[below]{$s_4$} -- (\sd, \tick);
-            \draw[] (\se, -\tick) node[below]{$s_5$} -- (\se, \tick);
-            \draw[] (\sf, -\tick) node[below]{$s_6$} -- (\sf, \tick);
+            \draw[] (\sa, -\tick) node[below]{$S_1$} -- (\sa, \tick);
+            \draw[] (\sb, -\tick) node[below]{$S_2$} -- (\sb, \tick);
+            \draw[] (\sc, -\tick) node[below]{$S_3$} -- (\sc, \tick);
+            \draw[] (\sd, -\tick) node[below]{$S_4$} -- (\sd, \tick);
+            \draw[] (\se, -\tick) node[below]{$S_5$} -- (\se, \tick);
+            \draw[] (\sf, -\tick) node[below]{$S_6$} -- (\sf, \tick);
             \draw[thick] (0,0) --
             (\sa, 0*\jump) -- (\sa, 1*\jump) --
             (\sb, 1*\jump) -- (\sb, 2*\jump) --
@@ -1349,12 +1349,12 @@ By examining foil theorems, we have seen that irreducibility is related to the u
     \subsection{Definition of a Poisson Process}
     \begin{definition}
         The \term{interarrival times} $W_1, W_2, \ldots$ are the times between subsequent event occurrence times.
-        \[ W_1 = s_1 \qquad W_n = s_n - s_{n-1} \]
+        \[ W_1 = S_1 \qquad W_n = S_n - S_{n-1} \]
     \end{definition}
     \begin{definition}
         A \term{renewal process} is a counting process where the interarrival times $W_1, W_2, \ldots$ are i.i.d. (independent and identically distributed).
     \end{definition}
-    Intuitively after each event $s_i$, the amount of time we need to wait for the next event is identical to as if we started from the beginning again. In this sense, each time we get a new event $s_i$, our process is \textit{renewed}.\\
+    Intuitively after each event $S_i$, the amount of time we need to wait for the next event is identical to as if we started from the beginning again. In this sense, each time we get a new event $S_i$, our process is \textit{renewed}.\\
 
     All of the three previous examples of counting processes \todo[TC]{These are in the last lecture that I missed} can be reasonably modeled as renewal processes.
 
@@ -1400,12 +1400,12 @@ By examining foil theorems, we have seen that irreducibility is related to the u
             \pgfmathsetmacro{\tick}{0.1};
             \pgfmathsetmacro{\jump}{0.4};
             \draw[<->] (0, 3) node[above]{$N\br{t}$} -- (0, 0)node[left]{$0$} -- (5, 0) node[right]{$t$};
-            \draw[] (\sa, -\tick) node[below]{$s_1$} -- (\sa, \tick);
-            \draw[] (\sb, -\tick) node[below]{$s_2$} -- (\sb, \tick);
-            \draw[] (\sc, -\tick) node[below]{$s_3$} -- (\sc, \tick);
-            \draw[] (\sd, -\tick) node[below]{$s_4$} -- (\sd, \tick);
-            \draw[] (\se, -\tick) node[below]{$s_5$} -- (\se, \tick);
-            \draw[] (\sf, -\tick) node[below]{$s_6$} -- (\sf, \tick);
+            \draw[] (\sa, -\tick) node[below]{$S_1$} -- (\sa, \tick);
+            \draw[] (\sb, -\tick) node[below]{$S_2$} -- (\sb, \tick);
+            \draw[] (\sc, -\tick) node[below]{$S_3$} -- (\sc, \tick);
+            \draw[] (\sd, -\tick) node[below]{$S_4$} -- (\sd, \tick);
+            \draw[] (\se, -\tick) node[below]{$S_5$} -- (\se, \tick);
+            \draw[] (\sf, -\tick) node[below]{$S_6$} -- (\sf, \tick);
             \draw[thick,dashed] (0,0) --
             (\sa, 0*\jump) -- (\sa, 1*\jump) --
             (\sb, 1*\jump) -- (\sb, 2*\jump) --
@@ -1421,7 +1421,7 @@ By examining foil theorems, we have seen that irreducibility is related to the u
             \draw[dashed] (\t, -1) node[right]{$t$} -- (\t, 3);
         \end{tikzpicture}
     \end{center}
-    At time $t$, the next arrival time will be exponentially distributed and be independent of the previous arrival times. If the interarrival times have similar distributions (and possibly not exponential), we can attempt to predict the next arrival time based on when the previous arrival time. In these cases, we do not retain the Markov property. Therefore, the fact that the exponential distribution is the only distribution with the memoryless property translates to implying that the Poisson process is the only process with the Markov property. In summayr, the future of the counting process only depends on its current value. Otherwise, we do not need to retain or keep track of any of the previous times of arrival. \\
+    At time $t$, the next arrival time will be exponentially distributed and be independent of the previous arrival times. If the interarrival times have similar distributions (and possibly not exponential), we can attempt to predict the next arrival time based on when the previous arrival time. In these cases, we do not retain the Markov property. Therefore, the fact that the exponential distribution is the only distribution with the memoryless property translates to implying that the Poisson process is the only process with the Markov property. In summary, the future of the counting process only depends on its current value. Consequently, we do not need to retain or keep track of any of the previous times of arrival. \\
 
     In fact we have that for $0 < s < t$,
     \[ P\br{N\br{t} = j \mid N\br{s} = i} = P\br{N\br{t} = j-1 \mid N\br{s} = 0} \]
@@ -1434,7 +1434,7 @@ By examining foil theorems, we have seen that irreducibility is related to the u
         \[ N\br{t_2} - N\br{t_1} \sim \Poi\br{\la\br{t_2 - t_1}} \]
     \end{theorem}
     \begin{proof}
-    The reasoning is as follows. Let the arrival times between $t_1$ and $t_2$ be $s_1, \ldots, s_N$ where $N = N\br{t_2} - N\br{t_1}$. We let $W_1 = s_1 - t_1$ and $W_i = s_i - s_{i-1}$ are i.i.d. random variables following $\Ex\br{\la}$. For $N = n$ the sum of all interarrival times must be less than $t_2 - t_1$
+    The reasoning is as follows. Let the arrival times between $t_1$ and $t_2$ be $S_1, \ldots, S_N$ where $N = N\br{t_2} - N\br{t_1}$. We let $W_1 = S_1 - t_1$ and $W_i = S_i - S_{i-1}$ are i.i.d. random variables following $\Ex\br{\la}$. For $N = n$ the sum of all interarrival times must be less than $t_2 - t_1$
     \[ W_1 + \cdots W_n \leq t_2 - t_1 \]
     While the next event occurs after $t_2$,
     \[ W_1 + \cdots W_n + W_{n+1} > t_2 - t_1 \]
@@ -1458,7 +1458,7 @@ By examining foil theorems, we have seen that irreducibility is related to the u
 
     \subsection{Combining and Thinning Poisson Processes}
 
-    Suppose we have two Poisson processes $\bc{N_1\br{t}} \sim \Poi \br{\la_1 t}$ and $\bc{N_2\br{t}} \sim \Poi \br{\la_2 t}$. We can combine $N_1\br{t}$ and $N_2\br{t}$ in the following way. For any event $s_{1,i}$ in $N_1$ or $s_{2,i}$ in $N_2$, we attribute all events to $N\br{t}$. Mathematically,
+    Suppose we have two Poisson processes $\bc{N_1\br{t}} \sim \Poi \br{\la_1 t}$ and $\bc{N_2\br{t}} \sim \Poi \br{\la_2 t}$. We can combine $N_1\br{t}$ and $N_2\br{t}$ in the following way. For any event $S_{1,i}$ in $N_1$ or $S_{2,i}$ in $N_2$, we attribute all events to $N\br{t}$. Mathematically,
     \[ N\br{t} = N_1\br{t} + N_2\br{t} \]
 
     \begin{definition}
@@ -1491,7 +1491,7 @@ By examining foil theorems, we have seen that irreducibility is related to the u
     \[ X_{(n)} = \max\bc{X_1, \ldots, X_n} \]
     \begin{theorem}
         Let $\bc{N\br{t}} \sim \Poi\br{\la t}$. Condition on $N\br{t} = n$, the points/arrivals of $N$ in $\bs{0, t}$ are distributed as the order statistics of $n$ i.i.d uniform r.v.s on $\bs{0, t}$. That is,
-        \[ \bc{s_1, \ldots, s_n \mid N\br{t} = n} \stackrel{d}{=} \br{U_{(1)}, \ldots, U_{(n)}} \]
+        \[ \bc{S_1, \ldots, S_n \mid N\br{t} = n} \stackrel{d}{=} \br{U_{(1)}, \ldots, U_{(n)}} \]
         Where `$\stackrel{d}{=}$' denotes that the two quantities share the same distribution. Also,
         \[ U_{1}, \ldots, U_{n} \stackrel{\text{i.i.d}}{\sim} \Unif\bs{0,t} \]
         and $U_{(1)}, \ldots, U_{(n)}$ are their order statistics.
@@ -1512,25 +1512,25 @@ By examining foil theorems, we have seen that irreducibility is related to the u
                 \draw[->] (3, -0.5) -- (3, -1.2) node[below]{$U_{(3)}$};
                 \draw[->] (4, -0.5) -- (4, -1.2) node[below]{$U_{(4)}$};
                 \draw[->] (5, -0.5) -- (5, -1.2) node[below]{$U_{(5)}$};
-                \draw (1, -2) node[below]{$s_{1}$};
-                \draw (2, -2) node[below]{$s_{2}$};
-                \draw (3, -2) node[below]{$s_{3}$};
-                \draw (4, -2) node[below]{$s_{4}$};
-                \draw (5, -2) node[below]{$s_{5}$};
+                \draw (1, -2) node[below]{$S_{1}$};
+                \draw (2, -2) node[below]{$S_{2}$};
+                \draw (3, -2) node[below]{$S_{3}$};
+                \draw (4, -2) node[below]{$S_{4}$};
+                \draw (5, -2) node[below]{$S_{5}$};
             \end{tikzpicture}
         \end{center}
     \end{example}
 
-    Let us see the reason with $N\br{t} = 1$. Suppose we have that $s_1 = s$ and then $W_2 > t - s$ since the second event has not occurs in $\bs{0, t}$. Then we have the pdf,
-    \[ f_{s_1 \mid N\br{t} = 1} \br{s} = \f{f_{s_1}\br{s} P\br{W_2 > t - s}}{P\br{N\br{t} = 1}} \ident_{\bs{0, t}}\br{s} \]
+    Let us see the reason with $N\br{t} = 1$. Suppose we have that $S_1 = s$ and then $W_2 > t - s$ since the second event has not occurs in $\bs{0, t}$. Then we have the pdf,
+    \[ f_{S_1 \mid N\br{t} = 1} \br{s} = \f{f_{S_1}\br{s} P\br{W_2 > t - s}}{P\br{N\br{t} = 1}} \ident_{\bs{0, t}}\br{s} \]
     But we know that $W_2$ is distributed exponentially,
     \begin{align*}
-    f_{s_1 \mid N\br{t} = 1} \br{s}
+    f_{S_1 \mid N\br{t} = 1} \br{s}
     &= \f{ \la e^{-\la s} e^{-\la\br{t - s}}}{\la t e^{-\la t}} \ident_{\bs{0, t}}\br{s} \\
     &= \f{1}{t}\ident_{\bs{0, t}}\br{s}
     \end{align*}
     This is nothing more than the pdf for $\Unif\bs{0, t}$.
-    \[ s_1 \mid N\br{t} = 1 \sim \Unif\bs{0, t} \]
+    \[ S_1 \mid N\br{t} = 1 \sim \Unif\bs{0, t} \]
     As a result of the order statistics property, we have the following.
     \begin{theorem}
         \[ N\br{s} \mid N\br{t} = n \sim \Bi\br{n, \f{s}{t}} \quad \text{for } s \leq t\]
@@ -2003,12 +2003,121 @@ By examining foil theorems, we have seen that irreducibility is related to the u
     \[ \pi_n = \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j}\br{1+ \sum_{n=0}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j}}^{-1} \]
     Of course, the uniqueness of a stationary distribution is contingent on the fact that the CTMC is positive recurrent. It is not true for all birth and death processes so it must be that positive recurrence can be determined by the convergence of $\pi_0$. Therefore we have that a stationary distribution $\pi$ exists (and thus MC is positive recurrent) and is normalizable if,
     \[ \sum_{n=0}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j} < \inf \]
-    One would fear that these expressions are quite complicated and would be difficult to work out explicitly. However consider the case of a $m/m/s$ queue. Recall that $\la_i = \la$ and $\mu_i = i \mu$ if $i \leq s$ and $\mu_i = s \mu$ if $i \geq s$. Therefore,
-    \[ \sum_{n=0}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j} = \f{\la}{\mu} + \f{\la}{\mu} \f{\la}{2\mu} + \cdots + \f{\la}{\mu}\f{\la}{2\mu}\cdots \f{\la}{s\mu} + \f{\la}{\mu}\f{\la}{2\mu}\cdots \br{\f{\la}{s\mu}}^2 +\cdots \]
-    The first $s$ terms correspond to a finite sum and is thus finite. The remaining terms are,
-    \[ \sum_{n=0}^{\inf} \prod_{j=s}^{n}\f{\la_{j-1}}{\mu_j} = \f{\la}{\mu}\f{\la}{2\mu}\cdots \br{\f{\la}{s\mu}}^2 + \f{\la}{\mu}\f{\la}{2\mu}\cdots \br{\f{\la}{s\mu}}^3 + \cdots \]
-    Which is a geometric series we parameter $\f{\la}{s\mu}$. Therefore the sum is finite if and only if $\la < s \mu$. The process is positive recurrent if and only if,
-    \[ \la < s \mu \]
-
+    One would fear that these expressions are quite complicated and would be difficult to work out explicitly.
+    \begin{example}
+        \term{Positive recurrence for an m/m/s queue:}
+        However consider the case of a $m/m/s$ queue. Recall that $\la_i = \la$ and $\mu_i = i \mu$ if $i \leq s$ and $\mu_i = s \mu$ if $i \geq s$. Therefore,
+        \[ \sum_{n=0}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j} = \f{\la}{\mu} + \f{\la}{\mu} \f{\la}{2\mu} + \cdots + \f{\la}{\mu}\f{\la}{2\mu}\cdots \f{\la}{s\mu} + \f{\la}{\mu}\f{\la}{2\mu}\cdots \br{\f{\la}{s\mu}}^2 +\cdots \]
+        The first $s$ terms correspond to a finite sum and is thus finite. The remaining terms are,
+        \[ \sum_{n=0}^{\inf} \prod_{j=s}^{n}\f{\la_{j-1}}{\mu_j} = \f{\la}{\mu}\f{\la}{2\mu}\cdots \br{\f{\la}{s\mu}}^2 + \f{\la}{\mu}\f{\la}{2\mu}\cdots \br{\f{\la}{s\mu}}^3 + \cdots \]
+        Which is a geometric series we parameter $\f{\la}{s\mu}$. Therefore the sum is finite if and only if $\la < s \mu$. The process is positive recurrent if and only if,
+        \[ \la < s \mu \]
+        This necessary and sufficient condition makes sense: the arrival rate is $\la$ and the maximum possible service rate is $s \mu$. If the maximal possible service rate is larger than the arrival rate then it must be that the MC returns to every state in a finite amount of time.
+    \end{example}
+    \begin{example}
+        \term{Positive recurrence for a population model:} Recall that for a population model we have that $\la_i = i \la + \al$ and $\mu_i = i \mu$. Therefore,
+        \begin{align*}
+            \sum_{n = 1}^{\inf} \prod_{j=1}^{n} \f{\la_{j-i}}{\mu_j} = \sum_{n = 1}^{\inf} \prod_{j=1}^{n} \f{\br{j-1}\la + \al}{j \mu}
+        \end{align*}
+        To determine if this series converges, we can make use of the ratio test. Clearly we can neglect the contributions from $\al$,
+        \[ \lim_{j \to \inf} \f{\br{j-1}\la + \al}{j \mu} = \lim_{j \to \inf} \f{\br{j-1}\la}{j \mu} = \f{\la}{\mu}  \]
+        Therefore if $\la < \mu$,
+        \[ \sum_{n = 1}^{\inf} \prod_{j=1}^{n} \f{\br{j-1}\la + \al}{j \mu} < \inf \qquad \la < \mu\]
+        Moreover if $\la > \mu$ then we have divergence,
+        \[ \sum_{n = 1}^{\inf} \prod_{j=1}^{n} \f{\br{j-1}\la + \al}{j \mu} = \inf \qquad \la > \mu\]
+        However the ratio test is inconclusive whenever $\la = \mu$. In this case $\al$ has a non-negligent contribution. If $\la = \mu$ and $\al \geq \la = \mu$ the ratio,
+        \[ \f{\br{j-1}\la + \al}{j \mu} \geq 1 \implies \sum_{n = 1}^{\inf} \prod_{j=1}^{n} \f{\br{j-1}\la + \al}{j \mu} = \inf \]
+        However if $\la = \mu$ and $\al < \la = \mu$ characterizing the converge is more complicated. As it turns out we can make use of the \term{Raabe-Duhamel's test}. The Raabe-Duhamel test determines if a generic series $\sum_n{a_n}$ is convergent or not. Let $L$ be,
+        \[ L = \lim_{n \to \inf} n \br{\f{a_n}{a_{n+1}} - 1} \]
+        There are three cases for $L$,
+        \begin{center}
+            \begin{tabular}{|c|c|}
+            \hline
+            $L$ & $\sum_{n} a_n$ \\
+            \hline
+            $>1$ & convergent \\
+            $<1$ & divergent \\
+            $=1$ & inconclusive \\
+            \hline
+            \end{tabular}
+        \end{center}
+        We can apply this test to our series.
+        \begin{align*}
+        a_n &= \prod_{j=1}^{n} \f{\la_{j-1}}{\mu_j} \\
+        a_{n+1} &= \prod_{j=1}^{n+1} \f{\la_{j-1}}{\mu_j} \\
+        \f{a_{n}}{a_{n+1}} &= \f{\la_{n+1}}{\mu_n} \\
+        &= \f{\br{n+1} \mu }{n \la + \al}
+        \end{align*}
+        Therefore,
+        \begin{align*}
+            L &= \lim_{n\to \inf} n \br{\f{\br{n+1} \mu }{n \la + \al} - 1} \\
+            &= \lim_{n\to \inf} n \br{\f{\br{n+1} \mu - n \la - \al}{n \la + \al}} \\
+            &= \lim_{n\to \inf} \br{\f{n \br{\la - \al}}{n \la + \al}} \\
+            &= \f{\la - \al}{\la} \\
+            &< 1
+        \end{align*}
+        Therefore the sum is divergent. To sum up, the CTMC is positive recurrent if and only if $\la < \mu$.
+    \end{example}
+    \section{Brownian Motion}
+    \subsection{Construction and Definition}
+    Recall that we have seen a simple (symmetric) random walk to be a series $X_1, X_2, \ldots$ i.i.d where,
+    \[ P\br{X_1 = \pm 1} = \f12 \]
+    There is an equal chance to move to the right and the left by one unit. We then define the current distance from the starting point by constructing a sum,
+    \[ S_0 = 0  \quad S_n = \sum_{i = 1}^{n} X_i \]
+    The difference between a simple random walk and 1D Brownian motion is that Brownian motion is inherently a continuous process. We also consider units for the vertical and horizontal scales. Therefore we define,
+    \[ B_{\br{\De x, \De t}}\br{t} \defined \De x \br{X_1 + \cdots + X_{\bs{t / \De t}}} \]
+    Where $\De x$ represents the spatial scaling and $\De t$ represents the temporal scaling. Note that $\bs{t / \De t}$ denotes the integer part of $t / \De t$; i.e. we are taking the floor. Not surprisingly, symmetry gives us that,
+    \[ \Exp\br{B_{\br{\De x, \De t}}\br{t}} = 0 \]
+    Whereas the variance is,
+    \begin{align*}
+        \Var\br{B_{\br{\De x, \De t}}\br{t}}
+        &= \Var\br{\De x \br{X_1 + \cdots + X_{\bs{t / \De t}}}} \\
+        &= \br{\De x }^2\Var\br{\br{X_1 + \cdots + X_{\bs{t / \De t}}}} \\
+        &= \br{\De x }^2\bs{t / \De t}\Var\br{X_1} \qquad \text{i.i.d}\\
+        &= \br{\De x }^2\bs{t / \De t}
+    \end{align*}
+    Where the last equality comes from the fact that $\Var\br{X_1} = 1$.
+    \begin{center}
+        \begin{tikzpicture}
+            \draw[<->] (0, -1) -- (0, 1) node[above]{$B_{\br{\De x, \De t}}\br{t}$};
+            \draw[->] (0, 0) -- (5, 0) node[right]{$t$};
+            \pgfmathsetmacro{\dt}{0.2};
+            \pgfmathsetmacro{\dx}{0.2};
+            \foreach \b [count = \i] in {1,2,1,0,-1,0,-1,-2,-3,-4,-3,-4,-5,-4,-3,-2,-3,-2,-1} {
+                \draw[thick] (\dt*\i, \dx*\b) -- (\dt*\i + \dt*1, \dx*\b);
+            }
+        \end{tikzpicture}
+    \end{center}
+    If we take the limit $\De x \to 0$ and $\De t \to 0$ we have that,
+    \[ \br{\De x }^2\bs{\f{t}{\De t}} \approx \br{\De x }^2{\f{t}{\De t}} \to 0 \]
+    However, we want to make $\Var\br{B_{\br{\De x, \De t}}\br{t}}$ converge to something non-zero. Therefore we take $\br{\De x}^2 / t$ to be a constant called $\si^2$. Therefore $\De x = \si \sqrt{\De t}$. In this way, $\bc{B_{\br{\De x, \De t}}\br{t}}_{t \geq 0}$ converges to a limiting process denoted $\bc{B\br{t}}_{t \geq 0}$. Some of the the properties of $\bc{B\br{t}}_{t \geq 0}$ include,
+    \begin{enumerate}
+        \item By central limit theorem, $B\br{t}$ is normal $B\br{t} \sim \s{N}\br{0, \si^2 t}$,
+        \[ \Exp\br{B\br{t}} = 0 \qquad \Var\br{B\br{t}} = \si^2 t \]
+        \item $\bc{B\br{t}}_{t \geq 0}$ has independent increments,
+        \[ t_1 < t_2< \cdots < t_n\]
+        \[ B\br{t_n} - B\br{t_{n - 1}}, B\br{t_{n-1}} - B\br{t_{n - 2}}, \ldots, B\br{t_1} \]
+        are independent. This following directly from the simple random walk.
+        \item $\bc{B\br{t}}_{t\geq0}$ has stationary increments,
+        \[ B\br{t + s} - B\br{t} \stackrel{\text{d}}{=} B\br{t} - \underbrace{B\br{0}}_{0} \]
+    \end{enumerate}
+    \begin{definition}
+        A continuous stochastic process $\bc{B\br{t}}_{t \geq 0}$ is called a \term{Brownian motion} if,
+        \begin{enumerate}
+            \item $B\br{0} = 0$
+            \item $\bc{B\br{t}}_{t \geq 0}$ has stationary and independent increments
+            \item $\forall t: B\br{t} \sim \s{N}\br{0, \si^2 t}$ for some $\si \geq 0$. If $\si = 1$ then we have \term{standard Brownian motion} (default setting working forward)
+        \end{enumerate}
+    \end{definition}
+    \subsection{Properties of Brownian Motion}
+    Brownian motion is a Gaussian process.
+    \begin{definition}
+        A group of r.v.s $\br{X_1, X_2, \ldots, X_n}$ are called \term{jointly normal} if $a_1X_1 + a_2 X_2 + \cdots + a_n X_n$ follows a normal distribution for any $a_1, \ldots, a_{n} \in \R$.
+    \end{definition}
+    \begin{definition}
+        A stochastic process $\bc{X\br{t}}_{t \geq 0}$ is called a \term{Gaussian process} if all its finite dimensional distributions are jointly normal. That is $\forall n$, $t_1, \ldots, t_n$, $\br{X\br{t_1}, \ldots, X\br{t_n}}$ is jointly normal.
+        \[ \forall n: t_1, \ldots, t_n, a_1, \ldots, a_n \in \R: a_1X\br{t_1} + \cdots a_nX\br{t_n} \quad \text{is normal}\]
+    \end{definition}
+    Since a jointly normal distribution is fully characterized by its expectation and variance, covariance structure, a Gaussian process $\bc{X\br{t}}_{t \geq 0}$ is also fully characterized by $\Exp\br{X\br{t}}, t \geq 0$ and $\Cov\br{X\br{s}, X\br{t}}, t, s \geq 0$
 
 \end{document}
