@@ -1822,8 +1822,8 @@ Which suggests (under the first order approximation) that,
 \[ U^{(I)}\br{t} \approx \ident - \f i \hbar \intl_{0}^{t} \dif t' V^{(I)}\br{t'}U^{(I)}\br{t'} \eq \label{eq:tdpt_1} \]
 Further corrective terms can be computed by supplanting \cref{eq:tdpt_1} into \cref{eq:tdpt}.
 \[ U^{(I)}\br{t} \approx \ident - \f i \hbar \intl_{0}^{t} \dif t' V^{(I)}\br{t'}\bs{\ident - \f i \hbar \intl_{0}^{t'} \dif t'' V^{(I)}\br{t''}} \]
-This process can be continued to find the $n$-th order correction to $U\br{t}$. The resultant series is terms the \term{Dyson series},
-\[ U^{(I)}\br{t} = \ident - \f i \hbar \intl_{0}^{t} \dif t' V\br{t'} + \cdots + \br{\f i \hbar}^n \intl_{0}^{t} \dif t' \intl_{0}^{t'} \dif t'' \cdots \intl_{0}^{t^{(n-1)}} \dif t^{(n)} V\br{t'} \cdots V\br{t^{(n)}} + \cdots \]
+This process can be continued to find the $n$-th order correction to $U\br{t}$. The resultant series is termed the \term{Dyson series},
+\[ U^{(I)}\br{t} = \ident - \f i \hbar \intl_{0}^{t} \dif t' V^{(I)}\br{t'} + \cdots + \br{\f i \hbar}^n \intl_{0}^{t} \dif t' \intl_{0}^{t'} \dif t'' \cdots \intl_{0}^{t^{(n-1)}} \dif t^{(n)} V^{(I)}\br{t'} \cdots V^{(I)}\br{t^{(n)}} + \cdots \]
 Solving this series is frequently impossible/intractable. However for the purposes of perturbation theory we are only interested in calculating the lower-order corrections in order to get an approximation. Write $\ket{\psi, t}_I$ in turns of the unperturbed energy eigen-system $H_0 \ket n = E_n \ket n$
 \[ \ket{\psi, t}_{I} = \sum_n c_n\br{t} \ket{n} = \sum_n \ket n \underbrace{\bra n U\br{t} \ket \psi}_{c_n\br{t}} \]
 Then we have that $c_n\br{t} = \bra{n} U\br{t} \ket{\psi}$ and,
@@ -1846,7 +1846,7 @@ Moreover we can calculate $c_n^{(2)}$ but inserting a resolution of identity,
     &= \br{-\f{i}{\hbar}}^2  \sum_{m}\intl_{0}^{t} \dif t' \intl_{0}^{t'} \dif t'' e^{i \w_{nm} t'}e^{i \w_{mi} t''} \bra n V\br{t'} \ket m \bra m V\br{t''} \ket i  \\
     &= \br{-\f{i}{\hbar}}^2  \sum_{m}\intl_{0}^{t} \dif t' \intl_{0}^{t'} \dif t'' e^{i \w_{nm} t'}e^{i \w_{mi} t''} V_{nm}\br{t'}V_{mi}\br{t''}
 \end{align*}
-These two example illuminate how it is possible to write down the correct terms for any order. As an exercise, let us find the probability of transition from $\ket i$ to $\ket n$ at time $t$,
+These two example illuminate how it is possible to write down the corrective terms for any order. As an exercise, let us find the probability of transition from $\ket i$ to $\ket n$ at time $t$,
 \[ P\br{i \to n} = \abs{c_{n}^{(1)}\br{t} + c_{n}^{(2)}\br{t} + \cdots }^2 \]
 We will calculate this in a first-order perturbation theory by only considering the first term,
 \begin{align*}
@@ -2014,5 +2014,83 @@ Where $\Ga_i = - 2 \Im\br{\De_i^{(2)}}$ acts as a decay constant,
 Which suggests that $\tau_i = \hbar / \Ga_i$ is the lifetime of state $\ket{i}$. Therefore for $t > \tau_i$ the probability to still find the system in the initial state is exponentially small.
 
 \section{Relativistic Quantum Mechanics}
-\todo[TC]{Missed 2 lectures}
+\todo[TC]{Missed 3 lectures}
+
+\subsection{Dirac Equation}
+The \term{Dirac equation} can be written as,
+\[ i \di_t \psi = H \psi \eq \label{eq:dirac_equation}\]
+Where $H$ is the \term{Dirac Hamiltonian},
+\[ H = - i \al_i \di_i + m \be \eq \label{eq:dirac_Hamiltonian}\]
+Where $\al_i = \ga^{0} \ga^{i}$ and $\be = \ga^{0}$. We define the probability density $\rho = \psi^{\dagger} \psi$ and the Dirac equation permits $\psi$ to satisfy,
+\[ \pder{\rho}{t} + \vdel \cdot \ve j = 0 \implies \ve j \psi^{\dagger} = \ve \al \psi \]
+To simplify notation, we will define the \term{Dirac adjoint} $\bar{\Phi}$,
+\[ \bar{\psi} = \psi^{\dagger} \ga^{0} \]
+Then the probability density becomes,
+\[ \rho = \psi^{\dagger}\psi = \Phi^{\dagger} \ga^{0} \ga^{0} \psi = \bar \psi \ga^{0} \psi \]
+And,
+\[ \ve j = \psi^{\dagger} \ve \al \psi = \psi^{\dagger} \ga^{0} \ga^{0} \ve \al \psi = \bar \psi^{\dagger} \ga^{0} \ve \al \psi = \bar \psi \ve \ga \psi \]
+Where $\ga^{0}\al_{i} = \ga^{0} \ga^{0} \ga^{i} = \ga^{i}$. From this, we define the \term{$4$-current vector} to be,
+\[ j^{\mu} = \br{\rho ,\ve j} = \bar \psi \ga^{\mu} \psi \]
+Such that,
+\[ \di_{\mu} j^{\mu} = 0 \]
+Is the inherently Lorentz-invariant form of the continuity equation. We now solve the Dirac equation by looking for a solution as a plane wave.
+\[ \psi \sim e^{i\br{\ve p \cdot \ve x - E t}}\]
+Plugging this into \cref{eq:dirac_Hamiltonian} gives,
+\[ H\psi = \br{\al_i p_i + \be m}\psi \]
+Where again we have $\al_i = \ga^{0} \ga^{i}$. Recall the Dirac representation of the $\ga$-matrices,
+\[ \ga^{0} = \tau_3 \qquad \ga^{i} = i \si^{i} \tau_{2} \]
+Which means that $\al_i = \ga^{0} \ga^{i} = i \si^{i} \tau_3 \tau_2$ where $\tau_3 \tau_2$ is,
+\[ \tau_3 \tau_2 = \begin{pmatrix}
+    1 & 0 \\ 0 & -1
+\end{pmatrix}\begin{pmatrix}
+    0 & -1 \\ 1 & 0
+\end{pmatrix} = \begin{pmatrix}
+    0 & -1 \\ -1 & 0
+\end{pmatrix} = -i\tau_1 \]
+Therefore $\al_i = \si^{i} \tau_{1}$ which means that,
+\[ H\psi = \br{\si^{i} \tau_{1} p_i + m \tau_{3}}\psi = \br{\tau_1 \ve \si \cdot \ve p + m \tau_3} \psi \]
+However $\tau_1 \ve \si \cdot \ve p + m \tau_3$ is just a matrix. At this point, let us diagonalize $H$ to find the spinor components of $\psi$. We need to find the eigenvalues and eigenvectors of $H\br{\ve p}$.
+\[ H\br{\ve p} = \tau_1 \ve \si \cdot \ve p + m \tau_3 \]
+Luckily we can diagonalize $\ve \si \cdot \ve p$ independently of the rest of $H\br{\ve p}$ because $\tau_1 \ve \si \cdot \ve p$ is really shorthand for the tensor product $\tau_1 \otimes \ve \si \cdot \ve p$. The eigen-system of $\ve \si \cdot \ve p$ has been computed numerous times prior. The eigenvalues are $\pm p$ and the eigenstates correspond to $\ba{\ve \si}$ being along $\ve p$ or in the opposite direction to $\ve p$. \\
+
+We now define the \term{helicity-projection} of $\ve \si$ onto the direction of $\ve p$.\\
+
+If $\ve \si$ is along $\ve p$ we have \term{right-handed helicity}.
+\begin{center}
+    \begin{tikzpicture}
+        \draw[thick, ->] (0,0) -- (3,0) node[right]{$\ve p$};
+        \draw[->] (0.5,-0.5) --node[below]{$\ba{\ve \si}$} (2.5,-0.5);
+    \end{tikzpicture}
+\end{center}
+
+If $\ve \si$ is opposite to $\ve p$ we have \term{left-handed helicity}.
+\begin{center}
+    \begin{tikzpicture}
+        \draw[thick, ->] (0,0) -- (3,0) node[right]{$\ve p$};
+        \draw[<-] (0.5,-0.5) --node[below]{$\ba{\ve \si}$} (2.5,-0.5);
+    \end{tikzpicture}
+\end{center}
+Therefore we separate $H$ into two possibilities for each of the eigenvalues of $\ve \si \cdot \ve p$,
+\[ H_{R} = \tau_1 p + m \tau_3 \qquad H_{L} = -\tau_1 p + m \tau_3 \]
+Both $H_{R}$ and $H_{L}$ are $2 \times 2$ matrices that are relatively easy to diagonalize. As it turns out, $H_{R}$ and $H_{L}$ have the same eigenvalues $E = \pm \sqrt{p^2 + m^2}$. Each of these eigenstates are doubly degenerate corresponding to each of the possible helicities.
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw[scale=0.5,domain=-3:3,smooth,variable=\y, thick] plot ({\y},{(\y*\y + 1)^(1/2)}) node[above]{$\sqrt{p^2 + m^2}$};
+        \draw[scale=0.5,domain=-3:3,smooth,variable=\y, thick] plot ({\y},{-(\y*\y + 1)^(1/2)}) node[below]{$-\sqrt{p^2 + m^2}$};
+        \draw[<->] (0,0.5) -- node[right]{$2m$} (0,-0.5);
+        \draw[->] (-2, -2) -- (-2, 2) node[above]{$E$};
+        \path[draw, thick, red, dashed] (0, -1) node[below]{$e^{+}$} edge[bend left, ->] (0, 1);
+        \draw[red] (0,1) node[above]{$e^{-}$};
+    \end{tikzpicture}
+\end{center}
+
+However we still have the problem of negative energy states. Electrons are fermions and thus obey the \term{Pauli-exclusion} principle: no two fermions can exists in the same state. Dirac's proposal to solve the negative energy problem is as follows: In what we call \textit{vacuum}, all negative energy states are actually filled with electrons. This is called the \term{Dirac negative energy sea} and is considered unobservable. We can however make measurements on particles transitioning from the negative sea to having positive energy (the dashed red line). We define the lack of an electron in the negative sea as a particles with positive energy and are called \term{anti-particles}.
+
+\subsection{Spin}
+
+The primal achievement of the Dirac equation is an explanation of what spin actually is physically. Recall that a charged particle moving in an electromagnetic field with charge $- e$ has canonical momentum $\ve p$ such that,
+\[ m \ve v = \ve p + \f{e}{c} \ve A \]
+Where the canonical momentum is defined under the Hamiltonian formalism $\dot q = \pder{H}{p}, \dot p = - \pder{H}{q}$. From the correspondence principle we define,
+\[ \ve p = - i \vdel \]
 \end{document}
