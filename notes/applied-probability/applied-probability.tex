@@ -27,6 +27,15 @@
 \newcommand{\Geo}{\mathsf{Geo}}
 \newcommand{\ind}{\mathbf{1}}
 
+\newcommand{\Brownian}[5]{% points, advance, rand factor, options, end label
+\draw[#4] (0,0)
+\foreach \x in {1,...,#1}
+{   -- ++(#2,rand*#3)
+}
+node[right] {#5};
+}
+
+
 \begin{document}
 
 \titlePage
@@ -34,6 +43,8 @@
 \tableOfContents
 
 \disclaimer
+
+\pgfmathsetseed{2000}
 
 \section{Review}
 
@@ -2110,6 +2121,14 @@ By examining foil theorems, we have seen that irreducibility is related to the u
         \end{enumerate}
     \end{definition}
     \subsection{Properties of Brownian Motion}
+    \begin{center}
+    \begin{tikzpicture}
+        \draw[thick, ->] (0, -3) -- (0, 3) node[above]{$B\br{t}$};
+        \draw[thick, ->] (0, 0) -- (6, 0) node[right]{$t$};
+        \Brownian{600}{0.01}{0.2}{red}{$B_1\br{t}$}
+        \Brownian{600}{0.01}{0.2}{blue}{$B_2\br{t}$}
+    \end{tikzpicture}
+    \end{center}
     Brownian motion is a Gaussian process.
     \begin{definition}
         A group of r.v.s $\br{X_1, X_2, \ldots, X_n}$ are called \term{jointly normal} if $a_1X_1 + a_2 X_2 + \cdots + a_n X_n$ follows a normal distribution for any $a_1, \ldots, a_{n} \in \R$.
@@ -2230,4 +2249,95 @@ By examining foil theorems, we have seen that irreducibility is related to the u
         \[ B'\br{0} = \lim_{t \to 0} \f{t Z\br{\f{1}{t}}}{t} = \lim_{t \to 0} Z\br{\f{1}{t}} = \lim_{t \to \inf} Z\br{t} \]
         However $Z\br{t}$ diverges from $Z\br{0}$ as $t \in \inf$. $Z\br{t}$ does not converge to any limit as $t \to \inf$. Thus we conclude that $B$ is not differentiable at $0$, hence it is not differentiable at any point.
     \end{proof}
+    \subsubsection{Quadratic Variation}
+    If we consider subdividing the continuous Brownian motion fluctuations into $n$ equally spaced intervals,
+    \[ B_{\sim n}\br{t} = \abs{B\br{\f{t}{n}} - B\br{0}} + \abs{B\br{\f{2t}{n}} - B\br{\f{t}{n}}} + \cdots + \abs{B\br{t} - B\br{\f{n-1}{n}t}} \]
+    We can compute the approximate total change in value of the Brownian motion. As we increase accuracy by increasing $n$, we obtain,
+    \[ \lim_{n \to \inf} B_{\sim n}\br{t} \to \inf \]
+    Indicating that $B$ fluctuates infinitely often in a time $t$.\\
+
+    If, instead of summing the absolute values we sum the squares of the changes in values,
+    \[ B^2_{\sim n}\br{t} = \br{B\br{\f{t}{n}} - B\br{0}}^2 + \br{B\br{\f{2t}{n}} - B\br{\f{t}{n}}}^2 + \cdots + \br{B\br{t} - B\br{\f{n-1}{n}t}}^2 \]
+    Then as $n \to \inf$ we do in fact converge to a limit.
+    \begin{definition}
+        The \term{quadratic variation of $B$} denoted $\bs{B}$ is the defined as follows,
+        \[ \bs{B}\br{t} = \lim_{n \to \inf} \sum_{i = 0}^{n-1} \bs{B\br{\f{\br{i+1}}{n} t} - B\br{\f{\br{i}}{n} t}}^2 \eq \label{eq:quadratic} \]
+        In fact, $\bs{B}\br{t}$ exists and $\bs{B}\br{t} = t$.
+    \end{definition}
+    \begin{proof}
+        Consider that for each quadratic term in \cref{eq:quadratic} is i.i.d,
+        \[ \br{\underbrace{B\br{\f{t}{n}} - B\br{0}}_{\sim\s{N}\br{0, t_{n}}}}^2 + \br{B\br{\f{2t}{n}} - B\br{\f{t}{n}}}^2 + \cdots + \br{B\br{t} - B\br{\f{n-1}{n}t}}^2 \]
+        Therefore we write,
+        \begin{align*}
+            \bs{B}\br{t} &= \lim_{n \to \inf} \sum_{i = 0}^{n-1} \bs{B\br{\f{\br{i+1}}{n} t} - B\br{\f{\br{i}}{n} t}}^2 \\
+            &= \lim_{n \to \inf} \f{t}{n}\sum_{i = 0}^{n-1} \bs{\sqrt{\f{n}{t}}\br{B\br{\f{\br{i+1}}{n} t} - B\br{\f{\br{i}}{n} t}}}^2
+        \end{align*}
+        Clearly, $\sqrt{\f{n}{t}}\br{B\br{\f{\br{i+1}}{n} t} - B\br{\f{\br{i}}{n} t}} = X \sim \s{N}\br{0,1}$ where $\Exp\br{X^2} = \Var\br{X} + \Exp\br{X}^2 = 1$. Therefore,
+        \[ \bs{B}\br{t} = \lim_{n \to \inf} \f{t}{n}\sum_{i = 0}^{n-1} 1 = t\]
+    \end{proof}
+    \begin{theorem}
+        \term{Lévy's characterization of BM:} Let $X = \bc{X\br{t}}_{t \geq 0}$ be martingale with $X\br{0} = 0$ and $\bs{X}\br{t} = t$, then $X$ is Brownian motion.
+    \end{theorem}
+    \subsubsection{Reflection Principle}
+    Let $T_a = \min\bc{t: B\br{t} = a}$ be the first time the Brownian motion first reaches level $a$. We then define the reflection,
+    \begin{align*}
+        B^*\br{t} = \begin{cases}
+            B\br{t} & t \leq T_a \\
+            2a - B\br{t} & t > T_a \\
+        \end{cases}
+    \end{align*}
+    Then the \term{reflection principle} claims that $B^{*}\br{t}$ is also a Brownian motion.
+    \begin{definition}
+        Define $M\br{t} = \max_{0 \leq s \leq t} B\br{s}$ to be the running maximum of the BM $\bc{X\br{t}}_{t \geq 0}$ until time $t$. The reflection principle helps us to determine the distributions of $M\br{t}$.
+    \end{definition}
+    \begin{theorem}
+        For $a \geq 0$,
+        \[ P\br{M\br{t} \geq a} = 2 P\br{B\br{t} \geq a} = P\br{\abs{B\br{t}} \geq a} \]
+        Therefore $M\br{t}$ has the same distribution as $\abs{B\br{t}} \sim \s{N}\br{0,1}$.
+    \end{theorem}
+    \begin{proof}
+        First notice that,
+        \[ M\br{t} \geq a \iff T_{a} \leq t \]
+        Therefore since $B$ and $B^{*}$ are both BM,
+        \begin{align*}
+            P\br{M\br{t} \geq a}
+            &= P\br{M\br{t} \geq a, B\br{t} < a} + P\br{M\br{t} \geq a, B\br{t} \geq a} \\
+            &= P\br{T_a \geq t, B\br{t} < a} + P\br{T_a \geq t, B\br{t} \geq a} \\
+            &= P\br{T_a^* \geq t, B\br{t}^* < a} + P\br{T_a \geq t, B\br{t} \geq a} \\
+            &= P\br{T_a \geq t, B\br{t} > a} + P\br{T_a \geq t, B\br{t} \geq a} \\
+            &= P\br{T_a \geq t, B\br{t} \geq a} + P\br{T_a \geq t, B\br{t} \geq a} \qquad P\br{B\br{t} = a} = 0\\
+            &= 2P\br{T_a \geq t, B\br{t} \geq a}\\
+            &= 2P\br{B\br{t} \geq a} \qquad B\br{t} \geq a \implies T_a \leq t\\
+            &= P\br{\abs{B\br{t}} \geq a}
+        \end{align*}
+    \end{proof}
+    \subsection{Variations of Brownian Motion}
+    There are a number of ways to generalize the Brownian motion. \\
+
+    \subsubsection{Drift}
+    For example, we can consider a Brownian motion with a drift and variance parameter $\si^2$.
+    \begin{definition}
+        A continuous process $\bc{X\br{t}}_{t \geq 0}$ is called a \term{Brownian motion with drift} $\mu$ and variance parameter $\si^2$ (volatility $\si$) if,
+        \begin{enumerate}
+            \item $X\br{0} = 0$
+            \item $\bc{X\br{t}}_{t \geq 0}$ has stationary and independent increments
+            \item $X\br{t} \sim \s{N}\br{\mu t, \si^2 t}$
+        \end{enumerate}
+    \end{definition}
+    Similar to the standard Brownian motion, we can show that,
+    \begin{theorem}
+        $\bc{X\br{t}}_{t \geq 0}$ is a BM with parameters $\mu$ and $\si^2$ if and only if it is a Gaussian process and $\Exp\br{X\br{t}} = \mu t$ and $\Cov\br{X\br{s}, X\br{t}} = \si^2 \min\bc{s, t}$.
+    \end{theorem}
+    It is also possible to perform algebra on drift BMs. Let $\bc{X\br{t}}_{t \geq 0}$ be a BM with drift $\mu$ and variance parameter $\si^2$ then,
+    \[ \bc{Y\br{t} + aX\br{t} + bt}_{t \geq 0} \]
+    Is also a BM with drift $a \mu + b$ and variance parameter $a^2 \si^2$. In particular, $\bc{X\br{t}}_{t \geq 0}$ is a BM with drift $\mu$ and variance parameter $\si^2$. In particular, $\bc{X\br{t}}_{t \geq 0}$ is a BM with drift $\mu$ and variance parameter $\si^2$ if and only if there exists a standard BM $\bc{B\br{t}}_{t \geq 0}$ such that $X\br{t} = \si B\br{t} + \mu t$.
+
+    \subsubsection{Geometric Brownian Motion}
+    Another possible modification to Brownian Motions are geometric Brownian Motions. The name ``geometric'' comes from the geometric series.
+    \begin{definition}
+        Let $\bc{X\br{t}}_{t \geq 0}$ be a BM with drift $\mu$ and variance parameter $\si^2$. Then the process,
+        \[ \bc{Y\br{t} = e^{X\br{t}}}_{t \geq 0} \]
+        is called a \term{geometric BM}.
+    \end{definition}
+    Locally, a geometric BM appears similar to and behaves like a Brownian motion with the property that $Y\br{t} > 0$ for all times. Thus people often use geometric BMs to model stock prices or other prices processes.
 \end{document}
