@@ -27,6 +27,15 @@
 \newcommand{\Geo}{\mathsf{Geo}}
 \newcommand{\ind}{\mathbf{1}}
 
+\newcommand{\Brownian}[5]{% points, advance, rand factor, options, end label
+\draw[#4] (0,0)
+\foreach \x in {1,...,#1}
+{   -- ++(#2,rand*#3)
+}
+node[right] {#5};
+}
+
+
 \begin{document}
 
 \titlePage
@@ -34,6 +43,8 @@
 \tableOfContents
 
 \disclaimer
+
+\pgfmathsetseed{2000}
 
 \section{Review}
 
@@ -402,7 +413,7 @@ The law of iterated expectation is easy to digest when one understands that $\Ex
 
 \end{theorem}
 
-\section{Stochastic Process}
+\subsection{Stochastic Process}
 
 To begin, the entomology of \textit{stochastic} is that it comes an Asian word which means to \textit{aim (at)}. As an example, in archery, aiming at a target is related to the idea of guessing where the target will be. In short, stochastic should be taken as a synonym for \textit{random}. A \textit{process} is something that changes over time.  In conclusion, a \term{stochastic process} is a system that random changes over time. \\
 
@@ -464,7 +475,7 @@ We use capital letters $X$ to denote the random variable and lower case letters 
 \subsection{Transition Probability}
 
 The \term{transition probability} from a state $i \in S$ at time $n$ to state $j \in S$ (at time $n+1$) is given by,
-\[ P_{n, i, j} \defined P \br{X_{n+1}= j \mid X_{n} = i} \qquad n = 0, 1, 2, \ldots \eq \label{eq:trans_prob}\]
+\[ P_{n, i, j} \defined P \br{X_{n+1}= j \mid X_{n} = i} \qquad n = 0, 1, 2, \ldots \eq \label{eq:tranS_prob}\]
 In full generality, the transition probability could depend on time $n$ but in this course we will restrict ourselves to transition probabilities that \textit{do not} depend on time $n$ ($P_{n, i, j} = P_{i, j}$). We say that the markov chain is \term{(time-)homogeneous} if this property holds. From now on, this will be our default setting. \\
 
 The matrix of all transition probabilities $P = \bc{P_{i,j} \mid i,j \in S}$ is called the \term{one-step transition (probability) matrix} for $\bc{X_{n} \mid n \in T}$.
@@ -478,9 +489,9 @@ P_{i0} & P_{i1} & \cdots & P_{ij} & \cdots \\
 The one-step transition matrix $P$ has the following properties:
 \begin{enumerate}
     \item The entries of $P$ are non-negative:
-    \[ P_{i,j} \geq 0 \eq \label{eq:trans_positive_entries} \]
+    \[ P_{i,j} \geq 0 \eq \label{eq:tranS_positive_entries} \]
     \item The rows of $P$ sum to unity:
-    \[ \forall i : \sum_{j \in S} P_{ij} = 1 \eq \label{eq:trans_row_sum} \]
+    \[ \forall i : \sum_{j \in S} P_{ij} = 1 \eq \label{eq:tranS_row_sum} \]
 \end{enumerate}
 
 The \term{n-step transition probability} is defined via the homogeneous property,
@@ -589,7 +600,7 @@ But by the Markov condition, it must be that,
 &P\br{\val{2} \mid \val{1}} \cdots \\
 &P\br{\val{n} \mid \val{n-1}}
 \end{align*}
-First recognize the first term on the RHS ($P\br{X_{0} = x_{0}} = \al_{0, x_0}$), and also the remaining terms are transition probabilities as per \cref{eq:trans_prob}. Therefore it must be that,
+First recognize the first term on the RHS ($P\br{X_{0} = x_{0}} = \al_{0, x_0}$), and also the remaining terms are transition probabilities as per \cref{eq:tranS_prob}. Therefore it must be that,
 \[ P\br{X_n=x_n, X_{n-1}=x_{n-1}, \ldots, X_{0}=x_{0}} = \al_{0, x_0} P_{x_0x_1}P_{x_1x_2}\cdots P_{x_{n-1}x_n} \]
 Even more generally, for $0 \leq t_1 < t_2 < \cdots < t_n$,
 \[ P\br{\val{t_n}, \val{t_{n-1}}, \ldots, \val{t_{1}}} = P\br{\val{t_1}} \br{P^{t_2 - t_1}}_{x_{t_1}x_{t_2}}\br{P^{t_3 - t_2}}_{x_{t_2}x_{t_3}}\cdots\br{P^{t_{n} - t_{n-1}}}_{x_{t_{n-1}}x_{t_{n}}}  \]
@@ -876,7 +887,7 @@ Note that $P_{ii} < 0$ then the greatest common divisor must be one. This implie
 The period of a state is useful do to the following theorem,
 
 \begin{theorem}
-\label{thm:period_class_prop}
+\label{thm:period_clasS_prop}
 The period of a state is a class property. If ${i}\comm{j}$, then $d\br{i} = d\br{j}$.
 \end{theorem}
 
@@ -884,12 +895,12 @@ The period of a state is a class property. If ${i}\comm{j}$, then $d\br{i} = d\b
 If $i = j$ we are already done. If $i \neq j$, since ${i}\comm{j}$, then $\exists n, m$ such that,
 \[ P_{ij}^{n} > 0 \quad P_{ji}^{m} > 0 \]
 Then for any $l$ such that $P^{l}_{jj} > 0$,
-\[ P_{ii}^{n+m+l} \geq P_{ij}^{n}P_{jj}^{l}P_{ji}^{m} \eq \label{eq:period_class_prop_2} \]
+\[ P_{ii}^{n+m+l} \geq P_{ij}^{n}P_{jj}^{l}P_{ji}^{m} \eq \label{eq:period_clasS_prop_2} \]
 Because $P_{ij}^{n}P_{jj}^{l}P_{ji}^{m}$ happens to be a specific way for $P_{ii}^{n+m+l}$ to occur. Since ${i}\comm{j}$ and $l$ was chosen carefully,
 \[ P_{ii}^{n+m+l} > 0 \]
 Moreover, we also have that,
-\[ P_{ii}^{n+m} \geq P_{ij}^{n}P_{ji}^{m} \eq \label{eq:period_class_prop_1}\]
-Since $d\br{i}$ divides both $n+m$ and $n+m+l$ by \cref{eq:period_class_prop_1,eq:period_class_prop_2}, then $d\br{i}$ also divides $l$. This holds for all $l$ such that $P_{ii}^{l}>0$. This implies that $d\br{i}$ is a common divisor of $\bc{l \mid P_{jj}^{l} > 0}$ an thus $d\br{i}$ divides,
+\[ P_{ii}^{n+m} \geq P_{ij}^{n}P_{ji}^{m} \eq \label{eq:period_clasS_prop_1}\]
+Since $d\br{i}$ divides both $n+m$ and $n+m+l$ by \cref{eq:period_clasS_prop_1,eq:period_clasS_prop_2}, then $d\br{i}$ also divides $l$. This holds for all $l$ such that $P_{ii}^{l}>0$. This implies that $d\br{i}$ is a common divisor of $\bc{l \mid P_{jj}^{l} > 0}$ an thus $d\br{i}$ divides,
 \[ d\br{j} = \gcd \bc{l \mid P_{jj}^{l} > 0} \]
 By symmetry $d\br{j}$ divides $d\br{i}$. Therefore $d\br{i} = d\br{j}$. \\
 \end{proof}
@@ -947,10 +958,10 @@ Moreover,
     We say that the MC always goes back to $i$.
 \end{definition}
 \begin{remark}
-    If we have that $P\br{T < \inf} = 1$ then it does not imply that $\Exp\br{T} < \inf$. As a counter example, let $s_p = 2^{p}$ for $p = 1, \ldots, \inf$,
-    \[ P\br{T = s_p} = \f{1}{s_p} \]
+    If we have that $P\br{T < \inf} = 1$ then it does not imply that $\Exp\br{T} < \inf$. As a counter example, let $S_p = 2^{p}$ for $p = 1, \ldots, \inf$,
+    \[ P\br{T = S_p} = \f{1}{S_p} \]
     Where the expectation of $T$ is unbounded,
-    \[ \Exp\br{T} = \sum_{p=1}^{\inf} s_p \f{1}{s_p} = \sum_{p=1}^{\inf} 1 = \inf \]
+    \[ \Exp\br{T} = \sum_{p=1}^{\inf} S_p \f{1}{S_p} = \sum_{p=1}^{\inf} 1 = \inf \]
 \end{remark}
 To make the distinction,
 \begin{definition}
@@ -1155,7 +1166,7 @@ To keep things simple, we assume that the process $\bc{X_n}_{n=0,1,2,\dots}$ is 
 
 \begin{theorem}
     \term{Basic Limit Theorem:} Let $\bc{X_n}_{n=0,1,\ldots}$ be an irreducible, aperiodic and positive recurrent DTMC, then a stationary distribution $\pi = \br{\pi_0, \pi_1, \ldots}$ exists. Moreover we have,
-    \[ \lim_{n \to \inf} P^{(n)}_{ij} = \lim_{n \to \inf} \f{\sum_{k=1}^{n} \ident_{\bc{X_k = j}}}{n} = \f{1}{\Exp\br{T_j \mid X_0 = j}} = \pi_j \qquad \forall i,j \in S \]
+    \[ \lim_{n \to \inf} P^{(n)}_{ij} = \lim_{n \to \inf} \f{\sum_{k=1}^{n} \ident_{\bc{X_k = j}}}{n} = \f{1}{\Exp\br{T_j \mid X_0 = i}} = \pi_j \qquad \forall i,j \in S \]
     Where $T_j = \min\bc{n > 0, X_n = j}$. In words, the limiting distribution is equal to the long-run fraction of time spent in $j$ is equal to the stationary distribution. Note that this does not depend on the starting state $i$.
 \end{theorem}
 
@@ -1259,7 +1270,7 @@ By examining foil theorems, we have seen that irreducibility is related to the u
     \[ X_{n+1} = \xi^{(n)}_1 + \cdots + \xi^{(n)}_{X_n} \]
     Where $\xi^{(n)}_1, \ldots, \xi^{(n)}_{X_n}$ are the independent copies of $\xi$ and $\xi_{i}^{(n)}$ is the number of offsprings of the $i$-th individual in generation $n$. \\
 
-    What is the mean and variance of $X_n$? First assume that $\Exp\br{\xi} = \mu$ and $\Var\br{\xi} = \si^2$. Remember that $\xi$ is the number of offspring produced by an individual of the population. To find $\Exp\br{E_n}$ first make use of the $\Exp\br{X_{n+1}}$.
+    What is the mean and variance of $X_n$? First assume that $\Exp\br{\xi} = \mu$ and $\Var\br{\xi} = \si^2$. Remember that $\xi$ is the number of offspring produced by an individual of the population. To find $\Exp\br{X_n}$ first make use of the $\Exp\br{X_{n+1}}$.
     \begin{align*}
     \Exp\br{X_{n+1}}
     &= \Exp\br{\xi^{(n)}_1 + \cdots + \xi^{(n)}_{X_n}}\\
@@ -1278,7 +1289,7 @@ By examining foil theorems, we have seen that irreducibility is related to the u
         &= \Exp\br{\si^2 X_n} \\
         &= \si^2 \mu
     \end{align*}
-    \[ \Var\br{\Exp\br{X_{n+1} \mid X_n}} = \Var\br{\mu X_n} = \mu \Var\br{X_n} \]
+    \[ \Var\br{\Exp\br{X_{n+1} \mid X_n}} = \Var\br{\mu X_n} = \mu^2 \Var\br{X_n} \]
     Combining these results and we arrive at the recursive relation,
     \[ \Var\br{X_{n+1}} = \si^2 \mu^n + \mu^2 \Var\br{X_n} \]
     With initial variance $\Var\br{X_1} = \si^2$. Therefore,
@@ -1299,14 +1310,14 @@ By examining foil theorems, we have seen that irreducibility is related to the u
         An irreducible DTMC with finite state space must be positive recurrent.
     \end{theorem}
 
-    For a branching process, extinction happens with probability $u < 1$ if $\Exp\br{\xi} > 1$, where $u$ is the smallest solution between $0$ and $1$ of $\varphi\br{s} = s$ (where $\varphi$ is the generating function for $\xi$). Extinction happens with probability $1$ is $\Exp\br{\xi} \leq 1$. \\
+    For a branching process, extinction happens with probability $u < 1$ if $\Exp\br{\xi} > 1$, where $u$ is the smallest solution between $0$ and $1$ of $\varphi\br{s} = s$ (where $\varphi$ is the generating function for $\xi$). Extinction happens with probability $1$ if $\Exp\br{\xi} \leq 1$. \\
 
     \section{Continuous Time Process}
     Recall that a continuous process is one where $\bc{X\br{t}}_{t \geq 0}$. A counting process is one where,
-    \[ 0 \leq s_1 \leq s_2 \leq \cdots \]
+    \[ 0 \leq S_1 \leq S_2 \leq \cdots \]
     Is the occurrence time of the events.
-    \[ N\br{t} = \# \bc{n : s_n \leq t} = \sum_{n=1}^{\inf} \ident_{\bc{s_n \leq t}} \]
-    Is the counting process of the events $\bc{s_n}_{n=1,2,\ldots}$. Properties:
+    \[ N\br{t} = \# \bc{n : S_n \leq t} = \sum_{n=1}^{\inf} \ident_{\bc{S_n \leq t}} \]
+    Is the counting process of the events $\bc{S_n}_{n=1,2,\ldots}$. Properties:
     \begin{enumerate}
         \item $N\br{t} \leq 0$ where $t \geq 0$
         \item $N\br{t} \in \Z$
@@ -1316,7 +1327,7 @@ By examining foil theorems, we have seen that irreducibility is related to the u
     \[ N\br{0} = 0 \]
     Which means that we do not expect any events to be happening at time $0$ (or earlier). The second assumption is that $N\br{t}$ only changes over time with size $1$; i.e. $N\br{t}$ \textit{jumps} one at a time. This assumption amounts to the assumption that no two events occur at \textit{exactly} the same time. Thirdly we claim that $N\br{t}$ is \term{right-continuous}.
     \[ N\br{t} = \lim_{x \to t^{+}} N\br{s} \]
-    As it turns out that this is not an assumption; since $N\br{t} = \# \bc{n : s_n \leq t}$, $N\br{t}$ \textit{must} be right-continuous.
+    As it turns out that this is not an assumption; since $N\br{t} = \# \bc{n : S_n \leq t}$, $N\br{t}$ \textit{must} be right-continuous.
 
     \begin{center}
         \begin{tikzpicture}
@@ -1329,12 +1340,12 @@ By examining foil theorems, we have seen that irreducibility is related to the u
             \pgfmathsetmacro{\tick}{0.1};
             \pgfmathsetmacro{\jump}{0.4};
             \draw[<->] (0, 3) node[above]{$N\br{t}$} -- (0, 0)node[left]{$0$} -- (5, 0) node[right]{$t$};
-            \draw[] (\sa, -\tick) node[below]{$s_1$} -- (\sa, \tick);
-            \draw[] (\sb, -\tick) node[below]{$s_2$} -- (\sb, \tick);
-            \draw[] (\sc, -\tick) node[below]{$s_3$} -- (\sc, \tick);
-            \draw[] (\sd, -\tick) node[below]{$s_4$} -- (\sd, \tick);
-            \draw[] (\se, -\tick) node[below]{$s_5$} -- (\se, \tick);
-            \draw[] (\sf, -\tick) node[below]{$s_6$} -- (\sf, \tick);
+            \draw[] (\sa, -\tick) node[below]{$S_1$} -- (\sa, \tick);
+            \draw[] (\sb, -\tick) node[below]{$S_2$} -- (\sb, \tick);
+            \draw[] (\sc, -\tick) node[below]{$S_3$} -- (\sc, \tick);
+            \draw[] (\sd, -\tick) node[below]{$S_4$} -- (\sd, \tick);
+            \draw[] (\se, -\tick) node[below]{$S_5$} -- (\se, \tick);
+            \draw[] (\sf, -\tick) node[below]{$S_6$} -- (\sf, \tick);
             \draw[thick] (0,0) --
             (\sa, 0*\jump) -- (\sa, 1*\jump) --
             (\sb, 1*\jump) -- (\sb, 2*\jump) --
@@ -1349,12 +1360,12 @@ By examining foil theorems, we have seen that irreducibility is related to the u
     \subsection{Definition of a Poisson Process}
     \begin{definition}
         The \term{interarrival times} $W_1, W_2, \ldots$ are the times between subsequent event occurrence times.
-        \[ W_1 = s_1 \qquad W_n = s_n - s_{n-1} \]
+        \[ W_1 = S_1 \qquad W_n = S_n - S_{n-1} \]
     \end{definition}
     \begin{definition}
         A \term{renewal process} is a counting process where the interarrival times $W_1, W_2, \ldots$ are i.i.d. (independent and identically distributed).
     \end{definition}
-    Intuitively after each event $s_i$, the amount of time we need to wait for the next event is identical to as if we started from the beginning again. In this sense, each time we get a new event $s_i$, our process is \textit{renewed}.\\
+    Intuitively after each event $S_i$, the amount of time we need to wait for the next event is identical to as if we started from the beginning again. In this sense, each time we get a new event $S_i$, our process is \textit{renewed}.\\
 
     All of the three previous examples of counting processes \todo[TC]{These are in the last lecture that I missed} can be reasonably modeled as renewal processes.
 
@@ -1400,12 +1411,12 @@ By examining foil theorems, we have seen that irreducibility is related to the u
             \pgfmathsetmacro{\tick}{0.1};
             \pgfmathsetmacro{\jump}{0.4};
             \draw[<->] (0, 3) node[above]{$N\br{t}$} -- (0, 0)node[left]{$0$} -- (5, 0) node[right]{$t$};
-            \draw[] (\sa, -\tick) node[below]{$s_1$} -- (\sa, \tick);
-            \draw[] (\sb, -\tick) node[below]{$s_2$} -- (\sb, \tick);
-            \draw[] (\sc, -\tick) node[below]{$s_3$} -- (\sc, \tick);
-            \draw[] (\sd, -\tick) node[below]{$s_4$} -- (\sd, \tick);
-            \draw[] (\se, -\tick) node[below]{$s_5$} -- (\se, \tick);
-            \draw[] (\sf, -\tick) node[below]{$s_6$} -- (\sf, \tick);
+            \draw[] (\sa, -\tick) node[below]{$S_1$} -- (\sa, \tick);
+            \draw[] (\sb, -\tick) node[below]{$S_2$} -- (\sb, \tick);
+            \draw[] (\sc, -\tick) node[below]{$S_3$} -- (\sc, \tick);
+            \draw[] (\sd, -\tick) node[below]{$S_4$} -- (\sd, \tick);
+            \draw[] (\se, -\tick) node[below]{$S_5$} -- (\se, \tick);
+            \draw[] (\sf, -\tick) node[below]{$S_6$} -- (\sf, \tick);
             \draw[thick,dashed] (0,0) --
             (\sa, 0*\jump) -- (\sa, 1*\jump) --
             (\sb, 1*\jump) -- (\sb, 2*\jump) --
@@ -1421,7 +1432,7 @@ By examining foil theorems, we have seen that irreducibility is related to the u
             \draw[dashed] (\t, -1) node[right]{$t$} -- (\t, 3);
         \end{tikzpicture}
     \end{center}
-    At time $t$, the next arrival time will be exponentially distributed and be independent of the previous arrival times. If the interarrival times have similar distributions (and possibly not exponential), we can attempt to predict the next arrival time based on when the previous arrival time. In these cases, we do not retain the Markov property. Therefore, the fact that the exponential distribution is the only distribution with the memoryless property translates to implying that the Poisson process is the only process with the Markov property. In summayr, the future of the counting process only depends on its current value. Otherwise, we do not need to retain or keep track of any of the previous times of arrival. \\
+    At time $t$, the next arrival time will be exponentially distributed and be independent of the previous arrival times. If the interarrival times have similar distributions (and possibly not exponential), we can attempt to predict the next arrival time based on when the previous arrival time. In these cases, we do not retain the Markov property. Therefore, the fact that the exponential distribution is the only distribution with the memoryless property translates to implying that the Poisson process is the only process with the Markov property. In summary, the future of the counting process only depends on its current value. Consequently, we do not need to retain or keep track of any of the previous times of arrival. \\
 
     In fact we have that for $0 < s < t$,
     \[ P\br{N\br{t} = j \mid N\br{s} = i} = P\br{N\br{t} = j-1 \mid N\br{s} = 0} \]
@@ -1434,7 +1445,7 @@ By examining foil theorems, we have seen that irreducibility is related to the u
         \[ N\br{t_2} - N\br{t_1} \sim \Poi\br{\la\br{t_2 - t_1}} \]
     \end{theorem}
     \begin{proof}
-    The reasoning is as follows. Let the arrival times between $t_1$ and $t_2$ be $s_1, \ldots, s_N$ where $N = N\br{t_2} - N\br{t_1}$. We let $W_1 = s_1 - t_1$ and $W_i = s_i - s_{i-1}$ are i.i.d. random variables following $\Ex\br{\la}$. For $N = n$ the sum of all interarrival times must be less than $t_2 - t_1$
+    The reasoning is as follows. Let the arrival times between $t_1$ and $t_2$ be $S_1, \ldots, S_N$ where $N = N\br{t_2} - N\br{t_1}$. We let $W_1 = S_1 - t_1$ and $W_i = S_i - S_{i-1}$ are i.i.d. random variables following $\Ex\br{\la}$. For $N = n$ the sum of all interarrival times must be less than $t_2 - t_1$
     \[ W_1 + \cdots W_n \leq t_2 - t_1 \]
     While the next event occurs after $t_2$,
     \[ W_1 + \cdots W_n + W_{n+1} > t_2 - t_1 \]
@@ -1458,7 +1469,7 @@ By examining foil theorems, we have seen that irreducibility is related to the u
 
     \subsection{Combining and Thinning Poisson Processes}
 
-    Suppose we have two Poisson processes $\bc{N_1\br{t}} \sim \Poi \br{\la_1 t}$ and $\bc{N_2\br{t}} \sim \Poi \br{\la_2 t}$. We can combine $N_1\br{t}$ and $N_2\br{t}$ in the following way. For any event $s_{1,i}$ in $N_1$ or $s_{2,i}$ in $N_2$, we attribute all events to $N\br{t}$. Mathematically,
+    Suppose we have two Poisson processes $\bc{N_1\br{t}} \sim \Poi \br{\la_1 t}$ and $\bc{N_2\br{t}} \sim \Poi \br{\la_2 t}$. We can combine $N_1\br{t}$ and $N_2\br{t}$ in the following way. For any event $S_{1,i}$ in $N_1$ or $S_{2,i}$ in $N_2$, we attribute all events to $N\br{t}$. Mathematically,
     \[ N\br{t} = N_1\br{t} + N_2\br{t} \]
 
     \begin{definition}
@@ -1491,7 +1502,7 @@ By examining foil theorems, we have seen that irreducibility is related to the u
     \[ X_{(n)} = \max\bc{X_1, \ldots, X_n} \]
     \begin{theorem}
         Let $\bc{N\br{t}} \sim \Poi\br{\la t}$. Condition on $N\br{t} = n$, the points/arrivals of $N$ in $\bs{0, t}$ are distributed as the order statistics of $n$ i.i.d uniform r.v.s on $\bs{0, t}$. That is,
-        \[ \bc{s_1, \ldots, s_n \mid N\br{t} = n} \stackrel{d}{=} \br{U_{(1)}, \ldots, U_{(n)}} \]
+        \[ \bc{S_1, \ldots, S_n \mid N\br{t} = n} \stackrel{d}{=} \br{U_{(1)}, \ldots, U_{(n)}} \]
         Where `$\stackrel{d}{=}$' denotes that the two quantities share the same distribution. Also,
         \[ U_{1}, \ldots, U_{n} \stackrel{\text{i.i.d}}{\sim} \Unif\bs{0,t} \]
         and $U_{(1)}, \ldots, U_{(n)}$ are their order statistics.
@@ -1512,25 +1523,25 @@ By examining foil theorems, we have seen that irreducibility is related to the u
                 \draw[->] (3, -0.5) -- (3, -1.2) node[below]{$U_{(3)}$};
                 \draw[->] (4, -0.5) -- (4, -1.2) node[below]{$U_{(4)}$};
                 \draw[->] (5, -0.5) -- (5, -1.2) node[below]{$U_{(5)}$};
-                \draw (1, -2) node[below]{$s_{1}$};
-                \draw (2, -2) node[below]{$s_{2}$};
-                \draw (3, -2) node[below]{$s_{3}$};
-                \draw (4, -2) node[below]{$s_{4}$};
-                \draw (5, -2) node[below]{$s_{5}$};
+                \draw (1, -2) node[below]{$S_{1}$};
+                \draw (2, -2) node[below]{$S_{2}$};
+                \draw (3, -2) node[below]{$S_{3}$};
+                \draw (4, -2) node[below]{$S_{4}$};
+                \draw (5, -2) node[below]{$S_{5}$};
             \end{tikzpicture}
         \end{center}
     \end{example}
 
     Let us see the reason for this with $N\br{t} = 1$. Suppose we have that $s_1 = s$ with $W_2 > t - s$ since the second event has not occurs in $\bs{0, t}$. Then we have the pdf,
-    \[ f_{s_1 \mid N\br{t} = 1} \br{s} = \f{f_{s_1}\br{s} P\br{W_2 > t - s}}{P\br{N\br{t} = 1}} \ident_{\bs{0, t}}\br{s} \]
+    \[ f_{S_1 \mid N\br{t} = 1} \br{s} = \f{f_{S_1}\br{s} P\br{W_2 > t - s}}{P\br{N\br{t} = 1}} \ident_{\bs{0, t}}\br{s} \]
     But we know that $W_2$ is distributed exponentially,
     \begin{align*}
-    f_{s_1 \mid N\br{t} = 1} \br{s}
+    f_{S_1 \mid N\br{t} = 1} \br{s}
     &= \f{ \la e^{-\la s} e^{-\la\br{t - s}}}{\la t e^{-\la t}} \ident_{\bs{0, t}}\br{s} \\
     &= \f{1}{t}\ident_{\bs{0, t}}\br{s}
     \end{align*}
     This is nothing more than the pdf for $\Unif\bs{0, t}$.
-    \[ s_1 \mid N\br{t} = 1 \sim \Unif\bs{0, t} \]
+    \[ S_1 \mid N\br{t} = 1 \sim \Unif\bs{0, t} \]
     As a result of the order statistics property, we have the following.
     \begin{theorem}
         \[ N\br{s} \mid N\br{t} = n \sim \Bi\br{n, \f{s}{t}} \quad \text{for } s \leq t\]
@@ -1593,4 +1604,742 @@ By examining foil theorems, we have seen that irreducibility is related to the u
     \end{enumerate}
     To answer the first question, let the process be in state $i$, it will stay in this state for an exponential random time, with parameter denoted $\la_i$. This distribution is fixed by the Markov property. When the process jumps in the future only depends on its current state, not on how long it has been there. Therefore the waiting time must be exponentially distributed. Moreover the Markov property enforces that the exponential parameter can only depend on state $i$.
 
+    \todo[TC]{Missed a lecture}
+
+    The transition probability when \textit{a jump happens} is defined as,
+    \[ q_{ij} \defined P\br{X\br{t} \text{ jumps to } j \mid X\br{t} \text{ jumps from } i} \]
+    The transition probability at a jump has the following properties,
+    \[ q_{ii} = 0 \quad q_{ij} \geq 0 \quad j\neq i \]
+    \[ \sum_{j \in S}q_{ij} = \sum_{j \neq i} q_{ij} = 1 \]
+    A CTMC is fully characterized by $\bc{\la_i}_{i \in S}$ and $a = \bc{q_{ij}}_{i,j \in S}$. Moreover the transition probability at a time $t$ is given by,
+    \begin{align*}
+        P_{ij}\br{t}
+        &= P\br{X\br{t} = j \mid X\br{0} = i} \\
+        &= P\br{X\br{t+s} = j \mid X\br{s} = i}
+    \end{align*}
+    And we define the transition matrix at time $t$ to be,
+    \[ P\br{t} = \bc{P_{ij}\br{t}}_{i,j \in S} \]
+    The continuous C-K equation is simply,
+    \[ P\br{t+s} = P\br{t}P\br{s} \]
+    \begin{definition}
+        The limit
+        \[ R \defined \lim_{h \to 0^{+}} \f{P\br{h} - P\br{0}}{h} = \lim_{j \to 0^+} \f{P\br{h} - \ident}{h} \]
+        exists, and is called the \term{(infinitesimal) generator matrix} of $\bc{X\br{t}}_{t \geq 0}$.
+        \[ R_{ii} = - \la_{i} \quad R_{ij} = \la_i q_{ij} \quad j \neq i \]
+        The row sums of $R$ are $0$.
+    \end{definition}
+    \[ R = \begin{pmatrix}
+        -\la_0 & \la_0 q_{01} & \la_0 q_{02} & \cdots \\
+        \la_1q_{10} & -\la_{1} & \la_1q_{12} & \cdots \\
+        \la_2q_{20} & \la_2q_{21} & -\la_2 & \cdots \\
+        \vdots & \vdots & \vdots & \ddots \\
+    \end{pmatrix} \]
+    The entires of $R$ admit the following intuitive interpretations:
+    \begin{itemize}
+        \item $-\la_i$: rate/ probability flow going out of state $i$
+        \item $\la_i q_{ij}$: rate/ probability flow going from $i$ to $j$
+    \end{itemize}
+    It is possible to recover $\la_i$ and $q_{ij}$ from $R$. Explicitly,
+    \[ \la_i = - R_{ii} \quad q_{ij} = -\f{R_{ij}}{R_{ii}} \quad j \neq i \]
+    As we learned previously, the complete set of $\la_i$ and $q_{ij}$ completely characterize the behaviour of the CTMC. Thus, there is a one-to-one relation between $\bc{\la_i}_{i \in S}$ and $\bc{q_{ij}}_{i,j \in S}$. The generator $R$ itself also fully characterizes the CTMC. Therefore,
+    \[ \bc{\la_i}_{i \in S} \cup \bc{q_{ij}}_{i,j \in S} \text{ and } \bc{R_{ij}}_{i,j \in S}\]
+    are two sets of parameters that can be used to specify a CTMC.
+
+    \begin{example}
+        Consider the Poisson process,
+        \[ \la_i = \la \quad i = 0, 1, \ldots \]
+        \[ Q = \begin{pmatrix}
+            0 & 1 & 0 & \cdots \\
+            0 & 0 & 1 & \cdots \\
+            0 & 0 & 0 & \cdots \\
+            \vdots & \vdots & \vdots & \ddots \\
+        \end{pmatrix} \]
+        From $Q = \bc{q_{ij}}_{i,j \in S}$ and $\bc{\la_i}_{i \in S}$ we can compute $R$:
+        \[ R_{ii} = - \la_i = - \la \quad i = 0, 1, \ldots\]
+        \[ R_{ij} = \la_i q_{ij} = \begin{cases}
+            \la & j = i+1 \\
+            0 & j \neq i, i+1 \\
+        \end{cases} \]
+        \[ R = \begin{pmatrix}
+            -\la & \la & 0 & \cdots \\
+            0 & -\la & \la & \cdots \\
+            0 & 0 & -\la & \cdots \\
+            \vdots & \vdots & \vdots & \ddots \\
+        \end{pmatrix} \]
+        In a Poisson process, the $R_{ij}$ terms are either $-\la, \la$ or $0$.
+    \end{example}
+    \begin{example}
+        Let there be 3 tables in a restaurant. Parties of customers arrive according to a Poisson process with intensity $\la$. Upon arrival, if there are free tables, the party is served and spends an exponential amount of time with average $\f{1}{\mu}$ (parameter $\mu$).\\
+
+        If there are no free tables, the party leaves immediately. Let $X\br{t}$ be the number of occupied tables at time $t$. We know that $S = \bc{0,1,2,3}$ because there are only $3$ tables.\\
+
+        Before we begin, we first need to prove that this process can be modeled as a CTMC. Doing so explicitly is difficult; one would need to prove the Markov Property. Instead we justify that $\bc{X\br{t}}_{t \geq 0}$ by recognizing that all of the interarrival times and service times are independent and exponentially distributed. This assumption generally holds provided that the exponential waiting times are independent. \\
+
+        First find $\la_i$ and $q_{ij}$. First ($i = 0$) $\la_0$ is very easy. The distribution of leaving state $0$ is exponential with parameter corresponding to one party arriving,
+        \[ \la_0 = \la \quad \text{leave state $0$ $\iff$ one party arrives}\]
+        Moreover,
+        \[ q_{01} = 1 \quad \text{zero tables $\implies$ one table} \]
+        There is no possible transition from $0$ tables to $i > 1$ tables,
+        \[ q_{02} = q_{03} = 0 \]
+        For $i = 1$, a new customer can arrive or the current customer can leave,
+        \begin{align*}
+            1 &\to 2 \quad \text{if next party arrives first} \sim \Ex\br{\la} = T \\
+            1 &\to 0 \quad \text{if a service is completed} \sim \Ex\br{\mu} = S
+        \end{align*}
+        Which one happens first depends on which time is smaller. Recall the property of exponential distribution: $T, S$ are independent,
+        \[ T \sim \Ex\br{\la}, S \sim \Ex\br{\mu}, T \indep S \]
+        Then,
+        \[ P\br{T < S} = \f{\la}{\la + \mu} \quad P\br{S < T} = \f{\mu}{\la + \mu} \]
+        Moreover the minimum is exponentially distributed,
+        \[ \min\br{T,S} \sim \Ex\br{\la + \mu} \]
+        Thus $q_{12} = P\br{T < S} = \la / \br{\la + \mu}$. Additionally,
+        \[ q_{10} = 1 - q_{12} = 1 - P\br{T < S} = P\br{S < T} = \f{\mu}{\la + \mu} \]
+        We know that $q_{11}$ is zero by definition and $q_{13}$ is zero because that transition is impossible. We also have that $q_{1} = \la + \mu$.\\
+
+        Similarly when two tables are occupied ($i = 2$) there are three possible things that can happen. Let $T \sim \Ex\br{\la}$ be the time until the next arrival just as before. However, there are two possible tables that could leave,
+        \[ S_1 \sim \Ex\br{\mu} : \text{service time for table $1$} \]
+        \[ S_2 \sim \Ex\br{\mu} : \text{service time for table $2$} \]
+        Where $T,S_1,S_2$ are all jointly independent. There are three things that can change the state of the Markov chain.
+        \[ \min \br{T, S_1, S_2} \sim \Ex\br{\la + 2 \mu} \]
+        We jump from state $2$ to $3$ if there is an arrival before the two services finish.
+        \[ P\br{T < S_1, S_2} = \f{\la}{\la+2\mu}\]
+        Thus $\la_2 = \la +2\mu$ and,
+        \[ q_{23} = \f{\la}{\la+2\mu} \quad q_{21} = \f{2\mu}{\la + 2\mu} \quad q_{20} = q_{22} = 0 \]
+        Finally for $i = 3$ no more arrivals can affect the state of the CTMC. Instead there are three possible tables that can complete service. Hence $\la_3 = 3 \mu$ and,
+        \[ q_{32} = 1 \quad q_{30} = q_{31} = q_{33} = 0 \]
+        Altogether,
+        \[ Q = \begin{pmatrix}
+            0 & 1 & 0 & 0 \\
+            \f{\mu}{\la + \mu} & 0 & \f{\la}{\la + \mu} & 0 \\
+            0 & \f{2\mu}{\la + \mu} & 0 & \f{\la}{\la + 2\mu} \\
+            0 & 0 & 1 & 0 \\
+        \end{pmatrix} \]
+        While the intensities are,
+        \[ \la_0 = \la \quad \la_1 = \la + \mu \quad \la_2 = \la + 2 \mu \quad \la_3 = 3 \mu \]
+        We are also able to calculate the generating matrix $R$.
+        \[ R = \begin{pmatrix}
+            -\la & \la & 0 & 0 \\
+            \mu & -\br{\la + \mu} & \la & 0 \\
+            0 & 2 \mu & -\br{\la + 2 \mu} & \la \\
+            0 & 0 & 3 \mu & -3\mu \\
+        \end{pmatrix} \]
+        The entries in $R$ correspond to rates of transition. For example $R_{21}$ is the rate of transition from $2 \to 1$ which equals the total service rate.
+    \end{example}
+    \begin{remark}
+        As can be seen from the previous example, the generating matrix $R$ has a simpler form than $Q$. Actually, $R_{ij}$, $j \neq i$ directly corresponds to the \textit{rate} in which the process moves from state $i$ to $j$. The generating matrix $R$ is also more intuitive. In most cases, the driving force and decaying forces in a CTMC come from different sources. In these cases $R$ is far easier to write down that $Q$. In practice, we often directly model $R$ rather than getting $\bc{\la_i}_{i \in S}$ and $Q = \bc{q_{ij}}_{i,j \in S}$ first.
+    \end{remark}
+    \begin{example}
+        A population model: Each individual gives birth to an offspring with exponential rate $\la$. (i.e. the waiting time until it gets the next offspring $\sim \Ex\br{\la}$). Each individual dies with exponential rate $\mu$. Let $X\br{t}$ be the population at time $t$. When $X\br{t}= i$ there are two possible things that can happen next: either a new birth occurs or a new death occurs. This time until the next (potential) birth is the smallest among the $i$ i.i.d exponential birth times. This means that the ``rate'' from $i$ to $i + 1$ is $i \la$. Similarly, the ``rate'' from $i$ to $i-1$ is $i\mu$.
+        \[ R_{i, i+1} = i \la \quad i = 0, 1, \ldots \qquad R_{i, i -1} = i \mu \quad i = 1, 2, \ldots\]
+        All of the remaining entires of $R$ will be zero except for the diagonal entires which must fix the row sums of $R$ to be zero.
+        \[ R_{ii} = - \br{R_{i, i+1} + R_{i, i-1}} = -i\br{\la + \mu} \]
+        Therefore,
+        \[ R = \begin{pmatrix}
+            0 & 0 & 0 & 0 & \cdots \\
+            \mu & -\br{\la+\mu} & \la & 0 & \cdots \\
+            0 & 2\mu & -2\br{\la+\mu} & 2\la & \cdots \\
+            0 & 0 & 3 \mu & -3\br{\la+\mu} & \cdots \\
+            \vdots & \vdots & \vdots & \vdots & \ddots \\
+        \end{pmatrix} \]
+        Note that the first row is all zeros. Intuitively this corresponds to the fact that state $0$ is an absorbing state. If the population is empty, then no changes can occur to the CTMC. At this point we have completely modeled the CTMC. Albeit if we do need to know $\bc{\la_i}_{i \in S}$ and $Q$ we have that,
+        \[ \la_i = - R_{ii} = i \br{\la + \mu} \]
+        And,
+        \[ q_{i, i+1} = \f{R_{i, i+1}}{- R_{ii}} = \f{i \la}{ i  \br{\la + \mu}} = \f{\la}{\la + \mu} \quad i \geq 1 \]
+        Similarly,
+        \[ q_{i, i-1} = \f{\mu}{\la + \mu} \quad i \geq 1 \]
+        The boundary term $q_{01} = 1$ is arbitrary since $\la_0 = 0$ anyway.
+        \[ Q = \begin{pmatrix}
+            0 & 1 & 0 & 0 & \cdots \\
+            \f{\mu}{\la + \mu} & 0 & \f{\la}{\la + \mu} & 0 & \cdots \\
+            0 & \f{\mu}{\la + \mu} & 0 & \f{\la}{\la + \mu} & \cdots \\
+            0 & 0 & \f{\mu}{\la + \mu} & 0 & \cdots \\
+            \vdots & \vdots & \vdots & \vdots & \ddots \\
+        \end{pmatrix} \]
+    \end{example}
+    So far our population model only incorporated births and deaths of individuals. We can further add immigration to the system. Individuals are added to the population according to a Poisson process with intensity $\al$. It is important to note that this augmentation will not change the ``rate'' of transitions from $i$ to $i-1$. Intuitively, the immigration rate does not affect the death rate of the population. Instead, the immigration model changes the rate of transition from $i$ to $i + 1$. \\
+
+    If we look at the time until the next increase in population, it now the minimum of two random variables (time until next birth, time until next immigration) following,
+    \[ \Ex\br{i \la} \text{ and } \Ex\br{\al} \]
+    Where $\Ex\br{i \la}$ is associated to the birth rate. Each of the $i$ individuals can give birth with intensity $\la$. The immigration interarrival times are $\Ex\br{\al}$ and are independent of $i$. Therefore the rate from $i$ to $i+1$ is now $i \la + \al$,
+    \[ R = \begin{pmatrix}
+        -\al & \al & 0 & 0 & \cdots \\
+        \mu & -\br{\la+\mu}-\al & \la + \al & 0 & \cdots \\
+        0 & 2\mu & -2\br{\la+\mu}-\al & 2\la + \al & \cdots \\
+        0 & 0 & 3 \mu & -3\br{\la+\mu}-\al & \cdots \\
+        \vdots & \vdots & \vdots & \vdots & \ddots \\
+    \end{pmatrix} \]
+    Entry-wise,
+    \[ R_{i, i-1} = i \mu \quad i = 1,2,\ldots \]
+    \[ R_{i, i+1} = i \la + \al \quad i = 0,2,\ldots \]
+    $\bc{\la_i}_{i \in S}$ and $Q$ will change accordingly.
+
+    \subsection{Classification of States}
+
+    Just as we classified states in a DTMC, we attempt to classify states in a CTMC in an analogous manner. We will do this by examining properties of $Q$. Recall that,
+    \[ q_{ij} = P\br{X\br{t} \text{ jumps to $j$ } \mid X\br{t} \text{ jumps from $i$ } } \]
+    Where $q_{ij} \geq 0$ and $\sum_{j\in S} q_{ij} = 1$. If we collect all of the entries $\bc{q_{ij}}_{i,j\in S}$ into $Q$, $Q$ becomes a legitimate transition matrix of a DTMC. \\
+
+    To see how the CTMC is related to the corresponding DTMC, consider the following arbitrary depiction of a CTMC $\bc{X\br{t}}_{t \geq 0}$,
+    \begin{center}
+        \begin{tikzpicture}
+            \pgfmathsetmacro{\sa}{1};
+            \pgfmathsetmacro{\sb}{2};
+            \pgfmathsetmacro{\sc}{2.5};
+            \pgfmathsetmacro{\sd}{3};
+            \pgfmathsetmacro{\se}{3.4};
+            \pgfmathsetmacro{\sf}{4};
+            \pgfmathsetmacro{\tick}{0.1};
+            \pgfmathsetmacro{\jump}{0.4};
+            \draw[<->] (0, 3) node[above]{$X\br{t}$} -- (0, 0)node[left]{$0$} -- (5, 0) node[right]{$t$};
+            \draw[] (\sa, -\tick) node[below]{$t_1$} -- (\sa, \tick);
+            \draw[] (\sb, -\tick) node[below]{$t_2$} -- (\sb, \tick);
+            \draw[] (\sc, -\tick) node[below]{$t_3$} -- (\sc, \tick);
+            \draw[] (\sd, -\tick) node[below]{$t_4$} -- (\sd, \tick);
+            \draw[] (\se, -\tick) node[below]{$t_5$} -- (\se, \tick);
+            \draw[] (\sf, -\tick) node[below]{$t_6$} -- (\sf, \tick);
+            \draw[] (-\tick, 1*\jump) node[left]{$1$} -- (\tick, 1*\jump);
+            \draw[] (-\tick, 2*\jump) node[left]{$2$} -- (\tick, 2*\jump);
+            \draw[] (-\tick, 3*\jump) node[left]{$3$} -- (\tick, 3*\jump);
+            \draw[] (-\tick, 4*\jump) node[left]{$4$} -- (\tick, 4*\jump);
+            \draw[] (-\tick, 5*\jump) node[left]{$5$} -- (\tick, 5*\jump);
+            \draw[] (-\tick, 6*\jump) node[left]{$6$} -- (\tick, 6*\jump);
+            \draw[thick] (0,4*\jump) --
+            (\sa, 4*\jump) -- (\sa, 2*\jump) --
+            (\sb, 2*\jump) -- (\sb, 5*\jump) --
+            (\sc, 5*\jump) -- (\sc, 1*\jump) --
+            (\sd, 1*\jump) -- (\sd, 6*\jump) --
+            (\se, 6*\jump) -- (\se, 2*\jump) --
+            (\sf, 2*\jump) -- (\sf, 1*\jump) --
+            (5, 1*\jump)
+            ;
+        \end{tikzpicture}
+    \end{center}
+    We can construct a DTMC by ignoring the interarrival times $t_{k+1} - t_{k}$ and only record the states at each interarrival time. The $1$-step transition probability matrix is given by $Q$. It contains all of the state changes but forgets the temporal information. This DTMC is called the \term{discrete skeleton} or \term{embedded DTMC} of the CTMC.\\
+
+    Since accessibility is the notion that $i$ can go to $j$ in an arbitrary time, we naturally define accessibility in a CTMC between $i$ and $j$ if they are accessible in the discrete skeleton. Moreover communication, irreducibility are derivative of the notion of accessibility and thus we extend the notion as well. \\
+
+    Additionally, the notion of recurrence/transience are also independent of the notion of time and thus are the same in the CTMC as they are in the discrete skeleton. \\
+
+    Since accessibility, communication, irreducibility, recurrence/transience are only related to the change of states, not about time, these properties will be the same for a CTMC and its discrete skeleton. For a CTMC $\bc{X\br{t}}_{t \geq 0}$ we call ``state $j$ accessible from state $i$'' or ``$i$ and $j$ communicate'', ``the process is irreducible'', ``$i$ is recurrent/transient'' if and only if this is the case for its discrete skeleton. \\
+
+    Note that since positive/null recurrence do involve the (expected) amount of time, we can indeed have different results for a CTMC and its discrete skeleton. In particular we need to define positive/null recurrence for a CTMC.
+    \begin{definition}
+        Let $R_{ii}$ be the amount of (continuous) time until the MC revisits state $i$ given $X\br{0}= i$. A recurrent state $i$ is called positive recurrent if $\Exp\br{R_{ii}}< \inf$.
+        \[\text{$i$ is positive recurrent: } \quad \Exp\br{R_{ii}}< \inf\]
+        It is called null recurrent if $\Exp\br{R_{ii}} = \inf$.
+        \[\text{$i$ is null recurrent: } \quad \Exp\br{R_{ii}} = \inf\]
+    \end{definition}
+    \begin{center}
+        \begin{tikzpicture}
+            \pgfmathsetmacro{\sa}{1};
+            \pgfmathsetmacro{\sb}{2};
+            \pgfmathsetmacro{\sc}{2.5};
+            \pgfmathsetmacro{\sd}{3};
+            \pgfmathsetmacro{\se}{3.4};
+            \pgfmathsetmacro{\sf}{4};
+            \pgfmathsetmacro{\tick}{0.1};
+            \pgfmathsetmacro{\jump}{0.4};
+            \draw[<->] (0, 3) node[above]{$X\br{t}$} -- (0, 0)node[left]{$0$} -- (5, 0) node[right]{$t$};
+            \draw[] (\sa, -\tick) -- (\sa, \tick);
+            \draw[] (\sb, -\tick) -- (\sb, \tick);
+            \draw[] (\sc, -\tick) -- (\sc, \tick);
+            \draw[] (\sd, -\tick) -- (\sd, \tick);
+            \draw[] (\se, -\tick) -- (\se, \tick);
+            \draw[] (\sf, -\tick) node[below]{$R_{ii}$} -- (\sf, \tick);
+            \draw[] (-\tick,4*\jump) node[left]{$i$} -- (\tick, 4*\jump);
+            \draw[thick] (0,4*\jump) -- (\sa, 4*\jump);
+            \draw[thick, dashed] (\sa, 4*\jump) -- (\sa, 2*\jump);
+            \draw[thick, dashed] (\sa, 2*\jump) -- (\sb, 2*\jump);
+            \draw[thick, dashed] (\sb, 2*\jump) -- (\sb, 5*\jump);
+            \draw[thick, dashed] (\sb, 5*\jump) -- (\sc, 5*\jump);
+            \draw[thick, dashed] (\sc, 5*\jump) -- (\sc, 1*\jump);
+            \draw[thick, dashed] (\sc, 1*\jump) -- (\sd, 1*\jump);
+            \draw[thick, dashed] (\sd, 1*\jump) -- (\sd, 6*\jump);
+            \draw[thick, dashed] (\sd, 6*\jump) -- (\se, 6*\jump);
+            \draw[thick, dashed] (\se, 6*\jump) -- (\se, 2*\jump);
+            \draw[thick, dashed] (\se, 2*\jump) -- (\sf, 2*\jump);
+            \draw[thick, dashed] (\sf, 2*\jump) -- (\sf, 4*\jump);
+            \draw[thick] (\sf, 4*\jump) -- (5, 4*\jump) -- (5, 4*\jump);
+        \end{tikzpicture}
+    \end{center}
+    As in the discrete case positive recurrence, null recurrence and transience are class properties. However positive/null recurrences can be different for a DTMC and its discrete skelton, but they are still class properties.
+    \subsection{Stationary Distribution}
+    \begin{definition}
+        A distribution $\pi = \br{\pi_0, \pi_1, \ldots}$ is called a \term{stationary distribution} of a CTMC $\bc{\la\br{t}}_{t \geq 0}$ with generator $R$, iff it satisfies:
+        \[ \pi \cdot R = 0 \quad \sum_{i} \pi_i = \pi \cdot \ve 1 = 1 \]
+        Notice that the first condition differs from the discrete case where $\pi \cdot P = \pi$.
+    \end{definition}
+    Why do we call $\pi$ stationary distributions? To see that $\pi$ is fixed, assume that the process starts by initial distribution $\al^{(0)} = \pi$:
+    \[ P\br{X\br{0} =  i} = \pi_i \]
+    The distribution of this process at time $t$ is given by,
+    \[ \al^{(t)} = \al^{(0)} \cdot P\br{t} = \pi \cdot P \br{t} \]
+    This is obtained by looking at $\al_{j}^{(t)}$:
+    \begin{align*}
+    \al_j^{(t)}
+    &= P\br{X\br{t} = j} \\
+    &= \sum_{i\in S}P\br{X\br{t} = j \mid X\br{0} = i}P\br{X\br{0} = i} \\
+    &= \sum_{i\in S}P_{ij}\br{t}\al_{i}^{(0)} \\
+    &= \br{\al^{(0)} \cdot P\br{t}}_{j}
+    \end{align*}
+    To show that $\al^{(t)}$ is constant in time, examine,
+    \begin{align*}
+        \der{\al^{(t)}}{t}
+        &= \der{}{t} \br{\al^{(0)} \cdot P\br{t}}\\
+        &= \der{}{t} \br{\pi \cdot P\br{t}}\\
+        &= \pi \cdot \der{}{t} P\br{t} \\
+        &= \pi \cdot \br{\lim_{h \to 0^{+}} \f{P\br{t + h} - P\br{t}}{h}} \\
+        &= \pi \cdot \br{\lim_{h \to 0^{+}} \f{P\br{t}\cdot P\br{h} - P\br{t}}{h}} \quad \text{C-K equation} \\
+        &= \pi \cdot \br{\lim_{h \to 0^{+}} \f{P\br{h} - \ident}{h}} \cdot P\br{t} \\
+        &= \pi \cdot R \cdot P\br{t} \\
+        &= \ve 0\cdot P\br{t} \\
+        &= \ve 0
+    \end{align*}
+    This means that $\al^{(t)}$ does not change with time. It is a constant vector. In other words, the distribution of $X\br{t}$ will not change over time if the MC starts from the stationary distribution.
+    \begin{theorem}
+        If a CTMC starts from a stationary distribution $\pi$, then its distribution will never change.
+    \end{theorem}
+    \begin{theorem}
+        \label{thm:bltctmc}
+        \term{Basic Limit Theorem for CTMC}: Let $\bc{X\br{t}}_{t \geq 0}$ be an irreducible, recurrent CTMC. Then $\pi_{j}$ exists and also:
+        \[ \lim_{t \to \inf} P_{ij}\br{t} = \pi_{j} = \f{\Exp\br{T_j}}{\Exp\br{R_{jj}}} = \f{1 / \la_{j}}{\Exp\br{R_{jj}}} \quad \forall i, j \in S \]
+        In addition, the MC is positive recurrent if and only if a unique stationary distribution exists. In this case, the unique stationary distribution is the $\pi = \br{\pi_{0}, \pi_{1}, \ldots}$ where $\pi_j$ is mentioned above.
+    \end{theorem}
+    Note that the last equality in \cref{thm:bltctmc} holds because $T_{j}$ is distributed exponentially will expectation $1 / \la_j$. Most of the terms and relations that hold for \cref{thm:bltctmc} are analogous to the discrete case.
+    \begin{remark}
+        The long-run fraction of time spent in state $j$ is given by $\Exp\br{T_j}/ \Exp\br{R_{jj}}$. The idea being that $R_{jj}$ represents the amount of time until the first return to state $j$ given that we started in state $j$ at time $0$.
+        \begin{center}
+            \begin{tikzpicture}
+                \draw[|->] (0,0) node[below]{$0$} -- (5, 0) node[right]{$t$};
+                \draw[red,thick,|-|] (0,0) -- node[below]{$T_j$} (2, 0);
+                \draw[|->, red,thick] (4,0) node[below]{$R_{jj}$} -- (5, 0);
+            \end{tikzpicture}
+        \end{center}
+        For each interval of length $R_{jj}$, $T_{j}$ is the portion of time spent in state $j$.
+    \end{remark}
+
+    \subsection{Birth and Death Process}
+    \begin{definition}
+        A \term{birth and death process} is a CTMC such that,
+        \[ S = \bc{0, 1,\ldots,m} \text{ or } S = \bc{0, 1,\ldots} \]
+        and that,
+        \[ q_{i, i - 1} + q_{i, i + 1} = 1 \quad \forall i \in S\]
+        This later condition is identical to enforcing that,
+        \[ q_{ij} = 0 \quad \forall j \in S, \br{j \neq i \pm 1} \]
+        The process can only change to the neighboring states.
+    \end{definition}
+    For a birth and death process we use a new set of parameters. Denote:
+    \[ \la_i = R_{i, i + 1} \quad i = 0, 1, 2, \ldots \]
+    \[ \mu_i = R_{i, i - 1} \quad \mu = 1, 2, \ldots \]
+    \[ R = \begin{pmatrix}
+        - \la_0 & \la_0 & 0 & 0 & 0 & \ldots \\
+        \mu_1 & -\br{\la_1 + \mu_1} & \la_1 & 0 & 0 & \ldots \\
+        0 & \mu_2 & -\br{\la_2 + \mu_2} & \la_2 & 0 & \ldots \\
+        0 & 0 & \mu_3 & -\br{\la_3 + \mu_3} & \la_4 & \ldots \\
+        0 & 0 & 0 & \mu_4 & -\br{\la_4 + \mu_4} & \ldots \\
+        \vdots & \vdots & \vdots & \vdots & \vdots & \ddots \\
+    \end{pmatrix} \]
+    Where $R_{00} = - \la_0$ always and $R_{ii} = -\br{\la_i + \mu_i}$ for all entries where $i = 1,2,\ldots$. We have the following interpretation of the entires,
+    \[ \text{$\la_{i}$'s are called \term{birth rates}} \]
+    \[ \text{$\mu_{i}$'s are called \term{death rates}} \]
+    Most of the processes we have consider thus far are actually birth and death processes.
+    \begin{example}
+        Consider our previous example of the restaurant with three tables.
+        \[ R = \begin{pmatrix}
+            - \la & \la & 0 & 0 \\
+            1\mu & -\br{\la + \mu} & \la & 0 \\
+            0 & 2\mu & -\br{\la + 2\mu} & \la \\
+            0 & 0 & 3\mu & -3\mu \\
+        \end{pmatrix} \]
+        This is a birth and death process with the following rates.
+        \[ \text{Birth rate:} \quad \la_i = \la \quad i = 0, 1, 2\ldots  \]
+        \[ \text{Death rate:} \quad \mu_i = i\mu \quad i = 1, 2\ldots  \]
+    This birth and death system is actually part of a larger family of processes. In general consider a \term{$m/m/s$ queuing system}. The first $m$ indicates that there is an exponential interarrival time $\stackrel{\text{i.i.d}}{\sim} \Ex\br{\la}$. The second $m$ indicates that there is an exponential service time $\stackrel{\text{i.i.d}}{\sim} \Ex\br{\mu}$. The final $s$ indicates that there are $s$ servers. There are two limiting/degenerate cases for $s$. In the case that $s$ equals $1$, then there is only one server and the queue is trivial. Alternatively, if $s = \inf$ then all customers that arrive are served. In general we let $X\br{t}$ be the number of customers in the system at time $t$. A queuing system is a birth and death system because a birth rate corresponds to the arrival times of customers.
+    \[ \la_i = \la \quad i = 0, 1, \ldots\]
+    Moreover the death rate corresponds to the completion of a service. When there are $X\br{t} = i$ customers in the system there are two cases,
+    \begin{enumerate}
+        \item If $i \leq s$ then $i$ servers are busy each with $\sim \Ex\br{\mu}$. The total death rate,
+        \[ \mu_i = i \mu \]
+        \item If $i \geq s$ then all $s$ servers will be busy and we will have a queue. The total death rate is capped,
+        \[ \mu_i = s \mu \]
+    \end{enumerate}
+    Thus for an $m/m/s$ queue we have,
+    \begin{align*}
+    \la_i &= \la \qquad i = 0, 1,\ldots  \\
+    \mu_i &= \begin{cases}
+        i \mu & i\leq s \\
+        s \mu & i > s
+    \end{cases}
+    \end{align*}
+    \end{example}
+    \begin{example}
+        Consider an actual population model where the birth and death process is literal.
+        \[ R = \begin{pmatrix}
+            - \al & \al & 0 & 0 & \ldots \\
+            \mu & -\br{\la +\mu + \al} & \la+ \al & 0 & \ldots \\
+            0 & 2\mu & -\br{2{\la +\mu} + \al} & 2\la +\al & \ldots \\
+            \vdots & \vdots & \vdots & \vdots  & \ddots \\
+        \end{pmatrix} \]
+        The birth rate is at state $i$ is $i \la + \mu$ where $i = 0, 1,\ldots$. Note that this is not the \textit{biological} birth rate but the total rate by which the process goes from $i$ to $i + 1$. The death rate is simply $\mu_i = i \mu$ for $i = 1,2,\ldots$.
+    \end{example}
+    As we see, there are two main types of birth and deaths processes: queuing system and population model.
+    A queuing system and the population model are both birth and death processes by have a few qualitative differences.
+    The key difference between them is that the birth rate in the queuing system is typically a constant (the number of customers arriving doesn't depend on the number of existing customers; it does not depend on state $i$) while the birth rate in the population model increases was $i$ increases. \\
+
+    Both these models are worth studying for practical reasons but there is also an analytic advantage; in these simple systems, the form of the generating matrix $R$ is not complicated. As it turns out, it is possible to analytically calculate the stationary distribution.\\
+
+    To find the stationary distribution of a birth and death process we need to find $\pi$ such that,
+    \[ \pi \cdot R = 0 \qquad \pi \cdot \ve 1 = 1 \quad \pi = \br{\pi_0, \pi_1, \ldots} \]
+    Where we recall that $R$ has the generic form,
+    \[ R = \begin{pmatrix}
+        - \la_0 & \la_0 & 0 & 0 & 0 & \ldots \\
+        \mu_1 & -\br{\la_1 + \mu_1} & \la_1 & 0 & 0 & \ldots \\
+        0 & \mu_2 & -\br{\la_2 + \mu_2} & \la_2 & 0 & \ldots \\
+        0 & 0 & \mu_3 & -\br{\la_3 + \mu_3} & \la_4 & \ldots \\
+        0 & 0 & 0 & \mu_4 & -\br{\la_4 + \mu_4} & \ldots \\
+        \vdots & \vdots & \vdots & \vdots & \vdots & \ddots \\
+    \end{pmatrix} \]
+    The first row gives us,
+    \[ -\la_0 \pi_0 + \mu_1 \pi_1 = 0 \implies \pi_1 = \f{\la_0}{\mu_1} \pi_0 \]
+    The second row gives us a more involved result,
+    \[ -\la_0 \pi_0 - \br{\mu_1 + \la_1} \pi_1 + \mu_2 \pi_2 = 0 \]
+    If we add this to the first equation we get,
+    \[ -\la_1 \pi_1 + \mu_2 \pi_2 = 0 \implies \pi_2 = \f{\la_1}{\mu_2} \pi_1 \]
+    But we already know that $\pi_1$ can be written in terms of $\pi_0$,
+    \[ \pi_2 = \f{\la_1 \la_0}{\mu_2 \mu_1} \pi_0 \]
+    If we continue this process, we arrive at the general term of,
+    \[ \pi_n = \f{\la_0 \cdots \la_{n-1}}{\mu_1 \cdots \mu_n} \pi_0 = \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j} \pi_0 \]
+    These equations fix all entries of $\pi$ up to a normalization. If we sum over all entries (taking the special case of $\pi_i$ into account),
+    \[ 1 = \sum_{n=0}^{\inf} \pi_n = \br{1+ \sum_{n=0}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j}} \pi_0 \]
+    Therefore we have $\pi_0$,
+    \[ \pi_0 = \br{1+ \sum_{n=0}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j}}^{-1} \]
+    While the remaining entries are,
+    \[ \pi_n = \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j}\br{1+ \sum_{n=0}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j}}^{-1} \]
+    Of course, the uniqueness of a stationary distribution is contingent on the fact that the CTMC is positive recurrent. It is not true for all birth and death processes so it must be that positive recurrence can be determined by the convergence of $\pi_0$. Therefore we have that a stationary distribution $\pi$ exists (and thus MC is positive recurrent) and is normalizable if,
+    \[ \sum_{n=0}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j} < \inf \]
+    One would fear that these expressions are quite complicated and would be difficult to work out explicitly.
+    \begin{example}
+        \term{Positive recurrence for an m/m/s queue:}
+        However consider the case of a $m/m/s$ queue. Recall that $\la_i = \la$ and $\mu_i = i \mu$ if $i \leq s$ and $\mu_i = s \mu$ if $i \geq s$. Therefore,
+        \[ \sum_{n=0}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j} = \f{\la}{\mu} + \f{\la}{\mu} \f{\la}{2\mu} + \cdots + \f{\la}{\mu}\f{\la}{2\mu}\cdots \f{\la}{s\mu} + \f{\la}{\mu}\f{\la}{2\mu}\cdots \br{\f{\la}{s\mu}}^2 +\cdots \]
+        The first $s$ terms correspond to a finite sum and is thus finite. The remaining terms are,
+        \[ \sum_{n=0}^{\inf} \prod_{j=s}^{n}\f{\la_{j-1}}{\mu_j} = \f{\la}{\mu}\f{\la}{2\mu}\cdots \br{\f{\la}{s\mu}}^2 + \f{\la}{\mu}\f{\la}{2\mu}\cdots \br{\f{\la}{s\mu}}^3 + \cdots \]
+        Which is a geometric series we parameter $\f{\la}{s\mu}$. Therefore the sum is finite if and only if $\la < s \mu$. The process is positive recurrent if and only if,
+        \[ \la < s \mu \]
+        This necessary and sufficient condition makes sense: the arrival rate is $\la$ and the maximum possible service rate is $s \mu$. If the maximal possible service rate is larger than the arrival rate then it must be that the MC returns to every state in a finite amount of time.
+    \end{example}
+    \begin{example}
+        \term{Positive recurrence for a population model:} Recall that for a population model we have that $\la_i = i \la + \al$ and $\mu_i = i \mu$. Therefore,
+        \begin{align*}
+            \sum_{n = 1}^{\inf} \prod_{j=1}^{n} \f{\la_{j-i}}{\mu_j} = \sum_{n = 1}^{\inf} \prod_{j=1}^{n} \f{\br{j-1}\la + \al}{j \mu}
+        \end{align*}
+        To determine if this series converges, we can make use of the ratio test. Clearly we can neglect the contributions from $\al$,
+        \[ \lim_{j \to \inf} \f{\br{j-1}\la + \al}{j \mu} = \lim_{j \to \inf} \f{\br{j-1}\la}{j \mu} = \f{\la}{\mu}  \]
+        Therefore if $\la < \mu$,
+        \[ \sum_{n = 1}^{\inf} \prod_{j=1}^{n} \f{\br{j-1}\la + \al}{j \mu} < \inf \qquad \la < \mu\]
+        Moreover if $\la > \mu$ then we have divergence,
+        \[ \sum_{n = 1}^{\inf} \prod_{j=1}^{n} \f{\br{j-1}\la + \al}{j \mu} = \inf \qquad \la > \mu\]
+        However the ratio test is inconclusive whenever $\la = \mu$. In this case $\al$ has a non-negligent contribution. If $\la = \mu$ and $\al \geq \la = \mu$ the ratio,
+        \[ \f{\br{j-1}\la + \al}{j \mu} \geq 1 \implies \sum_{n = 1}^{\inf} \prod_{j=1}^{n} \f{\br{j-1}\la + \al}{j \mu} = \inf \]
+        However if $\la = \mu$ and $\al < \la = \mu$ characterizing the converge is more complicated. As it turns out we can make use of the \term{Raabe-Duhamel's test}. The Raabe-Duhamel test determines if a generic series $\sum_n{a_n}$ is convergent or not. Let $L$ be,
+        \[ L = \lim_{n \to \inf} n \br{\f{a_n}{a_{n+1}} - 1} \]
+        There are three cases for $L$,
+        \begin{center}
+            \begin{tabular}{|c|c|}
+            \hline
+            $L$ & $\sum_{n} a_n$ \\
+            \hline
+            $>1$ & convergent \\
+            $<1$ & divergent \\
+            $=1$ & inconclusive \\
+            \hline
+            \end{tabular}
+        \end{center}
+        We can apply this test to our series.
+        \begin{align*}
+        a_n &= \prod_{j=1}^{n} \f{\la_{j-1}}{\mu_j} \\
+        a_{n+1} &= \prod_{j=1}^{n+1} \f{\la_{j-1}}{\mu_j} \\
+        \f{a_{n}}{a_{n+1}} &= \f{\la_{n+1}}{\mu_n} \\
+        &= \f{\br{n+1} \mu }{n \la + \al}
+        \end{align*}
+        Therefore,
+        \begin{align*}
+            L &= \lim_{n\to \inf} n \br{\f{\br{n+1} \mu }{n \la + \al} - 1} \\
+            &= \lim_{n\to \inf} n \br{\f{\br{n+1} \mu - n \la - \al}{n \la + \al}} \\
+            &= \lim_{n\to \inf} \br{\f{n \br{\la - \al}}{n \la + \al}} \\
+            &= \f{\la - \al}{\la} \\
+            &< 1
+        \end{align*}
+        Therefore the sum is divergent. To sum up, the CTMC is positive recurrent if and only if $\la < \mu$.
+    \end{example}
+    \section{Brownian Motion}
+    \subsection{Construction and Definition}
+    Recall that we have seen a simple (symmetric) random walk to be a series $X_1, X_2, \ldots$ i.i.d where,
+    \[ P\br{X_1 = \pm 1} = \f12 \]
+    There is an equal chance to move to the right and the left by one unit. We then define the current distance from the starting point by constructing a sum,
+    \[ S_0 = 0  \quad S_n = \sum_{i = 1}^{n} X_i \]
+    The difference between a simple random walk and 1D Brownian motion is that Brownian motion is inherently a continuous process. We also consider units for the vertical and horizontal scales. Therefore we define,
+    \[ B_{\br{\De x, \De t}}\br{t} \defined \De x \br{X_1 + \cdots + X_{\bs{t / \De t}}} \]
+    Where $\De x$ represents the spatial scaling and $\De t$ represents the temporal scaling. Note that $\bs{t / \De t}$ denotes the integer part of $t / \De t$; i.e. we are taking the floor. Not surprisingly, symmetry gives us that,
+    \[ \Exp\br{B_{\br{\De x, \De t}}\br{t}} = 0 \]
+    Whereas the variance is,
+    \begin{align*}
+        \Var\br{B_{\br{\De x, \De t}}\br{t}}
+        &= \Var\br{\De x \br{X_1 + \cdots + X_{\bs{t / \De t}}}} \\
+        &= \br{\De x }^2\Var\br{\br{X_1 + \cdots + X_{\bs{t / \De t}}}} \\
+        &= \br{\De x }^2\bs{t / \De t}\Var\br{X_1} \qquad \text{i.i.d}\\
+        &= \br{\De x }^2\bs{t / \De t}
+    \end{align*}
+    Where the last equality comes from the fact that $\Var\br{X_1} = 1$.
+    \begin{center}
+        \begin{tikzpicture}
+            \draw[<->] (0, -1) -- (0, 1) node[above]{$B_{\br{\De x, \De t}}\br{t}$};
+            \draw[->] (0, 0) -- (5, 0) node[right]{$t$};
+            \pgfmathsetmacro{\dt}{0.2};
+            \pgfmathsetmacro{\dx}{0.2};
+            \foreach \b [count = \i] in {1,2,1,0,-1,0,-1,-2,-3,-4,-3,-4,-5,-4,-3,-2,-3,-2,-1} {
+                \draw[thick] (\dt*\i, \dx*\b) -- (\dt*\i + \dt*1, \dx*\b);
+            }
+        \end{tikzpicture}
+    \end{center}
+    If we take the limit $\De x \to 0$ and $\De t \to 0$ we have that,
+    \[ \br{\De x }^2\bs{\f{t}{\De t}} \approx \br{\De x }^2{\f{t}{\De t}} \to 0 \]
+    However, we want to make $\Var\br{B_{\br{\De x, \De t}}\br{t}}$ converge to something non-zero. Therefore we take $\br{\De x}^2 / t$ to be a constant called $\si^2$. Therefore $\De x = \si \sqrt{\De t}$. In this way, $\bc{B_{\br{\De x, \De t}}\br{t}}_{t \geq 0}$ converges to a limiting process denoted $\bc{B\br{t}}_{t \geq 0}$. Some of the the properties of $\bc{B\br{t}}_{t \geq 0}$ include,
+    \begin{enumerate}
+        \item By central limit theorem, $B\br{t}$ is normal $B\br{t} \sim \s{N}\br{0, \si^2 t}$,
+        \[ \Exp\br{B\br{t}} = 0 \qquad \Var\br{B\br{t}} = \si^2 t \]
+        \item $\bc{B\br{t}}_{t \geq 0}$ has independent increments,
+        \[ t_1 < t_2< \cdots < t_n\]
+        \[ B\br{t_n} - B\br{t_{n - 1}}, B\br{t_{n-1}} - B\br{t_{n - 2}}, \ldots, B\br{t_1} \]
+        are independent. This following directly from the simple random walk.
+        \item $\bc{B\br{t}}_{t\geq0}$ has stationary increments,
+        \[ B\br{t + s} - B\br{t} \stackrel{\text{d}}{=} B\br{t} - \underbrace{B\br{0}}_{0} \]
+    \end{enumerate}
+    \begin{definition}
+        A continuous stochastic process $\bc{B\br{t}}_{t \geq 0}$ is called a \term{Brownian motion} if,
+        \begin{enumerate}
+            \item $B\br{0} = 0$
+            \item $\bc{B\br{t}}_{t \geq 0}$ has stationary and independent increments
+            \item $\forall t: B\br{t} \sim \s{N}\br{0, \si^2 t}$ for some $\si \geq 0$. If $\si = 1$ then we have \term{standard Brownian motion} (default setting working forward)
+        \end{enumerate}
+    \end{definition}
+    \subsection{Properties of Brownian Motion}
+    \begin{center}
+    \begin{tikzpicture}
+        \draw[thick, ->] (0, -3) -- (0, 3) node[above]{$B\br{t}$};
+        \draw[thick, ->] (0, 0) -- (6, 0) node[right]{$t$};
+        \Brownian{600}{0.01}{0.2}{red}{$B_1\br{t}$}
+        \Brownian{600}{0.01}{0.2}{blue}{$B_2\br{t}$}
+    \end{tikzpicture}
+    \end{center}
+    Brownian motion is a Gaussian process.
+    \begin{definition}
+        A group of r.v.s $\br{X_1, X_2, \ldots, X_n}$ are called \term{jointly normal} if $a_1X_1 + a_2 X_2 + \cdots + a_n X_n$ follows a normal distribution for any $a_1, \ldots, a_{n} \in \R$.
+    \end{definition}
+    \begin{definition}
+        A stochastic process $\bc{X\br{t}}_{t \geq 0}$ is called a \term{Gaussian process} if all its finite dimensional distributions are jointly normal. That is $\forall n$, $t_1, \ldots, t_n$, $\br{X\br{t_1}, \ldots, X\br{t_n}}$ is jointly normal.
+        \[ \forall n: t_1, \ldots, t_n, a_1, \ldots, a_n \in \R: a_1X\br{t_1} + \cdots a_nX\br{t_n} \quad \text{is normal}\]
+    \end{definition}
+    Since a jointly normal distribution is fully characterized by its expectation and variance, covariance structure, a Gaussian process $\bc{X\br{t}}_{t \geq 0}$ is also fully characterized by $\Exp\br{X\br{t}}, t \geq 0$ and $\Cov\br{X\br{s}, X\br{t}}, t, s \geq 0$.
+
+    \begin{theorem}
+        The Brownian motion is a Gaussian process.
+    \end{theorem}
+    \begin{proof}
+        Clearly, $\forall n, t_1 < \cdots < t_n, a_1, \ldots, a_n \in \R$:
+        \begin{align*}
+            a_1 B\br{t_1} + \cdots + a_n B\br{t_n}
+            &= a_1 B\br{t_1} + a_2 \bs{B\br{t_1} + \br{B\br{t_2} - B\br{t_1}}} + \cdots \\
+            &\quad \cdots + a_n \bs{B\br{t_1} + \br{B\br{t_2} - B\br{t_1}} + \cdots + \br{B\br{t_n} - B\br{t_{n-1}}}} \\
+            &= \br{a_1 + a_2 + \cdots + a_n} B\br{t_1} + \\
+            &\quad + \br{a_2 + a_3 + \cdots + a_n} \br{B\br{t_2} - B\br{t_1}} + \\
+            &\quad + \ldots + \\
+            &\quad + a_n \br{B\br{t_n} - B\br{t_{n-1}}}
+        \end{align*}
+        But $B\br{t_1}, B\br{t_2} - B\br{t_1}$ and $B\br{t_n} - B\br{t_{n-1}}$ are independent, normal r.v.s. Therefore, $a_1 B\br{t_1} + \cdots + a_n B\br{t_n}$ is normal.
+    \end{proof}
+    The expectation and variance-covariance function of Brownian motion is,
+    \[ \Exp\br{B\br{t}} = 0 \qquad B\br{t} \sim \s{N}\br{0, t} \]
+    While the covariance structure is (for $s \leq t$),
+    \begin{align*}
+       \Cov\br{B\br{s}, B\br{t}}
+       &= \Cov\br{B\br{s}, B\br{s} + \br{B\br{t} - B\br{s}}} \\
+       &= \Var\br{B\br{s}} + \Cov\br{B\br{s}, B\br{t} - B\br{s}}
+    \end{align*}
+    But $B\br{t} - B\br{s} \indep B\br{s}$. Therefore,
+    \[ \Cov\br{B\br{s}, B\br{t}} = \Var\br{B\br{s}} = s \]
+    Symmetrically, if $t < s$ then we have that $\Cov\br{B\br{s}, B\br{t}} = t$. These two cases can be combined,
+    \[ \Cov\br{B\br{s}, B\br{t}} = \min\bc{s, t} \]
+    Since this fully characterizes a Gaussian process, we have:
+    \begin{theorem}
+        \label{thm:necc_suff_brownian}
+        A Gaussian process $\bc{X\br{t}}_{t \geq 0}$ is a Brownian motion if and only if,
+        \[ \Exp\br{X\br{t}} = 0 \quad \forall t \]
+        \[ \Cov\br{X\br{s}, X\br{t}} = \min \bc{s, t}\]
+    \end{theorem}
+    Brownian motion is not a CTMC because its state space is $S = \R$ and is uncountable. However it is a Markov process in the sense that is has continuous time Markov property,
+    \[ B\br{t + s} \mid B\br{t} = x, B\br{u} = x_u, u \in \left[ 0, t \right) \stackrel{d}{=} B\br{t + s} \mid B\br{t} = x \]
+    The Markov property is inherited from the simple random walks. If fact Brownian motion is a \textit{martingale}.
+    \subsubsection{Martingales}
+    \begin{definition}
+        A continuous time process $\bc{X\br{t}}_{t \geq 0}$ is called a martingale if,
+        \[ \Exp\br{X\br{t} \mid X\br{s} = x_s, X\br{u} = x_u, u \in \left[0, s\right)} = x_s \]
+        For all $s < t$, $x_s \in \R$. Or more simply,
+        \[ \Exp\br{X\br{t} \mid X\br{u}, u \in \left[0, s\right]} = X\br{s} \]
+    \end{definition}
+    The concept of a martingale comes from the idea of a \textit{fair game}: on average, the gamble does not win or lose; the expected future wealth is equal to the current wealth. We can now proof that Brownian motion is martingale.
+    \begin{align*}
+        \Exp\br{X\br{t} \mid X\br{s} = x_s, X\br{u} = x_u, u \in \left[0, s\right)}
+        &= \Exp\br{X\br{t} \mid X\br{s} = x_s} \qquad \text{Markov Property} \\
+        &= \Exp\br{X\br{s} + X\br{t} - X\br{s} \mid X\br{s} = x_s} \\
+        &= \Exp\br{X\br{s} \mid X\br{s} = x_s} + \Exp\br{X\br{t} - X\br{s} \mid X\br{s} = x_s} \\
+        &= x_s + \Exp\br{X\br{t} - X\br{s} \mid X\br{s} = x_s} \\
+        &= x_s + \Exp\br{X\br{t} - X\br{s}} \qquad \text{Independence} \\
+        &= x_s
+    \end{align*}
+    \subsubsection{Self-Similarity}
+    Let $\bc{B\br{t}}_{t \geq 0}$ be a Brownian motion, then define a new process $\bc{Y\br{t}}_{t \geq 0}$ such that,
+    \[ \bc{Y\br{t} = \f{1}{\sqrt{c}} B\br{c t}}_{t \geq 0} \]
+    Where $c$ is a positive constant. This new process $\bc{Y\br{t}}_{t \geq 0}$ is also a Brownian motion. The purpose of $c$ is to rescale space by a factor of $1/\sqrt{c}$ and to rescale time by a factor of $1/c$.
+    \begin{proof}
+        $\forall n, t_1, \ldots, t_n, a_1, \ldots, a_n, \in \R$,
+        \begin{align*}
+        a_1 Y\br{t_1} + \cdots + a_n Y\br{t_n}
+        &= \f{a_1}{\sqrt{c}} B\br{c t_1} + \cdots + \f{a_n}{\sqrt{c}} B\br{c t_n}
+        \end{align*}
+        Which is simply a linear combination of $B\br{t}$ at some time points. Since $B$ is a Brownian motion, $B$ is also a Gaussian process. Therefore $a_1 Y\br{t_1} + \cdots + a_n Y\br{t_n}$ is normal. Since this holds for all $n, t_1, \ldots, t_n, a_1, \ldots, a_n, \in \R$, $Y$ is also a Gaussian process. We can now make use of \cref{thm:necc_suff_brownian} to prove that $Y$ is a Brownian motion.
+        \[ \Exp\br{Y\br{t}} = \Exp\br{\f{1}{\sqrt{c}}\underbrace{B\br{ct}}_{\s{N}\br{0, ct}}} = 0 \]
+        Whereas the covariance structure is,
+        \begin{align*}
+        \Cov\br{Y\br{s}, Y\br{t}}
+        &= \Cov\br{\f{1}{\sqrt{c}}B\br{cs}, \f{1}{\sqrt{c}}B\br{ct}} \\
+        &= \f{1}{c}\Cov\br{B\br{cs}, B\br{ct}} \\
+        &= \f{1}{c}\min\bc{cs, ct} \\
+        &= \min\bc{s, t}
+        \end{align*}
+        Where he last equality requires $c \geq 0$. We conclude that $Y$ is a Brownian motion.
+    \end{proof}
+    \subsubsection{Time Inversion}
+    If we define $\bc{Z\br{t}}_{t \geq 0}$ such that,
+    \[ Z\br{t} = t B\br{\f1t} \qquad Z\br{0} = 0 \]
+    then $\bc{Z\br{t}}_{t \geq 0}$ is a Brownian motion.
+    \begin{proof}
+        As in the previous proof, we first demonstrate that $\bc{Z\br{t}}_{t \geq 0}$ is a Gaussian process and then make use of \cref{thm:necc_suff_brownian}.\\
+
+        $\forall n, t_1, \ldots, t_n, a_1, \ldots, a_n \in \R$,
+        \[ a_1 Z\br{t_1} + \cdots + a_n\br{t_n} = a_1 t_1 B\br{\f{1}{t_1}} + \cdots + a_n t_n B\br{\f{1}{t_n}} \]
+        Which is just a linear combination of $B$ which must be normal because $B$ is Gaussian. We therefore have that $Z$ is also a Gaussian process. Next we check the expectation and covariance structure,
+        \[ \Exp\br{Z\br{t}} = \Exp\br{t \underbrace{B\br{\f{1}{t}}}_{\s{N}\br{0, \f{1}{t}}}} = 0 \]
+        Whereas the covariance is,
+        \begin{align*}
+            \Cov\br{Z\br{s}, Z\br{t}}
+            &= \Cov\br{sB\br{\f{1}{s}}, tB\br{\f{1}{t}}} \\
+            &= st \Cov\br{B\br{\f{1}{s}}, B\br{\f{1}{t}}} \\
+            &= st \min\bc{\f{1}{s}, \f{1}{t}} \\
+            &= \min\bc{\f{st}{s}, \f{st}{t}} \\
+            &= \min\bc{t, s}
+        \end{align*}
+        Therefore $Z$ is Brownian motion.
+    \end{proof}
+    \subsubsection{Differentiability}
+    One thing that is evident is that Brownian motion fluctuates often. If fact it fluctuates infinitely often. From this we can proof that Brownian motion is nowhere differentiable.
+    \begin{proof}
+        Since the Brownian motion has stationary increments, it suffices to consider the differentiability of a single point in order to classify differentiability everywhere. We choose this point to be $t=0$. Suppose $B\br{t}$ is differentiable at $0$.
+        \[ B'\br{0} = \lim_{t \to 0} \f{B\br{t} - B\br{0}}{t - 0} = \lim_{t \to 0} \f{B\br{t}}{t} \]
+        We will now show that his is not the case. Recall that $\bc{Z\br{t} = t B\br{1/t}}_{t \geq 0}$  is a Brownian motion. Clearly, there exhibits duality to the time inversion.
+        \[ B\br{t} = t Z\br{\f{1}{t}} \]
+        Therefore,
+        \[ B'\br{0} = \lim_{t \to 0} \f{t Z\br{\f{1}{t}}}{t} = \lim_{t \to 0} Z\br{\f{1}{t}} = \lim_{t \to \inf} Z\br{t} \]
+        However $Z\br{t}$ diverges from $Z\br{0}$ as $t \in \inf$. $Z\br{t}$ does not converge to any limit as $t \to \inf$. Thus we conclude that $B$ is not differentiable at $0$, hence it is not differentiable at any point.
+    \end{proof}
+    \subsubsection{Quadratic Variation}
+    If we consider subdividing the continuous Brownian motion fluctuations into $n$ equally spaced intervals,
+    \[ B_{\sim n}\br{t} = \abs{B\br{\f{t}{n}} - B\br{0}} + \abs{B\br{\f{2t}{n}} - B\br{\f{t}{n}}} + \cdots + \abs{B\br{t} - B\br{\f{n-1}{n}t}} \]
+    We can compute the approximate total change in value of the Brownian motion. As we increase accuracy by increasing $n$, we obtain,
+    \[ \lim_{n \to \inf} B_{\sim n}\br{t} \to \inf \]
+    Indicating that $B$ fluctuates infinitely often in a time $t$.\\
+
+    If, instead of summing the absolute values we sum the squares of the changes in values,
+    \[ B^2_{\sim n}\br{t} = \br{B\br{\f{t}{n}} - B\br{0}}^2 + \br{B\br{\f{2t}{n}} - B\br{\f{t}{n}}}^2 + \cdots + \br{B\br{t} - B\br{\f{n-1}{n}t}}^2 \]
+    Then as $n \to \inf$ we do in fact converge to a limit.
+    \begin{definition}
+        The \term{quadratic variation of $B$} denoted $\bs{B}$ is the defined as follows,
+        \[ \bs{B}\br{t} = \lim_{n \to \inf} \sum_{i = 0}^{n-1} \bs{B\br{\f{\br{i+1}}{n} t} - B\br{\f{\br{i}}{n} t}}^2 \eq \label{eq:quadratic} \]
+        In fact, $\bs{B}\br{t}$ exists and $\bs{B}\br{t} = t$.
+    \end{definition}
+    \begin{proof}
+        Consider that for each quadratic term in \cref{eq:quadratic} is i.i.d,
+        \[ \br{\underbrace{B\br{\f{t}{n}} - B\br{0}}_{\sim\s{N}\br{0, t_{n}}}}^2 + \br{B\br{\f{2t}{n}} - B\br{\f{t}{n}}}^2 + \cdots + \br{B\br{t} - B\br{\f{n-1}{n}t}}^2 \]
+        Therefore we write,
+        \begin{align*}
+            \bs{B}\br{t} &= \lim_{n \to \inf} \sum_{i = 0}^{n-1} \bs{B\br{\f{\br{i+1}}{n} t} - B\br{\f{\br{i}}{n} t}}^2 \\
+            &= \lim_{n \to \inf} \f{t}{n}\sum_{i = 0}^{n-1} \bs{\sqrt{\f{n}{t}}\br{B\br{\f{\br{i+1}}{n} t} - B\br{\f{\br{i}}{n} t}}}^2
+        \end{align*}
+        Clearly, $\sqrt{\f{n}{t}}\br{B\br{\f{\br{i+1}}{n} t} - B\br{\f{\br{i}}{n} t}} = X \sim \s{N}\br{0,1}$ where $\Exp\br{X^2} = \Var\br{X} + \Exp\br{X}^2 = 1$. Therefore,
+        \[ \bs{B}\br{t} = \lim_{n \to \inf} \f{t}{n}\sum_{i = 0}^{n-1} 1 = t\]
+    \end{proof}
+    \begin{theorem}
+        \term{Lévy's characterization of BM:} Let $X = \bc{X\br{t}}_{t \geq 0}$ be martingale with $X\br{0} = 0$ and $\bs{X}\br{t} = t$, then $X$ is Brownian motion.
+    \end{theorem}
+    \subsubsection{Reflection Principle}
+    Let $T_a = \min\bc{t: B\br{t} = a}$ be the first time the Brownian motion first reaches level $a$. We then define the reflection,
+    \begin{align*}
+        B^*\br{t} = \begin{cases}
+            B\br{t} & t \leq T_a \\
+            2a - B\br{t} & t > T_a \\
+        \end{cases}
+    \end{align*}
+    Then the \term{reflection principle} claims that $B^{*}\br{t}$ is also a Brownian motion.
+    \begin{definition}
+        Define $M\br{t} = \max_{0 \leq s \leq t} B\br{s}$ to be the running maximum of the BM $\bc{X\br{t}}_{t \geq 0}$ until time $t$. The reflection principle helps us to determine the distributions of $M\br{t}$.
+    \end{definition}
+    \begin{theorem}
+        For $a \geq 0$,
+        \[ P\br{M\br{t} \geq a} = 2 P\br{B\br{t} \geq a} = P\br{\abs{B\br{t}} \geq a} \]
+        Therefore $M\br{t}$ has the same distribution as $\abs{B\br{t}} \sim \s{N}\br{0,1}$.
+    \end{theorem}
+    \begin{proof}
+        First notice that,
+        \[ M\br{t} \geq a \iff T_{a} \leq t \]
+        Therefore since $B$ and $B^{*}$ are both BM,
+        \begin{align*}
+            P\br{M\br{t} \geq a}
+            &= P\br{M\br{t} \geq a, B\br{t} < a} + P\br{M\br{t} \geq a, B\br{t} \geq a} \\
+            &= P\br{T_a \geq t, B\br{t} < a} + P\br{T_a \geq t, B\br{t} \geq a} \\
+            &= P\br{T_a^* \geq t, B\br{t}^* < a} + P\br{T_a \geq t, B\br{t} \geq a} \\
+            &= P\br{T_a \geq t, B\br{t} > a} + P\br{T_a \geq t, B\br{t} \geq a} \\
+            &= P\br{T_a \geq t, B\br{t} \geq a} + P\br{T_a \geq t, B\br{t} \geq a} \qquad P\br{B\br{t} = a} = 0\\
+            &= 2P\br{T_a \geq t, B\br{t} \geq a}\\
+            &= 2P\br{B\br{t} \geq a} \qquad B\br{t} \geq a \implies T_a \leq t\\
+            &= P\br{\abs{B\br{t}} \geq a}
+        \end{align*}
+    \end{proof}
+    \subsection{Variations of Brownian Motion}
+    There are a number of ways to generalize the Brownian motion. \\
+
+    \subsubsection{Drift}
+    For example, we can consider a Brownian motion with a drift and variance parameter $\si^2$.
+    \begin{definition}
+        A continuous process $\bc{X\br{t}}_{t \geq 0}$ is called a \term{Brownian motion with drift} $\mu$ and variance parameter $\si^2$ (volatility $\si$) if,
+        \begin{enumerate}
+            \item $X\br{0} = 0$
+            \item $\bc{X\br{t}}_{t \geq 0}$ has stationary and independent increments
+            \item $X\br{t} \sim \s{N}\br{\mu t, \si^2 t}$
+        \end{enumerate}
+    \end{definition}
+    Similar to the standard Brownian motion, we can show that,
+    \begin{theorem}
+        $\bc{X\br{t}}_{t \geq 0}$ is a BM with parameters $\mu$ and $\si^2$ if and only if it is a Gaussian process and $\Exp\br{X\br{t}} = \mu t$ and $\Cov\br{X\br{s}, X\br{t}} = \si^2 \min\bc{s, t}$.
+    \end{theorem}
+    It is also possible to perform algebra on drift BMs. Let $\bc{X\br{t}}_{t \geq 0}$ be a BM with drift $\mu$ and variance parameter $\si^2$ then,
+    \[ \bc{Y\br{t} + aX\br{t} + bt}_{t \geq 0} \]
+    Is also a BM with drift $a \mu + b$ and variance parameter $a^2 \si^2$. In particular, $\bc{X\br{t}}_{t \geq 0}$ is a BM with drift $\mu$ and variance parameter $\si^2$. In particular, $\bc{X\br{t}}_{t \geq 0}$ is a BM with drift $\mu$ and variance parameter $\si^2$ if and only if there exists a standard BM $\bc{B\br{t}}_{t \geq 0}$ such that $X\br{t} = \si B\br{t} + \mu t$.
+
+    \subsubsection{Geometric Brownian Motion}
+    Another possible modification to Brownian Motions are geometric Brownian Motions. The name ``geometric'' comes from the geometric series.
+    \begin{definition}
+        Let $\bc{X\br{t}}_{t \geq 0}$ be a BM with drift $\mu$ and variance parameter $\si^2$. Then the process,
+        \[ \bc{Y\br{t} = e^{X\br{t}}}_{t \geq 0} \]
+        is called a \term{geometric BM}.
+    \end{definition}
+    Locally, a geometric BM appears similar to and behaves like a Brownian motion with the property that $Y\br{t} > 0$ for all times. Thus people often use geometric BMs to model stock prices or other prices processes.
 \end{document}

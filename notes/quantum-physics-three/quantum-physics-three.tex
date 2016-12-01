@@ -1565,7 +1565,7 @@ We now introduce the \term{interaction picture} which is an intermediate between
 Which reduces to the Heisenberg representation is $V\br{t} = 0$. Notice that $\ket{\psi, t}_S$ is only time-evolved by the time-independent components of the Hamiltonian. What happens to operators in the interaction picture?
 \begin{align*}
     _S\bra{\psi, t} A^{(S)} \ket{\psi, t}_S
-    &= _I\bra{\psi, t} e^{\f i \hbar H_0 t}A^{(S)} e^{-\f i \hbar H_0 t} \ket{\psi, t}_I
+    &= {}_I\bra{\psi, t} e^{\f i \hbar H_0 t}A^{(S)} e^{-\f i \hbar H_0 t} \ket{\psi, t}_I
 \end{align*}
 This leads us to define,
 \[ A^{(I)} = e^{\f i \hbar H_0 t}A^{(S)} e^{-\f i \hbar H_0 t} \]
@@ -1621,8 +1621,11 @@ Without loss of generality we let $E_2 > E_1$ so that $\w_{21} = \br{E_2 - E_1}/
 \[ \w_{12} = \f{E_1 - E_2}{\hbar} = - \w_{21} \]
 By inspection we can expect the solution to have the ansatz form,
 \begin{align*}
+\eq \label{eq:c1c2_twostate_perturb}
+\begin{split}
 c_1 \br{t} &= c_1 e^{i \la t + \f{i}{2} \br{\w - \w_{21}} t} \\
 c_2 \br{t} &= c_2 e^{i \la t - \f{i}{2} \br{\w - \w_{21}} t}
+\end{split}
 \end{align*}
 Substitute to check if this solution is permissible,
 \begin{align*}
@@ -1635,13 +1638,459 @@ Similarly we arrive at an equation for $\der{c_2}{t}$,
 \[ - \hbar c_2 \br{\la - \f{\w - \w_{21}}{2}} = \ga c_1 \]
 We now have a linear system over $c_1, c_2$ and $\la$. Rearranged, our system is,
 \begin{align*}
-    \br{\la + \f{\w - \w_{21}}{2}} c_1 + \f{\ga}{\hbar} c_2 &= 0 \\
-    \br{\la - \f{\w - \w_{21}}{2}} c_2 + \f{\ga}{\hbar} c_1 &= 0
+\eq\label{eq:c10c20_perturb}
+\begin{split}
+\br{\la + \f{\w - \w_{21}}{2}} c_1 + \f{\ga}{\hbar} c_2 &= 0 \\
+\br{\la - \f{\w - \w_{21}}{2}} c_2 + \f{\ga}{\hbar} c_1 &= 0
+\end{split}
 \end{align*}
 This is a homogeneous system over $c_1$ and $c_2$. The only want to have a non-trivial solution is if the determinant is zero. This singularity condition fixes $\la$.
 \[ 0 = \det \begin{pmatrix}
     \br{\la + \f{\w - \w_{21}}{2}} & \f{\ga}{\hbar} \\
     \f{\ga}{\hbar} & \br{\la - \f{\w - \w_{21}}{2}} \\
 \end{pmatrix} = \la^2 - \br{\f{\w - \w_{21}}{2}}^2 - \br{\f{\ga}{\hbar}}^2 \]
+Therefore,
+\[ \la = \pm \sqrt{\br{\f{\w - \w_{21}}{2}}^2 + \br{\f{\ga}{\hbar}}^2} = \pm \Om \]
+Where $\Om$ is the \term{Rabi-frequency}. Each $\la$ induces a solution for $c_1\br{t}$ and $c_2\br{t}$. Plugging $\la = +\Om$ back into \cref{eq:c10c20_perturb} we can solve for coefficients $c_{1, +}$ and $c_{2, +}$,
+\[ c_{1,+} = - c_{2,+} \f{\ga / \hbar}{\Om + \f{\w - \w_{21}}{2}} \]
+This equation fixes $c_{1,+}$ given $c_{2,+}$ but their relationship enforces normalization as well,
+\[  \abs{c_{1,+}}^2 + \abs{c_{2,+}}^2 = 1 \]
+Therefore,
+\begin{align*}
+1
+&= \abs{c_{2,+}}^2 + \abs{c_{2,+}}^2\f{\br{\ga / \hbar}^2}{\br{\Om + \f{\w - \w_{21}}{2}}^2} \\
+&= \abs{c_{2,+}}^2 \f{\Om^2 + 2 \f{\w - \w_{21}}{2} \Om + \br{\f{\w - \w_{21}}{2}}^2 \Om^2 + \br{\f{\ga}{\hbar}}^2}{\br{\Om + \f{\w - \w_{21}}{2}}^2} \\
+&= \abs{c_{2,+}}^2 \f{2\Om^2 + 2 \f{\w - \w_{21}}{2} \Om}{\br{\Om + \f{\w - \w_{21}}{2}}^2} \\
+&= \abs{c_{2,+}}^2 \f{2\Om}{\Om + \f{\w - \w_{21}}{2}}
+\end{align*}
+Therefore,
+\[ \abs{c_{2,+}}^2 = \f12 \br{1 + \f{\w - \w_{21}}{2 \Om}} \]
+We choice $c_{2,+}$ to be real and positive,
+\[ c_{2,+} = \sqrt{\f12 \br{1 + \f{\w - \w_{21}}{2 \Om}}} \]
+Similarly,
+\[ c_{1,+} = -\sqrt{\f12 \br{1 - \f{\w - \w_{21}}{2 \Om}}} \]
 
+The solution corresponding to $\la = - \Om$ is,
+\begin{align*}
+c_{1,-} = \sqrt{\f12 \br{1 + \f{\w - \w_{21}}{2 \Om}}} \\
+c_{2,-} = \sqrt{\f12 \br{1 - \f{\w - \w_{21}}{2 \Om}}}
+\end{align*}
+Plugging $\la$ back into \cref{eq:c1c2_twostate_perturb}. The general solution is,
+\begin{align*}
+c_1\br{t} &= A c_{1,+} e^{i \br{\Om + \f{\w - \w_{21}}{2}} t} + B c_{1,-} e^{-i \br{\Om - \f{\w - \w_{21}}{2}} t} \\
+c_2\br{t} &= A c_{2,+} e^{i \br{\Om - \f{\w - \w_{21}}{2}} t} + B c_{2,-} e^{-i \br{\Om + \f{\w - \w_{21}}{2}} t}
+\end{align*}
+Where $A, B$ are determined by initial conditions. As an example suppose that the state of the particle is initially $\ket{1}$. This means that,
+\[  c_1\br{t=0} = 1 \quad c_2\br{t = 0} = 0 \]
+Therefore,
+\begin{align*}
+    Ac_{1, +} + Bc_{1, -} &= 1 \\
+    Ac_{2, +} + Bc_{2, -} &= 0
+\end{align*}
+Therefore,
+\[ B = - A\f{c_{2, +}}{c_{2, -}} \]
+And $A$ is fully determined,
+\[ A = \f{c_{2, -}}{c_{1, +}c_{2, -} - c_{1, -}c_{2, +}} \]
+Where the denominator can be greatly simplified,
+\begin{align*}
+    c_{1, +}c_{2, -} - c_{1, -}c_{2, +}
+    &= -c_{1, +}c_{1, +} - c_{2, +}c_{2, +} \\
+    &= -\br{c^2_{1, +} + c^2_{2, +}} \\
+    &= -1
+\end{align*}
+Therefore,
+\begin{align*}
+    A &= - \sqrt{\f{1}{2}\br{1 - \f{\w -\w_{21}}{2\Om}}} \\
+    B &= \sqrt{\f{1}{2}\br{1 + \f{\w -\w_{21}}{2\Om}}}
+\end{align*}
+Altogether,
+\[ c_2\br{t} = i \f{\ga}{\hbar\Om} e^{-i \f{\w - \w_{21}}{2} t} \sin\br{\Om t}\]
+Which means that,
+\[ \abs{c_2\br{t}}^2 = \f{\br{\f{\ga}{\hbar}}^2}{\br{\f{\w - \w_{21}}{2}}^2 + \br{\f{\ga}{\hbar}}^2} \sin^2\br{\Om t} \]
+Where $\abs{c_1\br{t}}^2 = 1 - \abs{c_2\br{t}}^2$. Physically this means that the probability of finding the particle in state $i$ ($\abs{c_i \br{t}}^2$) oscillates with frequency $\Om$. Recall that $\w$ is the frequency of the driving potential. When $\w = \w_{21}$ we have two phenomena occurring:
+\begin{enumerate}
+    \item The amplitude of Rabi oscillations is maximal and equal to $1$,
+    \[ \f{\br{\f{\ga}{\hbar}}^2}{\br{\f{\w - \w_{21}}{2}}^2 + \br{\f{\ga}{\hbar}}^2} \to \f{\br{\f{\ga}{\hbar}}^2}{\br{\f{\ga}{\hbar}}^2} = 1\]
+    \item The Rabi frequency can be set by the strength of the applied potential $\ga$; $\Om$ becomes equal to $\ga/\hbar$,
+    \[ \sqrt{\br{\f{\w - \w_{21}}{2}}^2 + \br{\f{\ga}{\hbar}}^2} \to \f{\ga}{\hbar} \]
+\end{enumerate}
+
+\subsubsection{Magnetic Resonance Imaging}
+The most well-known application of this model is to Magnetic Resonance Imaging (MNR). In the cause of medical MNR, we image the nuclei of the hydrogen atoms in water in one's body. In this case the frequency associated with the unperturbed system is the spin of the hydrogen atom. Our Hamiltonian in this case is,
+\[ H_0 = - \ve \mu \cdot \ve B_0 \]
+Where $\ve B_0$ is a time-independent magnetic field where $\ve B_0 = B_0 \hat z$. The magnetic dipole of a proton is,
+\[ \ve \mu = \f{e}{mc} \ve S \]
+Therefore,
+\[ H_0 = -\f{e}{mc} B_0 S_z = -\f{e B_0 \hbar}{2mc} \br{\ket{\uparrow} \bra{\uparrow} - \ket{\downarrow} \bra{\downarrow}}\]
+Which has two eigenvalues,
+\begin{align*}
+    E_{\uparrow}&= - \f{e \hbar B_0}{2mc} = E_1 \\
+    E_{\downarrow}&= \f{e \hbar B_0}{2mc} = E_2
+\end{align*}
+With frequency element,
+\[ \w_{21} = \f{E_2- E_1}{\hbar} = \f{eB_0}{mc} \]
+Where $eB_0/mc$ is the \term{Larmor frequency} and corresponds to the frequency of precession of  a dipole $\mu$ in a magnetic field. We can now apply a time dependent magnetic field that is perpendicular to $\ve B_0$.
+\[ \ve B_1\br{t} = B_1 \br{\hat x \cos \w t + \hat y \sin \w t} \]
+Which rotates in the $xy$-plane with frequency $\w$. Then we have,
+\begin{align*}
+    V\br{t}
+    &= - \ve \mu \cdot \ve B_1 \\
+    &= - \f{eB_1}{mc}\br{S_x \cos \w t + S_y \sin \w t} \\
+    &= - \f{eB_1}{mc} \f{\hbar}{2} \bs{\br{\ket{\uparrow}\bra{\downarrow} + \ket{\downarrow}\bra{\uparrow}} \cos \w t + \br{-i\ket{\uparrow}\bra{\downarrow} + i\ket{\downarrow}\bra{\uparrow}} \sin \w t} \\
+    &= - \f{eB_1}{mc} \f{\hbar}{2} \bs{e^{-i \w t}\ket{\uparrow}\bra{\downarrow} + e^{i \w t}\ket{\downarrow}\bra{\uparrow}} \\
+    &= - \ga \bs{e^{-i \w t}\ket{1}\bra{2} + e^{i \w t}\ket{2}\bra{1}} \\
+\end{align*}
+Where,
+\[ \ga = \f{eB_1}{mc} \f{\hbar}{2} \]
+
+\subsection{Adiatbatic Time-Dependence and Berry Phase}
+In some time-dependent systems where the time-dependence varies slowly compared to the natural time scales of the system, we make use of the \term{adiabatic approximation}. The principle feature is to write down the eigen-system for the time-dependent Hamiltonian and assume that the eigenkets at time $t = 0$ evolve in parallel,
+\[ H\br{t} \ket {n ; t} = E_n\br{t} \ket{n ; t} \eq \label{eq:eigenket_energy}\]
+Then an arbitrary state evolves with time in the $\ket{n;t}$ basis,
+\[ \ket{\al ; t} = \sum_{n} c_n\br{t} e^{i \te_n\br{t}} \ket{n ; t} \eq \label{eq:al_ket_sum}\]
+Where $\te_n\br{t}$ is the time-dependent phase associated with the evolution of $\ket{\al; t}$'s $n$-th energy coefficient.
+\[ \te_n\br{t} = - \f{1}{\hbar} \int_{0}^{t} E_n\br{t'} \dif t' \eq \label{eq:theta_phase}\]
+These coefficients are also governed by the Schrödinger equation,
+\[ i \hbar \pder{}{t} \ket{\al; t} = H\br{t} \ket{\al; t} \]
+Expanding this out in terms of \cref{eq:al_ket_sum},
+\[ i \hbar \pder{}{t} \sum_{n} c_n\br{t} e^{i \te_n\br{t}} \ket{n ; t} = H\br{t} \sum_{n} c_n\br{t} e^{i \te_n\br{t}} \ket{n ; t} \]
+\[ i \hbar \sum_{n}  \pder{}{t}\br{c_n\br{t} e^{i \te_n\br{t}} \ket{n ; t}} = \sum_{n} c_n\br{t} e^{i \te_n\br{t}} H\br{t} \ket{n ; t} \]
+\[ i \hbar \sum_{n} \bs{\pder{}{t}\br{c_n\br{t} e^{i \te_n\br{t}} \ket{n ; t}} + \f{i}{\hbar} c_n\br{t} e^{i \te_n\br{t}} E_n\br{t} \ket{n ; t}} = 0 \]
+Applying product rule,
+\[ \sum_{n} \bs{\pder{c_n}{t} e^{i \te_n\br{t}}  + i \pder{\te_n}{t} c_n\br{t} e^{i \te_n\br{t}}  + c_n\br{t} e^{i \te_n\br{t}} \pder{}{t} + \f{i}{\hbar} c_n\br{t} e^{i \te_n\br{t}} E_n\br{t} }\ket{n;t} = 0 \]
+But $\pder{\te_n}{t} = - \f{1}{\hbar} E_n\br{t}$ by \cref{eq:theta_phase},
+\[ \sum_{n} e^{i \te_n\br{t}}\bs{\pder{c_n}{t} + c_n\br{t}  \pder{}{t}}\ket{n;t} = 0 \]
+Using orthonormal properties one can calculate,
+\[ \bra{m;t}\sum_{n} e^{i \te_n\br{t}}\bs{\pder{c_n}{t} + c_n\br{t}  \pder{}{t}}\ket{n;t} = 0 \]
+\[ \sum_{n} e^{i \te_n\br{t}}\bs{\pder{c_n}{t}\de_{m,n}\br{t} + c_n\br{t}  \bra{m;t}\bs{\pder{}{t}\ket{n;t}}} = 0 \]
+\[ e^{i \te_m\br{t}}\pder{c_m}{t} + \sum_{n} e^{i \te_n\br{t}}c_n\br{t}\bra{m;t}\br{\pder{}{t}\ket{n;t}} = 0 \]
+\[ \pder{c_m}{t} = - \sum_{n} c_n\br{t}e^{i \bs{\te_n\br{t} - \te_m\br{t}}}\bra{m;t}\br{\pder{}{t}\ket{n;t}}\]
+The $\te$ phase contribution vanishes when $m = n$,
+\[ \pder{c_m}{t} = - c_m\br{t}\bra{m;t}\br{\pder{}{t}\ket{m;t}} - \sum_{n \neq m} c_n\br{t}e^{i \bs{\te_n\br{t} - \te_m\br{t}}}\bra{m;t}\br{\pder{}{t}\ket{n;t}} \eq \label{eq:dotcm_first}\]
+The second term indicates that as time evolves, $c_m\br{t}$ changes due to the difference $\te_n\br{t} - \te_m\br{t}$. Recall the familiar term $\bra{m;t}\br{\pder{}{t}\ket{n;t}}$ which can be calculated directly from $H\br{t}$ using \cref{eq:eigenket_energy}.
+\[ \pder{}{t}\bs{H\br{t} \ket {n ; t}} = \pder{}{t}\bs{E_n\br{t} \ket{n ; t}} \]
+Product rule again,
+\[ \dot H\br{t} \ket {n ; t} + H\br{t} \pder{}{t}\ket {n ; t} = \dot E_n\br{t} \ket{n ; t} + E_n\br{t} \pder{}{t}\ket{n ; t} \]
+Therefore the matrix elements of $\dot H\br{t}$ are,
+\[ \dot{H}_{mn}\br{t} = \bra{m;t}\dot H\br{t} \ket {n ; t} = \dot E_n\br{t} \braket{m;t}{n ; t} - \bra{m;t}H\br{t} \pder{}{t}\ket {n ; t} + E_n\br{t} \bra{m;t}\pder{}{t}\ket{n ; t}\]
+\[ \dot{H}_{mn}\br{t} = \dot E_n\br{t}\de_{nm}\br{t} + \bs{E_n\br{t} - E_m\br{t}} \bra{m;t} \pder{}{t}\ket{n;t} \]
+Which has two cases,
+\[ m = n : \dot{H}_{mm}\br{t} = \dot E_m\br{t} \]
+\[ m\neq n: \dot{H}_{mn}\br{t} = \bs{E_n\br{t} - E_m\br{t}} \bra{m;t} \pder{}{t}\ket{n;t}\]
+Applying this result to \cref{eq:dotcm_first} gives,
+\[ \pder{c_m}{t} = - c_m\br{t}\bra{m;t}\br{\pder{}{t}\ket{m;t}} - \sum_{n \neq m} c_n\br{t}e^{i \bs{\te_n\br{t} - \te_m\br{t}}}\f{\dot{H}_{mn}\br{t}}{E_n\br{t} - E_m\br{t}} \]
+We may now make the Adiabatic approximation by saying that the leading frequency dominates,
+\[ \pder{c_m}{t} \simeq - c_m\br{t}\bra{m;t}\br{\pder{}{t}\ket{m;t}} \eq \label{eq:de_for_c_m}\]
+Fantastic! \Cref{eq:de_for_c_m} is a differential equation for $c_m\br{t}$ with no dependence on $n$. This is the essence of the Adiabatic approximation. If $c_m\br{0} = \de_{nm}$ then $c_m\br{t} = \de_{nm}\br{t}$. This suggests the ansatz,
+\[ c_m\br{t} = e^{i \ga_m\br{t}} c_m\br{0} \eq \label{eq:definition_of_ga} \]
+With solution given by construction,
+\[ \ga_m\br{t} = i \int_{0}^{t} \bra{m; t'} \bs{\pder{}{t'} \ket{m; t'}} \dif t' \]
+For convenience of notation, remove the primes on $t$ by letting $t, t' = T, t$,
+\[ \ga_m\br{T} = i \int_{0}^{T} \bra{m; t} \bs{\pder{}{t} \ket{m; t}} \dif t \eq \label{eq:ga_m_time}\]
+This is called the \term{Berry Phase}. Altogether we have,
+\[ \ket{\al ; t} = \sum_{n} c_n\br{0} e^{i \ga_n\br{t}} e^{i \te_n\br{t}} \ket{n ; t} \]
+It is instructive to show that $\ga_m\br{t}$ is real by demonstrating that $\bra{m; t} \bs{\pder{}{t} \ket{m; t}}$ is imaginary. Using product rule, note that,
+\[ \bra{m; t} \bs{\pder{}{t} \ket{m; t}} + \bs{\pder{}{t}\bra{m; t}} { \ket{m; t}} = \pder{}{t}\braket{m; t}{m; t} = 0 \]
+Therefore,
+\[ \bra{m; t} \bs{\pder{}{t} \ket{m; t}} = - \bs{\pder{}{t}\bra{m; t}} { \ket{m; t}} = - \br{\bra{m; t} \bs{\pder{}{t} \ket{m; t}}}^* \]
+As a demonstration, assume that we start in an eigenstate $\ket{n,t}$ and evolve under an adiabatic evolution. Then the state but will pick up an extra phase,
+\[ \ket{\psi, t} = e^{i \ga_n\br{t}}e^{-\f i \hbar\int_{0}^{t}\dif t'E_n\br{t'} } \ket{n, t} \]
+Typically, the time dependence isn't directly parameterized by time but through a time-dependent coordinate $\ve R$\footnote{For example $H\br{t} = - \ve \mu \cdot \ve B\br{t}$ is parameterized by $\ve B\br{t}$: $H\br{\ve B\br{t}}$.} We can represent this auxiliary parameter dependence by the vector $\ve R$ in parameter space. Using $\ve R$ we can change the integral in \cref{eq:ga_m_time} from time to these parameters $\ve R$,
+\[ \bra{m; t} \bs{\pder{}{t} \ket{m; t}} = \bra{m; t} \bs{\vdel_{\ve R} \ket{m; t}} \cdot \der{\ve R}{t} \]
+Therefore,
+\[ \ga_m\br{T} = i \int_{\ve R\br{0}}^{\ve R\br{T}} \bra{m; t} \bs{\vdel_{\ve R} \ket{m; t}} \cdot \dif \ve R \eq \label{eq:ga_R} \]
+The integrand is the \term{Berry connection vector} for each eigenstate $\ket{m; t}$,
+\[ \ve {\s{A}}_m = i\bra{m; t} \bs{\vdel_{\ve R} \ket{m; t}} \]
+This picture is particularly useful when considering complete cycles in parameter space where $\ve R\br{T} = \ve R\br{0}$. In such cases we can write the connection vector and the Berry phase as,
+\[ \ve {\s{A}}_n\br{\ve R} = i\bra{n(\ve R)} \bs{\vdel_{\ve R} \ket{n(\ve R)}} \]
+\[ \ga_n\br{c} = \oint \ve {\s{A}}_n\br{\ve R} \dif \ve R\]
+Which suggests the use of Stoke's theorem by defining the \term{Berry curvature},
+\[ \ve \Om_n\br{\ve R} = \vdel_{\ve R} \times \ve {\s A}_n\br{\ve R} \]
+Which makes the Berry phase over a closed path $c$,
+\[ \ga_n\br{c} = \oint \ve {\s{A}}_n\br{\ve R} \dif \ve R = \int \ve \Om_n\br{\ve R} \dif \ve a \]
+
+\subsection{Time-Dependent Perturbation Theory}
+
+So far we have looked at Rabi oscillations and adiabatic time dependence; two examples of a time-dependent Hamiltonian in which the wave equations can be solved analytically. Most problems unfortunately cannot be solved analytically. To solve this problems, we introduce time-dependent perturbation theory for small perturbations.\\
+
+For a time-dependent potential $V\br{t}$, the complete solution to the time evolution of the system in the interaction picture is governed by,
+\[ \ket{\psi, t}_{I} = U^{I}\br{t} \ket{\psi} \]
+\[ i \hbar \der{}{t} U^{(I)}\br{t} = V^{(I)}\br{t} U^{(I)}\br{t} \eq \label{eq:tdpt} \]
+Which can be solved using an iterative process. First notice that,
+\[ U^{(I)}\br{0} = \ident \]
+Which suggests (under the first order approximation) that,
+\[ U^{(I)}\br{t} \approx \ident - \f i \hbar \intl_{0}^{t} \dif t' V^{(I)}\br{t'}U^{(I)}\br{t'} \eq \label{eq:tdpt_1} \]
+Further corrective terms can be computed by supplanting \cref{eq:tdpt_1} into \cref{eq:tdpt}.
+\[ U^{(I)}\br{t} \approx \ident - \f i \hbar \intl_{0}^{t} \dif t' V^{(I)}\br{t'}\bs{\ident - \f i \hbar \intl_{0}^{t'} \dif t'' V^{(I)}\br{t''}} \]
+This process can be continued to find the $n$-th order correction to $U\br{t}$. The resultant series is termed the \term{Dyson series},
+\[ U^{(I)}\br{t} = \ident - \f i \hbar \intl_{0}^{t} \dif t' V^{(I)}\br{t'} + \cdots + \br{\f i \hbar}^n \intl_{0}^{t} \dif t' \intl_{0}^{t'} \dif t'' \cdots \intl_{0}^{t^{(n-1)}} \dif t^{(n)} V^{(I)}\br{t'} \cdots V^{(I)}\br{t^{(n)}} + \cdots \]
+Solving this series is frequently impossible/intractable. However for the purposes of perturbation theory we are only interested in calculating the lower-order corrections in order to get an approximation. Write $\ket{\psi, t}_I$ in turns of the unperturbed energy eigen-system $H_0 \ket n = E_n \ket n$
+\[ \ket{\psi, t}_{I} = \sum_n c_n\br{t} \ket{n} = \sum_n \ket n \underbrace{\bra n U\br{t} \ket \psi}_{c_n\br{t}} \]
+Then we have that $c_n\br{t} = \bra{n} U\br{t} \ket{\psi}$ and,
+\[ c_n\br{t} = c_n^{(0)}\br{t} + c_n^{(1)}\br{t} + c_n^{(2)}\br{t} + \cdots\]
+Where $c_n^{(0)} \sim V^{0}\br{t}$ and $c_n^{(1)} \sim V\br{t}$. Suppose that our initial state was in state $\ket i$,
+\[ \ket \psi = \ket i \qquad H_0 \ket i = E_i \ket i \]
+In this case $c_n^{(0)} = \de_{ni}$: the initial state is $\ket{i}$ with certainty. In order to calculate $\ket{\psi, t}_I$ we simply need to calculate,
+\begin{align*}
+    c_n^{(1)}\br{t}
+    &= - \f i \hbar \intl_{0}^{t} \dif t' \bra n V^{(I)} \br{t'} \ket i \\
+    &= - \f i \hbar \intl_{0}^{t} \dif t' \bra n e^{\f i \hbar H_0 t'} V \br{t'}  e^{-\f i \hbar H_0 t'}\ket i \\
+    &= - \f i \hbar \intl_{0}^{t} \dif t' e^{i \w_{ni} t'}  \bra n V \br{t'}\ket i \qquad \w_{ni} = \f{E_n - E_i}{\hbar} \\
+    &= - \f i \hbar \intl_{0}^{t} \dif t' e^{i \w_{ni} t'}  V_{ni}\br{t'}
+\end{align*}
+Moreover we can calculate $c_n^{(2)}$ but inserting a resolution of identity,
+\begin{align*}
+    c_n^{(2)}\br{t}
+    &= \br{-\f{i}{\hbar}}^2 \intl_{0}^{t} \dif t' \intl_{0}^{t'} \dif t'' \bra n V^{(I)}\br{t'} V^{(I)}\br{t''} \ket i  \\
+    &= \br{-\f{i}{\hbar}}^2  \sum_{m}\intl_{0}^{t} \dif t' \intl_{0}^{t'} \dif t'' \bra n V^{(I)}\br{t'} \ket m \bra m V^{(I)}\br{t''} \ket i  \\
+    &= \br{-\f{i}{\hbar}}^2  \sum_{m}\intl_{0}^{t} \dif t' \intl_{0}^{t'} \dif t'' e^{i \w_{nm} t'}e^{i \w_{mi} t''} \bra n V\br{t'} \ket m \bra m V\br{t''} \ket i  \\
+    &= \br{-\f{i}{\hbar}}^2  \sum_{m}\intl_{0}^{t} \dif t' \intl_{0}^{t'} \dif t'' e^{i \w_{nm} t'}e^{i \w_{mi} t''} V_{nm}\br{t'}V_{mi}\br{t''}
+\end{align*}
+These two example illuminate how it is possible to write down the corrective terms for any order. As an exercise, let us find the probability of transition from $\ket i$ to $\ket n$ at time $t$,
+\[ P\br{i \to n} = \abs{c_{n}^{(1)}\br{t} + c_{n}^{(2)}\br{t} + \cdots }^2 \]
+We will calculate this in a first-order perturbation theory by only considering the first term,
+\begin{align*}
+P\br{i \to n}
+&= \abs{c_{n}^{(1)}\br{t}}^2 \\
+&= \abs{- \f i \hbar \intl_{0}^{t} \dif t' e^{i \w_{ni} t'}  V_{ni}\br{t'}}^2 \\
+&= \f{1}{\hbar^2} \abs{\intl_{0}^{t} \dif t' e^{i \w_{ni} t'}  V_{ni}\br{t'}}^2
+\end{align*}
+Let us choose a specific example for $V\br{t'}$; the harmonic perturbation:
+\[ V\br{t} = V e^{i \w t} + V^{\dagger} e^{-i \w t} \]
+Where $V$ is just come operator with the same dimension as $H_0$.
+\begin{align*}
+    c_n^{(1)}\br{t}
+    &= - \f i \hbar \intl_{0}^{t} \dif t' e^{i \w_{ni} t'} V_{ni}\br{t'} \\
+    &= - \f i \hbar \intl_{0}^{t} \dif t' e^{i \w_{ni} t'} \bs{V_{ni} e^{i \w t'} + V^{\dagger}_{ni} e^{- i \w t'}} \\
+    &= - \f i \hbar \bs{V_{ni} \f{e^{i \br{\w_{ni} + \w} t} - 1}{i\br{\w_{ni} + \w}} + V^{\dagger}_{ni} \f{e^{i \br{\w_{ni} - \w} t} - 1}{i\br{\w_{ni} - \w}}}\\
+    &= - \f i \hbar \bs{V_{ni} \f{e^{i \br{\w_{ni} + \w} t} - 1}{i\br{\w_{ni} + \w}} + V^{*}_{in} \f{e^{i \br{\w_{ni} - \w} t} - 1}{i\br{\w_{ni} - \w}}}
+\end{align*}
+This coefficient has two resonances; $c_n^{(1)}\br{t}$ is large only when $\w \simeq \w_{ni}$ or when $\w \simeq - \w_{ni}$. Let us restrict ourselves to the former condition ($\w \simeq \w_{ni}$). Here,
+\begin{align*}
+    c_n^{(1)}\br{t}
+    &\simeq - \f {V^{*}_{in}} \hbar { \f{e^{i \br{\w_{ni} - \w} t} - 1}{\w_{ni} - \w}}
+\end{align*}
+Which determined the transition probability,
+\begin{align*}
+    P\br{i \to n}
+    &= \abs{c_n^{(1)}\br{t}}^2 \\
+    &= \f {\abs{V^{*}_{in}}^2} {\hbar^2} \abs{ \f{e^{i \br{\w_{ni} - \w} t} - 1}{\w_{ni} - \w}}^2 \\
+    &= \f {\abs{V_{in}}^2} {\hbar^2  \br{\w_{ni} - \w}^2} \bs{\br{\cos \br{\w_{ni} - \w} t - 1}^2 + \sin^2 \br{\w_{ni} - \w} t}^2 \\
+    &= \f {\abs{V_{in}}^2} {\hbar^2  \br{\w_{ni} - \w}^2} \bs{2 - 2 \cos \br{\w_{ni} - \w} t} \\
+    &= \f {4\abs{V_{in}}^2} {\hbar^2  \br{\w_{ni} - \w}^2} \sin^2 \br{\f{\w_{ni} - \w}{2} t} \\
+    &= \f {\abs{V_{in}}^2} {\hbar^2} \f{\sin^2 \br{\f{\w_{ni} - \w}{2} t}}{\br{\f{\w_{ni} - \w}{2} t}^2} t^2
+\end{align*}
+An important feature of this transition probability is its long term behaviour. We should be carful moving forward however; the time-dependent perturbation becomes less and less valid at later times. Therefore we qualify our analysis by saying that we are looking at large times, but not too large that the perturbation breaks down. We define $\al = \f{\w_{ni} - \w}{2}$ and examine the transition probability at large times,
+\[ f\br{\al} = \lim_{t \to \inf}\f{\sin^2 \br{\al t}}{\pi \br{\al}^2 t} = 0 \qquad \al \neq 0 \]
+\[ f\br{0} = \lim_{t \to \inf} \lim_{\al \to 0} \f{\sin^2 \br{\al t}}{\pi \br{\al}^2 t} = \lim_{t \to \inf} \lim_{\al \to 0} \f{\br{\al t}^2}{\pi \br{\al}^2 t} = \inf \]
+Clearly $f\br{\al} \propto \de\br{\al}$ is related to the Dirac delta function.
+\[ \intl_{-\inf}^{\inf} \dif \al f\br{\al} = \lim_{t \to \inf} \intl_{-\inf}^{\inf} \dif \al \f{\sin^2 \br{\al t}}{\pi \al^2 t} = 1 \]
+As it turns out, the factor of $\pi$ present in the denominator makes $f\br{\al} = \de \br{\al}$ precisely. Therefore the transition probability can be written,
+\[ P\br{i \to n} = \f {\abs{V_{in}}^2} {\hbar^2} \f{\sin^2 \br{\al t}}{\br{\al t}^2} t^2\]
+We define the transition rate (probability of transition per unit time),
+\[ W_{i \to n} = \der{P\br{i \to n}}{t} \]
+In this way, the long term behaviour of $W_{i \to n}$ is set by $f\br{\al}$,
+\[ W_{i \to n} = \f {\abs{V_{in}}^2} {\hbar^2} \de\br{\al} \pi \]
+Recall that $\de\br{ax} = \f{1}{a} \de\br{x}$,
+\[ \intl_{-\inf}^{\inf} f\br{x} \de\br{a x} \dif x = \intl_{-\inf}^{\inf} f\br{\f{y}{a}} \de\br{y} \f{\dif y}{a} = \f{1}{a} \intl_{-\inf}^{\inf} f\br{\f{y}{a}} \de\br{y} \dif y = \f{1}{a}f\br{0} \]
+Applying this to $W_{i \to n}$,
+\[ W_{i \to n} = \f {2 \pi \abs{V_{in}}^2} {\hbar^2} \de\br{\w_{ni}- \w}\]
+Or in terms of energies,
+\[ W_{i \to n} = \f {2 \pi \abs{V_{in}}^2} {\hbar^2} \de\br{\f{1}{\hbar}\br{E_{n} - E_{i} - \hbar\w}}\]
+Pull out the factor of $\hbar^{-1}$,
+\[ W_{i \to n} = \f {2 \pi \abs{V_{in}}^2} {\hbar} \de\br{{E_{n} - E_{i} - \hbar\w}}\]
+This result is so important is in known as \term{Fermi's golden rule}. Physically, the $\de$-function expresses energy conservation in the sense that it is only non-zero if $E_n - E_i = \hbar \w$. For example, if the energy of the final state is larger than the energy of the initial state, $E_n > E_i$ then the only way to transition from $i$ to $n$ is to absorb a quanta of energy with the amount $\hbar \w$. This phenomena is called \term{absorbtion}. Similarly when $E_i > E_n$ we have \term{stimulated emissions}. \\
+
+The probability under a time independent perturbation can be computed by seting $\w = 0$. The transition frequency in this case becomes,
+\[ P\br{i \to n}= \f{\abs{V_{in}}^2}{\hbar^2} \f{\sin^2\br{\f{\w_{ni}}{2}t}}{\br{\f{\w_{ni}}{2}}^2} \]
+Where the function,
+\[ f\br{\w_{ni}} = \f{\sin^2\br{\f{\w_{ni}}{2}t}}{\br{\f{\w_{ni}}{2}}^2} \]
+Can be plotted for different times $t_1 < t_2 < t$,
+
+\begin{center}
+    \begin{tikzpicture}
+        \pgfmathdeclarefunction{sinc}{1}{%
+            \pgfmathparse{abs(#1)<0.01 ? int(1) : int(0)}%
+            \ifnum\pgfmathresult>0 \pgfmathparse{1}\else\pgfmathparse{sin(#1 r)/#1}\fi%
+        }
+        \pgfmathsetmacro{\tick}{0.3};
+        \pgfmathsetmacro{\time}{0.5};
+        \draw[scale=1,domain=-6*pi:6*pi,samples=250, variable=\x,blue] plot ({4*\x/(6*pi)},{3*(sinc(\x))^2});
+        \draw[scale=1,domain=-6*pi:6*pi,samples=250, variable=\x,red] plot ({4*\x/(6*pi)},{0.5*3*(sinc(0.5*\x))^2});
+        \draw[scale=1,domain=-6*pi:6*pi,samples=250, variable=\x,green] plot ({4*\x/(6*pi)},{0.1*3*(sinc(0.1*\x))^2});
+        \draw[green] (2, 0.5) node{$t_1$};
+        \draw[red] (0.75, 1.2) node{$t_2$};
+        \draw[blue] (0.75, 2) node{$t$};
+        \draw[<->] (-4, 0) -- node[below]{$0$} (+4, 0) node[right]{$\w_{ni}$};
+        \draw[->] (0,0) -- (0, 4) node[above]{$f$};
+        \draw[] (-\tick, 3) -- (+\tick, 3) node[right]{$t^2$};
+    \end{tikzpicture}
+\end{center}
+
+At $\w_{ni}= 0$,
+\[ f\br{0} = \lim_{\w_{ni} \to 0}\f{\sin^2\br{\f{\w_{ni}}{2}t}}{\br{\f{\w_{ni}}{2}}^2} = t^2 \]
+As time increases, the height of the central peak increases as $t^2$ while its width decreases as $\f{2\pi}{t}$. At long times $P\br{i \to n}$ is significant only when,
+\[ \abs{w_{ni}} < \f{2 \pi}{t} \quad \abs{\f{E_n - E_i}{\hbar}} \sim \f{2\pi}{t} \]
+Which means that,
+\[ \abs{E_n - E_i} t \sim 2 \pi \hbar \]
+This is similar to the energy-uncertainty relation $\De E \De t \sim \hbar$. \\
+
+What happens to the state $\ket{i}$ itself? Consider a gradual turn-on of the perturbation,
+\[ V\br{t} = e^{\eta t} V \quad \eta > 0, \eta \to 0^{+}\]
+For any finite $\eta$, $V\br{t \to -\inf} = 0$. The perturbation is absent at $t \to -\inf$ and is slowly turned on. In this case,
+\begin{align*}
+c^{(1)}_n\br{t}
+&= - \f{i}{\hbar} V_{ni}\intl_{-\inf}^{t} \dif t' e^{\eta t'} e^{i \w_{ni} t'} \\
+&= - \f{i}{\hbar} V_{ni} \bre{\f{e^{\br{\eta + i \w_{ni}} t'}}{\eta + i \w_{ni}}}_{-\inf}^{t} \\
+&= - \f{i}{\hbar} V_{ni} {\f{e^{\br{\eta + i \w_{ni}} t}}{\eta + i \w_{ni}}} \\
+\abs{c^{(1)}_n\br{t}}^2 &= \f{\abs{V_{ni}}^2}{\hbar^2} \f{e^{2\eta t}}{\eta^2 +\w_{ni}^2} = P\br{i \to n}
+\end{align*}
+Therefore the transition rate is,
+\[ W_{i \to n} = \der{P\br{i \to n}}{t} = \f{2 \abs{V_{ni}}^2}{\hbar^2} \f{\eta e^{2 \eta t}}{\eta^2 + \w_{ni}^2} \]
+Which in the limit of $\eta \to 0$ is,
+\[ \lim_{\eta \to 0} \f{\eta}{\eta^2 + \w_{ni}^2} = \begin{cases}
+    0 & \w_{ni} \neq 0 \\
+    \inf & \w_{ni} = 0
+\end{cases} \]
+Also note that,
+\[ \intl_{-\inf}^{\inf} \dif \w_{ni} \f{\eta}{\eta^2 + \w_{ni}^2} = \pi \]
+Therefore,
+\[ W_{i \to n} = \f{2 \pi }{\hbar^2} \abs{V_{ni}}^2 \de\br{\w_{ni}} = \f{2 \pi}{\hbar}\abs{V_{ni}}^2 \de\br{E_n - E_i} \]
+This is another instance of Fermi's golden rule.
+We can then calculate,
+\[ c_i^{(0)}\br{t} = 1 \]
+\[ c_{i}^{(1)}\br{t} = - \f i \hbar V_{ii} \intl_{0}^{t} \dif t' e^{\eta t'} = - \f i {\hbar \eta} V_{ii} e^{\eta t} \]
+And the second order coefficient,
+\begin{align*}
+    c_{i}^{(2)}\br{t}
+    &= \br{-\f{i}{\hbar}}^2 \sum_{m} \intl_{-\inf}^{t} \dif t' \intl_{-\inf}^{t'} \dif t'' e^{i \w_{in} t'} e^{i \w_{im} t''} V_{im} V_{mi} e^{\eta t'} e^{\eta t''} \\
+    &= \br{-\f{i}{\hbar}}^2 \sum_{m} \abs{V_{im}}^2 \intl_{-\inf}^{t} \dif t' \intl_{-\inf}^{t'} \dif t'' e^{\br{\eta + i\w_{im}} t'} e^{\br{\eta + i\w_{im}} t''}\\
+    &= \br{-\f{i}{\hbar}}^2 \sum_{m} \abs{V_{im}}^2 \intl_{-\inf}^{t} \dif t' \f{1}{\br{\eta + i\w_{im}}}e^{\br{\eta + i\w_{im}} t'} e^{\br{\eta + i\w_{im}} t'}\\
+    &= \br{-\f{i}{\hbar}}^2 \sum_{m} \abs{V_{im}}^2 \intl_{-\inf}^{t} \dif t' \f{1}{\br{\eta + i\w_{im}}}e^{2 \eta t'} \qquad \w_{im} = - \w_{mi}\\
+    &= \br{-\f{i}{\hbar}}^2 \sum_{m} \abs{V_{im}}^2 \f{1}{2 \eta\br{\eta + i\w_{im}}}e^{2 \eta t}\\
+\end{align*}
+Since $\w_{ii} = 0$ for $V\br{t} = e^{\eta t} V$ we can break up the sum,
+\[ c_{i}^{(2)}\br{t} = \br{-\f{i}{\hbar}}^2 \abs{V_{ii}}^2 \f{1}{2 \eta^2}e^{2 \eta t} + \br{-\f{i}{\hbar}}^2 \sum_{m \neq i} \abs{V_{im}}^2 \f{1}{2 \eta\br{\eta + i\w_{im}}}e^{2 \eta t} \]
+Recombining contributions from all orders up to $2$,
+\begin{align*}
+    c_i\br{t}
+    &\simeq c_i^{(0)} + c_i^{(1)} + c_i^{(2)} \\
+    &\simeq 1 - \f i {\hbar \eta} V_{ii} e^{\eta t} + \br{-\f{i}{\hbar}}^2 \abs{V_{ii}}^2 \f{1}{2 \eta^2}e^{2 \eta t} + \br{-\f{i}{\hbar}}^2 \sum_{m \neq i} \abs{V_{im}}^2 \f{1}{2 \eta\br{\eta + i\w_{im}}}e^{2 \eta t}
+\end{align*}
+If we compute the derivative of $c_i\br{t}$ is arrive at,
+\[ \f{1}{c_i\br{t}}\der{c_i\br{t}}{t} = \f{- \f i {\hbar} V_{ii} e^{\eta t} + \br{-\f{i}{\hbar}}^2 \abs{V_{ii}}^2 \f{1}{\eta}e^{2 \eta t} + \br{-\f{i}{\hbar}}^2 \sum_{m \neq i} \abs{V_{im}}^2 \f{1}{\eta + i\w_{im}}e^{2 \eta t}}{1 - \f i \hbar V_{ii} \f{e^{\eta t}}{\eta}} \]
+Since $V_{ii} / \hbar \eta \ll 1$, we can Taylor series the denominator,
+\[ \bs{1 - \f i \hbar V_{ii} \f{e^{\eta t}}{\eta}}^{-1} \simeq 1 + \f i \hbar V_{ii} \f{e^{\eta t}}{\eta} \]
+And keep only second order terms in $V$,
+\[ \f{1}{c_i\br{t}}\der{c_i\br{t}}{t} = - \f i {\hbar} V_{ii} e^{\eta t} + \br{-\f{i}{\hbar}}^2 \sum_{m \neq i} \abs{V_{im}}^2 \f{1}{\eta + i\w_{im}}e^{2 \eta t} \]
+Which is the essential result of second order perturbation theory for $V\br{t} = e^{\eta t}V$.
+\[ \f{1}{c_i\br{t}}\der{c_i\br{t}}{t} = - \f i {\hbar} V_{ii} e^{\eta t} -\f{i}{\hbar} \sum_{m \neq i} \abs{V_{im}}^2 \f{e^{2 \eta t}}{E_i - E_m + i \hbar \eta} \]
+If we take the limit of long times or small $\eta \to 0$, we obtain the result for constant potentials. We retain the $\eta$ contribution in the denominator.
+\[ \f{1}{c_i\br{t}}\der{c_i\br{t}}{t} = - \f i {\hbar} V_{ii} -\f{i}{\hbar} \sum_{m \neq i} \abs{V_{im}}^2 \f{1}{E_i - E_m + i \hbar \eta} \]
+If we define $\De_i$ to be,
+\[ \De_i = V_{ii} + \sum_{m \neq i}\abs{V_{mi}}^2 \f{1}{E_i - E_m + i \hbar \eta} \]
+Then we arrive at,
+\[ \der{c_i\br{t}}{t} = - \f i \hbar \De_i c_i\br{t} \implies c_i\br{t} = c_i e^{- \f i \hbar \De_i t}\]
+Or in the Schrödinger picture,
+\[  c_i\br{t} = c_i e^{- \f i \hbar \De_i t}e^{-\f i \hbar E_i t} \]
+What is the physical meaning of this result? Recall that $c_i\br{t}$ are the coefficients of the wavefunction in the interaction picture.
+\[ \ket{\psi, t}_{I} = \sum_{n} c_n\br{t} \ket{n} \]
+Therefore the real part of $\De_i$ has the meaning of the shift of the energy of $\ket{i}$ under the action of the perturbation. We can decompose the contributions into the two orders,
+\[ \De_i = \De_i^{(1)} + \De_i^{(2)} \]
+Where $\De_i^{(1)} = V_{ii}$ agrees with time-independent perturbation theories. However the second order contribution is,
+\[\De_i^{(2)} =  \sum_{m \neq i}\abs{V_{mi}}^2 \f{1}{E_i - E_m + i \hbar \eta} \]
+Notice that the fractional term can the following structure,
+\[ \f{1}{x + i \ep} = \f{x - i \ep}{x^2 + \ep^2} = \f{x}{x^2 + \ep^2} + i \f{-\ep}{x^2 + \ep^2}  \]
+Where $\lim_{\ep \to 0} \ep / \br{\ep^2 + x^2} = \pi \de \br{x}$. Therefore the imaginary part is sifting,
+\[ \Im\br{\De_i^{(2)}} = - \pi \sum_{m \neq i}\abs{V_{im}}^2\de\br{E_i - E_m} \]
+If you recall Fermi's golden rule,
+\[ W_{i \to m} = \f{2\pi}{\hbar} \abs{V_{im}}^2 \de\br{E_i - E_m}\]
+You can suggestively write,
+\[ \Im\br{\De_i^{(2)}} = - \f{\hbar}{2} \sum_{m \neq i}W_{i \to m} \]
+Therefore,
+\[ c_i\br{t} \sim e^{- \f i \hbar \Re\br{\De_i} t} e^{-\f{1}{2 \hbar} \Ga_i t} \]
+Where $\Ga_i = - 2 \Im\br{\De_i^{(2)}}$ acts as a decay constant,
+\[ \abs{c_i\br{t}}^2 \sim e^{-\f{\Ga_i}{\hbar} t} \]
+Which suggests that $\tau_i = \hbar / \Ga_i$ is the lifetime of state $\ket{i}$. Therefore for $t > \tau_i$ the probability to still find the system in the initial state is exponentially small.
+
+\section{Relativistic Quantum Mechanics}
+\todo[TC]{Missed 3 lectures}
+
+\subsection{Dirac Equation}
+The \term{Dirac equation} can be written as,
+\[ i \di_t \psi = H \psi \eq \label{eq:dirac_equation}\]
+Where $H$ is the \term{Dirac Hamiltonian},
+\[ H = - i \al_i \di_i + m \be \eq \label{eq:dirac_Hamiltonian}\]
+Where $\al_i = \ga^{0} \ga^{i}$ and $\be = \ga^{0}$. We define the probability density $\rho = \psi^{\dagger} \psi$ and the Dirac equation permits $\psi$ to satisfy,
+\[ \pder{\rho}{t} + \vdel \cdot \ve j = 0 \implies \ve j \psi^{\dagger} = \ve \al \psi \]
+To simplify notation, we will define the \term{Dirac adjoint} $\bar{\Phi}$,
+\[ \bar{\psi} = \psi^{\dagger} \ga^{0} \]
+Then the probability density becomes,
+\[ \rho = \psi^{\dagger}\psi = \Phi^{\dagger} \ga^{0} \ga^{0} \psi = \bar \psi \ga^{0} \psi \]
+And,
+\[ \ve j = \psi^{\dagger} \ve \al \psi = \psi^{\dagger} \ga^{0} \ga^{0} \ve \al \psi = \bar \psi^{\dagger} \ga^{0} \ve \al \psi = \bar \psi \ve \ga \psi \]
+Where $\ga^{0}\al_{i} = \ga^{0} \ga^{0} \ga^{i} = \ga^{i}$. From this, we define the \term{$4$-current vector} to be,
+\[ j^{\mu} = \br{\rho ,\ve j} = \bar \psi \ga^{\mu} \psi \]
+Such that,
+\[ \di_{\mu} j^{\mu} = 0 \]
+Is the inherently Lorentz-invariant form of the continuity equation. We now solve the Dirac equation by looking for a solution as a plane wave.
+\[ \psi \sim e^{i\br{\ve p \cdot \ve x - E t}}\]
+Plugging this into \cref{eq:dirac_Hamiltonian} gives,
+\[ H\psi = \br{\al_i p_i + \be m}\psi \]
+Where again we have $\al_i = \ga^{0} \ga^{i}$. Recall the Dirac representation of the $\ga$-matrices,
+\[ \ga^{0} = \tau_3 \qquad \ga^{i} = i \si^{i} \tau_{2} \]
+Which means that $\al_i = \ga^{0} \ga^{i} = i \si^{i} \tau_3 \tau_2$ where $\tau_3 \tau_2$ is,
+\[ \tau_3 \tau_2 = \begin{pmatrix}
+    1 & 0 \\ 0 & -1
+\end{pmatrix}\begin{pmatrix}
+    0 & -1 \\ 1 & 0
+\end{pmatrix} = \begin{pmatrix}
+    0 & -1 \\ -1 & 0
+\end{pmatrix} = -i\tau_1 \]
+Therefore $\al_i = \si^{i} \tau_{1}$ which means that,
+\[ H\psi = \br{\si^{i} \tau_{1} p_i + m \tau_{3}}\psi = \br{\tau_1 \ve \si \cdot \ve p + m \tau_3} \psi \]
+However $\tau_1 \ve \si \cdot \ve p + m \tau_3$ is just a matrix. At this point, let us diagonalize $H$ to find the spinor components of $\psi$. We need to find the eigenvalues and eigenvectors of $H\br{\ve p}$.
+\[ H\br{\ve p} = \tau_1 \ve \si \cdot \ve p + m \tau_3 \]
+Luckily we can diagonalize $\ve \si \cdot \ve p$ independently of the rest of $H\br{\ve p}$ because $\tau_1 \ve \si \cdot \ve p$ is really shorthand for the tensor product $\tau_1 \otimes \ve \si \cdot \ve p$. The eigen-system of $\ve \si \cdot \ve p$ has been computed numerous times prior. The eigenvalues are $\pm p$ and the eigenstates correspond to $\ba{\ve \si}$ being along $\ve p$ or in the opposite direction to $\ve p$. \\
+
+We now define the \term{helicity-projection} of $\ve \si$ onto the direction of $\ve p$.\\
+
+If $\ve \si$ is along $\ve p$ we have \term{right-handed helicity}.
+\begin{center}
+    \begin{tikzpicture}
+        \draw[thick, ->] (0,0) -- (3,0) node[right]{$\ve p$};
+        \draw[->] (0.5,-0.5) --node[below]{$\ba{\ve \si}$} (2.5,-0.5);
+    \end{tikzpicture}
+\end{center}
+
+If $\ve \si$ is opposite to $\ve p$ we have \term{left-handed helicity}.
+\begin{center}
+    \begin{tikzpicture}
+        \draw[thick, ->] (0,0) -- (3,0) node[right]{$\ve p$};
+        \draw[<-] (0.5,-0.5) --node[below]{$\ba{\ve \si}$} (2.5,-0.5);
+    \end{tikzpicture}
+\end{center}
+Therefore we separate $H$ into two possibilities for each of the eigenvalues of $\ve \si \cdot \ve p$,
+\[ H_{R} = \tau_1 p + m \tau_3 \qquad H_{L} = -\tau_1 p + m \tau_3 \]
+Both $H_{R}$ and $H_{L}$ are $2 \times 2$ matrices that are relatively easy to diagonalize. As it turns out, $H_{R}$ and $H_{L}$ have the same eigenvalues $E = \pm \sqrt{p^2 + m^2}$. Each of these eigenstates are doubly degenerate corresponding to each of the possible helicities.
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw[scale=0.5,domain=-3:3,smooth,variable=\y, thick] plot ({\y},{(\y*\y + 1)^(1/2)}) node[above]{$\sqrt{p^2 + m^2}$};
+        \draw[scale=0.5,domain=-3:3,smooth,variable=\y, thick] plot ({\y},{-(\y*\y + 1)^(1/2)}) node[below]{$-\sqrt{p^2 + m^2}$};
+        \draw[<->] (0,0.5) -- node[right]{$2m$} (0,-0.5);
+        \draw[->] (-2, -2) -- (-2, 2) node[above]{$E$};
+        \path[draw, thick, red, dashed] (0, -1) node[below]{$e^{+}$} edge[bend left, ->] (0, 1);
+        \draw[red] (0,1) node[above]{$e^{-}$};
+    \end{tikzpicture}
+\end{center}
+
+However we still have the problem of negative energy states. Electrons are fermions and thus obey the \term{Pauli-exclusion} principle: no two fermions can exists in the same state. Dirac's proposal to solve the negative energy problem is as follows: In what we call \textit{vacuum}, all negative energy states are actually filled with electrons. This is called the \term{Dirac negative energy sea} and is considered unobservable. We can however make measurements on particles transitioning from the negative sea to having positive energy (the dashed red line). We define the lack of an electron in the negative sea as a particles with positive energy and are called \term{anti-particles}.
+
+\subsection{Spin}
+
+The primal achievement of the Dirac equation is an explanation of what spin actually is physically. Recall that a charged particle moving in an electromagnetic field with charge $- e$ has canonical momentum $\ve p$ such that,
+\[ m \ve v = \ve p + \f{e}{c} \ve A \]
+Where the canonical momentum is defined under the Hamiltonian formalism $\dot q = \pder{H}{p}, \dot p = - \pder{H}{q}$. From the correspondence principle we define,
+\[ \ve p = - i \vdel \]
 \end{document}

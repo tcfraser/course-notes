@@ -957,4 +957,296 @@ This is nothing more that the sum of two traveling waves,
 \[ \ti{\ve E}\br{\ve r, t} = \f{1}{2i} E_0 \hat y \br{e^{i\br{k_x x + k_z z - \w t}} - e^{i\br{-k_x x + k_z z - \w t}}} \]
 Where $\ve k_1 = \br{k_x \hat x + k_z \hat z}$ and $\ve k_2 = \br{- k_x x + k_z z}$. These two traveling waves travel down the the cavity in the $\hat z$ direction but are bouncing back and forth off of the boundaries in the $\hat x$ directions.
 
+\section{Potentials \& Fields}
+We recall the previously introduced electric, scalar potential $\ve E = - \vdel$ and the magnetic, vector potential $\ve B =\vdel \times\ve A$ because some calculations are easier when using the potentials (which have four components compared to the six components of $\ve E$ and $\ve B$). \\
+
+In electrodynamics we need to reexamine these to see if they are still valid. Regardless we desire that $\vdel \cdot \ve B = 0$ so $\ve B = \vdel \times \ve A$, but we now have Faraday's law:
+\[ \vdel \times \ve E = - \pder{}{t} \ve B = -\pder{}{t} \br{\vdel \times \ve A} = - \vdel \times \br{\pder{\ve A}{t}}\]
+Rearranging,
+\[ \vdel \times \br{\ve E + \pder{\ve A}{t}} = \ve 0 \]
+So that the quantity $\ve E + \pder{\ve A}{t}$ becomes the irrotational quantity and so we write,
+\[ \ve E + \pder{\ve A}{t} = - \vdel V \]
+Which makes the electric potential $\ve E$,
+\[ \ve E = - \vdel V - \pder{\ve A}{t} \]
+and the $\ve E$ field picks up an extra piece $\pder{\ve A}{t}$. \\
+
+Now let's try these new terms in Gauss's and Ampere's laws:
+\[ \ep_0\vdel \cdot \br{-\vdel V + \pder{\ve A}{t}} = \rho \]
+So that,
+\[ \del^2 V + \pder{}{t}\br{\vdel \cdot \ve A} = -\f{\rho}{\ep_0} \]
+Moreover,
+\[ \vdel \times \br{\vdel \times \ve A} = \mu_0 \ve J + \mu_0 \ep_0 \pder{}{t} \br{-\vdel V - \pder{\ve A}{t}}\]
+\[ \vdel \br{\vdel \cdot \ve A} - \del^2 \ve A = \mu_0 \ve J - \mu_0 \ep_0 \vdel \br{\pder{V}{t}} - \mu_0 \ep_0 \pdder{\ve A}{t} \]
+Rearranging this equation gives a familiar form,
+\[ \del^2 \ve A - \mu_0 \ep_0 \pdder{\ve A}{t} - \vdel \br{\vdel \cdot \ve A + \mu_0 \ep_0 \pder{V}{t}} = - \mu_0 \ve J \]
+Which is precisely the wave-equation for $\ve A$ except for the the ugly term $\vdel\br{\vdel \cdot \ve A + \mu_0 \ep_0 \pder{V}{t}}$. What we will do is \textit{choose} to make this term vanish in order to simplify our system of equations. Therefore we have,
+\[ \vdel \cdot \ve A + \mu_0 \ep_0 \pder{V}{t} = 0 \]
+Recalling the D'Alembertian operator $\Box^2 = \br{\f{1}{c^2} \pdder{}{t}, \vdel^2}$ we arrive at,
+\[ \Box^2 A^{\mu} = -\mu_0 J^{\mu} \]
+Where $A^{\mu} = \br{\f{V}{c}, \ve A}$ and $J^{\mu} = \br{c \rho, \ve J}$. In fact if we define $L$ (our generic choice of Gauge) to be,
+\[ L = \vdel \cdot \ve A + \mu_0 \ep_0 \pder{V}{t} \]
+Then our system becomes,
+\begin{align*}
+    \Box^2 V + \pder{L}{t} &= - \f{\rho}{\ep_0} \\
+    \Box^2 \ve A - \vdel L &= - \mu_0 \ve J
+\end{align*}
+To show this, one can add zero,
+\[ -\f{\rho}{\ep_0} = \del^2 V + \pder{}{t}\br{\vdel \cdot \ve A} + \mu_0 \ep_0 \pdder{V}{t} - \mu_0 \ep_0 \pdder{V}{t}\]
+Which allows one to recognize $L$,
+\[ -\f{\rho}{\ep_0} = \del^2 V + \pder{}{t}\br{\underbrace{\vdel \cdot \ve A + \mu_0 \ep_0 \pder{V}{t}}_{L}} - \mu_0 \ep_0 \pdder{V}{t}\]
+Under the \textit{Lorentz gauge} we set $L = 0$. Therefore,
+\[ \Box^2 V = - \f{\rho}{\ep_0} \]
+Which means that,
+\[ \Box^2 \br{\f{V}{c}} = - \f{c\rho}{\ep_0 c^2} = - \mu_0 \br{c \rho} \]
+Which is compactly written in the following form:
+\[ \Box^2 A^{\mu} = -\mu_0 J^{\mu} \]
+It is also possible to write the gauge $L$ in terms of the 4-potential $A^{\mu}$ and the 4-gradient $\Box = \di_\mu = \br{\f1c\pder{}{t}, \vdel}$,
+\[ L = \vdel \cdot \ve A + \f{1}{c^2} \pder{V}{t} = \Box \cdot \br{\f{1}{c} V, \ve A}  = \di_{\mu} A^{\mu} \]
+Where the Minkowski metric is $g_{\mu\nu}$ taken to be,
+\[ g_{\mu\nu} = g^{\mu\nu} = \begin{pmatrix}
+    -1 & 0 & 0 & 0 \\
+     0 & 1 & 0 & 0 \\
+     0 & 0 & 1 & 0 \\
+     0 & 0 & 0 & 1 \\
+\end{pmatrix} \]
+Such that $\Box^2 = \di^{\mu}\di_{\mu} = g_{\mu\nu} \di^{\mu}\di^{\nu}$. Another useful Gauge is the \textit{Coulomb Gauge} where we set $\ve E= - \vdel V$ such that $\del^2 V = - \f{\rho}{\ep_0}$.
+
+\todo[TC]{Missed 2+1+0.5 lectures}
+
+\subsection{Liénard-Wiechert Potentials}
+
+We have,
+\[ V\br{\ve r, t} = \f{1}{4 \pi \ep_0} \int \dif \tau' \f{\rho\br{\ve r', t - \rcurs/c}}{\rcurs} \]
+Where $\ve \rcurs = \ve r - \ve r'$ and $t' = t - \rcurs/c$ is the retarded time.\\
+
+It would seem reasonable that for a point charge,
+\[ \rho\br{\ve r', t'} = q \de\br{\ve r' - \dot{\ve r}' t} \]
+That the potential would be,
+\[ V\br{\ve r, t} \stackrel{?}{=} \f{q}{4 \pi \rho_0 \rcurs} \]
+However, this is \textit{incorrect}! The actual result is,
+\[ V\br{\ve r, t} = \f{q}{4 \pi \ep_0 \rcurs} \f{1}{1 - \f{\ve v \cdot \ve \rcurs}{c}} \]
+Consider the \term{information collecting sphere (ICS)} and a charge density consisting of a small rot of length $\ell$ so that,
+\[ \dif q = \rho \dif \tau' = \la \dif x' \quad \la \defined \f{q}{\ell} \]
+\begin{center}
+    \begin{tikzpicture}
+        \pgfmathsetmacro{\boxh}{1.0}
+        \pgfmathsetmacro{\boxv}{0.2}
+        \pgfmathsetmacro{\R}{4}
+        \draw[] (0,0) circle (\R);
+        \draw[dashed] (0,0) circle (\R*0.65);
+        \draw[dashed] (0,0) circle (\R*0.6);
+        \draw[] (0,0+\R*0.65) node[above]{$t$};
+        \draw[] (0,0+\R*0.6) node[below]{$t + \dif t$};
+        \draw[red, thick] (-2 + \boxh,0 + \boxv) -- (-2 - \boxh,0 + \boxv) -- (-2 - \boxh,0 - \boxv) -- (-2 + \boxh,0 - \boxv) -- cycle;
+        \draw[red] (-2, 0) node[]{$\la$};
+        \draw[->] (-2 + \boxh, 0) -- node[above]{$\ve v$}(-2 + \boxh + 0.5, 0);
+        \draw[fill] (0,0) circle (0.05) node[below]{$\ve r$};
+        \draw[dashed] ({-\R*cos(40)}, {\R*sin(40)}) -- (0,0);
+        \draw[->] ({-\R*cos(40)}, {\R*sin(40)}) node[right]{$\dot{\ve r}' = c \hat r$} -- ({-(\R- 1)*cos(40)}, {(\R- 1)*sin(40)});
+    \end{tikzpicture}
+\end{center}
+Dealing with point charge is evidently complicated. The potential at a point charge is seemingly infinite. One could attempt to resolve these issues with quantum mechanics where the position of a point charge is smeared out across space. However this description suffers from similar problems. Therefore this analysis should not be taken too seriously as more accurate descriptions exist. Nonetheless if the charge is stationary the amount of charge crossed by the ICS in time $\dif t$ would be,
+\[ \dif q = \la \dif \rcurs = c \la \dif t \]
+Bu since the charge is moving towards the field point we have instead,
+\[ \dif q = \la \br{\dif \rcurs - v \dif t} = \la \br{1 - \f{v}{c}} \dif \rcurs \]
+In this case we have,
+\[ \f{\la \dif \rcurs}{\rcurs} = \f{\dif q}{\rcurs \br{1 - \f{v}{c}}} \]
+Since the potential is due to the charge distribution $\la \br{x', t'}$ we get,
+\begin{align*}
+    V\br{x,t}
+    &= \f{1}{4\pi\ep_0} \int \f{\la \dif \rcurs}{\rcurs} \\
+    &= \f{1}{4\pi\ep_0} \int \f{\dif q}{\rcurs \br{1 - \f{v}{c}}} \\
+    &= \f{q}{4\pi\ep_0 \rcurs \br{1 - \f{v}{c}}}
+\end{align*}
+and we see that the potential is increased by a factor of $\br{1 - v/c}^{-1}$. This is a geometric effet and is independent o f the size and/or shape of the charge distribution (despite what this derivation suggests). \\
+
+As the ICS sweeps past the charge it ``sees'' approaching charge for \footnote{See also Feynman's lectures VII, Section 21.5 and Griffiths Section 10.3 p. 451.}. This result can be generalized for a point charge to the \term{Liénard-Wiechert potential},
+\[ V\br{\ve r, t} = \f{qc}{4 \pi \ep_0 \ve \rcurs \cdot \br{c \hat \rcurs - \ve v}} \]
+and similarly to,
+\[ \ve A \br{\ve r, t} = \f{\ve v}{c} V\br{\ve r, t} = \f{\mu_0}{4 \pi}\f{q \ve v}{\ve \rcurs \cdot \br{c \hat \rcurs - \ve v}} \]
+
+\textbf{Griffith Ex. 10.3:} Find the potential of a point charge moving with a constant velocity. Let thhe course position be,
+\[ \ve r' \br{t'} = \ve v t' \]
+so that it is at the origin at $t = 0$. The retarded time is (recall $t = t' - \rcurs / c$),
+\[ r' = t + \f{\rcurs}{c} \]
+Which gives,
+\[ \rcurs =c\br{t' - t} = \abs{\ve r - \ve r'} \]
+so that we have,
+\begin{align*}
+c^2 \br{t^2 - 2tt' + t'^2}
+&= r^2 +r'^2 - 2 \ve r\cdot \ve r' \\
+&= r^2 + v^2 t'^2- 2 t' \ve r \cdot \ve v \\
+\br{v^2 - c^2} t'^2 + \br{2 c^2 t - 2 \ve r \cdot \ve v} t' + \br{r^2 - c^2 t^2} &= 0
+\end{align*}
+Solving the quadratic for $t'$,
+\[ t' = \f{\br{c^2 t - \ve r \cdot \ve v} \pm \sqrt{\br{c^2 t - \ve r \cdot \ve v}^2 - \br{v^2 - c^2}\br{r^2 - c^2 t^2}}}{-v^2 + c^2}\]
+What sign is physically appropriate? If we have $v = 0$,
+\[ t' = \f{\br{c^2 t} \pm \sqrt{\br{c^2 t}^2 - \br{c^2}\br{r^2 - c^2 t^2}}}{c^2} = t\pm \f{r}{c}\]
+Physically, the upper ($+$) solution corresponds to an incorrect expression for the retarded time, namely $t = t' - \rcurs / c$. This corresponds to retrocausation and thus should be discarded. We take the lower sign solution ($-$). We can write the discriminant,
+\[ \sqrt{\br{c^2 t - \ve r \cdot \ve v}^2 - \br{v^2 - c^2}\br{r^2 - c^2 t^2}} = \br{c^2 t - \ve r \cdot \ve v} - \br{c^2 - v^2} t' \]
+From,
+\[ \hat \rcurs = \f{\ve r - \ve r'}{\abs{\ve r' - \ve r'}}= \f{\ve r - \ve v t}{c\br{t - t'}} \]
+And consider,
+\begin{align*}
+c\rcurs \br{1 - \hat \rcurs \cdot \f{\ve v}{c}}
+&= c^2 \br{t - t'} \br{1 - \f{\ve v}{c} \cdot \f{\br{\ve r - \ve v t}}{c \br{t - t'}}} \\
+&= c^2 \br{t - t'} -  \ve v \cdot \ve r - v^2 t' \\
+&= \br{c^2 t - \ve r \cdot \ve v} - \br{c^2 - v^2 }t'
+\end{align*}
+And finally,
+\[ V\br{\ve r, t}= \f{1}{4 \pi \ep_0} \f{q}{\sqrt{\br{c^2 t - \ve r \cdot \ve v}^2 + \cdots}} \]
+And the vector potential is simply,
+\[ \ve A \br{\ve r, t} = \f{\ve v V}{c} \]
+The fields of a moving point charge are,
+\[ \ve E \br{\ve r, t} = \f{q}{4 \pi \ep_0} \f{\rcurs}{\br{\ve \rcurs \cdot \ve u}^3} \br{\br{c^2 - v^2} \ve u + \ve \rcurs \times \br{\ve u \times \ve a}} \]
+Where $\ve u$ is shorthand,
+\[ \ve u = c \hat \rcurs - \ve v \]
+And $\ve a$ is the acceleration,
+\[ \ve a = \dot{\ve v} \]
+The magnetic field can be obtained via,
+\[ \ve B\br{\ve r, t} = \f{\hat \rcurs}{c} \times \ve E \]
+
+\section{Radiation}
+
+We have the the \term{Jefimenko} equations,
+\[ \ve E \br{\ve r, t} = \f{1}{4 \pi\ep_0} \int \dif \tau' \br{\f{\rho \hat \rcurs}{\rcurs^2} + \f{\dot \rho \hat \rcurs}{c \rcurs}- \f{\ve J}{c^2 \rcurs}}  \]
+\[ \ve B \br{\ve r, t} = \f{\mu_0}{4 \pi} \int \dif \tau' \br{\f{\ve J}{\rcurs^2} + \f{\dot {\ve J}}{c \rcurs}}\times \hat \rcurs \]
+So the Poynting vector is $\ve S = \f{1}{\mu_0} \ve E \times \ve B$ and the power is,
+\[ P\br{\ve r, t} = \oint \dif \ve a \cdot \ve S = \f{1}{\mu_0} \int \dif \ve a \cdot \ve E\times \ve B \]
+When considering radiation we are only considered the far-field affects ($\rcurs \to \inf$) so that only the terms $\sim \f{1}{\rcurs}$ remain (because the areas increases as $\rcurs^2$). This chapter is concerned largely with this \textit{far field limit}. In the limit energy leaves the sources and does \textit{not} return.
+
+\todo[TC]{Missed a number of lectures}
+
+\section{Spacetime}
+
+\subsection{Galileo Diagrams}
+Consider next a \term{Galileo diagram} where $\tan \phi = v/c$,
+
+\begin{center}
+    \begin{tikzpicture}
+        \pgfmathsetmacro{\gridsize}{4};
+        \pgfmathsetmacro{\Ax}{3};
+        \pgfmathsetmacro{\Ay}{3};
+        \pgfmathsetmacro{\angle}{30};
+        \draw[->] (0, 0) -- (0, \gridsize) node[above]{$ct$};
+        \draw[->] (0, 0) -- (\gridsize, 0) node[above right]{$x$};
+        \draw[dashed] (0, \Ay) node[left]{$ct_A$} -- (\Ax, \Ay) -- (\Ax, 0) node[below]{$x_A$};
+        \draw[red, ->] (0, 0) -- (\gridsize*tan{\angle}, \gridsize) node[above]{$ct'$};
+        \draw[red, ->] (0, 0) -- (\gridsize, 0) node[below right]{$x'$};
+        \draw[dashed, red] (\Ay*tan{\angle}, \Ay) node[above left]{$ct_A'$} -- (\Ax, \Ay) -- (\Ax - \Ay*tan{\angle}, 0) node[below]{$x_A'$};
+        \draw[red] (0, 1) arc (90:90-\angle:1) node[above left]{$\phi$};
+    \end{tikzpicture}
+\end{center}
+
+In a Galileo diagram, we have the following transformations,
+\[ x_A' = x_A - v t_A \qquad c t_A = c t_A' \]
+Or equivalently,
+\[ \begin{pmatrix}
+    x' \\ ct'
+\end{pmatrix}
+=
+\begin{pmatrix}
+    1 & -v \\
+    0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+    x \\ ct
+\end{pmatrix} \]
+
+However in a Minkowski diagram, we have a different perspective.
+
+\todo[TC]{This diagram is Janky}
+\begin{center}
+    \begin{tikzpicture}
+        \pgfmathsetmacro{\gridsize}{4};
+        \pgfmathsetmacro{\Ax}{3};
+        \pgfmathsetmacro{\Ay}{3};
+        \pgfmathsetmacro{\angle}{30};
+        \draw[->] (0, 0) -- (0, \gridsize) node[above]{$ct$};
+        \draw[->] (0, 0) -- (\gridsize, 0) node[above right]{$x$};
+        \draw[dashed] (0, \Ay) node[left]{$ct_A$} -- (\Ax, \Ay) -- (\Ax, 0) node[below]{$x_A$};
+        \draw[red, ->] (0, 0) -- (\gridsize*tan{\angle}, \gridsize) node[above]{$ct'$};
+        \draw[red, ->] (0, 0) -- (\gridsize, \gridsize*tan{\angle}) node[below right]{$x'$};
+        \draw[dashed, green] (\Ay*tan{\angle}, \Ay) node[above left]{$ct_A'$} -- (\Ax, \Ay) -- (\Ax - \Ay*tan{\angle}, 0) node[below]{$x_A'$};
+        \draw[dashed, red] (\Ay*tan{\angle}, \Ay) node[above left]{$ct_A'$} -- (\Ax, \Ay) -- (\Ay*sec{\angle}, 0) node[below]{$x_A'$};
+    \end{tikzpicture}
+\end{center}
+
+The separation of events within a light-cone are \term{time-like}; there is a reference frame in which the events happen at the same place. And the separation of events out-side a light-cone are \term{space-time}; there does not exist such a direction.
+
+\subsection{Fitzgerald-Lorentz Transform}
+We require a linear transformation between two reference frames with a very particular property group property. We replace the Galileo transform with,
+\[ \begin{pmatrix}
+    x' \\ ct'
+\end{pmatrix}
+=
+\begin{pmatrix}
+    a_{11} & a_{12} \\
+    a_{21} & a_{22}
+\end{pmatrix}
+\begin{pmatrix}
+    x \\ ct
+\end{pmatrix} \]
+
+Where $\bc{a_{ij}}$ are constants for each transformation. Consider the motion of a point fixed in the prime system. Then we have,
+\begin{align*}
+x &= a_{11} x' + a_{12} ct' \\
+ct &= a_{21} x' + a_{22} ct'
+\end{align*}
+If we differentiate with respect to $t'$ we obtain,
+\begin{align*}
+\dif x &= a_{12} c\dif t' \\
+c \dif t &= a_{22} c \dif t'
+\end{align*}
+Therefore,
+\[ \f{1}{c} \der{x}{t} = \f{v}{c} = \f{a_{12}}{a_{22}} \]
+Where $v$ is the relative speed of the primed. \\
+
+Next, consider a pulse of light emitted at the moment the two origins are co=incident. In the positive direction the position of the pulse is $x = ct$ and $x' = ct'$. By the second postulate,
+\[ x = ct = a_{11} x + a_{12} c t' = \br{a_{11} + a_{12}} ct' \]
+Likewise,
+\[ ct = \br{a_{21} + a_{22}}ct' \]
+Therefore,
+\[ a_{11} + a_{12} = a_{21} + a_{22} \]
+In the negative $x$-direction we have similar constraints for $c \mapsto -c$,
+\[ a_{11} - a_{12} = a_{21} - a_{22} \]
+We can now eliminate $3$ out of the four unknowns $\bc{a_{11}, a_{12}, a_{21}, a_{22}}$. Therefore,
+\[ \begin{pmatrix}
+    x' \\ ct'
+\end{pmatrix}
+=
+\ga
+\begin{pmatrix}
+    1 & \f{v}{c} \\
+    \f{v}{c} & 1
+\end{pmatrix}
+\begin{pmatrix}
+    x \\ ct
+\end{pmatrix} \]
+Where $\ga$ is the remaining unknown. The inverse of this transformation is,
+\[ \bc{\ga\begin{pmatrix}
+    1 & \f{v}{c} \\
+    \f{v}{c} & 1
+\end{pmatrix}}^{-1} = \f{1}{\ga\br{1 - \br{\f{v}{c}}^2}}
+\begin{pmatrix}
+    1 & -\f{v}{c} \\
+    -\f{v}{c} & 1
+\end{pmatrix} \]
+However, if Alice had velocity $-v$ then the transformation must hold exactly,
+\[ \begin{pmatrix}
+    x' \\ ct'
+\end{pmatrix}
+=
+\ga
+\begin{pmatrix}
+    1 & -\f{v}{c} \\
+    -\f{v}{c} & 1
+\end{pmatrix}
+\begin{pmatrix}
+    x \\ ct
+\end{pmatrix} \]
+Therefore is must be that,
+\[ \ga = \f{1}{\ga\br{1 - \f{v^2}{c^2}}} \]
+Which when rearranged is known as the \term{Fitzgerald-Lorentz factor},
+\[ \ga = \f{1}{\sqrt{1 - \f{v^2}{c^2}}} \]
 \end{document}
