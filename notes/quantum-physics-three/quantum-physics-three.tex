@@ -2014,10 +2014,168 @@ Where $\Ga_i = - 2 \Im\br{\De_i^{(2)}}$ acts as a decay constant,
 Which suggests that $\tau_i = \hbar / \Ga_i$ is the lifetime of state $\ket{i}$. Therefore for $t > \tau_i$ the probability to still find the system in the initial state is exponentially small.
 
 \section{Relativistic Quantum Mechanics}
-\todo[TC]{Missed 3 lectures}
 
+In order to begin our discussions of \textit{relativistic} quantum mechanics we need to recall the main principles of special relativity. \\
+
+\textbf{Two Main Principles of Special Relativity:} \\
+\begin{enumerate}
+    \item The laws of nature are the same in all inertial reference frames
+    \item The speed of light is the same in all inertial references frames and nothing can move faster than the speed of light
+\end{enumerate}
+
+Pursuant to these principles we will define an \term{event} to be something that happens at a specific point in space and a specific point in time $\br{\ve x, t}$. For two different events $\br{\ve x_1, t_1}$ and $\br{\ve x_2, t_2}$ the interval between event $1$ and $2$ is,
+\[ s_{12} = c^2 \br{t_2 - t_1}^2 - \br{\ve x_2 - \ve x_1}^2 \]
+Where $c$ is the speed of light, and the interval is measured by the emission of light from $\br{\ve x_1, t_1}$ and detection of light at $\br{\ve x_2, t_2}$. Therefore from the perspective of light, $s_{12} = 0$. Over an infinitesimal interval,
+\[ \dif s^2 = c^2 \dif t^2 - \dif \ell^2 \]
+Moreover for another event,
+\[ \dif s'^2 = c^2 \dif t'^2 - \dif \ell'^2 \]
+Where $\dif s^2$ and $\dif s'^2$ are related by a factor $a$ that can't depend on $t$ or $\ve x$ because of the homogeneity of time and space respectively. In fact, $a$ has to depend on $\ve v$, the relative velocity of the two frames. Moreover, the isotropy of space enforces that $a$ can in fact only depend on the \textit{magnitude} of $\ve v$ and not the direction.  Consider three frames of reference $K, K', K''$ with relative velocities,
+\begin{alignat*}{2}
+    K \text{ \& } K' &: \ve v_1 \qquad \dif s^2 &&= a \br{v_1} \dif s'^2 \\
+    K' \text{ \& } K'' &: \ve v_2 \qquad \dif s'^2 &&= a \br{v_2} \dif s''^2 \\
+    K \text{ \& } K'' &: \ve v_{12}\qquad \dif s^2 &&= a \br{v_{12}} \dif s''^2
+\end{alignat*}
+Therefore it must be that $a\br{v_{12}} = a\br{v_1}\cdot a\br{v_2}$. Upon closer inspection, one realizes that $v_{12}$ depends on the angle between $v_1$ and $v_2$. Therefore,
+\[ a\br{v_{12}} \stackrel{?}{\neq} a\br{v_1}\cdot a\br{v_2} \]
+The only way for this equation to hold is for $a$ to be a fixed constant that doesn't depend on $v$ at all.
+\[ a = a\cdot a \implies a = 1 \]
+From this analysis we have discovered that $\dif s^2 = \dif s'^2$; i.e. the interval is the same in all reference frames. The interval between any two events is an \term{invariant}.
+
+\subsection{Proper Time}
+Consider the velocity of $\ve v$ in the laboratory frame. In an amount of time $\dif t$, a particle traveling at speed $v$ will cover a distance $\dif \ell$ in the laboratory frame.
+\[ v =\der{\ell}{t} \qquad \dif \ell = \sqrt{\dif x^2 + \dif y^2 + \dif z^2} \]
+While $\dif s^2$ is the same in all reference frames,
+\[ \dif s^2 = c^2 \dif t^2 - \dif \ell^2 \]
+If we consider moving to the frame of reference for the particle,
+\[ \dif \ell'^2 = 0 \implies \dif s'^2 = c^2 \dif t'^2 \]
+We know that $\dif s^2 = \dif s'^2$. Therefore,
+\[ c^2 \dif t'^2 = c^2 \dif t^2 - \dif \ell^2 \implies \dif t'^2 = \dif t^2 - \f{1}{c^2} \dif \ell^2\]
+Therefore,
+\[ \dif t' = \dif t \sqrt{1 - v^2/c^2} \]
+We refer to the time interval in the frame of the moving particle to be the \term{proper time}.
+
+\subsection{4-Vectors}
+For notational convenience, we will now define a number of vectors.\\
+
+First the \term{contravariant 4-position}:
+\[ x^{\mu} = \br{x^{0}, x^{1}, x^{2}, x^{3}} = \br{ct, x, y, z} \]
+And the \term{covariant 4-position}:
+\[ x_{\mu} = \br{x_{0}, x_{1}, x_{2}, x_{3}} = \br{ct, -x, -y, -z} \]
+Such that the interval invariant can be written,
+\[ x^{\mu} x_{\mu} = c^2 t^2 - x^2 - y^2 - z^2 \]
+We refer to $x^{\mu} x_{\mu}$ as a Lorentz scalar. \\
+
+Next introduce the \term{4-velocity},
+\[ u^{\mu} = \der{x^{\mu}}{s} \]
+Note that $\dif t$ is not invariant with respect to changes of reference frames but $\dif s$ is. This is why we substitute $\dif s$ for $\dif t$ when defining a 4-velocity. To convert between the two, notice that $\dif s^2 = \dif s'^2 = c^2 \dif t'^2$ which means that $c \dif t' = \dif s = c \sqrt{1 - v^2/c^2} \dif t$. Therefore,
+\[ u^{\mu}= \der{x^{\mu}}{s} = \f{1}{c\sqrt{1 - v^2/c^2}} \der{x^{\mu}}{t} = \br{\f{1}{\sqrt{1 - v^2/c^2}}, \f{\ve v}{c\sqrt{1 - v^2/c^2}}}   \]
+Therefore,
+\[ u^{\mu}u_{\mu} = \f{1}{1 - \f{v^2}{c^2}} - \f{v^2}{\br{1 - \f{v^2}{c^2}} c^2} = 1\]
+
+Next introduce \term{4-momentum},
+\[ p^{\mu} = m c u^{\mu} \]
+Where $m$ is the rest mass of the particle.
+\[ p^{\mu} = \br{\f{mc}{\sqrt{1 - v^2 / c^2}}, \f{m\ve v}{c\sqrt{1 - v^2 / c^2}}} = \br{\f{E}{c}, \ve p} \]
+The total energy of a particle is,
+\[ E = p^{0} c = \f{mc^2}{\sqrt{1 - v^2 / c^2}} \]
+Whereas the momentum of a particle is,
+\[  \ve p = \f{m \ve v}{\sqrt{1 - v^2/c^2}} \]
+The Lorentz scalar of $p^{\mu}$ is,
+\[ p^{\mu} p_{\mu} = \f{E^2}{c^2} - \ve p^2 = \f{m^2 c^2}{1 - v^2 / c^2} - \f{m^2 v^2}{1 - v^2 / c^2} = m^2 c^2\]
+Therefore we have derived the famous equation,
+\[ E^2 = m^2 c^4 + p^2 c^2 \eq \label{eq:einstein_famous_eqn}\]
+From hence forth we will write everything in Natural units with $\hbar = c = 1$.
+
+\subsection{Free Particle}
+Consider the classical free-particle Hamiltonian $E = p^2 / 2m$. In quantum mechanics we have the following correspondence,
+\[ E = H = i \pder{}{t} \qquad \ve p = - i \vdel \]
+Therefore the Schrödinger equation can be written,
+\[ i \pder{}{t} \psi = - \f{\del^2}{2m} \psi  \]
+However the Schrödinger is not invariant under Lorentz transformations; it violates one of the fundamental principles of special relativity. Instead take \cref{eq:einstein_famous_eqn} in natural units,
+\[ E = \sqrt{m^2 + \ve p^2} \]
+And apply the operator correspondence,
+\[ i \pder{}{t} \psi = \sqrt{m^2 - \del^2} \psi \eq \label{eq:bad}\]
+This equation is quite bad for a number of reasons. Most importantly, it can be shown that this equation violates the principle of locality. There is one way to solve this problem instead by examining $E^2 = m^2 + p^2$. Mapping this to a quantum analogue produces,
+\[ -\pdder{}{t} \psi = \br{-\del^2 + m^2} \psi \eq \label{eq:Klein-Gordon} \]
+Which is known as the \term{Klein-Gordon} equation.\\
+
+The Klein-Gordon equation itself also has a number of problems. The first being that a 2nd order time derivative of $\psi$ cannot be defined from the principles of QM from the time evolution operator. A more cogent problem is that if we examine,
+\[ \br{\dder{}{t} - \del^2 + m^2} \psi = 0 \]
+And consider $\psi$ to be a scalar field $\psi\br{t, \ve x} = \psi\br{x^{\mu}}$, then,
+\[ \dif \psi = \der{\psi}{x^{\mu}} \dif x^{\mu} = \di_{\mu} \psi \dif x^{\mu} \]
+Since we desire $\del^2 \psi$ to be a scalar field it is better to define the \term{covariant gradient},
+\[ \pder{}{x^{\mu}} = \di_{\mu} = \br{\pder{}{t}, \pder{}{x}, \pder{}{y}, \pder{}{z}} \]
+And thus the \term{contravariant gradient} becomes,
+\[ \di^{\mu} = \br{\der{}{t}, - \vdel } \]
+Now we can write \cref{eq:Klein-Gordon} as a new but analogous equation,
+\[ \br{\di_{\mu} \di^{\mu} + m^2} \psi = 0 \]
+Since $m$ is a constant and $\di_{\mu} \di^{\mu}$ is a Lorentz scalar by construction, this new equation is Lorentz invariant!
+We are now able to attempt to solve the Klein-Gordon equation by using the ansatz of a plane-wave,
+\[ \psi\br{x^{\mu}} = N e^{i p^{\mu} x_{\mu}} \]
+Which gives auxiliary,
+\[ \br{- E^2 + \ve p^2 + m^2}\psi = 0 \]
+This gives solutions if $E = \pm \sqrt{\ve p^2 + m^2}$. This is a problem because we have negative energy solutions.\\
+
+There is yet another problem with the Klein-Gordon equation. In non-relativistic QM we can define the probability of finding a particle at a point $\ve x$ at time $t$ to be,
+\[ \rho\br{\ve x, t} = \psi^{*}\br{\ve x, t} \psi\br{\ve x, t} \]
+Where $\rho\br{\ve x, t}$ satisfies continuity equations,
+\begin{align*}
+    i \pder{\psi}{t} &= - \f{\del^2}{2m} \psi \\
+    -i \pder{\psi^*}{t} &= - \f{\del^2}{2m} \psi^*
+\end{align*}
+By taking the difference of these equations together with weights $\psi^{*}$ and $\psi$ respectively,
+\[ i \psi^{*} \pder{\psi}{t} + i \psi \pder{\psi^*}{t} = - \psi^{*} \f{\del^2}{2m} \psi + \psi \f{\del^2}{2m} \psi^{*} \]
+\[ i \br{\psi^{*} \pder{\psi}{t} + \psi \pder{\psi^*}{t}} = i \pder{}{t}\br{\psi^{*} \psi} = i \pder{\rho}{t} \]
+We now define the \term{probability current},
+\[ j = -\f{i}{2m}\br{\psi^{*} \vdel \psi - \psi \vdel \psi^{*}} \]
+Such that the continuity equation is,
+\[ \pder{\rho}{t} + \vdel \cdot \ve j = 0 \]
+Which states the \textit{conservation of current}. Consider the flow of $\ve j$ through a surface,
+\[ \pder{}{t} \intl \dif^3 x \rho \br{\ve x, t} = - \int \dif^3 x \vdel \cdot \ve j = - \oint \ve j \cdot \dif s \]
+The amount of probability flowing out of the surface is equal to the rate of change of the probability density. Now we shall show that $\psi\br{x^{\mu}} = N e^{i p^{\mu} x_{\mu}}$ (the solution to the Klein-Gordon equation) violates the conservation of probability. Through a similar derivation,
+\begin{align*}
+\pdder{\psi^2}{t} &= \del^2 \psi - m^2 \psi \qquad \br{\times \psi^{*}} \\
+\pdder{{\psi^*}}{t} &= \del^2 \psi^{*} - m^2 \psi^{*} \qquad \br{\times \psi}
+\end{align*}
+Taking the difference again,
+\[ \psi^{*} \pdder{\psi}{t} - \psi \pdder{\psi^{*}}{t} = \psi^{*} \del^2 \psi - \psi \del^2 \psi^{*} \]
+\[ \pder{}{t}\br{\psi^{*} \pdder{\psi}{t} - \psi \pdder{\psi^{*}}{t}} = \vdel \cdot \br{\psi^{*} \vdel \psi - \psi \vdel \psi^{*}} \]
+Therefore we retrieve the continuity equation by defining,
+\[ \rho\br{\ve x, t} = - \f{i}{2m} \br{\psi^{*} \pder{\psi}{t} - \psi \pder{\psi^*}{t}} \qquad \ve j = - \f{1}{2} \br{\psi^{*} \vdel \psi - \psi \vdel \psi^{*}}\]
+However for the plane-wave solution $\rho\br{\ve x, t}$ is \textbf{not} positive definite. Therefore according to the Klein-Gordon equation, $\rho\br{\ve x, t}$ is \textit{not} an ordinary probability distribution as it should be. Therefore we conclude that the Klein-Gordon equation \cref{eq:Klein-Gordon} is not good to solve relativistic quantum mechanics.
 \subsection{Dirac Equation}
-The \term{Dirac equation} can be written as,
+We need to find an equation that is first order in time and also invariant under Lorentz transformations. The most general form we could consider is,
+\[ \br{C^{\mu} \di_{\mu} - m }\psi = 0 \]
+This equation is Lorentz invariant because Lorentz transformations preserve Lorentz scalar products and $\di_{\mu}$ only contains singular time derivatives. The vector $C^{\mu} = \br{C^{0}, C^{1}, C^{2}, C^{3}}$ by itself violates isotropy of spacetime because it picks a direction in spacetime. We need a $C^{\mu}$ that does not violate spacetime isotropies. We define $C^{\mu} = i \ga^{\mu}$ and consider,
+\[ \br{i \ga^{\mu} \di_{\mu} - m }\psi = 0 \]
+Using a plane wave ansatz we still arrive at the troublesome $E^{2} = \ve p^2 + m^2$. Instead let's try
+\[ \br{i \ga^{\mu} \di_{\mu} + m }\br{i \ga^{\nu} \di_{\nu} - m }\psi = 0 \]
+Which can be simplified as a sum of squares,
+\[ \br{\ga^{\mu} \ga^{\nu} \di_{\mu} \di_{\nu} + m^2}\psi = 0 \]
+Note that this will turn into the Klein-Gordon equation if,
+\[ \ga^{\mu} \ga^{\nu} \di_{\mu} \di_{\nu} = \di_{\mu} \di^{\nu} = \eta^{\mu \nu} \di_{\mu} \di_{\nu} \]
+Where $\eta^{\mu\nu}$ is the Minkowski metric tensor,
+\[ \eta^{00} = 1 \qquad \eta^{01} = \eta^{02} = \eta^{03} = -1 \eq \label{eq:eta}\]
+In this case,
+\[ \br{\di_{\mu} \di^{\mu} + m^2} \psi = 0 \implies E^2 = \ve p^2 + m^2 \implies E = \pm \sqrt{\ve p^2 + m^2} \]
+We shall soon see that the Dirac equation will give a physical meaning to the negative energy solutions. Whatever $\ga^{\mu}$ is, we must have that $\ga^{\mu} \ga^{\nu} = \eta^{\mu \nu}$. Since $\eta^{\mu \nu} = \eta^{\nu \mu}$ is symmetric,
+\[ \f{1}{2}\br{\ga^{\mu} \ga^{\nu} + \ga^{\nu} \ga^{\mu}} = \f12 \bc{\ga^{\mu}, \ga^{\nu}} = \eta^{\mu \nu} \]
+This defines the \term{Clifford algebra}. Therefore by \cref{eq:eta} we have that,
+\[ \br{\ga^{0}}^{2} = 1 \qquad \br{\ga^{1}}^{2} + \br{\ga^{2}}^{2} + \br{\ga^{3}}^{2} = -1 \]
+And that,
+\[ \ga^{\mu} \ga^{\nu} + \ga^{\nu} \ga^{\mu} = 0 \qquad \mu \neq \nu \]
+\[ \ga^{\mu} \ga^{\nu} = - \ga^{\mu} \ga^{\nu} \qquad \mu = \nu \]
+Therefore we know that $\ga^{\mu}$ are not normal vectors. Therefore $\ga^{\mu}$ have to be matrices which obey the Clifford algebra.\\
+
+It is now possible to write something that mimics the Schrödinger equation,
+\[ \underbrace{i \ga^{0} \di_{0} \psi}_{\text{time}} + \underbrace{i \ga^{i} \di_{i} \psi}_{\text{space}} - m \psi = 0\]
+By multiplying this equation by $\ga^{0}$ we obtain,
+\[ \ga^{0}\br{i \ga^{0} \di_{0} \psi} + i \ga^{i} \di_{i} \psi - m \psi} = 0\]
+\[ i \di_{0} \psi + i \ga^{0}\ga^{i} \di_{i} \psi - m \ga^{0}\psi = 0\]
+\[ i \di_{0} \psi = - i \ga^{0}\ga^{i} \di_{i} \psi + m \ga^{0}\psi\]
+This defines the \term{Dirac Hamiltonian},
+\[ H = - i \ga^{0}\ga^{i} \di_{i} + m \ga^{0} \]
+Such that the \term{Dirac equation} can be written as,
 \[ i \di_t \psi = H \psi \eq \label{eq:dirac_equation}\]
 Where $H$ is the \term{Dirac Hamiltonian},
 \[ H = - i \al_i \di_i + m \be \eq \label{eq:dirac_Hamiltonian}\]
