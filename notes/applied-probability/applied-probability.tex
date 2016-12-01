@@ -1485,7 +1485,7 @@ By examining foil theorems, we have seen that irreducibility is related to the u
 
     Let $X_1, \ldots, X_n$ be i.i.d r.v.s. The \term{order statistics} of $X_1, \ldots, X_n$ are random variables defined as follows. The first order statistic:
     \[ X_{(1)} = \min\bc{X_1, \ldots, X_n} \]
-    While the $X_{(2)}$ is the second smallest value,
+    While $X_{(2)}$ is defined as the second smallest value,
     \[ X_{(2)} = \min\bc{\bc{X_1, \ldots, X_n} \setminus \min\bc{{X_1, \ldots, X_n}}} \]
     Continuing we define $X_{(n)}$ to be the maximum value,
     \[ X_{(n)} = \max\bc{X_1, \ldots, X_n} \]
@@ -1521,7 +1521,7 @@ By examining foil theorems, we have seen that irreducibility is related to the u
         \end{center}
     \end{example}
 
-    Let us see the reason with $N\br{t} = 1$. Suppose we have that $s_1 = s$ and then $W_2 > t - s$ since the second event has not occurs in $\bs{0, t}$. Then we have the pdf,
+    Let us see the reason for this with $N\br{t} = 1$. Suppose we have that $s_1 = s$ with $W_2 > t - s$ since the second event has not occurs in $\bs{0, t}$. Then we have the pdf,
     \[ f_{s_1 \mid N\br{t} = 1} \br{s} = \f{f_{s_1}\br{s} P\br{W_2 > t - s}}{P\br{N\br{t} = 1}} \ident_{\bs{0, t}}\br{s} \]
     But we know that $W_2$ is distributed exponentially,
     \begin{align*}
@@ -1547,13 +1547,15 @@ By examining foil theorems, we have seen that irreducibility is related to the u
 
     \section{Continuous-time Markov chain}
 
-    The Poisson process is the simplest example of a continuous time process that happens to be a counting process.
+    The Poisson process is the simplest example of a continuous time process; it also happens to be a counting process.
     \begin{definition}
-        A \term{continuous time stochastic process} $\bc{X\br{t}}_{t \geq 0}$ is called a \term{continuous-time Markov chain} is its state space is at most countable and t satisfies the \term{continuous-time Markov property}.
+        A \term{continuous time stochastic process} $\bc{X\br{t}}_{t \geq 0}$ is called a \term{continuous-time Markov chain} is its state space is at most countable and it satisfies the \term{continuous-time Markov property}.
     \end{definition}
     Recall the continuous-time Markov property (\cref{def:ctmp}),
     \[ P\br{X\br{t_m} = j \mid X\br{t_{m-1}} = i, X\br{t_{m-2}} = i_{m-2}, \ldots, X\br{t_1} = 1} = P\br{X\br{t_{m}} = i \mid X\br{t_{m-1}} = i} \]
-    For any $m, t_1 < \cdots < t_m, i_1, \ldots, i_{m-2}, i, j \in S$. As DTMC, $S$ can be considered as finite $\bc{0, \ldots, M}$ or $\bc{1, \ldots, M}$ or countably infinite $\bc{0, 1, \ldots}$, $\bc{0, \pm 1, \pm 2, \ldots} = \Z$. For a CTMC, time is continuous, but the state space is only countable and thus this discrete. Since time is continuous and the state space is discrete, the CTMC must linger or stay at a given state for a finite amount of time and then jump to another state instantaneously.
+    For any $m, t_1 < \cdots < t_m, i_1, \ldots, i_{m-2}, i, j \in S$. \\
+
+    For a DTMC, $S$ can be considered as finite $\bc{0, \ldots, M}$ or $\bc{1, \ldots, M}$ or countably infinite $\bc{0, 1, \ldots}$, $\bc{0, \pm 1, \pm 2, \ldots} = \Z$. For a CTMC, time is continuous, but the state space is only countable and thus is discrete. Since time is continuous and the state space is discrete, the CTMC must linger/stay at a given state for a finite amount of time and then jump to another state instantaneously.
 
     \begin{center}
         \begin{tikzpicture}
@@ -1586,9 +1588,9 @@ By examining foil theorems, we have seen that irreducibility is related to the u
 
     Therefore we need to specify two things:
     \begin{enumerate}
-        \item When the jumps happen and how long the process stays in a state?
+        \item When do the jumps happen and how long does the process stays in a state?
         \item When it jumps, where does it jump to?
     \end{enumerate}
-    To answer the first question, given the process is in state $i$, it will stay in this state for an exponential random time, with parameter denoted $\la_i$. This distribution is fixed by the Markov property. When the process will jump in the future only depends on its current state, not on how long it has been there. Therefore the waiting time must be exponentially distributed. Moreover theMarkov property enforces that the exponential parameter can only depend on state $i$.
+    To answer the first question, let the process be in state $i$, it will stay in this state for an exponential random time, with parameter denoted $\la_i$. This distribution is fixed by the Markov property. When the process jumps in the future only depends on its current state, not on how long it has been there. Therefore the waiting time must be exponentially distributed. Moreover the Markov property enforces that the exponential parameter can only depend on state $i$.
 
 \end{document}
