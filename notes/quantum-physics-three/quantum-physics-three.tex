@@ -2170,21 +2170,81 @@ Therefore we know that $\ga^{\mu}$ are not normal vectors. Therefore $\ga^{\mu}$
 It is now possible to write something that mimics the Schrödinger equation,
 \[ \underbrace{i \ga^{0} \di_{0} \psi}_{\text{time}} + \underbrace{i \ga^{i} \di_{i} \psi}_{\text{space}} - m \psi = 0\]
 By multiplying this equation by $\ga^{0}$ we obtain,
-\[ \ga^{0}\br{i \ga^{0} \di_{0} \psi} + i \ga^{i} \di_{i} \psi - m \psi} = 0\]
+\[ \ga^{0}\br{i \ga^{0} \di_{0} \psi + i \ga^{i} \di_{i} \psi - m \psi} = 0\]
 \[ i \di_{0} \psi + i \ga^{0}\ga^{i} \di_{i} \psi - m \ga^{0}\psi = 0\]
 \[ i \di_{0} \psi = - i \ga^{0}\ga^{i} \di_{i} \psi + m \ga^{0}\psi\]
 This defines the \term{Dirac Hamiltonian},
 \[ H = - i \ga^{0}\ga^{i} \di_{i} + m \ga^{0} \]
 Such that the \term{Dirac equation} can be written as,
 \[ i \di_t \psi = H \psi \eq \label{eq:dirac_equation}\]
-Where $H$ is the \term{Dirac Hamiltonian},
-\[ H = - i \al_i \di_i + m \be \eq \label{eq:dirac_Hamiltonian}\]
-Where $\al_i = \ga^{0} \ga^{i}$ and $\be = \ga^{0}$. We define the probability density $\rho = \psi^{\dagger} \psi$ and the Dirac equation permits $\psi$ to satisfy,
-\[ \pder{\rho}{t} + \vdel \cdot \ve j = 0 \implies \ve j \psi^{\dagger} = \ve \al \psi \]
-To simplify notation, we will define the \term{Dirac adjoint} $\bar{\Phi}$,
+Can $\ga$'s be $2 \times 2$ matrix? No! In order to satisfy the Clifford algebra, we need a minimum of 4 anti-commuting matrices. Note that the Pauli matrices anti commute, however there are only $3$ and not $4$ as needed. Therefore $2 \times 2$ matrices won't work. The minimum dimension of $\ga$'s is $4 \times 4$. It is possible to work out there representation,
+\[\ga^{0} = \ident \otimes \tau_{3} = \begin{pmatrix}
+    \ident & 0 \\
+    0 & -\ident
+\end{pmatrix} = \begin{pmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & -1 & 0 \\
+    0 & 0 & 0 & -1 \\
+\end{pmatrix} \]
+Where $\tau_3$ is,
+\[ \tau_3 = \begin{pmatrix}
+    1 & 0 \\
+    0 & -1
+\end{pmatrix} = \si_z \]
+Often, one uses the following shorthand $\ga^{0} = \ident \otimes \tau_3 = \ident \tau_3 = \tau_3$. Similarly,
+\[ \ga^{i} = \si^{i} \otimes i \tau_{2} = \begin{pmatrix}
+    0 & \si^{i} \\
+    - \si^{i} & 0 \\
+\end{pmatrix} \]
+Where $\tau_2$ is,
+\[ \tau_{2} = \begin{pmatrix}
+    0 & -i \\
+    i & 0
+\end{pmatrix} = \si_{y} \]
+By defining $\ga$'s in this way, they satisfy the Clifford algebra.
+\[ \br{\ga^{0}}^2 = \br{\ident \otimes \tau_{3}}^2 = \ident^2 \otimes \tau_{3}^2 = \ident_{2} \otimes \ident_{2} = \ident_{4} \]
+While $\ga^{i}$ square is opposite,
+\[ \br{\ga^{i}}^2 = \br{\si^{i} \otimes i \tau_{2}}^2 = {\si^{i}}^2 \otimes \br{i\tau_{2}}^2 = - \ident_{2} \otimes \ident_{2} = - \ident_{4}\]
+Moreover, all of the $\ga$'s anti-commute. As an example,
+\[ \ga^{1} \ga^{2} = \br{\si^{1} \otimes i \tau_{2}} \br{\si^{2} \otimes i \tau_{2}} = - \si^{1}\si^{2} \otimes \tau_{2}^2 = - \si^{1}\si^{2} \otimes \ident_{2} = \si^{2}\si^{1} \otimes \ident_{2} = -\ga^{2} \ga^{1} \]
+A question that still remains is: \textit{How do we solve the problem of the probability not being positive-definite?} To answer this, define,
+\[ \al_i = \ga^{0} \ga^{i} \qquad \be = \ga^{0} \]
+Such that the \term{Dirac Hamiltonian} can be written as,
+\[ H = - i \al_i \di_i + m \be \eq \label{eq:dirac_Hamiltonian} \]
+Where $\psi$ will not be a $4$-component spinor vector.
+\[ \psi = \begin{pmatrix}
+    \psi_1 \\ \psi_2 \\ \psi_3 \\ \psi_4
+\end{pmatrix} \]
+Where $\psi^{\dagger}$ is,
+\[ \psi^{\dagger} = \begin{pmatrix}
+    \psi_1^* & \psi_2^* & \psi_3^* & \psi_4^*
+\end{pmatrix} \]
+And thus the probability density is,
+\[ \psi^{\dagger} \psi = \abs{\psi_1}^2 + \abs{\psi_2}^2 + \abs{\psi_3}^2 + \abs{\psi_4}^2 = \rho\br{\ve x, t} \]
+And also the probability current is,
+\[ \ve j = \psi^{\dagger} \ve \al \psi \]
+Where $\ve \al$ is now a matrix $\ve \al = \begin{pmatrix} \al_1, \al_2, \al_3 \end{pmatrix}$. Let's now see if this satisfies the continuity equation. First begin with the equation of motion,
+\[ i \di_t \psi = - i \al_i \di_i \psi + m \be \psi \eq \label{eq:eom_dirac}\]
+And take the Hermitian conjugate,
+\[ - i \di_t \psi^{\dagger} = - i \di_i \psi^{\dagger} \al_i^{\dagger}  + m \psi^{\dagger} \be^{\dagger} \eq \label{eq:eom_dirac_dagger} \]
+By definition, $\al_i$ and $\be$ are Hermitian,
+\[ \be = \be^{\dagger} \]
+\[ \al_i^{\dagger} = \br{\ga^{0} \ga^{i}}^{\dagger} = {\ga^{i}}^{\dagger} {\ga^{0}}^{\dagger} = {\ga^{i}}^{\dagger} \ga^{0} = - \ga^{i} \ga^{0} = \ga^{0} \ga^{i} = \al_i \]
+Therefore by taking \cref{eq:eom_dirac_dagger} and \cref{eq:eom_dirac} we can obtain,
+\[ \br{i \di_t \psi + i \al_i \di_i \psi + m \be \psi} \psi^{\dagger} - \br{- i \di_t \psi^{\dagger} + i \di_i \psi^{\dagger} \al_i^{\dagger}  + m \psi^{\dagger} \be^{\dagger}} \psi  = 0 \]
+\[ \br{i \di_t \psi + i \al_i \di_i \psi + m \be \psi} \psi^{\dagger} - \br{- i \di_t \psi^{\dagger} + i \di_i \psi^{\dagger} \al_i  + m \psi^{\dagger} \be} \psi  = 0 \]
+\[ \br{i \di_t \psi + i \al_i \di_i \psi} \psi^{\dagger} - \br{- i \di_t \psi^{\dagger} + i \di_i \psi^{\dagger} \al_i} \psi  = 0 \]
+\[ \psi^{\dagger} i \di_t \psi + \psi i \di_t \psi^{\dagger}  = - i \psi^{\dagger} \al_i \di_i \psi- i \psi \di_{i} \psi^{\dagger} \al_i   \]
+\[ i \di_{t} \br{\psi^{\dagger} \psi} - i \vdel \cdot \br{\psi^{\dagger} \al_i \psi} \]
+\[ i \di_{t} \rho\br{\ve x, t} - i \vdel \cdot \ve j \]
+\[ \di_{t} \rho\br{\ve x, t} - \vdel \cdot \ve j \]
+Which is the continuity equation. Therefore positive-definiteness is a consequence of,
+\[ \br{\ga^{i}}^{\dagger} = - \ga^{i} \implies \rho = \psi^{\dagger} \psi \]
+To simplify notation, we will define the \term{Dirac adjoint} $\bar{\psi}$,
 \[ \bar{\psi} = \psi^{\dagger} \ga^{0} \]
 Then the probability density becomes,
-\[ \rho = \psi^{\dagger}\psi = \Phi^{\dagger} \ga^{0} \ga^{0} \psi = \bar \psi \ga^{0} \psi \]
+\[ \rho = \psi^{\dagger}\psi = \psi^{\dagger} \ga^{0} \ga^{0} \psi = \bar \psi \ga^{0} \psi \]
 And,
 \[ \ve j = \psi^{\dagger} \ve \al \psi = \psi^{\dagger} \ga^{0} \ga^{0} \ve \al \psi = \bar \psi^{\dagger} \ga^{0} \ve \al \psi = \bar \psi \ve \ga \psi \]
 Where $\ga^{0}\al_{i} = \ga^{0} \ga^{0} \ga^{i} = \ga^{i}$. From this, we define the \term{$4$-current vector} to be,
@@ -2196,8 +2256,8 @@ Is the inherently Lorentz-invariant form of the continuity equation. We now solv
 Plugging this into \cref{eq:dirac_Hamiltonian} gives,
 \[ H\psi = \br{\al_i p_i + \be m}\psi \]
 Where again we have $\al_i = \ga^{0} \ga^{i}$. Recall the Dirac representation of the $\ga$-matrices,
-\[ \ga^{0} = \tau_3 \qquad \ga^{i} = i \si^{i} \tau_{2} \]
-Which means that $\al_i = \ga^{0} \ga^{i} = i \si^{i} \tau_3 \tau_2$ where $\tau_3 \tau_2$ is,
+\[ \ga^{0} = \ident \otimes \tau_3 \qquad \ga^{i} = i \si^{i} \otimes \tau_{2} \]
+Which means that $\al_i = \ga^{0} \ga^{i} = i \si^{i} \otimes \tau_3 \tau_2$ where $\tau_3 \tau_2$ is,
 \[ \tau_3 \tau_2 = \begin{pmatrix}
     1 & 0 \\ 0 & -1
 \end{pmatrix}\begin{pmatrix}
@@ -2205,10 +2265,10 @@ Which means that $\al_i = \ga^{0} \ga^{i} = i \si^{i} \tau_3 \tau_2$ where $\tau
 \end{pmatrix} = \begin{pmatrix}
     0 & -1 \\ -1 & 0
 \end{pmatrix} = -i\tau_1 \]
-Therefore $\al_i = \si^{i} \tau_{1}$ which means that,
-\[ H\psi = \br{\si^{i} \tau_{1} p_i + m \tau_{3}}\psi = \br{\tau_1 \ve \si \cdot \ve p + m \tau_3} \psi \]
-However $\tau_1 \ve \si \cdot \ve p + m \tau_3$ is just a matrix. At this point, let us diagonalize $H$ to find the spinor components of $\psi$. We need to find the eigenvalues and eigenvectors of $H\br{\ve p}$.
-\[ H\br{\ve p} = \tau_1 \ve \si \cdot \ve p + m \tau_3 \]
+Therefore $\al_i = \si^{i} \otimes \tau_{1}$ which means that,
+\[ H\psi = \br{\si^{i} p_i \otimes \tau_{1} + m \ident \otimes\tau_{3}}\psi = \br{\ve \si \cdot \ve p \otimes \tau_1  + m \ident \otimes \tau_3} \psi \]
+However $\ve \si \cdot \ve p \otimes \tau_1 + m \ident \otimes \tau_3$ is just a matrix. At this point, let us diagonalize $H$ to find the spinor components of $\psi$. We need to find the eigenvalues and eigenvectors of $H\br{\ve p}$.
+\[ H\br{\ve p} = \ve \si \cdot \ve p \otimes \tau_{1} + m \ident \otimes \tau_3 \]
 Luckily we can diagonalize $\ve \si \cdot \ve p$ independently of the rest of $H\br{\ve p}$ because $\tau_1 \ve \si \cdot \ve p$ is really shorthand for the tensor product $\tau_1 \otimes \ve \si \cdot \ve p$. The eigen-system of $\ve \si \cdot \ve p$ has been computed numerous times prior. The eigenvalues are $\pm p$ and the eigenstates correspond to $\ba{\ve \si}$ being along $\ve p$ or in the opposite direction to $\ve p$. \\
 
 We now define the \term{helicity-projection} of $\ve \si$ onto the direction of $\ve p$.\\
