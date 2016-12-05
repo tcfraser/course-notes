@@ -1636,8 +1636,8 @@ By examining foil theorems, we have seen that irreducibility is related to the u
     \end{pmatrix} \]
     The entires of $R$ admit the following intuitive interpretations:
     \begin{itemize}
-        \item $-\la_i$: rate/ probability flow going out of state $i$
-        \item $\la_i q_{ij}$: rate/ probability flow going from $i$ to $j$
+        \item $-\la_i$: rate/probability flow going out of state $i$
+        \item $\la_i q_{ij}$: rate/probability flow going from $i$ to $j$
     \end{itemize}
     It is possible to recover $\la_i$ and $q_{ij}$ from $R$. Explicitly,
     \[ \la_i = - R_{ii} \quad q_{ij} = -\f{R_{ij}}{R_{ii}} \quad j \neq i \]
@@ -2009,20 +2009,20 @@ By examining foil theorems, we have seen that irreducibility is related to the u
     If we continue this process, we arrive at the general term of,
     \[ \pi_n = \f{\la_0 \cdots \la_{n-1}}{\mu_1 \cdots \mu_n} \pi_0 = \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j} \pi_0 \]
     These equations fix all entries of $\pi$ up to a normalization. If we sum over all entries (taking the special case of $\pi_i$ into account),
-    \[ 1 = \sum_{n=0}^{\inf} \pi_n = \br{1+ \sum_{n=0}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j}} \pi_0 \]
+    \[ 1 = \sum_{n=0}^{\inf} \pi_n = \br{1+ \sum_{n=1}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j}} \pi_0 \]
     Therefore we have $\pi_0$,
-    \[ \pi_0 = \br{1+ \sum_{n=0}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j}}^{-1} \]
+    \[ \pi_0 = \br{1+ \sum_{n=1}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j}}^{-1} \]
     While the remaining entries are,
-    \[ \pi_n = \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j}\br{1+ \sum_{n=0}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j}}^{-1} \]
+    \[ \pi_n = \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j}\br{1+ \sum_{n=1}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j}}^{-1} \]
     Of course, the uniqueness of a stationary distribution is contingent on the fact that the CTMC is positive recurrent. It is not true for all birth and death processes so it must be that positive recurrence can be determined by the convergence of $\pi_0$. Therefore we have that a stationary distribution $\pi$ exists (and thus MC is positive recurrent) and is normalizable if,
-    \[ \sum_{n=0}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j} < \inf \]
+    \[ \sum_{n=1}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j} < \inf \]
     One would fear that these expressions are quite complicated and would be difficult to work out explicitly.
     \begin{example}
         \term{Positive recurrence for an m/m/s queue:}
         However consider the case of a $m/m/s$ queue. Recall that $\la_i = \la$ and $\mu_i = i \mu$ if $i \leq s$ and $\mu_i = s \mu$ if $i \geq s$. Therefore,
-        \[ \sum_{n=0}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j} = \f{\la}{\mu} + \f{\la}{\mu} \f{\la}{2\mu} + \cdots + \f{\la}{\mu}\f{\la}{2\mu}\cdots \f{\la}{s\mu} + \f{\la}{\mu}\f{\la}{2\mu}\cdots \br{\f{\la}{s\mu}}^2 +\cdots \]
+        \[ \sum_{n=1}^{\inf} \prod_{j=1}^{n}\f{\la_{j-1}}{\mu_j} = \f{\la}{\mu} + \f{\la}{\mu} \f{\la}{2\mu} + \cdots + \f{\la}{\mu}\f{\la}{2\mu}\cdots \f{\la}{s\mu} + \f{\la}{\mu}\f{\la}{2\mu}\cdots \br{\f{\la}{s\mu}}^2 +\cdots \]
         The first $s$ terms correspond to a finite sum and is thus finite. The remaining terms are,
-        \[ \sum_{n=0}^{\inf} \prod_{j=s}^{n}\f{\la_{j-1}}{\mu_j} = \f{\la}{\mu}\f{\la}{2\mu}\cdots \br{\f{\la}{s\mu}}^2 + \f{\la}{\mu}\f{\la}{2\mu}\cdots \br{\f{\la}{s\mu}}^3 + \cdots \]
+        \[ \sum_{n=1}^{\inf} \prod_{j=s}^{n}\f{\la_{j-1}}{\mu_j} = \f{\la}{\mu}\f{\la}{2\mu}\cdots \br{\f{\la}{s\mu}}^2 + \f{\la}{\mu}\f{\la}{2\mu}\cdots \br{\f{\la}{s\mu}}^3 + \cdots \]
         Which is a geometric series we parameter $\f{\la}{s\mu}$. Therefore the sum is finite if and only if $\la < s \mu$. The process is positive recurrent if and only if,
         \[ \la < s \mu \]
         This necessary and sufficient condition makes sense: the arrival rate is $\la$ and the maximum possible service rate is $s \mu$. If the maximal possible service rate is larger than the arrival rate then it must be that the MC returns to every state in a finite amount of time.

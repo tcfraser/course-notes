@@ -2311,4 +2311,75 @@ The primal achievement of the Dirac equation is an explanation of what spin actu
 \[ m \ve v = \ve p + \f{e}{c} \ve A \]
 Where the canonical momentum is defined under the Hamiltonian formalism $\dot q = \pder{H}{p}, \dot p = - \pder{H}{q}$. From the correspondence principle we define,
 \[ \ve p = - i \vdel \]
+
+\todo[TC]{Missed some lectures}
+
+\subsection{Symmetries of the Dirac Equation}
+
+\subsubsection{Parity}
+Consider the Dirac equation,
+\[ \br{i \ga^{\mu} \di_{\mu} - m} \psi = 0 \]
+And the desire to ensure that the Dirac equation is invariant under parity symmetry. Recall that parity reverses the sign of all spatial coordinates,
+\[ x^{\mu} = \br{x^0, \ve x} = \br{t , \ve x} \to \br{t, - \ve x} = x'^{\mu} \]
+If multiply the Dirac equation by $\ga^{0}$,
+\[ \ga^{0} \br{i \ga^{\mu} \di_{\mu} - m} \psi = 0 \]
+\[ \ga^{0} \br{i \ga^{0} \di_{0} + i \ga^{i} \di_{i} - m} \psi = 0 \]
+\[ \br{i \ga^{0} \di_{0} - i \ga^{i} \di_{i} - m} \ga^{0} \psi = 0 \]
+However, if the Dirac equation is to be invariant under the action of parity, it must be that $\ga^{0} \psi$ obeys the Dirac equation as well,
+\[ \br{i \ga^{0} \di_{0} + i \ga^{i} \di'_{i} - m} \ga^{0} \psi = 0 \]
+Where $\di'_{i}$ are derivative in the inverted coordinates. Therefore we write,
+\[ \br{i \ga^{\mu} \di'_{\mu} - m} \ga^{0} \psi = 0 \]
+Which indicates that $\psi'\br{x'^{\mu}} = \ga^{0} \psi\br{x^{\mu}}$ and thus $\ga^{0}$ is the parity operator.
+From this we see that $\ga^{0}$ is parity-even,
+\[ {\ga^{0}}^{\dagger} \ga^{0} \ga^{0} = \ga^{0}\ga^{0}\ga^{0} = \ga^{0} \]
+While $\ga^{i}$ are parity-odd,
+\[ {\ga^{0}}^{\dagger} \ga^{i} \ga^{0} = \ga^{0}\ga^{i}\ga^{0} = -\ga^{i}\ga^{0}\ga^{0} = -\ga^{i} \]
+Moreover,
+\[ \ga^{5} = i \ga^{0} \ga^{1} \ga^{2} \ga^{3} \implies \ga^{0} \ga^{5} \ga^{0} = - \ga^{5} \]
+\subsubsection{Time-Reversal}
+Another symmetry to consider for the Dirac equation is the time-reversal symmetry. The Dirac equation is,
+\[ i \pder{}{t} \psi = H \psi = \br{-i\ga^{0} \ga^{i} \di_{i} + m \ga^{0}} \psi \]
+Under time-reversal $t' = -t$, we hope to have,
+\[ i \pder{}{t'} \psi'\br{t'} = H \psi'\br{t'} \]
+Where $\psi'\br{t'} = \Theta \psi\br{t} = U K \psi\br{t}$. In order for the Hamiltonian to be invariant under time-reversal we require,
+\[ \Theta H \Theta^{-1} = H \qquad \Theta^{-1} H \Theta = H \]
+Therefore we require that $\ga^{0}$ is invariant,
+\begin{align*}
+KU^{\dagger} \ga^{0} U K = \ga^{0} \\
+\end{align*}
+And also,
+\[ K U^{\dagger} \br{i \ga^{0} \ga^{i}} UK = i \ga^{0} \ga^{i} \]
+The first condition requires that $U^{\dagger} \ga^{0} U = \ga^{0}$. Therefore,
+\[ U^{\dagger} \br{i \ga^{0} \ga^{i}} U = - i \ga^{0} {\ga^{i}}^* \]
+Therefore,
+\[ U^{\dagger} \ga^{i} U = i {\ga^{i}}^{*} \]
+In the Dirac representation for $\ga^{i}$,
+\[ \ga^{i} = i \si^{i} \tau_2 \]
+Which means that $\ga^{1,3}$ are real matrices and $\ga^{2}$ is imaginary. In conclusion,
+\begin{align*}
+    U^{\dagger} \ga^{1,3} U &= - \ga^{1,3} \\
+    U^{\dagger} \ga^{2} U &= \ga^{2} \\
+    U^{\dagger} \ga^{0} U &= \ga^{0}
+\end{align*}
+This family of equations is only solved if,
+\[ U = \ga^{1} \ga^{3} \eq \label{eq:time_reverse_dirac} \]
+We can work out \cref{eq:time_reverse_dirac} directly,
+\begin{align*}
+U
+&= \ga^{1} \ga^{3}\\
+&= i \si^1 \tau_2 i \si^{3} \tau_2 \\
+&= - \si^1 \si^{3} \\
+&= i \si_2
+\end{align*}
+Which is in agreement with the time-reversal operator for a non-relativistic spin-$1/2$ particle.\\
+Know that we know the form of $\Theta = UK$ in terms of $\ga^{i}$, we can calculate $\Theta \ga^{5} \Theta^{-1}$,
+\begin{align*}
+    \Theta \ga^{5} \Theta^{-1}
+    &= UK \ga^{5} K U^{\dagger}  \\
+    &= \ga^{1}\ga^{3}K \br{i \ga^{0}\ga^{1}\ga^{2}\ga^{3}} K \ga^{3} \ga^{1}  \\
+    &= \ga^{1}\ga^{3} \br{i \ga^{0}\ga^{1}\ga^{2}\ga^{3}}  \ga^{3} \ga^{1}  \\
+    &= \br{i \ga^{0}\ga^{1}\ga^{2}\ga^{3}} \\
+    &= \ga^{5}
+\end{align*}
+Since $\ga^{5}$ is odd under parity but even under time-reversal, we call $\ga^{5}$ is a \term{chirality}.
 \end{document}
