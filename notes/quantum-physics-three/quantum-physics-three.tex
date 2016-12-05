@@ -10,7 +10,7 @@
 \set{CourseCode}{Phys 434}
 \set{InstructorName}{Anton Burkov}
 \set{Term}{Fall 2016}
-\set{Version}{1.0}
+\set{Version}{1.1}
 
 \pgfplotsset{
     standardplot/.style={
@@ -28,9 +28,7 @@
     }
 }
 
-\draftprofile[TC Fraser]{TC}{Purple}
-
-\newcommand{\hilb}{\mathcal{H}}
+\draftprofile[TC Fraser]{TC}{Red}
 
 \begin{document}
 
@@ -43,7 +41,7 @@
 \section{Review}
 
 \subsection{Discrete Spectrum}
-States in quantum mechanics are vectors in Hilbert space $\hilb$. In Dirac notation, states are denoted as \textit{kets} $\ket{\psi}$. Observables in quantum mechanics are operators $A : \hilb \to \hilb$ such that $\ket{\psi} \mapsto A \ket{\psi}$. Every operator $A$ has a set of eigenkets $\bc{\ket{a'}}$,
+States in quantum mechanics are vectors in Hilbert space $\s{H}$. In Dirac notation, states are denoted as \textit{kets} $\ket{\psi}$. Observables in quantum mechanics are operators $A : \s{H} \to \s{H}$ such that $\ket{\psi} \mapsto A \ket{\psi}$. Every operator $A$ has a set of eigenkets $\bc{\ket{a'}}$,
 \[ A \ket{a'} = a' \ket{a'} \]
 The eigenvalue corresponding to the eigenket $\ket{a'}$ is denoted $a' \in \R$. \\
 
@@ -2306,13 +2304,136 @@ Both $H_{R}$ and $H_{L}$ are $2 \times 2$ matrices that are relatively easy to d
 However we still have the problem of negative energy states. Electrons are fermions and thus obey the \term{Pauli-exclusion} principle: no two fermions can exists in the same state. Dirac's proposal to solve the negative energy problem is as follows: In what we call \textit{vacuum}, all negative energy states are actually filled with electrons. This is called the \term{Dirac negative energy sea} and is considered unobservable. We can however make measurements on particles transitioning from the negative sea to having positive energy (the dashed red line). We define the lack of an electron in the negative sea as a particles with positive energy and are called \term{anti-particles}.
 
 \subsection{Spin}
-
-The primal achievement of the Dirac equation is an explanation of what spin actually is physically. Recall that a charged particle moving in an electromagnetic field with charge $- e$ has canonical momentum $\ve p$ such that,
+The primal achievement of the Dirac equation is its explanation of what spin actually \textit{is}. Recall that a charged particle with charge $- e$ moving in an electromagnetic field has canonical momentum $\ve p$ such that,
 \[ m \ve v = \ve p + \f{e}{c} \ve A \]
 Where the canonical momentum is defined under the Hamiltonian formalism $\dot q = \pder{H}{p}, \dot p = - \pder{H}{q}$. From the correspondence principle we define,
 \[ \ve p = - i \vdel \]
+Then the Hamiltonian becomes (in natural units),
+\[ H = \f{i}{2m} \br{ - i \vdel + e \ve A} \]
+Which naturally suggests the following Dirac equation is an electromagnetic field.
+\[ H = \tau_i \ve \si \cdot \br{\ve p + e \ve A} + m \tau_3 \]
+We can solve this system by examining the energy eigenstates,
+\[ H \psi = E \psi \]
+Where $\psi = \begin{pmatrix} u & v\end{pmatrix}^{\intercal}$ where $u, v$ are $2$-component spinors. In matrix form,
+\[ H = \begin{pmatrix}
+    m & \ve \si \cdot \br{\ve p + e \ve A} \\
+    \ve \si \cdot \br{\ve p + e \ve A} & -m\\
+\end{pmatrix} \]
+As such, we are attempting to solve the following system of equations,
+\[ \begin{pmatrix}
+    m & \ve \si \cdot \br{\ve p + e \ve A} \\
+    \ve \si \cdot \br{\ve p + e \ve A} & -m\\
+\end{pmatrix}\begin{pmatrix}
+    u \\ v
+\end{pmatrix} = E\begin{pmatrix}
+    u \\ v
+\end{pmatrix} \]
+Therefore,
+\begin{align*}
+m u + \ve \si \cdot \br{\ve p + e \ve A} v &= E u \\
+\ve \si \cdot \br{\ve p + e \ve A} u - m v &= E v
+\end{align*}
+Considering the non-relativistic limit of $p \ll m$, $E^2 = p^2 + m^2 \approx m^2$. Therefore,
+\begin{align*}
+\ve \si \cdot \br{\ve p + e \ve A} u - m v = E v \mapsto \ve \si \cdot \br{\ve p + e \ve A} u = 2 m v \implies v = \f{1}{2m} \ve \si \cdot \br{\ve p + e \ve A}u
+\end{align*}
+Moreover,
+\[ m u + \ve \si \cdot \br{\ve p + e \ve A} v = E u \implies \br{\ve \si \cdot \br{\ve p + e \ve A}} \br{\f{1}{2m} \ve \si \cdot \br{\ve p + e \ve A}}u = \br{E - m}u \eq \label{eq:canonical_p_sqr}\]
+It is here that we make use of a very useful identity. For any vectors $\ve a, \ve b$,
+\begin{align*}
+    \br{\ve \si \cdot \ve a} \br{\ve \si \cdot \ve b}
+    &= \si^{i} a_{i}\si^{j} b_{j}  \\
+    &= \f{1}{2} \br{ \bc{\si^{i},\si^{j}} + \bs{\si^{i}, \si^{j}}}a_{i}b_{j}
+\end{align*}
+But luckily,
+\[ \bs{\si^{i}, \si^{j}} = 2 i \ep_{ijk}\si^{k} \qquad \bc{\si^{i}, \si^{j}} = 2 \de_{ij} = \begin{cases}
+    2 & \si^{i} = \si^{j} \\
+    0 & \si^{i} \neq \si^{j}
+\end{cases} \]
+Which means,
+\begin{align*}
+    \br{\ve \si \cdot \ve a} \br{\ve \si \cdot \ve b}
+    &= \br{ \de_{ij} + i \ep_{ijk}\si^{k}}a_{i}b_{j} \\
+    &= \ve a \cdot \ve b + i \ve \si \cdot \br{\ve a \times \ve b}
+\end{align*}
+In the case of \cref{eq:canonical_p_sqr} $\ve a = \ve b = \ve p + e \ve A$.
+\[ \br{E - m}u = \f{1}{2m} \br{\ve p + e \ve A}^2 u + i \f{1}{2m} \ve \si \cdot \bs{\br{\ve p + e \ve A}\times \br{\ve p + e \ve A} u} \eq \label{eq:sqr_mess}\]
+Note that $\br{\ve p + e \ve A}\times \br{\ve p + e \ve A}$ is not necessarily zero because it is an operator that acts on $u$. If fact,
+\begin{align*}
+    \br{\ve p + e \ve A}\times \br{\ve p + e \ve A} u
+    &= \br{-i\vdel + e \ve A}\times \br{-i\vdel + e \ve A} u\\
+    &= - \cancelto{0}{\vdel \times \br{\vdel u}} - i e \vdel \times \br{\ve A u} - i e \ve A \times \br{\vdel u} + e \cancelto{0}{\ve A \times \ve A} u \\
+    &= - i e \bs{\vdel \times \br{\ve A u} + \ve A \times \br{\vdel u}} \\
+    &= - i e \bs{\vdel \times u \times \ve A + \br{\vdel \times \ve A} u + \ve A \times \br{\vdel u}} \\
+    &= - i e \bs{\br{\vdel \times \ve A} u} \\
+    &= - i e \ve B u
+\end{align*}
+Where $\ve B$ is the magnetic field. We have now shown that \cref{eq:sqr_mess} can be written as,
+\[ \f{1}{2m} \br{\ve p + e \ve A}^{2} u + \f{e}{2m} \ve si \cdot \ve B u = \br{E - m}u \]
+Or when written in terms of $\ve S = \f{\hbar}{2}\ve \si = \f{1}{2} \ve \si$,
+\[ \f{1}{2m} \br{- i \vdel^2 + e \ve A}^{2} u + 2 \f{e}{2m} \ve S \cdot \ve B u = \br{E - m}u \]
+Recall from electromagnetism the \term{Bohr Magneton} $\mu_{B}$, the \term{$g$-factor} of $g \approx 2$ and the electron magnetic moment $\ve \mu = -g \mu_B \ve S$,
+\[ \mu_B = \f{e}{2m} = \f{e \hbar}{2 m c} \]
+Then we have,
+\[ \f{1}{2m} \br{- i \vdel^2 + e \ve A}^{2} u - \ve \mu \cdot \ve B u = Tu \]
+Where $T = E -m$ is the kinetic energy. In the non-relativistic limit (as we are considering),
+\[ E = \sqrt{p^2 + m^2} = m \sqrt{1 + \f{p^2}{m^2}} \approx m \br{1 + \f{p^2}{2m}} \approx m + \f{p^2}{2m} \]
+Therefore the Dirac equation predicts a contribution of $\ve \mu \cdot \ve B u$ due to the spin of the particle. \\
 
-\todo[TC]{Missed some lectures}
+\subsection{Ultra-relativistic Dirac}
+Now if we consider the ultra-relativistic limit instead, $p^2 \gg m^2$, a new characteristic emerges: \term{chirality}. We will need to introduce a new $\ga$-matrix, which for historical reasons is denoted $\ga^{5}$ and is defined,
+\[ \ga^{5} = i \ga^{0}\ga^{1}\ga^{2}\ga^{3} \]
+Recall that $\ga^{0} = \tau_3$ and $\ga^{i} = i \si^{i} \tau_2$. Then,
+\[ \ga^{5} = i \br{\tau_3}\br{i \si^{1} \tau_2}\br{i \si^{2} \tau_2}\br{i \si^{3} \tau_2} \]
+Using properties of the Pauli matrices,
+\[ \si^{1} \si^{2} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} = \begin{pmatrix} i & 0 \\ 0 & -i \end{pmatrix} = i \si^{3} \]
+And properties of the $\tau$ matrices,
+\[ \tau_{2} \tau_{2} = \ident\qquad \tau_{3} \tau_{2} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}\begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} = \begin{pmatrix} 0 & -i \\ -i & 0 \end{pmatrix} = -i \tau_{1}  \]
+Makes the chirality $\ga^{5}$,
+\[ \ga^{5} = i \br{-i} \tau_1 = \tau_1 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \]
+Recall the Dirac equation,
+\[ \br{\tau_1 \ve \si \cdot \ve p + m \tau_3} \psi = E \psi \]
+Which for $p \ll m$ becomes,
+\[ H \approx \begin{pmatrix}
+    m & 0 \\ 0 & - m
+\end{pmatrix} \]
+\subsubsection{Weyl Representation}
+In the case of $p \gg m$ is is common to use a different representation of the $\ga$-matrices. If instead we desire to have $\ve \si \cdot \ve p$ to be on the diagonal of $H$ instead of $m$ as it is above, we can use something called the \term{Weyl representation}.
+\[ \ga^{0} = \tau_1 \qquad \ga^{i} = i \si^{i} \tau_{2} \]
+Then,
+\[ \ga^{5} = i \ga^{0}\ga^{1}\ga^{2}\ga^{3} = i \tau_1 i \si^{1} \tau_{2}i \si^{2} \tau_{2}i \si^{3} \tau_{2}  \]
+Making $\ga^{5}$ in the Weyl representation diagonal,
+\[ \ga^{5} = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix} \]
+Before, with $p \ll m$, we had $\ga^{0} = \tau_{3}$,
+\[ H = \begin{pmatrix} m & \ve \si \cdot \ve p \\ \ve \si \cdot \ve p & -m \end{pmatrix} \]
+Which is convenient for the non-relativistic limit. However for the ultra-relativistic limit, it is convenient to switch to $\ga^{0} = \tau_{1}$ such that,
+\begin{align*}
+H
+&= \ve \al \cdot \ve p + m \be \\
+&= \ga^{0} \ga^{i}p_i  + m \ga^{0} \\
+&= -\tau_3\si^{i}p_i  + m \tau_1 \\
+&= -\tau_3\ve \si \cdot \ve p  + m \tau_1
+\end{align*}
+In matrix form,
+\[ H = \begin{pmatrix} -\ve \si \cdot \ve p & m \\ m & \ve \si \cdot \ve p \end{pmatrix} \]
+In the Weyl representation, the Hamiltonian becomes diagonal for massless particles.
+\[ H =_{m \to 0} \begin{pmatrix} -\ve \si \cdot \ve p & 0 \\ 0 & \ve \si \cdot \ve p \end{pmatrix} \]
+Thus separating into $2$ independent $2 \times 2$ Hamiltonians. We write,
+\[ H = \pm \ve \si \cdot \ve p \]
+To describe particles that have right-handed or left-handed chirality. Chirality is an eigenvalue of $\ga^{5}$.
+\[ \ga^{5} \psi_{R} = \psi^{R} \qquad \ga^{5} \psi_{L} = -\psi^{L}\]
+We can solve for $\psi_{L,R}$ directly,
+\[ i \pder{}{t} \psi_L = H_L \psi_L = - \ve \si  \cdot \ve p \psi_{L} = i \ve \si \cdot \vdel \psi_L \]
+Similarly,
+\[ i \pder{}{t} \psi_R = - i \ve \si \cdot \vdel \psi_R \]
+Introduce,
+\[ \si^{\mu} = \br{\ident, \ve \si} \qquad \bar \si^{\mu} = \br{\ident, -\ve \si}\]
+Which means we can condense the notation for these eigen-system equations to be simply,
+\begin{align*}
+    \si^{\mu} \di_{\mu} \psi_{R} &= 0 \\
+    \bar \si^{\mu} \di_{\mu} \psi_{L} &= 0
+\end{align*}
+
 
 \subsection{Symmetries of the Dirac Equation}
 
@@ -2382,4 +2503,195 @@ Know that we know the form of $\Theta = UK$ in terms of $\ga^{i}$, we can calcul
     &= \ga^{5}
 \end{align*}
 Since $\ga^{5}$ is odd under parity but even under time-reversal, we call $\ga^{5}$ is a \term{chirality}.
+
+
+\newpage
+\section*{Appendix}
+\markboth{Appendix}{Appendix}
+\addcontentsline{toc}{section}{Appendix}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\renewcommand*{\theHsubsection}{appendix.\the\value{subsection}}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\subsection{Dirac Spinors}
+
+The Dirac equation is the relativistic version of the Schrödinger equation,
+\[ \br{i \ga^{\mu} \di_{\mu} - m}\psi = 0 \eq \label{eq:dirac_equation_appendix}\]
+Where the Dirac gamma matrices are $\ga^{\mu} = \br{\ga^{0}, \ve \ga} = \br{\ga^{0}, \ga^{1}, \ga^{2}, \ga^{3}}$ and must satisfy the following algebra,
+\[ \br{\ga^{0}}^{2} = 1 \qquad \br{\ga^{i}}^2 = -1 \qquad \ga^{\mu} \ga^{\nu} = - \ga^{\nu} \ga^{\mu} \quad \mu \neq \nu \]
+All of these properties can be compactly written as,
+\[ \bc{\ga^{\mu}, \ga^{\nu}} = \ga^{\mu} \ga^{\nu} + \ga^{\nu} \ga^{\mu} = 2 \eta^{\mu \nu}  = 2\begin{pmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & -1 & 0 & 0\\
+    0 & 0 & -1 & 0 \\
+    0 & 0 & 0 & -1 \\
+\end{pmatrix} \]
+The smallest matrix representation of this algebra is,
+\[ \ga^{0} = \begin{pmatrix}
+    \ident & \ve 0 \\
+    \ve 0 & - \ident \\
+\end{pmatrix} \qquad \ga^{i} = \begin{pmatrix}
+    \ve 0 & \si^{i} \\
+    -\si^{i} & \ve 0 \\
+\end{pmatrix} \]
+Where $\ident$ here is the $2 \times 2$ identity matrix and $\si^{i}$ are the $2 \times 2$ Pauli matrices,
+\[ \si^1 = \begin{pmatrix}
+    0 & 1 \\ 1 & 0
+\end{pmatrix} \qquad \si^{2}= \begin{pmatrix}
+    0 & -i \\ i & 0
+\end{pmatrix}
+\qquad \si^3 = \begin{pmatrix}
+    1 & 0 \\ 0 & -1
+\end{pmatrix} \]
+In order to solve the Dirac equation, consider a plane wave entirely parameterized by its 4-momentum $p^{\mu}$:
+\[ \psi\br{x^{\mu}} = s\br{p^{\nu}} e^{ - i p^{\mu} x_{\mu}} \eq \label{eq:plane_wave_dirac_spinor}\]
+Where we refer to $s\br{p^{\mu}}$ as the \term{Dirac spinors}. Substituting \cref{eq:plane_wave_dirac_spinor} into \cref{eq:dirac_equation_appendix},
+\[ \br{i \ga^{\mu} \di_{\mu} - m}s\br{p^{\nu}} \br{e^{ - i p^{\al} x_{\al}}} = 0 \]
+Since $s\br{p^{\nu}}$ is constant for fixed $p^{\nu}$,
+\[ s\br{p^{\nu}}\br{i \ga^{\mu} \di_{\mu} - m} e^{ - i p^{\al} x_{\al}} = 0 \]
+Therefore,
+\begin{align*}
+\br{i \ga^{\mu} \di_{\mu} - m} e^{ - i p^{\al} x_{\al}}
+&= i \ga^{\mu} \di_{\mu}e^{ - i p_{\al} x^{\al}} - me^{ - i p^{\al} x_{\al}} \\
+&= i \ga^{\mu} \br{-i p_{\mu}} e^{-i p^{\al} x_{\al}} - me^{ - i p^{\al} x_{\al}} \\
+&= \br{\ga^{\mu} p_{\mu} - m} e^{-i p^{\al} x_{\al}}
+\end{align*}
+Dropping $e^{-i p^{\al} x_{\al}}$ because it is never $0$,
+\[ \br{\ga^{\mu} p_{\mu} - m}s\br{p^{\nu}} = 0 \]
+This represents a system of $4$ linear equations than need to be simultaneously satisfied. Luckily, $\ga^{\mu} p_{\mu}$ exhibits block structure,
+\begin{align*}
+\ga^{\mu} p_{\mu} - m
+&= \ga^{0} p_0 + \ga^{i} p_i - m \\
+&= \begin{pmatrix}
+    \ident p_0 & \ve 0 \\
+    \ve 0 & - \ident p_0 \\
+\end{pmatrix} + \begin{pmatrix}
+    \ve 0 & p_i\si^{i} \\
+    -p_i\si^{i} & \ve 0 \\
+\end{pmatrix} - \begin{pmatrix}
+    \ident m & \ve 0 \\
+    \ve 0 & - \ident m \\
+\end{pmatrix} \\
+&= \begin{pmatrix}
+    p_0 - m & p_i\si^{i} \\
+    -p_i\si^{i} & - p_0 - m \\
+\end{pmatrix}
+\end{align*}
+Where $p_i\si^{i}$ is written,
+\[ p_i\si^{i} = \begin{pmatrix}
+    p_3 & p_1 - i p_2 \\
+    p_1 + i p_2 & -p_3 \\
+\end{pmatrix} \]
+Since $\ga^{\mu} p_{\mu} - m$ is composed of $2 \times 2$ blocks, it is reasonable that there would be $4$ distinct eigenspinors $s\br{p^{\nu}}$ and are also composed of blocks.
+\[ s\br{p^{\nu}} = \begin{pmatrix}
+    s_{12}\br{p^{\nu}} \\
+    s_{34}\br{p^{\nu}} \\
+\end{pmatrix} = \begin{pmatrix}
+    s_{1}\br{p^{\nu}} \\
+    s_{2}\br{p^{\nu}} \\
+    s_{3}\br{p^{\nu}} \\
+    s_{4}\br{p^{\nu}} \\
+\end{pmatrix} \]
+Where here I am using subscripts to denote the entires of the spinors $s\br{p^{\mu}}$; later I will use superscripts to label the distinct eigenstates. Therefore,
+\[ \br{\ga^{\mu} p_{\mu} - m}s\br{p^{\nu}} = \begin{pmatrix}
+    p_0 - m & p_i\si^{i} \\
+    -p_i\si^{i} & - p_0 - m \\
+\end{pmatrix}\begin{pmatrix}
+    s_{12}\br{p^{\nu}} \\
+    s_{34}\br{p^{\nu}} \\
+\end{pmatrix} = 0 \]
+Solve the system,
+\[ \begin{pmatrix}
+    \ident & \f{p_i\si^{i}}{p_0 - m} \\
+    \f{p_i\si^{i}}{p_0 + m} & \ident \\
+\end{pmatrix}\begin{pmatrix}
+    s_{12}\br{p^{\nu}} \\
+    s_{34}\br{p^{\nu}} \\
+\end{pmatrix} = 0 \]
+\[ \begin{pmatrix}
+    1 & 0 & \f{p_3}{p_0 - m} & \f{p_1 - i p_2}{p_0 - m} \\
+    0 & 1 & \f{p_1 + i p_2}{p_0 - m} & \f{-p_3}{p_0 - m} \\
+    \f{p_3}{p_0 + m} & \f{p_1 - i p_2}{p_0 + m} & 1 & 0 \\
+    \f{p_1 + i p_2}{p_0 + m} & \f{-p_3}{p_0 + m} & 0 & 1 \\
+\end{pmatrix}\begin{pmatrix}
+    s_{1}\br{p^{\nu}} \\
+    s_{2}\br{p^{\nu}} \\
+    s_{3}\br{p^{\nu}} \\
+    s_{4}\br{p^{\nu}} \\
+\end{pmatrix} = 0 \]
+From here, the nullspace (and solutions to the Dirac spinor equation) can be read off with ease,
+\begin{align*}
+    s^{1}\br{p^{\nu}} &= \begin{pmatrix} 0 & 1 & \f{-p_1 + i p_2}{p_0 + m} & \f{p_3}{p_0 + m} \end{pmatrix}^{\intercal} \\
+    s^{2}\br{p^{\nu}} &= \begin{pmatrix} 1 & 0 & \f{-p_3}{p_0 + m} & \f{-p_1 - i p_2}{p_0 + m} \end{pmatrix}^{\intercal} \\
+    s^{3}\br{p^{\nu}} &= \begin{pmatrix} \f{-p_3}{p_0 - m} & \f{-p_1 - i p_2}{p_0 - m} & 1 & 0 \end{pmatrix}^{\intercal} \\
+    s^{4}\br{p^{\nu}} &= \begin{pmatrix} \f{-p_1 + i p_2}{p_0 - m} & \f{p_3}{p_0 - m} & 0 & 1 \end{pmatrix}^{\intercal}
+\end{align*}
+Notice that for each solution, three out of the four equations (rows) can be verified by inspection. However, there is always a remaining row that fixes a relationship among $p^{\mu}$. For example, consider $s^{1}\br{p^{\nu}}$ and the second equation (row 2).
+\[ 1 + \br{\f{-p_1 + i p_2}{p_0 + m}}\br{\f{p_1 + i p_2}{p_0 - m}} + \br{\f{p_3}{p_0 + m}}\br{\f{-p_3}{p_0 - m}} = 0 \]
+\[ p_0^2 - m^2 + \br{-p_1 + i p_2}\br{p_1 + i p_2} + \br{p_3}\br{-p_3} = 0 \]
+\[ p_0^2 - m^2 - p_1^2 - p_2^2 - p_3^2 = 0 \]
+\[ p_0^2 = p_1^2 + p_2^2 + p_3^2 + m^2 \]
+Which is nothing more that $E^{2} = m^2 + \ve p^2$; something that holds for all free particles. In order to determine the \textit{sign} or the energy for each state, consider the Dirac equation again,
+\[ \br{\ga^{\mu} p_{\mu} - m}s\br{p^{\nu}} = \br{\ga^{0} p_{0} + \ga^{i} p_{i} - m}s\br{p^{\nu}} \implies \ga^{0} p_0 s\br{p^{\nu}} = \br{m - \ga^{i} p_i} s\br{p^{\nu}} \]
+Now shift to the frame of the particle itself ($p_i \to 0, p_0 \to \ti p_{0}$ where the sign of $p_0$ and $\ti p_0$ are the same),
+\[ \ga^{0} \ti p_0 s\br{\ti p^{0}} = m s\br{\ti p^{0}} \succeq 0 \]
+\[ \begin{pmatrix}
+    \ident & \ve 0 \\
+    \ve 0 & - \ident \\
+\end{pmatrix} \ti p_0 s\br{\ti p^{0}} \succeq 0 \]
+Since in the frame of the particle, $s_{\nu}\br{\ti p^{0}} = \de_{\nu}$ is a computational basis vector, the sign of the energy of the particle is entirely determined by whether or not $\nu = \bc{1, 2}$ or $\nu = \bc{3, 4}$.
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+    \hline
+    Spinor State & Form & Energy Sign & Spin State \\
+    \hline
+    $s^{1}\br{p^{\nu}}$ & $\begin{pmatrix} 0 & 1 & \f{-p_1 + i p_2}{p_0 + m} & \f{p_3}{p_0 + m} \end{pmatrix}^{\intercal}$ & + & +, $\downarrow$\\
+    $s^{2}\br{p^{\nu}}$ & $\begin{pmatrix} 1 & 0 & \f{-p_3}{p_0 + m} & \f{-p_1 - i p_2}{p_0 + m} \end{pmatrix}^{\intercal}$ & + & +, $\uparrow$\\
+    $s^{3}\br{p^{\nu}}$ & $\begin{pmatrix} \f{-p_3}{p_0 - m} & \f{-p_1 - i p_2}{p_0 - m} & 1 & 0 \end{pmatrix}^{\intercal}$ & - & -, $\uparrow$\\
+    $s^{4}\br{p^{\nu}}$ & $\begin{pmatrix} \f{-p_1 + i p_2}{p_0 - m} & \f{p_3}{p_0 - m} & 0 & 1 \end{pmatrix}^{\intercal}$ & - & -, $\downarrow$\\
+    \hline
+\end{tabular}
+\end{center}
+Note that these states are not normalized.
+In the non-relativistic limit, $p \ll m$ and thus $m \approx p_0$ for particles and $m \approx - p_0$ for antiparticles. In this limit, the denominators of $s^{3}\br{p^{\nu}}$ and $s^{4}\br{p^{\nu}}$ behave exactly to those in $s^{1}\br{p^{\nu}}$ and $s^{2}\br{p^{\nu}}$. To simplify the limit, we can scale the states in another and analyze the physics,
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+    \hline
+    Spinor State & Form & Energy Sign & Spin State \\
+    \hline
+    $s^{1}\br{p^{\nu}}$ & $\begin{pmatrix} 0 & {p_0 + m} & {-p_1 + i p_2} & {p_3} \end{pmatrix}^{\intercal}$ & + & +, $\downarrow$\\
+    $s^{2}\br{p^{\nu}}$ & $\begin{pmatrix} {p_0 + m} & 0 & {-p_3} & {-p_1 - i p_2} \end{pmatrix}^{\intercal}$ & + & +, $\uparrow$\\
+    $s^{3}\br{p^{\nu}}$ & $\begin{pmatrix} {-p_3} & {-p_1 - i p_2} & {p_0 - m} & 0 \end{pmatrix}^{\intercal}$ & - & -, $\uparrow$\\
+    $s^{4}\br{p^{\nu}}$ & $\begin{pmatrix} {-p_1 + i p_2} & {p_3} & 0 & {p_0 - m} \end{pmatrix}^{\intercal}$ & - & -, $\downarrow$\\
+    \hline
+\end{tabular}
+\end{center}
+Applying the relativistic limits $p \ll m$ and normalizing,
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+    \hline
+    Spinor State & Form & Energy Sign & Spin State \\
+    \hline
+    $s^{1}\br{p^{\nu}}$ & $\begin{pmatrix} 0 & 1 & 0 & 0 \end{pmatrix}^{\intercal}$ & + & +, $\downarrow$\\
+    $s^{2}\br{p^{\nu}}$ & $\begin{pmatrix} 1 & 0 & 0 & 0 \end{pmatrix}^{\intercal}$ & + & +, $\uparrow$\\
+    $s^{3}\br{p^{\nu}}$ & $\begin{pmatrix} 0 & 0 & 1 & 0 \end{pmatrix}^{\intercal}$ & - & -, $\uparrow$\\
+    $s^{4}\br{p^{\nu}}$ & $\begin{pmatrix} 0 & 0 & 0 & 1 \end{pmatrix}^{\intercal}$ & - & -, $\downarrow$\\
+    \hline
+\end{tabular}
+\end{center}
+Even the non-relativistic Dirac equation predicts $4$ eigenstates; and thus both positive and negative energy eigenstates. However, for $p_0 > 0$ solutions, the lower components become redundant.
+Similarly, for the ultra relativistic limit apply $p \gg m$ where $p_0 \approx p$ for particles and $p_0 \approx - p$ for the antiparticles,
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+    \hline
+    Spinor State & Form & Energy Sign & Spin State \\
+    \hline
+    $s^{1}\br{p^{\nu}}$ & $\begin{pmatrix} 0 & {p } & {-p_1 + i p_2} & {p_3} \end{pmatrix}^{\intercal}$ & + & +, $\downarrow$\\
+    $s^{2}\br{p^{\nu}}$ & $\begin{pmatrix} {p } & 0 & {-p_3} & {-p_1 - i p_2} \end{pmatrix}^{\intercal}$ & + & +, $\uparrow$\\
+    $s^{3}\br{p^{\nu}}$ & $\begin{pmatrix} {-p_3} & {-p_1 - i p_2} & {-p } & 0 \end{pmatrix}^{\intercal}$ & - & -, $\uparrow$\\
+    $s^{4}\br{p^{\nu}}$ & $\begin{pmatrix} {-p_1 + i p_2} & {p_3} & 0 & {-p} \end{pmatrix}^{\intercal}$ & - & -, $\downarrow$\\
+    \hline
+\end{tabular}
+\end{center}
+
 \end{document}
