@@ -1534,7 +1534,7 @@ Therefore for spin-1/2 particles,
 \[ \Theta^2 = - 1 \]
 In general for a spin $j$ particles,
 \[ \Theta^2 = \br{-1}^{2j} \eq \label{eq:time_reversal_spin} \]
-\subsection{Time-Reversal Invariant System With Half-integer Spin}
+\subsection{Time-Reversal Invariants and Kramer's Theorem}
 A time reversal invariant system is one whereby $\bs{\Theta, H} = 0$. In this case we can also say that $H$ is time reversal even,
 \[ \Theta H \Theta^{-1} = H \]
 For this case consider the eigen-system $H\ket{n} = E_n\ket{n}$. Therefore,
@@ -1741,11 +1741,12 @@ Which rotates in the $xy$-plane with frequency $\w$. Then we have,
 \end{align*}
 Where,
 \[ \ga = \f{eB_1}{mc} \f{\hbar}{2} \]
+From here the analysis is identical to the two-state harmonic potential.
 
 \subsection{Adiatbatic Time-Dependence and Berry Phase}
 In some time-dependent systems where the time-dependence varies slowly compared to the natural time scales of the system, we make use of the \term{adiabatic approximation}. The principle feature is to write down the eigen-system for the time-dependent Hamiltonian and assume that the eigenkets at time $t = 0$ evolve in parallel,
 \[ H\br{t} \ket {n ; t} = E_n\br{t} \ket{n ; t} \eq \label{eq:eigenket_energy}\]
-Then an arbitrary state evolves with time in the $\ket{n;t}$ basis,
+Then an arbitrary state $\ket{\al ; 0} = \sum_{n} c_n\br{0} \ket{n ; 0}$ evolves in time accordingly but also accumulates an extra phase,
 \[ \ket{\al ; t} = \sum_{n} c_n\br{t} e^{i \te_n\br{t}} \ket{n ; t} \eq \label{eq:al_ket_sum}\]
 Where $\te_n\br{t}$ is the time-dependent phase associated with the evolution of $\ket{\al; t}$'s $n$-th energy coefficient.
 \[ \te_n\br{t} = - \f{1}{\hbar} \int_{0}^{t} E_n\br{t'} \dif t' \eq \label{eq:theta_phase}\]
@@ -1802,11 +1803,11 @@ The integrand is the \term{Berry connection vector} for each eigenstate $\ket{m;
 \[ \ve {\s{A}}_m = i\bra{m; t} \bs{\vdel_{\ve R} \ket{m; t}} \]
 This picture is particularly useful when considering complete cycles in parameter space where $\ve R\br{T} = \ve R\br{0}$. In such cases we can write the connection vector and the Berry phase as,
 \[ \ve {\s{A}}_n\br{\ve R} = i\bra{n(\ve R)} \bs{\vdel_{\ve R} \ket{n(\ve R)}} \]
-\[ \ga_n\br{c} = \oint \ve {\s{A}}_n\br{\ve R} \dif \ve R\]
+\[ \ga_n\br{c} = \oint \ve {\s{A}}_n\br{\ve R} \cdot \dif \ve R\]
 Which suggests the use of Stoke's theorem by defining the \term{Berry curvature},
 \[ \ve \Om_n\br{\ve R} = \vdel_{\ve R} \times \ve {\s A}_n\br{\ve R} \]
 Which makes the Berry phase over a closed path $c$,
-\[ \ga_n\br{c} = \oint \ve {\s{A}}_n\br{\ve R} \dif \ve R = \int \ve \Om_n\br{\ve R} \dif \ve a \]
+\[ \ga_n\br{c} = \oint \ve {\s{A}}_n\br{\ve R} \cdot \dif \ve R = \int \ve \Om_n\br{\ve R} \cdot \dif \ve a \]
 
 \subsection{Time-Dependent Perturbation Theory}
 
@@ -1856,7 +1857,7 @@ P\br{i \to n}
 \end{align*}
 Let us choose a specific example for $V\br{t'}$; the harmonic perturbation:
 \[ V\br{t} = V e^{i \w t} + V^{\dagger} e^{-i \w t} \]
-Where $V$ is just come operator with the same dimension as $H_0$.
+Where $V$ is just some operator with the same dimension as $H_0$.
 \begin{align*}
     c_n^{(1)}\br{t}
     &= - \f i \hbar \intl_{0}^{t} \dif t' e^{i \w_{ni} t'} V_{ni}\br{t'} \\
@@ -2034,7 +2035,7 @@ Where $\dif s^2$ and $\dif s'^2$ are related by a factor $a$ that can't depend o
     K' \text{ \& } K'' &: \ve v_2 \qquad \dif s'^2 &&= a \br{v_2} \dif s''^2 \\
     K \text{ \& } K'' &: \ve v_{12}\qquad \dif s^2 &&= a \br{v_{12}} \dif s''^2
 \end{alignat*}
-Therefore it must be that $a\br{v_{12}} = a\br{v_1}\cdot a\br{v_2}$. Upon closer inspection, one realizes that $v_{12}$ depends on the angle between $v_1$ and $v_2$. Therefore,
+Therefore it must be that $a\br{v_{12}} = a\br{v_1}\cdot a\br{v_2}$. Upon closer inspection, one realizes that $v_{12}$ depends on the angle $\phi$ between $v_1$ and $v_2$. Therefore $a\br{v_{12}}$ is $\phi$-dependent but $a\br{v_1}\cdot a\br{v_2}$ is not! Therefore,
 \[ a\br{v_{12}} \stackrel{?}{\neq} a\br{v_1}\cdot a\br{v_2} \]
 The only way for this equation to hold is for $a$ to be a fixed constant that doesn't depend on $v$ at all.
 \[ a = a\cdot a \implies a = 1 \]
@@ -2126,7 +2127,7 @@ By taking the difference of these equations together with weights $\psi^{*}$ and
 \[ i \psi^{*} \pder{\psi}{t} + i \psi \pder{\psi^*}{t} = - \psi^{*} \f{\del^2}{2m} \psi + \psi \f{\del^2}{2m} \psi^{*} \]
 \[ i \br{\psi^{*} \pder{\psi}{t} + \psi \pder{\psi^*}{t}} = i \pder{}{t}\br{\psi^{*} \psi} = i \pder{\rho}{t} \]
 We now define the \term{probability current},
-\[ j = -\f{i}{2m}\br{\psi^{*} \vdel \psi - \psi \vdel \psi^{*}} \]
+\[ \ve j = -\f{i}{2m}\br{\psi^{*} \vdel \psi - \psi \vdel \psi^{*}} \]
 Such that the continuity equation is,
 \[ \pder{\rho}{t} + \vdel \cdot \ve j = 0 \]
 Which states the \textit{conservation of current}. Consider the flow of $\ve j$ through a surface,
@@ -2235,9 +2236,9 @@ Therefore by taking \cref{eq:eom_dirac_dagger} and \cref{eq:eom_dirac} we can ob
 \[ \br{i \di_t \psi + i \al_i \di_i \psi + m \be \psi} \psi^{\dagger} - \br{- i \di_t \psi^{\dagger} + i \di_i \psi^{\dagger} \al_i  + m \psi^{\dagger} \be} \psi  = 0 \]
 \[ \br{i \di_t \psi + i \al_i \di_i \psi} \psi^{\dagger} - \br{- i \di_t \psi^{\dagger} + i \di_i \psi^{\dagger} \al_i} \psi  = 0 \]
 \[ \psi^{\dagger} i \di_t \psi + \psi i \di_t \psi^{\dagger}  = - i \psi^{\dagger} \al_i \di_i \psi- i \psi \di_{i} \psi^{\dagger} \al_i   \]
-\[ i \di_{t} \br{\psi^{\dagger} \psi} - i \vdel \cdot \br{\psi^{\dagger} \al_i \psi} \]
-\[ i \di_{t} \rho\br{\ve x, t} - i \vdel \cdot \ve j \]
-\[ \di_{t} \rho\br{\ve x, t} - \vdel \cdot \ve j \]
+\[ i \di_{t} \br{\psi^{\dagger} \psi} =- i \vdel \cdot \br{\psi^{\dagger} \al_i \psi} \]
+\[ i \di_{t} \rho\br{\ve x, t} =- i \vdel \cdot \ve j \]
+\[ \di_{t} \rho\br{\ve x, t} =- \vdel \cdot \ve j \]
 Which is the continuity equation. Therefore positive-definiteness is a consequence of,
 \[ \br{\ga^{i}}^{\dagger} = - \ga^{i} \implies \rho = \psi^{\dagger} \psi \]
 To simplify notation, we will define the \term{Dirac adjoint} $\bar{\psi}$,
