@@ -1306,6 +1306,7 @@ Therefore we have one of two cases:
 \end{enumerate}
 
 \subsection{Symmetries of Discrete Translations}
+\label{sec:discrete_translation_symmetry}
 
 Heretofore we have talked about continuous symmetries like the symmetries of translations. Alternatively we can have symmetries associated with discrete translations. These symmetries arise all the time in condensed matter when considering the translations of a crystal lattice. \\
 
@@ -1374,7 +1375,7 @@ But we also know that $T\br{a} \ket{\te} = e^{-i \te} \ket \te$. Therefore,
 \[ \braket{x' - a}{\te} = e^{-i\te}\braket{x'}{\te} \]
 The most general solution to this equation is,
 \[ \braket{x'}{\te} = e^{i k x'} u_k \br{x'} \]
-Where $u_k \br{x'}$ is a \term{Bloch wavefunction} with $\te = k a$. Bloch wavefunctions have the property that,
+Where $u_k \br{x'}$ is a \term{Bloch wavefunction}\footnote{A more general treatment is presented in \cref{sec:blochs_theorem}.} with $\te = k a$. Bloch wavefunctions have the property that,
 \[ u_k \br{x'+a} = u_k\br{x'} \]
 When means that,
 \[ e^{ik\br{x' -a}} u_k\br{x'-a} = e^{- i k a} u_k\br{x'} e^{i k x'} \]
@@ -2164,8 +2165,7 @@ This defines the \term{Clifford algebra}. Therefore by \cref{eq:eta} we have tha
 \[ \br{\ga^{0}}^{2} = 1 \qquad \br{\ga^{1}}^{2} + \br{\ga^{2}}^{2} + \br{\ga^{3}}^{2} = -1 \]
 And that,
 \[ \ga^{\mu} \ga^{\nu} + \ga^{\nu} \ga^{\mu} = 0 \qquad \mu \neq \nu \]
-\[ \ga^{\mu} \ga^{\nu} = - \ga^{\mu} \ga^{\nu} \qquad \mu = \nu \]
-Therefore we know that $\ga^{\mu}$ are not normal vectors. Therefore $\ga^{\mu}$ have to be matrices which obey the Clifford algebra.\\
+Consequently we know that $\ga^{\mu}$ are not normal vectors; $\ga^{\mu}$ have to be matrices which obey the Clifford algebra.\\
 
 It is now possible to write something that mimics the Schrödinger equation,
 \[ \underbrace{i \ga^{0} \di_{0} \psi}_{\text{time}} + \underbrace{i \ga^{i} \di_{i} \psi}_{\text{space}} - m \psi = 0\]
@@ -2212,7 +2212,7 @@ A question that still remains is: \textit{How do we solve the problem of the pro
 \[ \al_i = \ga^{0} \ga^{i} \qquad \be = \ga^{0} \]
 Such that the \term{Dirac Hamiltonian} can be written as,
 \[ H = - i \al_i \di_i + m \be \eq \label{eq:dirac_Hamiltonian} \]
-Where $\psi$ will not be a $4$-component spinor vector.
+Where $\psi$ will be a $4$-component spinor vector.
 \[ \psi = \begin{pmatrix}
     \psi_1 \\ \psi_2 \\ \psi_3 \\ \psi_4
 \end{pmatrix} \]
@@ -2231,7 +2231,7 @@ And take the Hermitian conjugate,
 By definition, $\al_i$ and $\be$ are Hermitian,
 \[ \be = \be^{\dagger} \]
 \[ \al_i^{\dagger} = \br{\ga^{0} \ga^{i}}^{\dagger} = {\ga^{i}}^{\dagger} {\ga^{0}}^{\dagger} = {\ga^{i}}^{\dagger} \ga^{0} = - \ga^{i} \ga^{0} = \ga^{0} \ga^{i} = \al_i \]
-Therefore by taking \cref{eq:eom_dirac_dagger} and \cref{eq:eom_dirac} we can obtain,
+Therefore by taking the difference of \cref{eq:eom_dirac_dagger} and \cref{eq:eom_dirac} (with weights $\psi^{\dagger}$ and $\psi$) we can obtain,
 \[ \br{i \di_t \psi + i \al_i \di_i \psi + m \be \psi} \psi^{\dagger} - \br{- i \di_t \psi^{\dagger} + i \di_i \psi^{\dagger} \al_i^{\dagger}  + m \psi^{\dagger} \be^{\dagger}} \psi  = 0 \]
 \[ \br{i \di_t \psi + i \al_i \di_i \psi + m \be \psi} \psi^{\dagger} - \br{- i \di_t \psi^{\dagger} + i \di_i \psi^{\dagger} \al_i  + m \psi^{\dagger} \be} \psi  = 0 \]
 \[ \br{i \di_t \psi + i \al_i \di_i \psi} \psi^{\dagger} - \br{- i \di_t \psi^{\dagger} + i \di_i \psi^{\dagger} \al_i} \psi  = 0 \]
@@ -2261,15 +2261,15 @@ Which means that $\al_i = \ga^{0} \ga^{i} = i \si^{i} \otimes \tau_3 \tau_2$ whe
 \[ \tau_3 \tau_2 = \begin{pmatrix}
     1 & 0 \\ 0 & -1
 \end{pmatrix}\begin{pmatrix}
-    0 & -1 \\ 1 & 0
+    0 & -i \\ i & 0
 \end{pmatrix} = \begin{pmatrix}
-    0 & -1 \\ -1 & 0
+    0 & -i \\ -i & 0
 \end{pmatrix} = -i\tau_1 \]
 Therefore $\al_i = \si^{i} \otimes \tau_{1}$ which means that,
-\[ H\psi = \br{\si^{i} p_i \otimes \tau_{1} + m \ident \otimes\tau_{3}}\psi = \br{\ve \si \cdot \ve p \otimes \tau_1  + m \ident \otimes \tau_3} \psi \]
-However $\ve \si \cdot \ve p \otimes \tau_1 + m \ident \otimes \tau_3$ is just a matrix. At this point, let us diagonalize $H$ to find the spinor components of $\psi$. We need to find the eigenvalues and eigenvectors of $H\br{\ve p}$.
-\[ H\br{\ve p} = \ve \si \cdot \ve p \otimes \tau_{1} + m \ident \otimes \tau_3 \]
-Luckily we can diagonalize $\ve \si \cdot \ve p$ independently of the rest of $H\br{\ve p}$ because $\tau_1 \ve \si \cdot \ve p$ is really shorthand for the tensor product $\tau_1 \otimes \ve \si \cdot \ve p$. The eigen-system of $\ve \si \cdot \ve p$ has been computed numerous times prior. The eigenvalues are $\pm p$ and the eigenstates correspond to $\ba{\ve \si}$ being along $\ve p$ or in the opposite direction to $\ve p$. \\
+\[ H\psi = \br{\si^{i} p_i \tau_{1} + m \tau_{3}}\psi = \br{\ve \si \cdot \ve p \tau_1  + m \tau_3} \psi \]
+Notice that we have dropped the cumbersome tensor notation. However $\ve \si \cdot \ve p \tau_1 + m \tau_3$ is just a matrix. At this point, let us diagonalize $H$ to find the spinor components of $\psi$. We need to find the eigenvalues and eigenvectors of $H\br{\ve p}$. See \cref{sec:dirac_spinors} for a better understanding of Dirac spinors.
+\[ H\br{\ve p} = \ve \si \cdot \ve p \tau_{1} + m \tau_3 \]
+Luckily we can diagonalize $\ve \si \cdot \ve p$ independently of the rest of $H\br{\ve p}$ because $\tau_1 \ve \si \cdot \ve p$ is really shorthand for the tensor product $\tau_1 \ve \si \cdot \ve p$. The eigen-system of $\ve \si \cdot \ve p$ has been computed numerous times prior. The eigenvalues are $\pm p$ and the eigenstates correspond to $\ba{\ve \si}$ being along $\ve p$ or in the opposite direction to $\ve p$. \\
 
 We now define the \term{helicity-projection} of $\ve \si$ onto the direction of $\ve p$.\\
 
@@ -2313,7 +2313,7 @@ Where the canonical momentum is defined under the Hamiltonian formalism $\dot q 
 Then the Hamiltonian becomes (in natural units),
 \[ H = \f{i}{2m} \br{ - i \vdel + e \ve A} \]
 Which naturally suggests the following Dirac equation is an electromagnetic field.
-\[ H = \tau_i \ve \si \cdot \br{\ve p + e \ve A} + m \tau_3 \]
+\[ H = \tau_1 \ve \si \cdot \br{\ve p + e \ve A} + m \tau_3 \]
 We can solve this system by examining the energy eigenstates,
 \[ H \psi = E \psi \]
 Where $\psi = \begin{pmatrix} u & v\end{pmatrix}^{\intercal}$ where $u, v$ are $2$-component spinors. In matrix form,
@@ -2423,7 +2423,7 @@ In the Weyl representation, the Hamiltonian becomes diagonal for massless partic
 Thus separating into $2$ independent $2 \times 2$ Hamiltonians. We write,
 \[ H = \pm \ve \si \cdot \ve p \]
 To describe particles that have right-handed or left-handed chirality. Chirality is an eigenvalue of $\ga^{5}$.
-\[ \ga^{5} \psi_{R} = \psi^{R} \qquad \ga^{5} \psi_{L} = -\psi^{L}\]
+\[ \ga^{5} \psi_{R} = \psi_{R} \qquad \ga^{5} \psi_{L} = -\psi_{L}\]
 We can solve for $\psi_{L,R}$ directly,
 \[ i \pder{}{t} \psi_L = H_L \psi_L = - \ve \si  \cdot \ve p \psi_{L} = i \ve \si \cdot \vdel \psi_L \]
 Similarly,
@@ -2458,7 +2458,7 @@ From this we see that $\ga^{0}$ is parity-even,
 While $\ga^{i}$ are parity-odd,
 \[ {\ga^{0}}^{\dagger} \ga^{i} \ga^{0} = \ga^{0}\ga^{i}\ga^{0} = -\ga^{i}\ga^{0}\ga^{0} = -\ga^{i} \]
 Moreover,
-\[ \ga^{5} = i \ga^{0} \ga^{1} \ga^{2} \ga^{3} \implies \ga^{0} \ga^{5} \ga^{0} = - \ga^{5} \]
+\[ \ga^{5} = i \ga^{0} \ga^{1} \ga^{2} \ga^{3} \implies {\ga^{0}}^{\dagger} \ga^{5} \ga^{0} = - \ga^{5} \]
 \subsubsection{Time-Reversal}
 Another symmetry to consider for the Dirac equation is the time-reversal symmetry. The Dirac equation is,
 \[ i \pder{}{t} \psi = H \psi = \br{-i\ga^{0} \ga^{i} \di_{i} + m \ga^{0}} \psi \]
@@ -2516,7 +2516,7 @@ Since $\ga^{5}$ is odd under parity but even under time-reversal, we call $\ga^{
 \renewcommand*{\theHsubsection}{appendix.\the\value{subsection}}
 \renewcommand{\thesubsection}{\Alph{subsection}}
 \subsection{Dirac Spinors}
-
+\label{sec:dirac_spinors}
 The Dirac equation is the relativistic version of the Schrödinger equation,
 \[ \br{i \ga^{\mu} \di_{\mu} - m}\psi = 0 \eq \label{eq:dirac_equation_appendix}\]
 Where the Dirac gamma matrices are $\ga^{\mu} = \br{\ga^{0}, \ve \ga} = \br{\ga^{0}, \ga^{1}, \ga^{2}, \ga^{3}}$ and must satisfy the following algebra,
@@ -2695,5 +2695,31 @@ Similarly, for the ultra relativistic limit apply $p \gg m$ where $p_0 \approx p
     \hline
 \end{tabular}
 \end{center}
+
+\subsection{Bloch's Theorem Revisited}
+\label{sec:blochs_theorem}
+
+In \cref{sec:discrete_translation_symmetry}, the notion of a discrete translation symmetry was introduced. More formally, we can state \term{Bloch's theorem}: \textit{All energy eigen-states of wave-functions in a periodic potential are written as:}
+\[ \psi_{\ve k}\br{\ve x + \ve a} = e^{i \ve k \cdot \ve a} \psi_{\ve k}\br{\ve a} \]
+Where $\ve a$ refers to the translation invariance of the Hamiltonian.
+\[ T\br{\ve a}^{\dagger} H\br{\ve x} T\br{\ve a} = H\br{\ve x + \ve a} = H\br{\ve x} \]
+While $\ve x$ is a generic position and $\ve k$ is referred to as the crystal momentum. To proof Bloch's theorem, consider the following property of the translation operator about $\ve a$ on any $\ket{\psi}$ and its position wave-function $\braket{\ve x}{\psi}$:
+\[ \bra{\ve x} T\br{\ve a} \ket{\psi} = \bc{\bra{\psi} T^{\dagger}\br{\ve a} \ket{\ve x}}^{*} = \bc{\braket{\psi}{\ve x - \ve a}}^{*} = \braket{\ve x - \ve a}{\psi} \]
+Then consider the following,
+\[ T\br{\ve a}^{\dagger} H\br{\ve x} \ket{\psi} = T\br{\ve a}^{\dagger} H\br{\ve x} T\br{\ve a}T\br{\ve a}^{\dagger} \ket{\psi} = H\br{\ve x}T\br{\ve a}^{\dagger} \ket{\psi} \]
+Now if we consider that $\ket{\psi}$ is an energy eigenstate with $H\br{\ve x} \ket{\psi} = E \ket{\psi}$ then,
+\[ T\br{\ve a}^{\dagger} H\br{\ve x} \ket{\psi} = E T\br{\ve a}^{\dagger} \ket{\psi} \]
+Therefore $T\br{\ve a}^{\dagger} \ket{\psi}$ is an energy eigenstate with the same energy. Assuming the Hamiltonian is non-degenerate,
+\[ T\br{\ve a}^{\dagger} \ket{\psi} = e^{i \al\br{\ve a}} \ket{\psi} \]
+Where $\al$ represents an arbitrary real-valued constant that could in principle depend on $\ve a$. In fact,
+\[ \braket{\ve x + \ve a}{\psi} = \bra{\ve x} T\br{\ve a}^{\dagger} \ket{\psi} = \bra{\ve x} e^{i \al\br{\ve a}} \ket{\psi} = e^{i \al\br{\ve a}} \braket{\ve x}{\psi} \]
+Applying two different translations $\ve a$ and $\ve a'$,
+\[ \braket{\ve x + \ve a + \ve a'}{\psi} = \bra{\ve x} T\br{\ve a}^{\dagger}T\br{\ve a'}^{\dagger} \ket{\psi} = e^{i \al\br{\ve a + \ve a'}} \braket{\ve x}{\psi} = e^{i \al\br{\ve a}}e^{i \al\br{\ve a'}} \braket{\ve x}{\psi} \]
+The last inequality requires $\al\br{\ve a}\al\br{\ve a'} = \al\br{\ve a + \ve a'}$. Therefore $\al$ must be a linear function with coefficients $\ve k$:
+\[ \al\br{\ve a} = \ve k \cdot \ve a \]
+Since $\ve k$ could in principle be different for each state, we append additional notation to indicate this dependence. Therefore,
+\[ \braket{\ve x + \ve a}{\psi; \ve k} = e^{i \ve k \cdot \ve a} \braket{\ve x}{\psi; \ve k} \]
+In terms of wavefunctions this read,
+\[ \psi_{\ve k}\br{\ve x + \ve a} = e^{i \ve k \cdot \ve a} \psi_{\ve k}\br{\ve x} \]
 
 \end{document}
