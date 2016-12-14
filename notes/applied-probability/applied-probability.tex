@@ -406,12 +406,27 @@ The law of iterated expectation is easy to digest when one understands that $\Ex
     Therefore $Y+1 \sim \Geo\br{\la / \la +1}$.
 \end{example}
 
-\todo[TC]{Finish this lecture.}
+% \todo[TC]{Finish this lecture.}
 \begin{theorem}
     \term{Decomposition of Variance (EVE's law):} Let $X, Y$ be random variables. Then,
-    \[ \Var \br{Y} = \Exp\br{\Var\br{Y \mid X}} + \Var\br{\Exp\br{Y \mid X}} \]
-
+    \[ \Var \br{Y} = \Exp\bc{\Var\br{Y \mid X}} + \Var\bc{\Exp\br{Y \mid X}} \]
 \end{theorem}
+\begin{proof}
+    The proof follows directly from \cref{thm:iterated}. First use the definition of variance,
+    \[ \Var\br{Y} = \Exp\br{Y^2} - \Exp\br{Y}^2 \]
+    And then apply the law of iterated expectation on each term with respect to $X$,
+    \[ \Var\br{Y} = \Exp\bc{\Exp\br{Y^2 \mid X}} - \Exp\bc{\Exp\br{Y \mid X}}^2 \]
+    Now write $\Exp\br{Y^2 \mid X}$ in terms of an associated variance,
+    \[ \Var\br{Y} = \Exp\bc{\Var\br{Y \mid X} + \Exp\br{Y \mid X}^2} - \Exp\bc{\Exp\br{Y \mid X}}^2 \]
+    And let $\ga = \Exp\br{Y \mid X}$ for convenience,
+    \[ \Var\br{Y} = \Exp\bc{\Var\br{Y \mid X} + \ga^2} - \Exp\bc{\ga}^2 \]
+    Use linearity,
+    \[ \Var\br{Y} = \Exp\bc{\Var\br{Y \mid X}} + \Exp\bc{\ga^2}- \Exp\bc{\ga}^2 \]
+    And recognize a variance of $\ga$,
+    \[ \Var\br{Y} = \Exp\bc{\Var\br{Y \mid X}} + \Var\bc{\ga} \]
+    Replacing $\ga$ again,
+    \[ \Var\br{Y} = \Exp\bc{\Var\br{Y \mid X}} + \Var\bc{\Exp\br{Y \mid X}} \]
+\end{proof}
 
 \subsection{Stochastic Process}
 
@@ -1170,7 +1185,7 @@ To keep things simple, we assume that the process $\bc{X_n}_{n=0,1,2,\dots}$ is 
     Where $T_j = \min\bc{n > 0, X_n = j}$. In words, the limiting distribution is equal to the long-run fraction of time spent in $j$ is equal to the stationary distribution. Note that this does not depend on the starting state $i$.
 \end{theorem}
 
-\todo[TC]{Missed a lecture}
+% \todo[TC]{Missed a lecture}
 By examining foil theorems, we have seen that irreducibility is related to the uniqueness of the stationary distribution, aperiodicity is related to the existence of $\lim_{n \to \inf} P^{(n)}_{ij}$ and positive recurrence is related to the existence of stationary distribution. \\
 
 \begin{example}
@@ -2185,7 +2200,7 @@ By examining foil theorems, we have seen that irreducibility is related to the u
         For all $s < t$, $x_s \in \R$. Or more simply,
         \[ \Exp\br{X\br{t} \mid X\br{u}, u \in \left[0, s\right]} = X\br{s} \]
     \end{definition}
-    The concept of a martingale comes from the idea of a \textit{fair game}: on average, the gamble does not win or lose; the expected future wealth is equal to the current wealth. We can now proof that Brownian motion is martingale.
+    The concept of a martingale comes from the idea of a \textit{fair game}: on average, the gamble does not win or lose; the expected future wealth is equal to the current wealth. We can now prove that Brownian motion is martingale.
     \begin{align*}
         \Exp\br{X\br{t} \mid X\br{s} = x_s, X\br{u} = x_u, u \in \left[0, s\right)}
         &= \Exp\br{X\br{t} \mid X\br{s} = x_s} \qquad \text{Markov Property} \\
@@ -2294,7 +2309,7 @@ By examining foil theorems, we have seen that irreducibility is related to the u
     \begin{theorem}
         For $a \geq 0$,
         \[ P\br{M\br{t} \geq a} = 2 P\br{B\br{t} \geq a} = P\br{\abs{B\br{t}} \geq a} \]
-        Therefore $M\br{t}$ has the same distribution as $\abs{B\br{t}} \sim \s{N}\br{0,1}$.
+        Therefore $M\br{t}$ has the same distribution as $\abs{B\br{t}}$ where $B\br{t} \sim \s{N}\br{0,1}$.
     \end{theorem}
     \begin{proof}
         First notice that,
