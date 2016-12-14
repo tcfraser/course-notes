@@ -1303,7 +1303,6 @@ By examining foil theorems, we have seen that irreducibility is related to the u
         \si^2 \mu^{n-1}\f{1 - \mu^n}{1 - \mu} & \mu \neq 1 \\
         \si^2n & \mu = 1 \\
     \end{cases} \]
-    \todo[TC]{Missed a lecture}
 
     \begin{theorem}
         \label{thm:finite_state_space}
@@ -1367,7 +1366,7 @@ By examining foil theorems, we have seen that irreducibility is related to the u
     \end{definition}
     Intuitively after each event $S_i$, the amount of time we need to wait for the next event is identical to as if we started from the beginning again. In this sense, each time we get a new event $S_i$, our process is \textit{renewed}.\\
 
-    All of the three previous examples of counting processes \todo[TC]{These are in the last lecture that I missed} can be reasonably modeled as renewal processes.
+    All of the three previous examples of counting processes can be reasonably modeled as renewal processes.
 
     \begin{definition}
         A \term{Poisson process} $\bc{N\br{t}}_{t \geq 0}$ is a renewal process where the interarrival times $W_1, W_2, \ldots$ are not only i.i.d. but are exponentially distributed,
@@ -1604,8 +1603,6 @@ By examining foil theorems, we have seen that irreducibility is related to the u
     \end{enumerate}
     To answer the first question, let the process be in state $i$, it will stay in this state for an exponential random time, with parameter denoted $\la_i$. This distribution is fixed by the Markov property. When the process jumps in the future only depends on its current state, not on how long it has been there. Therefore the waiting time must be exponentially distributed. Moreover the Markov property enforces that the exponential parameter can only depend on state $i$.
 
-    \todo[TC]{Missed a lecture}
-
     The transition probability when \textit{a jump happens} is defined as,
     \[ q_{ij} \defined P\br{X\br{t} \text{ jumps to } j \mid X\br{t} \text{ jumps from } i} \]
     The transition probability at a jump has the following properties,
@@ -1649,8 +1646,8 @@ By examining foil theorems, we have seen that irreducibility is related to the u
         Consider the Poisson process,
         \[ \la_i = \la \quad i = 0, 1, \ldots \]
         \[ Q = \begin{pmatrix}
-            0 & 1 & 0 & \cdots \\
-            0 & 0 & 1 & \cdots \\
+            0 & \la & 0 & \cdots \\
+            0 & 0 & \la & \cdots \\
             0 & 0 & 0 & \cdots \\
             \vdots & \vdots & \vdots & \ddots \\
         \end{pmatrix} \]
@@ -1901,20 +1898,22 @@ By examining foil theorems, we have seen that irreducibility is related to the u
     \begin{theorem}
         \label{thm:bltctmc}
         \term{Basic Limit Theorem for CTMC}: Let $\bc{X\br{t}}_{t \geq 0}$ be an irreducible, recurrent CTMC. Then $\pi_{j}$ exists and also:
-        \[ \lim_{t \to \inf} P_{ij}\br{t} = \pi_{j} = \f{\Exp\br{T_j}}{\Exp\br{R_{jj}}} = \f{1 / \la_{j}}{\Exp\br{R_{jj}}} \quad \forall i, j \in S \]
+        \[ \lim_{t \to \inf} P_{ij}\br{t} = \pi_{j} = \f{\Exp\br{T_j}}{\Exp\br{H_{jj}}} = \f{1 / \la_{j}}{\Exp\br{H_{jj}}} \quad \forall i, j \in S \]
         In addition, the MC is positive recurrent if and only if a unique stationary distribution exists. In this case, the unique stationary distribution is the $\pi = \br{\pi_{0}, \pi_{1}, \ldots}$ where $\pi_j$ is mentioned above.
     \end{theorem}
-    Note that the last equality in \cref{thm:bltctmc} holds because $T_{j}$ is distributed exponentially will expectation $1 / \la_j$. Most of the terms and relations that hold for \cref{thm:bltctmc} are analogous to the discrete case.
+    Note that the last equality in \cref{thm:bltctmc} holds because $T_{j}$ is distributed exponentially with expectation $1 / \la_j$. Most of the terms and relations that hold for \cref{thm:bltctmc} are analogous to the discrete case.
+    \[  T_j = \min\bc{t > 0 \mid X\br{t} \neq j, X\br{0} = j} \]
+    \[  H_{jj} = \min\bc{t > T_j \mid X\br{t} = j} \]
     \begin{remark}
-        The long-run fraction of time spent in state $j$ is given by $\Exp\br{T_j}/ \Exp\br{R_{jj}}$. The idea being that $R_{jj}$ represents the amount of time until the first return to state $j$ given that we started in state $j$ at time $0$.
+        The long-run fraction of time spent in state $j$ is given by $\Exp\br{T_j}/ \Exp\br{H_{jj}}$. The idea being that $H_{jj}$ represents the amount of time until the first return to state $j$ given that we started in state $j$ at time $0$.
         \begin{center}
             \begin{tikzpicture}
                 \draw[|->] (0,0) node[below]{$0$} -- (5, 0) node[right]{$t$};
                 \draw[red,thick,|-|] (0,0) -- node[below]{$T_j$} (2, 0);
-                \draw[|->, red,thick] (4,0) node[below]{$R_{jj}$} -- (5, 0);
+                \draw[|->, red,thick] (4,0) node[below]{$H_{jj}$} -- (5, 0);
             \end{tikzpicture}
         \end{center}
-        For each interval of length $R_{jj}$, $T_{j}$ is the portion of time spent in state $j$.
+        For each interval of length $H_{jj}$, $T_{j}$ is the portion of time spent in state $j$.
     \end{remark}
 
     \subsection{Birth and Death Process}
