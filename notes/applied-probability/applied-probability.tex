@@ -1324,7 +1324,24 @@ By examining foil theorems, we have seen that irreducibility is related to the u
         An irreducible DTMC with finite state space must be positive recurrent.
     \end{theorem}
 
-    For a branching process, extinction happens with probability $u < 1$ if $\Exp\br{\xi} > 1$, where $u$ is the smallest solution between $0$ and $1$ of $\varphi\br{s} = s$ (where $\varphi$ is the generating function for $\xi$). Extinction happens with probability $1$ if $\Exp\br{\xi} \leq 1$. \\
+    \begin{definition}
+        We define the probability of extinction of a branching process to be $u$ where,
+        \[ u = \lim_{n \to \inf} P\br{X_n = 0 \mid X_0 = 1} \]
+    \end{definition}
+
+    \begin{theorem}
+        For a branching process, extinction happens with probability $u < 1$ if $\mu > 1$, where $u$ is the smallest solution between $0$ and $1$ of $\varphi\br{s} = s$ (where $\varphi$ is the generating function for $\xi$). Extinction happens with probability $1$ if $\mu \leq 1$. \\
+    \end{theorem}
+
+    \begin{proof}
+        Note that,
+        \[ \Exp\br{X_n} = \mu \Exp\br{X_{n-1}} \implies \Exp\br{X_n} = \mu^n \]
+        Therefore,
+        \[ \mu^n = \Exp\br{X_n} = \sum_{i = 1}^{\inf} i P\br{X_n = i} \geq \sum_{i = 1}^{\inf} P\br{X_n = i} = P\br{X_n \geq 1}\]
+        Therefore for $\mu < 1$,
+        \[ \lim_{n \to \inf} \mu^n = 0 = \lim_{n \to \inf} P\br{X_n \geq 1} = 1 - u \]
+        Therefore $P\br{X_n = 0} = 1-P\br{X_n \geq 1} = u = 1$. The remaining cases are more difficult to demonstrate.
+    \end{proof}
 
     \section{Continuous Time Process}
     Recall that a continuous process is one where $\bc{X\br{t}}_{t \geq 0}$. A counting process is one where,
@@ -1836,10 +1853,10 @@ By examining foil theorems, we have seen that irreducibility is related to the u
 
     Note that since positive/null recurrence do involve the (expected) amount of time, we can indeed have different results for a CTMC and its discrete skeleton. In particular we need to define positive/null recurrence for a CTMC.
     \begin{definition}
-        Let $R_{ii}$ be the amount of (continuous) time until the MC revisits state $i$ given $X\br{0}= i$. A recurrent state $i$ is called positive recurrent if $\Exp\br{R_{ii}}< \inf$.
-        \[\text{$i$ is positive recurrent: } \quad \Exp\br{R_{ii}}< \inf\]
-        It is called null recurrent if $\Exp\br{R_{ii}} = \inf$.
-        \[\text{$i$ is null recurrent: } \quad \Exp\br{R_{ii}} = \inf\]
+        Let $H_{ii}$ be the amount of (continuous) time until the MC revisits state $i$ given $X\br{0}= i$. A recurrent state $i$ is called positive recurrent if $\Exp\br{H_{ii}}< \inf$.
+        \[\text{$i$ is positive recurrent: } \quad \Exp\br{H_{ii}}< \inf\]
+        It is called null recurrent if $\Exp\br{H_{ii}} = \inf$.
+        \[\text{$i$ is null recurrent: } \quad \Exp\br{H_{ii}} = \inf\]
     \end{definition}
     \begin{center}
         \begin{tikzpicture}
@@ -1857,7 +1874,7 @@ By examining foil theorems, we have seen that irreducibility is related to the u
             \draw[] (\sc, -\tick) -- (\sc, \tick);
             \draw[] (\sd, -\tick) -- (\sd, \tick);
             \draw[] (\se, -\tick) -- (\se, \tick);
-            \draw[] (\sf, -\tick) node[below]{$R_{ii}$} -- (\sf, \tick);
+            \draw[] (\sf, -\tick) node[below]{$H_{ii}$} -- (\sf, \tick);
             \draw[] (-\tick,4*\jump) node[left]{$i$} -- (\tick, 4*\jump);
             \draw[thick] (0,4*\jump) -- (\sa, 4*\jump);
             \draw[thick, dashed] (\sa, 4*\jump) -- (\sa, 2*\jump);
