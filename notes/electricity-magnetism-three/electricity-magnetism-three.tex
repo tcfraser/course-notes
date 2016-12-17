@@ -2000,11 +2000,11 @@ Which together amount to,
 \end{align*}
 Which relates length and time scales together. The key difference being that the potential is zero because the charge density is constant.
 The vector potential is the integral over the retarded current contributions.
-\[ \ve A \br{\ve r, t} = \f{\mu_0}{4 \pi} \int \f{I_0 \cos\bs{\w\br{t - \rcurs / c}}}{\rcurs} \dif \ve l' \]
-Without loss of generality we can place the field point above the $x$-axis and integrate,
-\[ \ve A \br{\ve r, t} = \f{\mu_0}{4 \pi} \int_{0}^{2\pi} \f{I_0 \cos\bs{\w\br{t - \rcurs / c}}}{\rcurs} b \cos \phi' \dif \phi' \eq \label{eq:A_magnetic_dipole}\]
-Letting the field point and loop points be respectively,
-\[ \ve r = r \sin \te \hat x + r \cos \te \hat z \qquad \ve b = b \cos \phi' + b \sin \phi' \hat y \]
+\[ \ve A \br{\ve r, t} = \f{\mu_0}{4 \pi} \int \f{I_0 \cos\bs{\w\br{t - \rcurs / c}}}{\rcurs} \dif \ve \ell' \]
+Where $\dif \ve \ell' = b \dif \phi' \hat \phi = b \cos \phi' \dif \phi'\hat y - b \sin \phi'\dif \phi' \hat x$. Hence,
+\[ \ve A \br{\ve r, t} = \f{b\mu_0}{4 \pi} \int_{0}^{2\pi} \f{I_0 \cos\bs{\w\br{t - \rcurs / c}}}{\rcurs} \bc{\cos \phi'\hat y - \sin \phi' \hat x} \dif \phi' \eq \label{eq:A_magnetic_dipole}\]
+Without loss of generality we can place the field point above the $x$-axis such that the field point and loop points be respectively,
+\[ \ve r = r \sin \te \hat x + r \cos \te \hat z \qquad \ve b = b \cos \phi' \hat x + b \sin \phi' \hat y \]
 Again by cosine law,
 \[ \rcurs = \sqrt{r^2 + b^2 - 2 r b \cos \psi_{r,b}} \]
 Where $\psi_{r,b}$ is the oblique angle between $\ve b$ and $\ve r$. Hence know that $r b \cos \psi_{r, b} = \ve r \cdot \ve b = rb \sin \te \cos \phi'$. Therefore,
@@ -2023,8 +2023,8 @@ Therefore if we make the frequency approximation $b \ll \la \propto \f{c}{\w}$,
     &\simeq \cos\bs{\w \br{t - \rcurs /c}} - \f{wb}{c}\sin\bs{\w \br{t - \rcurs /c}} \sin \te \cos \phi' \qquad b \ll \f{c}{\w}
 \end{align*}
 We can now approximately perform the integral of \cref{eq:A_magnetic_dipole},
-\[ \ve A\br{\ve r, t} \simeq \f{\mu_0 I_0 b}{4 \pi r} \hat y \intl_{0}^{2\pi} \bc{\cos \w t' + b \sin \te \cos \phi' \times \br{\f{1}{r} \cos \w t' - \f{\w}{c} \sin \w t'}} \cos \phi' \dif \phi' \]
-Only a few terms have non-zero contribution under an integral over $\phi' \in \bs{0, 2\pi}$. Namely those quadratic in $\cos \phi'$. Therefore,
+\[ \ve A\br{\ve r, t} \simeq \f{\mu_0 I_0 b}{4 \pi r} \intl_{0}^{2\pi} \bc{\br{1 + \f{b}{r}\sin \te \cos \phi'} \times \br{\cos \w t' - \f{\w b}{c} \sin \w t' \sin \te \cos \phi'}} \bc{\cos \phi'\hat y - \sin \phi' \hat x} \dif \phi' \]
+Only a few terms have non-zero contribution under an integral over $\phi' \in \bs{0, 2\pi}$. Namely those quadratic in $\cos \phi'$. Therefore the $\hat x$ terms do not contribute and $\ve A$ points in the $\hat y$ direction (however this was under the assumption that the field point is above the $x$-axis; in general the $\ve A$ potential would point in the $\hat phi$ direction),
 \[ \ve A\br{r, \te, t} \simeq \f{\mu_0 I_0 \pi b^2}{4 \pi}\br{\f{\sin \te}{r}} \bc{\f{1}{r} \cos \w t' - \f{\w}{c} \sin \w t'}\hat\phi \eq \label{eq:A_mag_no_approx}\]
 We may again use the third and final approximation that $r \gg \la \propto \f{c}{\w}$ to obtain,
 \[ \ve A\br{r, \te, t} \simeq -\f{\mu_0 I_0 \pi b^2 \w}{4 \pi c}\br{\f{\sin \te}{r}} \sin \bc{\w \br{t - r/c}} \hat\phi \eq \label{eq:A_mag}\]
