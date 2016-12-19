@@ -228,7 +228,7 @@ Where the pressure $P\br{\rho}$ is determined by the equation of state. Combinin
 \[ \f{\ddot{a}}{a} = - \f{4 \pi G}{3} \br{\rho + \f{3P}{c^2}} \]
 Which is a relativistic manifestation of Newton's law. The difference being the term term involving pressure $P$.
 
-\section{Geometry}
+\section{Geometry of the Universe}
 
 In Euclidean geometry, parallel lines do not intersect and the sum of the interior angles of a triangle sum to $180^o$. However, Euclidean geometry is only a special case:
 
@@ -341,7 +341,7 @@ The Fluid equation:
 Combining \cref{eq:review_friedmann,eq:review_fluid} we arrive at,
 \[ \f{\ddot a}{a} = - \f{4 \pi G}{3}\br{\rho + \f{3P}{c^2}} \]
 
-\section{Redshift \& Expansion}
+\subsection{Redshift \& Expansion}
 So far we have looked at Doppler shift as a source for redshift. Of course redshift is also caused by an expanding universe. At small velocities we have,
 \[ \f{\De \la}{\la} = \f{v}{c} = \f{H \De r}{c} \]
 Where $\De r$ is a physical local distance $\De r = c \De t$,
@@ -388,7 +388,7 @@ While the number density or energy density of photons is given by,
 \[ E_{\ga} = \f{hc}{\la} \propto \f{1}{a} \]
 Looking at the Friedmann equation we have that,
 \[ \underbrace{\f{1}{2} \dot a^2}_{\text{K.E.}} - \underbrace{\f{4 \pi G}{3} \rho a^2}_{\text{P.E.}} = -\f{k}{2} = E\tsb{tot} \]
-\section{Making Measurements}
+\section{Distances and Luminosities}
 It is very remarkable (and somewhat bizarre) that we can describe the large scale structure of the universe. This is a unique feature of cosmology. \\
 
 The question remains, how exactly are we able to measure cosmological features. As an examine, we measure Hubble's constant $H_{0}$ by using redshift $z$ and distance $r$.
@@ -443,7 +443,7 @@ Some authors defined $\Om_k$ such that,
 \[ \Om_k = \f{-k}{a^2 H^2} \implies \Om\tsb{tot} + \Om_k = 1 \]
 Where observations today indicate,
 \[ \abs{\Om_k} \lesssim 0.01 \eq \label{eq:k_om} \]
-\section{Densities}
+\subsection{Densities}
 Consider a flat spacetime that has expanded since the bigbang.
 
 \begin{center}
@@ -745,7 +745,7 @@ Galaxy redshift surveys are able to map the positions of millions of galaxies. T
 Where $\xi\br{r}$ is found to be,
 \[ \xi\br{r} = \br{\f{r}{\SI{7}{\mega\pc}}}^{-2} \]
 
-\section{Anisotropies}
+\subsection{Anisotropies}
 
 Structure formation is intimately linked to the formation of structures in the early universe via clustering. The COBE survey discovered anisotropies in the CMB. \\
 
@@ -929,16 +929,46 @@ Inflation was invented to solve a number of problems with hot big bang cosmologi
     If we consider the dynamics of $\Om_k$, $a^2 H^2 \propto t^{-1}$ in a radiation dominated era and $a^2 H^2 \propto t^{-2/3}$ in a matter dominated era. Therefore, $\Om_k$ \textbf{grows} over time. Since today $\Om_k$ is small, it had to be far smaller in the past:
     \[ \abs{\Om\tsb{tot} - 1} \simeq \underbrace{10^{-5}}_{\text{decoupling}}, \underbrace{10^{-18}}_{\text{BBN}}, \underbrace{10^{-30}}_{\text{electroweak}}, \underbrace{10^{-60}}_{\text{Planck}} \]
     This is an issue of \textit{fine-tuning}.
-    \item \term{Horizon Problem}: In a flat, radiation dominated universe, $c \dif t = a \dif r$ therefore,
-    \[ a = a\tsb{dec} \br{\f{t}{t}}^{} \]
+    \item \term{Horizon Problem}: In order for the CMB to be at uniform temperature, all parts must have had to have been in each other's causal past.
+    The co-moving distance traveled by a particle from $t_i$ to $t$ can be calculated from the FRW metric,
+    \[ r\br{\tau} = \intl_{t_i}^{t} \f{\dif t}{a} = \intl_{a_i}^{a}\f{\dif a}{a \dot a} = \intl_{\ln a_i}^{\ln a} \br{a H}^{-1}\dif \ln a \]
+    Where $\tau$ is the co-moving time for the particle. If we restrict our focus to intervals of time $t - t_i$ where the universe is dominated by a fluid with $\w = P / \rho$ we arrive at,
+    \[ \br{a H}^{-1} = H_{0}^{-1}a^{\f{1}{2}\br{1 + 3 \w}} \]
+    Therefore $r\br{\tau}$ can be directly calculated,
+    \[ r\br{a} = \f{2H_0^{-1}}{\br{1 + 3 \w}}\bs{a^{\f{1}{2}\br{1 + 3 \w}} - a_i^{\f{1}{2}\br{1 + 3 \w}}} \]
+    In fluids where $1 + 3 \w > 0$, the first term dominates and thus,
+    \[ r\br{t} = \f{2H_0^{-1}}{\br{1 + 3 \w}}a\br{t}^{\f{1}{2}\br{1 + 3 \w}} = \f{2}{1 + 3 \w}\br{a H}^{-1} \eq \label{eq:rt} \]
+    This means that the co-moving distance traveled by particles is mainly determined by the scale at the end of the transit. In order to reconcile the flatness problem in the surface of last scattering, we require that all regions on the surface of last scattering where in causal contact in the past. In this way, they had the potential to thermalize and equilibrate if need be. The Hubble Horizon at the start of inflation is given by,
+    \[ \br{a_{i} H_{i}}^{-1} \]
+    Similarly, the Hubble horizon at the end of inflation and today are respectively,
+    \[ \br{a_{f} H_{f}}^{-1} \quad \br{a_{0} H_{0}}^{-1} \]
+    In order to retain causal contact at all instances, we need to be certain that the Hubble sphere was at least as large as it is today.
+    \[ \br{a_{i} H_{i}}^{-1} > \br{a_{0} H_{0}}^{-1} \]
+    In an inflationary model we assume that from the end of inflation until today the universe is radiation dominated such that $H \propto a^{-2}$. Therefore we may write for the interval from $t_f$ to $t_0$ is,
+    \[ \f{\br{a_{0} H_{0}}^{-1}}{\br{a_{f} H_{f}}^{-1}} = \f{a_0}{a_f}\br{\f{a_f^2}{a_0^2}} = \f{a_f}{a_0} \]
+    But the scale of the universe during a radiation dominated era scales inversely with temperature of radiation: $T\br{a} = T_{0} \f{a_0}{a}$. Therefore,
+    \[ \f{\br{a_{0} H_{0}}^{-1}}{\br{a_{f} H_{f}}^{-1}} = \f{T_0}{T_f} \]
+    The inflation condition becomes,
+    \[ \br{a_{i} H_{i}}^{-1} > \f{T_f}{T_0} \br{a_{f} H_{f}}^{-1} \]
+    \item \term{Monopole Problem}: Beyond scope of course.
 \end{enumerate}
 
-\subsection{Origin of Structure in the Universe}
-\todo[TC]{Beginning of this lecture is weak}
+Inflation fixes all of these ideas by considering the possibility of rapid expansion in the early universe $\dot a > 0$. In a universe dominated by $\La$, the Friedmann equation becomes,
+\[ H^2 \approx \f{\La}{3} \]
+Such that $H$ is a constant and $a$ scales as,
+\[ a \propto \exp\br{\sqrt{\f{\La}{t}} t} \]
+Which means that $-\Om_k$ is suppressed,
+\[ - \Om_k = \Om\tsb{tot} - 1 = \f{k}{a^2 H^2} \propto e^{- 2\sqrt{\f{\La}{3}} t} \]
+For a long enough inflation, $t \to \inf$, $\Om_k \to 0$ and we solve the flatness problem, monopole problem and horizon problem. In order to solve these problems assume that $t\tsb{end} \simeq \SI{e-34}{}$ and recall that,
+\[ \f{t}{\SI{}{\s}} \sim \br{\f{T}{\SI{}{\mega\eV}}}^{-2} \]
+Therefore $T \sim \SI{e15}{\giga\eV} \sim \SI{350000}{\yr}$. The time $t$ at the end of inflation is,
+\[ e^{- 2\sqrt{\f{\La}{3}} t} \lesssim \br{\f{\SI{3e5}{\yr}}{\SI{e-34}{\s}}}^{1/2} \]
+\[ 2\sqrt{\f{\La}{3}} t > 54 \]
 
-Quantum fluctuations during inflation are on the order of,
+\subsection{Origin of Structure in the Universe}
+Quantum fluctuations during inflation are on the order those seen in the CMB,
 \[  \f{\de T}{T} = \SI{e-5}{}\]
-This means that,
+This means that the end of inflation corresponds to $\SI{e15}{\giga\eV}$,
 \[ \f{H}{M_p} \sim \br{\f{k T\tsb{rad}}{M_p c^2}}^2 \implies k T\tsb{rad} = \SI{e15}{\giga\eV} \]
 At the end of inflation the universe begins a phase of reheating. This means that $\La\tsb{inf}$ has to go away in order to begin a radiation dominated era. The $w$ parameter ($w = \f{p}{\rho c^2}$)
 \begin{alignat*}{2}
@@ -947,23 +977,23 @@ At the end of inflation the universe begins a phase of reheating. This means tha
     w &= -1 \quad &&\text{exact $\La$}
 \end{alignat*}
 
-\[ H = \br{8 \pi G}{3} \rho \]
+\[ H = \f{8 \pi G}{3} \rho \]
 \[ \dot \rho + 3 H \br{\rho + p c^2} = 0 \implies \f{\dif \ln \rho}{\dif \ln a} + 3 \br{1 + w} = 0 \]
 Therefore,
 \[ \rho \propto a^{- 3\br{1 + w}} \]
-Since we know that $\rho + p c^2 > 0$, it must be that $w > -1$. This is known as the \textit{null energy condition}.
+Since we know that $\rho + p c^2 > 0$, it must be that $w > -1$. This is known as the \term{null energy condition}.
 \[ \der{\ln a}{t} \propto a^{- \f{3\br{1 + w}}{2}} \]
 Integrating gives,
-\[ t \propto \int e^{\f32 \br{1 + w} \ln a} \dif \la a = \f{2}{3 \br{1 + w}} a^{\f{3\br{1 + w}}{2}} - t_{*} \]
+\[ t \propto \int e^{\f32 \br{1 + w} \ln a} \dif \la a = \f{2}{3 \br{1 + w}} a^{\f{3\br{1 + w}}{2}} + t_{*} \]
 This means that $a$ has time dependence,
 \[ a \propto \br{t - t_{*}}^{\f{2}{3\br{1 + w}}} \]
 This means that regardless of the content of the universe, there exists a time $t_{*}$ where the scale goes to $a = 0$. This is the time of the Big Bang singularity. There are a number of caveats or loopholes to this result. First of course, there is always the possibility of $w = -1$. As it turns out, this universe is unstable. Second, if we have $k = 0$ then the universe is not spherical. In this case intuition suggests that a materials in the universe come closer and closer together as $a \to 0$, there remains the possibility of everything passing through each other and $a < 0$. As it turns out, in the 70's Penrose and Hawking demonstrated some singularity theorems that rule out this loophole. \\
 
 Recall that classical electromagnetism predicted that the an electron orbiting a proton would continue to emit radiation until it reached the proton emitting an infinite amount of energy. In some sense, this can be considered as a singularity as well. It was quantum mechanics that resolved this issue and it is a hope that quantum gravity will resolve some of the issues with the Big Bang singularity in much the same way. \\
 
-\subsection{Big Bang and Black Holes}
+\section{Big Bang and Black Holes}
 
-Black holes are best understood in turns of \textit{Penrose diagrams}. A Penrose diagram is a space time diagram that is deformed in such a way that light travels at $45^{o}$ and infinite distances and times become finite. A black hole can be depicted as,
+Black holes are best understood in turns of \term{Penrose diagrams}. A Penrose diagram is a space time diagram that is deformed in such a way that light travels at $45^{o}$ and infinite distances and times become finite. A black hole can be depicted as,
 
 \begin{center}
     \begin{tikzpicture}
@@ -976,7 +1006,7 @@ Black holes are best understood in turns of \textit{Penrose diagrams}. A Penrose
     \end{tikzpicture}
 \end{center}
 
-Another example is an eternal black hole,
+Another example is an eternal black hole. The top of squiggle is the black hole singularity and the bottom squiggle is a white hole singularity.
 \begin{center}
     \begin{tikzpicture}
         \draw[]  (0,1) -- (0, 3);
@@ -1039,8 +1069,46 @@ There are a number of possibilities for the fate or nature of a ``Big Bang'' und
     \item Big Bang is the start of time itself
 \end{enumerate}
 
-\todo[TC]{Missed a Lecture}
+\section{Neutrinos}
 
+Neutrinos are primarily involved in the process of $\be$-decay,
+\[ n \to p^+ + e^- + \bar \nu_e \]
+Where $\bar \nu_e$ is an anti electron neutrino. $\bar \nu_e$ and $e^{-}$ are leptons (not made of quarks) and all processes conserve lepton number. Typically, in a $\be$-decay reaction, $e^{-}$ and $\bar \nu_e$ are ejected. Before the discovery of neutrinos, there was no explanation for extra momentum in $\be$-decay. In 1930, Pauli proposed a new particle to conserve this momentum and energy and was predicted massless or small mass. In 1933, Fermi proposed the name \textit{neutrino}. In 1942, neutrinos were detected in the following process,
+\[ \bar \nu_e + p^{+} \to n + e^{+} \]
+How do neutrinos interact with matter? The $W+$ boson mediates the $\be$-decay process. As it turns out, tis interaction is a quantum mechanically ill-defined and proper treatment requires the standard mode. The weak interaction is mediated by $W^{+}, W^{-}$ and $Z$ bosons with $m_{W, Z} \sim \SI{80}{\giga \eV} - \SI{90}{\giga \eV}$.\\
+
+The range of the interaction is,
+\[ \la \sim \f{\hbar }{m_{W, Z} c} \]
+And the interactions are small at small energies. The cross section is,
+\[ \si \simeq G_F^2 E^2 \]
+Where $G_F$ is,
+\[ G_F = \f{1}{m_{W}^2} \sim \SI{1.2e-5}{\giga \eV^{-2}} \]
+Therefore the cross sections are smaller at larger masses. Remember that for $T_{\nu} < \SI{1}{\mega \eV}$ neutrinos decouple. How many kinds of neutrinos are there? There are three generations of electron; the electron $e$ ($\SI{0.5}{\mega\eV}$), muon $\mu$ ($\SI{100}{\mega\eV}$) and tau particle $\tau$ ($\SI{1.8}{\giga\eV}$). Correspondingly, there are three neutrinos: $\nu_{e}, \nu_{\mu}, \nu_{\tau}$ with decreasing stabilities. \\
+
+The total \textit{dark} radiation density $\Om_{\nu}$ includes all things that look like radiation that do not interact with matter.
+\[ \Om_{\nu} \sim N\tsb{eff} T_{\nu}^4 \]
+From cosmology, the effective number of neutrino species is,
+\[ N\tsb{eff} \simeq \SI{3.1\pm0.2}{} \]
+
+The mass of the neutrino has historically been a source of problems. The solar neutrino problem of the 1970s and onward was concerned with the discrepancy between the number of neutrinos you'd expect coming from the sun theoretically versus the observations (which were off by a factor of $2$ or more). Theories predicted that neutrinos had no mass but the solar neutrino problem suggested they did! This led to the discovery of neutrino oscillations $\propto e^{-i \De Et}$.
+\[ E_i = \sqrt{p^2 c^2 + m_i^2 c^4} = pc \sqrt{1 + \f{m_i^2 c^2}{p^2}} \simeq pc + \f{1}{2} \f{m_i^2c^2}{pc} \]
+Therefore,
+\[ \De E_i \simeq \f{1}{2}\f{\De m_i^2c^2}{pc} \]
+In measuring neutrino oscillations, you measure the difference in the square of the masses $\De m_i^2$. If a neutrino oscillation occurs, electron neutrinos can convert to other neutrinos. This acted as an experimental test of the neutrino masses. In 1950's the neutrino mass was measured.
+\[ \abs{m_2^2 - m_1^2} \simeq \SI{7.5e-5}{\eV^2} \]
+\[ \abs{m_3^2 - m_2^2} \simeq \SI{2.43e-3}{\eV^2} \]
+Therefore the $\max \br{m_2, m_3} \simeq \SI{0.05}{\eV}$. In cosmology, neutrinos decouple around $T \lesssim \SI{1}{\mega \eV}$,
+\[ \dif N_\nu = 2 \int \f{\dif^3 p}{h^3} \f{N\tsb{eff}}{e^{p_{\nu}c / kT_{\nu}} + 1} \]
+Where the $2$ is for both neutrinos and anti-neutrinos. Thermal equilibrium between neutrinos and photons produced via the following interaction,
+\[ e^{-} + e^{+} \to \ga_{+} + \ga  \]
+At $kT \lesssim \SI{0.5}{\mega \eV}$ fixes the relative temperatures of neutrinos and photons,
+\[ T_{\nu}^3 = \f{4}{11} T_{\ga}^3 \]
+If we \textit{ignore} neutrino masses,
+\[ \Om_{\nu} = N\tsb{eff} \times \f{7}{8} \br{\f{4}{11}}^{4/3} \Om_{\ga} \simeq \SI{1.7e-5}{}h^{-2}    \]
+However, neutrinos are \textit{not} massless. With masses,
+\[ \Om_{\nu} \simeq \f{\sum_{\nu} m_{\nu} c^2}{94 h^2 \SI{}{\eV}}\]
+Recalling that structure formation restricts $\Om_\nu \lesssim \SI{e-2}{}$, we can get a restriction on neutrino masses,
+\[ \sum_{\nu} m_{\nu}c^2 < \SI{0.2}{\eV} \]
 \section{Precision Cosmology}
 
 \subsection{Six Parameters}
@@ -1153,7 +1221,13 @@ Where we refer to different components of this equation with special names,
 
 The most common model for likelihood estimation is a Gaussian model,
 \[ P\br{\text{data}\mid\text{params}} \propto \exp\br{-\f12 \sum_i \f{\bs{D_i - M_i\br{p}}}{\si_i^2}} \]
-Where $\si_i^2$ is the error in the data/model and $D_i$ is the observed data and $M_i\br{p}$ is the model-predicted value associated with measured data $D_i$. In order to maximize the likelihood, one simply varies the parameters $p$ in order to match the data. The set of parameters $p$ can be any size (and is $6$ in the case of precision cosmology). To visualize the process, consider the parameter space determined by $\Om_b h^2$ and $\Om_m h^2$.
+Where $\si_i^2$ is the error in the data/model and $D_i$ is the observed data and $M_i\br{p}$ is the model-predicted value associated with measured data $D_i$.\\
+
+The \term{chi-squared} statistic is defined as,
+\[ \chi^2 = \sum_i \f{\bs{D_i - M_i\br{p}}}{\si_i^2} \]
+
+
+In order to maximize the likelihood, one simply varies the parameters $p$ in order to match the data. The set of parameters $p$ can be any size (and is $6$ in the case of precision cosmology). To visualize the process, consider the parameter space determined by $\Om_b h^2$ and $\Om_m h^2$.
 \begin{center}
     \begin{tikzpicture}
         \pgfmathsetmacro{\pad}{0.5}
@@ -1171,11 +1245,11 @@ First one normalizes the parameter space $\int P\dif p = 1$ and then determine $
     &\simeq 95\% \quad 2\si \text{ region} \\
     &\simeq 99\% \quad 3\si \text{ region} \\
 \end{align*}
-A \textit{good} model with $N$ data points subtract the number of parameters, the $\chi^2$ value is,
+For a \textit{good} model the $\chi^2$ value is,
 \[ \chi^2 \simeq N \pm \sqrt{2N} \]
-Then the reduced $\chi^2$ value is,
+Where $N$ the the number data points \textit{subtract} the number of parameters. Also define the \term{reduced $\chi^2$},
 \[ \chi\tsb{red}^2 \simeq 1 \pm \sqrt{\f2N} \]
-
+As an example, if $\chi^2 > N$ you probably do not have a very good model because a lot of your data points do not fit the model.
 \newpage
 \section*{Appendix}
 \markboth{Appendix}{Appendix}
@@ -1225,18 +1299,15 @@ We also have the ratio,
 \[ \f{n_{> f^*}}{n} \simeq \f{1}{2 \zeta\br{3}}e^{- h f^{*}/ kT} \br{\f{h f^{*}}{kT}}^2 \]
 
 \subsection{Dominating Eras}
-
+\label{sec:dominantingeras}
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|}
     \hline
      & Matter & Radiation & Cosmological Constant & Curvature \\
     \hline
-    $w$ & $0$ & $\f13$ & $-1$ & $-\f13$ \\
-    \hline
+    $w$ & $0$ & $1/3$ & $-1$ & $-1/3$ \\
     $\rho\br{a} \propto a^{-3\br{1 + w}}$ & $a^{-3}$ & $a^{-4}$ & $1$ & $a^{-2}$ \\
-    \hline
     $a\br{t} \propto t^{\f23\br{\f{1}{1 + w}}}$ & $t^{2/3}$ & $t^{1/2}$ & $\exp\br{\sqrt{\f{\La}{t}} t}$ & $t$ \\
-    \hline
     $\rho\br{t} \propto t^{-2}$ & $t^{-2}$ & $t^{-2}$ & $1$ & $t^{-2}$ \\
     \hline
 \end{tabular}
@@ -1255,7 +1326,7 @@ For $w$-dominant era:
 \[ \rho \propto a^{-3\br{1 + w}} \]
 The most general Friedmann equation:
 \[ H^2 \br{a} = \br{\f{\dot a}{a}}^2 = \f{8 \pi G}{3} \br{\rho_m + \rho_r} + \f{\La}{3} - \f{k}{a^2} = \f{8 \pi G}{3} \br{\rho_m + \rho_r + \rho_\La + \rho_k} \]
-\[ \rho_k = - \f{3}{8 \pi G} a^2 \]
+\[ \rho_k = - \f{3}{8 \pi G} \f{k}{a^2} \]
 \[ \rho_\La = \f{\La}{8 \pi G} \]
 For a dominant density,
 \[ \br{\f{\dot a}{a}}^2 = \f{8 \pi G}{3} \rho \propto a^{-3\br{1 + w}} \]
@@ -1268,7 +1339,28 @@ For $w \neq -1$,
 \[ \rho \propto \br{t^{\f23\br{\f{1}{1 + w}}}}^{-3\br{1 + w}} \propto t^{-2} \]
 For $w = -1$,
 \[ \br{\f{\dot a}{a}}^2 \propto \f{\La}{3}  \]
-\[ a = \exp\br{\sqrt{\f{\La}{t}} t} \]
+\[ a \propto \exp\br{\sqrt{\f{\La}{t}} t} \]
 
+\subsection{Age of The Universe}
+
+To calculate the age of the universe in various cosmologies, consider the Friedmann equation,
+\[ H^2 = \f{8 \pi G}{3} \br{\rho_m + \rho_r + \rho_\La + \rho_k} \]
+And use the solutions to the fluid equation from \cref{sec:dominantingeras} to obtain,
+\[ H^2 = \f{8 \pi G}{3} \br{\rho_{m,0}\f{1}{a^3} + \rho_{r,0}\f{1}{a^4} + \rho_{\La,0} + \rho_{k,0}\f{1}{a^2} } \]
+Here $\rho_{k,0} = -k$. The density parameters are defined such that,
+\[ \Om_{\ga} = \f{\rho_{\ga}}{\rho_{c}} \qquad \rho_{c} = \f{3 H^2}{8 \pi G} \]
+For all $\ga \in \bc{r, m , \La, k}$. Therefore,
+\[ H^2 = H_0^2\br{\Om_{m,0}\f{1}{a^3} + \Om_{r,0}\f{1}{a^4} + \Om_{\La,0} + \Om_{k,0}\f{1}{a^2} } \]
+For convenience define,
+\[ E\br{a} = \sqrt{\Om_{m,0}\f{1}{a^3} + \Om_{r,0}\f{1}{a^4} + \Om_{\La,0} + \Om_{k,0}\f{1}{a^2} } \]
+Therefore, during the time interval $\br{t_1, t_2}$ the amount of time passed is,
+\begin{align*}
+    \De t_{12}
+    &= t_2 - t_1 = \intl_{t_1}^{t_2} \dif t = \intl_{t_1}^{t_2} \f{a}{a} \f{\dif a}{\dif a} \dif t = \intl_{a_1}^{a_2} \f{a}{a} \f{\dif a}{\dot a} = \f{1}{H_0}\intl_{a_1}^{a_2} \f{\dif a}{a E\br{a}}
+\end{align*}
+Using the following correspondence,
+\[ \f{a_1}{a_2} = \f{T_2}{T_1} = \f{\la_1}{\la_2} = \f{1 + z_2}{1 + z_1} \]
+On can calculate differences in time using any parameterization desired,
+\[ \De t_{12} = -\f{1}{H_0} \intl_{z_1}^{z_2} \f{\dif z}{(1+z) E\br{a}} = -\f{1}{H_0}\intl_{T_1}^{T_2} \f{\dif T}{T E\br{T}} \]
 
 \end{document}
