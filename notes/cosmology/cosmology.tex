@@ -230,6 +230,8 @@ Which is a relativistic manifestation of Newton's law. The difference being the 
 
 \section{Geometry}
 
+In Euclidean geometry, parallel lines do not intersect and the sum of the interior angles of a triangle sum to $180^o$. However, Euclidean geometry is only a special case:
+
 \begin{center}
 \begin{tabular}{|c|c|}
     \hline
@@ -241,7 +243,7 @@ Which is a relativistic manifestation of Newton's law. The difference being the 
     \hline
 \end{tabular}
 \end{center}
-\todo[TC]{Clean up this lecture}
+
 \[ \ell = \begin{cases}
     \phi R \sin\br{\f{r}{R}} & k = +1 \\
     \phi r & k = 0 \\
@@ -468,7 +470,7 @@ Therefore,
 Which gives,
 \[ v = \f{r}{t_0 - \f{r}{c}} \implies \f{c}{v} = \f{ct_0}{r} - 1 \]
 Therefore the redshift can be computed,
-\[ 1 + z = \sqrt{\f{1 + \f{v}{c}}{1 - \f{v}{c}}} = \cdots = \br{1 - \f{2r}{ct_0}}^{-1/2} \approx 1 + \f{r}{ct_0} + \f{3}{8}\f{4 r^2 }{c^2t_0^2} \]
+\[ 1 + z = \sqrt{\f{1 + \f{v}{c}}{1 - \f{v}{c}}} = \sqrt{\f{ct_0 / c}{-2+ct_0/r}} = \br{1 - \f{2r}{ct_0}}^{-1/2} \approx 1 + \f{r}{ct_0} + \f{3}{8}\f{4 r^2 }{c^2t_0^2} \]
 We define the \term{deceleration parameter} $q$,
 \[ q = -\f{\ddot a}{aH^2} = -\f{\ddot a a}{\dot a^2} = \f{\Om_m}{2} + \Om_r - \Om_{\La} \]
 The deceleration parameter acts as a sub-leading correction to the expansion of the universe. When it was observed that experimentally $q < 0$, one have to conclude that $\Om_{\La} > \f{\Om_m}{2} + \Om_r$. In fact in 1999 (Nobel Prize in 2011) dark energy was discovered with value,
@@ -533,7 +535,7 @@ In cosmology we are interested in the light that travels to us from distant gala
     \draw[dashed, ->] (gal) -- node[below left]{$\dot \te, \dot \phi = 0$} (us);
 \end{tikzpicture}
 \end{center}
-Since the light ray has no angular deviation, the FRW metric reduces to,
+Since the light ray has no angular deviation ($\dif \te = \dif \phi = 0$), the FRW metric reduces to,
 \[ \dif s^2 = - c^2 \dif t^2 + \f{a^2 \dif r^2}{1 - kr^2} \]
 Solving this metric gives,
 \[ \f{c \dif t}{a\br{t}} = - \f{\dif r}{\sqrt{1 - kr^2}} \]
@@ -548,7 +550,8 @@ This gives us,
 \[ r = c \int_{t}^{t_0} \br{\f{t'}{t_0}}^{-2/3} \dif t' = 3 c t_0 \]
 It is important to note that $r$ is not a physical distance. Instead it is just a co-moving coordinate. As such, it should be alarming that $ r / t_0 = 3 c > c $ seems to be faster than the speed of light. \\
 
-Next consider a detector that aims to measure light coming from a distance galaxy. Let this detector subtend a solid angle of $\dif \Om$. Then the distance to the galaxy can be measured using,
+\textit{How do we measure distances via flux}?
+Consider a detector that aims to measure light coming from a distance galaxy. Let this detector subtend a solid angle of $\dif \Om$. Then the distance to the galaxy can be measured using,
 \[ \dif_L^2 = \f{L}{4\pi F} \]
 Where $L$ is the luminosity of the object ($\bs{\text{E}}/\bs{\text{T}}$) while $F$ is the observed flux on the detector ($\bs{\text{E}}/\bs{\text{T}}\bs{\text{Area}}$). In flat space $d_L$ corresponds to a regular distance. However in a curved spacetime, this is not generally the case. The flux observed can be directly computed from the number of photons emitted.
 \[  F = \f{N_{\ga} E_{0,\ga}}{\De t_0 a_0^2 r^2 \dif \Om} \]
@@ -563,7 +566,7 @@ Relating this to the acceleration parameter,
 \[ q = -\f{a \ddot a}{\dot a^2} \]
 Therefore for $k=0$,
 \[ r\br{z} = \int\f{c \dif t}{a\br{t}} \]
-We recover the Hubble law \todo[TC]{This might not be correct},
+And thus we recover a Hubble law (with the augmentation of higher order terms),
 \[ H_0 d_L = z + \br{\f{1}{2} - q} z^2 + \s{O}\br{z^3} \]
 This can be used to measure $\La$,
 \[ q = \f{\Om_m}{2} - \Om_\La \]
@@ -579,8 +582,9 @@ Together gives,
 Therefore,
 \[  a\br{t}\dif r = c\dif t = c \f{H_0}{\dif t H} = \f{c \dif h_0 a}{H} =- \f{c \dif h \br{1+z}}{H_0 \sqrt{\Om_{0,m} \br{1 + z}^3 + \Om_{0,\La}}} \]
 Which implies,
-\[ r\tsb{max} = \f{c}{H_0} \int_{0}^{z\tsb{max}} \f{\dif z}{\sqrt{\Om_{0,m} \br{1 + z}^3 + \Om_{0,\La}}} \]
+\[ r\br{z} = \f{c}{H_0} \int_{0}^{z} \f{\dif z}{\sqrt{\Om_{0,m} \br{1 + z}^3 + \Om_{0,\La}}} \]
 Which is an integral that can be solved numerically quite easily.
+
 \section{Dark Matter}
 We have talked about how cosmology behaves with different material components (matter, radiation, dark energy, curvature). For the last century, we have been trying to understand the behaviors of each of these components; dark energy being one of the latest problems to tackle. \\
 
@@ -592,8 +596,8 @@ In order to measure mass, we measure the flux received from a large cluster or c
 \[ \text{Flux} = \br{\f{M}{L}}^{-1} \int \f{\br{\de \Om r^2 \dif r} \rho_{*}}{4 \pi \dif^2_L} \]
 Rearranging and rewriting $\rho_{*}$ in terms of $\Om_{*}$ (also let $z \ll 1$),
 \[ \text{Flux} = \br{\f{M}{L}}^{-1} \int \f{ \dif r}{1 + z} \Om_{*} \rho_c \]
-\[ \text{Flux} = \br{\f{M}{L}}^{-1} r\tsb{max} \Om_{*} 3 \f{3H_0^2}{8 \pi G} \]
-By observationally measuring the flux (and using $H_0, r\tsb{max}, M/L \propto M_{\astrosun} / L_{\astrosun}$), cosmologists calculate
+\[ \text{Flux} = \br{\f{M}{L}}^{-1} r\tsb{max} \Om_{*} \f{3H_0^2}{8 \pi G} \]
+By observationally measuring the flux (and using $H_0, r\tsb{max} = cz\tsb{max} / H_0, M/L \propto M_{\astrosun} / L_{\astrosun}$), cosmologists calculate
 \[ \Om_{*} = \SI{0.005}{} \]
 
 So the question remains, what is the source of the rest of the mass associated with $\Om_{m} \approx 0.23$?
@@ -655,7 +659,7 @@ With density $\rho \sim \SI{1e3}{}\rho_c$. In the intergalactic plasma, the mass
 Which gives us a great way of measuring $\Om_m$. Modeling the intergalactic plasma as a gas in hydrostatic equilibrium we have that,
 \[ \f{\dif P\tsb{gas}}{r} = \rho\tsb{gas} \f{GM\br{<r}}{r} \]
 Which provides an avenue for measuring $M\br{<r} \approx M\tsb{tot}$.\footnote{The pressure can be determined from X-ray emissions.} The Chandra satellite has measured the relevant components of intergalactic plasma. These results yield the estimate of,
-\[ \Om_M = 0.4 \]
+\[ \Om_M \approx 0.4 \]
 
 \subsection{Structure Formation and CMB}
 
@@ -666,10 +670,10 @@ In the early universe, it is believe that there are two components of the univer
 \end{enumerate}
 We clump baryons and photons together because they are constantly interacting in the early universe. Since dark matter is very cold, energy does not propagate through dark matter. This is distinct from baryons and photons because they are very hot permitting sound waves to travel. Using the CMB, we can get the most precise measurement of $\Om_M / \Om_B$.
 \[ \Om_B = \SI{0.049\pm0.001}{} \qquad \Om_M = \SI{0.315\pm0.017}{} \]
-Adding the cosmological contributions $\Om_{\La} = 0.7$ predicts,
+Adding the cosmological contributions $\Om_{\La} \approx 0.7$ predicts,
 \[ \Om\tsb{tot} = 1.00 \pm 0.01 \]
 
-Another possibility to explain dark matter is not to consider dark matter as actual matter at all. Although we will not discuss these in this course, but they typically involve modifications to Einstein's general theory of relativity (or in some cases Newton's gravity).
+Another possibility to explain dark matter is not to consider dark matter as actual matter at all. Although we will not discuss these in this course, but they typically involve modifications to Einstein's general theory of relativity (or in some cases Newton's gravity). Ultimately, we do not know.
 
 \section{Cosmic Microwave Background (CMB)}
 The cosmic microwave background represents our best evidence of big bang cosmology to date. Today we understand Hubble's law as a consequence of the cosmological principle. In the past, cosmology hit a fork in interpretation. The homogeneity of space in the universe and Einstein's special relativity (placing space and time on equal footing) should suggest that time is also homogeneous. The desire to make cosmology and special relativity compatible naturally led to the idea of a \term{steady-state cosmology} (Bondi, Gold, \& Hoyle) however the steady-state cosmology ran into problems of energy conservation. The competing theory at a similar time was \term{big bang cosmology} (Gamow \& others). One of the predictions of big bang cosmologists was big bang nucleosynthesis which agrees with measurements on the current baryon densities of the universe. More convincingly, big bang cosmology predicted left-over radiation from the early universe and was discovered by Penzias \& Wilson to be a perfect blackbody with temperature $T = \SI{2.725\pm0.001}{\K}$. The radiation energy density is then,
@@ -677,7 +681,7 @@ The cosmic microwave background represents our best evidence of big bang cosmolo
 And thus,
 \[ \Om_{\ga} = \f{\ep_\ga}{\rho_c c^2} = \SI{5.04e-5}{} \]
 Recall that the density of fluids in the universe scale with $a$ as,
-\[ \rho_{\ga} \propto \f{1}{a^4} \quad \rho_{m} \propto \f{1}{a^3} \quad\rho_{\Ga} \propto 1 \quad\rho_{k} \propto \f{1}{a^2} \]
+\[ \rho_{\ga} \propto \f{1}{a^4} \quad \rho_{m} \propto \f{1}{a^3} \quad\rho_{\La} \propto 1 \quad\rho_{k} \propto \f{1}{a^2} \]
 Which means that in the early universe when $a$ was smallest, radiation was dominant. The redshift at which matter and radiation were on equal scales is current $z\tsb{eq} \approx 3400$. For a black body,
 \[ \ep\br{f} \dif f \propto \f{f \dif f}{e^{hf /k T} - 1} \]
 But $f \propto a^{-1} = 1 + z$ and $T \propto a^{-1}$ and thus $\ep\br{f} \propto a^{-4}$. Therefore we know that the blackbody spectrum for radiation is \textit{not} affected by cosmic redshift. This is a very special property of radiation which enables us to know that the CMB was a blackbody in the early universe because it is a blackbody today.\\
@@ -699,11 +703,11 @@ Which means that $E_\ga = \SI{13.6}{\eV}$ at a scale $a^{-1} = 1+ z = \SI{2e4}{}
 From this, we can conclude that the Hubble distance scale for a photon $d_H = \f{c}{H}$ scales as $t$ while the mean free path scales as $t^2$. We have that $\la_\ga \ll d_H$ which means that at the photons scatter many times over the cosmic time scales which means that the universe would be opaque. \\
 
 At low temperatures electrons and protons have low enough energies to form bound atoms. As it turns out, this does not occur at exactly the moment when $E_\ga = \SI{13.6}{\eV}$. Nonetheless when hydrogen atoms are formed at low enough temperatures, the approximate cross section for photons drops because only photons of very specific frequencies can be absorbed by electrons,
-\[ \si_R = \si_T \br{\f{E}{\SI{10}{\eV}}}^{4} \]
-Which is known as the Rayleigh cross section. When the temperature decreases below the characteristic energy $\SI{10}{\eV}$ photons become approximately transparent and can travel freely. However, interactions between photons and matter are more complicated. Recombination refers to the time when $\f{n_p}{n_H} = \f{n_e}{n_H} < 0.1$ when all of the free particles combine to form atoms. There is also the decoupling process,
+\[ \si_R = \si_T \br{\f{E}{\SI{10}{\eV}}}^{4} \eq \label{eq:rayleigh_cross_section}\]
+Which is known as the \term{Rayleigh cross section}. When the temperature decreases below the characteristic energy $\SI{10}{\eV}$ photons become approximately transparent and can travel freely. However, interactions between photons and matter are more complicated when $E \ll \SI{10}{\eV}$ and \cref{eq:rayleigh_cross_section} breaks down. \term{Recombination} refers to the time when $\f{n_p}{n_H} = \f{n_e}{n_H} < 0.1$ when all of the free particles combine to form atom, while \term{decoupling} refers to the time in which the scattering of photons off electrons roughly ceases,
 \[ \dif t = \f{H \dif t}{H} = \f{\dif h a}{H} = \f{\dif a}{\br{1 + z} H\br{z}} \]
 \[ 1 = \int_0^z n_e\br{z} \si_T \br{z} c \dif t = \int_0^z n_\ga\br{z} \si_T \br{z} c \f{\dif a}{\br{1 + z} H\br{z}} \]
-This is the time in which the scattering of photons off electrons roughly ceases.
+This forms the \term{surface of last scattering},
 \[ \f{n_\ga}{n_b}e^{-\f{\SI{13.6}{\eV}}{kT}} \sim 1 \implies kT = \f{\SI{13.6}{\eV}}{\rho_m \underbrace{\br{n_\ga / n_B}}_{\SI{1e9}{}}} \sim \SI{0.65}{\eV} = k \cdot \SI{7400}{\K} \]
 This is very approximate, order of magnitude guess at this temperature. More accurately we can compute,
 \[ T\tsb{rec} \simeq \SI{3600}{\K} \quad T\tsb{dec} \simeq \SI{3000}{\K} \]
@@ -732,7 +736,57 @@ Therefore,
 \[ \f{1 - X}{X^2} = 3.8 \f{n_B}{n_\ga}\br{\f{kT}{m_B c^2}}^{3/2}  e^{\f{\SI{13.6}{\eV}}{kT}} \]
 Setting $X = 0.1$ and solving this equation numerical gives $T \simeq \SI{3600}{\K}$.
 
-\todo[TC]{Missed a lecture: structure formation of cmb, anisotropies from cosmology, download data}\\
+\section{Structure Formation in The Universe}
+
+If the universe was \textit{perfectly} homogeneous and isotropic, humans could not exist let alone galaxies and large structures. We do however see stars, star clusters, galaxies, clusters of galaxies and large scale structures. The question remains, how and why does the matter in the universe tend to cluster together.\\
+
+Galaxy redshift surveys are able to map the positions of millions of galaxies. These surveys indicate that the universe appears homogeneous on the largest of scales but the maps also show walls, voids and filaments. In particular we can define the the number density of galaxies at a co-moving distance $r$ to be $n_g\br{r}$ such that,
+\[ \ba{n_g\br{r}} = \bar n_g \bs{1 + \xi\br{r}} \]
+Where $\xi\br{r}$ is found to be,
+\[ \xi\br{r} = \br{\f{r}{\SI{7}{\mega\pc}}}^{-2} \]
+
+\section{Anisotropies}
+
+Structure formation is intimately linked to the formation of structures in the early universe via clustering. The COBE survey discovered anisotropies in the CMB. \\
+
+The temperature deviation $\De T$ at the angular position $\te, \varphi$ in the CMB is given by,
+\[ \f{\De T}{T} \br{\te, \varphi} = \f{T\br{\te, \varphi} - \bar T}{\bar T} \]
+Where $\bar T$ is the mean temperature of the CMB and $T\br{\te, \varphi}$ is the measured temperature. Expanding $\De T/ T$ in terms of spherical harmonics gives,
+\[ \f{\De T}{T} \br{\te, \varphi} = \sum_{\ell = 1}^{\inf} \sum_{m = -\ell}^{\ell} a_{\ell m} Y_{m}^{\ell} \br{\te, \varphi} \]
+From this defines the radiation angular power spectrum $C_{\ell} = \ba{\abs{a_{\ell m}}^2}$. Theory is able to predict $C_{\ell}$ while we observe,
+\[ \bar C_{\ell} = \f{1}{2\ell + 1} \sum_{m = - \ell}^{\ell} \abs{a_{\ell m}}^2 \]
+Where $T_0 = \SI{2.725}{\K}$ is the temperature of the CMB measured today. Theoretical CAMB models of the anisotropies can be plotted against WMAP results. Below, the vertical axis of the following plot is a scaled version of $C_{\ell}$, namely,
+\[ \f{1}{2 \pi}T_0^2 \ell \br{\ell + 1} C_{\ell} \]
+\begin{center}
+    \includegraphics{figures/anisotropies.pdf}
+\end{center}
+The vertical error bars come from the approximate error reported in the WMAP results. The horizontal error bars are attributed the fact that the multipole values reported by WMAP are binned values. For each bin $\bs{\ell_L, \ell_R}$, the reported $C_{\ell}$ value is an unweighted average of each contribution,
+\[ C_{\ell_L}, C_{\ell_{L}+1}, \ldots, C_{\ell_{R}-1}, C_{\ell_{R}}  \]
+Qualitatively speaking, the CAMB model and the WMAP measurements share the same features and the error bars are mostly in agreement. \\
+
+Roughly speaking for $\hat n_1 \cdot \hat n_2 = \cos \te$,
+\[ \ba{\f{\De T}{T}\br{\hat n_1}\f{\De T}{T}\br{\hat n_2}} \sim \f{\ell \br{\ell + 1}}{2 \pi} C_\ell  \]
+The first peak of the anisotropy plots can be related to and thus constrain the values of $\Om_k$ in our universe. The Planck data predicts,
+\[ \abs{\Om_k} \leq 0.003 \]
+
+Our best understanding of the origin of structures ($z \geq \SI{e6}{}$) is due to Planck,
+\[ \xi\br{r} \simeq \SI{2e-9}{}\br{\f{r}{\SI{20}{\mega \pc}}}^{0.032\pm 0.006} \]
+
+
+The question remains, why are there fluctuations and what do they accomplish for formation? The gravitational instability of the matter at the surface of last scattering defines a hierarchy. \\
+
+Consider a matter dominated universe,
+\[ \Om_m = 1 \qquad \Om_{\La} = 0 \qquad a \propto t^{3/2} \]
+If we allow for density deviations $\Om_m = 1 + \ep$ where $0 < \ep \ll 1$ we can define the \term{over density} $\de$ such that,
+\[ \de = \f{\de \rho\br{x, t}}{\bar \rho\br{t}} = \f{a\br{t}}{a\br{t_0}} \f{\de \rho\br{x, t_0}}{\bar \rho\br{t_0}} \]
+Where typically, $\de \ll 1$. As an exercise, you can show that $\de \propto a$ by considering a spherical region of the universe with $k > 0$ but $\abs{\Om_k} \ll 1$ with $\Om_k = 0$. However, when $\de \sim 1$ you form galaxies and clusters which require numerical simulations. In doing these simulations, it is important to also consider radiation pressure in the early universe and the sound waves they induce.\\
+
+We can also define the idea of \term{bias}. The number density of galaxies should have functional dependence on the matter density in the universe,
+\[ n_g\br{x} \simeq f\bs{\rho_m\br{x}} \]
+Where $f$ may depend on time. Then,
+\[ \de_g = \f{\de n_g}{\bar n_g} = \der{\ln f}{\ln \rho} \cdot \de  \]
+Where $b = \der{\ln f}{\ln \rho}$ is the bias. For small galaxies, $b \sim 1$ and for big galaxies and clusters $b \sim 2-3$.
+
 
 \section{Early Universe}
 
@@ -761,20 +815,20 @@ Which is always greater than $1$. This is a manifestation of the Pauli-Exclusion
 
 Heretofore, we have been treating neutrinos as essentially massless. In reality we have lower bounds on the masses of neutrinos,
 \[ m_\nu^1 > \SI{0.05}{\eV} \quad m_\nu^2 > \SI{0.02}{\eV} \quad m_\nu^3 > 0 \]
-The reason why we only have lower bounds is because neutrino oscillation experiments can detect the difference in the squares of the masses of neutrinos $\br{m^i}^2 - \br{m^j}^2 \neq 0$. From this knowledge we suspect that at least $2$ $\nu$'s are non-relativistic now. We we ignore the neutrino mass, we calculate that,
+The reason why we only have lower bounds is because neutrino oscillation experiments can detect the difference in the squares of the masses of neutrinos $\br{m^i}^2 - \br{m^j}^2 \neq 0$. From this knowledge we suspect that at least $2$ $\nu$'s are non-relativistic now. We we ignore the neutrino mass, we calculate the time when radiation and mass densities are equal is,
 \[ \f{\Om_r\br{a}}{\Om_m\br{a}} = \f{\Om_\ga + \Om_\nu}{\Om_m} \times \f{1}{a} \implies 1 + z\tsb{eq} = \f{1}{a\tsb{eq}} = \SI{3400}{} \]
-This means that $T\tsb{eq} = \f{\SI{2.725}{\K}}{a\tsb{eq}} = \SI{9700}{\K}$. Of course the only time we need to consider neutrino masses is for late times $z \lesssim 100$. In this case we need to add,
-\[ \Om_{\nu, 0} = \f{\sum_i m_\nu^i}{\SI{46}{\eV}} + 0.68 \cdot \Om_{r} \]
+This means that $T\tsb{eq} = \f{\SI{2.725}{\K}}{a\tsb{eq}} = \SI{9700}{\K} \approx \SI{1}{\eV}$ which is much larger than the mass of the neutrinos. Therefore neutrinos are relativistic in the this time period.
 In order to calculate the time at equality we need to make use of the Friedmann equation,
 \[ H^2 = \f{8\pi G}{3}\br{\rho_m + \rho_r + \rho_\La} \]
 Doing so is left as an exercise. The time at equality is,
-\[ t\tsb{eq} = \SI{5.8e4}{\yr} \]
-Compare this to the time of decoupling which occurs slightly after,
+\[ t\tsb{eq} = \SI{5.6e4}{\yr} \]
+Compare this to the time of decoupling which occurs slightly after (note that neutrinos decoupled very early ($t\tsb{dec} \approx \SI{1}{\s}$)),
 \[ t\tsb{de} = \SI{3.5e5}{\yr} \]
-
+Therefore, the only time one needs to consider neutrino masses is for late times $z \lesssim 1100$.  In this case we need to add,
+\[ \Om_{\nu, 0} = \f{\sum_i m_\nu^i}{\SI{46}{\eV}} + 0.68 \cdot \Om_{r} \]
 
 \subsection{Before the CMB}
-In the radiation dominated era,
+What about times even further back? In the radiation dominated era,
 \[ \br{\f{1}{a}}^2 = H^2 = \f{8 \pi G}{3} \rho = \f{8 \pi G}{3} \cdot \SI{1.68}{} \times \al T_\ga^2 \]
 This implies that,
 \[ \br{\f{t}{\SI{1}{\s}}}^{-3/2} = \f{k T}{\SI{1.1}{\mega \eV}} = \f{T}{\SI{1.3e10}{\K}}  \]
@@ -816,7 +870,68 @@ All of the processes in the standard model conserve baryon number. This means th
 
 Charge Conjugation indicates a process that occurs the exact same way if one exchanges all positive charges with negative charges. The Charge-Parity condition indicates a process that occurs the same way when all momentum and charges are flipped. Altogether, the Sakharov conditions suggest that we need to look for processes outside the standard model.
 
-\todo[TC]{Missed Two Lectures}
+\section{Big Bang Nucleosynthesis}
+
+The inception of big bang nucleosynthesis was due to a number of fields of physics including nuclear physics and relativity and the Manhattan project was a big influence. These sources led to the understanding (1930s - 1950s) of how stars are fueled and where heavy elements come from; i.e. from nuclear fusion in stars and supernovae.
+\[ \text{H} \to \text{He}, \text{C}, \text{O}, \ldots \]
+The principle component was the study of weak interactions and $\be$-decay.
+\begin{align*}
+    n &\rightarrow p^{+} + e^{-} + \bar \nu_e \\
+    e^{+} + n &\leftrightarrow p^{+} + \bar \nu_e \\
+    \nu_e + n &\leftrightarrow p^{+} + e^{-}
+\end{align*}
+
+One of the first papers on big bang nucleosynthesis was due to Alpher, Bethe, Gammow ($\al\be\ga$) in 1948 where they explained the origins of light elements like ${}^3$He, ${}^4$He, D, ${}^7$Li in which ${}^4$He made up about $25 \%$ of the mass with most produced in the big bang, some in stars.\\
+
+The principles of helium formation are as follows:
+\begin{enumerate}
+    \item The mass of protons and neutrons differ,
+    \[ m_p c^2 = \SI{938.3}{\mega \eV} \qquad m_p c^2 = \SI{939.6}{\mega \eV} \]
+    \[ \br{m_n - m_p} c^2 \simeq \SI{1.3}{\mega \eV} \]
+    \item Free neutrons (not bound to nucleus) decay at a rate $t_{1/2} \simeq \SI{620}{\s}$
+    \item Bound neutrons can be stable.
+\end{enumerate}
+In the early universe (but when $n,p$'s are non-relativistic such that $E = \sqrt{m^2 c^4 + p^2 c^2} \approx m c^2 + \f{p^2}{2m}$) we have that the number density $n$ of neutrons $n$ and protons $p$ is,
+\begin{align*}
+    n
+    &= \intl \f{\dif^3 p}{h^3} \f{1}{e^{E/kT} + 1} \\
+    &= \intl \f{\dif^3 p}{h^3} e^{-E/kT} \qquad E \gg k T \\
+    &= \intl \f{\dif^3 p}{h^3} e^{-mc^2/kT - p^2/2mkT} \\
+    n &\propto e^{-mc^2/kT} \f{\br{mkT}^{3/2}}{h^3}
+\end{align*}
+Therefore the ratio for protons to neutrons is,
+\[ \f{n_n}{n_p} = \br{\f{m_n}{m_p}}^{3/2} \exp\bs{- \f{\br{m_n - m_p}c^2}{k T}} \]
+Therefore as temperatures $kT$ decrease, the ratio $\f{n_n}{n_p}$ goes down as well until we reach thermal equilibrium. This occurs at the decoupling of the weak interaction at $k T\tsb{dec} \simeq \SI{0.8}{\mega \eV}$. In essence, weak interactions are important for $T > T\tsb{dec}$ and not important for $T < T\tsb{dec}$ when $\f{n_n}{n_p}$ remains constant.
+\[ \f{n_n}{n_p} \simeq \exp\br{-\f{\SI{1.3}{\mega\eV}}{\SI{0.8}{\mega\eV}}}\simeq \f{1}{5} \eq \label{eq:np}\]
+However the production of light elements does not proceed exclusively forward until deuterium becomes stable (where not enough photons have energies greater that its binding energy of $\SI{2.2}{\mega \eV}$). This occurs around $kT \simeq \SI{0.06}{\eV}$ and where $t\tsb{nuc} \simeq \SI{340}{\s}$. During this time, any free neutrons will readily decay with half-life $t_{n,1/2}= \SI{610}{\s}$. Therefore up until the $t\tsb{nuc}$,the neutrons are decaying intro protons. Ignoring the change in proton number,
+\[ \f{n_n}{n_p} \simeq \f{1}{5} \times \exp\br{- \f{t\tsb{nuc}\ln 2}{t_{n,1/2}}} \simeq \f{1}{7.3}  \]
+How does this fix the helium-4 abundance? Approximate that the majority of produced elements is helium-4. This is somewhat valid in that it is the lightest stable nucleus (after the proton). Every helium-4 nucleus requires two neutrons. Therefore,
+\[ n\tsb{He-4} = \f{n_n}{2}\]
+But every helium-4 nucleus weighs roughly $4$ protons (neutrons). Therefore the mass fraction is,
+\[ Y_4 = \f{4 (m_p + m_n)/2 n\tsb{He-4}}{m_n n_n + m_p + n_p} \]
+Treating $m_p \simeq m_n$,
+\[ Y_4 = \f{2 n_n}{n_n +n_p} = \f{2}{1 + n_p / n_n} \simeq 0.24 \]
+Which agrees with the observed amount of $25 \%$.
+
+\section{Cosmic Inflation}
+
+Inflation was invented by a number of researchers:
+\begin{itemize}
+    \item Alan Guth (1981) $\to$ Old Inflation
+    \item Alexei Starobinsky (1979)
+    \item Andrei Linde (1981) $\to$ New Inflation
+\end{itemize}
+
+Inflation was invented to solve a number of problems with hot big bang cosmologies:
+\begin{enumerate}
+    \item \term{Flatness Problem}: Today we know that $\Om_k$ is small (very conservatively $0.5 \leq \Om\tsb{tot} \leq 1.5$),
+    \[ \abs{\Om\tsb{tot}\br{t} - 1} = \f{\abs{k}}{a^2 H^2} \leq 1 \]
+    If we consider the dynamics of $\Om_k$, $a^2 H^2 \propto t^{-1}$ in a radiation dominated era and $a^2 H^2 \propto t^{-2/3}$ in a matter dominated era. Therefore, $\Om_k$ \textbf{grows} over time. Since today $\Om_k$ is small, it had to be far smaller in the past:
+    \[ \abs{\Om\tsb{tot} - 1} \simeq \underbrace{10^{-5}}_{\text{decoupling}}, \underbrace{10^{-18}}_{\text{BBN}}, \underbrace{10^{-30}}_{\text{electroweak}}, \underbrace{10^{-60}}_{\text{Planck}} \]
+    This is an issue of \textit{fine-tuning}.
+    \item \term{Horizon Problem}: In a flat, radiation dominated universe, $c \dif t = a \dif r$ therefore,
+    \[ a = a\tsb{dec} \br{\f{t}{t}}^{} \]
+\end{enumerate}
 
 \subsection{Origin of Structure in the Universe}
 \todo[TC]{Beginning of this lecture is weak}
@@ -1060,5 +1175,100 @@ A \textit{good} model with $N$ data points subtract the number of parameters, th
 \[ \chi^2 \simeq N \pm \sqrt{2N} \]
 Then the reduced $\chi^2$ value is,
 \[ \chi\tsb{red}^2 \simeq 1 \pm \sqrt{\f2N} \]
+
+\newpage
+\section*{Appendix}
+\markboth{Appendix}{Appendix}
+\addcontentsline{toc}{section}{Appendix}
+\setcounter{subsection}{0}
+\setcounter{subsubsection}{0}
+\renewcommand*{\theHsubsection}{appendix.\the\value{subsection}}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\subsection{High Frequency Blackbody Spectrum}
+\label{sec:upper_black_body}
+
+First begin by calculating the number density for photons as predicted by a Blackbody spectrum. The energy per unit volume per unit time per frequency is given by,
+\[ \f{\dif E}{\dif V \dif f} = \ep_f = \f{8 \pi h f^3}{c^3 \bs{e^{h f/ k T} - 1}}\]
+Thus the number density of photons between $f$ and $f + \dif f$ is given by,
+\[ n_f = \f{\ep_f \dif f}{h f}  = \f{8 \pi f^2}{c^3 \bs{e^{h f/ k T} - 1}} \dif f\]
+Therefore the total number density can be calculate by integrating over all frequencies,
+\[ n = \intl_{0}^{\inf} n_f = \intl_{0}^{\inf} \f{8 \pi f^2}{c^3 \bs{e^{h f/ k T} - 1}} \dif f\]
+Simplifying,
+\[ n = \f{8 \pi}{c^3}\br{\f{kT}{h}}^3 \intl_{0}^{\inf} \f{ x^2}{{e^{x} - 1}} \dif x\]
+Recall the relationship between the Riemann Zeta function and the Gamma function\footnote{\url{http://mathworld.wolfram.com/GammaFunction.html}},
+\[ \zeta\br{z}\Ga\br{z} = \intl_{0}^{\inf} \f{x^{z-1}}{e^{x} - 1}\dif x \]
+Therefore,
+\[ n = 16 \pi \zeta\br{3} \br{\f{k T}{hc}}^3 \]
+However, we are interested in the number density with energy (and thus frequency) greater than some threshold. Let this energy/frequency uppper limit be $E^* = h f^*$ such that,
+\[ n_{> f^*} = \intl_{f^{*}}^{\inf} \f{8 \pi f^2}{c^3 \bs{e^{h f/ k T} - 1}} \dif f = \f{8 \pi}{c^3}\br{\f{kT}{h}}^3 \intl_{x^*}^{\inf} \f{ x^2}{{e^{x} - 1}} \dif x \]
+Where $x^*$ is equal to $h f^{*} / k T$. We further make the assumption that,
+\[ h f^{*} \gg k T \]
+i.e. it is far colder than the ionization energy scale and that only the tail end of the spectrum will contribute. Therefore $x^* \gg 1$. Therefore,
+\[ \intl_{x^*}^{\inf} \f{ x^2}{{e^{x} - 1}} \dif x \simeq \intl_{x^*}^{\inf} \f{ x^2}{e^{x}} \dif x = \intl_{x^*}^{\inf} x^2 e^{-x} \dif x \]
+This later integral can be easily calculated,
+\begin{align*}
+\intl_{a}^{b} x^2 e^{\al x} \dif x
+&= \intl_{a}^{b} \der{}{\al} x e^{\al x} \dif x \\
+&= \intl_{a}^{b} \dder{}{\al}e^{\al x} \dif x \\
+&= \dder{}{\al} \intl_{a}^{b} e^{\al x} \dif x \\
+&= \dder{}{\al} \f{1}{\al}\br{e^{\al b} - e^{\al a}} \\
+&= \der{}{\al} \f{\br{b e^{\al b} - a e^{\al}}\al - \br{e^{\al b} - e^{\al}}}{\al^2} \\
+&= \f{e^{\al b} \br{b \al \br{b \al - 2} + 2} - e^{\al a} \br{a \al \br{a \al - 2} + 2}}{\al^3}
+\end{align*}
+Then set $\al = -1$, $a = x^{*}, b= \inf$,
+\[ \intl_{x^*}^{\inf} x^2 e^{-x} \dif x = e^{- x^{*}} \br{-x^{*} \br{- x^{*} - 2} + 2} \]
+Again make use of the approximation that $x^{*} \gg 1$,
+\[ \intl_{x^*}^{\inf} x^2 e^{-x} \dif x \simeq e^{- x^{*}} \br{x^{*}}^2 \]
+Which could have been approximated just by exposing the integrand by setting $x = x^*$. Nonetheless, we now have the approximation,
+\[ n_{> f^*} \simeq \f{8 \pi}{c^3}\br{\f{kT}{h}}^3 e^{- h f^{*}/ kT} \br{\f{h f^{*}}{kT}}^2 \]
+We also have the ratio,
+\[ \f{n_{> f^*}}{n} \simeq \f{1}{2 \zeta\br{3}}e^{- h f^{*}/ kT} \br{\f{h f^{*}}{kT}}^2 \]
+
+\subsection{Dominating Eras}
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+    \hline
+     & Matter & Radiation & Cosmological Constant & Curvature \\
+    \hline
+    $w$ & $0$ & $\f13$ & $-1$ & $-\f13$ \\
+    \hline
+    $\rho\br{a} \propto a^{-3\br{1 + w}}$ & $a^{-3}$ & $a^{-4}$ & $1$ & $a^{-2}$ \\
+    \hline
+    $a\br{t} \propto t^{\f23\br{\f{1}{1 + w}}}$ & $t^{2/3}$ & $t^{1/2}$ & $\exp\br{\sqrt{\f{\La}{t}} t}$ & $t$ \\
+    \hline
+    $\rho\br{t} \propto t^{-2}$ & $t^{-2}$ & $t^{-2}$ & $1$ & $t^{-2}$ \\
+    \hline
+\end{tabular}
+\end{center}
+
+Equation of State:
+\[ p = w\rho c^2 \]
+Fluid Equation governs $\rho\br{t}$:
+\[ \dot \rho + 3 \f{\dot a}{a} \br{\rho + \f{p}{c^2}} = 0 \]
+For $w$-dominant era:
+\[ \dot \rho + 3 \f{\dot a}{a} \br{1 + w}\rho = 0 \]
+\[ a \dot \rho + 3\br{1 + w} \dot a \rho = 0 \]
+\[ \f{1}{a^{3\br{1 + w} - 1}} \der{}{t}\br{\rho a^{3\br{1 + w}}} = 0 \]
+\[ \der{}{t}\br{\rho a^{3\br{1 + w}}} = 0 \]
+\[ \rho a^{3\br{1 + w}} = \text{const.} \]
+\[ \rho \propto a^{-3\br{1 + w}} \]
+The most general Friedmann equation:
+\[ H^2 \br{a} = \br{\f{\dot a}{a}}^2 = \f{8 \pi G}{3} \br{\rho_m + \rho_r} + \f{\La}{3} - \f{k}{a^2} = \f{8 \pi G}{3} \br{\rho_m + \rho_r + \rho_\La + \rho_k} \]
+\[ \rho_k = - \f{3}{8 \pi G} a^2 \]
+\[ \rho_\La = \f{\La}{8 \pi G} \]
+For a dominant density,
+\[ \br{\f{\dot a}{a}}^2 = \f{8 \pi G}{3} \rho \propto a^{-3\br{1 + w}} \]
+\[ \dot a^2 \propto a^{-3\br{1 + w} +2} \]
+\[ \dot a \propto a^{-\f32\br{1 + w} + 1} \]
+\[ a^{\f32\br{1 + w} - 1} \dif a \propto \dif t  \]
+For $w \neq -1$,
+\[ a^{\f32\br{1 + w}} \propto t  \]
+\[ a \propto t^{\f23\br{\f{1}{1 + w}}}  \]
+\[ \rho \propto \br{t^{\f23\br{\f{1}{1 + w}}}}^{-3\br{1 + w}} \propto t^{-2} \]
+For $w = -1$,
+\[ \br{\f{\dot a}{a}}^2 \propto \f{\La}{3}  \]
+\[ a = \exp\br{\sqrt{\f{\La}{t}} t} \]
+
 
 \end{document}
