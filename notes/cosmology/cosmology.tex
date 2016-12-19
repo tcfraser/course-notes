@@ -1250,6 +1250,121 @@ For a \textit{good} model the $\chi^2$ value is,
 Where $N$ the the number data points \textit{subtract} the number of parameters. Also define the \term{reduced $\chi^2$},
 \[ \chi\tsb{red}^2 \simeq 1 \pm \sqrt{\f2N} \]
 As an example, if $\chi^2 > N$ you probably do not have a very good model because a lot of your data points do not fit the model.
+\section{Dark Matter Halos}
+To study dark matter halos, consider the spherical collapse in spatially flat $\Om_k = 0$, matter dominated $\Om_m = 1$ universe where the density fluctuations are small $\de \rho / \rho \sim \SI{e-5}{}$. The background density of the universe is thus determined by the matter dominance ($a = t^{2/3}$),
+\[ \rho_c = \f{3 H^2}{8 \pi G} = \f{1}{6 \pi G t^2} \eq \label{eq:rho_c_overdense}\]
+In a spherical region, let $\rho = \rho_c \br{1 + \de}$ be an overdense region. A spherical collapse can be modeled using Kepler's second law,
+\[ P^2  = \f{4 \pi a_{*}^3}{GM} = \f{4 \pi a_{*}^3}{G \br{\f43 \pi R_{*}^3} \rho_{c}\br{1 + \de}} \eq \label{eq:kepler} \]
+By following a particle at the edge of the overdense region: Let $R\br{t}$ be the size of the overdense region and let $t$ be the time since the big bang. These two quantities can be parameterized by a dummy variable $\te$ such that,
+\[ R\br{t} = a_{*}\br{1  - \cos \te} \eq \label{eq:Roverdense}\]
+\[ t = \f{P}{2 \pi}\br{\te - \sin \te} \eq \label{eq:toverdense}\]
+Where $\te = 0$ corresponds to the big bang and $\te = 2\pi$ corresponds to the time in which the region collapses to form a dark matter halo.\\
+Using these equations, it is possible to calculate the overdensity $\de$ in terms of $\te$. Solve for $\de$ in \cref{eq:kepler},
+\[ 1 + \de = \f{4 \pi a_{*}^3}{G \br{\f43 \pi R_{*}^3} \rho_{c} P^2} \]
+Sub in \cref{eq:rho_c_overdense},
+\[ 1 + \de = \f{ 6 a_{*}^3 \pi G t^2}{G \br{\f13 R_{*}^3} P^2} \]
+Finally sub in \cref{eq:toverdense,eq:Roverdense},
+\[ 1 + \de = \f{9}{2}\f{\br{\te - \sin \te}^2}{\br{1 - \cos \te}^3} \]
+For small $\te$, one can expand out $\de$,
+\[ 1 + \de  \simeq 1 + \f{3}{20} \te^2 + \cdots \]
+Also,
+\[ t \simeq \f{P}{2 \pi} \te^3 \]
+Only keeping the linear terms, we define the \term{linear over-density} $\de_L$ to be,
+\[ \de_{L} = \f{3}{20} \br{\te}^2 = \f{3}{20} \br{\f{12 \pi t}{P}}^{2/3} \propto t^{2/3} \propto a \]
+Such that,
+\[ \de \simeq \de_{L} + \s{O}\br{\de_L^2} \]
+However, at time $t = P$ when the dark matter halo forms as $\de \to \inf$ and $R \to 0$, $\de_L$ remains manages to remain constant:
+\[ \de_L \br{t = P} = \f{3}{20} \br{12 \pi}^{2/3} \simeq 1.686 \]
+Which is almost the same as measured in a $\La$CDM cosmology. This specific value is known as the \term{spherical collapse threshold} $\de_c$. In regions where $\de_{L}\br{x, t} = a \de_{0}\br{x}$ crossed the $\de_{c}$ line, we form haloes.\\
+
+It is important to note that the spherical collapse model used here only works well for massive haloes as they are more rare and isolated (e.g. galaxy clusters) and therefore will not interfere with each other's collapse. For smaller masses, $\de_c$ is in fact \text{larger} because the tidal forces will slow down the collapse.\\
+
+How many haloes should we expect? In order to know how many haloes could have formed, we need to know the initial distribution of overdense regions. Suppose the linear density deviations $\de_{L}$ are Gaussian,
+\[ P\br{\de_L} = \f{1}{\sqrt{2 \pi \si_{M}^2}}e^{-{\de_L^2}/{2 \si_M^2}} \]
+Where $\si_M^2 = \ba{\de_L^2} - \ba{\de_L}^2 = \ba{\de_L^2}$ is the variance of the distribution (and is dependent on mass $M$). Therefore the probability that the linear density is greater than the critical density $\de_c$, and also the probability that there will be collapse into a halo is,
+\[ P_c\br{M} = \intl_{\de_c}^{\inf} \f{1}{\sqrt{2 \pi \si_{M}^2}}e^{-{\de_L^2}/{2 \si_M^2}} \dif \de_L = \f{1}{\sqrt{\pi}}\intl_{{\de_c / \sqrt{2} \si_M}}^{\inf} e^{-\chi^2} \dif \chi = \f{1}{2} \text{erfc}\br{\f{\de_c}{\sqrt{2} \si_M}}\]
+Where $\text{erfc}\br{\chi}$ is the complementary error function $1 - \text{erf}\br{\chi}$. As a result, one should expect the number density of haloes within mass $M$ and $M + \dif M$ to be $\dif P_c\br{M}$ times the mean cosmic density (with an additional factor of $2$ for normalization),
+\[ \f{\dif n}{\dif M} = 2 \f{\bar \rho_m}{M} \abs{\f{\dif P_c\br{M}}{\dif M}} = -\f{\bar \rho_m}{M}\der{}{M}\text{erfc}\br{\f{\de_c}{\sqrt{2} \si_M}} \]
+Computing the final derivative,
+\begin{align*}
+\f{\dif n}{\dif M}
+&= -\f{\bar \rho_m}{M}\der{}{\si_M}\text{erfc}\br{\f{\de_c}{\sqrt{2} \si_M}}\der{\si_M}{M} \\
+&= -\f{\bar \rho_m}{M}\f{2e^{-{\de_c^2}/{2 \si_M^2}}}{\sqrt{\pi}}\f{\de_c}{\sqrt{2} \si_M^2}\der{\si_M}{M} \\
+&= -\sqrt{\f{2}{\pi}}\f{\de_c\bar \rho_m}{M} e^{-{\de_c^2}/{2 \si_M^2}} \f{1}{\si_M^2} \der{\si_M}{M} \\
+\f{\dif n}{\dif M} &= \sqrt{\f{2}{\pi}}\f{\de_c\bar \rho_m}{M} e^{-{\de_c^2}/{2 \si_M^2}} \der{\si_M^{-1}}{M}
+\end{align*}
+This is called the \term{Press-Schechter mass function} and is the distribution of halo number per unit mass per unit volume. Therefore the number of clusters with $M > M_{*}$ out to a distance of $R$ can be calculated directly.
+\begin{align*}
+N_{> M_{*}, < R}
+&= \intl_{M_{*}}^{\inf}\intl_{0}^{V} \f{\dif N}{\dif V \dif M} \dif V \dif M \\
+&= \intl_{M_{*}}^{\inf}\intl_{0}^{V} \sqrt{\f{2}{\pi}}\f{\de_c\bar \rho_m}{M} e^{-{\de_c^2}/{2 \si_M^2}} \der{\si_M^{-1}}{M} \dif V \dif M \\
+&= \sqrt{\f{2}{\pi}}\de_c\bar \rho_m V \intl_{M_{*}}^{\inf} \f{1}{M} e^{-{\de_c^2}/{2 \si_M^2}} \der{\si_M^{-1}}{M} \dif M \\
+&= \sqrt{\f{2}{\pi}}\bar \rho_m V \intl_{M_{*}}^{\inf} \f{1}{M} e^{-\f12\br{\de_c \si_M^{-1}}^2 } \dif \de_c\si_M^{-1}
+\end{align*}
+Which can be solved for various models for $\si_M$. For example, on small scales $\si_M \propto \br{\rho_m\br{\f{M_{*}}{M}}}^{3/2}$. \\
+
+To find the density profile of dark matter haloes requires numerical simulations. A well-studied dark matter halo density profile is the \textbf{Navarro-Frenk-White (NFW) profile}.\footnote{\url{https://arxiv.org/pdf/1005.0411v1.pdf}} It has the characteristic feature of behaving like $\rho\tsb{NFW} \propto r^{-1}$ at the core of the galaxy, $\rho\tsb{NFW} \propto r^{-3}$ at large distances and $\rho\tsb{NFW} \propto r^{-2}$ in the regions between.
+\[ \rho_{dm}\br{r} = \f{\rho_s}{\br{r/r_s} \br{1 + r/r_s}^2} \]
+The NFW profile is able to assist in our understanding of galaxy rotation curves.\\
+
+The circular velocity of stars and matter orbiting at a distance $r$ from the center of a galaxy is determined by the gravitational acceleration acting on that object,
+\[ a_c\br{r} = \f{v_c^{2}\br{r}}{r} = \f{G M \br{r}}{r^2} \]
+Where $M\br{r}$ is the mass enclosed within a distance $r$. Therefore,
+\[ v_c\br{r} = \sqrt{\f{G M \br{r}}{r}} \]
+Assuming that dark matter dominates this mass, the mass enclosed can be calculated from the supplied density profile.\footnote{The final integral is due to WolframAlpha \url{https://goo.gl/liMdVJ}}
+\begin{align*}
+M\br{r}
+&= \int_{0}^{r} S\br{r'} \rho\br{r'} \dif r' \\
+&= \int_{0}^{r} 4 \pi r'^2 \rho_{dm}\br{r'} \dif r' \\
+&= \int_{0}^{r} 4 \pi r'^2 \f{\rho_s}{\br{r'/r_s} \br{1 + r'/r_s}^2} \dif r' \\
+&= 4 \pi \rho_s \int_{0}^{r}  \f{r'^2}{\br{r'/r_s} \br{1 + r'/r_s}^2} \dif r' \\
+&= 4 \pi \rho_s r_s^2 \int_{0}^{r} \f{\br{r'/r_s}^2}{\br{r'/r_s} \br{1 + r'/r_s}^2} \dif r' \\
+&= 4 \pi \rho_s r_s^3 \int_{0}^{r / r_s} \f{x}{\br{1 + x}^2} \dif x \note{Let $r' = r_s x$} \\\
+&= 4 \pi \rho_s r_s^3 \br{\f{1}{1 + r/r_s} + \log\br{r/r_s+1} - 1} \\
+&= 4 \pi \rho_s r_s^3 \br{\log\br{r/r_s+1}-\f{r/r_s}{1 + r/r_s}}
+\end{align*}
+The total mass is divergent. Therefore,
+\[ v_c\br{r} = \sqrt{4 \pi G \rho_s r_s^2} \br{\f{r}{r_s}}^{-1/2} \bs{\log\br{r/r_s+1}-\f{r/r_s}{1 + r/r_s}}^{1/2} \]
+The maximum velocity $v_{c,\text{max}}$ occurs at $r^*$ where,
+\[ \der{v_{c}}{r}\br{r^{*}} = 0 \]
+Therefore,
+\begin{align*}
+    \der{v^2_{c}}{r}
+    &= 2v_{c}\der{v_{c}}{r} \\
+    &= \der{}{r} \f{G M \br{r}}{r} \\
+    &= G \f{M' \br{r} r - M \br{r}}{r^2}
+\end{align*}
+Which at $r = r^{*}$,
+\[ 2v_{c}\br{r^{*}}\der{v_{c}}{r}\br{r^{*}} = 0 = G \f{M' \br{r^{*}} r^{*} - M \br{r^{*}}}{{r^{*}}^2} \]
+Or when,
+\[ M' \br{r^{*}} r^{*} - M \br{r^{*}} = 0 \]
+\[ 4 \pi {r^{*}}^3 \rho_{dm}\br{r^{*}} - 4 \pi \rho_s r_s^3 \br{\log\br{r^{*}/r_s+1}-\f{r^{*}/r_s}{1 + r^{*}/r_s}} = 0 \]
+Let $\chi = r^{*} / r_s$,
+\[  \f{\chi^3}{\br{\chi} \br{1 + \chi}^2} - \br{\log\br{\chi+1}-\f{\chi}{1 + \chi}} = 0 \]
+\[  \br{\f{\chi}{1 + \chi}}^2 +\f{\chi}{1 + \chi}- \log\br{\chi+1} = 0 \]
+Numerical optimizations give two possible values for $\chi$. First $\chi = 0$ which corresponds to $r^{*} = 0$ which is evidently a minimal velocity of zero. Second,
+\[ \chi = 2.16258158706\ldots \]
+Therefore the maximum velocity is,
+\[ v_{c,\text{max}} = \sqrt{4 \pi G \rho_s r_s^2} \br{\f{\log\br{\chi+1}}{\chi}-\f{1}{1 + \chi}}^{1/2} \]
+\[ v_{c,\text{max}} = \sqrt{4 \pi G \rho_s r_s^2} \f{\sqrt{\chi}}{1 + \chi} \]
+Therefore,
+\[ \f{v_c}{v_{c,\text{max}}} = \f{1 + \chi}{\sqrt{\chi}} \br{\f{r}{r_s}}^{-1/2} \bs{\log\br{r/r_s+1}-\f{r/r_s}{1 + r/r_s}}^{1/2} \]
+Which is plotted below.
+\begin{center}
+    \includegraphics{figures/rotation_curve.pdf}
+\end{center}
+
+Due to this profile, the rotation curve has a peak at the radial distance $r = \chi r_s$. Observed rotation curves differ from the above rotation curve at large distances. Typical rotation curves maintain roughly flat rotation curves (at least for the extremal radii that can be measured). At a glance, the above plot does not entertain this feature. However, dark matter halos are not the only source of mass in a galaxy.\\
+
+A flat rotation curve for large $r/r_s$ requires the following,
+\[ \text{const.} = v_c^{2} = \f{G M \br{r}}{r} \implies M\br{r} \propto r \implies \rho\br{r} \propto r^{-2} \]
+Which is only maintained in intermediate regions of the NFW profile. Instead, a flat or nearly flat rotation curve can be fit using contributions from visible matter of a galaxy (the bulge and disk). Examine the following plot extracted from Prajwal R. Kalfe \textit{et.al}\footnote{\url{https://arxiv.org/abs/1210.7527}}. The bulge and disk contributions are the bulk mass of the galaxy for radii small compared to the radius of the galaxy itself. The peak of the FRW Halo contributions do not occur until roughly $r \gtrsim \SI{30}{\kilo\pc}$. Therefore it must be that $\chi r_s$ is comparable or larger than the extent of the observations being made.
+\begin{center}
+    \includegraphics[width=\textwidth]{figures/curve_extract.png}
+\end{center}
+
+Ultimately, smaller haloes form earlier and thus are more concentrated in the universe.
+
 \newpage
 \section*{Appendix}
 \markboth{Appendix}{Appendix}
@@ -1362,5 +1477,65 @@ Using the following correspondence,
 \[ \f{a_1}{a_2} = \f{T_2}{T_1} = \f{\la_1}{\la_2} = \f{1 + z_2}{1 + z_1} \]
 On can calculate differences in time using any parameterization desired,
 \[ \De t_{12} = -\f{1}{H_0} \intl_{z_1}^{z_2} \f{\dif z}{(1+z) E\br{a}} = -\f{1}{H_0}\intl_{T_1}^{T_2} \f{\dif T}{T E\br{T}} \]
+\subsection{Big Crunch}
+In universe where $k > 0$, the typical energy per particle is negative ($U < 0$) such that the spatial components of the universe are closed. As the universe evolves, expansion slows until a \textit{big crunch} mirrors the big bang. \\
+
+In a matter dominated universe, pressure can be neglected yielding the familiar density scaling.
+\[ \f{\rho}{\rho_0} = \f{a_0^3}{a^3} \]
+Therefore the Friedmann equation (for $k >0$) becomes,
+\[ \br{\f{\dot a}{a}}^2 + \f{kc^2}{a^2} = \f{8 \pi G}{3} \rho = \f{8 \pi G}{3} \rho_0\f{a_0^3}{a^3} \eq \label{eq:friedmann2}\]
+Rearranging gives the following differential equation,
+\[ \dot a^2  = \f{8 \pi G\rho_0a_0^3}{3} \f{1}{a} - kc^2 \]
+For clarification purposes, let $a\br{t} \mapsto y\br{x}$ and let $a,b \in \R_{+}$,
+\[ y'^2\br{x} = a \f{1}{y\br{x}} - b \eq \label{eq:y_sub}\]
+\[ y'\br{x} = \pm\br{a \f{1}{y\br{x}} - b}^{1/2} = \pm\bs{y\br{x}}^{-1/2}\bs{a - b y\br{x}}^{1/2} \]
+Where the positive solution will correspond to positive time and the negative solution negative time.
+\[ \int \dif y \sqrt{\f{y}{a - b y}} = \int \pm \dif x = \pm x + c_1  \]
+The LHS of the above integral is ugly. To clean things up,
+\[ \sqrt{\f{y}{a - b y}} = \al \tan \br{\chi} \eq \label{eq:tricky_tan_sub}\]
+Therefore,
+\[ \f{y}{a - b y} = \al^2 \tan^2 \br{\chi} \]
+\[ y = \br{a - b y}\al^2 \tan^2 \br{\chi} \]
+\[ y\br{1 + b\al^2 \tan^2 \br{\chi}} = a\al^2 \tan^2 \br{\chi} \]
+\[ y = \f{a\al^2 \tan^2 \br{\chi}}{\br{1 + b\al^2 \tan^2 \br{\chi}}} \]
+It would be desirable if $b = \al^2$ (in fact it must be by dimensional constraints). Let $\al = 1/\sqrt{b}$,
+\[ y = \f{a \tan^2 \br{\chi}}{b\br{1 + \tan^2 \br{\chi}}} = \f{a\tan^2 \br{\chi}}{\sec^2 \br{\chi}} = \f{a}{b} \sin^2\br{\chi} \]
+Therefore $\dif y = 2\f{a}{b} \sin\br{\chi}\cos\br{\chi} \dif \chi$. Therefore,
+\[  \int \dif y \sqrt{\f{y}{a - b y}} = \int \dif \chi 2\f{a}{b} \sin\br{\chi}\cos\br{\chi} \f{1}{\sqrt{b}} \tan \br{\chi} = \f{2a}{b^{3/2}}\int \dif \chi \sin^2\br{\chi} = \f{a}{b^{3/2}} \br{\chi - \sin\br{\chi}\cos\br{\chi}} \]
+Making use of \cref{eq:tricky_tan_sub},
+\[ \tan \chi = \sqrt{\f{by}{a - b y}} \implies \sin \chi = \sqrt{\f{by}{a}} \text{ and } \cos \chi = \sqrt{\f{a - by}{a}} \]
+Therefore \cref{eq:y_sub} is satisfied by the parametric equation,
+\[ \f{2}{b^{3/2}} \br{\tan^{-1}\br{\sqrt{\f{by}{a - b y}}} - \sqrt{\f{by}{a}}\sqrt{\f{a - by}{a}}} = \pm x + c_1 \]
+Unraveling such an equation for the function $y\br{x}$ would be nice in order to find $a\br{t}$. Instead, one can use it to define a parametric solution,
+\begin{align*}
+x\br{\chi} &= c_1 \pm \f{a}{b^{3/2}} \br{\chi - \sin\br{\chi}\cos\br{\chi}}  \\
+y\br{\chi} &= \f{a}{b} \sin^2\br{\chi}
+\end{align*}
+In terms of cosmological terms, $t\br{\chi} \geq 0$ fixes the positive solution. Let $\chi = 0$ to correspond to $t = 0$,
+\begin{align*}
+t\br{\chi} &= \f{8 \pi G\rho_0a_0^3}{3k^{3/2}c^3}\br{\chi - \sin\br{\chi}\cos\br{\chi}} \eq \label{eq:time} \\
+a\br{\chi} &= \f{8 \pi G\rho_0a_0^3}{3kc^2} \sin^2\br{\chi}  \eq \label{eq:space}
+\end{align*}
+This is remarkably related to Kepler's third law. Since $a$ expands and contracts, there must be two solutions to $a\br{\chi} = 0$. These times correspond to the big bang and big crunch. Using \cref{eq:space} directly,
+\[ a\br{\chi} = \f{8 \pi G\rho_0a_0^3}{3kc^2} \sin^2\br{\chi} = 0 \implies \sin\br{\chi} = 0 \]
+Therefore,
+\[ \chi\tsb{BB} = 0 \quad \chi\tsb{BC} = \pi \]
+Using \cref{eq:time},
+\[ t\tsb{BB} = 0 \quad t\tsb{BC} = \f{8 \pi^2 G\rho_0a_0^3}{3k^{3/2}c^3} \]
+Therefore the total age of a matter dominated universe (with $k >0$) is,
+\[ t\tsb{BC} = \f{8 \pi^2 G\rho_0}{3k^{3/2}c^3} \eq \label{eq:big_crunch}\]
+The minimum density in this matter dominated universe corresponds to the minimum $\dot \rho = 0$. Intuitively this occurs when $a$ is maximal. By symmetry (and \cref{eq:space}), $a$ is maximal when $t = \pi /2$. Therefore using \cref{eq:time} again,
+\[ t_{\bc{\dot \rho = 0}} = \f{8 \pi G\rho_0a_0^3}{3k^{3/2}c^3}\br{\f{\pi}{2} - 0} = \f{4 \pi^2 G\rho_0a_0^3}{3k^{3/2}c^3} \]
+Therefore,
+\[ t\tsb{BC} = 2 t_{\bc{\dot \rho = 0}} \]
+As expected by time reversal symmetry. To express $t\tsb{BC}$ in terms of Hubble's constant as measured today. Consider \cref{eq:friedmann2} at $t= t_0$ ($a_0 = 1$).
+\[ H_0^2 + \f{kc^2}{a_0^2} = \f{8 \pi G}{3}\rho_0 \]
+Therefore,
+\[ k = \f{8 \pi G}{3c^2}\rho_0 - \f{H_0^2}{c^2} \]
+Sub into \cref{eq:big_crunch},
+\[ t\tsb{BC} = \f{8 \pi^2 G\rho_0}{3}\br{\f{8 \pi G}{3}\rho_0 - H_0^2}^{-3/2}\]
+\[ t\tsb{BC} = \pi \rho_0\sqrt{\f{3}{8 \pi G}}\br{\rho_0 - \f{3H_0^2}{8 \pi G}}^{-3/2}\]
+
+
 
 \end{document}
