@@ -1283,7 +1283,7 @@ How many haloes should we expect? In order to know how many haloes could have fo
 \[ P\br{\de_L} = \f{1}{\sqrt{2 \pi \si_{M}^2}}e^{-{\de_L^2}/{2 \si_M^2}} \]
 Where $\si_M^2 = \ba{\de_L^2} - \ba{\de_L}^2 = \ba{\de_L^2}$ is the variance of the distribution (and is dependent on mass $M$). Therefore the probability that the linear density is greater than the critical density $\de_c$, and also the probability that there will be collapse into a halo is,
 \[ P_c\br{M} = \intl_{\de_c}^{\inf} \f{1}{\sqrt{2 \pi \si_{M}^2}}e^{-{\de_L^2}/{2 \si_M^2}} \dif \de_L = \f{1}{\sqrt{\pi}}\intl_{{\de_c / \sqrt{2} \si_M}}^{\inf} e^{-\chi^2} \dif \chi = \f{1}{2} \text{erfc}\br{\f{\de_c}{\sqrt{2} \si_M}}\]
-Where $\text{erfc}\br{\chi}$ is the complementary error function $1 - \text{erf}\br{\chi}$. As a result, one should expect the number density of haloes within mass $M$ and $M + \dif M$ to be $\dif P_c\br{M}$ times the mean cosmic density (with an additional factor of $2$ for normalization),
+Where $\text{erfc}\br{\chi}$ is the complementary error function $1 - \text{erf}\br{\chi}$. As a result, one should expect the number density of haloes within mass $M$ and $M + \dif M$ to be $\dif P_c\br{M}$ times the mean cosmic density (with an additional factor of $2$ for normalization\footnote{\url{http://background.uchicago.edu/~whu/Presentations/trieste_print3.pdf}}),
 \[ \f{\dif n}{\dif M} = 2 \f{\bar \rho_m}{M} \abs{\f{\dif P_c\br{M}}{\dif M}} = -\f{\bar \rho_m}{M}\der{}{M}\text{erfc}\br{\f{\de_c}{\sqrt{2} \si_M}} \]
 Computing the final derivative,
 \begin{align*}
