@@ -12,23 +12,6 @@
 \set{Term}{Fall 2016}
 \set{Version}{1.0}
 
-\draftprofile[TC Fraser]{TC}{Purple}
-\pgfplotsset{
-    standardplot/.style={
-        axis x line=middle,
-        axis y line=middle,
-        enlarge x limits=0.05,
-        enlarge y limits=0.05,
-        every axis x label/.style={at={(current axis.right of origin)},anchor=north east},
-        every axis y label/.style={at={(current axis.above origin)},anchor=north east},
-        ytick=\empty,
-        xtick=\empty,
-        width=3in,
-        height=2.5in,
-        axis line style=thick,
-    }
-}
-
 \begin{document}
 
 \titlePage
@@ -38,7 +21,6 @@
 \disclaimer
 
 \section{Introduction}
-
 
 \subsection{History of Cosmology}
 
@@ -113,6 +95,23 @@ Looking at the Universe in other wavelengths ($\ga$/X-ray, UV, IR, $\mu$-waves, 
 The \textbf{Cosmic Microwave Background (CMB)} was first discovered by Penzias \& Wilson in 1965 by accident. If the universe is expanding, then at some point in the past hot media would have emitted radiation and cooled to much lower temperatures. The CMB is a isotropic source of radiation that is at a temperature,
 \[ T\tsb{CMB} = \SI{2.725 \pm 0.001}{\K} \]
 Which was first measured in 1992 by COBE-FIRAS. Recall the blackbody spectrum,
+
+\pgfplotsset{
+    standardplot/.style={
+        axis x line=middle,
+        axis y line=middle,
+        enlarge x limits=0.05,
+        enlarge y limits=0.05,
+        every axis x label/.style={at={(current axis.right of origin)},anchor=north east},
+        every axis y label/.style={at={(current axis.above origin)},anchor=north east},
+        ytick=\empty,
+        xtick=\empty,
+        width=3in,
+        height=2.5in,
+        axis line style=thick,
+    }
+}
+
 \begin{center}
 \begin{tikzpicture}
         \begin{axis}[
@@ -213,7 +212,7 @@ U &= T + V = \text{const.} \\
 Next define a \term{co-moving} coordinate $\ve{x}$ such that $\ve{r}\br{\ve{x}, t} = a\br{t} \ve{x}$. For each particle at $\ve{x}$, as the universe expands, $\ve{x}$ follows the location of the particle. The physical coordinate of the particle is $\ve{r}$ and the relevant dimensionless scale factor is $a\br{t}$. These concepts hold for all ``origins'' provided that the universe is homogeneous and isotropic. Substituting the co-moving coordinate into \cref{eq:conser_fried_eq} yields the Friedmann equation,
 \[ \br{\f{\dot{a}}{a}}^2 = \f{8 \pi G}{3} \rho_b - \f{k c^2}{a^2} \eq \label{eq:friedmann_equation} \]
 Where $k$ is defined such that,
-\[ k c^2 = - \f{2 U\br{x}}{m x^2} \]
+\[ k c^2 = - \f{2 U\br{x}}{m x^2} \eq \label{eq:energy_per_particle}\]
 In order for the universe to remain homogeneous, it must be that $k$ does not depend on $x$. Therefore $k$ is a constant in a homogeneous universe. By dimensional analysis on \cref{eq:friedmann_equation} it can be seen that $k$ has dimensions $\text{length}^{-2}$. In general relativity $k$ becomes the curvature of the space. Intuitively, a homogeneous universe has the same curvature everywhere. \\
 
 One misconception associated with the expansion of the universe is that \textit{everything} in the universe is expanding. However, object that are close enough can be bound together by interactions in various fields. As such, the expansion of the universe has little to no observable affect on local objects like planets or people or galaxies. \\
@@ -353,22 +352,22 @@ Intuitively, the length of waves in the universe scales with the size of the uni
 Where $t\tsb{obs}$ is typically taken to be today. The quantity is $z$ is known as redshift. As an example, the farthest galaxy that we can see has a redshift of approximately $z \approx 7-8$. In contrast, the redshift of the cosmic microwave background is at $z \approx 1100$.
 
 \section{Equations of State}
-All ``materials'' in the universe have different equations of state $P\br{\rho}$. Matter or dust has effectively a pressure of zero ($P = 0$). This is because the actual pressure is much less that the characteristic pressure of $\rho c^2$, meaning we can omit it from the fluid equation,
-\[ \dot\rho = \f{3 \dot a}{a} \br{\rho + \f{P}{c^2}} \approx \f{3 \dot a}{a} \br{\rho} \]
+All ``materials'' in the universe have different equations of state $p\br{\rho}$. Matter or dust has effectively a pressure of zero ($p = 0$). This is because the actual pressure is much less that the characteristic pressure of $\rho c^2$, meaning we can omit it from the fluid equation,
+\[ \dot\rho = \f{3 \dot a}{a} \br{\rho + \f{p}{c^2}} \approx \f{3 \dot a}{a} \br{\rho} \]
 Therefore for dust and matter,
 \[ \f{\dot \rho}{\rho} = 3\f{\dot a}{a} \implies \rho = \f{\rho_a}{a^3} \]
 Plugging this into the Friedmann equation gives us that,
 \[ \dot a^2 = \f{8\pi G \rho_a}{3a} \implies a = \br{\f{t}{t_0}}^{2/3} \]
 By convention, we take $t_0$ to be today and $a\br{t_0} = 1$ when making observations. We have that $1 + z = \f{1}{a}$. Therefore in a matter dominated universe, $a$ scales as $t^{2/3}$. Therefore Hubble's parameter scales as,
 \[ H = \f{\dot a}{a} = \f{2}{3t} \]
-However for radiation, we have that $P = \f{1}{3} \rho c^2$ (this holds for photons and neutrinos). A similar analysis yields the relationship,
-\[ \rho = \f{\rho_a}{a^4} \]
+However for radiation, we have that $p = \f{1}{3} \rho c^2$ (this holds for photons and neutrinos). A similar analysis yields the relationship,
+\[ \rho = \f{\rho_0}{a^4} \]
 Plugging into the Friedmann equation once again gives,
 \[ \dot a^2 = \f{8\pi G \rho_a}{3a} \implies a = \br{\f{t}{t_0}}^{1/2} \]
 Which indicates that $H = 1/2t$. \\
 
 Additionally, we can incorporate dark energy (cosmological constant fluid) to obtain,
-\[ P = - \rho c^2 \implies \rho = \rho_{*} \implies a = e^{Ht}\]
+\[ p = - \rho c^2 \implies \rho = \rho_{*} \implies a = e^{Ht}\]
 Our discovery of the acceleration of the expansion of the universe indicates that there is a dark energy contribution to the expansion of the universe. Depending on the composition of the universe, there are different behaviors for the expansion of the universe. Initially, (when $a$ is smaller) radiation is dominating. Latter matter will dominate and then finally dark energy.
 \begin{center}
     \begin{tikzpicture}
@@ -388,6 +387,7 @@ While the number density or energy density of photons is given by,
 \[ E_{\ga} = \f{hc}{\la} \propto \f{1}{a} \]
 Looking at the Friedmann equation we have that,
 \[ \underbrace{\f{1}{2} \dot a^2}_{\text{K.E.}} - \underbrace{\f{4 \pi G}{3} \rho a^2}_{\text{P.E.}} = -\f{k}{2} = E\tsb{tot} \]
+For a more complete study of the equations of state, see \cref{sec:dominating_eras}.
 \section{Distances and Luminosities}
 It is very remarkable (and somewhat bizarre) that we can describe the large scale structure of the universe. This is a unique feature of cosmology. \\
 
@@ -801,8 +801,8 @@ In addition to photon contributions, the entire universe was also occupied by ne
 
 On small scales, gravity is the weakest force interacting with matter. However, on larger scales, gravity dominates. The strong nuclear force is the strongest force by far on the scale of nuclei. The weak force is the second weakest force, next to gravity. Neutrinos interact though gravity and the weak force. The Higgs boson also interacts through the weak force. As an example, an isolated neutron is unstable and decays via the following process,
 \[ n \to p^+ + e^- + \bar \nu \]
-Where $p^+$ is a proton, $e^-$ is an electron and $\bar \nu$ is a neutrino. This process has an approximate half-life of $t_{1/2} \sim \SI{10}{\min}$. It is important to note that no other process (outside weak interactions) converts neutrinos to protons. In 1998 we discovered $\nu$'s have mass. Art McDonald won the Nodel Prize in 2015 for this discovery. The interaction cross-section of neutrinos as a function of energy is $\si\br{E} \propto E^2$ which means that neutrinos become less reactive at low temperatures. In the early universe, photons and neutrinos are thought to be in thermal equilibrium. This assumption fixes the temperature of neutrinos.
-\[ T_{\nu} = \br{\f{4}{11}}^{1/3} T\tsb{rad} = \SI{1.95}{\K} \]
+Where $p^+$ is a proton, $e^-$ is an electron and $\bar \nu$ is a neutrino. This process has an approximate half-life of $t_{1/2} \sim \SI{10}{\min}$. It is important to note that no other process (outside weak interactions) converts neutrinos to protons. In 1998 we discovered $\nu$'s have mass. Art McDonald won the Nodel Prize in 2015 for this discovery. The interaction cross-section of neutrinos as a function of energy is $\si\br{E} \propto E^2$ which means that neutrinos become less reactive at low temperatures. In the early universe, photons and neutrinos are thought to be in \textit{thermal equilibrium}. This assumption fixes the temperature of neutrinos tobe proportional to the temperature of photons.
+\[ T_{\nu} = \br{\f{4}{11}}^{1/3} T\tsb{rad} \simeq \SI{1.95}{\K} \eq \label{eq:thermal_equilibrium_neutrinos_photons}\]
 Where the energy density is,
 \[ \Om_{\nu} = 3 \times \f{7}{8} \times \br{\f{4}{11}}^{4/3} \Om\tsb{rad} = \SI{0.68}{}\cdot\Om\tsb{rad} \]
 Where the ``$3\times$'' is due to the the fact that neutrinos have three generations or varieties. The ``$7/8$'' is due to the fact that neutrinos are fermions. This tells us that $41\%$ of the energy is due to neutrinos while photons are responsible for the remaining $59\%$.\\
@@ -829,10 +829,10 @@ Therefore, the only time one needs to consider neutrino masses is for late times
 
 \subsection{Before the CMB}
 What about times even further back? In the radiation dominated era,
-\[ \br{\f{1}{a}}^2 = H^2 = \f{8 \pi G}{3} \rho = \f{8 \pi G}{3} \cdot \SI{1.68}{} \times \al T_\ga^2 \]
+\[ \br{\f{\dot a}{a}}^2 = H^2 = \f{8 \pi G}{3} \rho = \f{8 \pi G}{3} \cdot \SI{1.68}{} \times \al T_\ga^4 \]
 This implies that,
-\[ \br{\f{t}{\SI{1}{\s}}}^{-3/2} = \f{k T}{\SI{1.1}{\mega \eV}} = \f{T}{\SI{1.3e10}{\K}}  \]
-This allows us to draw a one-to-one correspondence between time-scales and temperature-scales.
+\[ \br{\f{t}{\SI{1}{\s}}}^{-1/2} = \f{k T}{\SI{1.1}{\mega \eV}} = \f{T}{\SI{1.3e10}{\K}}  \]
+This allows us to draw a one-to-one correspondence between time-scales and temperature-scales:
 
 \begin{center}
     \begin{tikzpicture}
@@ -857,10 +857,10 @@ This allows us to draw a one-to-one correspondence between time-scales and tempe
 In particle accelerators have reached energies on the order of $\sim\SI{}{\tera \eV}$. This represents the limit of known physics. We also suspect that quantum gravity becomes important on the Plank energy scales ($\SI{e21}{\mega \eV}$). The most massive particles we know of are the top quark ($\SI{180}{\giga \eV}$) and the Higgs boson ($\SI{125}{\giga \eV}$).
 
 \subsection{Baryongenesis}
-Why is it that almost everything around us is matter and not anti-matter. The Baryongenesis program aims to answer this question. We suspect that Baryongenesis occurs when $T \gtrsim \SI{e12}{\eV}$. Recall that the ratio of baryons to photons today is,
+Why is it that almost everything around us is matter and not anti-matter? The Baryongenesis program aims to answer this question. We suspect that Baryongenesis occurs when $T \gtrsim \SI{e12}{\eV}$. Recall that the ratio of baryons to photons today is,
 \[ \f{n_B}{n_\ga} = \SI{e-9}{} \]
 Despite the abundance of photons, most of the energy is in matter today. It must be that in the early universe the number of baryons is slightly more than the number of anti-baryons.
-\[ \f{n_B - n_{\bar B}}{n_B} \sim \SI{e-9}{} \]
+\[ \f{n_B - \bar n_{B}}{n_B} \sim \SI{e-9}{} \]
 All of the processes in the standard model conserve baryon number. This means that we should expect the \textit{exact} same number of baryons and anti-baryons. It is shocking that there remains a non-zero difference. The Sakharov conditions outline how this is possible,
 \begin{enumerate}
     \item A Baryon number violating process
@@ -902,8 +902,8 @@ In the early universe (but when $n,p$'s are non-relativistic such that $E = \sqr
 Therefore the ratio for protons to neutrons is,
 \[ \f{n_n}{n_p} = \br{\f{m_n}{m_p}}^{3/2} \exp\bs{- \f{\br{m_n - m_p}c^2}{k T}} \]
 Therefore as temperatures $kT$ decrease, the ratio $\f{n_n}{n_p}$ goes down as well until we reach thermal equilibrium. This occurs at the decoupling of the weak interaction at $k T\tsb{dec} \simeq \SI{0.8}{\mega \eV}$. In essence, weak interactions are important for $T > T\tsb{dec}$ and not important for $T < T\tsb{dec}$ when $\f{n_n}{n_p}$ remains constant.
-\[ \f{n_n}{n_p} \simeq \exp\br{-\f{\SI{1.3}{\mega\eV}}{\SI{0.8}{\mega\eV}}}\simeq \f{1}{5} \eq \label{eq:np}\]
-However the production of light elements does not proceed exclusively forward until deuterium becomes stable (where not enough photons have energies greater that its binding energy of $\SI{2.2}{\mega \eV}$). This occurs around $kT \simeq \SI{0.06}{\eV}$ and where $t\tsb{nuc} \simeq \SI{340}{\s}$. During this time, any free neutrons will readily decay with half-life $t_{n,1/2}= \SI{610}{\s}$. Therefore up until the $t\tsb{nuc}$,the neutrons are decaying intro protons. Ignoring the change in proton number,
+\[ \f{n_n}{n_p} \simeq \exp\br{-\f{\SI{1.3}{\mega\eV}}{\SI{0.8}{\mega\eV}}}\simeq \f{1}{5} \eq \label{eq:relative_neutron_proton_number}\]
+However the production of light elements does not proceed exclusively forward until deuterium becomes stable (where not enough photons have energies greater that its binding energy of $\SI{2.2}{\mega \eV}$). This occurs around $kT \simeq \SI{0.06}{\eV}$ and where $t\tsb{nuc} \simeq \SI{340}{\s}$. During this time, any free neutrons will readily decay with half-life $t_{n,1/2}= \SI{610}{\s}$. Therefore up until the $t\tsb{nuc}$,the neutrons are decaying intro protons. Ignoring the increase in proton number (due to neutron decay) during this time period, \cref{eq:relative_neutron_proton_number} is suppressed,
 \[ \f{n_n}{n_p} \simeq \f{1}{5} \times \exp\br{- \f{t\tsb{nuc}\ln 2}{t_{n,1/2}}} \simeq \f{1}{7.3}  \]
 How does this fix the helium-4 abundance? Approximate that the majority of produced elements is helium-4. This is somewhat valid in that it is the lightest stable nucleus (after the proton). Every helium-4 nucleus requires two neutrons. Therefore,
 \[ n\tsb{He-4} = \f{n_n}{2}\]
@@ -937,7 +937,7 @@ Inflation was invented to solve a number of problems with hot big bang cosmologi
     Therefore $r\br{\tau}$ can be directly calculated,
     \[ r\br{a} = \f{2H_0^{-1}}{\br{1 + 3 \w}}\bs{a^{\f{1}{2}\br{1 + 3 \w}} - a_i^{\f{1}{2}\br{1 + 3 \w}}} \]
     In fluids where $1 + 3 \w > 0$, the first term dominates and thus,
-    \[ r\br{t} = \f{2H_0^{-1}}{\br{1 + 3 \w}}a\br{t}^{\f{1}{2}\br{1 + 3 \w}} = \f{2}{1 + 3 \w}\br{a H}^{-1} \eq \label{eq:rt} \]
+    \[ r\br{t} = \f{2H_0^{-1}}{\br{1 + 3 \w}}a\br{t}^{\f{1}{2}\br{1 + 3 \w}} = \f{2}{1 + 3 \w}\br{a H}^{-1} \eq \label{eq:comoving_as_function_of_time} \]
     This means that the co-moving distance traveled by particles is mainly determined by the scale at the end of the transit. In order to reconcile the flatness problem in the surface of last scattering, we require that all regions on the surface of last scattering where in causal contact in the past. In this way, they had the potential to thermalize and equilibrate if need be. The Hubble Horizon at the start of inflation is given by,
     \[ \br{a_{i} H_{i}}^{-1} \]
     Similarly, the Hubble horizon at the end of inflation and today are respectively,
@@ -956,7 +956,7 @@ Inflation was invented to solve a number of problems with hot big bang cosmologi
 Inflation fixes all of these ideas by considering the possibility of rapid expansion in the early universe $\dot a > 0$. In a universe dominated by $\La$, the Friedmann equation becomes,
 \[ H^2 \approx \f{\La}{3} \]
 Such that $H$ is a constant and $a$ scales as,
-\[ a \propto \exp\br{\sqrt{\f{\La}{t}} t} \]
+\[ a \propto \exp\br{\sqrt{\f{\La}{3}} t} \]
 Which means that $-\Om_k$ is suppressed,
 \[ - \Om_k = \Om\tsb{tot} - 1 = \f{k}{a^2 H^2} \propto e^{- 2\sqrt{\f{\La}{3}} t} \]
 For a long enough inflation, $t \to \inf$, $\Om_k \to 0$ and we solve the flatness problem, monopole problem and horizon problem. In order to solve these problems assume that $t\tsb{end} \simeq \SI{e-34}{}$ and recall that,
@@ -1101,7 +1101,7 @@ Therefore the $\max \br{m_2, m_3} \simeq \SI{0.05}{\eV}$. In cosmology, neutrino
 \[ \dif N_\nu = 2 \int \f{\dif^3 p}{h^3} \f{N\tsb{eff}}{e^{p_{\nu}c / kT_{\nu}} + 1} \]
 Where the $2$ is for both neutrinos and anti-neutrinos. Thermal equilibrium between neutrinos and photons produced via the following interaction,
 \[ e^{-} + e^{+} \to \ga_{+} + \ga  \]
-At $kT \lesssim \SI{0.5}{\mega \eV}$ fixes the relative temperatures of neutrinos and photons,
+At $kT \lesssim \SI{0.5}{\mega \eV}$, thermal equilibrium determines the temperatures of neutrinos relative to photons pursuant to \cref{eq:thermal_equilibrium_neutrinos_photons},
 \[ T_{\nu}^3 = \f{4}{11} T_{\ga}^3 \]
 If we \textit{ignore} neutrino masses,
 \[ \Om_{\nu} = N\tsb{eff} \times \f{7}{8} \br{\f{4}{11}}^{4/3} \Om_{\ga} \simeq \SI{1.7e-5}{}h^{-2}    \]
@@ -1252,18 +1252,18 @@ Where $N$ the the number data points \textit{subtract} the number of parameters.
 As an example, if $\chi^2 > N$ you probably do not have a very good model because a lot of your data points do not fit the model.
 \section{Dark Matter Halos}
 To study dark matter halos, consider the spherical collapse in spatially flat $\Om_k = 0$, matter dominated $\Om_m = 1$ universe where the density fluctuations are small $\de \rho / \rho \sim \SI{e-5}{}$. The background density of the universe is thus determined by the matter dominance ($a = t^{2/3}$),
-\[ \rho_c = \f{3 H^2}{8 \pi G} = \f{1}{6 \pi G t^2} \eq \label{eq:rho_c_overdense}\]
+\[ \rho_c = \f{3 H^2}{8 \pi G} = \f{1}{6 \pi G t^2} \eq \label{eq:rho_critical_overdense}\]
 In a spherical region, let $\rho = \rho_c \br{1 + \de}$ be an overdense region. A spherical collapse can be modeled using Kepler's second law,
-\[ P^2  = \f{4 \pi a_{*}^3}{GM} = \f{4 \pi a_{*}^3}{G \br{\f43 \pi R_{*}^3} \rho_{c}\br{1 + \de}} \eq \label{eq:kepler} \]
+\[ P^2  = \f{4 \pi a_{*}^3}{GM} = \f{4 \pi a_{*}^3}{G \br{\f43 \pi R_{*}^3} \rho_{c}\br{1 + \de}} \eq \label{eq:keplers_law} \]
 By following a particle at the edge of the overdense region: Let $R\br{t}$ be the size of the overdense region and let $t$ be the time since the big bang. These two quantities can be parameterized by a dummy variable $\te$ such that,
-\[ R\br{t} = a_{*}\br{1  - \cos \te} \eq \label{eq:Roverdense}\]
-\[ t = \f{P}{2 \pi}\br{\te - \sin \te} \eq \label{eq:toverdense}\]
+\[ R\br{t} = a_{*}\br{1  - \cos \te} \eq \label{eq:R_overdense}\]
+\[ t = \f{P}{2 \pi}\br{\te - \sin \te} \eq \label{eq:t_overdense}\]
 Where $\te = 0$ corresponds to the big bang and $\te = 2\pi$ corresponds to the time in which the region collapses to form a dark matter halo.\\
-Using these equations, it is possible to calculate the overdensity $\de$ in terms of $\te$. Solve for $\de$ in \cref{eq:kepler},
+Using these equations, it is possible to calculate the overdensity $\de$ in terms of $\te$. Solve for $\de$ in \cref{eq:keplers_law},
 \[ 1 + \de = \f{4 \pi a_{*}^3}{G \br{\f43 \pi R_{*}^3} \rho_{c} P^2} \]
-Sub in \cref{eq:rho_c_overdense},
+Sub in \cref{eq:rho_critical_overdense},
 \[ 1 + \de = \f{ 6 a_{*}^3 \pi G t^2}{G \br{\f13 R_{*}^3} P^2} \]
-Finally sub in \cref{eq:toverdense,eq:Roverdense},
+Finally sub in \cref{eq:t_overdense,eq:R_overdense},
 \[ 1 + \de = \f{9}{2}\f{\br{\te - \sin \te}^2}{\br{1 - \cos \te}^3} \]
 For small $\te$, one can expand out $\de$,
 \[ 1 + \de  \simeq 1 + \f{3}{20} \te^2 + \cdots \]
@@ -1414,7 +1414,7 @@ We also have the ratio,
 \[ \f{n_{> f^*}}{n} \simeq \f{1}{2 \zeta\br{3}}e^{- h f^{*}/ kT} \br{\f{h f^{*}}{kT}}^2 \]
 
 \subsection{Dominating Eras}
-\label{sec:dominantingeras}
+\label{sec:dominating_eras}
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|}
     \hline
@@ -1422,13 +1422,15 @@ We also have the ratio,
     \hline
     $w$ & $0$ & $1/3$ & $-1$ & $-1/3$ \\
     $\rho\br{a} \propto a^{-3\br{1 + w}}$ & $a^{-3}$ & $a^{-4}$ & $1$ & $a^{-2}$ \\
-    $a\br{t} \propto t^{\f23\br{\f{1}{1 + w}}}$ & $t^{2/3}$ & $t^{1/2}$ & $\exp\br{\sqrt{\f{\La}{t}} t}$ & $t$ \\
+    $a\br{t} \propto t^{\f23\br{\f{1}{1 + w}}}$ & $t^{2/3}$ & $t^{1/2}$ & $\exp\br{\sqrt{\f{\La}{3}} t}$ & $t$ \\
     $\rho\br{t} \propto t^{-2}$ & $t^{-2}$ & $t^{-2}$ & $1$ & $t^{-2}$ \\
     \hline
 \end{tabular}
 \end{center}
 
-Equation of State:
+The most general equation of state for a material is a constraint on the relationship between pressure $p$ and density $\rho$.
+\[ f\br{p, \rho} = 0 \]
+The equation of state for \term{perfect fluid} is one where $p$ is linear in $\rho$:
 \[ p = w\rho c^2 \]
 Fluid Equation governs $\rho\br{t}$:
 \[ \dot \rho + 3 \f{\dot a}{a} \br{\rho + \f{p}{c^2}} = 0 \]
@@ -1439,12 +1441,16 @@ For $w$-dominant era:
 \[ \der{}{t}\br{\rho a^{3\br{1 + w}}} = 0 \]
 \[ \rho a^{3\br{1 + w}} = \text{const.} \]
 \[ \rho \propto a^{-3\br{1 + w}} \]
-The most general Friedmann equation:
-\[ H^2 \br{a} = \br{\f{\dot a}{a}}^2 = \f{8 \pi G}{3} \br{\rho_m + \rho_r} + \f{\La}{3} - \f{k}{a^2} = \f{8 \pi G}{3} \br{\rho_m + \rho_r + \rho_\La + \rho_k} \]
+The most general Friedmann equation is:
+\[ H^2 \br{a} = \br{\f{\dot a}{a}}^2 = \f{8 \pi G}{3} \br{\rho_m + \rho_r} + \f{\La}{3} - \f{k}{a^2} = \f{8 \pi G}{3} \br{\rho_m + \rho_r + \rho_\La + \rho_k} \eq \label{eq:friedmann_rho}\]
+Where $\rho_k$ and $\rho_\La$ are energy densities associated with curvature and dark energy,
 \[ \rho_k = - \f{3}{8 \pi G} \f{k}{a^2} \]
 \[ \rho_\La = \f{\La}{8 \pi G} \]
-For a dominant density,
+If we consider an era where a singular material or fluid is dominating, then only one density term in \cref{eq:friedmann_rho} needs to be considered,
 \[ \br{\f{\dot a}{a}}^2 = \f{8 \pi G}{3} \rho \propto a^{-3\br{1 + w}} \]
+This means that $H$ depends on $a$ as,
+\[ H = \f{\dot a}{a} \propto a^{-\f{3}{2}\br{1 + w}} \]
+While $a$ scales with time $t$ as,
 \[ \dot a^2 \propto a^{-3\br{1 + w} +2} \]
 \[ \dot a \propto a^{-\f32\br{1 + w} + 1} \]
 \[ a^{\f32\br{1 + w} - 1} \dif a \propto \dif t  \]
@@ -1454,13 +1460,13 @@ For $w \neq -1$,
 \[ \rho \propto \br{t^{\f23\br{\f{1}{1 + w}}}}^{-3\br{1 + w}} \propto t^{-2} \]
 For $w = -1$,
 \[ \br{\f{\dot a}{a}}^2 \propto \f{\La}{3}  \]
-\[ a \propto \exp\br{\sqrt{\f{\La}{t}} t} \]
+\[ a \propto \exp\br{\sqrt{\f{\La}{3}} t} \]
 
 \subsection{Age of The Universe}
 
 To calculate the age of the universe in various cosmologies, consider the Friedmann equation,
 \[ H^2 = \f{8 \pi G}{3} \br{\rho_m + \rho_r + \rho_\La + \rho_k} \]
-And use the solutions to the fluid equation from \cref{sec:dominantingeras} to obtain,
+And use the solutions to the fluid equation from \cref{sec:dominating_eras} to obtain,
 \[ H^2 = \f{8 \pi G}{3} \br{\rho_{m,0}\f{1}{a^3} + \rho_{r,0}\f{1}{a^4} + \rho_{\La,0} + \rho_{k,0}\f{1}{a^2} } \]
 Here $\rho_{k,0} = -k$. The density parameters are defined such that,
 \[ \Om_{\ga} = \f{\rho_{\ga}}{\rho_{c}} \qquad \rho_{c} = \f{3 H^2}{8 \pi G} \]
@@ -1478,16 +1484,16 @@ Using the following correspondence,
 On can calculate differences in time using any parameterization desired,
 \[ \De t_{12} = -\f{1}{H_0} \intl_{z_1}^{z_2} \f{\dif z}{(1+z) E\br{a}} = -\f{1}{H_0}\intl_{T_1}^{T_2} \f{\dif T}{T E\br{T}} \]
 \subsection{Big Crunch}
-In universe where $k > 0$, the typical energy per particle is negative ($U < 0$) such that the spatial components of the universe are closed. As the universe evolves, expansion slows until a \textit{big crunch} mirrors the big bang. \\
+In universe where $k > 0$, the typical energy per particle is negative ($U < 0$ as per \cref{eq:energy_per_particle}) such that the spatial components of the universe are closed. As the universe evolves, expansion slows until a \textit{big crunch} mirrors the big bang. \\
 
 In a matter dominated universe, pressure can be neglected yielding the familiar density scaling.
 \[ \f{\rho}{\rho_0} = \f{a_0^3}{a^3} \]
 Therefore the Friedmann equation (for $k >0$) becomes,
-\[ \br{\f{\dot a}{a}}^2 + \f{kc^2}{a^2} = \f{8 \pi G}{3} \rho = \f{8 \pi G}{3} \rho_0\f{a_0^3}{a^3} \eq \label{eq:friedmann2}\]
+\[ \br{\f{\dot a}{a}}^2 + \f{kc^2}{a^2} = \f{8 \pi G}{3} \rho = \f{8 \pi G}{3} \rho_0\f{a_0^3}{a^3} \eq \label{eq:friedmann_alt}\]
 Rearranging gives the following differential equation,
 \[ \dot a^2  = \f{8 \pi G\rho_0a_0^3}{3} \f{1}{a} - kc^2 \]
 For clarification purposes, let $a\br{t} \mapsto y\br{x}$ and let $a,b \in \R_{+}$,
-\[ y'^2\br{x} = a \f{1}{y\br{x}} - b \eq \label{eq:y_sub}\]
+\[ y'^2\br{x} = a \f{1}{y\br{x}} - b \eq \label{eq:big_crunch_y_sub}\]
 \[ y'\br{x} = \pm\br{a \f{1}{y\br{x}} - b}^{1/2} = \pm\bs{y\br{x}}^{-1/2}\bs{a - b y\br{x}}^{1/2} \]
 Where the positive solution will correspond to positive time and the negative solution negative time.
 \[ \int \dif y \sqrt{\f{y}{a - b y}} = \int \pm \dif x = \pm x + c_1  \]
@@ -1504,7 +1510,7 @@ Therefore $\dif y = 2\f{a}{b} \sin\br{\chi}\cos\br{\chi} \dif \chi$. Therefore,
 \[  \int \dif y \sqrt{\f{y}{a - b y}} = \int \dif \chi 2\f{a}{b} \sin\br{\chi}\cos\br{\chi} \f{1}{\sqrt{b}} \tan \br{\chi} = \f{2a}{b^{3/2}}\int \dif \chi \sin^2\br{\chi} = \f{a}{b^{3/2}} \br{\chi - \sin\br{\chi}\cos\br{\chi}} \]
 Making use of \cref{eq:tricky_tan_sub},
 \[ \tan \chi = \sqrt{\f{by}{a - b y}} \implies \sin \chi = \sqrt{\f{by}{a}} \text{ and } \cos \chi = \sqrt{\f{a - by}{a}} \]
-Therefore \cref{eq:y_sub} is satisfied by the parametric equation,
+Therefore \cref{eq:big_crunch_y_sub} is satisfied by the parametric equation,
 \[ \f{2}{b^{3/2}} \br{\tan^{-1}\br{\sqrt{\f{by}{a - b y}}} - \sqrt{\f{by}{a}}\sqrt{\f{a - by}{a}}} = \pm x + c_1 \]
 Unraveling such an equation for the function $y\br{x}$ would be nice in order to find $a\br{t}$. Instead, one can use it to define a parametric solution,
 \begin{align*}
@@ -1513,22 +1519,22 @@ y\br{\chi} &= \f{a}{b} \sin^2\br{\chi}
 \end{align*}
 In terms of cosmological terms, $t\br{\chi} \geq 0$ fixes the positive solution. Let $\chi = 0$ to correspond to $t = 0$,
 \begin{align*}
-t\br{\chi} &= \f{8 \pi G\rho_0a_0^3}{3k^{3/2}c^3}\br{\chi - \sin\br{\chi}\cos\br{\chi}} \eq \label{eq:time} \\
-a\br{\chi} &= \f{8 \pi G\rho_0a_0^3}{3kc^2} \sin^2\br{\chi}  \eq \label{eq:space}
+t\br{\chi} &= \f{8 \pi G\rho_0a_0^3}{3k^{3/2}c^3}\br{\chi - \sin\br{\chi}\cos\br{\chi}} \eq \label{eq:big_crunch_time} \\
+a\br{\chi} &= \f{8 \pi G\rho_0a_0^3}{3kc^2} \sin^2\br{\chi}  \eq \label{eq:big_crunch_space}
 \end{align*}
-This is remarkably related to Kepler's third law. Since $a$ expands and contracts, there must be two solutions to $a\br{\chi} = 0$. These times correspond to the big bang and big crunch. Using \cref{eq:space} directly,
+This is remarkably related to Kepler's third law. Since $a$ expands and contracts, there must be two solutions to $a\br{\chi} = 0$. These times correspond to the big bang and big crunch. Using \cref{eq:big_crunch_space} directly,
 \[ a\br{\chi} = \f{8 \pi G\rho_0a_0^3}{3kc^2} \sin^2\br{\chi} = 0 \implies \sin\br{\chi} = 0 \]
 Therefore,
 \[ \chi\tsb{BB} = 0 \quad \chi\tsb{BC} = \pi \]
-Using \cref{eq:time},
+Using \cref{eq:big_crunch_time},
 \[ t\tsb{BB} = 0 \quad t\tsb{BC} = \f{8 \pi^2 G\rho_0a_0^3}{3k^{3/2}c^3} \]
 Therefore the total age of a matter dominated universe (with $k >0$) is,
 \[ t\tsb{BC} = \f{8 \pi^2 G\rho_0}{3k^{3/2}c^3} \eq \label{eq:big_crunch}\]
-The minimum density in this matter dominated universe corresponds to the minimum $\dot \rho = 0$. Intuitively this occurs when $a$ is maximal. By symmetry (and \cref{eq:space}), $a$ is maximal when $t = \pi /2$. Therefore using \cref{eq:time} again,
+The minimum density in this matter dominated universe corresponds to the minimum $\dot \rho = 0$. Intuitively this occurs when $a$ is maximal. By symmetry (and \cref{eq:big_crunch_space}), $a$ is maximal when $t = \pi /2$. Therefore using \cref{eq:big_crunch_time} again,
 \[ t_{\bc{\dot \rho = 0}} = \f{8 \pi G\rho_0a_0^3}{3k^{3/2}c^3}\br{\f{\pi}{2} - 0} = \f{4 \pi^2 G\rho_0a_0^3}{3k^{3/2}c^3} \]
 Therefore,
 \[ t\tsb{BC} = 2 t_{\bc{\dot \rho = 0}} \]
-As expected by time reversal symmetry. To express $t\tsb{BC}$ in terms of Hubble's constant as measured today. Consider \cref{eq:friedmann2} at $t= t_0$ ($a_0 = 1$).
+As expected by time reversal symmetry. To express $t\tsb{BC}$ in terms of Hubble's constant as measured today. Consider \cref{eq:friedmann_alt} at $t= t_0$ ($a_0 = 1$).
 \[ H_0^2 + \f{kc^2}{a_0^2} = \f{8 \pi G}{3}\rho_0 \]
 Therefore,
 \[ k = \f{8 \pi G}{3c^2}\rho_0 - \f{H_0^2}{c^2} \]
