@@ -26,8 +26,28 @@
 
 \todo[TC]{Type up notes for first class}
 
+\begin{center}
+    \begin{tikzpicture}
+        \foreach \i in {1,...,7}
+        {
+            \node[draw, fill, circle, inner sep=1pt] (\i) at (\i,0) {};
+        }
+        \draw[] (1) -- node[above]{$t$} (2);
+        \draw[] (2) -- node[above]{$t$} (3);
+        \draw[] (3) -- node[above]{$t$} (4);
+        \draw[] (4) -- node[above]{$t$} (5);
+        \draw[] (5) -- node[above]{$t$} (6);
+        \draw[] (6) -- node[above]{$t$} (7);
+
+        \draw[dashed] (3.5, -1) -- (3.5, 1);
+        \draw[dashed] (4.5, -1) -- (4.5, 1);
+        \draw[<->] (3.5, -0.7) -- node[below]{$a$} (4.5, -0.7);
+    \end{tikzpicture}
+\end{center}
+
+
 Thus far we have been discussing a toy model of a solid in one dimension. By diagonalizing the Hamiltonian we were able to determine the energy levels of the various states,
-\[ \varepsilon\br{k} = - 2 t \cos\br{ka} \]
+\[ \varepsilon\br{k} = - 2 t \cos\br{ka} \eq \label{eq:single_energy__band}\]
 Where $k$ is the wave-vector with $p = \hbar k$ as the ordinary linear momentum. Additionally, $t$ acts as a tunneling coefficient that dictates a tunneling \textit{rate} (up to a constant $\hbar$) for the electrons in the solid. Unlike free particles, the momentum $k$ in this toy model is confined to a discrete region.
 \[ -\f{\pi}{a} \leq k < \f{\pi}{a} \]
 This interval is called the \term{first Brillouin zone}.
@@ -111,14 +131,145 @@ Three of the valence electrons are engaged in bonding with neighboring carbon an
         {
             \node[draw, fill, circle, inner sep=1pt] (\i) at (\i,0) {};
         }
-        \draw[]       (1) -- node[above]{$t_1$} (2);
-        \draw[double] (2) -- node[above]{$t_2$} (3);
-        \draw[]       (3) -- node[above]{$t_1$} (4);
-        \draw[double] (4) -- node[above]{$t_2$} (5);
-        \draw[]       (5) -- node[above]{$t_1$} (6);
-        \draw[double] (6) -- node[above]{$t_2$} (7);
+        \draw[]       (1) -- node[above]{$t_2$} (2);
+        \draw[double] (2) -- node[above]{$t_1$} (3);
+        \draw[]       (3) -- node[above]{$t_2$} (4);
+        \draw[double] (4) -- node[above]{$t_1$} (5);
+        \draw[]       (5) -- node[above]{$t_2$} (6);
+        \draw[double] (6) -- node[above]{$t_1$} (7);
+
+        \draw[dashed] (3.5, -1) -- (3.5, 1);
+        \draw[dashed] (5.5, -1) -- (5.5, 1);
+        \draw[<->] (3.5, -0.7) -- node[below]{$2a$} (5.5, -0.7);
     \end{tikzpicture}
 \end{center}
+
+In Polyacetylene, the tunneling amplitude between the carbon atoms joined by a double bound is slightly higher $t_1 > t_2$. This is referred to as \term{Peierls instability}. \\
+
+Since this deviation is only slight, let $2\de t = t_1 - t_2$ such that,
+\[ t_1 = t + \de t \qquad t_2 = t - \de t\]
+Another important difference is that the primitive unit cell has size $2a$ (instead of $a$). This two atom basis can be arranged on a lattice with lattice constant $2a$. This is referred to as a \term{Bravais lattice}. Notationally, we can describe any crystal as,
+\[ \text{crystal} = \br{\text{basis}, \text{Bravais lattice}} \]
+
+To describe an electron in this lattice, we need two indices: one to describe the unit cell the electron is in and one to describe which atom ($1$ or $2$) the electron is located at. Therefore the Hamiltonian needs to characterize a number of possible transitions,
+\begin{itemize}
+    \item $\ket{n, 2} \bra{n, 1}, \ket{n, 1} \bra{n, 2}$ tunneling within a unit cell (forward, backward)
+    \item $\ket{n-1, 2} \bra{n, 1}, \ket{n, 1} \bra{n-1, 2}$ tunneling between unit cells (forward, backward)
+\end{itemize}
+
+\[ H = \sum_{n} \bc{ - t_1 \ket{n, 2} \bra{n, 1} - t_2 \ket{n-1, 2} \bra{n, 1} - t_1 \ket{n, 1} \bra{n, 2} - t_2 \ket{n, 1} \bra{n-1, 2}} \]
+
+Just as before, we need to write $\ket{n, \al}$ in the momentum basis,
+\[ \ket{n, \al} = \sum_{k} \ket{k,\al} \braket{k, \al}{n, \al} \]
+Where $\braket{k, \al}{n, \al}$ is written as,
+\[ \braket{k, \al}{n, \al} = \f{1}{\sqrt{N}} e^{- 2 i k n a} \]
+It is important to note that here $N$ does not represent the total number of atoms; $N$ is the total number of unit cells (equivalently the total number of distinct $\ket{n, \al}$ states for \textit{fixed} $\al$). Moreover the extra factor of $2$ in the exponential is due to the increases unit cell size. In momentum space, the Hamiltonian can be written,
+\begin{align*}
+\eq \label{eq:H_polyacetylene}
+\begin{split}
+H
+&= - t_1 \f{1}{N} \sum_{n} \sum_{k ,k'} \ket{k, 2}\bra{k', 1} e^{-2ikna}e^{2ik'na} \\
+&\quad  - t_2 \f{1}{N} \sum_{n} \sum_{k ,k'} \ket{k, 2}\bra{k', 1} e^{-2ik\br{n-1}a}e^{2ik'na} \\
+&\quad  - t_1 \f{1}{N} \sum_{n} \sum_{k ,k'} \ket{k, 1}\bra{k', 2} e^{-2ikna}e^{2ik'na} \\
+&\quad  - t_2 \f{1}{N} \sum_{n} \sum_{k ,k'} \ket{k, 1}\bra{k', 2} e^{-2ikna}e^{2ik'\br{n-1}a}
+\end{split}
+\end{align*}
+
+One again we need to make use of the following identity,
+\[ \f{1}{N} \sum_{n}e^{-2i \br{k - k'}na} = \de_{k, k'} \eq \label{eq:crystal_ident_polyacetylene}\]
+Each term in \cref{eq:H_polyacetylene} contains terms of the form of \cref{eq:crystal_ident_polyacetylene} which simply $H$ greatly,
+\begin{align*}
+\eq\label{eq:H_diag_k}
+\begin{split}
+H
+&= - t_1 \sum_{k}\bc{\ket{k ,2} \bra{k, 1} + \ket{k, 1}\bra{k,2}} \\
+&\quad - t_2 \sum_{k}\bc{\ket{k ,2} \bra{k, 1}e^{2ika} + \ket{k, 1}\bra{k,2}e^{-2ika}}
+\end{split}
+\end{align*}
+Already we can see that unlike the previous model, the Hamiltonian is not yet diagonalize. At this point, we have only \textit{partially} diagonalized the Hamiltonian with respect to the index of the unit cell. What remains is to diagonalize the Hamiltonian with respect to the index of the \textit{atom} within a single unit cell (i.e. $\al = 1,2$). In order to do this, notice that \cref{eq:H_diag_k} can be written as,
+\[ H = \sum_{k} H\br{k} \]
+Where $H\br{k}$ is a $k$ dependent Hamiltonian. We will focus on this Hamiltonian henceforth.
+\begin{align*}
+\begin{split}
+H\br{k}
+&= - t_1 \bc{\ket{k ,2} \bra{k, 1} + \ket{k, 1}\bra{k,2}} \\
+&\quad - t_2 \bc{\ket{k ,2} \bra{k, 1}e^{2ika} + \ket{k, 1}\bra{k,2}e^{-2ika}}
+\end{split}
+\end{align*}
+For convenience, we will drop reference to $k$ within the states,
+\begin{align*}
+\eq\label{eq:H_of_k}
+\begin{split}
+H\br{k}
+&= - t_1 \bc{\ket{2} \bra{1} + \ket{1}\bra{2}} \\
+&\quad - t_2 \bc{\ket{2} \bra{1}e^{2ika} + \ket{1}\bra{2}e^{-2ika}}
+\end{split}
+\end{align*}
+\Cref{eq:H_of_k} has the Hamiltonian of a $2$ level system. Therefore we can model this system as a spin-$1/2$ system using the \term{Pauli matrices}. Recall,
+\begin{align*}
+\eq \label{eq:pauli_matrices}
+\begin{split}
+\si_x &= \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = \ket{\uparrow} \bra{\downarrow} + \ket{\downarrow} \bra{\uparrow} \\
+\si_y &= \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} = -i\ket{\uparrow} \bra{\downarrow} - \ket{\downarrow} \bra{\uparrow} \\
+\si_z &= \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \ket{\uparrow} \bra{\uparrow} - \ket{\downarrow} \bra{\downarrow}
+\end{split}
+\end{align*}
+Using the following correspondence,
+\[ \ket{1} = \ket{\uparrow} \qquad \ket{2} = \ket{\downarrow} \]
+We have that,
+\begin{align*}
+H\br{k}
+&= -\bs{\br{t + \de t} + \br{t - \de t} e^{- 2 i k a}} \ket{\uparrow}\bra{\downarrow}\\
+&\quad - \bs{\br{t + \de t} + \br{t - \de t} e^{2 i k a}} \ket{\downarrow}\bra{\uparrow}
+\end{align*}
+We now elect to write $e^{\pm 2 i ka}$ in terms of sines and cosines and isolate the real and imaginary components,
+\begin{align*}
+H\br{k}
+&= -\bs{\br{t + \de t} + \br{t - \de t} \cos\br{2 k a}} \ket{\uparrow}\bra{\downarrow}\\
+&\quad + i\br{t - \de t} \sin\br{2 k a} \ket{\uparrow}\bra{\downarrow} + \text{h.c.}
+\end{align*}
+Where `h.c.' refers to the Hermitian conjugate the the preceding terms. At this stage, we define some notation,
+\begin{align*}
+d_x \br{k} &= - \br{t + \de t} - \br{t - \det} \cos\br{2 ka} \\
+d_y \br{k} &= - \br{t - \de t} \sin\br{2 ka} \\
+d_z \br{k} &= 0 \\
+\end{align*}
+Where $\ve d$ can be written,
+\[ \ve d \br{k} = \br{d_x \br{k}, d_y \br{k}, d_z\br{k}} \]
+Making use of \cref{eq:pauli_matrices}, we can see that,
+\[ \ket{\uparrow}\bra{\downarrow} = \f{1}{2}\br{\si_x + i \si_y} \]
+Which means that the Hamiltonian is,
+\[ H\br{k} = \ve d\br{k} \cdot \ve \si \]
+This system is \textit{equivalent} to a spin-1/2 particle in a magnetic field of the form $\ve d\br{k}$. The eigenstates of $H\br{k}$ correspond to $\ba{\ve \si}$ along $\ve d$ or in the opposite direction to $\ve d$,
+\[ \vep_{\pm}\br{k} = \pm \abs{\ve d \br{k}} \]
+This is contrasting to the previous model; before we had a \textit{single} energy band pursuant to \cref{eq:single_energy__band}, but here we have \textit{two energy bands}. This result can be generalized to the following observation:
+\begin{center}
+    \textit{Every atom in the unit cell will give rise to a separate band.}
+\end{center}
+Explicitly, $\abs{\ve d \br{k}}^2$ has the value,
+\[ \abs{\ve d \br{k}}^2 = d_x^2 \br{k} + d_y^2 \br{k} + d_z^2 \br{k} = 4 t^2 \cos^2 \br{ka} + 4 \de t^2 \sin^2 \br{ka} \]
+Which makes the two bands have the form,
+\[ \vep_{\pm} = \pm 2 \sqrt{t^2 \cos^2\br{ka} + \de t^2 \sin^2\br{ka}} \]
+Which when plotted is,
+\begin{center}
+\begin{tikzpicture}
+    \pgfmathsetmacro{\axissize}{4};
+    \pgfmathsetmacro{\plotsize}{3};
+    \draw[->] (-\axissize,0) -- (+\axissize,0) node[right]{$k$};
+    \draw[->] (0, -\axissize) -- (0,+\axissize) node[above]{$\vep\br{k}$};
+    \draw[scale=1.0,domain=-pi/2:pi/2,smooth,variable=\k,red] plot ({2 *\k/pi*\plotsize},{-2*sqrt(cos(deg(\k))^2 + 0.1*sin(deg(\k))^2)});
+    \draw[scale=1.0,domain=-pi/2:pi/2,smooth,variable=\k,red] plot ({2 *\k/pi*\plotsize},{2*sqrt(cos(deg(\k))^2 + 0.1*sin(deg(\k))^2)});
+    \draw[dashed] (\plotsize, -\axissize) -- node[above right]{$\f{\pi}{2a}$} (\plotsize,+\axissize);
+    \draw[dashed] (-\plotsize, -\axissize) -- node[above left]{$-\f{\pi}{2a}$} (-\plotsize,+\axissize);
+    \draw[] (-0.1,-2) -- (+0.1,-2) node[right]{$-2t$};
+    \draw[] (-0.1,2) -- (+0.1,2) node[right]{$2t$};
+    \draw[] (\plotsize-0.1, 0.65) -- (\plotsize+0.1, 0.65) node[right]{$2\de t$};
+    \draw[] (\plotsize-0.1, -0.65) -- (\plotsize+0.1, -0.65) node[right]{$-2\de t$};
+    \draw[] (-\plotsize-0.1, 0.65) -- (-\plotsize+0.1, 0.65) node[left]{$2\de t$};
+    \draw[] (-\plotsize-0.1, -0.65) -- (-\plotsize+0.1, -0.65) node[left]{$-2\de t$};
+\end{tikzpicture}
+\end{center}
+
 
 
 \end{document}
