@@ -147,7 +147,7 @@ Three of the valence electrons are engaged in bonding with neighboring carbon an
 In Polyacetylene, the tunneling amplitude between the carbon atoms joined by a double bound is slightly higher $t_1 > t_2$. This is referred to as \term{Peierls instability}. \\
 
 Since this deviation is only slight, let $2\de t = t_1 - t_2$ such that,
-\[ t_1 = t + \de t \qquad t_2 = t - \de t\]
+\[ t_1 = t + \de t \qquad t_2 = t - \de t \eq \label{eq:t1t2}\]
 Another important difference is that the primitive unit cell has size $2a$ (instead of $a$). This two atom basis can be arranged on a lattice with lattice constant $2a$. This is referred to as a \term{Bravais lattice}. Notationally, we can describe any crystal as,
 \[ \text{crystal} = \br{\text{basis}, \text{Bravais lattice}} \]
 
@@ -214,7 +214,7 @@ H\br{k}
 \si_z &= \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \ket{\uparrow} \bra{\uparrow} - \ket{\downarrow} \bra{\downarrow}
 \end{split}
 \end{align*}
-Using the following correspondence,
+Using the following correspondence (which we refer to as a pseudo-spin),
 \[ \ket{1} = \ket{\uparrow} \qquad \ket{2} = \ket{\downarrow} \]
 We have that,
 \begin{align*}
@@ -230,9 +230,12 @@ H\br{k}
 \end{align*}
 Where `h.c.' refers to the Hermitian conjugate the the preceding terms. At this stage, we define some notation,
 \begin{align*}
-d_x \br{k} &= - \br{t + \de t} - \br{t - \det} \cos\br{2 ka} \\
+\eq \label{eq:dk}
+\begin{split}
+d_x \br{k} &= - \br{t + \de t} - \br{t - \de t} \cos\br{2 ka} \\
 d_y \br{k} &= - \br{t - \de t} \sin\br{2 ka} \\
-d_z \br{k} &= 0 \\
+d_z \br{k} &= 0
+\end{split}
 \end{align*}
 Where $\ve d$ can be written,
 \[ \ve d \br{k} = \br{d_x \br{k}, d_y \br{k}, d_z\br{k}} \]
@@ -246,29 +249,156 @@ This is contrasting to the previous model; before we had a \textit{single} energ
 \begin{center}
     \textit{Every atom in the unit cell will give rise to a separate band.}
 \end{center}
-Explicitly, $\abs{\ve d \br{k}}^2$ has the value,
+Explicitly, $\abs{\ve d \br{k}}^2$ can be calculated from \cref{eq:dk},
 \[ \abs{\ve d \br{k}}^2 = d_x^2 \br{k} + d_y^2 \br{k} + d_z^2 \br{k} = 4 t^2 \cos^2 \br{ka} + 4 \de t^2 \sin^2 \br{ka} \]
 Which makes the two bands have the form,
-\[ \vep_{\pm} = \pm 2 \sqrt{t^2 \cos^2\br{ka} + \de t^2 \sin^2\br{ka}} \]
+\[ \vep_{\pm}\br{k} = \pm 2 \sqrt{t^2 \cos^2\br{ka} + \de t^2 \sin^2\br{ka}} \]
 Which when plotted is,
 \begin{center}
 \begin{tikzpicture}
     \pgfmathsetmacro{\axissize}{4};
     \pgfmathsetmacro{\plotsize}{3};
+    \pgfmathsetmacro{\dt}{0.65};
     \draw[->] (-\axissize,0) -- (+\axissize,0) node[right]{$k$};
     \draw[->] (0, -\axissize) -- (0,+\axissize) node[above]{$\vep\br{k}$};
     \draw[scale=1.0,domain=-pi/2:pi/2,smooth,variable=\k,red] plot ({2 *\k/pi*\plotsize},{-2*sqrt(cos(deg(\k))^2 + 0.1*sin(deg(\k))^2)});
     \draw[scale=1.0,domain=-pi/2:pi/2,smooth,variable=\k,red] plot ({2 *\k/pi*\plotsize},{2*sqrt(cos(deg(\k))^2 + 0.1*sin(deg(\k))^2)});
-    \draw[dashed] (\plotsize, -\axissize) -- node[above right]{$\f{\pi}{2a}$} (\plotsize,+\axissize);
-    \draw[dashed] (-\plotsize, -\axissize) -- node[above left]{$-\f{\pi}{2a}$} (-\plotsize,+\axissize);
+    \draw[dashed] (\plotsize, -\axissize) -- node[above right]{${\pi}/{2a}$} (\plotsize,+\axissize);
+    \draw[dashed] (-\plotsize, -\axissize) -- node[above left]{$-{\pi}/{2a}$} (-\plotsize,+\axissize);
     \draw[] (-0.1,-2) -- (+0.1,-2) node[right]{$-2t$};
     \draw[] (-0.1,2) -- (+0.1,2) node[right]{$2t$};
-    \draw[] (\plotsize-0.1, 0.65) -- (\plotsize+0.1, 0.65) node[right]{$2\de t$};
-    \draw[] (\plotsize-0.1, -0.65) -- (\plotsize+0.1, -0.65) node[right]{$-2\de t$};
-    \draw[] (-\plotsize-0.1, 0.65) -- (-\plotsize+0.1, 0.65) node[left]{$2\de t$};
-    \draw[] (-\plotsize-0.1, -0.65) -- (-\plotsize+0.1, -0.65) node[left]{$-2\de t$};
+    \draw[] (\plotsize-0.1, \dt) -- (\plotsize+0.1, \dt) node[right]{$2\de t$};
+    \draw[] (\plotsize-0.1, -\dt) -- (\plotsize+0.1, -\dt) node[right]{$-2\de t$};
+    \draw[] (-\plotsize-0.1, \dt) -- (-\plotsize+0.1, \dt) node[left]{$2\de t$};
+    \draw[] (-\plotsize-0.1, -\dt) -- (-\plotsize+0.1, -\dt) node[left]{$-2\de t$};
+    \draw[|<->|] (\plotsize-0.3, \dt) -- node[left]{$4 \de t$} (\plotsize-0.3, -\dt);
 \end{tikzpicture}
 \end{center}
+
+Notice that the first Brillouin zone is $\f{\pi}{2a} \leq k \leq \f{\pi}{2a}$ is \textit{smaller} than it was previously. In this model, there is one electron per atom and thus two electrons per unit cell. Therefore there are $2N$ electrons. At zero temperature, the entire lower band is filled and the upper band is empty. This makes polyacetylene an \term{insulator} because it requires an energy of at least $4 \de t$ in order to transition an electron across the Fermi surface. \\
+
+In the limit of the $\de t \to 0$ one should expect to recover \cref{eq:single_energy__band},
+\[ \lim_{\de t \to 0}\vep_{\pm}\br{k} = \pm 2 \lim_{\de t \to 0}\sqrt{t^2 \cos^2\br{ka} + \de t^2 \sin^2\br{ka}} = \pm 2 t \cos\br{ka}  \]
+As expected. Notice however the plot of $\ep\br{k}$ differs,
+\begin{center}
+\begin{tikzpicture}
+    \pgfmathsetmacro{\axissize}{4};
+    \pgfmathsetmacro{\plotsize}{3};
+    \pgfmathsetmacro{\dt}{0};
+    \draw[->] (-\axissize,0) -- (+\axissize,0) node[right]{$k$};
+    \draw[->] (0, -\axissize) -- (0,+\axissize) node[above]{$\vep\br{k}$};
+    \draw[scale=1.0,domain=-pi/2:pi/2,smooth,variable=\k,red] plot ({2 *\k/pi*\plotsize},{-2*sqrt(cos(deg(\k))^2)});
+    \draw[scale=1.0,domain=-pi/2:pi/2,smooth,variable=\k,red] plot ({2 *\k/pi*\plotsize},{2*sqrt(cos(deg(\k))^2)});
+    \draw[dashed] (\plotsize, -\axissize) -- node[above right]{${\pi}/{2a}$} (\plotsize,+\axissize);
+    \draw[dashed] (-\plotsize, -\axissize) -- node[above left]{$-{\pi}/{2a}$} (-\plotsize,+\axissize);
+    \draw[] (-0.1,-2) -- (+0.1,-2) node[right]{$-2t$};
+    \draw[] (-0.1,2) -- (+0.1,2) node[right]{$2t$};
+\end{tikzpicture}
+\end{center}
+The resolution between these two plots is to notice that in the polyacetylene model, the unit cell had with $2a$ instead of $a$. Therefore in momentum space, the plotted values for $k$ are bounded by $- \pi / 2a \leq k \leq \pi / 2a$ instead of $- \pi / a \leq k \leq \pi / a$. If one were to unravel the upper band into regions where $\abs{k} > \pi / 2a$ one would recover the initial model. \\
+
+Heretofore, we have assumed that $\de t > 0$. If however we consider $\de t< 0$, then we transition from $t_1 > t_2$ to $t_2 > t_1$ pursuant to \cref{eq:t1t2}. And our diagram is adjusted
+
+\begin{center}
+    \begin{tikzpicture}
+        \foreach \i in {1,...,7}
+        {
+            \node[draw, fill, circle, inner sep=1pt] (n\i) at (\i,0) {};
+            \node[draw, fill, circle, inner sep=1pt] (p\i) at (\i,1) {};
+        }
+        \draw[]       (p1) -- node[above]{$t_2$} (p2);
+        \draw[double] (p2) -- node[above]{$t_1$} (p3);
+        \draw[]       (p3) -- node[above]{$t_2$} (p4);
+        \draw[double] (p4) -- node[above]{$t_1$} (p5);
+        \draw[]       (p5) -- node[above]{$t_2$} (p6);
+        \draw[double] (p6) -- node[above]{$t_1$} (p7);
+        \draw (p1) node[left]{$\de t > 0 : $};
+
+        \draw[double] (n1) -- node[above]{$t_2$} (n2);
+        \draw[]       (n2) -- node[above]{$t_1$} (n3);
+        \draw[double] (n3) -- node[above]{$t_2$} (n4);
+        \draw[]       (n4) -- node[above]{$t_1$} (n5);
+        \draw[double] (n5) -- node[above]{$t_2$} (n6);
+        \draw[]       (n6) -- node[above]{$t_1$} (n7);
+        \draw (n1) node[left]{$\de t < 0 : $};
+    \end{tikzpicture}
+\end{center}
+
+Therefore, the ground state of polyacetylene is doubly degenerate, corresponding to the two signs of $\de t$. As it turns out, this difference in sign is related to topological properties in momentum space. Upon examination of \cref{eq:dk} once can notice $\ve d$'s dependence on $\de t$. How does $\ve d\br{k}$ change as $k$ goes from $- \pi / 2a$ to $\pi  2a$?
+\begin{align*}
+\begin{split}
+d_x \br{k} &= - \br{t + \de t} - \br{t - \de t} \cos\br{2 ka} \\
+d_y \br{k} &= - \br{t - \de t} \sin\br{2 ka}
+\end{split}
+\end{align*}
+Checking specific points,
+\begin{align*}
+d_x \br{\pm\f{\pi}{2a}} &= - \br{t + \de t} + \br{t - \de t} = - 2 \de t\\
+d_y \br{\pm\f{\pi}{2a}} &= 0 \\
+d_x \br{0} &= - \br{t + \de t} - \br{t - \de t} = 2 t\\
+d_y \br{0} &= 0
+\end{align*}
+Plotted the case of $\de t >0$ in $d_y, d_x$ space,
+\begin{center}
+\begin{tikzpicture}
+    \pgfmathsetmacro{\axissize}{3};
+    \pgfmathsetmacro{\t}{1};
+    \pgfmathsetmacro{\dt}{0.1};
+    \pgfmathsetmacro{\tick}{0.1};
+    \draw[->] (-\axissize,0) -- (+\axissize,0) node[right]{$d_x$};
+    \draw[->] (0, -\axissize) -- (0,+\axissize) node[above]{$d_y$};
+    \draw[scale=1.0,domain=-pi/2:pi/2,smooth,variable=\k,red] plot ({- (\t + \dt) - (\t - \dt)*cos(deg(2*\k))},{- (\t - \dt)*sin(deg(2*\k))});
+    \draw[] (-2*\t, -\tick) -- (-2*\t, \tick) node[above left]{$-2t$};
+    \draw[] (-2*\dt, -\tick) -- (-2*\dt, \tick) node[above left]{$-2\de t$};
+    \draw[] (- 2, 2) node[]{$\de t > 0$};
+\end{tikzpicture}
+\end{center}
+It can be seen that when $\de t > 0$, the curve in $d_x, d_y$ does not enclose the origin $\ve d = 0$. Recalling that $\vep_{\pm}\br{k} = \pm \abs{\ve d \br{k}}$, as long as $\ve d\br{k} \neq 0$, there exists a energy gap between the two bands $\vep_{+}$ and $\vep_{-}$. Therefore for $\de t > 0$ polyacetylene is an ordinary insulator. However, in the case where $\de t < 0$,
+\begin{center}
+\begin{tikzpicture}
+    \pgfmathsetmacro{\axissize}{3};
+    \pgfmathsetmacro{\t}{1};
+    \pgfmathsetmacro{\dt}{-0.1};
+    \pgfmathsetmacro{\tick}{0.1};
+    \draw[->] (-\axissize,0) -- (+\axissize,0) node[right]{$d_x$};
+    \draw[->] (0, -\axissize) -- (0,+\axissize) node[above]{$d_y$};
+    \draw[scale=1.0,domain=-pi/2:pi/2,smooth,variable=\k,red] plot ({- (\t + \dt) - (\t - \dt)*cos(deg(2*\k))},{- (\t - \dt)*sin(deg(2*\k))});
+    \draw[] (-2*\t, -\tick) -- (-2*\t, \tick) node[above left]{$-2t$};
+    \draw[] (-2*\dt, -\tick) -- (-2*\dt, \tick) node[above left]{$-2\de t$};
+    \draw[] (- 2, 2) node[]{$\de t > 0$};
+\end{tikzpicture}
+\end{center}
+It can be seen that the origin $\abs{\ve d} = 0$ is enclosed. This \textit{topological} difference is what leads us to call the $\de t < 0$ a \term{topological insulator} as apposed to an \term{ordinary insulator}.\\
+
+An observable feature of topological insulators is edge states at zero energy (i.e. in the middle of a band gap). In this case of polyacetylene, these states that are closest to the band gap are those that live on the edge of the Brillouin zone where $\abs{k - \pi / 2a}$ is small. In order to explore the physics of these regions, define $\de k$ such that,
+\[ k = \f{\pi}{2a} + \de k \]
+Where $\de k$ is small. In this case, the Hamiltonian $H\br{k} = \ve d \br{k} \cdot \ve \si$ can be expanded out explicitly,
+\begin{align*}
+    d_x\br{k}
+    &= d_x\br{\f{\pi}{2a} + \de k} \\
+    &= - \br{t + \de t} - \br{t - \de t} \cos \br{\pi + 2 \de k a} \\
+    &= - \br{t + \de t} + \br{t - \de t} \cos \br{2 \de k a} \\
+    &= - \br{t + \de t} + \br{t - \de t} + \s O \br{\br{\de k}^2} \\
+    &\simeq - 2 \de t
+\end{align*}
+Similarly for $d_y$,
+\begin{align*}
+    d_y\br{k}
+    &= d_y\br{\f{\pi}{2a} + \de k} \\
+    &= - \br{t - \de t} \sin \br{\pi + 2 \de k a} \\
+    &= \br{t - \de t} \sin \br{2 \de k a} \\
+    &= \br{t - \de t} 2 \de k a + \s O \br{\br{\de k}^3} \\
+    &\simeq 2 t \de k a
+\end{align*}
+Therefore,
+\[ H\br{\de k} = - 2 \de t \si_x + 2 t a \de k \si_y \]
+In order to draw familiarity with systems that have been studied previously, let use rename a number of terms,
+\[ 2 \de t = m \qquad 2 t a = \hbar v_F\]
+Where $m$ has units of energy and $v_F$ has units of velocity. The Hamiltonian can now be written as,
+\[ H = - m \si_x + \hbar v_F \de k \si_y \]
+Since $\hbar \de k$ has units of momentum, we simply label it $p$. Then the Hamiltonian can be written as,
+\[ H = v_F p \si_y - m \si_x \]
+Which is identical to the Dirac equation (1D) with velocity $v_F$ in place of the speed of light $c$.
 
 
 
