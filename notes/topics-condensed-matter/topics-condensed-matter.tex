@@ -377,7 +377,9 @@ It can be seen that when $\de t > 0$, the curve in $d_x, d_y$ does not enclose t
 \end{center}
 It can be seen that the origin $\abs{\ve d} = 0$ is enclosed. This \textit{topological} difference is what leads us to call the $\de t < 0$ a \term{topological insulator} as apposed to an \term{ordinary insulator}.\\
 
-An observable feature of topological insulators is edge states at zero energy (i.e. in the middle of a band gap). In this case of polyacetylene, these states that are closest to the band gap are those that live on the edge of the Brillouin zone where $\abs{k - \pi / 2a}$ is small. In order to explore the physics of these regions, define $\de k$ such that,
+Effectively, there is no possible way to continuously deform the Hamiltonian (i.e. changing $\de t$) without merging the two energy bands. \\
+
+An observable feature of topological insulators becomes evident for the edge states at zero energy (i.e. in the middle of a band gap). In this case of polyacetylene, these states that are closest to the band gap are those that live on the edge of the Brillouin zone where $\abs{k - \pi / 2a}$ is small. In order to explore the physics of these regions, define $\de k$ such that,
 \[ k = \f{\pi}{2a} + \de k \]
 Where $\de k$ is small. In this case, the Hamiltonian $H\br{k} = \ve d \br{k} \cdot \ve \si$ can be expanded out explicitly,
 \begin{align*}
@@ -405,8 +407,79 @@ Where $m$ has units of energy and $v_F$ has units of velocity. The Hamiltonian c
 \[ H = - m \si_x + \hbar v_F \de k \si_y \]
 Since $\hbar \de k$ has units of momentum, we simply label it $p$. Then the Hamiltonian can be written as,
 \[ H = v_F p \si_y - m \si_x \]
-Which is identical to the Dirac equation (1D) with velocity $v_F$ in place of the speed of light $c$.
+Which is identical to the Dirac equation (1D) for a \textit{relativistic} particle of \textit{mass} $m$ and velocity $v_F$ in place of the speed of light $c$. These velocity $v_F$ is called the \term{Fermi velocity}.
 
+\[ \vep_{\pm}\br{p} = \pm \sqrt{v_F^2 p^2 + m^2} \]
+
+Consider the interface between $2$ polyacetylene samples $\de t > 0$ and $\de t < 0$. In the position basis $p \to - i \hbar \di_x$ we can write our Dirac Hamiltonian as,
+\[ H = - i \hbar v_F \si_y \di_x - m\br{x} \si_x \]
+Where $m$ has an $x$ dependence.
+
+\[  H \psi = E \psi \]
+With $E = 0$ localized near $x = 0$.
+\[ \bs{- i \hbar v_F \si_y \di_x - m\br{x} \si_x} \psi\br{x} = 0 \]
+Therefore we should look for a solution of the form,
+\[ \psi\br{x} = e^{f\br{x}} \si_y \ket{z} \]
+Where $\ket{z}$ is written in $\si_z$ basis,
+\[ \ket{z} = z_{\uparrow} \ket{\uparrow} + z_{\downarrow} \ket{\downarrow} \]
+\[ \si_{z}\ket{\uparrow} = + \ket{\uparrow} \qquad \si_{z}\ket{\downarrow} = - \ket{\downarrow} \]
+Using $\si_y^2 = \ident$ and $\si_x \si_y = i \si_z$,
+\[ \bs{i \hbar v_F \si_y \der{f}{x} + i m\br{x} \si_z} e^{f\br{x}}\ket{z} = 0 \]
+Dropping the exponential $e^{f\br{x}}$,
+\[ \bs{i \hbar v_F \si_y \der{f}{x} + i m\br{x} \si_z} \ket{z} = 0 \]
+Adjusting the constant coefficients,
+\[ \bs{\der{f}{x} + \f{m\br{x}}{\hbar v_F} \si_z} \ket{z} = 0 \]
+Therefore,
+\[ \der{f}{x} = - \f{m\br{x}}{\hbar v_F} \]
+Can be solved using,
+\[ f\br{x} = - \f{1}{\hbar v_F} \intl_{0}^{x} \dif x' m\br{x'} \]
+Where $m\br{0} = 0$. Altogether, the solution $\psi{x}$ can be written,
+\[ \psi\br{x} = e^{- \f{1}{\hbar v_F} \int_{0}^{x} \dif x' m\br{x'}} \si_y \ket{\uparrow} \]
+Since $\si_y \ket{\uparrow} = i \ket{\downarrow}$,
+\[ \psi\br{x} = ie^{- \f{1}{\hbar v_F} \int_{0}^{x} \dif x' m\br{x'}}\ket{\downarrow} \]
+
+\begin{center}
+\begin{tikzpicture}
+    \draw[->] (-3, 0) -- (3, 0) node[right]{$x$};
+    \draw (0, -0.1) node[below]{$x = 0$} -- (0, 0.1);
+    \draw (-2, -1) node[]{$\de t < 0$};
+    \draw (-2, -1.5) node[]{$m < 0$};
+    \draw (2, -1) node[]{$\de t > 0$};
+    \draw (2, -1.5) node[]{$m > 0$};
+    \draw[scale=1.0,domain=-3:3,smooth,variable=\x,red] plot ({\x},{exp(-\x*\x)});
+\end{tikzpicture}
+\end{center}
+
+\section{Higher Dimensions}
+
+A crystal is an infinite, periodic array of identical groups of atoms,
+\[ \text{crystal} = \br{\text{basis}, \text{Bravais lattice}} \]
+
+\begin{center}
+    \begin{tikzpicture}
+        \foreach \i in {1,...,8}
+        {
+            \foreach \j in {1,...,4}
+            {
+                \node[draw, fill, circle, inner sep=1pt] (\i\j) at ({\i+0.5*iseven(\j)},\j) {};
+                \node[draw, fill, red, circle, inner sep=1pt] (a\i\j) at ({\i+0.5*iseven(\j)+0.3},\j-0.2) {};
+                \node[draw, fill, red, circle, inner sep=1pt] (b\i\j) at ({\i+0.5*iseven(\j)+0.3},\j+0.2) {};
+            }
+        }
+        \draw[->] (32) -- node[left]{$\ve a_2$} (33);
+        \draw[->] (32) -- node[above]{$\ve a_1$} (42);
+    \end{tikzpicture}
+\end{center}
+
+A \term{Bravais lattice} is all points in $\R^{3}$ ($\R^{2}, \R^{1}, \R^{n}$) such that,
+\[ \ve R = n_1 \ve a_1 + n_2 \ve a_2 + n_3 \ve a_3 \]
+Where $\ve a_1, \ve a_2, \ve a_3$ are the primitive translation vectors of the Bravais lattice. Moreover the coefficients $n_1, n_2, n_3$ are integers,
+\[ n_1, n_2, n_3 = 0, \pm 1, \pm 2, \pm 3, \ldots \]
+Typically, the choice for $\ve a_i$ is not unique. However, the best choice for the primitive transition vectors is typically the one that exhibits the most symmetry. \\
+
+The \term{primitive unit cell} is the parallelepiped defined by the primitive translation vectors.\\
+
+A Special type of unit cell, usually the most convenient, is the \term{Wigner-Seitz unit cell}. A WS unit cell is the region of space about a BL point that are closer to this point than to any other BL point.
 
 
 \end{document}
