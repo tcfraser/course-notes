@@ -474,5 +474,148 @@ The \term{primitive unit cell} is the parallelepiped defined by the primitive tr
 
 A Special type of unit cell, usually the most convenient, is the \term{Wigner-Seitz unit cell}. A WS unit cell is the region of space about a BL point that are closer to this point than to any other BL point.
 
+\section{Lattice Theory}
+
+\todo[TC]{Missed a lecture}
+
+\subsection{Reciprocal Lattice}
+The reciprocal lattice
+\[ e^{i \ve G \cdot \ve P} = 1 \]
+
+\[ \ve G = m_1 \ve b_1 + m_2 \ve b_2 + m_3 \ve b_3\]
+
+Specifically, the honeycomb lattice had the following primitive translation vectors,
+\[ \ve a_1 = \f{a}{2} \br{\hat x + \sqrt{2} \hat y} \]
+\[ \ve a_2 = \f{a}{2} \br{-\hat x + \sqrt{2} \hat y} \]
+Where the reciprocal lattice is defined such that,
+\[ \ve b_{i} \cdot \ve a_{j} = 2 \pi \de_{ij}  \]
+Which means $\ve b_1$ and $\ve b_2$ take on the following form.
+\[ \ve b_1 = \f{2\pi}{\sqrt{3} a} \br{\hat y + \sqrt{3} \hat x} \]
+\[ \ve b_2 = \f{2\pi}{\sqrt{3} a} \br{\hat y - \sqrt{3} \hat x} \]
+\subsection{Electronic Structure for Square Lattice}
+
+The square lattice in 2 dimensions has two primitive basis vectors $\ve a_{1}, \ve a_{2}$,
+\begin{center}
+    \begin{tikzpicture}
+        \foreach \i in {1,...,8}
+        {
+            \foreach \j in {1,...,4}
+            {
+                \node[draw, fill, circle, inner sep=1pt] (\i\j) at (\i,\j) {};
+            }
+        }
+        \draw[->] (32) -- node[left]{$\ve a_2$} (33);
+        \draw[->] (32) -- node[above]{$\ve a_1$} (42);
+    \end{tikzpicture}
+\end{center}
+Using Cartesian coordinates,
+\[ \ve a_1 = a \hat x \qquad \ve a_2 = a \hat y \]
+The reciprocal lattice has the following form,
+\[ \ve b_1 = \f{2 \pi }{a}\hat x \qquad \ve b_2 = \f{2 \pi}{a} \hat y \]
+The Hamiltonian for this system in the nearest neighbor approximation can be written as the sum over all possible transitions with tunneling coefficient $t$.
+\[ H = - t \sum_{\ve R, \ve a} \br{\ket{\ve R + \ve a} \bra{\ve R} + \ket{\ve R} \bra{\ve R + \ve a}} \eq \label{eq:nearest_neighbor_square_lattice} \]
+Where $\ve a \in \bc{\ve a_1, \ve a_2}$. Notice that we only need to sum over terms of the form involving $\ve R + \ve a$ and not $\ve R - \ve a$. If we were to include those terms, we would double-count all each of the possible transitions. In order to diagonalize \cref{eq:nearest_neighbor_square_lattice} we use the familiar Fourier transform but here we apply it as a vector change of coordinates,
+\[\ket{\ve R} = \sum_{\ve R} \ket{\ve k} \braket{\ve k}{\ve R} \]
+Where $\braket{\ve k}{\ve R}$ is normalized in the usual fashion,
+\[ \braket{\ve k}{\ve R} = \f{1}{\sqrt{N}} e^{i \ve k \cdot \ve R} \]
+Therefore,
+\[\ket{\ve R} = \f{1}{\sqrt{N}} \sum_{\ve R} \ket{\ve k}  e^{i \ve k \cdot \ve R} \]
+In the reciprocal lattice, $\ve k$ can be written as,
+\[ \ve K = k_1 \ve b_1 + k_2 \ve b_2 \]
+Where $k_{1,2}$ is bounded,
+\[ -\f12 \leq k_{1,2} < \f12 \]
+Therefore,
+\[ \ve k \cdot \ve R = \br{k_1 \ve b_1 + k_2 \ve b_2} \cdot \br{n_1 \ve a_1 + n_2 \ve a_2} \]
+\[ \ve k \cdot \ve R = 2 \pi \br{k_1 n_1 + k_2 n_2} \]
+Using the $\ket{\ve k}$ basis, \cref{eq:nearest_neighbor_square_lattice} becomes,
+\[ H = - t \sum_{\ve R, \ve a} \sum_{\ve k, \ve k'} \br{\ket{\ve k}\bra{\ve k'} e^{-i \ve k \cdot \br{\ve R + \ve a}} e^{i \ve k' \cdot \ve R} + \ket{\ve k}\bra{\ve k'} e^{-i \ve k \cdot \ve R} e^{i \ve k' \cdot \br{\ve R + \ve a}}} \eq \label{eq:nearest_neighbor_square_lattice_momentum} \]
+Using a multi-dimensional version of \cref{eq:crystal_ident_polyacetylene},
+\[ \f{1}{N} \sum_{\ve R} e^{- i \br{\ve k - \ve k'} \cdot \ve R} = \de_{\ve k, \ve k'} \]
+Therefore \cref{eq:nearest_neighbor_square_lattice} becomes,
+\[ H = - t \sum_{\ve k, \ve a} \ket{\ve k} \bra{\ve k} \br{e^{- i\ve k \cdot \ve a} + e^{i\ve k \cdot \ve a}} \]
+Recognize a cosine term,
+\[ H = - 2t \sum_{\ve k, \ve a} \ket{\ve k} \bra{\ve k} \cos \br{\ve k \cdot \ve a} \]
+The energy levels (as indexed by $\ve k$) can now be read off easily,
+\[ \vep \br{\ve k} = -2 t \sum_{\ve a} \cos \br{\ve k \cdot \ve a} = - 2t \bs{ \cos \br{k_x a} + \cos \br{k_y a}} \]
+Clearly, $\vep\br{\ve k}$ has minimum when $k_x = k_y = 0$. Therefore,
+\[ \min\bc{\vep\br{\ve k}} = \vep_{\min} - 4 t \]
+Likewise at the Brillouin zone corners,
+\[ \max\bc{\vep\br{\ve k}} = \vep_{\max} = 4 t \]
+\begin{center}
+\begin{tikzpicture}
+    \pgfmathsetmacro{\plot}{4};
+    \pgfmathsetmacro{\edge}{3};
+    \pgfmathsetmacro{\oarc}{1};
+    \draw[->] (-\plot, 0) -- (\plot, 0) node[right]{$k_x$};
+    \draw[->] (0, -\plot) -- (0, \plot) node[right]{$k_y$};
+    \draw (+\edge, +\edge) -- (+\edge, -\edge);
+    \draw (+\edge, -\edge) -- (-\edge, -\edge);
+    \draw (-\edge, +\edge) -- (+\edge, +\edge);
+    \draw (-\edge, -\edge) -- (-\edge, +\edge);
+    \draw (+\edge, 0) node[above right]{$\f{\pi}{a}$};
+    \draw (0, +\edge) node[above left]{$\f{\pi}{a}$};
+    \draw (-\edge, 0) node[above left]{$\f{\pi}{a}$};
+    \draw (0, -\edge) node[below left]{$\f{\pi}{a}$};
+    \draw (+\edge, +\edge) node[circle, inner sep=1pt, fill=black, label={above right:$\vep_{\max}$}]{};
+    \draw (-\edge, +\edge) node[circle, inner sep=1pt, fill=black, label={above left:$\vep_{\max}$}]{};
+    \draw (+\edge, -\edge) node[circle, inner sep=1pt, fill=black, label={below right:$\vep_{\max}$}]{};
+    \draw (-\edge, -\edge) node[circle, inner sep=1pt, fill=black, label={below left:$\vep_{\max}$}]{};
+    \draw[red] (+\edge, 0) -- (0, +\edge) -- (-\edge, 0) -- (0, -\edge) -- cycle;
+    \draw[red] (0,0) circle (\edge/3);
+    \draw[red] (+\edge-\oarc, +\edge) arc (180:270:\oarc);
+    \draw[red] (-\edge, +\edge-\oarc) arc (270:360:\oarc);
+    \draw[red] (+\edge-\oarc, -\edge) arc (180:90:\oarc);
+    \draw[red] (-\edge, -\edge+\oarc) arc (90:0:\oarc);
+\end{tikzpicture}
+\end{center}
+Expanding $\ve k$ near the minimum,
+\[ \vep\br{\ve k} \simeq -4t + t a^2 \br{k_x^2 + k_y^2} = -4t + ta^2 k^2 \eq \label{eq:minimum_k}\]
+Notice that this looks like the dispersion of a free electron.
+Recall that for a free electron,
+\[ \vep \br{\ve k} = \f{\hbar^2 k^2}{2 m} \]
+Therefore we can define an effective mass $m^{*}$ as follows,
+\[ \vep \br{\ve k} - \vep_{\min} = ta^2 k^2 = \f{\hbar^2 k^2}{2 m^{*}} \]
+Where the effective mass is,
+\[ m^{*} = \f{\hbar^2}{2 t a^2} \]
+In conclusion, electrons near the minimum energy level $\vep_{\min}$ behave like free particles with effective mass $m^{*}$. \\
+
+The Fermi surface in this model can be calculated by setting $\vep \br{\ve k} = \vep\tsb{F}$,
+\[ \vep\br{\ve k} = - 4t + \f{\hbar^2 k^2}{2 m^{*}} = \vep\tsb{F}\]
+Therefore,
+\[ \f{\hbar^2 k^2}{2 m^{*}} = \vep\tsb{F} - \vep_{\min} \]
+Defines the equation of a circle in $k_x, k_y$ space with radius,
+\[ k_{F} = \sqrt{\f{2m^{*}}{\hbar^2} \br{\vep\tsb{F} - \vep_{\min}}} \]
+Recall from \cref{eq:minimum_k} that this equation only defines the Fermi surface near the minimum energy level. In general,
+\[ \vep \br{\ve k} - 2t \br{\cos \br{k_x a} + \cos \br{k_y a}} \]
+For a half-filled band, $\vep\tsb{F} = 0$, the Fermi surface is depicted above.
+
+\subsection{Graphene}
+The primitive unit vectors for Graphene are,
+\[ \ve a_{1} = \f{a}{2} \br{\hat x + \sqrt{3} \hat y} \qquad \ve a_{2} = \f{a}{2} \br{-\hat x + \sqrt{3} \hat y} \]
+Whereas the reciprocal lattice is,
+\todo[TC]{Draw Graphene lattice}
+\begin{center}
+\begin{tikzpicture}
+    \pgfmathsetmacro{\size}{3};
+    \pgfmathsetmacro{\f}{1/sqrt(3)};
+    \pgfmathsetmacro{\ss}{sqrt(2)};
+    \draw (0,0) node[circle, inner sep=1pt, fill=black, label={above right:$1$}]{};
+    \draw (0,\size) node[circle, inner sep=1pt, fill=black, label={above right:$2$}]{};
+    \draw (\f*\size,-\ss*\f*\size) node[circle, inner sep=1pt, fill=black, label={above right:$2$}]{};
+    \draw (-\f*\size,-\ss*\f*\size) node[circle, inner sep=1pt, fill=black, label={above right:$2$}]{};
+\end{tikzpicture}
+\end{center}
+
+\[ \ve b_{1} = \f{2 \pi}{a} \br{\hat x + \sqrt{3} \hat y} \qquad \ve b_{2} = \f{2 \pi}{a} \br{-\hat x + \sqrt{3} \hat y} \]
+The nearest neighbor Hamiltonian becomes,
+\[ H = -t \sum_{\ve R} \br{\ket{\ve R, 2} \bra{\ve R, 1} + \ket{\ve R - \ve a_{1}m 2}\bra{\ve R, 1} + \ket{\ve R - \ve a_2, 2}\bra{\ve R, 1} + \text{h.c.}} \]
+In the reciprocal lattice,
+\[ \ket{\ve R, \al} = \f{1}{\sqrt{N}} \sum_{\ve R} \ket{\ve k, \al} e^{-i \ve k \cdot \ve R} \]
+Therefore the Hamiltonian becomes,
+\begin{align*}
+    H
+    &= -\f{t}{N} \sum_{\ve R}\sum_{\ve K, \ve K'} \Bigg( \ket{\ve k, 2}\bra{\ve k,1}e^{-i \ve k \cdot \ve R} e^{i \ve k' \cdot \ve R} + \ket{\ve k, 2}\bra{\ve k,1}e^{-i \ve k \cdot \br{\ve R - \ve a_1}} e^{i \ve k' \cdot \ve R}+ \ket{\ve k, 2}\bra{\ve k,1}e^{-i \ve k \cdot \br{\ve R - \ve a_2}} e^{i \ve k' \cdot \ve R} + \text{h.c.} \Bigg) \\
+\end{align*}
+
 
 \end{document}
