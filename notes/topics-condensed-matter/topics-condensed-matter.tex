@@ -12,6 +12,7 @@
 \set{Term}{Winter 2017}
 \set{Version}{1.0}
 
+\setfancyvecbold
 \draftprofile[TC Fraser]{TC}{Red}
 
 \begin{document}
@@ -57,7 +58,7 @@ This interval is called the \term{first Brillouin zone}.
 To highlight this difference, we sometimes refer to $p$ in this model as the \term{crystal momentum}.\\
 
 Moreover, the periodic boundary conditions used restrict $k$ to take on discrete and finite values,
-\[ k = \f{2 \pi m}{N} \qquad m = 0, \pm 1, \pm 2, \ldots \]
+\[ k = \f{2 \pi m}{Na} \qquad m = 0, \pm 1, \pm 2, \ldots \]
 Where $L = Na$ is the size of the crystal, $N$ is the number of atoms and $a$ is the interval between two atoms in the solid.\\
 
 The states that diagonalized the Hamiltonian are called \term{Bloch states} and are denoted $\ket{k}$ where,
@@ -479,7 +480,7 @@ Typically, the choice for $\ve a_i$ is not unique. However, the best choice for 
 
 The \term{primitive unit cell} is the parallelepiped defined by the primitive translation vectors.\\
 
-A Special type of unit cell, usually the most convenient, is the \term{Wigner-Seitz unit cell}. A WS unit cell is the region of space about a BL point that are closer to this point than to any other BL point.
+A special type of unit cell, usually the most convenient, is the \term{Wigner-Seitz unit cell}. A WS unit cell is the region of space about a BL point that are closer to this point than to any other BL point.
 
 \section{Lattice Theory}
 
@@ -492,8 +493,8 @@ The reciprocal lattice
 \[ \ve G = m_1 \ve b_1 + m_2 \ve b_2 + m_3 \ve b_3\]
 
 Specifically, the honeycomb lattice had the following primitive translation vectors,
-\[ \ve a_1 = \f{a}{2} \br{\hat x + \sqrt{2} \hat y} \]
-\[ \ve a_2 = \f{a}{2} \br{-\hat x + \sqrt{2} \hat y} \]
+\[ \ve a_1 = \f{a}{2} \br{\hat x + \sqrt{3} \hat y} \]
+\[ \ve a_2 = \f{a}{2} \br{-\hat x + \sqrt{3} \hat y} \]
 Where the reciprocal lattice is defined such that,
 \[ \ve b_{i} \cdot \ve a_{j} = 2 \pi \de_{ij}  \]
 Which means $\ve b_1$ and $\ve b_2$ take on the following form.
@@ -528,7 +529,7 @@ Where $\braket{\ve k}{\ve R}$ is normalized in the usual fashion,
 Therefore,
 \[\ket{\ve R} = \f{1}{\sqrt{N}} \sum_{\ve R} \ket{\ve k}  e^{i \ve k \cdot \ve R} \]
 In the reciprocal lattice, $\ve k$ can be written as,
-\[ \ve K = k_1 \ve b_1 + k_2 \ve b_2 \]
+\[ \ve k = k_1 \ve b_1 + k_2 \ve b_2 \]
 Where $k_{1,2}$ is bounded,
 \[ -\f12 \leq k_{1,2} < \f12 \]
 Therefore,
@@ -593,29 +594,33 @@ Therefore,
 Defines the equation of a circle in $k_x, k_y$ space with radius,
 \[ k_{F} = \sqrt{\f{2m^{*}}{\hbar^2} \br{\vep\tsb{F} - \vep_{\min}}} \]
 Recall from \cref{eq:minimum_k} that this equation only defines the Fermi surface near the minimum energy level. In general,
-\[ \vep \br{\ve k} - 2t \br{\cos \br{k_x a} + \cos \br{k_y a}} \]
+\[ \vep \br{\ve k} = - 2t \br{\cos \br{k_x a} + \cos \br{k_y a}} \]
 For a half-filled band, $\vep\tsb{F} = 0$, the Fermi surface is depicted above.
 
 \subsection{Graphene}
 The primitive unit vectors for Graphene are,
-\[ \ve a_{1} = \f{a}{2} \br{\hat x + \sqrt{3} \hat y} \qquad \ve a_{2} = \f{a}{2} \br{-\hat x + \sqrt{3} \hat y} \]
+\[ \ve a_{1} = \f{a}{2} \br{\hat x + \sqrt{3} \hat y} \qquad \ve a_{2} = \f{a}{2} \br{-\hat x + \sqrt{3} \hat y} \eq \label{eq:graphen_a} \]
 Whereas the reciprocal lattice is,
-\todo[TC]{Draw Graphene lattice}
 \begin{center}
 \begin{tikzpicture}
-    \pgfmathsetmacro{\size}{3};
-    \pgfmathsetmacro{\f}{1/sqrt(3)};
-    \pgfmathsetmacro{\ss}{sqrt(2)};
-    \draw (0,0) node[circle, inner sep=1pt, fill=black, label={above right:$1$}]{};
-    \draw (0,\size) node[circle, inner sep=1pt, fill=black, label={above right:$2$}]{};
-    \draw (\f*\size,-\ss*\f*\size) node[circle, inner sep=1pt, fill=black, label={above right:$2$}]{};
-    \draw (-\f*\size,-\ss*\f*\size) node[circle, inner sep=1pt, fill=black, label={above right:$2$}]{};
+    \pgfmathsetmacro{\size}{1.5};
+    \pgfmathsetmacro{\f}{sqrt(3)/2};
+    \pgfmathsetmacro{\ss}{1/2};
+    \draw (0,0) node[circle, inner sep=1pt, fill=black, label={below:$1$}]{};
+    \draw (0,\size) node[circle, inner sep=1pt, fill=black, label={above:$2$}]{};
+    \draw (\f*\size,-\ss*\size) node[circle, inner sep=1pt, fill=black, label={above:$2$}]{};
+    \draw (-\f*\size,-\ss*\size) node[circle, inner sep=1pt, fill=black, label={above:$2$}]{};
+    \draw (0,0) -- ++(\f*\size,-\ss*\size) -- ++(\f*\size,\ss*\size) -- ++(0, \size) -- ++(-\f*\size,\ss*\size) -- ++(-\f*\size,-\ss*\size) -- cycle;
+    \draw (0,0) -- ++(0, \size) -- ++(-\f*\size,\ss*\size) -- ++(-\f*\size,-\ss*\size) --++(0, -\size) -- ++(\f*\size,-\ss*\size) -- ++(\f*\size,\ss*\size) -- cycle;
+    \draw (0,0)  -- ++(-\f*\size,-\ss*\size) --++(0, -\size) -- ++(\f*\size,-\ss*\size) -- ++(\f*\size,\ss*\size) -- ++(0, \size) -- cycle;
+    \draw[thick, ->] (0,0) -- node[right]{$\ve a_1$} ++(0+\f*\size, \size+\ss*\size);
+    \draw[thick, ->] (0,0) -- node[right]{$\ve a_2$} ++(0-\f*\size, \size+\ss*\size);
 \end{tikzpicture}
 \end{center}
 
-\[ \ve b_{1} = \f{2 \pi}{a} \br{\hat x + \sqrt{3} \hat y} \qquad \ve b_{2} = \f{2 \pi}{a} \br{-\hat x + \sqrt{3} \hat y} \]
+\[ \ve b_{1} = \f{2 \pi}{a} \br{\hat x + \sqrt{3} \hat y} \qquad \ve b_{2} = \f{2 \pi}{a} \br{-\hat x + \sqrt{3} \hat y} \eq \label{eq:graphen_b}\]
 The nearest neighbor Hamiltonian becomes,
-\[ H = -t \sum_{\ve R} \br{\ket{\ve R, 2} \bra{\ve R, 1} + \ket{\ve R - \ve a_{1}m 2}\bra{\ve R, 1} + \ket{\ve R - \ve a_2, 2}\bra{\ve R, 1} + \text{h.c.}} \]
+\[ H = -t \sum_{\ve R} \br{\ket{\ve R, 2} \bra{\ve R, 1} + \ket{\ve R - \ve a_{1}, 2}\bra{\ve R, 1} + \ket{\ve R - \ve a_2, 2}\bra{\ve R, 1} + \text{h.c.}}\eq \label{eq:graphene_H_nn} \]
 In the reciprocal lattice,
 \[ \ket{\ve R, \al} = \f{1}{\sqrt{N}} \sum_{\ve R} \ket{\ve k, \al} e^{-i \ve k \cdot \ve R} \]
 Therefore the Hamiltonian becomes,
@@ -623,6 +628,200 @@ Therefore the Hamiltonian becomes,
     H
     &= -\f{t}{N} \sum_{\ve R}\sum_{\ve K, \ve K'} \Bigg( \ket{\ve k, 2}\bra{\ve k,1}e^{-i \ve k \cdot \ve R} e^{i \ve k' \cdot \ve R} + \ket{\ve k, 2}\bra{\ve k,1}e^{-i \ve k \cdot \br{\ve R - \ve a_1}} e^{i \ve k' \cdot \ve R}+ \ket{\ve k, 2}\bra{\ve k,1}e^{-i \ve k \cdot \br{\ve R - \ve a_2}} e^{i \ve k' \cdot \ve R} + \text{h.c.} \Bigg) \\
 \end{align*}
+\[ H = - t\sum_{\ve k}\bs{\ket{\ve k, 2} \bra{\ve k, 1} \br{1 + e^{i \ve k \cdot \ve a_1} + e^{i \ve k \cdot \ve a_2}} + \ket{\ve k, 1} \bra{\ve k, 2} \br{1 + e^{-i \ve k \cdot \ve a_1} + e^{-i \ve k \cdot \ve a_2}}} \]
+We have now diagonalized $H$ in terms of the momentum wave-vector index $\ve k$. Letting $H = \sum_{\ve k} H\br{\ve k}$ where,
+\[ H\br{\ve k} = -t\bs{\ket{ 2} \bra{ 1} \br{1 + e^{i \ve k \cdot \ve a_1} + e^{i \ve k \cdot \ve a_2}} + \ket{ 1} \bra{ 2} \br{1 + e^{-i \ve k \cdot \ve a_1} + e^{-i \ve k \cdot \ve a_2}}} \]
+Invoking pseudo-spin states $\ket{1} = \ket{\uparrow}$ and $\ket{2} = \ket{\downarrow}$ we can write,
+\[ H\br{\ve k} = \ve d\br{\ve k} \cdot \ve \si \]
+Where $\ve d \br{\ve k}$ is,
+\begin{align*}
+    d^{x}\br{\ve k} & = -t \bs{1 + \cos\br{\ve k \cdot \ve a_1} + \cos \br{\ve k \cdot \ve a_2}} \\
+    d^{y}\br{\ve k} & = -t \bs{\sin\br{\ve k \cdot \ve a_1} + \sin \br{\ve k \cdot \ve a_2}} \\
+    d^{z}\br{\ve k} & = 0
+\end{align*}
+The eigenvalues of $H\br{\ve k}$ are then the usual,
+\[ \vep_{\pm}\br{\ve k} = \pm \abs{\ve d\br{\ve k}} \]
+Since we have $1$ electron per carbon atom, there are 2 electrons per unit cell which means that the $\vep_{-}$ band is completely filled while the $\vep_{+}$ is empty. For this configuration, the conduction band is empty and thus graphene is an insulator. \\
 
+In order to analyze the electronic structure of graphene, we need to rewrite $\ve k$ which is expressed via the reciprocal lattice vectors $\ve b_1, \ve b_2$ in terms of the Cartesian vectors $\ve a_1, \ve a_2$.
+\[ \ve k = k_1 \ve b_1 + k_2 \ve b_2 \]
+\[ \ve k \cdot \ve a_1 = \br{k_1 \ve b_1 + k_2 \ve b_2} \cdot \ve a_1 = 2 \pi k_1 \qquad \ve k \cdot \ve a_2 = 2 \pi k_2 \]
+Recalling \cref{eq:graphen_a,eq:graphen_b},
+\[ \ve a_{1} = \f{a}{2} \br{\hat x + \sqrt{3} \hat y} \qquad \ve a_{2} = \f{a}{2} \br{-\hat x + \sqrt{3} \hat y} \]
+\[ \ve b_{1} = \f{2 \pi}{a} \br{\hat x + \sqrt{3} \hat y} \qquad \ve b_{2} = \f{2 \pi}{a} \br{-\hat x + \sqrt{3} \hat y}\]
+We can now write $k_x, k_y$ in terms of $k_1, k_2$,
+\[ k_x = \f{2 \pi }{\sqrt{3}a} \br{k_1 - k_2} \qquad k_y = \f{2 \pi}{\sqrt{3}a} \br{k_1 + k_2} \]
+Inverting this system gives,
+\[ k_1 = \f{a}{4 \pi} \br{k_x + \sqrt{3} k_y} \qquad k_2 = \f{a}{4 \pi} \br{-k_x + \sqrt{3} k_y} \]
+Therefore,
+\begin{align*}
+    d^{x}\br{\ve k}
+    &= - t\bs{1 + \cos\br{2 \pi k_1} + \cos\br{2 \pi k_2}} \\
+    &= - t\bs{1 + 2\cos\br{\f{k_xa}{2}} + \cos\br{\f{\sqrt{3}k_ya}{2}}}
+\end{align*}
+Similarly for $d^{y}\br{\ve k}$,
+\[ d^{y}\br{\ve k} = 2 t \cos\br{\f{k_x a}{2}} \sin\br{\f{\sqrt{3} k_y a}{2}} \]
+By examining these equations it can be seen that there are two points (and only two points) in the first Brillouin zone where both $d^{x}$ and $d^y$ vanish simultaneously. We label these points as $\ve k_{\pm}$,
+\[ \ve k_+ = \br{k_{+, x}, k_{+, y}} = \br{\f{4 \pi }{3a}, 0} \]
+\[ \ve k_- = \br{k_{-, x}, k_{-, y}} = \br{-\f{4 \pi }{3a}, 0} \]
+At either of these points,
+\[ \abs{\ve d \br{\ve k_{\pm}}} = \sqrt{{d^x}^2\br{\ve k} + {d^y}^2\br{\ve k}} = 0 \]
+Therefore, the gap between the $\vep_{+}$ band and the $\vep_{-}$ closes at only two points. Since graphene is an insulator and does not have a Fermi surface (meaning its not \textit{not} a metal) we refer to graphene, and materials that share these features, as \term{semimetals}. \\
 
+Recalling \cref{eq:graphen_b} again,
+\[ \ve b_{1} = \f{2 \pi}{a} \br{\hat x + \sqrt{3} \hat y} \qquad \ve b_{2} = \f{2 \pi}{a} \br{-\hat x + \sqrt{3} \hat y}\]
+We can compute the lengths of $\ve b_1$ and $\ve b_2$,
+\[ \abs{\ve b_1} = \abs{\ve b_2} = \f{2 \pi}{a} \sqrt{1 + \f{1}{3}} = \f{4\pi}{\sqrt{3} a} \]
+Therefore $\ve b_1$ makes an angle of $\te = \pi/6$ with the $x$-axis,
+\[ \cos\te = \f{\ve b_1 \cdot \hat x}{\abs{\ve b_1}} = \f{\f{2 \pi}{a}}{\f{4 \pi}{\sqrt{3}a}} = \f{\sqrt{3}}{2} \implies \te = \f{\pi}{6} \]
+We are now able to plot the first Brillouin zone.
+\begin{center}
+\begin{tikzpicture}
+    \pgfmathsetmacro{\plot}{4};
+    \pgfmathsetmacro{\st}{sqrt(3)};
+    \pgfmathsetmacro{\size}{3};
+    \draw[->] (-\plot, 0) -- (\plot, 0) node[right]{$k_x$};
+    \draw[->] (0, -\plot) -- (0, \plot) node[right]{$k_y$};
+    \draw[->] (0,0) -- (\st, 1)         node[right]{$\ve b_1$};
+    \draw[->] (0,0) -- (-\st, 1)        node[left]{$\ve b_2$};
+    \draw[->] (0,0) -- (\st, -1)        node[right]{$-\ve b_2$};
+    \draw[->] (0,0) -- (-\st, -1)       node[left]{$-\ve b_1$};
+    \draw[->] (0,0) -- (0, -2)          node[below right]{$-\ve b_1 -\ve b_2$};
+    \draw[->] (0,0) -- (0, 2)           node[above right]{$\ve b_1 +\ve b_2$};
+    \draw[->] (0,0) -- (2/3*\size, 0)   node[above right]{$\ve k_+$};
+    \draw[->] (0,0) -- (-2/3*\size, 0)  node[above left]{$\ve k_-$};
+    \draw[]
+    (2/3*\size, 0) --
+    (1, \st)       --
+    % (0, 2*\st)     --
+    (-1, \st)      --
+    (-2/3*\size, 0)--
+    % (0, -2*\st)    --
+    (-1, -\st)     --
+    (1, -\st)      --
+    cycle;
+\end{tikzpicture}
+\end{center}
+The first Brillouin zone for graphene forms a hexagonal lattice with the corners obtained from $\ve k_{\pm}$ by adding $\pm b_1, \pm b_2$,
+\[ \ve G = m_1 \ve b_2 + m_2 \ve b_2 \]
+In graphene, the upper and lower band are \textit{not} separated by a band gap (sometimes $\vep_{+} > \vep_{-}$ and sometimes $\vep_{+} < \vep_{-}$). The crossing points are precisely the two points where $\ve k = \ve k_{\pm}$. If we expand $H\br{\ve k}$ near $\ve k_{\pm}$ to first order,
+\[ k_x = k_{x, \pm} + \de k_x  \qquad k_y \de k_y\]
+To first order,
+\[ d^{x}_{\pm} \br{\de \ve k} \simeq \pm \f{\sqrt{3}}{2} t a \de k_x \]
+\[ d^{y}_{\pm} \br{\de \ve k} \simeq \pm \f{\sqrt{3}}{2} t a \de k_y \]
+For both the $x$ and $y$ directions, the leading coefficient $\f{\sqrt{3}}{2} t a$ has units of speed times $\hbar$. We again call this the Fermi velocity,
+\[ v\tsb{F} = \f{\sqrt{3} t a}{2\hbar} \]
+Then we can write the Hamiltonian as,
+\[ H_{\pm}\br{\ve k} = \hbar v\tsb{F} \br{\pm k_x \si^x + k_y \si^{y}} \eq \label{eq:2d_dirac}\]
+Where here $k_x$ and $k_y$ refer to $\de k_x$ and $\de k_y$. This is done by shifting coordinates such that $\ve k_{\pm} = 0$ for each of the $+, -$ cases. Upon examination of \cref{eq:2d_dirac}, \cref{eq:2d_dirac} takes the form of a 2D Dirac Hamiltonian for a massless relativistic particle in 2D. The energies near the touching points $\ve k_{\pm}$ is,
+\[ \vep\br{\ve k} = \pm \hbar v\tsb{F} k \]
+Where $k = \sqrt{k_x^2 + k_y^2}$. This means that $\vep\br{\ve k}$ has linear dispersion near $\ve k_{\pm}$. \\
+
+One question we can ask is what can we do to graphene in order to open a gap between $\ve k_{-}$ and $\ve k_{+}$. In order words, how can we give the electron in \cref{eq:2d_dirac} an effective mass. This can be accomplished by introducing a discrepancy between the atoms labeled $1$ and the atoms labeled $2$ within a unit cell. As an example, we can add energies $\pm m$ to the atoms as follows,
+
+\begin{center}
+\begin{tikzpicture}
+    \pgfmathsetmacro{\size}{1.5};
+    \pgfmathsetmacro{\f}{sqrt(3)/2};
+    \pgfmathsetmacro{\ss}{1/2};
+    \draw (0,0) node[circle, inner sep=1pt, fill=black, label={below:$1$}]{};
+    \draw (0,\size) node[circle, inner sep=1pt, fill=black, label={above:$2$}]{};
+    \draw (0,\size) node[label={right:$-m$}]{};
+    \draw (0,0) node[label={right:$+m$}]{};
+    % \draw (\f*\size,-\ss*\size) node[circle, inner sep=1pt, fill=black, label={above:$2$}]{};
+    % \draw (-\f*\size,-\ss*\size) node[circle, inner sep=1pt, fill=black, label={above:$2$}]{};
+    \draw (0,0) -- ++(\f*\size,-\ss*\size) -- ++(\f*\size,\ss*\size) -- ++(0, \size) -- ++(-\f*\size,\ss*\size) -- ++(-\f*\size,-\ss*\size) -- cycle;
+    \draw (0,0) -- ++(0, \size) -- ++(-\f*\size,\ss*\size) -- ++(-\f*\size,-\ss*\size) --++(0, -\size) -- ++(\f*\size,-\ss*\size) -- ++(\f*\size,\ss*\size) -- cycle;
+    % \draw (0,0)  -- ++(-\f*\size,-\ss*\size) --++(0, -\size) -- ++(\f*\size,-\ss*\size) -- ++(\f*\size,\ss*\size) -- ++(0, \size) -- cycle;
+    % \draw[thick, ->] (0,0) -- node[right]{$\ve a_1$} ++(0+\f*\size, \size+\ss*\size);
+    % \draw[thick, ->] (0,0) -- node[right]{$\ve a_2$} ++(0-\f*\size, \size+\ss*\size);
+\end{tikzpicture}
+\end{center}
+
+Which effectively corresponds to adding the following term to the original Hamiltonian,
+\[ H' = m \sum_{\ve R} \br{\ket{\ve R, 1}\bra{\ve R, 1} - \ket{\ve R, 2}\bra{\ve R, 2}} \]
+Applying the Fourier transform yields the following,
+\[ H' = m \sum_{\ve k} \br{\ket{\ve k, 1}\bra{\ve k, 1} - \ket{\ve k, 2}\bra{\ve k, 2}} \]
+Which further adjusts the dispersion relationship,
+\[ H'\br{\ve k} = m \br{\ket{1}\bra{1} - \ket{2}\bra{2}} = m \si^{z} \]
+Therefore,
+\[ H_{\pm}\br{\ve k} =\hbar v\tsb{F} \br{\pm k_x \si^x + k_y \si^{y}} + m\si^{z} \]
+\[ \vep_{\pm} \br{\ve k} = \pm \sqrt{\hbar^2 v\tsb{F} k^2 + m^2} \]
+This opens up a band gap of size $2m$. Therefore clean graphene ($m=0$) is a semimetal due to inversion symmetry but becomes an insulator for $m > 0$. \\
+
+Returning to the case of $m=0$,
+\[ H_{\pm}\br{\ve k} =\hbar v\tsb{F} \br{\pm k_x \si^x + k_y \si^{y}} \]
+The `$\pm$' can be thought of as a two component degree of freedom. Because there are two components, we can think of `$\pm$' as another pseudo-spin value $\tau$.
+\begin{align*}
+    \tau^{z} &= \ket{+} \bra{+} - \ket{-}\bra{-} \\
+    \tau^{y} &= -i\br{\ket{+} \bra{-} - \ket{-}\bra{+}} \\
+    \tau^{x} &= \ket{+} \bra{-} + \ket{-}\bra{+}
+\end{align*}
+Which means that the Hamiltonian can be written without the `$\pm$' as a single matrix,
+\[ H\br{\ve k} =\hbar v\tsb{F} \br{k_x \tau^{z} \si^x + k_y \si^{y}} \eq \label{eq:double2spin}\]
+What are the symmetries of \cref{eq:double2spin}. We must have the following:
+\begin{enumerate}
+    \item Time Reversal Symmetry
+    \item Inversion Symmetry
+\end{enumerate}
+In order to facilitate discussions, we introduce two operators; the \term{inversion (parity) operator $\pi$} and \term{time-reversal operator $\Theta$}. The symmetries of \cref{eq:double2spin} can we written,
+\[  \pi^{\dagger} H\br{\ve k} \pi = H\br{\ve k} \eq \label{eq:parity_graphene}\]
+\[  \Theta H\br{\ve k} \Theta^{-1} = H\br{\ve k} \eq \label{eq:tr_graphene}\]
+Since $\tau^{z}$ refers to the two band touching points (coordinates in momentum space), $\tau^{z}$ changes sign under both symmetries,
+\[ \pi^{\dagger} \tau^{z} \pi = - \tau^{z} \eq \label{eq:tau_z_sym_parity}\]
+\[ \Theta \tau^{z} \Theta^{-1} = - \tau^{z} \eq \label{eq:tau_z_sym_tr}\]
+Furthermore, $k_{x, y, z}$ represent momentum and is thus time and parity odd,
+\[ \pi^{\dagger} k_{x,y,z} \pi = - k_{x,y,z} \]
+\[ \Theta k_{x,y,z} \Theta^{-1} = - k_{x,y,z} \]
+Therefore we must conclude that $\si^{x}$ is even under these symmetries and $\si^{y}$ is odd pursuant to \cref{eq:parity_graphene,eq:tr_graphene},
+\[ \pi^{\dagger} \si^{y} \pi = - \si^{y} \]
+\[ \Theta \si^{y} \Theta^{-1} = - \si^{y} \]
+\[ \pi^{\dagger} \si^{x} \pi = + \si^{x} \]
+\[ \Theta \si^{x} \Theta^{-1} = + \si^{x} \]
+This is intuitive because $\si$ refers to the spatial location of atoms $1$ and $2$ oriented in the $y$ direction.
+If we were to include the massive term $m\si^{z}$ we break symmetry in \cref{eq:parity_graphene,eq:tr_graphene},
+\[ \pi^{\dagger} \si^{z} \pi = - \si^{z} \qquad \Theta \si^{z} \Theta^{-1} = \si^{z} \eq \label{eq:si_z_sym}\]
+Specifically, $m \si^{z}$ breaks inversion symmetry. This is intuitive because $m$ adds spatial discrepancies between $1$ and $2$. Can we open a gap in graphene without breaking time-reversal or inversion symmetries?\\
+
+Interestingly, this lack of symmetry is an artifact of the simplistic model introduced by \cref{eq:graphene_H_nn}. If we include \textit{next-nearest neighbor} terms, it is possible to recover symmetries. Upon examination of \cref{eq:si_z_sym} and \cref{eq:tau_z_sym_parity,eq:tau_z_sym_tr} we find that $\tau^{z} \si^{z}$ is invariant under inversion,
+\[ \pi^{\dagger} \tau^{z} \si^{z} \pi = \tau^{z} \si^{z} \]
+But $\tau^{z} \si^{z}$ is not invariant under time-reversal,
+\[ \Theta \tau^{z} \si^{z} \Theta^{-1} = -\tau^{z} \si^{z} \]
+Other component that is missing from our model is the real spin of the electron (not pseudo-spin) $\ve S$. Spin $\ve S$ is parity even and time-reversal odd,
+\[ \pi^{\dagger} \ve S \pi = \ve S \qquad \Theta \ve S \Theta^{-1} = - \ve S \]
+\begin{align*}
+    S^{z} &= \ket{\uparrow} \bra{\uparrow} - \ket{\downarrow}\bra{\downarrow} \\
+    % S^{y} &= -i\br{\ket{\uparrow} \bra{\downarrow} - \ket{\downarrow}\bra{\uparrow}} \\
+    S^{x} &= \ket{\uparrow} \bra{\downarrow} + \ket{\downarrow}\bra{\uparrow}
+\end{align*}
+Upon adding this term, $\tau^{z} \si^{z} S^{z}$ maintains the desired symmetries,
+\[ \pi^{\dagger} \tau^{z} \si^{z} S^{z} \pi = \tau^{z} \si^{z} S^{z} \qquad \Theta \tau^{z} \si^{z} S^{z} \Theta^{-1} = \tau^{z} \si^{z} S^{z} \]
+This was discovered by Kane and Mele (2005) and their paper gave rise to the field of topological insulators. Therefore the true graphene Hamiltonian can be written as,
+\[ H\br{\ve k} =\hbar v\tsb{F} \br{k_x \tau^{z} \si^x + k_y \si^{y}} + \De\tsb{SO} \tau^{z} \si^{z} S^{z} \eq \label{eq:kane_mele}\]
+Where $\De\tsb{SO}$ is refered to as the \term{spin-orbit interaction}. The origin of the $\De\tsb{SO}$ term is due to the following process. When the valence electrons have the ability to tunnel between atoms, some of the atoms in the crystal lattice become ionized. The electric field of ionized atoms is felt as a magnetic field in the rest frame of the electrons. Effectively this magnetic field has strength $\ve B = \ve v \times \ve E / c$ which tends to be small as $B \propto c^{-1}$. Additionally, $\ve E$ grows for heavier and heavier atoms. This magnetic field acts on the spin in the usual manner $H \propto \ve B \cdot \ve S$. This is encapsulated in \cref{eq:kane_mele} as $\tau^{z} \si^{z}$ is coupled with the spin $S^{z}$. \\
+
+In order to formally introduce the $\De\tsb{SO} \tau^{z} \si^{z} S^{z}$ term into the Hamiltonian, we need to include next nearest-neighbor tunneling ($1 \to 1$ and $2 \to 2$ tunneling),
+
+\begin{center}
+\begin{tikzpicture}
+    \pgfmathsetmacro{\size}{1.5};
+    \pgfmathsetmacro{\f}{sqrt(3)/2};
+    \pgfmathsetmacro{\ss}{1/2};
+    \draw (0,0) node[circle, inner sep=1pt, fill=black, label={below:$1$}]{};
+    \draw (0,\size) node[circle, inner sep=1pt, fill=black, label={above:$2$}]{};
+    \draw (\f*\size,-\ss*\size) node[circle, inner sep=1pt, fill=black, label={above:$2$}]{};
+    \draw (-\f*\size,-\ss*\size) node[circle, inner sep=1pt, fill=black, label={above:$2$}]{};
+    \draw (0,0) -- ++(\f*\size,-\ss*\size) -- ++(\f*\size,\ss*\size) -- ++(0, \size) -- ++(-\f*\size,\ss*\size) -- ++(-\f*\size,-\ss*\size) -- cycle;
+    \draw (0,0) -- ++(0, \size) -- ++(-\f*\size,\ss*\size) -- ++(-\f*\size,-\ss*\size) --++(0, -\size) -- ++(\f*\size,-\ss*\size) -- ++(\f*\size,\ss*\size) -- cycle;
+    \draw (0,0)  -- ++(-\f*\size,-\ss*\size) --++(0, -\size) -- ++(\f*\size,-\ss*\size) -- ++(\f*\size,\ss*\size) -- ++(0, \size) -- cycle;
+    \draw[thick, ->] (0,0) -- node[left]{$\ve a_1$} ++(0+\f*\size, \size+\ss*\size);
+    \draw[thick, ->] (0,0) -- node[right]{$\ve a_2$} ++(0-\f*\size, \size+\ss*\size);
+    \path (0,0) edge[thick, draw, bend right, dashed, ->] ++(0+\f*\size, \size+\ss*\size);
+    \path (0,0) edge[thick, draw, bend left, dashed, ->] ++(2*\f*\size, 0);
+\end{tikzpicture}
+\end{center}
+
+The additional terms to \cref{eq:graphene_H_nn} can be expressed as,
+\[ H = \cdots -i t' \br{\ket{\ve R + \ve a_1 - \ve a_2, 1}\bra{\ve R, 1} - \ket{\ve R, 1} \bra{\ve R + \ve a_1 - \ve a_2, 1}} \cdots \]
+Which has tunneling amplitude $i t'$. The intermediate negative sign is due to the tunneling amplitude being imaginary which switches signs under conjugation.
 \end{document}
