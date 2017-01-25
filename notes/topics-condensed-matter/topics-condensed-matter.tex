@@ -759,7 +759,8 @@ The `$\pm$' can be thought of as a two component degree of freedom. Because ther
 \end{align*}
 Which means that the Hamiltonian can be written without the `$\pm$' as a single matrix,
 \[ H\br{\ve k} =\hbar v\tsb{F} \br{k_x \tau^{z} \si^x + k_y \si^{y}} \eq \label{eq:double2spin}\]
-What are the symmetries of \cref{eq:double2spin}. We must have the following:
+\section{Spin-Orbit Interactions}
+What are the symmetries of \cref{eq:double2spin}? We must have the following:
 \begin{enumerate}
     \item Time Reversal Symmetry
     \item Inversion Symmetry
@@ -823,5 +824,75 @@ In order to formally introduce the $\De\tsb{SO} \tau^{z} \si^{z} S^{z}$ term int
 
 The additional terms to \cref{eq:graphene_H_nn} can be expressed as,
 \[ H = \cdots -i t' \br{\ket{\ve R + \ve a_1 - \ve a_2, 1}\bra{\ve R, 1} - \ket{\ve R, 1} \bra{\ve R + \ve a_1 - \ve a_2, 1}} \cdots \]
-Which has tunneling amplitude $i t'$. The intermediate negative sign is due to the tunneling amplitude being imaginary which switches signs under conjugation.
+Which has tunneling amplitude $i t'$. The intermediate negative sign is due to the tunneling amplitude being imaginary which switches signs under conjugation.\\
+
+In order to study the effect $\De\tsb{SO}$ in \cref{eq:kane_mele}, we will include a massive term $m \si^{z}$ and study the following,
+\[ H\br{\ve k} =\hbar v\tsb{F} \br{k_x \tau^{z} \si^x + k_y \si^{y}} + \De\tsb{SO} \tau^{z} \si^{z} S^{z} + m \si^{z}\]
+Specifically for our analysis, we will look at the affect on $S^{z} = 1$ spin up ($\uparrow$) spins. The associated Hamiltonian for $S^{z} = 1$ has two bands $\tau^{z} = \pm 1$,
+\[ \bc{H\br{\ve k}}_{\tau^{z} = +1} \defined H_{+}\br{\ve k} =\hbar v\tsb{F} \br{k_x \si^x + k_y \si^{y}} + \br{m + \De\tsb{SO}} \si^{z}\]
+\[ \bc{H\br{\ve k}}_{\tau^{z} = -1} \defined H_{+}\br{\ve k} =\hbar v\tsb{F} \br{-k_x \si^x + k_y \si^{y}} + \br{m - \De\tsb{SO}} \si^{z}\]
+Therefore the dispersion relations are distinct for each value of $\tau^{z}$,
+\begin{align*}
+    \bc{\vep\br{\ve k}}_{\tau^{z} = +1}\defined \vep_{+}\br{\ve k} &= \pm\sqrt{\hbar^2 v\tsb{F}^2 \br{k_x^2 + k_y^2} + \br{m + \De\tsb{SO}}^2} \\
+    \bc{\vep\br{\ve k}}_{\tau^{z} = -1}\defined \vep_{-}\br{\ve k} &= \pm\sqrt{\hbar^2 v\tsb{F}^2 \br{k_x^2 + k_y^2} + \br{m - \De\tsb{SO}}^2} \eq \label{eq:SOminus}
+\end{align*}
+In the very large $m$ limit $m \gg \De\tsb{SO}$, the energy cost $(+m)$ for electrons being localized at sites of type $1$ is much higher than the energy cost $(-m)$ associated with sites of type $2$. Therefore all of the electrons will localize to sites of type $2$. Therefore in this case, the electrons can not propagate between sites because the atoms of type $1$ are in the way. We refer to these as \term{non-topological insulators} or sometimes \textit{atomic} insulators. \\
+
+In contrast to this, in the region where $m \approx \De\tsb{SO}$ we have interesting behaviors for \cref{eq:SOminus}. Since the band gap associated with the contribution from $\vep_{-}\br{\ve k}$ is $2 \abs{m - \De\tsb{SO}}$, the band gap closes when $m$ transitions between $m > \De\tsb{SO}$ and $m < \De\tsb{SO}$.
+\begin{itemize}
+    \item $m > \De\tsb{SO}$: Trivial insulator
+    \item $m = \De\tsb{SO}$: Transition point/semimetal
+    \item $m < \De\tsb{SO}$: Topological insulator
+\end{itemize}
+We have already seen this behavior for graphene in which $m=0$ defined a semimetal, and $m>0$ defined a topological insulator form of graphene. Recall the Hamiltonian of graphene had the following form,
+\[ H\br{\ve k} = \ve d \br{\ve k} \cdot \ve \si \]
+The unit vector of $\ve d$ is,
+\[ \hat d \br{\ve k} = \f{\ve d \br{\ve k}}{\abs{\ve d \br{\ve k}}} \]
+Which can be thought of as a map from the first Brillouin zone ($\ve k$) to the surface of a unit sphere $\hat d$. Interpreting the mappings in the way always one to understand the topological differences between ordinary and topological insulators. \\
+
+Near the band touching points $\ve k_{\pm}$ we have,
+\[ \hat d\br{\ve k_{+}} = \f{\br{\hbar v\tsb{F} k_x,\hbar v\tsb{F} k_y, m+\De\tsb{SO}}}{\sqrt{\hbar^2 v\tsb{F}^2 \br{\ve k_x^2 + \ve k_y^2 } + \br{m + \De\tsb{SO}}^2}} \]
+\[ \hat d\br{\ve k_{-}} = \f{\br{-\hbar v\tsb{F} k_x,\hbar v\tsb{F} k_y, m-\De\tsb{SO}}}{\sqrt{\hbar^2 v\tsb{F}^2 \br{\ve k_x^2 + \ve k_y^2 } + \br{m + \De\tsb{SO}}^2}} \]
+Clearly for the case of $m > \De\tsb{SO}$,
+\[ \ve d\br{\ve k_{-}} \cdot \hat z = m - \De\tsb{SO} > 0 \]
+Therefore $d^z\br{\ve k_{-}}$ is always positive. This is also true for $d\br{\ve k}$. Therefore $\ve d\br{\ve k}$ only covers the \textit{upper} hemisphere of the unit sphere as $\ve k$ covers the whole Brillouin zone.\\
+
+In difference to this is the case for $m < \De\tsb{SO}$. $d^{z}\br{\ve k_{-}}$ is always negative which means that $\hat d\br{\ve k}$ is able to cover the entire sphere.\\
+
+Given this observation, we can define the following \term{topological invariant} that characterizes the difference between topological insulators and ordinary insulators. This quantity is the integer $n \in \bc{0,1}$ defined as,
+\[ n = \f{1}{4\pi} \int_{\text{BZ}} \dif^2 k \hat d\cdot \br{\di_{k_x} \hat d \times \di_{k_y} \hat d} = \begin{cases}
+    1 & \text{Topological Insulators} \\
+    0 & \text{Normal Insulators} \\
+\end{cases} \]
+Where $\int_{\text{BZ}}$ refers to an integration over the entire Brillouin zone (BZ). \\
+
+Topological insulators behave exactly like insulators except that electrons near the band touching points have the potential to transition to the upper band and permit conduction. In order to study this in detail, it s sufficient to consider the Hamiltonian component associated with the topological terms,
+\[ H_{-}\br{\ve k} = \hbar v\tsb{F}\br{- k_x \si^{x} +k_y \si^{y}} + \br{m - \De\tsb{SO}} \si^{z} \]
+Where the coefficient in front of $\si^{z}$ differs in sign depending on whether or not the insulator is topological or not. Let us assume that we have a material that transitions from a topological insulator to an ordinary insulator by letting $m\br{x}$ denote the coefficient in front of $\si^{z}$ as it varies along the $x$-direction.
+\[ m\br{x} = m - \De\tsb{SO}\]
+Since $k_x$ no-longer corresponds to plane wave solutions to the Schrodinger equation, we replace $k_x$ with its representation in position space,
+\[ k_x \mapsto - i\pder{}{x} \]
+And solve $H\br{k_y}$,
+\[ H\br{k_y} = i \hbar v\tsb{F} \pder{}{x} \si^{x} + \hbar v\tsb{F} k_y \si^{y} + m\br{x} \si^{z} \]
+As a preliminary exercise, we can solve the Schrodinger equation for the case of $k_y = 0$.
+\[ H\br{0} = i \hbar v\tsb{F} \pder{}{x} \si^{x} + m\br{x} \si^{z} \eq \label{eq:kyzero} \]
+Which suggests the following ansatz solution (for some unspecified $\ket{z}$) to $H\psi = 0$,
+\[ \psi\br{x} = e^{f\br{x}} \si^{x} \ket{z} \eq \label{eq:ansatzxx}\]
+Substituting \cref{eq:ansatzxx} into \cref{eq:kyzero} and making use of the fact that $\si^{z} \si^{x} = i\si^{y}$,
+\[ \br{i \hbar v\tsb{F} \der{f}{x} + i m\br{x} \si^{y}} e^{f\br{x}} \ket{z} = 0 \]
+Therefore,
+\[ \br{\der{f}{x} + \f{m\br{x}}{\hbar v\tsb{F}} \si^{y}} \ket{z} = 0 \]
+If we choose $\ket{z}$ such that $\si^{y}\ket{z} = \ket{z}$.
+\[ \der{f}{x} = - \f{m\br{x}}{\hbar v\tsb{F}} \implies f\br{x} = - \f{1}{\hbar v\tsb{F}} \int_{0}^{x} \dif x' m\br{x'} \]
+Therefore,
+\[ \psi\br{x} = e^{- \f{1}{\hbar v\tsb{F}} \int_{0}^{x} \dif x' m\br{x'}} \si^{x} \ket{z} \]
+What is $\si^{x} \ket{z}$?
+\[ \si^{y}\si^{x} \ket{z} = -\si^{x}\si^{y} \ket{z} = - \si^{x}\ket{z} \]
+Therefore $\si^{x}\ket{z}$ is an eigenstate of $\si^{y}$ with eigenvalue $-1$. Therefore,
+\[ \psi\br{x} = e^{- \f{1}{\hbar v\tsb{F}} \int_{0}^{x} \dif x' m\br{x'}}\ket{\si^{y} = -1} \]
+This is the zero-energy eigenstate of the Hamiltonian localized at $x = 0$ for the special case of $k_y = 0$. If we consider $k_y \neq 0$, differs from \cref{eq:kyzero}. In this case,
+\[ H\br{k_y} \psi\br{x} = \hbar v\tsb{F} k_y \si^{y} \psi\br{x} = - \hbar v\tsb{F} k_y \psi\br{x} \]
+Which means $\psi\br{x}$ is an eigenstate of $H\br{k_y}$ with energy $- \hbar v\tsb{F} k_y$.
+
+
 \end{document}
