@@ -965,39 +965,116 @@ There are a number of typical Bravais lattices in three dimensions. The simplest
     \item \term{Simple Cubic}:
     \begin{center}
         \begin{tikzpicture}
-        \draw[->] (0,0) -- (2,0,0)node[right]{$x$};
-        \draw[->] (0,0) -- (0,2,0)node[above]{$y$};
-        \draw[->] (0,0) -- (0,0,2)node[below left]{$z$};
-        \foreach \x in {1,2}
-        \foreach \y in {1,2}
-        \foreach \z in {1,2}
+        \pgfmathsetmacro{\axissize}{1};
+        \pgfmathsetmacro{\shiftx}{-4};
+        \pgfmathsetmacro{\shifty}{0};
+        \pgfmathsetmacro{\shiftz}{0};
+        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx+\axissize,\shifty, \shiftz) node[right]{$x$};
+        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx,\shifty+\axissize, \shiftz) node[above]{$y$};
+        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx,\shifty, \shiftz+\axissize) node[below left]{$z$};
+        \foreach \uda in {-1,+1}
+        \foreach \udb in {-1,+1}
+        \draw[gray, dashed]
+        (-1,+\uda,+\udb) -- (+1,+\uda,+\udb)
+        (+\uda,-1,+\udb) -- (+\uda,+1,+\udb)
+        (+\uda,+\udb,-1) -- (+\uda,+\udb,+1)
+        ;
+        \foreach \x in {-1,+1}
+        \foreach \y in {-1,+1}
+        \foreach \z in {-1,+1}
         \draw[] (\x,\y,\z) node[fill=black, circle, inner sep=1pt]{};
-        \draw[] (1,1,1) -- (2,1,1) node[right]{$\ve a_1$};
-        \draw[] (1,1,1) -- (1,2,1) node[above]{$\ve a_2$};
-        \draw[] (1,1,1) -- (1,1,2) node[below left]{$\ve a_3$};
-        \foreach \xa in {1,2}
-        \foreach \ya in {1,2}
-        \foreach \za in {1,2}
-        \foreach \xb in {1,2}
-        \foreach \yb in {1,2}
-        \foreach \zb in {1,2}
-        \draw[gray, very thin, dashed] (\xa, \ya, \za) -- (\xb, \yb, \zb);
-        % \foreach \x in {1.5,2.5}
-        % \foreach \y in {1.5,2.5}
-        % \foreach \z in {1,2,3}
-        %         \draw[gray,very thin] (\x,\y,\z) +(-.5,-.5) rectangle ++(.5,.5);
-        % \foreach \x in {1,2,3}
-        %         \draw (\x,1,1) -- (\x,1,3) (\x,2,1) -- (\x,2,3) (\x,3,1) -- (\x,3,3)  ;
-
-        % \foreach \x in {1.5,2.5}
-        % \foreach \y in {1.5,2.5}
-        % \foreach \z in {1.5,2.5}
-        % \filldraw[red] (\x,\y,\z) circle (2pt);
+        \draw[->] (-1,-1,-1) -- (+1,-1,-1) node[right]{$\ve a_1$};
+        \draw[->] (-1,-1,-1) -- (-1,+1,-1) node[above]{$\ve a_2$};
+        \draw[->] (-1,-1,-1) -- (-1,-1,+1) node[below left]{$\ve a_3$};
         \end{tikzpicture}
     \end{center}
     \[ \ve a_1 = a \hat x \quad \ve a_2 = a \hat y \quad \ve a_3 = a \hat z \]
-    \item \term{Body-centered Cubic}:
+    \item \term{Body-centered Cubic (bcc)}:
+    \todo{Draw}
+    \item \term{Face-centered Cubic (fcc)}:
+    \begin{center}
+        \begin{tikzpicture}
+        \pgfmathsetmacro{\axissize}{1};
+        \pgfmathsetmacro{\shiftx}{-4};
+        \pgfmathsetmacro{\shifty}{0};
+        \pgfmathsetmacro{\shiftz}{0};
+        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx+\axissize,\shifty, \shiftz) node[right]{$x$};
+        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx,\shifty+\axissize, \shiftz) node[above]{$y$};
+        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx,\shifty, \shiftz+\axissize) node[below left]{$z$};
+        \foreach \uda in {-1,+1}
+        \foreach \udb in {-1,+1}
+        \draw[gray, dashed]
+        (-1,+\uda,+\udb) -- (+1,+\uda,+\udb)
+        (+\uda,-1,+\udb) -- (+\uda,+1,+\udb)
+        (+\uda,+\udb,-1) -- (+\uda,+\udb,+1)
+        ;
+        \foreach \x in {-1,+1}
+        \foreach \y in {-1,+1}
+        \foreach \z in {-1,+1}
+        \draw[] (\x,\y,\z) node[fill=black, circle, inner sep=1pt]{};
+        \draw[->] (-1,-1,-1) -- (-1,+0,+0) node[left]{$\ve a_1$};
+        \draw[->] (-1,-1,-1) -- (+0,-1,+0) node[above right]{$\ve a_2$};
+        \draw[->] (-1,-1,-1) -- (+0,+0,-1) node[above]{$\ve a_3$};
+        \end{tikzpicture}
+    \end{center}
+    \[ \ve a_1 = \f{a}{2} \br{\hat y + \hat z} \quad \ve a_2 = \f{a}{2} \br{\hat x + \hat z} \quad \ve a_3 = \f{a}{2} \br{\hat x + \hat y} \]
+    \item \term{Diamond Structure}:
+    \[ \hat r = \f{Q}{4}\br{\hat x + \hat y + \hat z} \]
+    \[ \ve a_1 = \f{a}{2} \br{\hat y + \hat z} \quad \ve a_2 = \f{a}{2} \br{\hat x + \hat z} \quad \ve a_3 = \f{a}{2} \br{\hat x + \hat y} \]
 \end{enumerate}
 
+The Diamond structure is a generalization of the graphene lattice in 3D. The nearest-neighbor hopping Hamiltonian is as follows,
+\[ H_1 = - \sum_{\ve R} \br{t \ket{\ve R, 1}\bra{\ve R, 2} + t \ket{\ve R + \ve a_1, 1}\bra{\ve R, 2} + t \ket{\ve R + \ve a_2, 1}\bra{\ve R, 2} + t \ket{\ve R + \ve a_3, 1} \bra{\ve R, 2} + \text{h.c.}} \eq \label{eq:diamond_H1}\]
+While the second-nearest neighbor terms are numerous. In fact there are $24$ terms similar to the one below.
+\[ H_2 = i \f{8 \De\tsb{SO}}{a^2} \sum_{\ve R} \ket{\ve R + \ve a_1,1} \bra{\ve R, 1} \ve S \cdot \br{\ve r \times \ve a_1} + \ldots \]
+It is to explore the first nearest-neighbor hopping Hamiltonian in the case where the tunneling amplitudes in \cref{eq:diamond_H1} are perturbed a small amount $t \mapsto t + \de t$. When $\de t = 0$ there are $3$ band-touching point in the BZ. When $\de t \neq 0$ we have,
+\[ H = - \de t \si^{x} + t a k_z \si^{y} - 2 \De\tsb{SO} a \si^{z} S^{x} k_x + 2 \De\tsb{SO} a \si^{z} S^{y} k_y \]
+Where th Pauli spin $\ve \si$ describes the degree of freedom associated with localization to atoms $1$ or $2$. The $\ve S$ spin is the intrinsic spin of the electron. The dispersion relation can be calculated as well,
+\[ \vep_{\pm}\br{\ve k} = \pm \sqrt{t^2 a^2 k_z^2 + 4 \De\tsb{SO}^2 a^2 \br{k_x^2 + k_y^2} + \de t^2} \]
 
+\section{Quantum Hall Effect}
+
+In this section we will discuss the Quantum Hall Effect. Specifically we will look at the Quantum Hall Effect in a $2$-dimensional electron gas (2DEG) when subjected to a magnetic field. 2DEG arise at heterointerfaces; interfaces between two different semiconductor materials. Semiconductors are insulators with a small band gap $<\SI{1}{\eV}$.
+
+\begin{center}
+\begin{tikzpicture}
+    \draw (-3, 3) node[]{$\text{Al}_{x} \text{Ga}_{1-x} \text{As}$};
+    \draw (+3, 3) node[]{$\text{GaAs}$};
+    \draw (0, -3) -- (0, 3);
+    \draw[dashed] (-4, 1) -- (+4, 1) node[right]{$\vep\tsb{F}$};
+    \draw [] plot [smooth, tension=1] coordinates {(-4, 1.5) (-1, 1.8) (0, 2.5)};
+    \draw [] plot [smooth, tension=1] coordinates {(+4, 1.5) (+1, 1.2) (0, 0.5)};
+    \draw [] plot [smooth, tension=1] coordinates {(-4, -2.5) (-1, -2.2) (0, -1.5)};
+    \draw [] plot [smooth, tension=1] coordinates {(+4, -0.5) (+1, -0.8) (0, -1.5)};
+\end{tikzpicture}
+\end{center}
+
+We place the 2DEG in the $xy$-plane and subject it to a magnetic field in the $z$-direction $\ve B = B \hat z$. If the electrons are classical particles of charge $-e$ and mass $m$,
+\[ \der{\ve p}{t} = \ve F\tsb{L} = - \f{e}{c}\ve v \times \ve B \qquad \ve v = \f{\ve p}{m}, \ve v = \der{\ve t}{t} \]
+Solving these equations yields,
+\[ m \dder{\ve r}{t} = - \f{e}{c} \der{\ve r}{t} \times \ve B  \]
+Therefore we obtain a two dimensional system of coupled ordinary differentiable equations,
+\begin{align*}
+\dder{x}{t} &= - \f{eB}{mc} \der{y}{t} \\
+\dder{y}{t} &= \f{eB}{mc} \der{x}{t}
+\end{align*}
+Where the frequency $\w_C = \f{eB}{mc}$ is the cyclotron frequency. In order to solve this system, introduce a complex parameter $z = x + i y$ such that,
+\[ \dder{x}{t} = i \w_x \der{z}{t} \]
+\[ z\br{t} = z_0 - \f{i v_0}{\w_C}e^{i \w_c t}  \]
+Which is circular motion with frequency $\w_C$. Therefore if we need to model the average time between collisions with impurities, the simplest description involves a decrease in momentum with characteristic time $\tau$.
+\[ \der{\ve p}{t} = - e \br{\ve E + \f{1}{c} \ve v \times \ve B} - \f{\ve p}{\tau} \]
+Therefore without a magnetic field we have,
+\[ \der{\ve p}{t} = \f{- \ve p}{t} \implies \ve p\br{t} = \ve p\br{0} e^{- t/\tau} \]
+In general,
+\[ m\der{\ve v}{t} = - \f{m \ve v}{\tau} - e\br{\ve E + \f{1}{c} \ve v \times \ve B} \]
+Assuming that $\ve E$ and $\ve B$ are time-independent, we can look for the time-independent steady state solution corresponds to a fixed $\ve v$,
+\[ \der{\ve v}{t} = 0 \implies \ve v = -\f{e \tau}{m} \br{\ve E + \f{1}{c} \ve v \times \ve B} \]
+The electron $\ve v$ is connect to the current density $\ve j$ through the following equation we have seen before,
+\[ \ve j = - e n \ve v \]
+Where $n$ is the electron density and $e$ is the electric charge. Therefore,
+\[ \ve j = \f{e^2 n \tau}{m} \br{\ve E - \f{e \tau}{m c} \ve j \times \ve B} \]
+In the absence of a magnetic field $\ve B$, we recover Ohm's law,
+\[ \ve j = \f{e^2 n \tau}{m} \ve E \]
+Where the proportionality is the conductivity $\si$,
+\[ \si = \f{e^2 n \tau}{m} \]
 \end{document}
