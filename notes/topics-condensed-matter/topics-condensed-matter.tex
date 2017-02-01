@@ -705,10 +705,10 @@ We are now able to plot the first Brillouin zone.
 The first Brillouin zone for graphene forms a hexagonal lattice with the corners obtained from $\ve k_{\pm}$ by adding $\pm b_1, \pm b_2$,
 \[ \ve G = m_1 \ve b_2 + m_2 \ve b_2 \]
 In graphene, the upper and lower band are \textit{not} separated by a band gap (sometimes $\vep_{+} > \vep_{-}$ and sometimes $\vep_{+} < \vep_{-}$). The crossing points are precisely the two points where $\ve k = \ve k_{\pm}$. If we expand $H\br{\ve k}$ near $\ve k_{\pm}$ to first order,
-\[ k_x = k_{x, \pm} + \de k_x  \qquad k_y \de k_y\]
+\[ k_x = k_{x, \pm} + \de k_x  \qquad k_y = \de k_y\]
 To first order,
 \[ d^{x}_{\pm} \br{\de \ve k} \simeq \pm \f{\sqrt{3}}{2} t a \de k_x \]
-\[ d^{y}_{\pm} \br{\de \ve k} \simeq \pm \f{\sqrt{3}}{2} t a \de k_y \]
+\[ d^{y}_{\pm} \br{\de \ve k} \simeq \f{\sqrt{3}}{2} t a \de k_y \]
 For both the $x$ and $y$ directions, the leading coefficient $\f{\sqrt{3}}{2} t a$ has units of speed times $\hbar$. We again call this the Fermi velocity,
 \[ v\tsb{F} = \f{\sqrt{3} t a}{2\hbar} \]
 Then we can write the Hamiltonian as,
@@ -1019,6 +1019,7 @@ There are a number of typical Bravais lattices in three dimensions. The simplest
     \end{center}
     \[ \ve a_1 = \f{a}{2} \br{\hat y + \hat z} \quad \ve a_2 = \f{a}{2} \br{\hat x + \hat z} \quad \ve a_3 = \f{a}{2} \br{\hat x + \hat y} \]
     \item \term{Diamond Structure}:
+    \todo{Draw}
     \[ \hat r = \f{Q}{4}\br{\hat x + \hat y + \hat z} \]
     \[ \ve a_1 = \f{a}{2} \br{\hat y + \hat z} \quad \ve a_2 = \f{a}{2} \br{\hat x + \hat z} \quad \ve a_3 = \f{a}{2} \br{\hat x + \hat y} \]
 \end{enumerate}
@@ -1050,7 +1051,7 @@ In this section we will discuss the Quantum Hall Effect. Specifically we will lo
 \end{center}
 
 We place the 2DEG in the $xy$-plane and subject it to a magnetic field in the $z$-direction $\ve B = B \hat z$. If the electrons are classical particles of charge $-e$ and mass $m$,
-\[ \der{\ve p}{t} = \ve F\tsb{L} = - \f{e}{c}\ve v \times \ve B \qquad \ve v = \f{\ve p}{m}, \ve v = \der{\ve t}{t} \]
+\[ \der{\ve p}{t} = \ve F\tsb{L} = - \f{e}{c}\ve v \times \ve B \qquad \ve v = \f{\ve p}{m}, \ve v = \der{\ve r}{t} \]
 Solving these equations yields,
 \[ m \dder{\ve r}{t} = - \f{e}{c} \der{\ve r}{t} \times \ve B  \]
 Therefore we obtain a two dimensional system of coupled ordinary differentiable equations,
