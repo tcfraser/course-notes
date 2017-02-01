@@ -1078,4 +1078,84 @@ In the absence of a magnetic field $\ve B$, we recover Ohm's law,
 \[ \ve j = \f{e^2 n \tau}{m} \ve E \]
 Where the proportionality is the conductivity $\si$,
 \[ \si = \f{e^2 n \tau}{m} \]
+\todo[]{Missed the start of this lecture}
+The electric field in the conduction is,
+\[ \ve E = \f{\ve j}{\si} = \f{1}{nec} \ve B \times \ve j \]
+Component-wise,
+\begin{align*}
+    E_x &= \f{1}{\si} j_x + \f{B}{nec} j_y \\
+    E_y &= \f{1}{\si} j_y - \f{B}{nec} j_x
+\end{align*}
+If there is no current in the $y$-direction ($j_y = 0$) we have,
+\[ E_y = -\f{B}{nec} j_x \qquad \f{E_y}{B j_x} = -\f{1}{nec} = - R_H \]
+The last equality is a definition of the \term{Hall coefficient} $R_H$
+\[ R_H = \f{1}{nec} \]
+Notice that the Hall coefficient only depends on the density of the electrons and other fundamental constants. Now we introduce the \term{resistivity tensor},
+\[\rho \begin{pmatrix}
+    1 / \si & B R_{H} \\
+    -B R_{H} & 1 / \si \\
+\end{pmatrix} \]
+We refer to this as the \term{classical Hall effect}.
+
+\begin{center}
+\begin{tikzpicture}
+    \pgfmathsetmacro{\axissize}{4};
+    \pgfmathsetmacro{\plotsize}{4};
+    \draw[->] (0,0) -- (+\axissize,0) node[right]{$B$};
+    \draw[->] (0, 0) -- (0,+\axissize) node[above]{$\rho_{xy}$};
+    \draw[red] (1, 0) arc (0:27:1) node[midway, right]{$R_{H}$};
+    \draw[scale=1.0,domain=0:\plotsize,smooth,variable=\B,red] plot ({\B},{0.5*\B});
+\end{tikzpicture}
+\end{center}
+
+In reality, the classical Gall effect occurs at weak magnetic fields or in dirty samples.
+If we let $1/\tau$ characterize the impurity scattering rate, our classical Hall effect is relevant in the domain where,
+\[ \w_{C} \tau \ll 1 \]
+Recall that the cyclotron frequency is $\w_C$,
+\[ \w_C = \f{eB}{mc} \]
+If $\w_{C} \tau \ll 1$, the electron will be scatter many times before being able to complete a single circular orbit; i.e. if the period of the circular motion of the electron is greater than the mean-free time, then we can model the electrons as a classical particle.\\
+
+In we have $\w_{C} \tau \gg 1$, then the classical Hall effect is no longer the dominant feature. If the circular motion of the electrons becomes quantized, we need to consider the \term{quantum Hall effect}. The quantum aspects of the electron need to be considered in really clean materials or in high magnetic fields.\\
+
+To study the quantum Hall effect, consider free quantum particles of charge $-e$ in the $xy$-plane in a magnetic field $\ve B= B \hat z$ pointing in the $\hat z$ direction. In the absence of a magnetic field, we have the relation $\ve p = m \ve v$ which makes the Hamiltonian,
+\[  H = - \f{\hbar^2 \del^2}{2m} \]
+However, a magnetic field $\ve B = \vdel \times \ve A$ we have,
+\[ m \ve v = \ve p + \f{e}{c} \ve A \]
+Therefore the Hamiltonian for a charged particle in a magnetic field is,
+\[ H = \f{1}{2m} \br{- i \hbar \vdel + \f{e}{c} \ve A}^2 - \ve \mu \cdot \ve B \]
+Where $\ve \mu$ is the magnetic dipole moment. For simplicity, we neglect $\ve \mu$ for now. Therefore, the Hamiltonian of interest is,
+\[ H = \f{1}{2m} \br{- i \hbar \vdel + \f{e}{c} \ve A}^2 \eq \label{eq:quantum_hall_ham} \]
+Where we wish to find the energy eigenstates $\psi$ where $H \psi = E \psi$. Moreover, the magnetic field is determined by $\ve B = \vdel \times \ve A$ leaving a \term{gauge invariance} in the choice of $\ve A$,
+\[ \ve A \to \ve A + \vdel f \]
+The gauge choice we will used is called the \term{Landau gauge}.
+\[ \ve A = x B \hat y \]
+Therefore,
+\[ \br{\vdel \times \ve A}_{z} = \pder{A_y}{x} - \pder{A_x}{y} = B \]
+Analogously the $x,y$ components of $\vdel \times \ve A$ are as follows,
+\[ \br{\vdel \times \ve A}_{x} = \pder{A_z}{y} - \pder{A_y}{z} = 0 \]
+\[ \br{\vdel \times \ve A}_{y} = \pder{A_x}{z} - \pder{A_z}{x} = 0 \]
+Therefore \cref{eq:quantum_hall_ham} becomes,
+\begin{align*}
+    H
+    &= \f{1}{2m}\br{- i \hbar \vdel + \f{e}{c} \ve A}^2 \\
+    &= \f{1}{2m}\br{- i \hbar \vdel + \f{e\ve B}{c} \times \hat y}^2 \\
+    &= - \f{\hbar^2}{2m} \pdder{}{x} + \f{1}{2m}\br{- i \hbar \pder{}{y} + \f{eB}{c}x}^2 \eq \label{eq:quantum_hall_ham_landau}
+\end{align*}
+Notice that $H$ is not invariant with respect to translations along the $x$-direction but \textit{is} invariant with respect to translations along the $y$-direction. Translation symmetries give rise to wave functions that are also momentum eigenstates. If the energy eigenstates $\psi\br{x,y}$ are thus functions of $x,y$ and have the following form,
+\[ H \psi\br{x,y} = E \psi\br{x,y} \]
+Symmetry analysis suggests we should expect $\psi$ to the separable into a plane wave solution with non-trivial $x$-dependence $\varphi\br{x}$.
+\[ \psi\br{x,y} = e^{i k y} \varphi\br{x} \]
+With $k$ to be determined. Substituting this ansatz into \cref{eq:quantum_hall_ham_landau} yields,
+\[ E \psi\br{x,y}= - \f{\hbar^2}{2m} \pdder{\varphi}{x} e^{iky} + \f{1}{2m}\br{\hbar k + \f{eB}{c}x}^2 \varphi e^{iky} \]
+Canceling $\varphi$,
+\[ E \varphi = - \f{\hbar^2}{2m} \pdder{\varphi}{x} + \f{1}{2m}\br{\hbar k + \f{eB}{c}x}^2 \varphi \eq \label{eq:hall1D}\]
+Gives us a 1D differential equation. For convenience of notation we introduce the \term{magnetic length} $\ell$,
+\[ \ell = \sqrt{\f{\hbar c}{eB}} \]
+Additionally re-use the classical cyclotron frequency,
+\[ \w_{C} = \f{eB}{mc} \]
+Using these constants, \cref{eq:hall1D} can we re-expressed as,
+\[ -\f{\hbar^2}{2m} \pdder{\varphi}{x} + \f{m\w_{C}^2}{2} \br{x + k \ell^{2}}^2 \varphi = E \varphi \]
+At this stage, it should be clear that this Hamiltonian is nothing more than a 1D Harmonic oscillator with frequency $\w_{C}$ and centered at $x - k \ell^{2}$. The solution for the quantum harmonic oscillator can be found in a number of undergraduate quantum theory textbooks. Therefore the energy level for the $n$-th state for fixed $k$ can be written as,
+\[ E_{nk} = \hbar \w_{C} \br{n + \f12} \qquad n = 0, 1, 2, \ldots \]
+We refer to these energy levels as \term{Landau levels}. Every Landau level is degenerate with respect to all the different values of $k$. Since $E_{nk}$ is independent of $k$, we say that $E_{nk}$ has degeneracies in $k$. Because of this, Landau levels are analogous to bands in a crystal.
 \end{document}
