@@ -23,7 +23,9 @@
 
 \disclaimer
 
-\section{Toy Model of a Solid}
+\section{Effects of the Electronic Structure Topology}
+
+\subsection{Toy Model of a Solid}
 
 \todo[TC]{Type up notes for first class}
 
@@ -451,7 +453,7 @@ Since $\si_y \ket{\uparrow} = i \ket{\downarrow}$,
 \end{tikzpicture}
 \end{center}
 
-\section{Higher Dimensions}
+\subsection{Higher Dimensions}
 
 A crystal is an infinite, periodic array of identical groups of atoms,
 \[ \text{crystal} = \br{\text{basis}, \text{Bravais lattice}} \]
@@ -482,11 +484,11 @@ The \term{primitive unit cell} is the parallelepiped defined by the primitive tr
 
 A special type of unit cell, usually the most convenient, is the \term{Wigner-Seitz unit cell}. A WS unit cell is the region of space about a BL point that are closer to this point than to any other BL point.
 
-\section{Lattice Theory}
+\subsection{Lattice Theory}
 
 \todo[TC]{Missed a lecture}
 
-\subsection{Reciprocal Lattice}
+\subsubsection{Reciprocal Lattice}
 The reciprocal lattice
 \[ e^{i \ve G \cdot \ve P} = 1 \]
 
@@ -500,7 +502,7 @@ Where the reciprocal lattice is defined such that,
 Which means $\ve b_1$ and $\ve b_2$ take on the following form.
 \[ \ve b_1 = \f{2\pi}{\sqrt{3} a} \br{\hat y + \sqrt{3} \hat x} \]
 \[ \ve b_2 = \f{2\pi}{\sqrt{3} a} \br{\hat y - \sqrt{3} \hat x} \]
-\subsection{Electronic Structure for Square Lattice}
+\subsubsection{Electronic Structure for Square Lattice}
 
 The square lattice in 2 dimensions has two primitive basis vectors $\ve a_{1}, \ve a_{2}$,
 \begin{center}
@@ -597,7 +599,7 @@ Recall from \cref{eq:minimum_k} that this equation only defines the Fermi surfac
 \[ \vep \br{\ve k} = - 2t \br{\cos \br{k_x a} + \cos \br{k_y a}} \]
 For a half-filled band, $\vep\tsb{F} = 0$, the Fermi surface is depicted above.
 
-\subsection{Graphene}
+\subsubsection{Graphene}
 The primitive unit vectors for Graphene are,
 \[ \ve a_{1} = \f{a}{2} \br{\hat x + \sqrt{3} \hat y} \qquad \ve a_{2} = \f{a}{2} \br{-\hat x + \sqrt{3} \hat y} \eq \label{eq:graphen_a} \]
 Whereas the reciprocal lattice is,
@@ -759,7 +761,7 @@ The `$\pm$' can be thought of as a two component degree of freedom. Because ther
 \end{align*}
 Which means that the Hamiltonian can be written without the `$\pm$' as a single matrix,
 \[ H\br{\ve k} =\hbar v\tsb{F} \br{k_x \tau^{z} \si^x + k_y \si^{y}} \eq \label{eq:double2spin}\]
-\section{Spin-Orbit Interactions}
+\subsection{Spin-Orbit Interactions}
 What are the symmetries of \cref{eq:double2spin}? We must have the following:
 \begin{enumerate}
     \item Time Reversal Symmetry
@@ -958,7 +960,7 @@ Which means that we can construct a \term{spin current},
 \[ \si_{xy}^{S} =\f{1}{2} \br{\si_{xy}^{\uparrow} - \si_{xy}^{\downarrow}} = - \f{e^2}{h} \]
 Effectively, if we have an equal number of electrons moving to the right and the left but each direction is biased to a particular spin, we can have a buildup of spin up electrons on the right and spin down electrons on the left. This is the analogue of \textit{spin voltage}. \\
 
-\section{Bravais Lattices in 3D}
+\subsection{Bravais Lattices in 3D}
 
 There are a number of typical Bravais lattices in three dimensions. The simplest one is the simple cubic.
 \begin{enumerate}
@@ -1033,9 +1035,9 @@ It is to explore the first nearest-neighbor hopping Hamiltonian in the case wher
 Where th Pauli spin $\ve \si$ describes the degree of freedom associated with localization to atoms $1$ or $2$. The $\ve S$ spin is the intrinsic spin of the electron. The dispersion relation can be calculated as well,
 \[ \vep_{\pm}\br{\ve k} = \pm \sqrt{t^2 a^2 k_z^2 + 4 \De\tsb{SO}^2 a^2 \br{k_x^2 + k_y^2} + \de t^2} \]
 
-\section{Quantum Hall Effect}
+\subsection{Quantum Hall Effect}
 
-In this section we will discuss the Quantum Hall Effect. Specifically we will look at the Quantum Hall Effect in a $2$-dimensional electron gas (2DEG) when subjected to a magnetic field. 2DEG arise at heterointerfaces; interfaces between two different semiconductor materials. Semiconductors are insulators with a small band gap $<\SI{1}{\eV}$.
+In this subsection we will discuss the Quantum Hall Effect. Specifically we will look at the Quantum Hall Effect in a $2$-dimensional electron gas (2DEG) when subjected to a magnetic field. 2DEG arise at heterointerfaces; interfaces between two different semiconductor materials. Semiconductors are insulators with a small band gap $<\SI{1}{\eV}$.
 
 \begin{center}
 \begin{tikzpicture}
@@ -1157,5 +1159,89 @@ Using these constants, \cref{eq:hall1D} can we re-expressed as,
 \[ -\f{\hbar^2}{2m} \pdder{\varphi}{x} + \f{m\w_{C}^2}{2} \br{x + k \ell^{2}}^2 \varphi = E \varphi \]
 At this stage, it should be clear that this Hamiltonian is nothing more than a 1D Harmonic oscillator with frequency $\w_{C}$ and centered at $x - k \ell^{2}$. The solution for the quantum harmonic oscillator can be found in a number of undergraduate quantum theory textbooks. Therefore the energy level for the $n$-th state for fixed $k$ can be written as,
 \[ E_{nk} = \hbar \w_{C} \br{n + \f12} \qquad n = 0, 1, 2, \ldots \]
-We refer to these energy levels as \term{Landau levels}. Every Landau level is degenerate with respect to all the different values of $k$. Since $E_{nk}$ is independent of $k$, we say that $E_{nk}$ has degeneracies in $k$. Because of this, Landau levels are analogous to bands in a crystal.
+We refer to these energy levels as \term{Landau levels}. Every Landau level is degenerate with respect to all the different values of $k$. Since $E_{nk}$ is independent of $k$, we say that $E_{nk}$ has degeneracies in $k$. Because of this, Landau levels are analogous to bands in a crystal. \\
+
+\todo[]{Missed 2 lectures} \\
+
+\subsubsection{Conclusion}
+
+The topological features of electronic structures we have considered thus far are genuine manifestations of quantum mechanics on macroscopic scales. For example, resistivity in the Quantum Hall effect,
+\[ \rho_{xy} = \f{h}{e^2 \nu} \]
+Has dependence on Planck's constant $h$ which indicates that it has no classical counterpart. This is in contrast with the Classical Hall effect,
+\[ \rho_{xy} = \f{B}{nec} \]
+which does not rely on quantum mechanics whatsoever. This concludes the first focus of this course and one of the major ideas in condensed matter physics: the effects of the electronic structure topology on macroscopic scales. \\
+
+\section{Electron-electron Interactions}
+
+Heretofore, we have consider materials where electrons are modeled as moving in a atomic lattice in \textit{isolation}. In essence, the electrons are treated as being non-interacting. This approximation was well-founded as many material properties can be seen as consequences of non-interacting electrons and in most cases, electron interactions are negligible. \\
+
+However, in specific cases the electron interactions yield interesting physics. For example Landau Fermi liquid theory, magnetism and superconductivity all require a description of electronic interactions. \\
+
+In particular, \term{ferromagnetism} is the appearance of \textit{spontaneous} macroscopic magnetic momentum in certain materials at sufficiently low temperature $T$. For a material magnetic field $H$, the magnetization $M$ is
+\[ M = \chi H \]
+Where $\chi$ is the \term{magnetic susceptibility}.
+\begin{itemize}
+    \item $\chi > 0$ paramagnets
+    \item $\chi < 0$ diamagnets
+\end{itemize}
+Ferromagnets are distinct from both para and diamagnets in that they possess magnetic fields $M \neq 0$ even in the absence of $H$. It is this feature we are referring to when we say that ferromagnets produce magnetic fields \textit{spontaneously}. \\
+
+Unlike materials with completely filled shells (which have zero spin), materials that have incompletely filled d-shells (such as iron) have non-zero spin,
+\[ \text{Fe} : 3 \text{d}^{6} 4\text{s}^2 \]
+\term{Hund's rule} states that atomic orbitals are filled in such a way as to \textit{maximize} the total spin. Equivalently, any incompletely filled atomic orbital will always have non-zero total spin. If any incompletely filled shell has non-zero spin why are d-shells important? d-shells are important to magnetism because the electrons in higher orbital shells are spaced farther apart. This permits the electrons to have a stronger notion of localization for specific positions around atoms. \\
+
+The combination of incompletely filled d-shells and Hund's rule implies that there is a non-zero atomic \term{magnetic moments $\ve \mu$},
+\[ \ve \mu = g \mu_{B} \ve S \]
+Where $\mu_B$ is the \term{Bohr magneton},
+\[ \mu_{B} = \f{e\hbar}{2 mc} \]
+And $g \approx 2$. Therefore,
+\[ \mu \sim g \mu_B \sim \f{e\hbar}{mc} \]
+The most obvious source interactions are magnetic dipole interactions
+\[ U\tsb{dip} = \f{1}{r^3} \br{\ve \mu_1 \cdot \ve \mu_2 - 3 \br{\ve \mu_1 \cdot \hat r}\br{\ve \mu_2 \cdot \hat r}} \]
+Recalling the Bohr radius $a_{0}$,
+\[ a_{0} = \f{\hbar^2}{m c^2} \]
+We can write $U\tsb{dip}$ in terms of a distance $r$,
+\[ U\tsb{dip} \sim \f{\br{g\mu_B}^3}{r^3} = \br{\f{e\hbar}{mc}}^2 \f{1}{r^3} = \br{\f{e^2}{\hbar c}}^2 \f{e^2}{a_0} \br{\f{a_0}{r}}^3 \]
+Where the coefficients are related to the dimensionless \term{Fine structure constant $\al$},
+\[ \al = \f{e^2}{\hbar c} \simeq \f{1}{137} \]
+Using this constant,
+\[ U\tsb{sip} \sim \al^2 \f{e^2}{a_0} \br{\f{a_0}{r}}^3 \]
+For typical atomic separations $r \sim a_0$, we have $U\tsb{dip} \sim \al^2 \f{e^2}{a_0} \sim \SI{e-4}{\eV}$ which corresponds to temperatures $T \sim U\tsb{dip}/k_B \sim \SI{1}{\K}$. This result is odd because we know that the critical temperature for iron is,
+\[ \text{Fe} : T_c = \SI{1043}{\K} \]
+Therefore dipole-dipole interactions can \textit{not} be the source of ferromagnetism. \\
+
+For ordinary electron-electron Coulomb interactions $e^2 / a_0$ is the typical Coulomb interaction energy between electrons on neighboring atoms.
+\[ \f{e^2}{a_0} \sim \SI{1}{\eV} \qquad T \sim \SI{e4}{\K} \]
+This is much closer to the critical temperature for iron, therefore we conclude that ordinary Coulumb interactions are responsible for ferromagnetism. \\
+
+Consider $2$ electrons on two atomic orbitals $\varphi_1\br{\ve r_1}$ and $\varphi_2\br{\ve r_2}$. The Coulumb potential is,
+\[ V\br{\ve r_1 - \ve r_2} = \f{e^2}{\abs{\ve r_1 - \ve r_2}} \]
+In general the wavefunction for the two electrons will depend on positions $\ve r_1, \ve r_2$ for the two electrons and spin values $\si_i \in \bc{\uparrow, \downarrow}$. This position and spin wavefunctions are separable,
+\[ \psi \br{\ve r_1 \si_1, \ve r_2 \si_2} = \psi\br{\ve r_1, \ve r_2} \chi \br{\si_1, \si_2} \]
+Since the electrons are Fermions the wavefunction must be antisymmetric with respect to the exchange of the two particles,
+\[ \psi\br{\ve r_2 \si_2, \ve r_1 \si_1} = - \psi\br{\ve r_1 \si_1, \ve r_2\si_2} \]
+Therefore we have two possibilities for the antisymmety of $\psi$,
+\begin{enumerate}
+    \item $\psi\br{\ve r_1, \ve r_2}$ is antisymmetric:
+    \[ \psi\br{\ve r_1, \ve r_2} = -\psi\br{\ve r_2, \ve r_1} \]
+    \[ \chi\br{\si_1, \si_2} = +\chi\br{\si_2, \si_1} \]
+    \item $\chi\br{\si_1, \si_2}$ is antisymmetric:
+    \[ \psi\br{\ve r_1, \ve r_2} = +\psi\br{\ve r_2, \ve r_1} \]
+    \[ \chi\br{\si_1, \si_2} = -\chi\br{\si_2, \si_1} \]
+\end{enumerate}
+Since the potential $V \br{\ve r_1 - \ve r_2}$ is independent of the spin, the total spin of two electrons is a conserved quantity. In using this observation, it is convenient to not label the individual spins $\si_1, \si_2$ (which are not conserved) but instead the total spin $S$ and its projection onto the $z$-axis $M$.
+\[ \ket{\si_1, \si_2} \mapsto \ket{S, M} \]
+If the total number states has to be conserved ($\ket{\si_1, \si_2} \in \s H^{4} \implies \ket{S, M} \in \s H^{4}$), then the four spin states,
+\[ \ket{\uparrow, \uparrow} \quad\ket{\uparrow, \downarrow} \quad\ket{\downarrow, \uparrow} \quad\ket{\downarrow, \downarrow}  \]
+Map to $4$ possible values for $S, M$. The $z$ component of the spin can take on any value from $1, 0, -1$ but the total magnitude of the spin must be either $0,1$.
+\[ \ket{0, 0} \quad\ket{1, 1} \quad\ket{1, 0} \quad\ket{1, -1}  \]
+Explicitly,
+\begin{align*}
+    \ket{1,1} & = \ket{\uparrow, \uparrow} \\
+    \ket{1, -2} &= \ket{\downarrow, \downarrow} \\
+    \ket{1,0} &= \f{1}{\sqrt{2}}\br{\ket{\uparrow, \downarrow} + \ket{\uparrow, \downarrow}} \\
+    \ket{0,0} &= \f{1}{\sqrt{2}}\br{\ket{\uparrow, \downarrow} +-\ket{\uparrow, \downarrow}} \\
+\end{align*}
+
 \end{document}
+
