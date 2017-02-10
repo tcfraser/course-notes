@@ -1177,14 +1177,14 @@ Heretofore, we have consider materials where electrons are modeled as moving in 
 
 However, in specific cases the electron interactions yield interesting physics. For example Landau Fermi liquid theory, magnetism and superconductivity all require a description of electronic interactions. \\
 
-In particular, \term{ferromagnetism} is the appearance of \textit{spontaneous} macroscopic magnetic momentum in certain materials at sufficiently low temperature $T$. For a material magnetic field $H$, the magnetization $M$ is
+In particular, \term{ferro-magnetism} is the appearance of \textit{spontaneous} macroscopic magnetic momentum in certain materials at sufficiently low temperature $T$. For a material magnetic field $H$, the magnetization $M$ is
 \[ M = \chi H \]
 Where $\chi$ is the \term{magnetic susceptibility}.
 \begin{itemize}
-    \item $\chi > 0$ paramagnets
-    \item $\chi < 0$ diamagnets
+    \item $\chi > 0$ para-magnets
+    \item $\chi < 0$ dia-magnets
 \end{itemize}
-Ferromagnets are distinct from both para and diamagnets in that they possess magnetic fields $M \neq 0$ even in the absence of $H$. It is this feature we are referring to when we say that ferromagnets produce magnetic fields \textit{spontaneously}. \\
+Ferromagnets are distinct from both para and dia-magnets in that they possess magnetic fields $M \neq 0$ even in the absence of $H$. It is this feature we are referring to when we say that ferromagnets produce magnetic fields \textit{spontaneously}. \\
 
 Unlike materials with completely filled shells (which have zero spin), materials that have incompletely filled d-shells (such as iron) have non-zero spin,
 \[ \text{Fe} : 3 \text{d}^{6} 4\text{s}^2 \]
@@ -1208,19 +1208,19 @@ Using this constant,
 \[ U\tsb{sip} \sim \al^2 \f{e^2}{a_0} \br{\f{a_0}{r}}^3 \]
 For typical atomic separations $r \sim a_0$, we have $U\tsb{dip} \sim \al^2 \f{e^2}{a_0} \sim \SI{e-4}{\eV}$ which corresponds to temperatures $T \sim U\tsb{dip}/k_B \sim \SI{1}{\K}$. This result is odd because we know that the critical temperature for iron is,
 \[ \text{Fe} : T_c = \SI{1043}{\K} \]
-Therefore dipole-dipole interactions can \textit{not} be the source of ferromagnetism. \\
+Therefore dipole-dipole interactions can \textit{not} be the source of ferro-magnetism. \\
 
 For ordinary electron-electron Coulomb interactions $e^2 / a_0$ is the typical Coulomb interaction energy between electrons on neighboring atoms.
 \[ \f{e^2}{a_0} \sim \SI{1}{\eV} \qquad T \sim \SI{e4}{\K} \]
-This is much closer to the critical temperature for iron, therefore we conclude that ordinary Coulumb interactions are responsible for ferromagnetism. \\
+This is much closer to the critical temperature for iron, therefore we conclude that ordinary Coulumb interactions are responsible for ferro-magnetism. This result is surprising because the Coulumb potential does not know about magnetic fields; instead the effects of spin (in combination with $V\br{\ve r}$) will give rise to ferro-magnetism. \\
 
-Consider $2$ electrons on two atomic orbitals $\varphi_1\br{\ve r_1}$ and $\varphi_2\br{\ve r_2}$. The Coulumb potential is,
+Consider $2$ electrons on two atomic orbitals $\varphi_1\br{\ve r_1}$ and $\varphi_2\br{\ve r_2}$ with the same energy. The Coulumb potential is,
 \[ V\br{\ve r_1 - \ve r_2} = \f{e^2}{\abs{\ve r_1 - \ve r_2}} \]
-In general the wavefunction for the two electrons will depend on positions $\ve r_1, \ve r_2$ for the two electrons and spin values $\si_i \in \bc{\uparrow, \downarrow}$. This position and spin wavefunctions are separable,
+In general the wave-function for the two electrons will depend on positions $\ve r_1, \ve r_2$ for the two electrons and spin values $\si_i \in \bc{\uparrow, \downarrow}$. This position and spin wave-functions are separable,
 \[ \psi \br{\ve r_1 \si_1, \ve r_2 \si_2} = \psi\br{\ve r_1, \ve r_2} \chi \br{\si_1, \si_2} \]
-Since the electrons are Fermions the wavefunction must be antisymmetric with respect to the exchange of the two particles,
+Since the electrons are Fermions the wave-function must be antisymmetric with respect to the exchange of the two particles,
 \[ \psi\br{\ve r_2 \si_2, \ve r_1 \si_1} = - \psi\br{\ve r_1 \si_1, \ve r_2\si_2} \]
-Therefore we have two possibilities for the antisymmety of $\psi$,
+Therefore we have two possibilities for the antisymmetry of $\psi$,
 \begin{enumerate}
     \item $\psi\br{\ve r_1, \ve r_2}$ is antisymmetric:
     \[ \psi\br{\ve r_1, \ve r_2} = -\psi\br{\ve r_2, \ve r_1} \]
@@ -1231,17 +1231,73 @@ Therefore we have two possibilities for the antisymmety of $\psi$,
 \end{enumerate}
 Since the potential $V \br{\ve r_1 - \ve r_2}$ is independent of the spin, the total spin of two electrons is a conserved quantity. In using this observation, it is convenient to not label the individual spins $\si_1, \si_2$ (which are not conserved) but instead the total spin $S$ and its projection onto the $z$-axis $M$.
 \[ \ket{\si_1, \si_2} \mapsto \ket{S, M} \]
-If the total number states has to be conserved ($\ket{\si_1, \si_2} \in \s H^{4} \implies \ket{S, M} \in \s H^{4}$), then the four spin states,
+If the total number states has to be conserved ($\ket{\si_1, \si_2} \in \s H^{2} \otimes \s H^{2} \implies \ket{S, M} \in \s H^{2} \otimes \s H^{2}$), then the four spin states,
 \[ \ket{\uparrow, \uparrow} \quad\ket{\uparrow, \downarrow} \quad\ket{\downarrow, \uparrow} \quad\ket{\downarrow, \downarrow}  \]
 Map to $4$ possible values for $S, M$. The $z$ component of the spin can take on any value from $1, 0, -1$ but the total magnitude of the spin must be either $0,1$.
 \[ \ket{0, 0} \quad\ket{1, 1} \quad\ket{1, 0} \quad\ket{1, -1}  \]
-Explicitly,
+Notice that these four states form and orthonormal basis for $\s H^2 \otimes \s H^{2}$. Explicitly these $\ket{S, M}$ states can be written as superpositions of the $\ket{\si_1, \si_2}$ states,
 \begin{align*}
     \ket{1,1} & = \ket{\uparrow, \uparrow} \\
-    \ket{1, -2} &= \ket{\downarrow, \downarrow} \\
+    \ket{1, -1} &= \ket{\downarrow, \downarrow} \\
     \ket{1,0} &= \f{1}{\sqrt{2}}\br{\ket{\uparrow, \downarrow} + \ket{\uparrow, \downarrow}} \\
-    \ket{0,0} &= \f{1}{\sqrt{2}}\br{\ket{\uparrow, \downarrow} +-\ket{\uparrow, \downarrow}} \\
+    \ket{0,0} &= \f{1}{\sqrt{2}}\br{\ket{\uparrow, \downarrow} - \ket{\uparrow, \downarrow}}
 \end{align*}
+Importantly, each state $\ket{S, M}$ where the total spin $S$ is $S = 1$ is \textit{symmetric} with respect to the interchange of two electrons and the the spin $S = 0$ state is \textit{antisymmetric}. This anti-symmetry couples the spin states to the orbital components of the wave function. Since the spin $S=1$ states are symmetric, the wavefunction in position space with $S = 1$ must be anti-symmetric,
+\[ \psi_{1M} \br{\ve r_1, \ve r_2} = \f{1}{\sqrt{2}}\br{\varphi_1\br{\ve r_1} \varphi_2\br{\ve r_2} - \varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}} \ket{1, M} \]
+Analogously,
+\[ \psi_{00} \br{\ve r_1, \ve r_2} = \f{1}{\sqrt{2}}\br{\varphi_1\br{\ve r_1} \varphi_2\br{\ve r_2} + \varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}} \ket{0, 0} \]
+In order to determine the correction to the energy values due to the Coulumb interactions, use perturbation theory. Specifically, the $\psi_{1M}$ states are $3$-fold degenerate in position space but are distinct when spin states are included. Recalling that the corrections can be computed by calculating the matrix elements of the corrections $V$,
+\begin{align*}
+\bramidket{1,M}{V}{1,M}
+&= \int \int \dif^3 r_1 \dif^3 r_2 \f{1}{\sqrt{2}}\br{\varphi^*_1\br{\ve r_1} \varphi^*_2\br{\ve r_2} - \varphi^*_2\br{\ve r_1} \varphi^*_1\br{\ve r_2}} V\br{\ve r_1 - \ve r_2} \f{1}{\sqrt{2}}\br{\varphi_1\br{\ve r_1} \varphi_2\br{\ve r_2} - \varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}}\\
+&= \f{1}{2}\int \int \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bigg[\abs{\varphi_1\br{\ve r_1}}^2 \abs{\varphi_2\br{\ve r_2}}^2 + \abs{\varphi_1\br{\ve r_2}}^2 \abs{\varphi_2\br{\ve r_1}}^2  + \cdots\\
+&\qquad \cdots - \varphi_1^{*}\br{\ve r_1} \varphi_2^{*}\br{\ve r_2}\varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2} - \varphi_2^{*}\br{\ve r_1} \varphi_1^{*}\br{\ve r_2}\varphi_1\br{\ve r_1} \varphi_2\br{\ve r_2}\bigg]
+\end{align*}
+Recognize that since the potential only depends on the distance $\abs{\ve r_1, \ve r_2}$, our integral over $\ve r_1,\ve r_2$ counts each term twice. Therefore,
+\begin{align*}
+\bramidket{1,M}{V}{1,M}
+&= \int \int \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bigg[\abs{\varphi_1\br{\ve r_1}}^2 \abs{\varphi_2\br{\ve r_2}}^2 - \varphi_1^{*}\br{\ve r_1} \varphi_2^{*}\br{\ve r_2}\varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}\bigg]
+\end{align*}
+Similarly, we can calculate the matrix element for $\ket{0,0}$ (the elements $\bramidket{0,0}{V}{1, M}$ are zero),
+\begin{align*}
+\bramidket{0,0}{V}{0,0}
+&= \int \int \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bigg[\abs{\varphi_1\br{\ve r_1}}^2 \abs{\varphi_2\br{\ve r_2}}^2 + \varphi_1^{*}\br{\ve r_1} \varphi_2^{*}\br{\ve r_2}\varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}\bigg]
+\end{align*}
+Notice that $\bramidket{0,0}{V}{0,0}$ differs from $\bramidket{1,M}{V}{1,M}$ by the sign in the second set of terms. To facilitate discussions, let $\s C$ define the \term{Coulomb integral $\s C$},
+\[ \s C = \int \int \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bs{\abs{\varphi_1\br{\ve r_1}}^2 \abs{\varphi_2\br{\ve r_2}}^2} \]
+Which is shared by both matrix elements and is a equivalent to a classical measurement of a Coulomb energy,
+\[ \s C = \int \int \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \rho_1\br{\ve r_1}\rho_2\br{\ve r_2} \]
+The differing integral is called the \term{exchange integral $\s J$},
+\[ \s J = \int \int \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bs{\varphi_1^{*}\br{\ve r_1} \varphi_2^{*}\br{\ve r_2}\varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}} \]
+In conclusion,
+\[ \bramidket{0,0}{V}{0,0} = \s C + \s J \qquad \bramidket{1,M}{V}{1,M} = \s C - \s J \]
+The state with higher (or lower) energy correction will depend on the sign of $\s J$. If $\s J > 0$, this leads to alignment of the individual spins and to ferro-magnetism. Recalling $\psi_{1M} \br{\ve r_1, \ve r_2}$,
+\[ \psi_{1M} \br{\ve r_1, \ve r_2} = \f{1}{\sqrt{2}}\br{\varphi_1\br{\ve r_1} \varphi_2\br{\ve r_2} - \varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}} \ket{1, M} \]
+It can be seen that if we let $\ve r_1 = \ve r_2$ the antisymmetry forces,
+\[ \psi_{1M} \br{\ve r_1, \ve r_1} = 0 \]
+Therefore the probability of both electrons being found in the same place is zero and therefore the Coulomb interaction (which would normally tend to $\inf$ as $\ve r_1 \to \ve r_2$). Therefore the electrons tend toward their minimal energy state which corresponds to aligning their spins $S = 1$. An alternative way of seeing this is to consider $\s J$ in the case where $\ve r_1 = \ve r_2$, $\s J$ tends toward $\s C$ which is positive.\\
 
+Let $\ve S = \ve S_1 + \ve S_2$ be the total spin operator for the two electrons. Therefore,
+\[ \ve S^2 = \br{\ve S_1 + \ve S_2}^2 = \ve S_1^2 + \ve S_2^2 + 2 \ve S_1 \cdot \ve S_2 \]
+Therefore the corrective energy is proportional to the product $\ve S_1 \cdot \ve S_2$,
+\[ H = - \s J \ve S_1 \cdot \ve S_2 \]
+Which is minimized for aligned spins $\ve S_1 \cdot \ve S_2 > 0$. This result can be generalized to any number of electron spins using the \term{Heisenberg model},
+\[ H = -\f{1}{2} \s J \sum_{\ba{ij}} {\ve S_i \cdot \ve S_j} - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \eq \label{eq:Heisenberg_model}\]
+Where $\ba{ij}$ denotes nearest neighbor terms, the factor of $1/2$ avoids double-counting the interactions, and $\s J$ forms a coupling constant proportional to,
+\[ \s J \sim V \psi^2 \sim \f{e^2}{a_0} \]
+And the $\mu_{B}$ terms is simply the ordinary magnetic moment coupling. It is important to note that the nearest-neighbor approximation permits one to assume that $\s J$ is a constant (depending only on the distance between nearest neighbors). The Heisenberg model \cref{eq:Heisenberg_model} is one of the simplest examples of a \term{quantum many-body problem} which are notoriously difficult to solve and are typically only approximated at best. One such approximation is called \term{mean-field theory}.
+
+\subsection{Mean-field Theory of the Heisenberg Model}
+Mean-field theory approximations of the Heisenberg model begin by re-writing the spins $\ve S_i$ as,
+\[ \ve S_i = \ve S_i - \ba{\ve S_i} + \ba{\ve S_i} \]
+Therefore the spin product $\ve S_i \cdot \ve S_j$ includes many terms,
+\[ \ve S_i \cdot \ve S_j = \br{\ve S_i - \ba{\ve S_i} + \ba{\ve S_i}} \cdot \br{\ve S_j - \ba{\ve S_j} + \ba{\ve S_j}} \]
+\[ \ve S_i \cdot \ve S_j = \br{\ve S_i - \ba{\ve S_i}} \cdot \br{\ve S_j - \ba{\ve S_j}} + \ve S_i \cdot \ba{\ve S_j} + \ve S_j \cdot \ba{\ve S_i} - \ba{\ve S_i} \cdot \ba{\ve S_j} \eq \label{eq:mmf}\]
+The mean-field approximation assumes that the deviations of $\ve S_i$ from their mean $\ba{\ve S_i}$ is small,
+\[ \ve S_i = \ba{\ve S_i} + \s O\br{ \br{\ve S_i}^2} \]
+Therefore we can neglect the first term in \cref{eq:mmf} for being quadratic in the deviation,
+\[ \ve S_i \cdot \ve S_j \simeq \ve S_i \cdot \ba{\ve S_j} + \ve S_j \cdot \ba{\ve S_i} - \ba{\ve S_i} \cdot \ba{\ve S_j} \]
+Therefore \cref{eq:Heisenberg_model} becomes,
+\[ H = -\f{1}{2} \s J \sum_{\ba{ij}} \bs{\ve S_i \cdot \ba{\ve S_j} + \ve S_j \cdot \ba{\ve S_i} - \ba{\ve S_i} \cdot \ba{\ve S_j}} - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \]
 \end{document}
 
