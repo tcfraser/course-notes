@@ -1340,20 +1340,22 @@ In order to study \textit{spontaneous} magnetization, we set the external field 
     \begin{tikzpicture}
         \draw[thick, ->] (-4, 0) -- (+4, 0) node[right]{$M$};
         \draw[thick, ->] (0, -4) -- (0, +4) node[above]{$\tanh\f{\s J z M}{2 k_B T}$};
-        \draw[thick, scale=1.0,domain=-1.5:1.5,smooth,variable=\M,red   ] plot ({\M},{2*\M}) node[above]{$M$};
+        \draw[thick, scale=1.0,domain=-1.5:1.5,smooth,variable=\M,red   ] plot ({\M},{2*\M}) node[above]{$2M$};
         \draw[thick, scale=1.0,domain=-3:3,smooth,variable=\M,blue  ] plot ({\M},{2*tanh(2*\M)}) node[above right]{$\f{\s J z}{2 k_B T} = 2$};
         \draw[thick, scale=1.0,domain=-3:3,smooth,variable=\M,purple] plot ({\M},{2*tanh(1*\M)}) node[right]{$\f{\s J z}{2 k_B T} = 1$};
         \draw[thick, scale=1.0,domain=-3:3,smooth,variable=\M,green ] plot ({\M},{2*tanh(1/2*\M)}) node[below right]{$\f{\s J z}{2 k_B T} = 1/2$};
         \draw[gray, dashed] (+1,0) node[below]{$M_0$} -- (+1,+2);
         \draw[gray, dashed] (-1,0) node[above]{$M_0$} -- (-1,-2);
+        \draw[gray, dashed] (+4, +2) -- node[above left]{$1/2$} (-4, +2);
+        \draw[gray, dashed] (+4, -2) -- node[below right]{$-1/2$} (-4, -2);
     \end{tikzpicture}
 \end{center}
 Evidently there are at most $3$ solutions depending on the temperature. There are three solutions if the slope of $\tanh \f{\s J z M}{2 k_B T}$ is greater than $1$ at $M = 0$. Taylor series,
 \[ \tanh x \simeq x \]
-Therefore the slope of $\tanh \br{\f{\s J z M }{2 k_B T}}$ near $M=0$ is simply,
-\[ \f{\s J z}{2 k_B T} \]
+Therefore the slope of $\f12\tanh \br{\f{\s J z M }{2 k_B T}}$ near $M=0$ is simply,
+\[ \f{\s J z}{4 k_B T} \]
 Therefore we define the critical temperature,
-\[ \f{\s J z}{2 k_B T} > 1 \implies \f{\s J z}{2 k_B T_c} = 1 \implies T_c = \f{\s J z}{2 k_B} \]
+\[ \f{\s J z}{4 k_B T} > 1 \implies \f{\s J z}{4 k_B T_c} = 1 \implies T_c = \f{\s J z}{4 k_B} \]
 Therefore we have the following case,
 \begin{itemize}
     \item $T < T_c$ ferro-magnetism
