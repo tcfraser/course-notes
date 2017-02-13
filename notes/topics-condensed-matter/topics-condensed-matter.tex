@@ -1285,7 +1285,7 @@ Which is minimized for aligned spins $\ve S_1 \cdot \ve S_2 > 0$. This result ca
 \[ H = -\f{1}{2} \s J \sum_{\ba{ij}} {\ve S_i \cdot \ve S_j} - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \eq \label{eq:Heisenberg_model}\]
 Where $\ba{ij}$ denotes nearest neighbor terms, the factor of $1/2$ avoids double-counting the interactions, and $\s J$ forms a coupling constant proportional to,
 \[ \s J \sim V \psi^2 \sim \f{e^2}{a_0} \]
-And the $\mu_{B}$ terms is simply the ordinary magnetic moment coupling. It is important to note that the nearest-neighbor approximation permits one to assume that $\s J$ is a constant (depending only on the distance between nearest neighbors). The Heisenberg model \cref{eq:Heisenberg_model} is one of the simplest examples of a \term{quantum many-body problem} which are notoriously difficult to solve and are typically only approximated at best. One such approximation is called \term{mean-field theory}.
+And the $\mu_{B}$ terms is simply the ordinary magnetic moment coupling. It is important to note that the nearest-neighbor approximation permits one to assume that $\s J$ is a constant (depending only on the distance between nearest neighbors). The Heisenberg model \cref{eq:Heisenberg_model} is one of the simplest examples of a \term{quantum many-body problem} which are notoriously difficult to solve and are typically only approximated at best. The Heisenberg model cannot be solved exactly; one such approximation is called \term{mean-field theory}.
 
 \subsection{Mean-field Theory of the Heisenberg Model}
 Mean-field theory approximations of the Heisenberg model begin by re-writing the spins $\ve S_i$ as,
@@ -1299,5 +1299,106 @@ Therefore we can neglect the first term in \cref{eq:mmf} for being quadratic in 
 \[ \ve S_i \cdot \ve S_j \simeq \ve S_i \cdot \ba{\ve S_j} + \ve S_j \cdot \ba{\ve S_i} - \ba{\ve S_i} \cdot \ba{\ve S_j} \]
 Therefore \cref{eq:Heisenberg_model} becomes,
 \[ H = -\f{1}{2} \s J \sum_{\ba{ij}} \bs{\ve S_i \cdot \ba{\ve S_j} + \ve S_j \cdot \ba{\ve S_i} - \ba{\ve S_i} \cdot \ba{\ve S_j}} - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \]
+Notice that the first two terms $\br{\ve S_i \cdot \ba{\ve S_j}, \ve S_j \cdot \ba{\ve S_i}}$ are essentially $\ve S_i$ interacting with an effective magnetic field $\ve B\tsb{eff} \sim \ba{S_j}$. Furthermore, we will neglect the third term $\ba{\ve S_i} \cdot \ba{\ve S_j}$ for first analysis and include in back whenever its affects become relevant. Finally, we conclude that each spin shares the same expectation.
+\[ \ba{\ve S_i} = \ba{\ve S_j} = \ba{\ve S} \]
+Essentially $\ve S_i$ is independent of $i$. Our approximations have let us to the following Hamiltonian,
+\[ H = -\f{1}{2} \s J \sum_{\ba{ij}} \bs{\ve S_i \cdot \ba{\ve S} + \ve S_j \cdot \ba{\ve S}} - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \]
+Re-organizing the double counting,
+\[ H = -\s J \sum_{\ba{ij}} \ve S_i \cdot \ba{\ve S} - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \]
+Define the \term{z-coordination number} as the number of nearest neighbors for a given site $i$. We do this because the first summand is independent of $j$ which yields $z$ identical terms. Therefore,
+\[ H = -\s J z \ba{\ve S} \cdot \sum_{i} \ve S_i  - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \]
+We define the effective spin magnetic field as the \term{molecular field $\ve B_m$},
+\[ \ve B_m = J z \ba{\ve S} \eq \label{eq:Bm_Defined}\]
+While we redefine the true magnetic field to absorb the coefficients,
+\[ g \mu_B \ve B \mapsto \ve B \]
+Thus,
+\[ H = -\br{\ve B + \ve B_m} \cdot \sum_{i} \ve S_i \eq \label{eq:effect_molecular_magnetic_field} \]
+Recall that in \cref{eq:Heisenberg_model} we have the following terms,
+\[ H \sim - \f{1}{2}\s J \sum_{\ba{ij}} \ve S_i \cdot \ve S_j \]
+which possesses a symmetry with respect to an arbitrary rotations of all the spins. Therefore there is no preferred direction to the spin system in the absence of magnetic fields. However a particular direction is chosen subjected to the magnetic field $\ve B$. This is an example of \term{spontaneously broken symmetry} in which the arbitrary direction is chosen spontaneously. In regard to \cref{eq:effect_molecular_magnetic_field}, the energy is minimized when the spins are aligned and $\sum_i \ve S_i$ is maximized. If we choose the external magnetic field $\ve B$ to point in the $\hat z$ direction $\ve B = B \hat z$ we can conclude that the molecular magnetic field aligns itself in the same direction,
+\[ \ve B_m = B_m \hat z \]
+Therefore \cref{eq:effect_molecular_magnetic_field} simplifies,
+\[ H = -\br{B + B_m} \cdot \sum_{i} S_i^z \]
+At zero temperature, the spins will tend toward the minimal energy state when corresponds to the spins aligning with $S_i^z = \f12$. However at finite temperature,
+\[ \ba{S^z} = \f{\sum_{S^{z} = \pm 1/2} S^{z}e^{-\f{H_i}{k_B T}}}{\sum_{S^{z} = \pm 1/2} e^{-\f{H_i}{k_B T}}} \]
+Where $H_i$ is an individual Hamiltonian,
+\[ H_i = -\br{B + B_m} S_i^{z} \]
+Explicitly,
+\[ \ba{S^z} = \f{\sum_{S^{z} = \pm 1/2} S^{z}e^{\f{\br{B+B_m}S^{z}}{k_B T}}}{\sum_{S^{z} = \pm 1/2} e^{\f{\br{B+B_m}S^{z}}{k_B T}}} \]
+\[ \ba{S^z} = \f{1}{2}\f{e^{\f{\br{B+B_m}}{2k_B T}} - e^{-\f{\br{B+B_m}}{2k_B T}}}{e^{\f{\br{B+B_m}}{2k_B T}} + e^{-\f{\br{B+B_m}}{2k_B T}}} \]
+Recognize the hyperbolic trigonometric formulas,
+\[ \ba{S^z} = \f{1}{2}\f{\cosh \f{\br{B+B_m}}{2k_B T}}{\sinh \f{\br{B+B_m}}{2k_B T}} = \f12 \tanh \bs{\f{\br{B+B_m}}{2k_B T}} \]
+Recalling \cref{eq:Bm_Defined},
+\[ B_m = J z \ba{S^{z}} \]
+Which have the non-linear implicit equation for $B_m$ in terms of $B$.
+\[ B_m = \f{\s J z}{2} \tanh \bs{\f{\br{B+B_m}}{2k_B T}} \]
+Evidently, the molecular magnetic field will depend on the temperature $T$ and external magnetic field $B$. Alternatively, we can use this to find the expectation $\ba{S^{z}} \defined M$ as the \term{macroscopic magnetization per atom},
+\[ M = \f12 \tanh \bs{\f{B + \s J z M}{2 k_B T}} \]
+In order to study \textit{spontaneous} magnetization, we set the external field $\ve B$ to zero such that,
+\[ M = \f12 \tanh \bs{\f{\s J z M}{2 k_B T}} \]
+\begin{center}
+    \begin{tikzpicture}
+        \draw[thick, ->] (-4, 0) -- (+4, 0) node[right]{$M$};
+        \draw[thick, ->] (0, -4) -- (0, +4) node[above]{$\tanh\f{\s J z M}{2 k_B T}$};
+        \draw[thick, scale=1.0,domain=-1.5:1.5,smooth,variable=\M,red   ] plot ({\M},{2*\M}) node[above]{$M$};
+        \draw[thick, scale=1.0,domain=-3:3,smooth,variable=\M,blue  ] plot ({\M},{2*tanh(2*\M)}) node[above right]{$\f{\s J z}{2 k_B T} = 2$};
+        \draw[thick, scale=1.0,domain=-3:3,smooth,variable=\M,purple] plot ({\M},{2*tanh(1*\M)}) node[right]{$\f{\s J z}{2 k_B T} = 1$};
+        \draw[thick, scale=1.0,domain=-3:3,smooth,variable=\M,green ] plot ({\M},{2*tanh(1/2*\M)}) node[below right]{$\f{\s J z}{2 k_B T} = 1/2$};
+        \draw[gray, dashed] (+1,0) node[below]{$M_0$} -- (+1,+2);
+        \draw[gray, dashed] (-1,0) node[above]{$M_0$} -- (-1,-2);
+    \end{tikzpicture}
+\end{center}
+Evidently there are at most $3$ solutions depending on the temperature. There are three solutions if the slope of $\tanh \f{\s J z M}{2 k_B T}$ is greater than $1$ at $M = 0$. Taylor series,
+\[ \tanh x \simeq x \]
+Therefore the slope of $\tanh \br{\f{\s J z M }{2 k_B T}}$ near $M=0$ is simply,
+\[ \f{\s J z}{2 k_B T} \]
+Therefore we define the critical temperature,
+\[ \f{\s J z}{2 k_B T} > 1 \implies \f{\s J z}{2 k_B T_c} = 1 \implies T_c = \f{\s J z}{2 k_B} \]
+Therefore we have the following case,
+\begin{itemize}
+    \item $T < T_c$ ferro-magnetism
+    \item $T < T_c$ no ferro-magnetism
+\end{itemize}
+For iron we have $\s J \sim \SI{1}{\eV}$ and $T \sim \SI{e4}{\K}$. This is an example of a \term{phase transition}.
+\begin{center}
+    \begin{tikzpicture}
+        \draw[thick,<->] (3, 0) node[right]{$T$} -- (0,0) node[below left]{$0$} -- (0, 3) node[above]{$M$};
+        \draw[thick] (0,2) arc (90:0:2);
+        \draw[thick] (2, 0) node[below]{$T_c$};
+        \draw[thick] (0, 2) node[left]{$\f12$};
+        \draw[thick] (1,1) node[]{FM};
+        \draw[thick] (2,2) node[]{PM};
+    \end{tikzpicture}
+\end{center}
+We refer to $M$ as the \term{M-order parameter} which allows us to formally distinguish between ferro-magnets and para-magnets. We have $M \neq 0$ in the FM phase but $M=0$ in the PM phase. \\
+
+Depending on the nature of the phase transition boundary, we can have two types of phase translations: \term{first order phase translations} which are discontinuous or \term{second order phase transitions} which are continuous.
+
+\begin{center}
+    \begin{tikzpicture}
+        \draw[thick,<->] (3, 0) node[right]{$T$} -- (0,0) node[below left]{$0$} -- (0, 3) node[above]{$M$};
+        \draw[thick] (0,2) arc (90:0:2);
+        \draw[thick,red,dashed] (2+0.4,0) arc (0:180:0.4) node[above right,midway]{2nd order};
+        \draw[thick] (2, 0) node[below]{$T_c$};
+        \draw[thick] (0, 2) node[left]{$\f12$};
+        \draw[thick] (1,1) node[]{FM};
+        \draw[thick] (2,2) node[]{PM};
+    \end{tikzpicture}
+    \begin{tikzpicture}
+        \draw[thick,<->] (3, 0) node[right]{$T$} -- (0,0) node[below left]{$0$} -- (0, 3) node[above]{$M$};
+        \draw[thick] (0,2) arc (90:30:2);
+        \draw[thick,red,dashed] (1.73+0.4,1) arc (0:360:0.4) node[above right]{1st order};
+        \draw[thick] (1.73, 0) -- (1.73, 1);
+        \draw[thick] (2, 0) node[below]{$T_c$};
+        \draw[thick] (0, 2) node[left]{$\f12$};
+        \draw[thick] (1,1) node[]{FM};
+        \draw[thick] (2,2) node[]{PM};
+    \end{tikzpicture}
+\end{center}
+
+
+
+
+
 \end{document}
 
