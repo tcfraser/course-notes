@@ -30,6 +30,7 @@ The \textit{condensed} in condensed matter physics refers to the fact that a \te
 \section{Effects of the Electronic Structure Topology}
 
 \subsection{Toy Model of a Solid}
+\label{sec:toy_model}
 
 A large part of solid state physics is related to the motion of valence electrons in a periodic potential of ionized atoms of the crystal lattice. Consider the simplest toy model of a solid: a one dimensional material with uniform spacing among the electrons with periodic potential. Let the uniform spacing between neighboring electrons be denoted $a$ and we refer the region within distance $a/2$ of each atom as the \term{primitive unit cell} or simply unit cell of the lattice. In this model (an in most of the lattice models considered in the class) we will have the working assumption that each electron is localized to an atom. This can be understood if the periodic potential $V\br{x}$ is very large between the atoms and nearly zero at the location of each atom.
 
@@ -98,7 +99,7 @@ Therefore \cref{eq:toy_hamiltonian} becomes,
 \[ H = -t\f{1}{N} \sum_{n}\sum_{k,k'}\bc{\br{e^{-ik\br{n+1}a} \ket{k}}\br{e^{ik'na} \bra{k'}} + \br{e^{-ik\br{n-1}a} \ket{k}}\br{e^{ik'a} \bra{k'}}} \]
 \[ H = -t\f{1}{N} \sum_{n}\sum_{k,k'}\bc{e^{-ik\br{n+1}a}e^{ik'na} \ket{k}\bra{k'} + e^{-ik\br{n-1}a}e^{ik'a} \ket{k}\bra{k'}} \eq \label{eq:nearly_toy_diag}\]
 By \cref{eq:toy_k_discrete}, $\br{k - k'}$ is an integer multiple of $2 \pi / Na$. Letting that integer be $\mu$ we have the following identity:
-\[ \f{1}{N} \sum_{n=1}^{N} e^{i\br{k - k'}na} = \f{1}{N} \sum_{n=1}^{N} e^{i2 \pi \mu n / N} = \de_{\mu} = \de_{k, k'} \]
+\[ \f{1}{N} \sum_{n=1}^{N} e^{i\br{k - k'}na} = \f{1}{N} \sum_{n=1}^{N} e^{i2 \pi \mu n / N} = \de_{\mu} = \de_{k, k'}  \eq \label{eq:crucial_idenity}\]
 Therefore \cref{eq:nearly_toy_diag} simplifies greatly,
 \[ H = -t \sum_{n}\sum_{k,k'} \de_{k,k'} \bc{e^{-ika} \ket{k}\bra{k'} + e^{ika} \ket{k}\bra{k'}} \]
 \[ H = -t \sum_{n}\bc{e^{-ika} + e^{ika}} \ket{k}\bra{k} \]
@@ -160,7 +161,9 @@ Which allows one to calculate $k\tsb{F}$ in terms of the electron density $n$,
 Which makes sense for this model because there is one electron per atom making $n = 1/a$.
 This result is called \term{Luttinger's theorem} which states that the volume enclosed by the Fermi surface (sometimes called the Fermi sea) is directly proportional to the electron density. \\
 
-This toy model actually describes a real solid called polyacetylene. Polyacetylene consists of weakly-interacting chains of CH units.
+\subsection{Polyacetylene}
+
+In \cref{sec:toy_model} we considered a one dimensional toy model of electrons in a solid. This model is highly idealized and is fair from a description of a real material. It is possible however to modify the model analyzed in \cref{sec:toy_model} to consider the case of the one dimensional polymer called polyacetylene. Polyacetylene consists of weakly-interacting chains of CH units.
 \begin{align*}
     \text{C} &: 1s^2 2s^2 2p^2 \qquad \text{4 valence electrons}\\
     \text{H} &: 1s^1
@@ -175,48 +178,71 @@ Electrons found in the inner orbitals of the atoms are tightly bound to their nu
 Three of the valence electrons are engaged in bonding with neighboring carbon and hydrogen atoms while the $4$-th one is free to move around. As it turns out, the bonds between carbon atoms possess alternating tunneling amplitudes.
 
 \begin{center}
-    \begin{tikzpicture}
-        \foreach \i in {1,...,7}
-        {
-            \node[draw, fill, circle, inner sep=1pt] (\i) at (\i,0) {};
-        }
-        \draw[]       (1) -- node[above]{$t_2$} (2);
-        \draw[double] (2) -- node[above]{$t_1$} (3);
-        \draw[]       (3) -- node[above]{$t_2$} (4);
-        \draw[double] (4) -- node[above]{$t_1$} (5);
-        \draw[]       (5) -- node[above]{$t_2$} (6);
-        \draw[double] (6) -- node[above]{$t_1$} (7);
+\begin{tikzpicture}
+    \foreach \i in {1,...,7}
+    {
+        \node[draw, fill, circle, inner sep=1pt] (\i) at (\i,0) {};
+    }
+    \draw[]       (1) -- node[above]{$t_2$} (2);
+    \draw[double] (2) -- node[above]{$t_1$} (3);
+    \draw[]       (3) -- node[above]{$t_2$} (4);
+    \draw[double] (4) -- node[above]{$t_1$} (5);
+    \draw[]       (5) -- node[above]{$t_2$} (6);
+    \draw[double] (6) -- node[above]{$t_1$} (7);
 
+    \node[dashed, draw, circle, inner sep=4pt, label={below:$1$}] at (4,0) {};
+    \node[dashed, draw, circle, inner sep=4pt, label={below:$2$}] at (5,0) {};
 
-        \draw[double] (1) -- ++(-0.5, 0) node[left]{$\cdots$};
-        \draw[]       (7) -- ++(+0.5, 0) node[right]{$\cdots$};
+    \draw[double] (1) -- ++(-0.5, 0) node[left]{$\cdots$};
+    \draw[]       (7) -- ++(+0.5, 0) node[right]{$\cdots$};
 
-        \draw[dashed] (3.5, -1) -- (3.5, 1);
-        \draw[dashed] (5.5, -1) -- (5.5, 1);
-        \draw[<->] (3.5, -0.7) -- node[below]{$2a$} (5.5, -0.7);
-    \end{tikzpicture}
+    \draw[dashed] (3.5, -1) -- (3.5, 1);
+    \draw[dashed] (5.5, -1) -- (5.5, 1);
+    \draw[<->] (3.5, -0.7) -- node[below]{$2a$} (5.5, -0.7);
+\end{tikzpicture}
 \end{center}
-
 In Polyacetylene, the tunneling amplitude between the carbon atoms joined by a double bound is slightly higher $t_1 > t_2$. This is referred to as \term{Peierls instability}. \\
 
-Since this deviation is only slight, let $2\de t = t_1 - t_2$ such that,
+Since this deviation is only slight, let $2\de t = t_1 - t_2$ be a small perturbation such that,
 \[ t_1 = t + \de t \qquad t_2 = t - \de t \eq \label{eq:t1t2}\]
 Another important difference is that the primitive unit cell has size $2a$ (instead of $a$). This two atom basis can be arranged on a lattice with lattice constant $2a$. This is referred to as a \term{Bravais lattice}. Notationally, we can describe any crystal as,
 \[ \text{crystal} = \br{\text{basis}, \text{Bravais lattice}} \]
 
-To describe an electron in this lattice, we need two indices: one to describe the unit cell the electron is in and one to describe which atom ($1$ or $2$) the electron is located at. Therefore the Hamiltonian needs to characterize a number of possible transitions,
-\begin{itemize}
-    \item $\ket{n, 2} \bra{n, 1}, \ket{n, 1} \bra{n, 2}$ tunneling within a unit cell (forward, backward)
-    \item $\ket{n-1, 2} \bra{n, 1}, \ket{n, 1} \bra{n-1, 2}$ tunneling between unit cells (forward, backward)
-\end{itemize}
+To describe an electron in this lattice, we need two indices: one to describe the unit cell the electron is in ($n$) and one to describe which atom ($1$ or $2$) the electron is located at within the unit cell. Therefore the Hamiltonian needs to characterize a number of possible transitions,
 
-\[ H = \sum_{n} \bc{ - t_1 \ket{n, 2} \bra{n, 1} - t_2 \ket{n-1, 2} \bra{n, 1} - t_1 \ket{n, 1} \bra{n, 2} - t_2 \ket{n, 1} \bra{n-1, 2}} \]
+\begin{alignat*}{2}
+    \ket{n, 1} &\stackrel{t_1}{\longrightarrow} \ket{n, 2} \quad &&\text{transition to the right within a unit cell} \\
+    \ket{n, 2} &\stackrel{t_1}{\longrightarrow} \ket{n, 1} \quad &&\text{transition to the left within a unit cell} \\
+    \ket{n, 1} &\stackrel{t_2}{\longrightarrow} \ket{n-1, 2} \quad &&\text{transition to the left across a unit cell} \\
+    \ket{n, 2} &\stackrel{t_2}{\longrightarrow} \ket{n+1, 1} \quad &&\text{transition to the right across a unit cell}
+\end{alignat*}
 
-Just as before, we need to write $\ket{n, \al}$ in the momentum basis,
-\[ \ket{n, \al} = \sum_{k} \ket{k,\al} \braket{k, \al}{n, \al} \]
-Where $\braket{k, \al}{n, \al}$ is written as,
-\[ \braket{k, \al}{n, \al} = \f{1}{\sqrt{N}} e^{- 2 i k n a} \]
-It is important to note that here $N$ does not represent the total number of atoms; $N$ is the total number of unit cells (equivalently the total number of distinct $\ket{n, \al}$ states for \textit{fixed} $\al$). Moreover the extra factor of $2$ in the exponential is due to the increases unit cell size. In momentum space, the Hamiltonian can be written,
+Just as before in \cref{sec:toy_model}, we only consider the tunneling of electrons for nearest neighbors. This will be a recurring motif of this class which is formally called the \term{tight-binding model}.
+\[ H = \sum_{n} \bc{ - t_1 \ket{n, 2} \bra{n, 1} - t_2 \ket{n-1, 2} \bra{n, 1} - t_1 \ket{n, 1} \bra{n, 2} - t_2 \ket{n+1, 1} \bra{n, 2}} \eq \label{eq:polyacetylene_tight_binding}\]
+Just as before, we need to write $\ket{n, \al}$ in the momentum basis (a new basis for each $\al \in \bc{1,2}$),
+\[ \ket{n, \al} = \sum_{k} \ket{k,\al} \braket{k, \al}{n, \al} \eq \label{eq:basis_change}\]
+where $\braket{k, \al}{n, \al}$ has a specific form. Motivated by free electrons, $\braket{k}{x} \propto e^{-ikx}$ we map $x$ to the position in the crystal:
+\[ x \mapsto n\cdot2a \]
+Noting the factor of $2$ because the unit call is twice as long as before. The coefficients in \cref{eq:basis_change} have similar form,
+\[ \braket{k, \al}{n, \al} \propto e^{- i2kna} \eq \label{eq:plane_wave}\]
+The normalization factor comes from completeness,
+\[ \sum_{n} \abs{\braket{n, \al}{k, \al}}^2 = 1 \eq \label{eq:normalization}\]
+Analogously to \cref{sec:toy_model}, let $n \in \Z$ be an integer but equip this model with periodic boundary conditions such that there are $N$ distinct positions for the electron for each $\al \in \bc{1,2}$ representing the number of unit cells. It is important to note that here $N$ does not represent the total number of atoms; $N$ is the total number of unit cells (equivalently the total number of distinct $\ket{n, \al}$ states for \textit{fixed} $\al$). Moreover the extra factor of $2$ in the exponential is due to the increases unit cell size.
+Therefore the periodic boundary conditions for each $\al$ are,
+\[ \ket{n, \al} = \ket{n + N, \al} \eq \label{eq:periodic_boundary}\]
+Letting $\ga \in \R$ be the normalization coefficient in \cref{eq:plane_wave}, \cref{eq:normalization} becomes,
+\[ 1 = \sum_{n=1}^{N} \abs{\ga e^{i2kna}}^2 = N \ga^2 \implies \ga = \f{1}{\sqrt{N}}\]
+Consequently, \cref{eq:basis_change} can be written as follows,
+\[ \ket{n, \al} = \f{1}{\sqrt{N}} \sum_{k} e^{- i2kna} \ket{k, \al}  \]
+Additionally, the periodic boundary condition of \cref{eq:periodic_boundary} gives,
+\[  \ket{n, \al} =\ket{n+N, \al} = \f{1}{\sqrt{N}} \sum_{k} e^{- i2k\br{n+N}a} \ket{k, \al} = \f{1}{\sqrt{N}} \sum_{k} e^{- i2kna} \ket{k, \al}  \]
+Therefore $e^{- i2kNa} = 1$ which gives,
+\[ k = \f{\pi m}{Na} \qquad m \in \Z \eq \label{eq:k_discrete}\]
+Therefore $k$ must be discrete (an assumption made above to write down \cref{eq:basis_change}). Additionally, combining this with dimensionality of $\ket{n, \al}$ gives the following constraint on $k$,
+\[ \f{\pi}{2a} \leq k < \f{\pi}{2a} \]
+Note the Brillouin zone for Polyacetylene is half the width of the Brillouin zone for the toy model discussed in \cref{sec:toy_model} (again this is due to the unit cell being twice the size). Thus ensures there are $N$ states of the form $\ket{k, \al}$. \\
+
+Substituting these results into \cref{eq:polyacetylene_tight_binding} gives,
 \begin{align*}
 \eq \label{eq:H_polyacetylene}
 \begin{split}
@@ -227,125 +253,111 @@ H
 &\quad  - t_2 \f{1}{N} \sum_{n} \sum_{k ,k'} \ket{k, 1}\bra{k', 2} e^{-2ikna}e^{2ik'\br{n-1}a}
 \end{split}
 \end{align*}
+\begin{align*}
+    \eq \label{eq:H_energy_difference_ks_diag}
+    \begin{split}
+    H
+    &= \f{1}{N}\sum_{n} \sum_{k_1, k_2} \ket{k_1, 1}\bra{k_2, 2} \bc{-t_1 e^{i2\br{k_2 - k_1}na} - t_2 e^{- i2k_1a}e^{i2\br{k_2 - k_1}na}}+ \cdots\\
+    &\cdots + \f{1}{N}\sum_{n} \sum_{k_1, k_2} \ket{k_1, 2}\bra{k_2, 1} \bc{-t_1 e^{i2\br{k_2 - k_1}na} - t_2 e^{+ i2k_1a}e^{i2\br{k_2 - k_1}na}}
+    \end{split}
+\end{align*}
+By \cref{eq:k_discrete}, $\br{k_2 - k_1}$ is an integer multiple of $\pi / Na$. Letting that integer be $\mu$ we have the following identity:
+\[ \f{1}{N} \sum_{n=1}^{N} e^{i2\br{k_2 - k_1}na} = \f{1}{N} \sum_{n=1}^{N} e^{i2 \pi \mu n / N} = \de_{\mu} = \de_{k_1, k_2} \]
+Therefore \cref{eq:H_energy_difference_ks_diag} simplifies greatly,
+\begin{align*}
+    \eq \label{eq:H_energy_difference_ks_diag_simp}
+    \begin{split}
+    H
+    &= - t_1 \sum_{k}\bc{\ket{k ,2} \bra{k, 1} + \ket{k, 1}\bra{k,2}} \\
+    &\quad - t_2 \sum_{k}\bc{\ket{k ,2} \bra{k, 1}e^{2ika} + \ket{k, 1}\bra{k,2}e^{-2ika}}
+    \end{split}
+\end{align*}
 
-One again we need to make use of the following identity,
-\[ \f{1}{N} \sum_{n}e^{-2i \br{k - k'}na} = \de_{k, k'} \eq \label{eq:crystal_ident_polyacetylene}\]
-Each term in \cref{eq:H_polyacetylene} contains terms of the form of \cref{eq:crystal_ident_polyacetylene} which simply $H$ greatly,
-\begin{align*}
-\eq\label{eq:H_diag_k}
-\begin{split}
-H
-&= - t_1 \sum_{k}\bc{\ket{k ,2} \bra{k, 1} + \ket{k, 1}\bra{k,2}} \\
-&\quad - t_2 \sum_{k}\bc{\ket{k ,2} \bra{k, 1}e^{2ika} + \ket{k, 1}\bra{k,2}e^{-2ika}}
-\end{split}
-\end{align*}
-Already we can see that unlike the previous model, the Hamiltonian is not yet diagonalize. At this point, we have only \textit{partially} diagonalized the Hamiltonian with respect to the index of the unit cell. What remains is to diagonalize the Hamiltonian with respect to the index of the \textit{atom} within a single unit cell (i.e. $\al = 1,2$). In order to do this, notice that \cref{eq:H_diag_k} can be written as,
-\[ H = \sum_{k} H\br{k} \]
-Where $H\br{k}$ is a $k$ dependent Hamiltonian. We will focus on this Hamiltonian henceforth.
-\begin{align*}
-\begin{split}
-H\br{k}
-&= - t_1 \bc{\ket{k ,2} \bra{k, 1} + \ket{k, 1}\bra{k,2}} \\
-&\quad - t_2 \bc{\ket{k ,2} \bra{k, 1}e^{2ika} + \ket{k, 1}\bra{k,2}e^{-2ika}}
-\end{split}
-\end{align*}
-For convenience, we will drop reference to $k$ within the states,
-\begin{align*}
-\eq\label{eq:H_of_k}
-\begin{split}
-H\br{k}
-&= - t_1 \bc{\ket{2} \bra{1} + \ket{1}\bra{2}} \\
-&\quad - t_2 \bc{\ket{2} \bra{1}e^{2ika} + \ket{1}\bra{2}e^{-2ika}}
-\end{split}
-\end{align*}
-\Cref{eq:H_of_k} has the Hamiltonian of a $2$ level system. Therefore we can model this system as a spin-$1/2$ system using the \term{Pauli matrices}. Recall,
+At this point \cref{eq:H_energy_difference_ks_diag_simp} has been diagonalized with respect to the momentum index $k$ (it is a simple sum over $k$). It is not however diagonalized completely. To diagonalize this Hamiltonian further, we can write $H = \sum_{k} H\br{k}$ where $H\br{k}$ is the summand of \cref{eq:H_energy_difference_ks_diag_simp}. Henceforth, the dependence of $k$ can be omitted from the states $\ket{k, \al}$ for convenience.
+
+\[ H\br{k} = - \br{t_1 + t_2 e^{- i2ka} }\ket{1}\bra{2} - \br{t_1 + t_2 e^{+ i2ka} }\ket{2}\bra{1} \]
+Notice that $H\br{k}$ can be written as a $2\times 2$ matrix as follows,
+\[ H\br{k} = \kbordermatrix{ & 1 & 2 \\ 1 & 0 & - \br{t_1 + t_2 e^{- i2ka} } \\ 2 & - \br{t_1 + t_2 e^{+ i2ka} } & 0 } \eq \label{eq:H_matrix}\]
+Since $H\br{k}$ represents a two level system, we can therefore write $H\br{k}$ as a sum over the three Pauli matrices with the following spin-correspondence (which we refer to as a \term{pseudo-spin}),
+\[ \ket{1} = \ket{\uparrow} \qquad \ket{2} = \ket{\downarrow} \]
+The \term{Pauli matrices} are,
 \begin{align*}
 \eq \label{eq:pauli_matrices}
 \begin{split}
-\si_x &= \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = \ket{\uparrow} \bra{\downarrow} + \ket{\downarrow} \bra{\uparrow} \\
-\si_y &= \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} = -i\ket{\uparrow} \bra{\downarrow} - \ket{\downarrow} \bra{\uparrow} \\
-\si_z &= \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \ket{\uparrow} \bra{\uparrow} - \ket{\downarrow} \bra{\downarrow}
+\si_x &= \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = \ket{1} \bra{2} + \ket{2} \bra{1} \\
+\si_y &= \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} = -i\br{\ket{1} \bra{2} - \ket{2} \bra{1}} \\
+\si_z &= \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \ket{1} \bra{1} - \ket{2} \bra{2}
 \end{split}
 \end{align*}
-Using the following correspondence (which we refer to as a pseudo-spin),
-\[ \ket{1} = \ket{\uparrow} \qquad \ket{2} = \ket{\downarrow} \]
-We have that,
+Upon close inspection of \cref{eq:H_matrix}, it becomes easy to identity the Pauli's within $H\br{k}$. Explicitly the $t_1$ term is easy,
+\[ H\br{k} = \ep \si_z - t_1 \si_x - t_2 \begin{pmatrix} 0 & e^{- i2ka} \\ e^{+ i2ka} & 0 \end{pmatrix}\]
+The remaining decomposition follows from $e^{\pm ix} = \cos\br{x} \pm i \sin \br{x}$
+\[ H\br{k} = \ep \si_z - t_1 \si_x - t_2 \cos\br{2 k a}\si_x - t_2 \sin\br{2 k a}\si_y \]
+Alternatively it is possible to finding  this correspondence by making use of (pseudo-)ladder operators of \cref{eq:pauli_matrices},
+\[ \ket{1}\bra{2} = \f{1}{2}\br{\si_x + i \si_y} \]
+We therefore define $\ve d \br{k}$ as an \term{effective magnetic field} such that,
+\[ \ve d\br{k} = \begin{pmatrix} d_x\br{k} \\ d_y\br{k} \\ d_z\br{k} \end{pmatrix} = \begin{pmatrix} -t_1 - t_2 \cos\br{2 k a} \\ - t_2 \sin\br{2 k a} \\ 0 \end{pmatrix} \eq \label{eq:dk}\]
+Therefore $H\br{k} = \ve d\br{k} \cdot \ve \si$. This system is \textit{equivalent} to a spin-1/2 particle in a magnetic field of the form $\ve d\br{k}$. The eigenstates of $H\br{k}$ correspond to $\ba{\ve \si}$ along $\ve d$ or in the opposite direction to $\ve d$.
+\[ \vep_{-}\br{k} = -\abs{\ve d \br{k}} \qquad \vep_{+}\br{k} = +\abs{\ve d \br{k}} \]
+Using \cref{eq:t1t2},
 \begin{align*}
-H\br{k}
-&= -\bs{\br{t + \de t} + \br{t - \de t} e^{- 2 i k a}} \ket{\uparrow}\bra{\downarrow}\\
-&\quad - \bs{\br{t + \de t} + \br{t - \de t} e^{2 i k a}} \ket{\downarrow}\bra{\uparrow}
-\end{align*}
-We now elect to write $e^{\pm 2 i ka}$ in terms of sines and cosines and isolate the real and imaginary components,
-\begin{align*}
-H\br{k}
-&= -\bs{\br{t + \de t} + \br{t - \de t} \cos\br{2 k a}} \ket{\uparrow}\bra{\downarrow}\\
-&\quad + i\br{t - \de t} \sin\br{2 k a} \ket{\uparrow}\bra{\downarrow} + \text{h.c.}
-\end{align*}
-Where `h.c.' refers to the Hermitian conjugate the the preceding terms. At this stage, we define some notation,
-\begin{align*}
-\eq \label{eq:dk}
+\eq \label{eq:dk_alt}
 \begin{split}
 d_x \br{k} &= - \br{t + \de t} - \br{t - \de t} \cos\br{2 ka} \\
 d_y \br{k} &= - \br{t - \de t} \sin\br{2 ka} \\
 d_z \br{k} &= 0
 \end{split}
 \end{align*}
-Where $\ve d$ can be written,
-\[ \ve d \br{k} = \br{d_x \br{k}, d_y \br{k}, d_z\br{k}} \]
-Making use of \cref{eq:pauli_matrices}, we can see that,
-\[ \ket{\uparrow}\bra{\downarrow} = \f{1}{2}\br{\si_x + i \si_y} \]
-Which means that the Hamiltonian is,
-\[ H\br{k} = \ve d\br{k} \cdot \ve \si \]
-This system is \textit{equivalent} to a spin-1/2 particle in a magnetic field of the form $\ve d\br{k}$. The eigenstates of $H\br{k}$ correspond to $\ba{\ve \si}$ along $\ve d$ or in the opposite direction to $\ve d$,
-\[ \vep_{\pm}\br{k} = \pm \abs{\ve d \br{k}} \]
 This is contrasting to the previous model; before we had a \textit{single} energy band pursuant to \cref{eq:toy_single_energy_band}, but here we have \textit{two energy bands}. This result can be generalized to the following observation:
 \begin{center}
     \textit{Every atom in the unit cell will give rise to a separate band.}
 \end{center}
-Explicitly, $\abs{\ve d \br{k}}^2$ can be calculated from \cref{eq:dk},
+Explicitly, $\abs{\ve d \br{k}}^2$ can be calculated from \cref{eq:dk_alt},
 \[ \abs{\ve d \br{k}}^2 = d_x^2 \br{k} + d_y^2 \br{k} + d_z^2 \br{k} = 4 t^2 \cos^2 \br{ka} + 4 \de t^2 \sin^2 \br{ka} \]
 Which makes the two bands have the form,
 \[ \vep_{\pm}\br{k} = \pm 2 \sqrt{t^2 \cos^2\br{ka} + \de t^2 \sin^2\br{ka}} \]
 Which when plotted is,
 \begin{center}
 \begin{tikzpicture}
-    \pgfmathsetmacro{\axissize}{4};
+    \pgfmathsetmacro{\axissizev}{3};
+    \pgfmathsetmacro{\axissizeh}{4};
     \pgfmathsetmacro{\plotsize}{3};
     \pgfmathsetmacro{\dt}{0.65};
-    \draw[->] (-\axissize,0) -- (+\axissize,0) node[right]{$k$};
-    \draw[->] (0, -\axissize) -- (0,+\axissize) node[above]{$\vep\br{k}$};
-    \draw[scale=1.0,domain=-pi/2:pi/2,smooth,variable=\k,red] plot ({2 *\k/pi*\plotsize},{-2*sqrt(cos(deg(\k))^2 + 0.1*sin(deg(\k))^2)});
-    \draw[scale=1.0,domain=-pi/2:pi/2,smooth,variable=\k,red] plot ({2 *\k/pi*\plotsize},{2*sqrt(cos(deg(\k))^2 + 0.1*sin(deg(\k))^2)});
-    \draw[dashed] (\plotsize, -\axissize) -- node[above right]{${\pi}/{2a}$} (\plotsize,+\axissize);
-    \draw[dashed] (-\plotsize, -\axissize) -- node[above left]{$-{\pi}/{2a}$} (-\plotsize,+\axissize);
-    \draw[] (-0.1,-2) -- (+0.1,-2) node[right]{$-2t$};
-    \draw[] (-0.1,2) -- (+0.1,2) node[right]{$2t$};
-    \draw[] (\plotsize-0.1, \dt) -- (\plotsize+0.1, \dt) node[right]{$2\de t$};
-    \draw[] (\plotsize-0.1, -\dt) -- (\plotsize+0.1, -\dt) node[right]{$-2\de t$};
-    \draw[] (-\plotsize-0.1, \dt) -- (-\plotsize+0.1, \dt) node[left]{$2\de t$};
-    \draw[] (-\plotsize-0.1, -\dt) -- (-\plotsize+0.1, -\dt) node[left]{$-2\de t$};
-    \draw[|<->|] (\plotsize-0.3, \dt) -- node[left]{$4 \de t$} (\plotsize-0.3, -\dt);
+    \draw[thick,->] (-\axissizeh,0) -- (+\axissizeh,0) node[right]{$k$};
+    \draw[thick,->] (0, -\axissizev) -- (0,+\axissizev) node[above]{$\vep\br{k}$};
+    \draw[thick,scale=1.0,domain=-pi/2:pi/2,smooth,variable=\k,red] plot ({2 *\k/pi*\plotsize},{-2*sqrt(cos(deg(\k))^2 + 0.1*sin(deg(\k))^2)});
+    \draw[thick,scale=1.0,domain=-pi/2:pi/2,smooth,variable=\k,red] plot ({2 *\k/pi*\plotsize},{2*sqrt(cos(deg(\k))^2 + 0.1*sin(deg(\k))^2)});
+    \draw[thick,dashed] (\plotsize, -\axissizev) -- node[above right]{$+{\pi}/{2a}$} (\plotsize,+\axissizev);
+    \draw[thick,dashed] (-\plotsize, -\axissizev) -- node[above left]{$-{\pi}/{2a}$} (-\plotsize,+\axissizev);
+    \draw[thick,] (-0.1,-2) -- (+0.1,-2) node[below right]{$-2t$};
+    \draw[thick,] (-0.1,+2) -- (+0.1,+2) node[above right]{$+2t$};
+    \draw[thick,] (\plotsize-0.1, \dt) -- (\plotsize+0.1, \dt) node[above right]{$+2\de t$};
+    \draw[thick,] (\plotsize-0.1, -\dt) -- (\plotsize+0.1, -\dt) node[below right]{$-2\de t$};
+    \draw[thick,] (-\plotsize+0.1, \dt) -- (-\plotsize-0.1, \dt) node[above left]{$+2\de t$};
+    \draw[thick,] (-\plotsize+0.1, -\dt) -- (-\plotsize-0.1, -\dt) node[below left]{$-2\de t$};
+    \draw[thick,|<->|] (\plotsize-0.3, \dt) -- node[above left]{$4 \de t$} (\plotsize-0.3, -\dt);
 \end{tikzpicture}
 \end{center}
 
-Notice that the first Brillouin zone is $\f{\pi}{2a} \leq k \leq \f{\pi}{2a}$ is \textit{smaller} than it was previously. In this model, there is one electron per atom and thus two electrons per unit cell. Therefore there are $2N$ electrons. At zero temperature, the entire lower band is filled and the upper band is empty. This makes polyacetylene an \term{insulator} because it requires an energy of at least $4 \de t$ in order to transition an electron across the Fermi surface. \\
+Notice that the first Brillouin zone is $\f{\pi}{2a} \leq k \leq \f{\pi}{2a}$ is \textit{smaller} than it was previously. In this model, there is one electron per atom and thus two electrons per unit cell. Therefore there are $2N$ electrons. Accounting for spin degeneracies, there are $2N$ accessible states per energy band. At zero temperature, the entire lower band is filled and the upper band is empty. This makes polyacetylene an \term{insulator} because it requires an energy of at least $4 \de t$ in order to transition an electron across the Fermi surface. \\
 
-In the limit of the $\de t \to 0$ one should expect to recover \cref{eq:toy_single_energy_band},
+In the limit of the $\de t \to 0$ one should expect to recover \cref{eq:toy_single_energy_band} from \cref{sec:toy_model},
 \[ \lim_{\de t \to 0}\vep_{\pm}\br{k} = \pm 2 \lim_{\de t \to 0}\sqrt{t^2 \cos^2\br{ka} + \de t^2 \sin^2\br{ka}} = \pm 2 t \cos\br{ka}  \]
-As expected. Notice however the plot of $\ep\br{k}$ differs,
+As expected. Notice however the plot of $\vep\br{k}$ when $\de t = 0$ differs from the one depicted in \cref{sec:toy_model},
 \begin{center}
 \begin{tikzpicture}
-    \pgfmathsetmacro{\axissize}{4};
+    \pgfmathsetmacro{\axissizev}{3};
+    \pgfmathsetmacro{\axissizeh}{4};
     \pgfmathsetmacro{\plotsize}{3};
-    \pgfmathsetmacro{\dt}{0};
-    \draw[->] (-\axissize,0) -- (+\axissize,0) node[right]{$k$};
-    \draw[->] (0, -\axissize) -- (0,+\axissize) node[above]{$\vep\br{k}$};
-    \draw[scale=1.0,domain=-pi/2:pi/2,smooth,variable=\k,red] plot ({2 *\k/pi*\plotsize},{-2*sqrt(cos(deg(\k))^2)});
-    \draw[scale=1.0,domain=-pi/2:pi/2,smooth,variable=\k,red] plot ({2 *\k/pi*\plotsize},{2*sqrt(cos(deg(\k))^2)});
-    \draw[dashed] (\plotsize, -\axissize) -- node[above right]{${\pi}/{2a}$} (\plotsize,+\axissize);
-    \draw[dashed] (-\plotsize, -\axissize) -- node[above left]{$-{\pi}/{2a}$} (-\plotsize,+\axissize);
-    \draw[] (-0.1,-2) -- (+0.1,-2) node[right]{$-2t$};
-    \draw[] (-0.1,2) -- (+0.1,2) node[right]{$2t$};
+    \pgfmathsetmacro{\dt}{0.65};
+    \draw[thick,->] (-\axissizeh,0) -- (+\axissizeh,0) node[right]{$k$};
+    \draw[thick,->] (0, -\axissizev) -- (0,+\axissizev) node[above]{$\vep\br{k}$};
+    \draw[thick,scale=1.0,domain=-pi/2:pi/2,smooth,variable=\k,red] plot ({2 *\k/pi*\plotsize},{-2*sqrt(cos(deg(\k))^2)});
+    \draw[thick,scale=1.0,domain=-pi/2:pi/2,smooth,variable=\k,red] plot ({2 *\k/pi*\plotsize},{2*sqrt(cos(deg(\k))^2)});
+    \draw[thick,dashed] (\plotsize, -\axissizev) -- node[above right]{$+{\pi}/{2a}$} (\plotsize,+\axissizev);
+    \draw[thick,dashed] (-\plotsize, -\axissizev) -- node[above left]{$-{\pi}/{2a}$} (-\plotsize,+\axissizev);
+    \draw[thick,] (-0.1,-2) -- (+0.1,-2) node[below right]{$-2t$};
+    \draw[thick,] (-0.1,+2) -- (+0.1,+2) node[above right]{$+2t$};
 \end{tikzpicture}
 \end{center}
 The resolution between these two plots is to notice that in the polyacetylene model, the unit cell had with $2a$ instead of $a$. Therefore in momentum space, the plotted values for $k$ are bounded by $- \pi / 2a \leq k \leq \pi / 2a$ instead of $- \pi / a \leq k \leq \pi / a$. If one were to unravel the upper band into regions where $\abs{k} > \pi / 2a$ one would recover the initial model. \\
@@ -377,7 +389,7 @@ Heretofore, we have assumed that $\de t > 0$. If however we consider $\de t< 0$,
     \end{tikzpicture}
 \end{center}
 
-Therefore, the ground state of polyacetylene is doubly degenerate, corresponding to the two signs of $\de t$. As it turns out, this difference in sign is related to topological properties in momentum space. Upon examination of \cref{eq:dk} once can notice $\ve d$'s dependence on $\de t$. How does $\ve d\br{k}$ change as $k$ goes from $- \pi / 2a$ to $\pi  2a$?
+Therefore, the ground state of polyacetylene is doubly degenerate, corresponding to the two signs of $\de t$. As it turns out, this difference in sign is related to topological properties in momentum space. Upon examination of \cref{eq:dk} once can notice how $\ve d$ depends on $\de t$. How does $\ve d\br{k}$ change as $k$ goes from $- \pi / 2a$ to $\pi  2a$?
 \begin{align*}
 \begin{split}
 d_x \br{k} &= - \br{t + \de t} - \br{t - \de t} \cos\br{2 ka} \\
@@ -398,12 +410,12 @@ Plotted the case of $\de t >0$ in $d_y, d_x$ space,
     \pgfmathsetmacro{\t}{1};
     \pgfmathsetmacro{\dt}{0.1};
     \pgfmathsetmacro{\tick}{0.1};
-    \draw[->] (-\axissize,0) -- (+\axissize,0) node[right]{$d_x$};
-    \draw[->] (0, -\axissize) -- (0,+\axissize) node[above]{$d_y$};
-    \draw[scale=1.0,domain=-pi/2:pi/2,smooth,variable=\k,red] plot ({- (\t + \dt) - (\t - \dt)*cos(deg(2*\k))},{- (\t - \dt)*sin(deg(2*\k))});
-    \draw[] (-2*\t, -\tick) -- (-2*\t, \tick) node[above left]{$-2t$};
-    \draw[] (-2*\dt, -\tick) -- (-2*\dt, \tick) node[above left]{$-2\de t$};
-    \draw[] (- 2, 2) node[]{$\de t > 0$};
+    \draw[thick,->] (-\axissize,0) -- (+\axissize,0) node[right]{$d_x$};
+    \draw[thick,->] (0, -\axissize) -- (0,+\axissize) node[above]{$d_y$};
+    \draw[thick,scale=1.0,domain=-pi/2:pi/2,smooth,variable=\k,red] plot ({- (\t + \dt) - (\t - \dt)*cos(deg(2*\k))},{- (\t - \dt)*sin(deg(2*\k))});
+    \draw[thick,] (-2*\t, -\tick) -- (-2*\t, \tick) node[above left]{$-2t$};
+    \draw[thick,] (-2*\dt, -\tick) -- (-2*\dt, \tick) node[above left]{$-2\de t$};
+    \draw[thick,] (- 2, 2) node[]{$\de t > 0$};
 \end{tikzpicture}
 \end{center}
 It can be seen that when $\de t > 0$, the curve in $d_x, d_y$ does not enclose the origin $\ve d = 0$. Recalling that $\vep_{\pm}\br{k} = \pm \abs{\ve d \br{k}}$, as long as $\ve d\br{k} \neq 0$, there exists a energy gap between the two bands $\vep_{+}$ and $\vep_{-}$. Therefore for $\de t > 0$ polyacetylene is an ordinary insulator. However, in the case where $\de t < 0$,
@@ -413,17 +425,44 @@ It can be seen that when $\de t > 0$, the curve in $d_x, d_y$ does not enclose t
     \pgfmathsetmacro{\t}{1};
     \pgfmathsetmacro{\dt}{-0.1};
     \pgfmathsetmacro{\tick}{0.1};
-    \draw[->] (-\axissize,0) -- (+\axissize,0) node[right]{$d_x$};
-    \draw[->] (0, -\axissize) -- (0,+\axissize) node[above]{$d_y$};
-    \draw[scale=1.0,domain=-pi/2:pi/2,smooth,variable=\k,red] plot ({- (\t + \dt) - (\t - \dt)*cos(deg(2*\k))},{- (\t - \dt)*sin(deg(2*\k))});
-    \draw[] (-2*\t, -\tick) -- (-2*\t, \tick) node[above left]{$-2t$};
-    \draw[] (-2*\dt, -\tick) -- (-2*\dt, \tick) node[above left]{$-2\de t$};
-    \draw[] (- 2, 2) node[]{$\de t > 0$};
+    \draw[thick,->] (-\axissize,0) -- (+\axissize,0) node[right]{$d_x$};
+    \draw[thick,->] (0, -\axissize) -- (0,+\axissize) node[above]{$d_y$};
+    \draw[thick,scale=1.0,domain=-pi/2:pi/2,smooth,variable=\k,red] plot ({- (\t + \dt) - (\t - \dt)*cos(deg(2*\k))},{- (\t - \dt)*sin(deg(2*\k))});
+    \draw[thick,] (-2*\t, -\tick) -- (-2*\t, \tick) node[above left]{$-2t$};
+    \draw[thick,] (-2*\dt, -\tick) -- (-2*\dt, \tick) node[above left]{$-2\de t$};
+    \draw[thick,] (- 2, 2) node[]{$\de t > 0$};
 \end{tikzpicture}
 \end{center}
-It can be seen that the origin $\abs{\ve d} = 0$ is enclosed. This \textit{topological} difference is what leads us to call the $\de t < 0$ a \term{topological insulator} as apposed to an \term{ordinary insulator}.\\
+It can be seen that the origin $\abs{\ve d} = 0$ is enclosed. This \textit{topological} difference is what leads us to call the $\de t < 0$ case as a \term{topological insulator} as apposed to an \term{ordinary insulator}. \\
 
-Effectively, there is no possible way to continuously deform the Hamiltonian (i.e. changing $\de t$) without merging the two energy bands. \\
+Effectively, there is no possible way to continuously deform the Hamiltonian (i.e. changing $\de t$) without merging the two energy bands; the transition from $\de t > 0$ to $\de t < 0$ permits the band gap to close temporarily. \\
+
+\newcommand{\ppp}[2]{
+% \de t
+% \ep
+\begin{tikzpicture}[scale=0.6]
+    \pgfmathsetmacro{\axissize}{4};
+    \pgfmathsetmacro{\plotsize}{3};
+    \pgfmathsetmacro{\labels}{0.6};
+    \pgfmathsetmacro{\dt}{#1};
+    \pgfmathsetmacro{\sep}{#2};
+    \pgfmathsetmacro{\vs}{1/2};
+    \draw[->] (-\axissize,0) -- (+\axissize,0) node[right]{$k a$};
+    \draw[->] (0, -\axissize) -- (0,+\axissize) node[above]{${\vep\br{k}}/{t}$};
+    \draw (0, \axissize - 1*\labels) node[right]{${\de t}/{t} = \dt$};
+    \draw (0, \axissize - 2*\labels) node[right]{${\ep}/{t} = \sep$};
+    \draw[thick, scale=1.0,domain=-pi/2:pi/2,variable=\x, red] plot ({\x*\plotsize/(pi/2)},{+\vs*((\sep)^2 + 4*(1)^2*(cos(deg(\x)))^2 + 4*(\dt)^2*(sin(deg(\x)))^2)^(1/2)});
+    \draw[thick, scale=1.0,domain=-pi/2:pi/2,variable=\x, red] plot ({\x*\plotsize/(pi/2)},{-\vs*((\sep)^2 + 4*(1)^2*(cos(deg(\x)))^2 + 4*(\dt)^2*(sin(deg(\x)))^2)^(1/2)});
+    \draw[dashed] (+\plotsize, -\axissize) node[right]{$+\f{\pi}{2}$} -- (+\plotsize,+\axissize);
+    \draw[dashed] (-\plotsize, -\axissize) node[right]{$-\f{\pi}{2}$} -- (-\plotsize,+\axissize);
+    % \draw[] (-0.1,-2) -- (+0.1,-2) node[right]{$-2t$};
+    % \draw[] (-0.1,2) -- (+0.1,2) node[right]{$2t$};
+\end{tikzpicture}
+}
+\ppp{0.5}{0}
+\ppp{0}{0}
+\ppp{-0.5}{0}
+
 
 An observable feature of topological insulators becomes evident for the edge states at zero energy (i.e. in the middle of a band gap). In this case of polyacetylene, these states that are closest to the band gap are those that live on the edge of the Brillouin zone where $\abs{k - \pi / 2a}$ is small. In order to explore the physics of these regions, define $\de k$ such that,
 \[ k = \f{\pi}{2a} + \de k \]
@@ -517,35 +556,20 @@ A crystal is an infinite, periodic array of identical groups of atoms,
     \end{tikzpicture}
 \end{center}
 
-A \term{Bravais lattice} is all points in $\R^{3}$ ($\R^{2}, \R^{1}, \R^{n}$) such that,
-\[ \ve R = n_1 \ve a_1 + n_2 \ve a_2 + n_3 \ve a_3 \]
+A \term{Bravais lattice} is all points in $\R^{n}$ ($\R^{1}, \R^{2}, \R^{3}$, etc.) such that,
+\[ \ve R = n_1 \ve a_1 + n_2 \ve a_2 + n_3 \ve a_3 \eq \label{eq:R_lattice} \]
 Where $\ve a_1, \ve a_2, \ve a_3$ are the primitive translation vectors of the Bravais lattice. Moreover the coefficients $n_1, n_2, n_3$ are integers,
 \[ n_1, n_2, n_3 = 0, \pm 1, \pm 2, \pm 3, \ldots \]
 Typically, the choice for $\ve a_i$ is not unique. However, the best choice for the primitive transition vectors is typically the one that exhibits the most symmetry. \\
 
-The \term{primitive unit cell} is the parallelepiped defined by the primitive translation vectors.\\
-
-A special type of unit cell, usually the most convenient, is the \term{Wigner-Seitz unit cell}. A WS unit cell is the region of space about a BL point that are closer to this point than to any other BL point.
-
-\subsection{Lattice Theory}
-
-\todo[TC]{Missed a lecture}
-
-\subsubsection{Reciprocal Lattice}
-The reciprocal lattice
-\[ e^{i \ve G \cdot \ve P} = 1 \]
-
+The \term{primitive unit cell} is the parallelepiped defined by the primitive translation vectors. A primitive unit cell is also not unique. A special type of unit cell, usually the most convenient, is the \term{Wigner-Seitz unit cell}. A Wigner-Seitz unit cell is the region of space about a Bravais lattice point that are closer to this point than to any other Bravais lattice point. As an example, the first Brillouin zone is the Wigner-Seitz cell in reciprocal (momentum) space. Analogously to \cref{eq:R_lattice} which indexes lattice points in position space, we define the \term{reciprocal lattice} and all points in momentum space $\ve G$ such that,
 \[ \ve G = m_1 \ve b_1 + m_2 \ve b_2 + m_3 \ve b_3\]
+Provided that we have the following correspondence between $\ve R$ and $\ve G$,
+\[ e^{i \ve G \cdot \ve P} = 1 \]
+This is equivalent to the following,
+\[ \ve b_{i} \cdot \ve a_{j} = 2 \pi \de_{ij} \qquad \forall i,j \]
 
-Specifically, the honeycomb lattice had the following primitive translation vectors,
-\[ \ve a_1 = \f{a}{2} \br{\hat x + \sqrt{3} \hat y} \]
-\[ \ve a_2 = \f{a}{2} \br{-\hat x + \sqrt{3} \hat y} \]
-Where the reciprocal lattice is defined such that,
-\[ \ve b_{i} \cdot \ve a_{j} = 2 \pi \de_{ij}  \]
-Which means $\ve b_1$ and $\ve b_2$ take on the following form.
-\[ \ve b_1 = \f{2\pi}{\sqrt{3} a} \br{\hat y + \sqrt{3} \hat x} \]
-\[ \ve b_2 = \f{2\pi}{\sqrt{3} a} \br{\hat y - \sqrt{3} \hat x} \]
-\subsubsection{Electronic Structure for Square Lattice}
+\subsection{Electronic Structure for Square Lattice}
 
 The square lattice in 2 dimensions has two primitive basis vectors $\ve a_{1}, \ve a_{2}$,
 \begin{center}
@@ -575,21 +599,21 @@ Therefore,
 \[\ket{\ve R} = \f{1}{\sqrt{N}} \sum_{\ve R} \ket{\ve k}  e^{i \ve k \cdot \ve R} \]
 In the reciprocal lattice, $\ve k$ can be written as,
 \[ \ve k = k_1 \ve b_1 + k_2 \ve b_2 \]
-Where $k_{1,2}$ is bounded,
-\[ -\f12 \leq k_{1,2} < \f12 \]
+Where $k_{1}$ and $k_{2}$ are bounded,
+\[ -\f12 \leq k_{1}, k_{2} < \f12 \]
 Therefore,
 \[ \ve k \cdot \ve R = \br{k_1 \ve b_1 + k_2 \ve b_2} \cdot \br{n_1 \ve a_1 + n_2 \ve a_2} \]
 \[ \ve k \cdot \ve R = 2 \pi \br{k_1 n_1 + k_2 n_2} \]
 Using the $\ket{\ve k}$ basis, \cref{eq:nearest_neighbor_square_lattice} becomes,
 \[ H = - t \sum_{\ve R, \ve a} \sum_{\ve k, \ve k'} \br{\ket{\ve k}\bra{\ve k'} e^{-i \ve k \cdot \br{\ve R + \ve a}} e^{i \ve k' \cdot \ve R} + \ket{\ve k}\bra{\ve k'} e^{-i \ve k \cdot \ve R} e^{i \ve k' \cdot \br{\ve R + \ve a}}} \eq \label{eq:nearest_neighbor_square_lattice_momentum} \]
-Using a multi-dimensional version of \cref{eq:crystal_ident_polyacetylene},
+Using a multi-dimensional version of \cref{eq:crucial_idenity},
 \[ \f{1}{N} \sum_{\ve R} e^{- i \br{\ve k - \ve k'} \cdot \ve R} = \de_{\ve k, \ve k'} \]
 Therefore \cref{eq:nearest_neighbor_square_lattice} becomes,
 \[ H = - t \sum_{\ve k, \ve a} \ket{\ve k} \bra{\ve k} \br{e^{- i\ve k \cdot \ve a} + e^{i\ve k \cdot \ve a}} \]
 Recognize a cosine term,
 \[ H = - 2t \sum_{\ve k, \ve a} \ket{\ve k} \bra{\ve k} \cos \br{\ve k \cdot \ve a} \]
 The energy levels (as indexed by $\ve k$) can now be read off easily,
-\[ \vep \br{\ve k} = -2 t \sum_{\ve a} \cos \br{\ve k \cdot \ve a} = - 2t \bs{ \cos \br{k_x a} + \cos \br{k_y a}} \]
+\[ \vep \br{\ve k} = -2 t \sum_{\ve a} \cos \br{\ve k \cdot \ve a} = - 2t \bs{ \cos \br{ ak_x} + \cos \br{ ak_y}} \]
 Clearly, $\vep\br{\ve k}$ has minimum when $k_x = k_y = 0$. Therefore,
 \[ \min\bc{\vep\br{\ve k}} = \vep_{\min} = - 4 t \]
 Likewise at the Brillouin zone corners,
@@ -642,10 +666,17 @@ Recall from \cref{eq:minimum_k} that this equation only defines the Fermi surfac
 \[ \vep \br{\ve k} = - 2t \br{\cos \br{k_x a} + \cos \br{k_y a}} \]
 For a half-filled band, $\vep\tsb{F} = 0$, the Fermi surface is depicted above.
 
-\subsubsection{Graphene}
+The dispersion relation is,
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{figures/square_3d_bz.pdf}
+    \includegraphics[width=0.6\textwidth]{figures/square_3d_bz_fermi_surface.pdf}
+\end{center}
+
+\subsection{Graphene}
+
 The primitive unit vectors for Graphene are,
-\[ \ve a_{1} = \f{a}{2} \br{\hat x + \sqrt{3} \hat y} \qquad \ve a_{2} = \f{a}{2} \br{-\hat x + \sqrt{3} \hat y} \eq \label{eq:graphen_a} \]
-Whereas the reciprocal lattice is,
+\[ \ve a_{1} = \f{a}{2} \br{\hat x + \sqrt{3} \hat y} \qquad \ve a_{2} = \f{a}{2} \br{-\hat x + \sqrt{3} \hat y} \eq \label{eq:gp_graphen_a} \]
+Where the lattice structure is as follows,
 \begin{center}
 \begin{tikzpicture}
     \pgfmathsetmacro{\size}{1.5};
@@ -663,9 +694,9 @@ Whereas the reciprocal lattice is,
 \end{tikzpicture}
 \end{center}
 
-\[ \ve b_{1} = \f{2 \pi}{a} \br{\hat x + \sqrt{3} \hat y} \qquad \ve b_{2} = \f{2 \pi}{a} \br{-\hat x + \sqrt{3} \hat y} \eq \label{eq:graphen_b}\]
+\[ \ve b_{1} = \f{2 \pi}{a} \br{\hat x + \sqrt{3} \hat y} \qquad \ve b_{2} = \f{2 \pi}{a} \br{-\hat x + \sqrt{3} \hat y} \eq \label{eq:gp_graphen_b}\]
 The nearest neighbor Hamiltonian becomes,
-\[ H = -t \sum_{\ve R} \br{\ket{\ve R, 2} \bra{\ve R, 1} + \ket{\ve R - \ve a_{1}, 2}\bra{\ve R, 1} + \ket{\ve R - \ve a_2, 2}\bra{\ve R, 1} + \text{h.c.}}\eq \label{eq:graphene_H_nn} \]
+\[ H = -t \sum_{\ve R} \br{\ket{\ve R, 2} \bra{\ve R, 1} + \ket{\ve R - \ve a_{1}, 2}\bra{\ve R, 1} + \ket{\ve R - \ve a_2, 2}\bra{\ve R, 1} + \text{h.c.}}\eq \label{eq:gp_graphene_H_nn} \]
 In the reciprocal lattice,
 \[ \ket{\ve R, \al} = \f{1}{\sqrt{N}} \sum_{\ve R} \ket{\ve k, \al} e^{-i \ve k \cdot \ve R} \]
 Therefore the Hamiltonian becomes,
@@ -691,7 +722,7 @@ Since we have $1$ electron per carbon atom, there are 2 electrons per unit cell 
 In order to analyze the electronic structure of graphene, we need to rewrite $\ve k$ which is expressed via the reciprocal lattice vectors $\ve b_1, \ve b_2$ in terms of the Cartesian vectors $\ve a_1, \ve a_2$.
 \[ \ve k = k_1 \ve b_1 + k_2 \ve b_2 \]
 \[ \ve k \cdot \ve a_1 = \br{k_1 \ve b_1 + k_2 \ve b_2} \cdot \ve a_1 = 2 \pi k_1 \qquad \ve k \cdot \ve a_2 = 2 \pi k_2 \]
-Recalling \cref{eq:graphen_a,eq:graphen_b},
+Recalling \cref{eq:gp_graphen_a,eq:gp_graphen_b},
 \[ \ve a_{1} = \f{a}{2} \br{\hat x + \sqrt{3} \hat y} \qquad \ve a_{2} = \f{a}{2} \br{-\hat x + \sqrt{3} \hat y} \]
 \[ \ve b_{1} = \f{2 \pi}{a} \br{\hat x + \sqrt{3} \hat y} \qquad \ve b_{2} = \f{2 \pi}{a} \br{-\hat x + \sqrt{3} \hat y}\]
 We can now write $k_x, k_y$ in terms of $k_1, k_2$,
@@ -711,31 +742,74 @@ By examining these equations it can be seen that there are two points (and only 
 \[ \ve k_- = \br{k_{-, x}, k_{-, y}} = \br{-\f{4 \pi }{3a}, 0} \]
 At either of these points,
 \[ \abs{\ve d \br{\ve k_{\pm}}} = \sqrt{{d^x}^2\br{\ve k} + {d^y}^2\br{\ve k}} = 0 \]
-Therefore, the gap between the $\vep_{+}$ band and the $\vep_{-}$ closes at only two points. Since graphene is an insulator and does not have a Fermi surface (meaning its not \textit{not} a metal) we refer to graphene, and materials that share these features, as \term{semimetals}. \\
+Therefore, the gap between the $\vep_{+}$ band and the $\vep_{-}$ closes at only two points. Since graphene is an insulator and does not have a Fermi surface (meaning its \textit{not} a metal) we refer to graphene, and materials that share these features, as \term{semimetals}. \\
 
-Recalling \cref{eq:graphen_b} again,
-\[ \ve b_{1} = \f{2 \pi}{a} \br{\hat x + \sqrt{3} \hat y} \qquad \ve b_{2} = \f{2 \pi}{a} \br{-\hat x + \sqrt{3} \hat y}\]
-We can compute the lengths of $\ve b_1$ and $\ve b_2$,
-\[ \abs{\ve b_1} = \abs{\ve b_2} = \f{2 \pi}{a} \sqrt{1 + \f{1}{3}} = \f{4\pi}{\sqrt{3} a} \]
-Therefore $\ve b_1$ makes an angle of $\te = \pi/6$ with the $x$-axis,
-\[ \cos\te = \f{\ve b_1 \cdot \hat x}{\abs{\ve b_1}} = \f{\f{2 \pi}{a}}{\f{4 \pi}{\sqrt{3}a}} = \f{\sqrt{3}}{2} \implies \te = \f{\pi}{6} \]
-We are now able to plot the first Brillouin zone.
+
+The Brillouin zone of graphene can be derived using \cref{eq:gp_discrete_k} and \cref{eq:gp_kxky}. First, rewrite $\ve k$ which is typically defined in terms of the reciprocal lattice vectors $\ve b_1, \ve b_2$ in terms of the Cartesian vectors $\ve a_1, \ve a_2$.
+\[ \ve k = k_1 \ve b_1 + k_2 \ve b_2 \qquad \ve b_i \cdot \ve a_j = 2 \pi \de_{ij}\]
+\[ \ve k \cdot \ve a_1 = \br{k_1 \ve b_1 + k_2 \ve b_2} \cdot \ve a_1 = 2 \pi k_1 \qquad \ve k \cdot \ve a_2 = 2 \pi k_2 \]
+Therefore using \cref{eq:gp_kxky} yields,
+
+\begin{align*}
+\eq \label{eq:gp_k1k2}
+\begin{split}
+k_1 &= \f{a}{4 \pi}\br{k_x + \sqrt{3}k_y} \\
+k_2 &= \f{a}{4 \pi}\br{-k_x + \sqrt{3}k_y}
+\end{split}
+\end{align*}
+Recalling \cref{eq:gp_graphene_a},
+\[ \ve a_{1} = \f{a}{2} \br{\hat x + \sqrt{3} \hat y} \qquad \ve a_{2} = \f{a}{2} \br{-\hat x + \sqrt{3} \hat y} \]
+\[ \ve b_{1} = \f{2 \pi}{a\sqrt{3}} \br{\sqrt{3} \hat x +  \hat y} \qquad \ve b_{2} = \f{2 \pi}{a\sqrt{3}} \br{-\sqrt{3}\hat x +  \hat y}\]
+We can now write $k_x, k_y$ in terms of $k_1, k_2$,
+\[ k_x = \f{2 \pi }{a} \br{k_1 - k_2} \qquad k_y = \f{2 \pi}{\sqrt{3}a} \br{k_1 + k_2} \]
+Using \cref{eq:gp_periodic_boundary},
+\[ 1 = e^{i N_i \ve k \cdot \ve a_i} \implies N_i \ve k \cdot \ve a_i = N_i 2 \pi k_i = 2 \pi m_i \implies N_i k_i = m_i \]
+% \[ \abs{\ve b}^2 \leq 4\f{\br{2 \pi}^2}{a^2} \]
+% \[ -2\f{\br{2 \pi}}{a} \leq \abs{\ve b} \leq 2\f{\br{2 \pi}}{a} \]
+% Therefore,
+% \[ 2N_i k_i = m_i \in \Z \]
+Where $m_i \in \Z$ is an integer and $i \in \bc{1,2}$.\\
+
+Moreover, since there are $N_i$ unit cells in the $\ve a_i$ direction we have,
+\[ - \f{N_i}{2} \leq m_i < \f{N_i}{2} \qquad m_i \in \Z, \forall i \in \bc{1,2} \]
+Therefore,
+\[ - \f{N_i}{2} \leq N_i k_i < \f{N_i}{2} \qquad \forall i \in \bc{1,2} \]
+\[ - \f{1}{2} \leq k_i < \f{1}{2} \qquad \forall i \in \bc{1,2} \]
+This result is intuitive. The first Brillouin zone only extends halfway in the direction of $\ve b_1, \ve b_2$ or combinations thereof. These inequalities yield the following,
+\[ \abs{k_1}, \abs{k_2} < \f12  \]
+\[ \ve k = k_x \hat x + k_y \hat y  \]
+Where the norms of $\ve b_i$ are independent of $i$.
+\[ b^2 = \abs{\ve b_1}^2 = \abs{\ve b_2}^2 =  4\f{\br{2 \pi}^2}{3a^2} = \f{16 \pi^2}{3a^2}\]
+\[ \f12 \leq \f{\ve k \cdot \ve b_i}{b^2} = k_i \leq \f12  \]
+Therefore,
+\[ -\f12 \leq \f{1}{b^2} \br{\f{2 \pi}{a\sqrt{3}} \br{\sqrt{3} \hat x +  \hat y}} \cdot \br{k_x \hat x + k_y \hat y} \leq \f12  \]
+\[ -\f12 \leq \f{3a^2}{4\br{2 \pi}^2} \br{\f{2 \pi}{a\sqrt{3}} \br{\sqrt{3} k_x +  k_y}} \leq \f12  \]
+\[ -\f{4}{\sqrt{3}}\pi \leq  a\br{\sqrt{3} k_x +  k_y} \leq \f{4}{\sqrt{3}}\pi  \]
+Similarly,
+\[ -\f{4}{\sqrt{3}}\pi \leq  a\br{-\sqrt{3} k_x +  k_y} \leq \f{4}{\sqrt{3}}\pi  \]
+And the positive sum of these two inequalities gives,
+\[ -\f{4}{\sqrt{3}}\pi \leq  ak_y \leq \f{4}{\sqrt{3}}\pi  \]
+Which does not constrain the first Brillouin zone any further. Instead we invoke,
+\[ \f12 \leq \f{\ve k \cdot \br{\ve b_1 + \ve b_2}}{b^2} \leq \f12  \]
+Which becomes,
+\[ -\f{4}{\sqrt{3}}\pi \leq 2ak_y \leq \f{4}{\sqrt{3}}\pi  \]
+Therefore the Brillouin zone is fully characterized.
 \begin{center}
-\begin{tikzpicture}
+\begin{tikzpicture}[scale=0.8]
     \pgfmathsetmacro{\plot}{4};
     \pgfmathsetmacro{\st}{sqrt(3)};
     \pgfmathsetmacro{\size}{3};
-    \draw[->] (-\plot, 0) -- (\plot, 0) node[right]{$k_x$};
-    \draw[->] (0, -\plot) -- (0, \plot) node[right]{$k_y$};
-    \draw[->] (0,0) -- (\st, 1)         node[right]{$\ve b_1$};
-    \draw[->] (0,0) -- (-\st, 1)        node[left]{$\ve b_2$};
-    \draw[->] (0,0) -- (\st, -1)        node[right]{$-\ve b_2$};
-    \draw[->] (0,0) -- (-\st, -1)       node[left]{$-\ve b_1$};
-    \draw[->] (0,0) -- (0, -2)          node[below right]{$-\ve b_1 -\ve b_2$};
-    \draw[->] (0,0) -- (0, 2)           node[above right]{$\ve b_1 +\ve b_2$};
-    \draw[->] (0,0) -- (2/3*\size, 0)   node[above right]{$\ve k_+$};
-    \draw[->] (0,0) -- (-2/3*\size, 0)  node[above left]{$\ve k_-$};
-    \draw[]
+    \draw[thick,->] (-\plot, 0) -- (\plot, 0) node[right]{$k_x$};
+    \draw[thick,->] (0, -\plot) -- (0, \plot) node[right]{$k_y$};
+    \draw[thick,->] (0,0) -- (\st, 1)         node[right]{$\ve b_1$};
+    \draw[thick,->] (0,0) -- (-\st, 1)        node[left]{$\ve b_2$};
+    \draw[thick,->] (0,0) -- (\st, -1)        node[right]{$-\ve b_2$};
+    \draw[thick,->] (0,0) -- (-\st, -1)       node[left]{$-\ve b_1$};
+    \draw[thick,->] (0,0) -- (0, -2)          node[below right]{$-\ve b_1 -\ve b_2$};
+    \draw[thick,->] (0,0) -- (0, 2)           node[above right]{$\ve b_1 +\ve b_2$};
+    \draw[thick,->] (0,0) -- (2/3*\size, 0)   node[above right]{$\ve k_+$};
+    \draw[thick,->] (0,0) -- (-2/3*\size, 0)  node[above left]{$\ve k_-$};
+    \draw[blue]
     (2/3*\size, 0) --
     (1, \st)       --
     % (0, 2*\st)     --
@@ -747,6 +821,11 @@ We are now able to plot the first Brillouin zone.
     cycle;
 \end{tikzpicture}
 \end{center}
+\begin{center}
+    \includegraphics[width=0.45\linewidth]{figures/graphene_3d_dr.pdf}
+    \includegraphics[width=0.25\linewidth]{figures/graphene_3d_contour_dr.pdf}
+    \includegraphics[width=0.25\linewidth]{figures/graphene_3d_contour_bz.pdf}
+\end{center}
 The first Brillouin zone for graphene forms a hexagonal lattice with the corners obtained from $\ve k_{\pm}$ by adding $\pm b_1, \pm b_2$,
 \[ \ve G = m_1 \ve b_2 + m_2 \ve b_2 \]
 In graphene, the upper and lower band are \textit{not} separated by a band gap (sometimes $\vep_{+} > \vep_{-}$ and sometimes $\vep_{+} < \vep_{-}$). The crossing points are precisely the two points where $\ve k = \ve k_{\pm}$. If we expand $H\br{\ve k}$ near $\ve k_{\pm}$ to first order,
@@ -757,12 +836,12 @@ To first order,
 For both the $x$ and $y$ directions, the leading coefficient $\f{\sqrt{3}}{2} t a$ has units of speed times $\hbar$. We again call this the Fermi velocity,
 \[ v\tsb{F} = \f{\sqrt{3} t a}{2\hbar} \]
 Then we can write the Hamiltonian as,
-\[ H_{\pm}\br{\ve k} = \hbar v\tsb{F} \br{\pm k_x \si^x + k_y \si^{y}} \eq \label{eq:2d_dirac}\]
-Where here $k_x$ and $k_y$ refer to $\de k_x$ and $\de k_y$. This is done by shifting coordinates such that $\ve k_{\pm} = 0$ for each of the $+, -$ cases. Upon examination of \cref{eq:2d_dirac}, \cref{eq:2d_dirac} takes the form of a 2D Dirac Hamiltonian for a massless relativistic particle in 2D. The energies near the touching points $\ve k_{\pm}$ is,
+\[ H_{\pm}\br{\ve k} = \hbar v\tsb{F} \br{\pm k_x \si^x + k_y \si^{y}} \eq \label{eq:gp_2d_dirac}\]
+Where here $k_x$ and $k_y$ refer to $\de k_x$ and $\de k_y$. This is done by shifting coordinates such that $\ve k_{\pm} = 0$ for each of the $+, -$ cases. Upon examination of \cref{eq:gp_2d_dirac}, \cref{eq:gp_2d_dirac} takes the form of a 2D Dirac Hamiltonian for a massless relativistic particle in 2D. The energies near the touching points $\ve k_{\pm}$ is,
 \[ \vep\br{\ve k} = \pm \hbar v\tsb{F} k \]
 Where $k = \sqrt{k_x^2 + k_y^2}$. This means that $\vep\br{\ve k}$ has linear dispersion near $\ve k_{\pm}$. \\
 
-One question we can ask is what can we do to graphene in order to open a gap between $\ve k_{-}$ and $\ve k_{+}$. In order words, how can we give the electron in \cref{eq:2d_dirac} an effective mass. This can be accomplished by introducing a discrepancy between the atoms labeled $1$ and the atoms labeled $2$ within a unit cell. As an example, we can add energies $\pm m$ to the atoms as follows,
+One question we can ask is what can we do to graphene in order to open a gap between $\ve k_{-}$ and $\ve k_{+}$. In order words, how can we give the electron in \cref{eq:gp_2d_dirac} an effective mass. This can be accomplished by introducing a discrepancy between the atoms labeled $1$ and the atoms labeled $2$ within a unit cell. As an example, we can add energies $\pm m$ to the atoms as follows,
 
 \begin{center}
 \begin{tikzpicture}
@@ -785,6 +864,8 @@ One question we can ask is what can we do to graphene in order to open a gap bet
 
 Which effectively corresponds to adding the following term to the original Hamiltonian,
 \[ H' = m \sum_{\ve R} \br{\ket{\ve R, 1}\bra{\ve R, 1} - \ket{\ve R, 2}\bra{\ve R, 2}} \]
+
+
 Applying the Fourier transform yields the following,
 \[ H' = m \sum_{\ve k} \br{\ket{\ve k, 1}\bra{\ve k, 1} - \ket{\ve k, 2}\bra{\ve k, 2}} \]
 Which further adjusts the dispersion relationship,
@@ -803,33 +884,35 @@ The `$\pm$' can be thought of as a two component degree of freedom. Because ther
     \tau^{x} &= \ket{+} \bra{-} + \ket{-}\bra{+}
 \end{align*}
 Which means that the Hamiltonian can be written without the `$\pm$' as a single matrix,
-\[ H\br{\ve k} =\hbar v\tsb{F} \br{k_x \tau^{z} \si^x + k_y \si^{y}} \eq \label{eq:double2spin}\]
-\subsection{Spin-Orbit Interactions}
-What are the symmetries of \cref{eq:double2spin}? We must have the following:
+\[ H\br{\ve k} =\hbar v\tsb{F} \br{k_x \tau^{z} \si^x + k_y \si^{y}} \eq \label{eq:gp_double2spin}\]
+
+\subsubsection{Spin-Orbit Interactions}
+\label{sec:soi}
+What are the symmetries of \cref{eq:gp_double2spin}? We must have the following:
 \begin{enumerate}
     \item Time Reversal Symmetry
     \item Inversion Symmetry
 \end{enumerate}
-In order to facilitate discussions, we introduce two operators; the \term{inversion (parity) operator $\pi$} and \term{time-reversal operator $\Theta$}. The symmetries of \cref{eq:double2spin} can we written,
-\[  \pi^{\dagger} H\br{\ve k} \pi = H\br{\ve k} \eq \label{eq:parity_graphene}\]
-\[  \Theta H\br{\ve k} \Theta^{-1} = H\br{\ve k} \eq \label{eq:tr_graphene}\]
+In order to facilitate discussions, we introduce two operators; the \term{inversion (parity) operator $\pi$} and \term{time-reversal operator $\Theta$}. The symmetries of \cref{eq:gp_double2spin} can we written,
+\[  \pi^{\dagger} H\br{\ve k} \pi = H\br{\ve k} \eq \label{eq:gp_parity_graphene}\]
+\[  \Theta H\br{\ve k} \Theta^{-1} = H\br{\ve k} \eq \label{eq:gp_tr_graphene}\]
 Since $\tau^{z}$ refers to the two band touching points (coordinates in momentum space), $\tau^{z}$ changes sign under both symmetries,
-\[ \pi^{\dagger} \tau^{z} \pi = - \tau^{z} \eq \label{eq:tau_z_sym_parity}\]
-\[ \Theta \tau^{z} \Theta^{-1} = - \tau^{z} \eq \label{eq:tau_z_sym_tr}\]
+\[ \pi^{\dagger} \tau^{z} \pi = - \tau^{z} \eq \label{eq:gp_tau_z_sym_parity}\]
+\[ \Theta \tau^{z} \Theta^{-1} = - \tau^{z} \eq \label{eq:gp_tau_z_sym_tr}\]
 Furthermore, $k_{x, y, z}$ represent momentum and is thus time and parity odd,
 \[ \pi^{\dagger} k_{x,y,z} \pi = - k_{x,y,z} \]
 \[ \Theta k_{x,y,z} \Theta^{-1} = - k_{x,y,z} \]
-Therefore we must conclude that $\si^{x}$ is even under these symmetries and $\si^{y}$ is odd pursuant to \cref{eq:parity_graphene,eq:tr_graphene},
+Therefore we must conclude that $\si^{x}$ is even under these symmetries and $\si^{y}$ is odd pursuant to \cref{eq:gp_parity_graphene,eq:gp_tr_graphene},
 \[ \pi^{\dagger} \si^{y} \pi = - \si^{y} \]
 \[ \Theta \si^{y} \Theta^{-1} = - \si^{y} \]
 \[ \pi^{\dagger} \si^{x} \pi = + \si^{x} \]
 \[ \Theta \si^{x} \Theta^{-1} = + \si^{x} \]
 This is intuitive because $\si$ refers to the spatial location of atoms $1$ and $2$ oriented in the $y$ direction.
-If we were to include the massive term $m\si^{z}$ we break symmetry in \cref{eq:parity_graphene,eq:tr_graphene},
-\[ \pi^{\dagger} \si^{z} \pi = - \si^{z} \qquad \Theta \si^{z} \Theta^{-1} = \si^{z} \eq \label{eq:si_z_sym}\]
+If we were to include the massive term $m\si^{z}$ we break symmetry in \cref{eq:gp_parity_graphene,eq:gp_tr_graphene},
+\[ \pi^{\dagger} \si^{z} \pi = - \si^{z} \qquad \Theta \si^{z} \Theta^{-1} = \si^{z} \eq \label{eq:gp_si_z_sym}\]
 Specifically, $m \si^{z}$ breaks inversion symmetry. This is intuitive because $m$ adds spatial discrepancies between $1$ and $2$. Can we open a gap in graphene without breaking time-reversal or inversion symmetries?\\
 
-Interestingly, this lack of symmetry is an artifact of the simplistic model introduced by \cref{eq:graphene_H_nn}. If we include \textit{next-nearest neighbor} terms, it is possible to recover symmetries. Upon examination of \cref{eq:si_z_sym} and \cref{eq:tau_z_sym_parity,eq:tau_z_sym_tr} we find that $\tau^{z} \si^{z}$ is invariant under inversion,
+Interestingly, this lack of symmetry is an artifact of the simplistic model introduced by \cref{eq:gp_graphene_H_nn}. If we include \textit{next-nearest neighbor} terms, it is possible to recover symmetries. Upon examination of \cref{eq:gp_si_z_sym} and \cref{eq:gp_tau_z_sym_parity,eq:gp_tau_z_sym_tr} we find that $\tau^{z} \si^{z}$ is invariant under inversion,
 \[ \pi^{\dagger} \tau^{z} \si^{z} \pi = \tau^{z} \si^{z} \]
 But $\tau^{z} \si^{z}$ is not invariant under time-reversal,
 \[ \Theta \tau^{z} \si^{z} \Theta^{-1} = -\tau^{z} \si^{z} \]
@@ -837,14 +920,14 @@ Other component that is missing from our model is the real spin of the electron 
 \[ \pi^{\dagger} \ve S \pi = \ve S \qquad \Theta \ve S \Theta^{-1} = - \ve S \]
 \begin{align*}
     S^{z} &= \ket{\uparrow} \bra{\uparrow} - \ket{\downarrow}\bra{\downarrow} \\
-    % S^{y} &= -i\br{\ket{\uparrow} \bra{\downarrow} - \ket{\downarrow}\bra{\uparrow}} \\
+    S^{y} &= -i\br{\ket{\uparrow} \bra{\downarrow} - \ket{\downarrow}\bra{\uparrow}} \\
     S^{x} &= \ket{\uparrow} \bra{\downarrow} + \ket{\downarrow}\bra{\uparrow}
 \end{align*}
 Upon adding this term, $\tau^{z} \si^{z} S^{z}$ maintains the desired symmetries,
 \[ \pi^{\dagger} \tau^{z} \si^{z} S^{z} \pi = \tau^{z} \si^{z} S^{z} \qquad \Theta \tau^{z} \si^{z} S^{z} \Theta^{-1} = \tau^{z} \si^{z} S^{z} \]
 This was discovered by Kane and Mele (2005) and their paper gave rise to the field of topological insulators. Therefore the true graphene Hamiltonian can be written as,
-\[ H\br{\ve k} =\hbar v\tsb{F} \br{k_x \tau^{z} \si^x + k_y \si^{y}} + \De\tsb{SO} \tau^{z} \si^{z} S^{z} \eq \label{eq:kane_mele}\]
-Where $\De\tsb{SO}$ is refered to as the \term{spin-orbit interaction}. The origin of the $\De\tsb{SO}$ term is due to the following process. When the valence electrons have the ability to tunnel between atoms, some of the atoms in the crystal lattice become ionized. The electric field of ionized atoms is felt as a magnetic field in the rest frame of the electrons. Effectively this magnetic field has strength $\ve B = \ve v \times \ve E / c$ which tends to be small as $B \propto c^{-1}$. Additionally, $\ve E$ grows for heavier and heavier atoms. This magnetic field acts on the spin in the usual manner $H \propto \ve B \cdot \ve S$. This is encapsulated in \cref{eq:kane_mele} as $\tau^{z} \si^{z}$ is coupled with the spin $S^{z}$. \\
+\[ H\br{\ve k} =\hbar v\tsb{F} \br{k_x \tau^{z} \si^x + k_y \si^{y}} + \De\tsb{SO} \tau^{z} \si^{z} S^{z} \eq \label{eq:gp_kane_mele}\]
+Where $\De\tsb{SO}$ is refered to as the \term{spin-orbit interaction}. The origin of the $\De\tsb{SO}$ term is due to the following process. When the valence electrons have the ability to tunnel between atoms, some of the atoms in the crystal lattice become ionized. The electric field of ionized atoms is felt as a magnetic field in the rest frame of the electrons. Effectively this magnetic field has strength $\ve B = \ve v \times \ve E / c$ which tends to be small as $B \propto c^{-1}$. Additionally, $\ve E$ grows for heavier and heavier atoms. This magnetic field acts on the spin in the usual manner $H \propto \ve B \cdot \ve S$. This is encapsulated in \cref{eq:gp_kane_mele} as $\tau^{z} \si^{z}$ is coupled with the spin $S^{z}$. \\
 
 In order to formally introduce the $\De\tsb{SO} \tau^{z} \si^{z} S^{z}$ term into the Hamiltonian, we need to include next nearest-neighbor tunneling ($1 \to 1$ and $2 \to 2$ tunneling),
 
@@ -867,11 +950,264 @@ In order to formally introduce the $\De\tsb{SO} \tau^{z} \si^{z} S^{z}$ term int
 \end{tikzpicture}
 \end{center}
 
-The additional terms to \cref{eq:graphene_H_nn} can be expressed as,
+The additional terms to \cref{eq:gp_graphene_H_nn} can be expressed as,
 \[ H = \cdots -i t' \br{\ket{\ve R + \ve a_1 - \ve a_2, 1}\bra{\ve R, 1} - \ket{\ve R, 1} \bra{\ve R + \ve a_1 - \ve a_2, 1}} \cdots \]
 Which has tunneling amplitude $i t'$. The intermediate negative sign is due to the tunneling amplitude being imaginary which switches signs under conjugation.\\
 
-In order to study the effect $\De\tsb{SO}$ in \cref{eq:kane_mele}, we will include a massive term $m \si^{z}$ and study the following,
+
+\subsubsection{Second Nearest-Neighbors}
+
+\tikzstyle{atomoptions}=[draw, circle, inner sep=1pt, fill=#1]
+
+\newcommand{\atomat}[2]{node[atomoptions={#1}] () at #2 {}}
+\newcommand{\atom}[1]{\begin{tikzpicture}[baseline=-2pt]\draw\atomat{#1}{(0,0)};\end{tikzpicture}}
+\newcommand{\hexgonat}[1]{
+#1
+-- ++(+\diagh,-\diagv)
+-- ++(0, -\vert)
+-- ++(-\diagh,-\diagv)
+-- ++(-\diagh,+\diagv)
+-- ++(0, +\vert)
+-- ++(+\diagh,+\diagv)
+}
+\newcommand{\hexgonatatoms}[1]{
+#1                  node[atomoptions={black}]{}
+++(+\diagh,-\diagv) node[atomoptions={white}]{}
+++(0, -\vert)       node[atomoptions={black}]{}
+++(-\diagh,-\diagv) node[atomoptions={white}]{}
+++(-\diagh,+\diagv) node[atomoptions={black}]{}
+++(0, +\vert)       node[atomoptions={white}]{}
+++(+\diagh,+\diagv) node[atomoptions={black}]{}
+}
+\newcommand{\atomm}{\atom{white}}
+\newcommand{\atomp}{\atom{black}}
+
+\begin{center}
+\begin{tikzpicture}
+    \pgfmathsetmacro{\edgelength}{1.5};
+    \pgfmathsetmacro{\diagh}{sqrt(3)/2*\edgelength};
+    \pgfmathsetmacro{\diagv}{1/2*\edgelength};
+    \pgfmathsetmacro{\vert}{\edgelength};
+    \pgfmathsetmacro{\feather}{0.2};
+    \coordinate (a1) at (-\diagh, +\diagv+\vert);
+    \coordinate (a2) at (+\diagh, +\diagv+\vert);
+    \foreach \n/\m in {2/-1, -1/2, 2/0, 0/2, 0/-1,+1/-1,-1/0,0/0,+1/0,-1/+1,0/+1,+1/+1}{
+        \draw[gray] \hexgonat{($\n*(a1) + \m*(a2)$)};
+        \draw \hexgonatatoms{($\n*(a1) + \m*(a2)$)};
+    }
+    \foreach \n/\m in {2/-1, -1/2, 0/-1,+1/-1,-1/0,0/0,+1/0,-1/+1,0/+1, -1/-1, -2/+1, -2/+2, -2/0, +1/-2, +2/-2, 0/-2}{
+        \draw[thick, red] plot [smooth cycle, tension=1, shift={($\n*(a1) + \m*(a2)$)}] coordinates {(-\feather,0) (+\feather,0) (+\feather,\vert) (-\feather,\vert)};
+    }
+    \draw[blue, fill=blue, fill opacity=0.05] \hexgonat{(0,+\vert)};
+    \draw[<-] (+\diagh,0) to[in=0, out=0] (1,5) node[left]{Wigner-Seitz Unit Cell};
+    \draw[thick, ->] (0,0) -- node[left ]{$\ve a_1$} ++(a1);
+    \draw[thick, ->] (0,0) -- node[right]{$\ve a_2$} ++(a2);
+    \draw[thick, dashed, green] (0, \vert) to[bend right] (-\diagh, -\diagv);
+    \draw[thick, dashed, green] (0, \vert) to[bend right] (+\diagh, -\diagv);
+    \draw[thick, dashed, green] (+\diagh, -\diagv) to[bend right] (0, \vert);
+    \draw[thick, dashed, green] (+\diagh, -\diagv) to[bend left ] (-\diagh, -\diagv);
+    \draw[thick, dashed, green] (-\diagh, -\diagv) to[bend right] (0, \vert);
+    \draw[thick, dashed, green] (-\diagh, -\diagv) to[bend left ] (+\diagh, -\diagv);
+    \draw[thick, dashed, green] (0,0) to[bend right] (a1);
+    \draw[thick, dashed, green] (0,0) to[bend left ] (a2);
+    \draw[thick, dashed, green] (0,0) to[bend left ] (a1);
+    \draw[thick, dashed, green] (0,0) to[bend right] (a2);
+    \draw[thick, dashed, green] (0,0) to[bend left ] ($-1*(a1) + 1*(a2)$);
+    \draw[thick, dashed, green] (0,0) to[bend right] ($-1*(a1) + 1*(a2)$);
+    \draw[thick, dashed, blue]  (0,0) to[bend left ] (0, \vert);
+    \draw[thick, dashed, blue]  (0,0) to[bend left ] (+\diagh, -\diagv);
+    \draw[thick, dashed, blue]  (0,0) to[bend left ] (-\diagh, -\diagv);
+    \draw[thick, dashed, blue]  (0,0) to[bend right] (0, \vert);
+    \draw[thick, dashed, blue]  (0,0) to[bend right] (+\diagh, -\diagv);
+    \draw[thick, dashed, blue]  (0,0) to[bend right] (-\diagh, -\diagv);
+\end{tikzpicture}
+\end{center}
+In the graphene lattice depicted above, each unit cell located at $\ve R = n_1 \ve a_1 + n_2 \ve a_2$ where $n_1, n_2 \in \Z$ has two atoms $\al \in \bc{\atomm, \atomp}$.
+\[ \ve a_1 = \f{a}{2}\br{\hat x + \sqrt{3}\hat y} \qquad \ve a_2 = \f{a}{2}\br{-\hat x + \sqrt{3}\hat y} \]
+An electron localized in the atom $\al \in \bc{\atomm, \atomp}$ at $\ve R$ is denoted as $\ket{\ve R, \al}$. \\
+
+There are $6$ possible nearest-neighbor transitions illustrated in blue above. These transitions, with intensity $t_1$ can be written as the nearest-neighbor Hamiltonian $H_1$,
+\[ H_1 = - t_1 \sum_{\ve R} \bc{\ket{\ve R, \atomm}\bra{\ve R, \atomp} + \ket{\ve R-\ve a_1, \atomm}\bra{\ve R, \atomp} + \ket{\ve R - \ve a_2, \atomm}\bra{\ve R, \atomp} + \text{h.c.}} \]
+There are $12$ possible next-nearest-neighbor transitions illustrated in green above. These transitions, with intensity $t_2$ can be written as the nearest-neighbor Hamiltonian $H_2$ (note that these transitions were all defined in the same direction; this is important when we invoke $t_2 = i \ti t_2, \ti t_2 \in \R$ later),
+\begin{align*}
+H_{2, \atomm} &= - t_2 \sum_{\ve R} \bc{\ket{\ve R+\ve a_1, \atomm}\bra{\ve R, \atomm} + \ket{\ve R-\ve a_2, \atomm}\bra{\ve R, \atomm}+ \ket{\ve R-\ve a_1, \atomm}\bra{\ve R-\ve a_2, \atomm} + \text{h.c.}} \\
+H_{2, \atomp} &= -t_2 \sum_{\ve R} \bc{\ket{\ve R+\ve a_1, \atomp}\bra{\ve R, \atomp} + \ket{\ve R, \atomp}\bra{\ve R+\ve a_2, \atomp}+ \ket{\ve R-\ve a_1, \atomp}\bra{\ve R-\ve a_2, \atomp} + \text{h.c.}}
+\end{align*}
+Altogether,
+\[ H = H_1 + H_2 = H_1 + H_{2, \atomp} + H_{2, \atomm} \eq \label{eq:gp_hamiltonian_total}\]
+
+In order to diagonalize \cref{eq:gp_hamiltonian_total} with respect to $\ve R$, we may switch to momentum space,
+\[ \ket{\ve R, \al} =  \sum_{\ve R} \ket{\ve k, \al}\braket{\ve k, \al}{\ve R, \al} \qquad \forall \al \in \bc{\atomp, \atomm} \eq \label{eq:gp_basis_change}\]
+Where $\braket{\ve k, \al}{\ve R, \al}$ is defined and normalized independent of $\al$. Motivated by free electrons, $\braket{k}{x} \propto e^{-ikx}$ we map $x$ to the position in the crystal:
+\begin{align*}
+    \eq \label{eq:gp_xk}
+    \begin{split}
+        x \mapsto n_1 \ve a_1 + n_2 \ve a_2 &= \ve R\\
+        k \mapsto k_1 \f{\ve a_1}{a} + k_2 \f{\ve a_2}{a} &= \ve k
+    \end{split}
+\end{align*}
+Therefore,
+\[ \braket{\ve k, \al}{\ve R, \al} \propto e^{i\ve k \cdot \ve R} \eq \label{eq:gp_plane_wave}\]
+The normalization factor comes from completeness,
+\[ \sum_{\ve R} \abs{\braket{\ve k, \al}{\ve R, \al}}^2 = 1 \eq \label{eq:gp_normalization}\]
+Heretofore, no restrictions have been made on the range of $\ve R$. Evidently, a real substance will possess finite, albeit many, unit cells. To emulate this feature, equip this model with periodic boundary conditions such that there are $N_i$ distinct unit cells in the $\ve a_i$ direction. Therefore for all $\al, \ve R$,
+\[ \ket{\ve R, \al} = \ket{\ve R + N_1 \ve a_1, \al} = \ket{\ve R + N_2 \ve a_2, \al} \eq \label{eq:gp_periodic_boundary}\]
+Letting $\ga \in \R$ be the normalization coefficient in \cref{eq:gp_plane_wave}, \cref{eq:gp_normalization} becomes,
+\[ 1 = \sum_{\ve R} \abs{\braket{\ve k, \al}{\ve R, \al}}^2 = \sum_{n_1 = 1}^{N_1}\sum_{n_2 = 1}^{N_2} \abs{\ga e^{i\ve k \cdot \ve R}}^2 = N_1 N_2 \ga^2 \implies \ga = \f{1}{\sqrt{N_1 N_2}}\]
+Consequently, \cref{eq:gp_basis_change} can be written as follows,
+\[ \ket{\ve R, \al} = \f{1}{\sqrt{N_1N_2}} \sum_{\ve k} e^{i \ve k \cdot \ve R} \ket{\ve k, \al} \eq \label{eq:gp_basis_coeffs}  \]
+Additionally, the periodic boundary condition of \cref{eq:gp_periodic_boundary} gives,
+\[ \ket{\ve R, \al} = \ket{\ve R + N_i \ve a_i, \al} = \f{1}{\sqrt{N_1N_2}} \sum_{\ve k} e^{i \ve k \cdot \br{\ve R + N_i \ve a_i}} \ket{\ve k, \al} = \f{1}{\sqrt{N_1N_2}} \sum_{\ve k} e^{i \ve k \cdot \ve R} \ket{\ve k, \al}  \]
+Therefore $e^{i N_i \ve k \cdot \ve a_i} = e^{i 2N_i k_i a} = 1$ which gives,
+\[ 2N_i k_i a = 2 \pi m_i \qquad m_i \in \Z, \forall i \in \bc{1,2} \]
+\[ k_i = \f{\pi m_i}{N_i a} \qquad m_i \in \Z, \forall i \in \bc{1,2} \eq \label{eq:gp_discrete_k} \]
+Therefore each of the $k_i$'s are discrete. Summing \cref{eq:gp_hamiltonian_total} over the momentum space $\ve k, \ve k'$ and using the following identity,
+\[ \f{1}{N_1 N_2} \sum_{\ve R} e^{-i\br{\ve k-\ve k'} \cdot \ve R} = \de_{\ve k, \ve k'} \]
+Yields,
+\begin{align*}
+H_1 &= - t_1 \sum_{\ve k} \bc{\ket{\ve k, \atomm}\bra{\ve k, \atomp}\bc{1 + e^{-i \ve k \cdot \ve a_1} + e^{-i \ve k \cdot \ve a_2}} + \text{h.c.}} \\
+H_{2, \atomm} &= - t_2 \sum_{\ve k} \bc{\ket{\ve k, \atomm}\bra{\ve k, \atomm}\bc{e^{i \ve k \cdot \ve a_1} + e^{-i \ve k \cdot \ve a_2} + e^{i \ve k \cdot \br{\ve a_2 - \ve a_1}}} + \text{h.c.}} \\
+H_{2, \atomp} &= -t_2 \sum_{\ve k} \bc{\ket{\ve k, \atomp}\bra{\ve k, \atomp}\bc{e^{i \ve k \cdot \ve a_1} + e^{-i \ve k \cdot \ve a_2} + e^{i \ve k \cdot \br{\ve a_2 - \ve a_1}}} + \text{h.c.}}
+\end{align*}
+Therefore $H = \sum_{\ve k}H\br{\ve k}$ gives,
+\[ H\br{\ve k} = \sum_{\ve k} \br{-t_1  \bs{\ket{\atomm}\bra{\atomp}\bc{1 + e^{-i \ve k \cdot \ve a_1} + e^{-i \ve k \cdot \ve a_2}}} - t_2\bs{\br{\ket{\atomp}\bra{\atomp} + \ket{\atomm}\bra{\atomm}}\bc{e^{i \ve k \cdot \ve a_1} + e^{-i \ve k \cdot \ve a_2} + e^{i \ve k \cdot \br{\ve a_2 - \ve a_1}}}}} + \text{h.c.}    \]
+
+Since $H\br{\ve k}$ is a two-level system $\bc{\ket{\atomp, \atomm}}$ we invoke a pseudo-spin denoted by the Pauli matrices $\ve \si$.
+
+\begin{align*}
+    \ve \si &= \br{\si^{x}, \si^{y}, \si^{z}} \\
+    \si^{z} &= \ket{\atomp} \bra{\atomp} - \ket{\atomm}\bra{\atomm} \\
+    \si^{y} &= -i\br{\ket{\atomp} \bra{\atomm} - \ket{\atomm}\bra{\atomp}} \\
+    \si^{x} &= \ket{\atomp} \bra{\atomm} + \ket{\atomm}\bra{\atomp}
+\end{align*}
+Therefore $\ket{\atomp} \bra{\atomm}$ can be written as follows,
+\[ \ket{\atomp} \bra{\atomm} = \f{1}{2}\bc{\si^{x} + i \si^{y}} \qquad \ket{\atomm} \bra{\atomp} = \f{1}{2}\bc{\si^{x} - i \si^{y}} \]
+Since $t_1 \in \R$, this implies,
+\begin{align*}
+    \ket{\atomm}\bra{\atomp}\bc{1 + e^{-i \ve k \cdot \ve a_1} + e^{-i \ve k \cdot \ve a_2}} + \text{h.c.}
+    &= \ket{\atomm}\bra{\atomp}\bc{1 + e^{-i \ve k \cdot \ve a_1} + e^{-i \ve k \cdot \ve a_2}} + \ket{\atomp}\bra{\atomm}\bc{1 + e^{i \ve k \cdot \ve a_1} + e^{i \ve k \cdot \ve a_2}}\\
+    &= \f12\br{\si^{x} - i \si^{y}}\bc{1 + e^{-i \ve k \cdot \ve a_1} + e^{-i \ve k \cdot \ve a_2}} + \f12\br{\si^{x} + i \si^{y}}\bc{1 + e^{i \ve k \cdot \ve a_1} + e^{i \ve k \cdot \ve a_2}}\\
+    &= \si^{x}\br{1 + \cos \br{\ve k \cdot \ve a_1} + \cos \br{\ve k \cdot \ve a_2}} + \si^{y}\br{\sin \br{\ve k \cdot \ve a_1} + \sin \br{\ve k \cdot \ve a_2}}
+\end{align*}
+In contrast, if $t_2$ is imaginary $t_2^{*} = - t_2$ which means $t_2 = i \ti t_2$,
+\begin{align*}
+    &t_2\underbrace{\br{\ket{\atomp}\bra{\atomp} + \ket{\atomm}\bra{\atomm}}}_{\ident}\bc{e^{i \ve k \cdot \ve a_1} + e^{-i \ve k \cdot \ve a_2} + e^{i \ve k \cdot \br{\ve a_2 - \ve a_1}}} +\text{h.c.} \\
+    &\qquad= i\ti t_2\bc{e^{i \ve k \cdot \ve a_1} + e^{-i \ve k \cdot \ve a_2} + e^{i \ve k \cdot \br{\ve a_2 - \ve a_1}}} +\text{h.c.} \\
+    &\qquad= i\ti t_2\bc{e^{i \ve k \cdot \ve a_1} + e^{-i \ve k \cdot \ve a_2} + e^{i \ve k \cdot \br{\ve a_2 - \ve a_1}} - e^{-i \ve k \cdot \ve a_1} - e^{i \ve k \cdot \ve a_2} - e^{-i \ve k \cdot \br{\ve a_2 - \ve a_1}}} \\
+    &\qquad= 2\ti t_2\bc{\sin\br{-\ve k \cdot \ve a_1} + \sin\br{\ve k \cdot \ve a_2} + \sin\br{\ve k \cdot \br{\ve a_1 - \ve a_2}}}
+\end{align*}
+
+In order to write $H_{2, \atomp}$ in terms of $\ve d\br{\ve k} \cdot \ve \si$, recognize that if the electrons have spin,
+\begin{align*}
+    \ve s &= \br{s^{x}, s^{y}, s^{z}} \\
+    s^{z} &= \ket{\uparrow} \bra{\uparrow} - \ket{\downarrow}\bra{\downarrow} \\
+    s^{y} &= -i\br{\ket{\uparrow} \bra{\downarrow} - \ket{\downarrow}\bra{\uparrow}} \\
+    s^{x} &= \ket{\uparrow} \bra{\downarrow} + \ket{\downarrow}\bra{\uparrow}
+\end{align*}
+Then the eigenstates can become the following,
+\[ \ket{\ve R, \al} \mapsto \ket{\ve R, \al_{\si}, \al_{s}} \qquad \al_{\si} \in \bc{\atomm, \atomp} , \al_{s} \in \bc{\uparrow, \downarrow} \]
+Then is is possible to write the following,
+\[ \ident = s^{z} \si^{z} \]
+Therefore,
+\begin{align*}
+    d^{x}\br{\ve k} &= -t_1\bc{1 + \cos \br{\ve k \cdot \ve a_1} + \cos \br{\ve k \cdot \ve a_2}} \\
+    d^{y}\br{\ve k} &= -t_1\bc{\sin \br{\ve k \cdot \ve a_1} + \sin \br{\ve k \cdot \ve a_2}}\\
+    d^{z}\br{\ve k} &= 2\ti t_2s^{z}\bc{\sin\br{-\ve k \cdot \ve a_1} + \sin\br{\ve k \cdot \ve a_2} + \sin\br{\ve k \cdot \br{\ve a_1 - \ve a_2}}}
+\end{align*}
+In terms of the $x,y$ components of $\ve k$,
+\[ \ve k = k_x \hat x + k_y \hat y  \]
+\[ \ve a_1 = \f{a}{2}\br{\hat x + \sqrt{3}\hat y} \qquad \ve a_2 = \f{a}{2}\br{-\hat x + \sqrt{3}\hat y} \eq \label{eq:gp_graphene_a}\]
+\begin{align*}
+\eq \label{eq:gp_kxky}
+\begin{split}
+\ve k \cdot \ve a_1 &= \br{k_x \hat x + k_y \hat y}\br{\f{a}{2}\br{\hat x + \sqrt{3}\hat y}} = \f{a}{2}\br{k_x + \sqrt{3}k_y} \\
+\ve k \cdot \ve a_2 &= \br{k_x \hat x + k_y \hat y}\br{\f{a}{2}\br{-\hat x + \sqrt{3}\hat y}} = \f{a}{2}\br{-k_x + \sqrt{3}k_y}
+\end{split}
+\end{align*}
+Trig identities give,
+\begin{align*}
+    d^{x}\br{\ve k} &= -t_1\bc{1 + 2 \cos \br{\f{ak_x}{2}}\cos \br{\f{\sqrt{3}ak_y}{2}}} \\
+    d^{y}\br{\ve k} &= -2t_1\bc{\cos \br{\f{ak_x}{2}}\sin \br{\f{\sqrt{3}ak_y}{2}}}\\
+    d^{z}\br{\ve k} &= -2\ti t_2s^{z}\bc{-2 \sin \br{\f{ak_x}{2}}\cos \br{\f{\sqrt{3}ak_y}{2}} + \sin\br{k_x a}}\\
+\end{align*}
+The energy dispersion relations are,
+\[ \vep\br{\ve k} = \pm\abs{\ve d\br{\ve k}} \]
+\begin{align*}
+\eq \label{eq:gp_dispersion}
+\vep_{\pm}\br{\ve k}
+&= \pm \bigg(t_1^2\bc{1 + 2 \cos \br{\f{ak_x}{2}}\cos \br{\f{\sqrt{3}ak_y}{2}}}^2 + \cdots \\
+&\cdots + 4t_1^2\bc{\cos \br{\f{ak_x}{2}}\sin \br{\f{\sqrt{3}ak_y}{2}}}^2 + \cdots \\
+&\cdots + 4\ti t_2^2{s^{z}}^2\bc{-2 \sin \br{\f{ak_x}{2}}\cos \br{\f{\sqrt{3}ak_y}{2}} + \sin\br{k_x a}}^2\bigg)^{1/2}
+\end{align*}
+
+By examining these equations it can be seen that there are two points (and only two points) in the first Brillouin zone where both $d^{x}$ and $d^y$ vanish simultaneously (at least in the case where $\ti t_2 = 0$). We label these points as $\ve k_{\pm}$,
+\[ \ve k_+ = \br{k_{+, x}, k_{+, y}} = \br{\f{4 \pi }{3a}, 0} \]
+\[ \ve k_- = \br{k_{-, x}, k_{-, y}} = \br{-\f{4 \pi }{3a}, 0} \]
+Therefore, in the limit where $\ve k \simeq \ve k_{\pm}$,
+\[ \ve k = \ve k_{\pm} + \de \ve k_{\pm} \]
+Therefore in the limit that $\de \ve k_{\pm} \simeq \ve 0$,
+\begin{align*}
+    \cos \br{ak_x} &= \cos \br{ak_{\pm,x} + a\de k_{\pm,x}} \\
+    &= \cos \br{ak_{\pm,x}}\cos \br{a\de k_{\pm,x}} - \sin \br{ak_{\pm,x}}\sin \br{a\de k_{\pm,x}} \\
+    &= \cos \br{\f{4\pi}{3}}\cos \br{a\de k_{\pm,x}} - \sin \br{\pm\f{4\pi}{3}}\sin \br{a\de k_{\pm,x}} \\
+    &= -\f12\cos \br{a\de k_{\pm,x}} \pm \f{\sqrt{3}}{2}\sin \br{a\de k_{\pm,x}} \\
+    &\simeq -\f{1}{2} \pm \f{\sqrt{3}}{2}a\de k_{\pm,x} \\
+    \sin \br{ak_x} &= \sin \br{ak_{\pm,x} + a\de k_{\pm,x}} \\
+    &= \cos \br{ak_{\pm,x}}\sin \br{a\de k_{\pm,x}} + \sin \br{ak_{\pm,x}}\cos \br{a\de k_{\pm,x}}\\
+    &= \cos \br{\f{4\pi}{3}}\sin \br{a\de k_{\pm,x}} + \sin \br{\pm\f{4\pi}{3}}\cos \br{a\de k_{\pm,x}} \\
+    &= -\f12\sin \br{a\de k_{\pm,x}} \mp \f{\sqrt{3}}{2}\cos \br{a\de k_{\pm,x}} \\
+    &\simeq -\f{1}{2}a\de k_{\pm,x} \mp \f{\sqrt{3}}{2} \\
+    \cos \br{\f{ak_x}{2}} &= \cos \br{\f{ak_{\pm,x}}{2} + \f{a\de k_{\pm,x}}{2}} \\
+    &= \cos \br{\f{ak_{\pm,x}}{2}}\cos \br{\f{a\de k_{\pm,x}}{2}} - \sin \br{\f{ak_{\pm,x}}{2}}\sin \br{\f{a\de k_{\pm,x}}{2}} \\
+    &= \cos \br{\f{2 \pi}{3}}\cos \br{\f{a\de k_{\pm,x}}{2}} - \sin \br{\pm\f{2 \pi}{3}}\sin \br{\f{a\de k_{\pm,x}}{2}} \\
+    &= -\f{1}{2}\cos \br{\f{a\de k_{\pm,x}}{2}} \mp \f{\sqrt{3}}{2}\sin \br{\f{a\de k_{\pm,x}}{2}} \\
+    &\simeq -\f{1}{2} \mp \f{\sqrt{3}}{2}\f{a\de k_{\pm,x}}{2} \\
+    \sin \br{\f{ak_x}{2}} &= \sin \br{\f{ak_{\pm,x}}{2} + \f{a\de k_{\pm,x}}{2}} \\
+    &= \cos \br{\f{ak_{\pm,x}}{2}}\sin \br{\f{a\de k_{\pm,x}}{2}} + \sin \br{\f{ak_{\pm,x}}{2}}\cos \br{\f{a\de k_{\pm,x}}{2}} \\
+    &= \cos \br{\f{2 \pi}{3}}\sin \br{\f{a\de k_{\pm,x}}{2}} + \sin \br{\pm \f{2 \pi}{3}}\cos \br{\f{a\de k_{\pm,x}}{2}} \\
+    &= -\f{1}{2}\sin \br{\f{a\de k_{\pm,x}}{2}} \pm \f{\sqrt{3}}{2}\cos \br{\f{a\de k_{\pm,x}}{2}} \\
+    &\simeq -\f{1}{2}\f{a\de k_{\pm,x}}{2} \pm \f{\sqrt{3}}{2} \\
+    \cos \br{\f{\sqrt{3}ak_y}{2}}
+    &= \cos \br{\f{\sqrt{3}a\de k_{\pm,y}}{2}} \\
+    &\simeq 1
+\end{align*}
+Therefore to first order,
+\begin{align*}
+    d_{\pm}^{x}\br{\ve k} &\simeq -t_1\bc{1 + 2\br{-\f{1}{2} \mp \f{\sqrt{3}}{2}\f{a\de k_{\pm,x}}{2}}} \\
+    d_{\pm}^{y}\br{\ve k} &\simeq -2t_1\bc{\br{-\f{1}{2} \mp \f{\sqrt{3}}{2}\f{a\de k_{\pm,x}}{2}}\f{\sqrt{3}a\de k_{\pm, y}}{2}}\\\
+    d_{\pm}^{z}\br{\ve k} &\simeq 2\ti t_2s^{z}\bc{-2 \br{-\f{1}{2}\f{a\de k_{\pm,x}}{2} \mp \f{\sqrt{3}}{2}} + \br{-\f{1}{2}a\de k_{\pm,x} \pm \f{\sqrt{3}}{2}}}
+\end{align*}
+Simplifying
+\begin{align*}
+    d_{\pm}^{x}\br{\ve k} &\simeq \pm \f{at_1 \sqrt{3}\de k_{\pm,x}}{2} \\
+    d_{\pm}^{y}\br{\ve k} &\simeq \f{at_1 \sqrt{3}\de k_{\pm,y}}{2}\\
+    d_{\pm}^{z}\br{\ve k} &\simeq \pm 3\sqrt{3}t_2s^{z}
+\end{align*}
+
+This new degree of freedom, namely whether or not the electron is near $\ve k_{+}$ or $\ve k_{-}$ can be expressed as another pseudo-spin $\tau$,
+\begin{align*}
+    \ve \tau &= \br{\tau^{x}, \tau^{y}, \tau^{z}} \\
+    \tau^{z} &= \ket{+} \bra{+} - \ket{-}\bra{-} \\
+    \tau^{y} &= -i\br{\ket{+} \bra{-} - \ket{-}\bra{+}} \\
+    \tau^{x} &= \ket{+} \bra{-} + \ket{-}\bra{+}
+\end{align*}
+Moreover a unique constant emerges as the Fermi velocity $v\tsb{F}$,
+\[ \hbar v\tsb{F} = \f{at_1 \sqrt{3}}{2}\]
+Thus $H\br{\ve k}$ becomes,
+\begin{align*}
+H\br{\ve k}
+&= \si^{x}d^{x}\br{\ve k} + \si^{y}d^{y}\br{\ve k} + \si^{z}d^{z}\br{\ve k} \\
+&= \hbar v\tsb{F}\br{\tau^{z}\si^{x}\de k_{x} + \si^{y} \de k_{y}} + 3\sqrt{3} \ti t_2 \si^{z} \tau^{z} s^{z}
+\end{align*}
+Finally, suppress the notation `$\de$' and define the spin orbital coupling $\De\tsb{SO}$.
+\[ \De\tsb{SO} = 3 \sqrt{3} \ti t_2 \]
+Therefore near $\ve k \simeq \ve k_{\pm}$,
+\[ H\br{\ve k} = \hbar v\tsb{F}\br{\tau^{z}\si^{x}k_{x} + \si^{y} k_{y}} + \De\tsb{SO} \si^{z} \tau^{z} s^{z} \]
+This Hamiltonian has the desired invariant spin terms $\si^{z} \tau^{z} s^{z}$ and should have been expected due to symmetry due to symmetries.
+
+\subsubsection{Spin-Orbit Interactions Analyzed}
+
+In order to study the effect $\De\tsb{SO}$ in \cref{eq:gp_kane_mele}, we will include a massive term $m \si^{z}$ and study the following,
 \[ H\br{\ve k} =\hbar v\tsb{F} \br{k_x \tau^{z} \si^x + k_y \si^{y}} + \De\tsb{SO} \tau^{z} \si^{z} S^{z} + m \si^{z}\]
 Specifically for our analysis, we will look at the affect on $S^{z} = 1$ spin up ($\uparrow$) spins. The associated Hamiltonian for $S^{z} = 1$ has two bands $\tau^{z} = \pm 1$,
 \[ \bc{H\br{\ve k}}_{\tau^{z} = +1} \defined H_{+}\br{\ve k} =\hbar v\tsb{F} \br{k_x \si^x + k_y \si^{y}} + \br{m + \De\tsb{SO}} \si^{z}\]
@@ -879,11 +1215,11 @@ Specifically for our analysis, we will look at the affect on $S^{z} = 1$ spin up
 Therefore the dispersion relations are distinct for each value of $\tau^{z}$,
 \begin{align*}
     \bc{\vep\br{\ve k}}_{\tau^{z} = +1}\defined \vep_{+}\br{\ve k} &= \pm\sqrt{\hbar^2 v\tsb{F}^2 \br{k_x^2 + k_y^2} + \br{m + \De\tsb{SO}}^2} \\
-    \bc{\vep\br{\ve k}}_{\tau^{z} = -1}\defined \vep_{-}\br{\ve k} &= \pm\sqrt{\hbar^2 v\tsb{F}^2 \br{k_x^2 + k_y^2} + \br{m - \De\tsb{SO}}^2} \eq \label{eq:SOminus}
+    \bc{\vep\br{\ve k}}_{\tau^{z} = -1}\defined \vep_{-}\br{\ve k} &= \pm\sqrt{\hbar^2 v\tsb{F}^2 \br{k_x^2 + k_y^2} + \br{m - \De\tsb{SO}}^2} \eq \label{eq:gp_SOminus}
 \end{align*}
 In the very large $m$ limit $m \gg \De\tsb{SO}$, the energy cost $(+m)$ for electrons being localized at sites of type $1$ is much higher than the energy cost $(-m)$ associated with sites of type $2$. Therefore all of the electrons will localize to sites of type $2$. Therefore in this case, the electrons can not propagate between sites because the atoms of type $1$ are in the way. We refer to these as \term{non-topological insulators} or sometimes \textit{atomic} insulators. \\
 
-In contrast to this, in the region where $m \approx \De\tsb{SO}$ we have interesting behaviors for \cref{eq:SOminus}. Since the band gap associated with the contribution from $\vep_{-}\br{\ve k}$ is $2 \abs{m - \De\tsb{SO}}$, the band gap closes when $m$ transitions between $m > \De\tsb{SO}$ and $m < \De\tsb{SO}$.
+In contrast to this, in the region where $m \approx \De\tsb{SO}$ we have interesting behaviors for \cref{eq:gp_SOminus}. Since the band gap associated with the contribution from $\vep_{-}\br{\ve k}$ is $2 \abs{m - \De\tsb{SO}}$, the band gap closes when $m$ transitions between $m > \De\tsb{SO}$ and $m < \De\tsb{SO}$.
 \begin{itemize}
     \item $m > \De\tsb{SO}$: Trivial insulator
     \item $m = \De\tsb{SO}$: Transition point/semimetal
@@ -911,6 +1247,9 @@ Given this observation, we can define the following \term{topological invariant}
 \end{cases} \]
 Where $\int_{\text{BZ}}$ refers to an integration over the entire Brillouin zone (BZ). \\
 
+
+\subsubsection{Topological/Non-topological Interfaces}
+
 Topological insulators behave exactly like insulators except that electrons near the band touching points have the potential to transition to the upper band and permit conduction. In order to study this in detail, it s sufficient to consider the Hamiltonian component associated with the topological terms,
 \[ H_{-}\br{\ve k} = \hbar v\tsb{F}\br{- k_x \si^{x} +k_y \si^{y}} + \br{m - \De\tsb{SO}} \si^{z} \]
 Where the coefficient in front of $\si^{z}$ differs in sign depending on whether or not the insulator is topological or not. Let us assume that we have a material that transitions from a topological insulator to an ordinary insulator by letting $m\br{x}$ denote the coefficient in front of $\si^{z}$ as it varies along the $x$-direction.
@@ -920,10 +1259,10 @@ Since $k_x$ no-longer corresponds to plane wave solutions to the Schrodinger equ
 And solve $H\br{k_y}$,
 \[ H\br{k_y} = i \hbar v\tsb{F} \pder{}{x} \si^{x} + \hbar v\tsb{F} k_y \si^{y} + m\br{x} \si^{z} \]
 As a preliminary exercise, we can solve the Schrodinger equation for the case of $k_y = 0$.
-\[ H\br{0} = i \hbar v\tsb{F} \pder{}{x} \si^{x} + m\br{x} \si^{z} \eq \label{eq:kyzero} \]
+\[ H\br{0} = i \hbar v\tsb{F} \pder{}{x} \si^{x} + m\br{x} \si^{z} \eq \label{eq:gp_kyzero} \]
 For the zero energy eigenstate we require $H\psi = 0$. This suggests the following ansatz solution (for some unspecified $\ket{z}$),
-\[ \psi\br{x} = e^{f\br{x}} \si^{x} \ket{z} \eq \label{eq:ansatzxx}\]
-Substituting \cref{eq:ansatzxx} into \cref{eq:kyzero} and making use of the fact that $\si^{z} \si^{x} = i\si^{y}$,
+\[ \psi\br{x} = e^{f\br{x}} \si^{x} \ket{z} \eq \label{eq:gp_ansatzxx}\]
+Substituting \cref{eq:gp_ansatzxx} into \cref{eq:gp_kyzero} and making use of the fact that $\si^{z} \si^{x} = i\si^{y}$,
 \[ \br{i \hbar v\tsb{F} \der{f}{x} + i m\br{x} \si^{y}} e^{f\br{x}} \ket{z} = 0 \]
 Therefore,
 \[ \br{\der{f}{x} + \f{m\br{x}}{\hbar v\tsb{F}} \si^{y}} \ket{z} = 0 \]
@@ -936,8 +1275,8 @@ What is $\si^{x} \ket{z}$?
 Therefore $\si^{x}\ket{z}$ is an eigenstate of $\si^{y}$ with eigenvalue $-1$. Therefore,
 \[ \psi\br{x} = e^{- \f{1}{\hbar v\tsb{F}} \int_{0}^{x} \dif x' m\br{x'}}\ket{\si^{y} = -1} \eq \label{eq:jackiv_relli}\]
 This is the zero-energy eigenstate of the Hamiltonian localized at $x = 0$ for the special case of $k_y = 0$.
-The eigenstate of \cref{eq:jackiv_relli} is know in high energy physics as the Jackiv-Relli soliton.
-If we consider $k_y \neq 0$, differs from \cref{eq:kyzero}. In this case,
+The eigenstate of \cref{eq:jackiv_relli} is know in high energy physics as the Jackiv-Relli solution.
+If we consider cases where $k_y \neq 0$ we have,
 \[ H\br{k_y} \psi\br{x} = \hbar v\tsb{F} k_y \si^{y} \psi\br{x} = - \hbar v\tsb{F} k_y \psi\br{x} \]
 Which means $\psi\br{x}$ is an eigenstate of $H\br{k_y}$ with energy $- \hbar v\tsb{F} k_y$. The dispersion relation is,
 \[ \vep\br{k_y} = - \hbar v\tsb{F} k_y \eq \label{eq:chrial_dispersion}\]
@@ -958,7 +1297,9 @@ Of course, \cref{eq:free_electron_velocity} and \cref{eq:general_velocity} only 
 \[ \ve v = \f{1}{\hbar} \vdel_{\ve k} \vep\br{\ve k} \eq \label{eq:group_velocity}\]
 For \cref{eq:chrial_dispersion} we have,
 \[ \ve v = - v\tsb{F} \hat y \]
-Which means that all the electrons move in one direction. This is in contrast with an ordinary conductor where electrons have the ability to propagate in point directions subject to an external potential.\\
+Which means that all the electrons move in one direction. This is in contrast with an ordinary conductor where electrons have the ability to propagate in point directions subject to an external potential.
+
+\subsubsection{Quantum Spin Hall Effect}
 
 Using alternating external potentials $V_y$ we can construct and consider a 2D metal where the electrons move in alternating directions.
 \begin{center}
@@ -986,7 +1327,7 @@ Doing so gives the current where the electrons move to the right as,
 \[ I_R = - e \int v\tsb{F} n\tsb{F}\br{\vep_k} \f{\dif k_x}{2 \pi} \]
 Where $k = 2\pi n / L$ and $2\pi / L$ is the volume in momentum space corresponding to a single quantum state.
 \[ \f{1}{L} \f{\dif k_x}{\f{2 \pi }{L}} = \f{\dif k_x}{2 \pi} \]
-IF we convert this integral from an integral over momentum space to and integral over energies,
+If we convert this integral from an integral over momentum space to and integral over energies,
 \[ \vep = \hbar v\tsb{F} k_x \implies \dif k_x = \f{\dif \vep}{\hbar v\tsb{F}} \]
 Therefore the current is,
 \[ I_{R} = - e v\tsb{F}  \f{1}{2\pi \hbar v\tsb{F}} \int_{-\inf}^{\vep_{FR}} \dif \vep = - \f{e}{h} \int_{-\inf}^{\vep_{FR}} \dif \vep \]
@@ -1014,9 +1355,9 @@ There are a number of typical Bravais lattices in three dimensions. The simplest
         \pgfmathsetmacro{\shiftx}{-4};
         \pgfmathsetmacro{\shifty}{0};
         \pgfmathsetmacro{\shiftz}{0};
-        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx+\axissize,\shifty, \shiftz) node[right]{$x$};
-        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx,\shifty+\axissize, \shiftz) node[above]{$y$};
-        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx,\shifty, \shiftz+\axissize) node[below left]{$z$};
+        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx+\axissize,\shifty, \shiftz) node[right]{$y$};
+        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx,\shifty+\axissize, \shiftz) node[above]{$z$};
+        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx,\shifty, \shiftz+\axissize) node[below left]{$x$};
         \foreach \uda in {-1,+1}
         \foreach \udb in {-1,+1}
         \draw[gray, dashed]
@@ -1028,14 +1369,41 @@ There are a number of typical Bravais lattices in three dimensions. The simplest
         \foreach \y in {-1,+1}
         \foreach \z in {-1,+1}
         \draw[] (\x,\y,\z) node[fill=black, circle, inner sep=1pt]{};
-        \draw[->] (-1,-1,-1) -- (+1,-1,-1) node[right]{$\ve a_1$};
-        \draw[->] (-1,-1,-1) -- (-1,+1,-1) node[above]{$\ve a_2$};
-        \draw[->] (-1,-1,-1) -- (-1,-1,+1) node[below left]{$\ve a_3$};
+        \draw[->] (-1,-1,-1) -- (+1,-1,-1) node[right]{$\ve a_2$};
+        \draw[->] (-1,-1,-1) -- (-1,+1,-1) node[above]{$\ve a_3$};
+        \draw[->] (-1,-1,-1) -- (-1,-1,+1) node[below left]{$\ve a_1$};
         \end{tikzpicture}
     \end{center}
     \[ \ve a_1 = a \hat x \quad \ve a_2 = a \hat y \quad \ve a_3 = a \hat z \]
     \item \term{Body-centered Cubic (bcc)}:
-    \todo{Draw}
+    \begin{center}
+        \begin{tikzpicture}
+        \pgfmathsetmacro{\axissize}{1};
+        \pgfmathsetmacro{\shiftx}{-4};
+        \pgfmathsetmacro{\shifty}{0};
+        \pgfmathsetmacro{\shiftz}{0};
+        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx+\axissize,\shifty, \shiftz) node[right]{$y$};
+        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx,\shifty+\axissize, \shiftz) node[above]{$z$};
+        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx,\shifty, \shiftz+\axissize) node[below left]{$x$};
+        \foreach \uda in {-1,+1}
+        \foreach \udb in {-1,+1}
+        \draw[gray, dashed]
+        (-1,+\uda,+\udb) -- (+1,+\uda,+\udb)
+        (+\uda,-1,+\udb) -- (+\uda,+1,+\udb)
+        (+\uda,+\udb,-1) -- (+\uda,+\udb,+1)
+        ;
+        \foreach \x in {-1,+1}
+        \foreach \y in {-1,+1}
+        \foreach \z in {-1,+1}
+        \draw[] (\x,\y,\z) node[fill=black, circle, inner sep=1pt]{};
+        \draw[->] (-1,-1,-1) -- (+1,-1,-1) node[right]{$\ve a_2$};
+        \draw[->] (-1,-1,-1) -- (0,0,0) node[above]{$\ve a_3$};
+        \draw[->] (-1,-1,-1) -- (-1,-1,+1) node[below left]{$\ve a_1$};
+        \end{tikzpicture}
+    \end{center}
+    \[ \ve a_1 = a \hat x \quad \ve a_2 = a \hat y \quad \ve a_3 = \f{a}{2}\br{\hat x + \hat y + \hat z} \]
+    An alternative choice of primitive translation vectors that does not assign a bias to a particular vector is,
+    \[ \ve a_1 = \f{a}{2}\br{-\hat x + \hat y + \hat z} \quad \ve a_2 = \f{a}{2}\br{\hat x - \hat y + \hat z} \quad \ve a_3 = \f{a}{2}\br{\hat x + \hat y - \hat z} \]
     \item \term{Face-centered Cubic (fcc)}:
     \begin{center}
         \begin{tikzpicture}
@@ -1043,9 +1411,9 @@ There are a number of typical Bravais lattices in three dimensions. The simplest
         \pgfmathsetmacro{\shiftx}{-4};
         \pgfmathsetmacro{\shifty}{0};
         \pgfmathsetmacro{\shiftz}{0};
-        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx+\axissize,\shifty, \shiftz) node[right]{$x$};
-        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx,\shifty+\axissize, \shiftz) node[above]{$y$};
-        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx,\shifty, \shiftz+\axissize) node[below left]{$z$};
+        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx+\axissize,\shifty, \shiftz) node[right]{$y$};
+        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx,\shifty+\axissize, \shiftz) node[above]{$z$};
+        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx,\shifty, \shiftz+\axissize) node[below left]{$x$};
         \foreach \uda in {-1,+1}
         \foreach \udb in {-1,+1}
         \draw[gray, dashed]
@@ -1058,21 +1426,58 @@ There are a number of typical Bravais lattices in three dimensions. The simplest
         \foreach \z in {-1,+1}
         \draw[] (\x,\y,\z) node[fill=black, circle, inner sep=1pt]{};
         \draw[->] (-1,-1,-1) -- (-1,+0,+0) node[left]{$\ve a_1$};
-        \draw[->] (-1,-1,-1) -- (+0,-1,+0) node[above right]{$\ve a_2$};
-        \draw[->] (-1,-1,-1) -- (+0,+0,-1) node[above]{$\ve a_3$};
+        \draw[->] (-1,-1,-1) -- (+0,-1,+0) node[above right]{$\ve a_3$};
+        \draw[->] (-1,-1,-1) -- (+0,+0,-1) node[above]{$\ve a_2$};
         \end{tikzpicture}
     \end{center}
     \[ \ve a_1 = \f{a}{2} \br{\hat y + \hat z} \quad \ve a_2 = \f{a}{2} \br{\hat x + \hat z} \quad \ve a_3 = \f{a}{2} \br{\hat x + \hat y} \]
-    \item \term{Diamond Structure}:
-    \todo{Draw}
+    \item \term{Diamond Structure}: The diamond crystal structure consists of a fcc Bravais lattice with a $2$-atom basis,
+    \begin{center}
+        \begin{tikzpicture}[scale=2]
+        \pgfmathsetmacro{\axissize}{0.5};
+        \pgfmathsetmacro{\shiftx}{-3};
+        \pgfmathsetmacro{\shifty}{0};
+        \pgfmathsetmacro{\shiftz}{0};
+        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx+\axissize,\shifty, \shiftz) node[right]{$y$};
+        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx,\shifty+\axissize, \shiftz) node[above]{$z$};
+        \draw[->] (\shiftx,\shifty, \shiftz) -- (\shiftx,\shifty, \shiftz+\axissize) node[below left]{$x$};
+        \foreach \uda in {-1,+1}
+        \foreach \udb in {-1,+1}
+        \draw[gray, dashed]
+        (-1,+\uda,+\udb) -- (+1,+\uda,+\udb)
+        (+\uda,-1,+\udb) -- (+\uda,+1,+\udb)
+        (+\uda,+\udb,-1) -- (+\uda,+\udb,+1)
+        ;
+        \foreach \x in {-1,+1}
+        \foreach \y in {-1,+1}
+        \foreach \z in {-1,+1}
+        \draw[] (\x,\y,\z) node[fill=black, circle, inner sep=1pt]{};
+        \draw[->] (-1,-1,-1) -- (-1,+0,+0) node[left]{$\ve a_1$};
+        \draw[->] (-1,-1,-1) -- (+0,-1,+0) node[left]{$\ve a_3$};
+        \draw[->] (-1,-1,-1) -- (+0,+0,-1) node[left]{$\ve a_2$};
+        \draw[red, ->] (-1,+0,+0) -- ++ (0.6,0.6,0.6) node[above right]{$\ve r$};
+        \draw[red, ->] (+0,-1,+0) -- ++ (0.6,0.6,0.6) node[above right]{$\ve r$};
+        \draw[red, ->] (+0,+0,-1) -- ++ (0.6,0.6,0.6) node[above right]{$\ve r$};
+        \end{tikzpicture}
+    \end{center}
     \[ \hat r = \f{Q}{4}\br{\hat x + \hat y + \hat z} \]
     \[ \ve a_1 = \f{a}{2} \br{\hat y + \hat z} \quad \ve a_2 = \f{a}{2} \br{\hat x + \hat z} \quad \ve a_3 = \f{a}{2} \br{\hat x + \hat y} \]
 \end{enumerate}
 
-The Diamond structure is a generalization of the graphene lattice in 3D. The nearest-neighbor hopping Hamiltonian is as follows,
+The Diamond structure is a generalization of the graphene lattice in 3D. Many materials include C (diamond), Si, Ge and Sn crystallize in this diamond structure. The nearest-neighbor hopping Hamiltonian is as follows,
 \[ H_1 = - \sum_{\ve R} \br{t \ket{\ve R, 1}\bra{\ve R, 2} + t \ket{\ve R + \ve a_1, 1}\bra{\ve R, 2} + t \ket{\ve R + \ve a_2, 1}\bra{\ve R, 2} + t \ket{\ve R + \ve a_3, 1} \bra{\ve R, 2} + \text{h.c.}} \eq \label{eq:diamond_H1}\]
-While the second-nearest neighbor terms are numerous. In fact there are $24$ terms similar to the one below.
-\[ H_2 = i \f{8 \De\tsb{SO}}{a^2} \sum_{\ve R} \ket{\ve R + \ve a_1,1} \bra{\ve R, 1} \ve S \cdot \br{\ve r \times \ve a_1} + \ldots \]
+While the second-nearest neighbor terms are numerous. In fact there are $24$ terms written below,
+\begin{align*}
+H_2
+&= i \f{8 \De\tsb{SO}}{a^2} \sum_{\al \in \bc{1,2}}\sum_{\ve R} \bigg[\cdots \\
+&\qquad \cdots + \ket{\ve R + \ve a_1,\al} \bra{\ve R, \al} \ve S \cdot \br{\ve r \times \ve a_1} + \cdots \\
+&\qquad \cdots + \ket{\ve R + \ve a_2,\al} \bra{\ve R, \al} \ve S \cdot \br{\ve r \times \ve a_2} + \cdots \\
+&\qquad \cdots + \ket{\ve R + \ve a_3,\al} \bra{\ve R, \al} \ve S \cdot \br{\ve r \times \ve a_3} + \cdots \\
+&\qquad \cdots + \ket{\ve R + \ve a_2 - \ve a_1,\al} \bra{\ve R, \al} \ve S \cdot \br{\ve r - \ve a_1} \times \br{\ve r -\f{a}{2} \hat y} + \cdots \\
+&\qquad \cdots + \ket{\ve R + \ve a_3 - \ve a_1,\al} \bra{\ve R, \al} \ve S \cdot \br{\ve r - \ve a_1} \times \br{\ve r -\f{a}{2} \hat z} + \cdots \\
+&\qquad \cdots + \ket{\ve R + \ve a_2 - \ve a_3,\al} \bra{\ve R, \al} \ve S \cdot \br{\ve r - \ve a_3} \times \br{\ve r -\f{a}{2} \hat y} \bigg]
+\end{align*}
+% TODO more course notes here
 It is to explore the first nearest-neighbor hopping Hamiltonian in the case where the tunneling amplitudes in \cref{eq:diamond_H1} are perturbed a small amount $t \mapsto t + \de t$. When $\de t = 0$ there are $3$ band-touching point in the BZ. When $\de t \neq 0$ we have,
 \[ H = - \de t \si^{x} + t a k_z \si^{y} - 2 \De\tsb{SO} a \si^{z} S^{x} k_x + 2 \De\tsb{SO} a \si^{z} S^{y} k_y \]
 Where th Pauli spin $\ve \si$ describes the degree of freedom associated with localization to atoms $1$ or $2$. The $\ve S$ spin is the intrinsic spin of the electron. The dispersion relation can be calculated as well,
