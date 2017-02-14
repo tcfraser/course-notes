@@ -23,11 +23,15 @@
 
 \disclaimer
 
+\section{Introduction}
+
+The \textit{condensed} in condensed matter physics refers to the fact that a \textit{condensed} material is anything that is not a gas (i.e. liquid or solids). In this class we will be mostly interested in solids. The main qualifying feature of solids are their rigidity, (i.e. a solid has not only a fixed volume, like a liquid, but also a fixed shape). Rigidity is a consequence of the fact that atoms in solids form an ordered crystal lattice. Localized to each atom is a bunch of electrons; some in inner orbitals and some in the outer orbitals. Electrons in outer orbitals may be weakly bound to their respective atoms and be able to move around the lattice structure. These electrons are called \term{valence electrons}.
+
 \section{Effects of the Electronic Structure Topology}
 
 \subsection{Toy Model of a Solid}
 
-\todo[TC]{Type up notes for first class}
+A large part of solid state physics is related to the motion of valence electrons in a periodic potential of ionized atoms of the crystal lattice. Consider the simplest toy model of a solid: a one dimensional material with uniform spacing among the electrons with periodic potential. Let the uniform spacing between neighboring electrons be denoted $a$ and we refer the region within distance $a/2$ of each atom as the \term{primitive unit cell} or simply unit cell of the lattice. In this model (an in most of the lattice models considered in the class) we will have the working assumption that each electron is localized to an atom. This can be understood if the periodic potential $V\br{x}$ is very large between the atoms and nearly zero at the location of each atom.
 
 \begin{center}
     \begin{tikzpicture}
@@ -47,48 +51,87 @@
 
         \draw[dashed] (3.5, -1) -- (3.5, 1);
         \draw[dashed] (4.5, -1) -- (4.5, 1);
-        \draw[<->] (3.5, -0.7) -- node[below]{$a$} (4.5, -0.7);
+        \draw[<->] (3.5, +0.7) -- node[below]{$a$} (4.5, +0.7);
+        \draw[scale=1.0,domain=0.5:7.5,samples=200,variable=\x,red] plot ({\x},{0.05/((cos(deg(pi*(\x+1/2))))^2 + 0.05) - 1.2}) node[right]{$V\br{x}$};
     \end{tikzpicture}
 \end{center}
 
 
-Thus far we have been discussing a toy model of a solid in one dimension. By diagonalizing the Hamiltonian we were able to determine the energy levels of the various states,
-\[ \varepsilon\br{k} = - 2 t \cos\br{ka} \eq \label{eq:single_energy__band}\]
-Where $k$ is the wave-vector with $p = \hbar k$ as the ordinary linear momentum. Additionally, $t$ acts as a tunneling coefficient that dictates a tunneling \textit{rate} (up to a constant $\hbar$) for the electrons in the solid. Unlike free particles, the momentum $k$ in this toy model is confined to a discrete region.
+Now consider an electron moving in this potential. Quantum mechanically we anticipate any electron motion to be due to the effects of quantum tunneling. Specifically, the is expected that if an electron were to tunnel at all, it would be most likely to tunnel to its nearest neighboring atoms with some amplitude $t$. If we let $\ket{n}$ denote the state of an electron localized to the $n$-th atom ($n \in \Z$) at position $na$ in this lattice we can consider two possible ways any electron can tunnel away from $\ket{n}$.
+
+\begin{alignat*}{2}
+    \ket{n} &\stackrel{t}{\longrightarrow} \ket{n+1} \quad &&\text{transition to the right} \\
+    \ket{n} &\stackrel{t}{\longrightarrow} \ket{n-1} \quad &&\text{transition to the left}
+\end{alignat*}
+
+Therefore, one can write the Hamiltonian for this system as follows,
+\[ H = -t \sum_{n}\br{\underbrace{\ket{n+1}\bra{n}}_{\longrightarrow} + \underbrace{\ket{n-1}\ket{n}}_{\longleftarrow}} \eq \label{eq:toy_hamiltonian}\]
+Where the preceding minus is simply convention. Notice that we are omitting the localized terms in this Hamiltonian because we can take the potential energy to be zero.
+\[ \bramidket{n}{H}{n} = \bramidket{n}{V}{n} = 0 \qquad \text{Since $V\br{na} \defined 0$} \]
+
+In order to find the energy eigenstates of the Hamiltonian \cref{eq:toy_hamiltonian} we need to find states $\ket{\psi}$ such that $H \ket{\psi} = E \ket{\psi}$. Evidently, \cref{eq:toy_hamiltonian} is non-diagonal in the $\ket{n}$ basis. Instead consider a different basis indexed by $k$ such that,
+\[ \ket{n} = \sum_{k} \ket{k}\braket{k}{n} \eq \label{eq:toy_basis_change}\]
+If this new basis represents momentum states, then $\braket{k}{n}$ has a specific form. Motivated by free electrons, $\braket{k}{x} \propto e^{-ikx}$ we map $x$ to the position in the crystal:
+\[ x \mapsto na \]
+Therefore the coefficients in \cref{eq:toy_basis_change} have similar form,
+\[ \braket{k}{n} \propto e^{- ikna} \eq \label{eq:toy_plane_wave}\]
+The normalization factor comes from completeness,
+\[ \sum_{n} \abs{\braket{n}{k}}^2 = 1 \eq \label{eq:toy_normalization}\]
+Heretofore, no restrictions have been made on the range of $n$. Evidently, a real substance will possess finite, albeit many, unit cells (atoms). Let $n \in \Z$ be an integer but equip this model with periodic boundary conditions such that there are $N$ distinct position states representing the number of unit cells. This periodic boundary condition can be written as,
+\[ \ket{n} = \ket{n + N} \eq \label{eq:toy_periodic_boundary}\]
+Letting $\ga \in \R$ be the normalization coefficient in \cref{eq:toy_plane_wave}, \cref{eq:toy_normalization} becomes,
+\[ 1 = \sum_{n=1}^{N} \abs{\ga e^{ikna}}^2 = N \ga^2 \implies \ga = \f{1}{\sqrt{N}}\]
+Consequently, \cref{eq:toy_basis_change} can be written as follows,
+\[ \ket{n} = \f{1}{\sqrt{N}} \sum_{k} e^{- ikna} \ket{k} \eq \label{eq:toy_fourier_transform} \]
+Additionally, the periodic boundary condition of \cref{eq:toy_periodic_boundary} gives,
+\[  \ket{n} =\ket{n+N} = \f{1}{\sqrt{N}} \sum_{k} e^{- ik\br{n+N}a} \ket{k} = \f{1}{\sqrt{N}} \sum_{k} e^{- ikna} \ket{k}  \]
+Therefore $e^{- ikNa} = 1$ which gives,
+\[ k = \f{2\pi m}{Na} \qquad m \in \Z \eq \label{eq:toy_k_discrete}\]
+Therefore $k$ must be discrete. Note that this assumption was already made above when we insisted that \cref{eq:toy_basis_change} as a new basis for the same Hilbert space. In fact, \cref{eq:toy_fourier_transform} is simply a Fourier transform that is commonly called an \term{inverse lattice Fourier transform}. Additionally, combining this with dimensionality of $\ket{n}$ gives the following constraint on the values of $k$,
 \[ -\f{\pi}{a} \leq k < \f{\pi}{a} \]
-This interval is called the \term{first Brillouin zone}.
-To highlight this difference, we sometimes refer to $p$ in this model as the \term{crystal momentum}.\\
+Effectively corresponds to demanding that there are $N$ possible distinct values of $k$.
+\[ m \in \bc{ \f{-N}{2},  \f{-N+1}{2},\ldots,  \f{N-1}{2}, \f{N}{2} } \]
+\[ k \in \bc{\f{2\pi}{Na} \f{-N}{2}, \f{2\pi}{Na} \f{-N+1}{2},\ldots, \f{2\pi}{Na} \f{N-1}{2},\f{2\pi}{Na} \f{N}{2} } \eq \label{eq:discrete_finite_k} \]
+In order to substitute \cref{eq:toy_fourier_transform} into \cref{eq:toy_hamiltonian}, first take the dual of \cref{eq:toy_fourier_transform},
+\[ \bra{n} = \f{1}{\sqrt{N}} \sum_{k} e^{ikna} \bra{k} \eq \label{eq:dual_toy_fourier_transform} \]
+Therefore \cref{eq:toy_hamiltonian} becomes,
+\[ H = -t\f{1}{N} \sum_{n}\sum_{k,k'}\bc{\br{e^{-ik\br{n+1}a} \ket{k}}\br{e^{ik'na} \bra{k'}} + \br{e^{-ik\br{n-1}a} \ket{k}}\br{e^{ik'a} \bra{k'}}} \]
+\[ H = -t\f{1}{N} \sum_{n}\sum_{k,k'}\bc{e^{-ik\br{n+1}a}e^{ik'na} \ket{k}\bra{k'} + e^{-ik\br{n-1}a}e^{ik'a} \ket{k}\bra{k'}} \eq \label{eq:nearly_toy_diag}\]
+By \cref{eq:toy_k_discrete}, $\br{k - k'}$ is an integer multiple of $2 \pi / Na$. Letting that integer be $\mu$ we have the following identity:
+\[ \f{1}{N} \sum_{n=1}^{N} e^{i\br{k - k'}na} = \f{1}{N} \sum_{n=1}^{N} e^{i2 \pi \mu n / N} = \de_{\mu} = \de_{k, k'} \]
+Therefore \cref{eq:nearly_toy_diag} simplifies greatly,
+\[ H = -t \sum_{n}\sum_{k,k'} \de_{k,k'} \bc{e^{-ika} \ket{k}\bra{k'} + e^{ika} \ket{k}\bra{k'}} \]
+\[ H = -t \sum_{n}\bc{e^{-ika} + e^{ika}} \ket{k}\bra{k} \]
+\[ H = -2t\cos\br{ka} \sum_{n}\ket{k}\bra{k} \eq \label{eq:toy_hamiltonian_diag}\]
+Therefore \cref{eq:toy_hamiltonian_diag} is the diagonalized form of \cref{eq:toy_hamiltonian}. By diagonalizing the Hamiltonian we were able to determine the energy levels $\vep\br{k}$ of the various states,
+\[ \varepsilon\br{k} = - 2 t \cos\br{ka} \eq \label{eq:toy_single_energy_band}\]
+The momentum space index $k$ is the wave-vector with $p = \hbar k$ where $p$ is an ordinary linear momentum. Additionally, $t$ acts as a tunneling coefficient that dictates a tunneling \textit{rate} (up to a constant $\hbar$) for the electrons in the solid. Unlike free particles, the momentum $k$ in this toy model is confined to a discrete region.
+\[ -\f{\pi}{a} \leq k < \f{\pi}{a} \]
+This interval is called the \term{first Brillouin zone}. To highlight this difference, we sometimes refer to $p$ in this model as the \term{crystal momentum} of the electron in state $\ket{k}$.\\
 
-Moreover, the periodic boundary conditions used restrict $k$ to take on discrete and finite values,
-\[ k = \f{2 \pi m}{Na} \qquad m = 0, \pm 1, \pm 2, \ldots \]
-Where $L = Na$ is the size of the crystal, $N$ is the number of atoms and $a$ is the interval between two atoms in the solid.\\
+Moreover, the periodic boundary conditions restrict $k$ to take on discrete and finite values pursuant to \cref{eq:discrete_finite_k}.
+Note that $L = Na$ is the size of the crystal, $N$ is the number of atoms and $a$ is the interval between two atoms in the solid.\\
 
-The states that diagonalized the Hamiltonian are called \term{Bloch states} and are denoted $\ket{k}$ where,
+The states that diagonalized the Hamiltonian are called \term{Bloch states} and are denoted $\ket{k}$ where is given by the inverse crystal Fourier transform (inverse of \cref{eq:toy_fourier_transform}),
 \[ \ket{k} = \f{1}{\sqrt{N}} \sum_{n} \ket{n} e^{i k na} \]
-Which is a \term{lattice Fourier transform}. Since $k$ is confined to a finite interval, the energy levels are confined to a finite interval,
+Which is a \term{lattice Fourier transform}. Since \cref{eq:toy_single_energy_band} takes on the form of a cosine with amplitude $2t$ the accessible energy levels are confined to the finite interval,
 \[ \varepsilon_{\min} = - 2t \qquad \varepsilon_{\max} = + 2t \]
 The interval has a width of $\varepsilon_{\max} - \varepsilon_{\min} = 4t$ and is referred to as the allowed energy \textit{band}.
 
 \begin{center}
 \begin{tikzpicture}
-    \pgfmathsetmacro{\axissize}{4};
+    \pgfmathsetmacro{\axissize}{2.1};
     \pgfmathsetmacro{\plotsize}{3};
-    \draw[->] (-\axissize,0) -- (+\axissize,0) node[right]{$k$};
-    \draw[->] (0, -\axissize) -- (0,+\axissize) node[above]{$\vep\br{k}$};
-    \draw[scale=1.0,domain=-pi:pi,smooth,variable=\k,red] plot ({\k/pi*\plotsize},{-2*cos(deg(\k))});
-    \draw[dashed] (\plotsize, -\axissize) -- node[above right]{$\f{\pi}{a}$} (\plotsize,+\axissize);
-    \draw[dashed] (-\plotsize, -\axissize) -- node[above left]{$-\f{\pi}{a}$} (-\plotsize,+\axissize);
-    \draw[-] (-0.1,-2) -- (+0.1,-2) node[right]{$-2t$};
+    \draw[thick,->] (-2*\axissize,0) -- (+2*\axissize,0) node[right]{$k$};
+    \draw[thick,->] (0, -\axissize) -- (0,+\axissize) node[above]{$\vep\br{k}$};
+    \draw[thick,scale=1.0,domain=-pi:pi,smooth,variable=\k,red] plot ({\k/pi*\plotsize},{-2*cos(deg(\k))});
+    \draw[thick,dashed] (\plotsize, -\axissize) -- node[above right]{$\f{\pi}{a}$} (\plotsize,+\axissize);
+    \draw[thick,dashed] (-\plotsize, -\axissize) -- node[above left]{$-\f{\pi}{a}$} (-\plotsize,+\axissize);
+    \draw[thick,-] (-0.1,-2) -- (+0.1,-2) node[right]{$-2t$};
 \end{tikzpicture}
 \end{center}
 
-How many states does the band contain. Given that $k$ is discrete and bounded,
-\[ -\f{\pi}{a} \leq \f{2 \pi m}{Na} = k < \f{\pi}{a} \]
-Implies,
-\[ -\f{N}{2} \leq m < \f{N}{2} \]
-Therefore there are $N$ distinct waves of $m$. The total number states per band is thus $2N$ where $N$ is the number of primitive unit cells in the crystal.\\
-
-Suppose now that we have $1$ electron per atom (instead of $1$ electron in total). We recall the \term{Pauli principle} which states that only $1$ electron can occupy a given state in a band. Since there are $N$ electrons and $2N$ states, the band is \textit{half-filled}.
+Given \cref{eq:discrete_finite_k}, there are $N$ distinct Bloch vector states $\ket{k}$. Suppose now that we have $1$ electron per atom (instead of $1$ electron in total). We recall the \term{Pauli principle} which states that only $1$ electron can occupy a given state in a band. If there is one electron per atom and $N$ total atoms, there are $N$ electrons. If we recall the fact that electrons are spin-$1/2$ fermions, each momentum state corresponds to two distinct spin states. Therefore in total there are $2N$ states accessible to the electrons and therefore the band is \textit{half-filled}.
 \begin{center}
 \begin{tikzpicture}
     \pgfmathsetmacro{\axissize}{4};
@@ -99,7 +142,7 @@ Suppose now that we have $1$ electron per atom (instead of $1$ electron in total
 \end{tikzpicture}
 \end{center}
 
-When the electrons occupy all of the lowest possible energy states, we fill all of the negative energy states and the positive energy states remain vacant. This separation defines the \term{Fermi energy} for this system where occurs at $\vep\tsb{F} = 0$. In order to find the state that corresponds to this upper limit one needs to solve,
+Of course, this holds when the electrons in the material are at zero temperature where the electrons occupy all of the lowest possible energy states. For a half-filled energy band, all of the \textit{negative} energy states are filled and the positive energy states are vacant. This separation defines the \term{Fermi energy} for this system which occurs at the interface between filled energy states and un-filled energy states ($\vep\tsb{F} = 0$ in this problem). In order to find the state that corresponds to this upper limit one needs to solve,
 \[ \vep\br{k} = \vep\tsb{F} = 0 \implies -2t \cos\br{ka} = 0 \]
 Therefore the value of $k$ that solves this equation is,
 \[  k = \pm \f{\pi}{2a} = \pm k\tsb{F}\]
@@ -110,9 +153,9 @@ Where $k\tsb{F}$ is given a special name: the \term{Fermi wave-vector} (Fermi mo
 \end{align*}
 The \term{Fermi surface} defines the surface in momentum space separating the filled states from the unfilled states. Most of the observed properties of metals follow from the existence of the Fermi surface. \\
 
-This concept is so important that it is worth measuring the volume \text{in momentum space} corresponding to the filled states. This is the volume enclosed by the Fermi surface. In this example, the volume in momentum space is characterized by the $2 k\tsb{F}$ interval. Since $k = 2\pi m / Na$, the volume per single $k$-value is $2 \pi / Na$. Letting $n$ be the density of electrons, we can compute the total number of electrons:
-\[ n N a = 2 \f{2k\tsb{F}}{2 \pi / Na} \]
-Which allows one to calculate $k\tsb{F}$,
+This concept is so important that it is worth measuring the volume \text{in momentum space} corresponding to the filled states. This is the volume enclosed by the Fermi surface. In this example, the volume in momentum space is characterized by the $2 k\tsb{F}$ interval. Since $k = 2\pi m / Na$, the volume per single $k$-value is $2 \pi / Na$. Letting $n = 1/a$ be the linear density of electrons per unit length, we can compute the total number of electrons:
+\[ N =  n N a = 2 \f{2k\tsb{F}}{2 \pi / Na} \]
+Which allows one to calculate $k\tsb{F}$ in terms of the electron density $n$,
 \[ k\tsb{F} =\f{\pi}{2} n \]
 Which makes sense for this model because there is one electron per atom making $n = 1/a$.
 This result is called \term{Luttinger's theorem} which states that the volume enclosed by the Fermi surface (sometimes called the Fermi sea) is directly proportional to the electron density. \\
@@ -255,7 +298,7 @@ Which means that the Hamiltonian is,
 \[ H\br{k} = \ve d\br{k} \cdot \ve \si \]
 This system is \textit{equivalent} to a spin-1/2 particle in a magnetic field of the form $\ve d\br{k}$. The eigenstates of $H\br{k}$ correspond to $\ba{\ve \si}$ along $\ve d$ or in the opposite direction to $\ve d$,
 \[ \vep_{\pm}\br{k} = \pm \abs{\ve d \br{k}} \]
-This is contrasting to the previous model; before we had a \textit{single} energy band pursuant to \cref{eq:single_energy__band}, but here we have \textit{two energy bands}. This result can be generalized to the following observation:
+This is contrasting to the previous model; before we had a \textit{single} energy band pursuant to \cref{eq:toy_single_energy_band}, but here we have \textit{two energy bands}. This result can be generalized to the following observation:
 \begin{center}
     \textit{Every atom in the unit cell will give rise to a separate band.}
 \end{center}
@@ -287,7 +330,7 @@ Which when plotted is,
 
 Notice that the first Brillouin zone is $\f{\pi}{2a} \leq k \leq \f{\pi}{2a}$ is \textit{smaller} than it was previously. In this model, there is one electron per atom and thus two electrons per unit cell. Therefore there are $2N$ electrons. At zero temperature, the entire lower band is filled and the upper band is empty. This makes polyacetylene an \term{insulator} because it requires an energy of at least $4 \de t$ in order to transition an electron across the Fermi surface. \\
 
-In the limit of the $\de t \to 0$ one should expect to recover \cref{eq:single_energy__band},
+In the limit of the $\de t \to 0$ one should expect to recover \cref{eq:toy_single_energy_band},
 \[ \lim_{\de t \to 0}\vep_{\pm}\br{k} = \pm 2 \lim_{\de t \to 0}\sqrt{t^2 \cos^2\br{ka} + \de t^2 \sin^2\br{ka}} = \pm 2 t \cos\br{ka}  \]
 As expected. Notice however the plot of $\ep\br{k}$ differs,
 \begin{center}
@@ -1346,8 +1389,8 @@ In order to study \textit{spontaneous} magnetization, we set the external field 
         \draw[thick, scale=1.0,domain=-3:3,smooth,variable=\M,green ] plot ({\M},{2*tanh(1/2*\M)}) node[below right]{$\f{\s J z}{2 k_B T} = 1/2$};
         \draw[gray, dashed] (+1,0) node[below]{$M_0$} -- (+1,+2);
         \draw[gray, dashed] (-1,0) node[above]{$M_0$} -- (-1,-2);
-        \draw[gray, dashed] (+4, +2) -- node[above left]{$1/2$} (-4, +2);
-        \draw[gray, dashed] (+4, -2) -- node[below right]{$-1/2$} (-4, -2);
+        \draw[gray, dashed] (+4, +2) -- node[above left]{$1$} (-4, +2);
+        \draw[gray, dashed] (+4, -2) -- node[below right]{$-1$} (-4, -2);
     \end{tikzpicture}
 \end{center}
 Evidently there are at most $3$ solutions depending on the temperature. There are three solutions if the slope of $\tanh \f{\s J z M}{2 k_B T}$ is greater than $1$ at $M = 0$. Taylor series,
