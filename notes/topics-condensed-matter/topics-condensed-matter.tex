@@ -513,7 +513,7 @@ Using $\si_y^2 = \ident$ and $\si_x \si_y = i \si_z$ multiply by both sides by $
 Dropping the exponential $e^{f\br{x}}$,
 \[ \bs{-i \hbar v_F \der{f}{x} + i m\br{x} \si_z} \ket{z} = 0 \]
 Adjusting the constant coefficients,
-\[ \bs{\der{f}{x} - \f{m\br{x}}{\hbar v_F} \si_z} \ket{z} = 0 \]
+\[ \bs{\der{f}{x} - \f{m\br{x}}{\hbar v_F} \si_z} \ket{z} = 0 \eq \label{eq:mass_varying_eqn}\]
 Recalling that,
 \[ \si_{z}\ket{\uparrow} = + \ket{\uparrow} \qquad \si_{z}\ket{\downarrow} = - \ket{\downarrow} \]
 Assume $\ket{z} = \ket{\uparrow}$,
@@ -698,7 +698,7 @@ Where the lattice structure is as follows,
 \end{tikzpicture}
 \end{center}
 
-\[ \ve b_{1} = \f{2 \pi}{a} \br{\hat x + \sqrt{3} \hat y} \qquad \ve b_{2} = \f{2 \pi}{a} \br{-\hat x + \sqrt{3} \hat y} \eq \label{eq:gp_graphen_b}\]
+\[ \ve b_{1} = \f{2 \pi}{a\sqrt{3}} \br{\sqrt{3} \hat x +  \hat y} \qquad \ve b_{2} = \f{2 \pi}{a\sqrt{3}} \br{-\sqrt{3}\hat x +  \hat y} \eq \label{eq:gp_graphen_b}\]
 The nearest neighbor Hamiltonian becomes,
 \[ H = -t \sum_{\ve R} \br{\ket{\ve R, 2} \bra{\ve R, 1} + \ket{\ve R - \ve a_{1}, 2}\bra{\ve R, 1} + \ket{\ve R - \ve a_2, 2}\bra{\ve R, 1} + \text{h.c.}}\eq \label{eq:gp_graphene_H_nn} \]
 In the reciprocal lattice,
@@ -706,7 +706,7 @@ In the reciprocal lattice,
 Therefore the Hamiltonian becomes,
 \begin{align*}
     H
-    &= -\f{t}{N} \sum_{\ve R}\sum_{\ve K, \ve K'} \Bigg( \ket{\ve k, 2}\bra{\ve k,1}e^{-i \ve k \cdot \ve R} e^{i \ve k' \cdot \ve R} + \ket{\ve k, 2}\bra{\ve k,1}e^{-i \ve k \cdot \br{\ve R - \ve a_1}} e^{i \ve k' \cdot \ve R}+ \ket{\ve k, 2}\bra{\ve k,1}e^{-i \ve k \cdot \br{\ve R - \ve a_2}} e^{i \ve k' \cdot \ve R} + \text{h.c.} \Bigg) \\
+    &= -\f{t}{N} \sum_{\ve R}\sum_{\ve k, \ve k'} \Bigg( \ket{\ve k, 2}\bra{\ve k,1}e^{-i \ve k \cdot \ve R} e^{i \ve k' \cdot \ve R} + \ket{\ve k, 2}\bra{\ve k,1}e^{-i \ve k \cdot \br{\ve R - \ve a_1}} e^{i \ve k' \cdot \ve R}+ \ket{\ve k, 2}\bra{\ve k,1}e^{-i \ve k \cdot \br{\ve R - \ve a_2}} e^{i \ve k' \cdot \ve R} + \text{h.c.} \Bigg) \\
 \end{align*}
 \[ H = - t\sum_{\ve k}\bs{\ket{\ve k, 2} \bra{\ve k, 1} \br{1 + e^{i \ve k \cdot \ve a_1} + e^{i \ve k \cdot \ve a_2}} + \ket{\ve k, 1} \bra{\ve k, 2} \br{1 + e^{-i \ve k \cdot \ve a_1} + e^{-i \ve k \cdot \ve a_2}}} \]
 We have now diagonalized $H$ in terms of the momentum wave-vector index $\ve k$. Letting $H = \sum_{\ve k} H\br{\ve k}$ where,
@@ -728,7 +728,7 @@ In order to analyze the electronic structure of graphene, we need to rewrite $\v
 \[ \ve k \cdot \ve a_1 = \br{k_1 \ve b_1 + k_2 \ve b_2} \cdot \ve a_1 = 2 \pi k_1 \qquad \ve k \cdot \ve a_2 = 2 \pi k_2 \]
 Recalling \cref{eq:gp_graphen_a,eq:gp_graphen_b},
 \[ \ve a_{1} = \f{a}{2} \br{\hat x + \sqrt{3} \hat y} \qquad \ve a_{2} = \f{a}{2} \br{-\hat x + \sqrt{3} \hat y} \]
-\[ \ve b_{1} = \f{2 \pi}{a} \br{\hat x + \sqrt{3} \hat y} \qquad \ve b_{2} = \f{2 \pi}{a} \br{-\hat x + \sqrt{3} \hat y}\]
+\[ \ve b_{1} = \f{2 \pi}{a\sqrt{3}} \br{\sqrt{3} \hat x +  \hat y} \qquad \ve b_{2} = \f{2 \pi}{a\sqrt{3}} \br{-\sqrt{3}\hat x +  \hat y}\]
 We can now write $k_x, k_y$ in terms of $k_1, k_2$,
 \[ k_x = \f{2 \pi }{\sqrt{3}a} \br{k_1 - k_2} \qquad k_y = \f{2 \pi}{\sqrt{3}a} \br{k_1 + k_2} \]
 Inverting this system gives,
@@ -876,7 +876,7 @@ Which further adjusts the dispersion relationship,
 \[ H'\br{\ve k} = m \br{\ket{1}\bra{1} - \ket{2}\bra{2}} = m \si^{z} \]
 Therefore,
 \[ H_{\pm}\br{\ve k} =\hbar v\tsb{F} \br{\pm k_x \si^x + k_y \si^{y}} + m\si^{z} \]
-\[ \vep_{\pm} \br{\ve k} = \pm \sqrt{\hbar^2 v\tsb{F} k^2 + m^2} \]
+\[ \vep_{\pm} \br{\ve k} = \pm \sqrt{\hbar^2 v\tsb{F}^2 k^2 + m^2} \]
 This opens up a band gap of size $2m$. Therefore clean graphene ($m=0$) is a semimetal due to inversion symmetry but becomes an insulator for $m > 0$. \\
 
 Returning to the case of $m=0$,
@@ -1221,7 +1221,7 @@ Therefore the dispersion relations are distinct for each value of $\tau^{z}$,
     \bc{\vep\br{\ve k}}_{\tau^{z} = +1}\defined \vep_{+}\br{\ve k} &= \pm\sqrt{\hbar^2 v\tsb{F}^2 \br{k_x^2 + k_y^2} + \br{m + \De\tsb{SO}}^2} \\
     \bc{\vep\br{\ve k}}_{\tau^{z} = -1}\defined \vep_{-}\br{\ve k} &= \pm\sqrt{\hbar^2 v\tsb{F}^2 \br{k_x^2 + k_y^2} + \br{m - \De\tsb{SO}}^2} \eq \label{eq:gp_SOminus}
 \end{align*}
-In the very large $m$ limit $m \gg \De\tsb{SO}$, the energy cost $(+m)$ for electrons being localized at sites of type $1$ is much higher than the energy cost $(-m)$ associated with sites of type $2$. Therefore all of the electrons will localize to sites of type $2$. Therefore in this case, the electrons can not propagate between sites because the atoms of type $1$ are in the way. We refer to these as \term{non-topological insulators} or sometimes \textit{atomic} insulators. \\
+In the very large $m$ limit $m \gg \De\tsb{SO}$, the energy cost $(+m)$ for electrons being localized at sites of type $1$ is much higher than the energy cost $(-m)$ associated with sites of type $2$. Therefore all of the electrons will localized to sites of type $2$. Therefore in this case, the electrons can not propagate between sites because the atoms of type $1$ are in the way. We refer to these as \term{non-topological insulators} or sometimes \textit{atomic} insulators. \\
 
 In contrast to this, in the region where $m \approx \De\tsb{SO}$ we have interesting behaviors for \cref{eq:gp_SOminus}. Since the band gap associated with the contribution from $\vep_{-}\br{\ve k}$ is $2 \abs{m - \De\tsb{SO}}$, the band gap closes when $m$ transitions between $m > \De\tsb{SO}$ and $m < \De\tsb{SO}$.
 \begin{itemize}
@@ -1236,11 +1236,11 @@ The unit vector of $\ve d$ is,
 Which can be thought of as a map from the first Brillouin zone ($\ve k$) to the surface of a unit sphere $\hat d$. Interpreting the mappings in the way always one to understand the topological differences between ordinary and topological insulators. \\
 
 Near the band touching points $\ve k_{\pm}$ we have,
-\[ \hat d\br{\ve k_{+}} = \f{\br{\hbar v\tsb{F} k_x,\hbar v\tsb{F} k_y, m+\De\tsb{SO}}}{\sqrt{\hbar^2 v\tsb{F}^2 \br{\ve k_x^2 + \ve k_y^2 } + \br{m + \De\tsb{SO}}^2}} \]
-\[ \hat d\br{\ve k_{-}} = \f{\br{-\hbar v\tsb{F} k_x,\hbar v\tsb{F} k_y, m-\De\tsb{SO}}}{\sqrt{\hbar^2 v\tsb{F}^2 \br{\ve k_x^2 + \ve k_y^2 } + \br{m + \De\tsb{SO}}^2}} \]
+\[ \hat d\br{\ve k_{+}} = \f{\br{\hbar v\tsb{F} k_x,\hbar v\tsb{F} k_y, m+\De\tsb{SO}}}{\sqrt{\hbar^2 v\tsb{F}^2 \br{k_x^2 + k_y^2 } + \br{m + \De\tsb{SO}}^2}} \]
+\[ \hat d\br{\ve k_{-}} = \f{\br{-\hbar v\tsb{F} k_x,\hbar v\tsb{F} k_y, m-\De\tsb{SO}}}{\sqrt{\hbar^2 v\tsb{F}^2 \br{k_x^2 + k_y^2 } + \br{m - \De\tsb{SO}}^2}} \]
 Clearly for the case of $m > \De\tsb{SO}$,
 \[ \ve d\br{\ve k_{-}} \cdot \hat z = m - \De\tsb{SO} > 0 \]
-Therefore $d^z\br{\ve k_{-}}$ is always positive. This is also true for $d\br{\ve k}$. Therefore $\ve d\br{\ve k}$ only covers the \textit{upper} hemisphere of the unit sphere as $\ve k$ covers the whole Brillouin zone.\\
+Therefore $d^z\br{\ve k_{-}}$ is always positive. This is also true for $d^z\br{\ve k_{+}}$. Therefore $\ve d\br{\ve k}$ only covers the \textit{upper} hemisphere of the unit sphere as $\ve k$ covers the whole Brillouin zone.\\
 
 In difference to this is the case for $m < \De\tsb{SO}$. $d^{z}\br{\ve k_{-}}$ is always negative which means that $\hat d\br{\ve k}$ is able to cover the entire sphere.\\
 
@@ -1254,7 +1254,7 @@ Where $\int_{\text{BZ}}$ refers to an integration over the entire Brillouin zone
 
 \subsubsection{Topological/Non-topological Interfaces}
 
-Topological insulators behave exactly like insulators except that electrons near the band touching points have the potential to transition to the upper band and permit conduction. In order to study this in detail, it s sufficient to consider the Hamiltonian component associated with the topological terms,
+Topological insulators behave exactly like insulators except that electrons near the band touching points have the potential to transition to the upper band and permit conduction. In order to study this in detail, it is sufficient to consider the Hamiltonian component associated with the topological terms,
 \[ H_{-}\br{\ve k} = \hbar v\tsb{F}\br{- k_x \si^{x} +k_y \si^{y}} + \br{m - \De\tsb{SO}} \si^{z} \]
 Where the coefficient in front of $\si^{z}$ differs in sign depending on whether or not the insulator is topological or not. Let us assume that we have a material that transitions from a topological insulator to an ordinary insulator by letting $m\br{x}$ denote the coefficient in front of $\si^{z}$ as it varies along the $x$-direction.
 \[ m\br{x} = m - \De\tsb{SO}\]
@@ -1262,7 +1262,7 @@ Since $k_x$ no-longer corresponds to plane wave solutions to the Schrodinger equ
 \[ k_x \mapsto - i\pder{}{x} \]
 And solve $H\br{k_y}$,
 \[ H\br{k_y} = i \hbar v\tsb{F} \pder{}{x} \si^{x} + \hbar v\tsb{F} k_y \si^{y} + m\br{x} \si^{z} \]
-As a preliminary exercise, we can solve the Schrodinger equation for the case of $k_y = 0$.
+As a preliminary exercise, we can solve the Schrodinger equation for the case of $k_y = 0$. Note this will be nearly identical to \cref{eq:mass_varying_eqn},
 \[ H\br{0} = i \hbar v\tsb{F} \pder{}{x} \si^{x} + m\br{x} \si^{z} \eq \label{eq:gp_kyzero} \]
 For the zero energy eigenstate we require $H\psi = 0$. This suggests the following ansatz solution (for some unspecified $\ket{z}$),
 \[ \psi\br{x} = e^{f\br{x}} \si^{x} \ket{z} \eq \label{eq:gp_ansatzxx}\]
@@ -1348,6 +1348,7 @@ Which means that we can construct a \term{spin current},
 \[ \si_{xy}^{S} =\f{1}{2} \br{\si_{xy}^{\uparrow} - \si_{xy}^{\downarrow}} = - \f{e^2}{h} \]
 Effectively, if we have an equal number of electrons moving to the right and the left but each direction is biased to a particular spin, we can have a buildup of spin up electrons on the right and spin down electrons on the left. This is the analogue of \textit{spin voltage}. \\
 
+\clearpage
 \subsection{Bravais Lattices in 3D}
 
 There are a number of typical Bravais lattices in three dimensions. The simplest one is the simple cubic.
