@@ -101,9 +101,9 @@ Therefore \cref{eq:toy_hamiltonian} becomes,
 By \cref{eq:toy_k_discrete}, $\br{k - k'}$ is an integer multiple of $2 \pi / Na$. Letting that integer be $\mu$ we have the following identity:
 \[ \f{1}{N} \sum_{n=1}^{N} e^{i\br{k - k'}na} = \f{1}{N} \sum_{n=1}^{N} e^{i2 \pi \mu n / N} = \de_{\mu} = \de_{k, k'}  \eq \label{eq:crucial_idenity}\]
 Therefore \cref{eq:nearly_toy_diag} simplifies greatly,
-\[ H = -t \sum_{n}\sum_{k,k'} \de_{k,k'} \bc{e^{-ika} \ket{k}\bra{k'} + e^{ika} \ket{k}\bra{k'}} \]
-\[ H = -t \sum_{n}\bc{e^{-ika} + e^{ika}} \ket{k}\bra{k} \]
-\[ H = -2t\cos\br{ka} \sum_{n}\ket{k}\bra{k} \eq \label{eq:toy_hamiltonian_diag}\]
+\[ H = -t \sum_{k,k'} \de_{k,k'} \bc{e^{-ika} \ket{k}\bra{k'} + e^{ika} \ket{k}\bra{k'}} \]
+\[ H = -t \sum_{k}\bc{e^{-ika} + e^{ika}} \ket{k}\bra{k} \]
+\[ H = -2t\cos\br{ka} \sum_{k}\ket{k}\bra{k} \eq \label{eq:toy_hamiltonian_diag}\]
 Therefore \cref{eq:toy_hamiltonian_diag} is the diagonalized form of \cref{eq:toy_hamiltonian}. By diagonalizing the Hamiltonian we were able to determine the energy levels $\vep\br{k}$ of the various states,
 \[ \varepsilon\br{k} = - 2 t \cos\br{ka} \eq \label{eq:toy_single_energy_band}\]
 The momentum space index $k$ is the wave-vector with $p = \hbar k$ where $p$ is an ordinary linear momentum. Additionally, $t$ acts as a tunneling coefficient that dictates a tunneling \textit{rate} (up to a constant $\hbar$) for the electrons in the solid. Unlike free particles, the momentum $k$ in this toy model is confined to a discrete region.
@@ -129,6 +129,7 @@ The interval has a width of $\varepsilon_{\max} - \varepsilon_{\min} = 4t$ and i
     \draw[thick,dashed] (\plotsize, -\axissize) -- node[above right]{$\f{\pi}{a}$} (\plotsize,+\axissize);
     \draw[thick,dashed] (-\plotsize, -\axissize) -- node[above left]{$-\f{\pi}{a}$} (-\plotsize,+\axissize);
     \draw[thick,-] (-0.1,-2) -- (+0.1,-2) node[right]{$-2t$};
+    \draw[thick,-] (-0.1,+2) -- (+0.1,+2) node[right]{$+2t$};
 \end{tikzpicture}
 \end{center}
 
@@ -239,7 +240,7 @@ Additionally, the periodic boundary condition of \cref{eq:periodic_boundary} giv
 Therefore $e^{- i2kNa} = 1$ which gives,
 \[ k = \f{\pi m}{Na} \qquad m \in \Z \eq \label{eq:k_discrete}\]
 Therefore $k$ must be discrete (an assumption made above to write down \cref{eq:basis_change}). Additionally, combining this with dimensionality of $\ket{n, \al}$ gives the following constraint on $k$,
-\[ \f{\pi}{2a} \leq k < \f{\pi}{2a} \]
+\[ -\f{\pi}{2a} \leq k < \f{\pi}{2a} \]
 Note the Brillouin zone for Polyacetylene is half the width of the Brillouin zone for the toy model discussed in \cref{sec:toy_model} (again this is due to the unit cell being twice the size). Thus ensures there are $N$ states of the form $\ket{k, \al}$. \\
 
 Substituting these results into \cref{eq:polyacetylene_tight_binding} gives,
@@ -1099,20 +1100,20 @@ In contrast, if $t_2$ is imaginary $t_2^{*} = - t_2$ which means $t_2 = i \ti t_
 
 In order to write $H_{2, \atomp}$ in terms of $\ve d\br{\ve k} \cdot \ve \si$, recognize that if the electrons have spin,
 \begin{align*}
-    \ve s &= \br{s^{x}, s^{y}, s^{z}} \\
-    s^{z} &= \ket{\uparrow} \bra{\uparrow} - \ket{\downarrow}\bra{\downarrow} \\
-    s^{y} &= -i\br{\ket{\uparrow} \bra{\downarrow} - \ket{\downarrow}\bra{\uparrow}} \\
-    s^{x} &= \ket{\uparrow} \bra{\downarrow} + \ket{\downarrow}\bra{\uparrow}
+    \ve S &= \br{S^{x}, S^{y}, S^{z}} \\
+    S^{z} &= \ket{\uparrow} \bra{\uparrow} - \ket{\downarrow}\bra{\downarrow} \\
+    S^{y} &= -i\br{\ket{\uparrow} \bra{\downarrow} - \ket{\downarrow}\bra{\uparrow}} \\
+    S^{x} &= \ket{\uparrow} \bra{\downarrow} + \ket{\downarrow}\bra{\uparrow}
 \end{align*}
 Then the eigenstates can become the following,
-\[ \ket{\ve R, \al} \mapsto \ket{\ve R, \al_{\si}, \al_{s}} \qquad \al_{\si} \in \bc{\atomm, \atomp} , \al_{s} \in \bc{\uparrow, \downarrow} \]
+\[ \ket{\ve R, \al} \mapsto \ket{\ve R, \al_{\si}, \al_{S}} \qquad \al_{\si} \in \bc{\atomm, \atomp} , \al_{S} \in \bc{\uparrow, \downarrow} \]
 Then is is possible to write the following,
-\[ \ident = s^{z} \si^{z} \]
+\[ \ident = S^{z} \si^{z} \]
 Therefore,
 \begin{align*}
     d^{x}\br{\ve k} &= -t_1\bc{1 + \cos \br{\ve k \cdot \ve a_1} + \cos \br{\ve k \cdot \ve a_2}} \\
     d^{y}\br{\ve k} &= -t_1\bc{\sin \br{\ve k \cdot \ve a_1} + \sin \br{\ve k \cdot \ve a_2}}\\
-    d^{z}\br{\ve k} &= 2\ti t_2s^{z}\bc{\sin\br{-\ve k \cdot \ve a_1} + \sin\br{\ve k \cdot \ve a_2} + \sin\br{\ve k \cdot \br{\ve a_1 - \ve a_2}}}
+    d^{z}\br{\ve k} &= 2\ti t_2S^{z}\bc{\sin\br{-\ve k \cdot \ve a_1} + \sin\br{\ve k \cdot \ve a_2} + \sin\br{\ve k \cdot \br{\ve a_1 - \ve a_2}}}
 \end{align*}
 In terms of the $x,y$ components of $\ve k$,
 \[ \ve k = k_x \hat x + k_y \hat y  \]
@@ -1128,7 +1129,7 @@ Trig identities give,
 \begin{align*}
     d^{x}\br{\ve k} &= -t_1\bc{1 + 2 \cos \br{\f{ak_x}{2}}\cos \br{\f{\sqrt{3}ak_y}{2}}} \\
     d^{y}\br{\ve k} &= -2t_1\bc{\cos \br{\f{ak_x}{2}}\sin \br{\f{\sqrt{3}ak_y}{2}}}\\
-    d^{z}\br{\ve k} &= -2\ti t_2s^{z}\bc{-2 \sin \br{\f{ak_x}{2}}\cos \br{\f{\sqrt{3}ak_y}{2}} + \sin\br{k_x a}}\\
+    d^{z}\br{\ve k} &= -2\ti t_2S^{z}\bc{-2 \sin \br{\f{ak_x}{2}}\cos \br{\f{\sqrt{3}ak_y}{2}} + \sin\br{k_x a}}\\
 \end{align*}
 The energy dispersion relations are,
 \[ \vep\br{\ve k} = \pm\abs{\ve d\br{\ve k}} \]
@@ -1175,13 +1176,13 @@ Therefore to first order,
 \begin{align*}
     d_{\pm}^{x}\br{\ve k} &\simeq -t_1\bc{1 + 2\br{-\f{1}{2} \mp \f{\sqrt{3}}{2}\f{a\de k_{\pm,x}}{2}}} \\
     d_{\pm}^{y}\br{\ve k} &\simeq -2t_1\bc{\br{-\f{1}{2} \mp \f{\sqrt{3}}{2}\f{a\de k_{\pm,x}}{2}}\f{\sqrt{3}a\de k_{\pm, y}}{2}}\\\
-    d_{\pm}^{z}\br{\ve k} &\simeq 2\ti t_2s^{z}\bc{-2 \br{-\f{1}{2}\f{a\de k_{\pm,x}}{2} \mp \f{\sqrt{3}}{2}} + \br{-\f{1}{2}a\de k_{\pm,x} \pm \f{\sqrt{3}}{2}}}
+    d_{\pm}^{z}\br{\ve k} &\simeq 2\ti t_2S^{z}\bc{-2 \br{-\f{1}{2}\f{a\de k_{\pm,x}}{2} \mp \f{\sqrt{3}}{2}} + \br{-\f{1}{2}a\de k_{\pm,x} \pm \f{\sqrt{3}}{2}}}
 \end{align*}
 Simplifying
 \begin{align*}
     d_{\pm}^{x}\br{\ve k} &\simeq \pm \f{at_1 \sqrt{3}\de k_{\pm,x}}{2} \\
     d_{\pm}^{y}\br{\ve k} &\simeq \f{at_1 \sqrt{3}\de k_{\pm,y}}{2}\\
-    d_{\pm}^{z}\br{\ve k} &\simeq \pm 3\sqrt{3}t_2s^{z}
+    d_{\pm}^{z}\br{\ve k} &\simeq \pm 3\sqrt{3}t_2S^{z}
 \end{align*}
 
 This new degree of freedom, namely whether or not the electron is near $\ve k_{+}$ or $\ve k_{-}$ can be expressed as another pseudo-spin $\tau$,
@@ -1197,12 +1198,12 @@ Thus $H\br{\ve k}$ becomes,
 \begin{align*}
 H\br{\ve k}
 &= \si^{x}d^{x}\br{\ve k} + \si^{y}d^{y}\br{\ve k} + \si^{z}d^{z}\br{\ve k} \\
-&= \hbar v\tsb{F}\br{\tau^{z}\si^{x}\de k_{x} + \si^{y} \de k_{y}} + 3\sqrt{3} \ti t_2 \si^{z} \tau^{z} s^{z}
+&= \hbar v\tsb{F}\br{\tau^{z}\si^{x}\de k_{x} + \si^{y} \de k_{y}} + 3\sqrt{3} \ti t_2 \si^{z} \tau^{z} S^{z}
 \end{align*}
 Finally, suppress the notation `$\de$' and define the spin orbital coupling $\De\tsb{SO}$.
 \[ \De\tsb{SO} = 3 \sqrt{3} \ti t_2 \]
 Therefore near $\ve k \simeq \ve k_{\pm}$,
-\[ H\br{\ve k} = \hbar v\tsb{F}\br{\tau^{z}\si^{x}k_{x} + \si^{y} k_{y}} + \De\tsb{SO} \si^{z} \tau^{z} s^{z} \]
+\[ H\br{\ve k} = \hbar v\tsb{F}\br{\tau^{z}\si^{x}k_{x} + \si^{y} k_{y}} + \De\tsb{SO} \si^{z} \tau^{z} S^{z} \]
 This Hamiltonian has the desired invariant spin terms $\si^{z} \tau^{z} s^{z}$ and should have been expected due to symmetry due to symmetries.
 
 \subsubsection{Spin-Orbit Interactions Analyzed}
