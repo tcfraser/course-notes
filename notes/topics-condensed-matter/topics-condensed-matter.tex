@@ -1460,7 +1460,7 @@ There are a number of typical Bravais lattices in three dimensions. The simplest
         \draw[red, ->] (+0,+0,-1) -- ++ (0.6,0.6,0.6) node[above right]{$\ve r$};
         \end{tikzpicture}
     \end{center}
-    \[ \hat r = \f{Q}{4}\br{\hat x + \hat y + \hat z} \]
+    \[ \hat r = \f{a}{4}\br{\hat x + \hat y + \hat z} \]
     \[ \ve a_1 = \f{a}{2} \br{\hat y + \hat z} \quad \ve a_2 = \f{a}{2} \br{\hat x + \hat z} \quad \ve a_3 = \f{a}{2} \br{\hat x + \hat y} \]
 \end{enumerate}
 
@@ -1468,6 +1468,8 @@ The Diamond structure is a generalization of the graphene lattice in 3D. Many ma
 \[ H_1 = - \sum_{\ve R} \br{t \ket{\ve R, 1}\bra{\ve R, 2} + t \ket{\ve R + \ve a_1, 1}\bra{\ve R, 2} + t \ket{\ve R + \ve a_2, 1}\bra{\ve R, 2} + t \ket{\ve R + \ve a_3, 1} \bra{\ve R, 2} + \text{h.c.}} \eq \label{eq:diamond_H1}\]
 While the second-nearest neighbor terms are numerous. In fact there are $24$ terms written below,
 \begin{align*}
+\eq \label{eq:diamond_H2}
+\begin{split}
 H_2
 &= i \f{8 \De\tsb{SO}}{a^2} \sum_{\al \in \bc{1,2}}\sum_{\ve R} \bigg[\cdots \\
 &\qquad \cdots + \ket{\ve R + \ve a_1,\al} \bra{\ve R, \al} \ve S \cdot \br{\ve r \times \ve a_1} + \cdots \\
@@ -1475,13 +1477,126 @@ H_2
 &\qquad \cdots + \ket{\ve R + \ve a_3,\al} \bra{\ve R, \al} \ve S \cdot \br{\ve r \times \ve a_3} + \cdots \\
 &\qquad \cdots + \ket{\ve R + \ve a_2 - \ve a_1,\al} \bra{\ve R, \al} \ve S \cdot \br{\ve r - \ve a_1} \times \br{\ve r -\f{a}{2} \hat y} + \cdots \\
 &\qquad \cdots + \ket{\ve R + \ve a_3 - \ve a_1,\al} \bra{\ve R, \al} \ve S \cdot \br{\ve r - \ve a_1} \times \br{\ve r -\f{a}{2} \hat z} + \cdots \\
-&\qquad \cdots + \ket{\ve R + \ve a_2 - \ve a_3,\al} \bra{\ve R, \al} \ve S \cdot \br{\ve r - \ve a_3} \times \br{\ve r -\f{a}{2} \hat y} \bigg]
+&\qquad \cdots + \ket{\ve R + \ve a_2 - \ve a_3,\al} \bra{\ve R, \al} \ve S \cdot \br{\ve r - \ve a_3} \times \br{\ve r -\f{a}{2} \hat y} + \cdots \\
+&\qquad \cdots + \text{h.c.} \bigg]
+\end{split}
 \end{align*}
-% TODO more course notes here
-It is to explore the first nearest-neighbor hopping Hamiltonian in the case where the tunneling amplitudes in \cref{eq:diamond_H1} are perturbed a small amount $t \mapsto t + \de t$. When $\de t = 0$ there are $3$ band-touching point in the BZ. When $\de t \neq 0$ we have,
-\[ H = - \de t \si^{x} + t a k_z \si^{y} - 2 \De\tsb{SO} a \si^{z} S^{x} k_x + 2 \De\tsb{SO} a \si^{z} S^{y} k_y \]
-Where th Pauli spin $\ve \si$ describes the degree of freedom associated with localization to atoms $1$ or $2$. The $\ve S$ spin is the intrinsic spin of the electron. The dispersion relation can be calculated as well,
+
+We can explicitly calculate the cross products,
+\begin{align*}
+    \ve r \times \ve a_1 &= \f{a^2}{8}\br{\hat x + \hat y + \hat z} \times \br{\hat y + \hat z} = \f{a^2}{8} \br{\hat z - \hat y}\\
+    \ve r \times \ve a_2 &= \f{a^2}{8}\br{\hat x + \hat y + \hat z} \times \br{\hat z + \hat x} = \f{a^2}{8} \br{\hat x - \hat z}\\
+    \ve r \times \ve a_3 &= \f{a^2}{8}\br{\hat x + \hat y + \hat z} \times \br{\hat x + \hat y} = \f{a^2}{8} \br{\hat y - \hat x}\\
+    \br{\ve r - \ve a_1} \times \br{\ve r - \f{a}{2} \hat y} &= \f{a^2}{16}\br{\hat x - \hat y - \hat z} \times \br{\hat x - \hat y + \hat z} = -\f{a^2}{8}\br{\hat x + \hat y} \\
+    \br{\ve r - \ve a_1} \times \br{\ve r - \f{a}{2} \hat z} &= \f{a^2}{16}\br{\hat x - \hat y - \hat z} \times \br{\hat x + \hat y - \hat z} = +\f{a^2}{8}\br{\hat x + \hat z} \\
+    \br{\ve r - \ve a_3} \times \br{\ve r - \f{a}{2} \hat y} &= \f{a^2}{16}\br{-\hat x - \hat y + \hat z} \times \br{\hat x - \hat y + \hat z} = +\f{a^2}{8}\br{\hat y + \hat z}
+\end{align*}
+Therefore \cref{eq:diamond_H2} becomes,
+\begin{align*}
+\eq \label{eq:diamond_H2_computed_cross_product}
+\begin{split}
+H_2
+&= i \De\tsb{SO}\sum_{\al \in \bc{1,2}}\sum_{\ve R} \bigg[\cdots \\
+&\qquad \cdots + \ket{\ve R + \ve a_1,\al} \bra{\ve R, \al} \br{S^z - S^y} + \cdots \\
+&\qquad \cdots - \ket{\ve R + \ve a_2,\al} \bra{\ve R, \al} \br{-S^x + S^z} + \cdots \\
+&\qquad \cdots + \ket{\ve R + \ve a_3,\al} \bra{\ve R, \al} \br{S^y - S^x} + \cdots \\
+&\qquad \cdots - \ket{\ve R + \ve a_2 - \ve a_1,\al} \bra{\ve R, \al} \br{S^x + S^y} + \cdots \\
+&\qquad \cdots + \ket{\ve R + \ve a_3 - \ve a_1,\al} \bra{\ve R, \al} \br{S^x + S^z} + \cdots \\
+&\qquad \cdots + \ket{\ve R + \ve a_2 - \ve a_3,\al} \bra{\ve R, \al} \br{S^y + S^z} + \cdots \\
+&\qquad \cdots + \text{h.c.} \bigg]
+\end{split}
+\end{align*}
+
+The nearest neighbors Hamiltonian \cref{eq:diamond_H1} can be Fourier transformed and partially diagonalized,
+\[ H_1 = - \sum_{\ve k}\bc{\ket{\ve k, 1}\bra{\ve k, 2} \br{\br{t + \de t} + t e^{-i \ve k \cdot \ve a_1} + t e^{-i\ve k\cdot \ve a_2} + t e^{-i\ve k \cdot \ve a_3}} + \text{h.c.}} \]
+Similarly for \cref{eq:diamond_H2_computed_cross_product},
+
+\begin{align*}
+\eq \label{eq:diamond_H2_computed_cross_product_ft}
+\begin{split}
+H_2
+&= i \De\tsb{SO}\sum_{\al \in \bc{1,2}}\sum_{\ve k} \ket{\ve k,\al} \bra{\ve k, \al} \bigg[\cdots \\
+&\qquad \cdots + e^{-i \ve k \cdot \ve a_1} \br{S^z - S^y} + \cdots \\
+&\qquad \cdots + e^{-i \ve k \cdot \ve a_2} \br{S^x - S^z} + \cdots \\
+&\qquad \cdots + e^{-i \ve k \cdot \ve a_3} \br{S^y - S^x} + \cdots \\
+&\qquad \cdots - e^{-i \ve k \cdot \br{\ve a_2 - \ve a_1}} \br{S^x + S^y} + \cdots \\
+&\qquad \cdots + e^{-i \ve k \cdot \br{\ve a_3 - \ve a_1}} \br{S^x + S^z} + \cdots \\
+&\qquad \cdots + e^{-i \ve k \cdot \br{\ve a_2 - \ve a_3}} \br{S^y + S^z} + \cdots \\
+&\qquad \cdots + \text{h.c.} \bigg]
+\end{split}
+\end{align*}
+
+Introducing pseudo-spin $\ve \si = \br{\si^x, \si^{y}, \si^{z}}$
+\begin{align*}
+\begin{split}
+\si^x &= \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} = \ket{1} \bra{2} + \ket{2} \bra{1} \\
+\si^y &= \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix} = -i\br{\ket{1} \bra{2} - \ket{2} \bra{1}} \\
+\si^z &= \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} = \ket{1} \bra{1} - \ket{2} \bra{2}
+\end{split}
+\end{align*}
+The first and second nearest-neighbor Hamiltonian can be modeled when the tunneling amplitudes in \cref{eq:diamond_H1} are perturbed a small amount $t \mapsto t + \de t$ using the $5$-component vector $\ve d\br{\ve k} = \br{d_1\br{\ve k},d_2\br{\ve k},d_3\br{\ve k},d_4\br{\ve k},d_5\br{\ve k}}$,
+\begin{align*}
+    d_1\br{\ve k} &= - \br{t + \de t} - t \bs{\cos \ve k \cdot \ve a_1 + \cos \ve k \cdot \ve a_2 + \cos \ve k \cdot \ve a_3} \\
+    d_2\br{\ve k} &= - t \bs{\sin \ve k \cdot \ve a_1 + \sin \ve k \cdot \ve a_2 + \sin \ve k \cdot \ve a_3} \\
+    d_3\br{\ve k} &= \De\tsb{SO} \bs{\sin \ve k \cdot \ve a_2 - \sin \ve k \cdot \ve a_3 - \sin \ve k \cdot \br{\ve a_2 - \ve a_1} + \sin \ve k \cdot \br{\ve a_3 - \ve a_1}} \\
+    d_4\br{\ve k} &= \De\tsb{SO} \bs{\sin \ve k \cdot \ve a_3 - \sin \ve k \cdot \ve a_1 + \sin \ve k \cdot \br{\ve a_1 - \ve a_2} - \sin \ve k \cdot \br{\ve a_3 - \ve a_2}} \\
+    d_5\br{\ve k} &= \De\tsb{SO} \bs{\sin \ve k \cdot \ve a_1 - \sin \ve k \cdot \ve a_2 - \sin \ve k \cdot \br{\ve a_1 - \ve a_3} + \sin \ve k \cdot \br{\ve a_2 - \ve a_3}}
+\end{align*}
+Using this the full Hamiltonian can be written as,
+\[ H\br{\ve k} = d_1\br{\ve k} \si^x + d_2\br{\ve k}  \si^y  + d_3\br{\ve k} \si^{z}S^x + d_4\br{\ve k} \si^z S^y + d_5\br{\ve k}\si^zS^z \]
+Where the matrices on the right of each $d_i\br{\ve k}$ term are the usual $4 \time 4$ gamma matrices $\ga^{\mu}$ from the Dirac equation.
+\[ \ga^{0} = \si^{x} \quad \ga^{0}\ga^{1} = \si^{y} \quad \ga^{0}\ga^{2} = \si^{z}S^{x} \quad \ga^{0}\ga^{3} = \si^{z}S^y \quad \ga^{0}\ga^{5} = \si^{z} S^{z}\]
+\[ \ga^{1} = \si^{x} \si^{y} = i \si^z \quad \ga^{2} = i \si^{y}S^{x} \ga^{3} = i \si^{y}S^{y} \]
+\[ i \ga^{0}\ga^{1}\ga^{2}\ga^{3} = i \si^{x} i \si^{z} i \si^{y}S^{x} = \si^{y}S^{z} \defined \ga^{5} \]
+It is convenient to rename these matrices using capital gammas,
+\begin{alignat*}{2}
+\Ga^{1} &= \ga^{0} &= \si^{x} \\
+\Ga^{2} &= \ga^{0}\ga^{1} &= \si^{y} \\
+\Ga^{3} &= \ga^{0}\ga^{2} &= \si^{z}S^{x} \\
+\Ga^{4} &= \ga^{0}\ga^{3} &= \si^{z}S^y \\
+\Ga^{4} &= \ga^{0}\ga^{5} &= \si^{z} S^{z}
+\end{alignat*}
+It is easy to see that these $\Ga$ matrices obey the \term{Clifford Algebra},
+\[ \bc{\Ga^{a}, \Ga^{b}} = 2 \de_{ab} \]
+Thus we have that,
+\[ H\br{\ve k} = \sum_{a = 1}^{5} d_a\br{\ve k}\Ga^{a} \defined d_a\br{\ve k}\Ga^{a} \eq \label{eq:HGa}\]
+Just like in graphene, we see that the parity transformation $P = \si^{x} = \ga^{0}$ leaves $\Ga^{1}$ even under parity and $\Ga^{2,3,4,5}$ odd under parity. One reason motivating why we should write \cref{eq:HGa} in terms of the $\Ga$ matrices is that we can now easily find the eigenvalues by squaring the Hamiltonian,
+\[ H^2\br{\ve k} = d_a\br{\ve k}\Ga^{a} d_b\br{\ve k}\Ga^{b} = d_a \br{\ve k} d_a\br{\ve k} \]
+Therefore,
+\[ \vep_{\pm}\br{\ve k} = \pm \sqrt{d_a \br{\ve k} d_a\br{\ve k}} = \pm \abs{\ve d\br{\ve k}} \]
+We now elect to compute the reciprocal basis vectors. Recall that,
+\[ \ve a_1 = \f{a}{2} \br{\hat y + \hat z} \quad \ve a_2 = \f{a}{2} \br{\hat x + \hat z} \quad \ve a_3 = \f{a}{2} \br{\hat x + \hat y} \]
+Define the scalar $v_c$ such that,
+\[ v_c = \ve a_1 \cdot \br{\ve a_2 \times \ve a_3} = \cdots = \f{a^3}{4} \]
+The reciprocal vectors become,
+\[ \ve b_1 = \f{2\pi}{v_c} \ve a_2 \times \ve a_3 = \f{2 \pi}{a} \br{\hat y - \hat x + \hat z} \]
+Similarly,
+\[ \ve b_2 = \f{2\pi}{v_c} \br{\hat z - \hat y + \hat x} \]
+\[ \ve b_3 = \f{2\pi}{v_c} \br{\hat x - \hat z + \hat y} \]
+Therefore the reciprocal lattice of fcc is the bcc lattice vectors and vice versa.
+When $\de t = 0$ the $5$-component $\ve d\br{\ve k}$ vanishes at $3$ inequivalent band-touching point in the first Brillouin zone.
+\[ X^{x} = \f{2\pi}{a}\br{1,0,0} \qquad X^{y} = \f{2\pi}{a}\br{0,1,0} \qquad X^{z} = \f{2\pi}{a}\br{0,0,1} \]
+Considering the $X^{z}$ point as an illustrative example we have $k_1 = k_2 = \f12$ and $k_3 = 0$. If we expand in small deviations from the $X^z$ point where $\ve k \simeq X^{z} + \ve q = \br{q_x, q_y, \f{2\pi}{a} + q_z}$ we obtain the following,
+\begin{align*}
+    d_1\br{\ve k} &\simeq -t - \de t - t \br{-1} = - \de t \\
+    d_2\br{\ve k} &\simeq t a q_z \\
+    d_3\br{\ve k} &\simeq -2\De\tsb{SO} a q_x \\
+    d_4\br{\ve k} &\simeq 2\De\tsb{SO} a q_y \\
+    d_5\br{\ve k} &\simeq \f{\De\tsb{SO}}{8} a^3 \br{q_y^2 - q_x^2} q_z
+\end{align*}
+Thus we obtain (replacing $\ve q$ with $\ve k$ again),
+\[ H_{X^{z}} = - \de t \si^{x} + t a k_z \si^{y} - 2 \De\tsb{SO} a \si^{z} S^{x} k_x + 2 \De\tsb{SO} a \si^{z} S^{y} k_y \]
+Analogously expanding about $X^{y}$ and $X^{x}$,
+\[ H_{X^{y}} = - \de t \si^{x} + t a k_y \si^{y} + 2 \De\tsb{SO} a k_x \si^{z} S^{x} - 2 \De\tsb{SO} a k_z \si^{z} S^{z} \]
+\[ H_{X^{x}} = - \de t \si^{x} + t a k_x \si^{y} - 2 \De\tsb{SO} a k_y \si^{z} S^{y} + 2 \De\tsb{SO} a k_z \si^{z} S^{z} \]
+Notice that $H_{X^{x,y,z}}$ look like anisotropic Dirac Hamiltonians where $\de t$ plays the role of the Dirac mass.
 \[ \vep_{\pm}\br{\ve k} = \pm \sqrt{t^2 a^2 k_z^2 + 4 \De\tsb{SO}^2 a^2 \br{k_x^2 + k_y^2} + \de t^2} \]
+Changing the sign of $\de t$ corresponds to transitions between topological and ordinary insulators.
+\begin{itemize}
+    \item $\de t > 0$: topological
+    \item $\de t < 0$: ordinary
+    \item $\de t = 0$: Dirac semimetal
+\end{itemize}
 
 \subsection{Quantum Hall Effect}
 
@@ -1500,7 +1615,84 @@ In this subsection we will discuss the Quantum Hall Effect. Specifically we will
 \end{tikzpicture}
 \end{center}
 
-We place the 2DEG in the $xy$-plane and subject it to a magnetic field in the $z$-direction $\ve B = B \hat z$. If the electrons are classical particles of charge $-e$ and mass $m$,
+Modeling a 2DEG corresponds to subjecting the electrons in state $\ket{\psi}$ to a potential $V\br{\ve r}$ and making use of the Schrödinger equation,
+\[ \br{-\f{\hbar^2}{2m} \del^2 + V\br{\ve r}}\psi\br{\ve r} = E \psi\br{\ve r} \eq \label{eq:tise} \]
+Where $\psi\br{\ve r} \defined \braket{\ve r}{\psi}$ is the position space wavefunction. In order to model electrons confined to two dimensions (say $x,y$) use the following potential,
+\[ V\br{\ve r} = \begin{cases}
+    0 & \ve r \cdot \hat z = 0 \\
+    \inf & \ve r \cdot \hat z \neq 0
+\end{cases} \eq \label{eq:potential}\]
+By doing so, $\psi\br{\ve r}$ is confined to be non-zero within the $xy$-plane.
+\[ \psi\br{\ve r} = \psi\br{x \hat x + y \hat y } \defined \psi\br{x,y} \]
+Furthermore let $L_x$ and $L_y$ denote the side lengths of rectangle space accessible by the electrons equipped with periodic boundary conditions,
+\[ \psi\br{x + L_x, y} = \psi\br{x, y+ L_y} = \psi\br{x,y} \eq \label{eq:boundary_conditions} \]
+The electrons inside the accessible region are subject to no external potential. Therefore the electrons will exhibit plane-wave behaviour with $z = 0$.
+\[ \psi\br{\ve r} = \ga e^{i \ve k \cdot \ve r} = \ga e^{i \br{k_x x + k_y y}} \eq \label{eq:2dansatz} \]
+Where $\ve k = k_x \hat x + k_y \hat y$ denotes the momentum wave vector of the electron and $\ga \in \R$ is a normalization factor. The normalization factor comes from the desired normalization of the state $\psi\br{\ve r}$,
+\[ 1 = \braket{\psi}{\psi} = \intl_{0}^{L_x} \dif x \intl_{0}^{L_y} \dif y \braket{\psi}{\ve r}\braket{\ve r}{\psi} = \intl_{0}^{L_x} \dif x \intl_{0}^{L_y} \dif y \ga^2 \abs{e^{i \br{k_x x + k_y y}}}^2 = L_x L_y \ga^2 \]
+Therefore the normalization is simply,
+\[ \ga = \f{1}{\sqrt{L_x L_y}} \]
+Consequently \cref{eq:2dansatz} becomes,
+\[ \psi\br{\ve r} = \f{1}{\sqrt{L_x L_y}} e^{i \br{k_x x + k_y y}} \]
+Moreover the boundary conditions \cref{eq:boundary_conditions} quantize the accessible values of $k_x, k_y$,
+\[ e^{i \br{k_x\br{x + L_x} + k_y y}} = e^{i \br{k_x x + k_y \br{y + L_y}}} = e^{i \br{k_x x + k_y y}} \]
+\[ e^{i k_x L_x} = e^{i k_y L_y} = 1 \implies k_x = \f{2 \pi m_x}{L_x} \quad k_y = \f{2 \pi m_y}{L_y} \quad m_x, m_y \in \bc{0, \pm 1, \pm 2,\ldots} \]
+Therefore the accessible points in $k$-space form a square lattice which is illustrated below,
+\begin{center}
+    \begin{tikzpicture}
+        \pgfmathsetmacro{\plotsize}{4};
+        \pgfmathsetmacro{\ll}{0.6};
+        \pgfmathsetmacro{\count}{5};
+        \pgfmathsetmacro{\shift}{0.3};
+
+        \draw[thick, ->] (-\plotsize, +0) -- (+\plotsize, +0) node[right]{$k_x$};
+        \draw[thick, ->] (+0, -\plotsize) -- (+0, +\plotsize) node[above]{$k_y$};
+
+        \foreach \x in {-\count,...,\count}{
+            \foreach \y in {-\count,...,\count}{
+                \draw (\ll*\x, \ll*\y) node[circle, inner sep=1pt, fill=red](\x d \y){};
+            }
+        }
+
+        \draw[|<->|] ($\ll*(-5,-5) + (0,-\shift)$) -- node[below]{$\f{2\pi}{L_x}$} ($\ll*(-4,-5) + (0,-\shift)$);
+        \draw[|<->|] ($\ll*(-5,-5) + (-\shift,0)$) -- node[left ]{$\f{2\pi}{L_y}$} ($\ll*(-5,-4) + (-\shift,0)$);
+
+        \draw[blue, fill=blue, fill opacity=0.2] (3*\ll,3*\ll) +(-\ll/2,-\ll/2) rectangle +(+\ll/2,+\ll/2);
+        \draw[green, fill=green, fill opacity=0.2] (0,0) circle (2);
+        \draw[->] (0,0) -- node[below]{$k$} ({sqrt(2)},{sqrt(2)});
+    \end{tikzpicture}
+\end{center}
+Clearly, each accessible momentum state occupies an area (shaded in blue) equal to,
+\[ \br{\f{2\pi}{L_x}}\br{\f{2\pi}{L_y}} = \f{\br{2 \pi}^2}{\s A} \]
+Where $\s A = L_x L_y$ is the total area. In the inverse of this statement is that there are,
+\[ \f{\s A}{\br{2\pi}^2} \eq \label{eq:area}\]
+grid points per unit area of $k$-space. Using \cref{eq:tise}, we can now calculate the energy for the state $\psi\br{r_x, r_y} \defined \braket{\ve r}{\psi}$.
+\[ E \psi \br{\ve r} = -\f{\hbar^2}{2m} \del^2 \psi\br{\ve r} = -\f{\hbar^2}{2m} \br{\di_x^2 + \di_y^2} \psi\br{\ve r} = -\f{\hbar^2}{2m} \br{-k_x^2 -k_y^2} \psi\br{\ve r} = \f{\hbar^2}{2m} k^2 \psi\br{\ve r}\]
+Where $k = \sqrt{k_x^2 + k_y^2}$ is a radius in $k$-space. Therefore the energy levels are,
+\[ E = \f{\hbar^2 k^2}{2m} = \f{\hbar^2}{2m}\br{2\pi}^2 \br{\f{m_x^2}{L_x^2} + \f{m_y^2}{L_y^2}} \qquad m_x, m_y \in \bc{0, \pm1, \pm2, \ldots} \eq \label{eq:energy_levels}\]
+Let $N\br{\vep}$ denote the number of states accessible to a single electron with energy $\vep$. Since this function is generally non-trivial, we approximate $N\br{\vep}$ as the infinitesimal amount $\de N\br{\vep}$ as follows,
+\[ \de N\br{\vep} \simeq N_{<} \br{\vep + \de \vep/2} - N_{<} \br{\vep - \de \vep/2} \]
+Where $N_{<}\br{\vep}$ is the number of states accessible to any electron with at most energy $\vep$. Evidently this quantity is proportional to an area in $k$-space. Namely, the area of $k$ space associated with $N_{<}$ is a circle centered at $\br{k_x, k_y} = \br{0,0}$. Therefore,
+\[ N_{<}\br{\vep} \propto \pi k^2 = \pi \f{2m \vep}{\hbar^2} \]
+The proportionality constant is exactly \cref{eq:area},
+\[ N_{<}\br{\vep} = \f{\s A}{\br{2\pi}^2} \f{2m\pi  \vep}{\hbar^2} \]
+Therefore,
+\[ \de N\br{\vep} = \f{\s A}{\br{2\pi}^2} \f{2m\pi}{\hbar^2} \de \vep \]
+Forming a differential form,
+\[ \der{N}{\vep} = \f{\s A}{\br{2\pi}^2} \f{2m\pi}{\hbar^2} \]
+The density of states is a constant. Normalizing for area,
+\[ \f{1}{\s A}\der{N}{\vep} = \f{2m\pi}{\br{2\pi}^2\hbar^2} \]
+This however, does not account for the fact that each electron has two accessible spin states for each $k$-space lattice point. Therefore, there are truly twice as many states available to each electron,
+\[ \f{1}{\s A}\der{N}{\vep} = \f{4m\pi}{\br{2\pi}^2\hbar^2} \]
+Therefore the density of states is,
+\[ g\br{\vep} \defined \f{1}{\s A}\der{N}{\vep} = \f{m}{\pi \hbar^2} \eq \label{eq:2d_density_of_states} \]
+The electron density for a given Fermi wavevector $k\tsb{F}$ is the number of electrons per unit area in $r$-space. At zero temperature and Fermi energy $\vep\tsb{F}$ the states in $k$-space are occupied at lowest energies first. Therefore the total number of electrons $N\br{\vep\tsb{F}}$ is given by,
+\[ N\br{\vep\tsb{F}} = \s A\int_{0}^{\vep\tsb{F}} \dif \vep g\br{\vep} = \s A \int_{0}^{\vep\tsb{F}} \dif \vep \f{m}{\pi \hbar^2} = \f{m}{\pi \hbar^2} \vep\tsb{F} \s A \]
+Given that the Fermi energy and Fermi wavevector are related via \cref{eq:energy_levels}, the electron density is,
+\[ n\br{k\tsb{F}} = \f{1}{\s A} N\br{k\tsb{F}} = \f{m}{\pi \hbar^2} \f{\hbar^2 k\tsb{F}^2}{2m} \]
+\[ n\br{k\tsb{F}} = \f{k\tsb{F}^2}{2\pi} \eq \label{eq:electron_density}\]
+
+Now, we place the 2DEG in the $xy$-plane and subject it to a magnetic field in the $z$-direction $\ve B = B \hat z$. If the electrons are classical particles of charge $-e$ and mass $m$,
 \[ \der{\ve p}{t} = \ve F\tsb{L} = - \f{e}{c}\ve v \times \ve B \qquad \ve v = \f{\ve p}{m}, \ve v = \der{\ve r}{t} \]
 Solving these equations yields,
 \[ m \dder{\ve r}{t} = - \f{e}{c} \der{\ve r}{t} \times \ve B  \]
@@ -1509,10 +1701,10 @@ Therefore we obtain a two dimensional system of coupled ordinary differentiable 
 \dder{x}{t} &= - \f{eB}{mc} \der{y}{t} \\
 \dder{y}{t} &= \f{eB}{mc} \der{x}{t}
 \end{align*}
-Where the frequency $\w_C = \f{eB}{mc}$ is the cyclotron frequency. In order to solve this system, introduce a complex parameter $z = x + i y$ such that,
+Where the frequency $\w_c = \f{eB}{mc}$ is the cyclotron frequency. In order to solve this system, introduce a complex parameter $z = x + i y$ such that,
 \[ \dder{x}{t} = i \w_x \der{z}{t} \]
-\[ z\br{t} = z_0 - \f{i v_0}{\w_C}e^{i \w_c t}  \]
-Which is circular motion with frequency $\w_C$. Therefore if we need to model the average time between collisions with impurities, the simplest description involves a decrease in momentum with characteristic time $\tau$.
+\[ z\br{t} = z_0 - \f{i v_0}{\w_c}e^{i \w_c t}  \]
+Which is circular motion with frequency $\w_c$. Therefore if we need to model the average time between collisions with impurities, the simplest description involves a decrease in momentum with characteristic time $\tau$.
 \[ \der{\ve p}{t} = - e \br{\ve E + \f{1}{c} \ve v \times \ve B} - \f{\ve p}{\tau} \]
 Therefore without a magnetic field we have,
 \[ \der{\ve p}{t} = \f{- \ve p}{t} \implies \ve p\br{t} = \ve p\br{0} e^{- t/\tau} \]
@@ -1528,8 +1720,7 @@ In the absence of a magnetic field $\ve B$, we recover Ohm's law,
 \[ \ve j = \f{e^2 n \tau}{m} \ve E \]
 Where the proportionality is the conductivity $\si$,
 \[ \si = \f{e^2 n \tau}{m} \]
-\todo[]{Missed the start of this lecture}
-The electric field in the conduction is,
+The electric field is,
 \[ \ve E = \f{\ve j}{\si} = \f{1}{nec} \ve B \times \ve j \]
 Component-wise,
 \begin{align*}
@@ -1541,7 +1732,7 @@ If there is no current in the $y$-direction ($j_y = 0$) we have,
 The last equality is a definition of the \term{Hall coefficient} $R_H$
 \[ R_H = \f{1}{nec} \]
 Notice that the Hall coefficient only depends on the density of the electrons and other fundamental constants. Now we introduce the \term{resistivity tensor},
-\[\rho \begin{pmatrix}
+\[\rho = \begin{pmatrix}
     1 / \si & B R_{H} \\
     -B R_{H} & 1 / \si \\
 \end{pmatrix} \]
@@ -1561,8 +1752,8 @@ We refer to this as the \term{classical Hall effect}.
 In reality, the classical Gall effect occurs at weak magnetic fields or in dirty samples.
 If we let $1/\tau$ characterize the impurity scattering rate, our classical Hall effect is relevant in the domain where,
 \[ \w_{C} \tau \ll 1 \]
-Recall that the cyclotron frequency is $\w_C$,
-\[ \w_C = \f{eB}{mc} \]
+Recall that the cyclotron frequency is $\w_c$,
+\[ \w_c = \f{eB}{mc} \]
 If $\w_{C} \tau \ll 1$, the electron will be scatter many times before being able to complete a single circular orbit; i.e. if the period of the circular motion of the electron is greater than the mean-free time, then we can model the electrons as a classical particle.\\
 
 In we have $\w_{C} \tau \gg 1$, then the classical Hall effect is no longer the dominant feature. If the circular motion of the electrons becomes quantized, we need to consider the \term{quantum Hall effect}. The quantum aspects of the electron need to be considered in really clean materials or in high magnetic fields.\\
@@ -1594,22 +1785,122 @@ Therefore \cref{eq:quantum_hall_ham} becomes,
 Notice that $H$ is not invariant with respect to translations along the $x$-direction but \textit{is} invariant with respect to translations along the $y$-direction. Translation symmetries give rise to wave functions that are also momentum eigenstates. If the energy eigenstates $\psi\br{x,y}$ are thus functions of $x,y$ and have the following form,
 \[ H \psi\br{x,y} = E \psi\br{x,y} \]
 Symmetry analysis suggests we should expect $\psi$ to the separable into a plane wave solution with non-trivial $x$-dependence $\varphi\br{x}$.
-\[ \psi\br{x,y} = e^{i k y} \varphi\br{x} \]
-With $k$ to be determined. Substituting this ansatz into \cref{eq:quantum_hall_ham_landau} yields,
-\[ E \psi\br{x,y}= - \f{\hbar^2}{2m} \pdder{\varphi}{x} e^{iky} + \f{1}{2m}\br{\hbar k + \f{eB}{c}x}^2 \varphi e^{iky} \]
+\[ \psi\br{x,y} = e^{i k_y y} \varphi\br{x} \]
+With $k_y$ to be determined. Substituting this ansatz into \cref{eq:quantum_hall_ham_landau} yields,
+\[ E \psi\br{x,y}= - \f{\hbar^2}{2m} \pdder{\varphi}{x} e^{ik_yy} + \f{1}{2m}\br{\hbar k_y + \f{eB}{c}x}^2 \varphi e^{ik_yy} \]
 Canceling $\varphi$,
-\[ E \varphi = - \f{\hbar^2}{2m} \pdder{\varphi}{x} + \f{1}{2m}\br{\hbar k + \f{eB}{c}x}^2 \varphi \eq \label{eq:hall1D}\]
+\[ E \varphi = - \f{\hbar^2}{2m} \pdder{\varphi}{x} + \f{1}{2m}\br{\hbar k_y + \f{eB}{c}x}^2 \varphi \eq \label{eq:hall1D}\]
 Gives us a 1D differential equation. For convenience of notation we introduce the \term{magnetic length} $\ell$,
 \[ \ell = \sqrt{\f{\hbar c}{eB}} \]
 Additionally re-use the classical cyclotron frequency,
 \[ \w_{C} = \f{eB}{mc} \]
 Using these constants, \cref{eq:hall1D} can we re-expressed as,
-\[ -\f{\hbar^2}{2m} \pdder{\varphi}{x} + \f{m\w_{C}^2}{2} \br{x + k \ell^{2}}^2 \varphi = E \varphi \]
-At this stage, it should be clear that this Hamiltonian is nothing more than a 1D Harmonic oscillator with frequency $\w_{C}$ and centered at $x - k \ell^{2}$. The solution for the quantum harmonic oscillator can be found in a number of undergraduate quantum theory textbooks. Therefore the energy level for the $n$-th state for fixed $k$ can be written as,
-\[ E_{nk} = \hbar \w_{C} \br{n + \f12} \qquad n = 0, 1, 2, \ldots \]
+\[ -\f{\hbar^2}{2m} \pdder{\varphi}{x} + \f{m\w_{C}^2}{2} \br{x + k_y \ell^{2}}^2 \varphi = E \varphi \]
+At this stage, it should be clear that this Hamiltonian is nothing more than a 1D Harmonic oscillator with frequency $\w_{C}$ and centered at $x = - k_y \ell^{2}$. The solution for the quantum harmonic oscillator can be found in a number of undergraduate quantum theory textbooks.
+\[ \psi_{n k_y}\br{x} = \f{e^{ik_y y}}{\sqrt{\ell \sqrt{\pi} 2^{n} n!}} e^{-\f{1}{2 \ell^2} \br{x + k_y \ell^2}^2} H_n\br{\f{x + k_y \ell^2}{\ell}} \]
+Where $H_n$ is the \term{$n$-th Hermite polynomial}. The wave function solutions are given by the Hermite polynomials, but the important feature are the quantized energy levels,
+\[ E_{n,k_y} = \hbar \w_c \br{n + \f12} \qquad n \in \bc{0, 1, 2, \ldots} \]
+Where $n$ are referred to as the Landau levels. This energy level is completely independent of $k_y$ but $k_y$ is independently quantized like a particle in a periodic potential,
+\[ k_y = \f{2\pi}{L_y} m_y \qquad m_y \in \bc{0, \pm 1, \pm 2, \ldots}\]
+Since the effective harmonic oscillator is centered at $-k_y \ell^2$, it must be that $L_x$ is twice the position of $k_y \ell^2$,
+\[ -L_x \leq -k_y \ell^2 \leq 0 \implies 0 \leq k_y \leq \f{L_x}{\ell^2} \]
+Therefore the total number of states for a fixed Landau level $n \in \bc{0,1,2,\ldots}$ is given by the $m_y$ value such that $k_y$ is bounded by $L_x / \ell^2$,
+\[ N_{\phi} = \max{m_y} = \max{k_y} \f{L_y}{2\pi} = \f{L_yL_x}{2\pi\ell^2} = \f{L_xL_y eB}{2 \pi \hbar c}  \eq \label{eq:landau_occupancy}\]
+Which is independent of $n$. Therefore, the number of electrons in each Landau level is the same for each Landau level. The density of states $g\br{\vep}$ forms a Dirac comb structure. In reality, however, the uncertainty principle smooths this plot due to uncertainty broadening. For low scattering rates (pure materials) we have the following profile.
+\begin{center}
+    \begin{tikzpicture}
+        \draw[thick, <->] (0, 3) node[above]{$g\br{\vep}$} -- (0,0) node[below left]{$0$} -- (6,0) node[right]{$\f{\vep}{\hbar \w_c}$};
+        \draw[red, samples=200,smooth, domain=0:6, variable=\e] plot ({\e}, {0.03/((cos(deg(pi*\e)))^2 + 0.01)});
+        \foreach \x in {1,3,5,7,9,11}{
+            \draw ({\x/8*4}, +0.05) -- ({\x/8*4}, -0.05) node[below]{$\x/2$};
+        }
+    \end{tikzpicture}
+\end{center}
+Broadening increases due to impurities for the following reason. Suppose that an electron exists in a quantum state for some time $\tau$ which corresponds to the mean free time between collisions. The uncertainty in energy time is,
+\[ \De \vep \De t \sim \De \vep \tau \sim \hbar \implies \De \vep \sim \f{\hbar}{\tau} \]
+In regimes where $\tau$ is very small, the broadening results in the following,
+\begin{center}
+    \begin{tikzpicture}
+        \draw[thick, <->] (0, 3) node[above]{$g\br{\vep}$} -- (0,0) node[below left]{$0$} -- (6,0) node[right]{$\f{\vep}{\hbar \w_c}$};
+        \draw[red, samples=200,smooth, domain=0:6, variable=\e] plot ({\e}, {30/((cos(deg(pi*\e)))^2 + 10)})node[right]{$\tau'' < \tau'$};
+        \draw[blue, samples=200,smooth, domain=0:6, variable=\e] plot ({\e}, {3/((cos(deg(pi*\e)))^2 + 1)}) node[right]{$\tau' \ll 1$};
+        \foreach \x in {1,3,5,7,9,11}{
+            \draw ({\x/8*4}, +0.05) -- ({\x/8*4}, -0.05) node[below]{$\x/2$};
+        }
+    \end{tikzpicture}
+\end{center}
+Which more closely approximates the classical regime when $\w_c \tau \ll 1$ and the density $g\br{\vep}$ becomes more uniform.
+\[ g\br{\vep} \approx g_0 = \f{m}{\pi \hbar^2} \]
+Which is identically the 2D electron density of states in the absence of a magnetic field \cref{eq:2d_density_of_states}.\\
+
 We refer to these energy levels as \term{Landau levels}. Every Landau level is degenerate with respect to all the different values of $k$. Since $E_{nk}$ is independent of $k$, we say that $E_{nk}$ has degeneracies in $k$. Because of this, Landau levels are analogous to bands in a crystal. \\
 
-\todo[]{Missed 2 lectures} \\
+An alternative interpretation of \cref{eq:landau_occupancy} is to define the following: The total magnetic flux through the sample area $B L_x L_ y \defined \phi$ and the magnetic flux quantum $hc / e \defined \phi_0$. Then the Landau occupancy number becomes a flux ratio,
+\[ N_{\phi} = \f{\phi}{\phi_0} \]
+
+Combining the Landau level description at high magnetic fields $B$ gives a completely new description of the resistivity $\rho_{xy}$ and $\rho_{xx}$,
+
+\begin{center}
+    \hspace*{+3em}\includegraphics[width=\textwidth]{figures/quantum_hall_effect.png}
+\end{center}
+
+It can be seen that $\rho_{xy}$ develops perfectly flat plateaus exactly when $\rho_{xy} = h / e^2 \nu$ where $\nu$ is an integer (this is why we refer to this phenomena as the \term{integer quantum hall effect}; this contrasts the \term{fractional quantum hall effect} where $\nu$ is permitted to be any fraction). In fact $\nu$ is called the integer Landau level filling factor corresponding to the number of completely filled Landau levels. \\
+
+The states at the center of each Landau level are delocalized and can contribute to transport. States in the tails of each Landau level are localized and can not contribute to transport. When considering $k_B T \ll \hbar c$, the temperature of the system can be treated as effectively zero. In these cases, the Fermi-Dirac distribution $f\br{\vep}$
+\[ f\br{\vep} = \f{1}{e^{\br{\vep - \mu}/kT} + 1} \]
+Tends towards the following step function,
+\[ \lim_{T \to 0} f\br{\vep} = \begin{cases}
+    1 & \vep < \mu \\
+    0 & \vep > \mu
+\end{cases} \]
+At this temperature scale, the chemical potential is effectively the the Fermi energy $\vep\tsb{F}$. This makes sense; the typically energy $\mu$ to add/remove an electron would be the equivalent to the edge state fermions $\vep\tsb{F}$. As the magnetic field increases the Landau occupancy $N_{\phi}$ increases letting $\vep\tsb{F}$ tend to zero at higher and higher energies. For a fixed total number of particles $N$,
+\[ \nu = \left\lfloor{\f{N}{N_{\phi}}}\right\rfloor \eq \label{eq:nu}\]
+Gives the total number of \textit{completely} filled Landau levels while the Fermi energy $\vep\tsb{F}$ is simply the energy of the maximal Landau level that is at least partially occupied.
+\[ \vep\tsb{F} = E_{\nu + 1} = \hbar \w_c \br{\nu + \f32} \eq \label{eq:fermi} \]
+Therefore $\vep\tsb{F} = \mu$ becomes a function of $B$ for fixed $N$,
+\[ \mu\br{B} = \hbar \f{e B}{mc} \br{\left\lfloor{\f{N{2 \pi \hbar c}}{{L_xL_y eB}}}\right\rfloor + \f12} \]
+For fixed $N$ as $B \to \inf$, the floor function eventually reaches zero and the chemical potential tends as a straight line with slope $\f{\hbar e}{2mc}$. In order to plot this function consider setting $\hbar = c = e = m = 1$ and defining fixed $\ti n = 2 \pi N / (L_xL_y)$,
+\[ \mu\br{B} = B \br{\left\lfloor{\f{\ti n}{B}}\right\rfloor + \f32} \]
+\begin{center}
+    \begin{tikzpicture}
+        \draw[step=.5cm,gray,very thin] (0,0) grid (16,8);
+        % \draw[red, thick, domain=0:8, samples=300] plot (\x, {floor(\x)}) node[right] {$\lfloor x \rfloor$};
+        % \draw[black,  thick, domain=0:8] plot(\x, \x) node[right] {$x$};
+        % \draw[black, thick, domain=0:8] plot(\x, \x/2) node[right] {$x/2$};
+        \draw[blue  , thick, domain=0.1:16, samples=300] plot(\x, {0.1*\x*(floor(( 1/\x)) + 3/2)})  node[below right] {$\ti n = 1$};
+        \draw[red   , thick, domain=0.1:16, samples=300] plot(\x, {0.1*\x*(floor((10/\x)) + 3/2)})  node[above right] {$\ti n = 10$};
+        \draw[green , thick, domain=0.1:16, samples=300] plot(\x, {0.1*\x*(floor((25/\x)) + 3/2)})  node[right] {$\ti n = 25$};
+        \draw[purple, thick, domain=0.1:16, samples=300] plot(\x, {0.1*\x*(floor((50/\x)) + 3/2)})  node[right] {$\ti n = 50$};
+        \draw [<->] (0,8) node[above]{$\mu\br{B}$} -- (0,0) -- (16,0) node[right]{$B$};
+    \end{tikzpicture}
+\end{center}
+
+As the magnetic field increases, $N_{\phi} \propto B$ increases and $\vep\tsb{F}$ moves towards zero through the Landau levels. When $\vep\tsb{F}$ is in the mobility gap, the system behaves like an insulator while when it passes through the Landau level centers, it becomes metallic. This explains why nothing changes at the plateaus of $\rho_{xy}$ but doesn't explain why $\rho_{xy}$ is non-zero and quantized to precise values. This has to do with the existence of edge states. Consider a sample 2DEG that is finite in the $x$-direction admitting zero potential in regions between $\pm L_x / 2$ but approaches an infinite barrier at $V\br{\pm L_x / 2} = \inf$. Then the Schrödinger equation yields the familiar shifted harmonic oscillator with potential $V\br{x}$,
+\[ \f{\hbar^2}{2m} \dder{\varphi}{x} + \f{m\w_c^2}{2}\br{x + k_y \ell^2} \varphi + V\br{x} \varphi = E \varphi \]
+At $V = 0$, $\varphi \sim e^{-\f{1}{2\ell^2}\br{x+k_y\ell^2}^2}$ varies on the scale of the magnetic length $\ell$. Suppose that $V\br{x}$ is very slowly varying on this scale. In this limit, we can solve the Schrödinger equation by simply replacing $V\br{x} \approx V\br{k_y \ell^2}$. The eigenvalues then become,
+\[ E_{nk_y} = \hbar \w_c \br{n + \f12} + V\br{k_y \ell^2} \]
+Thus when $\vep\tsb{F}$ is between the Landau levels in the bulk, there are still states at the Fermi energy of the edges of the system (called the edge states). Their number is equal to the number of filled Landau levels (edges are populated for each Landau level last). Moreover, near the intersection with $\vep\tsb{F}$ the dispersion is \textit{chiral},
+\[ E_{n k_y} \simeq \vep\tsb{F}\pm\hbar v_n \br{k_y \pm k_{y,n}} \]
+As we have seen before in \cref{eq:chrial_dispersion}, the existence of the chiral edge states implies the Hall effect,
+\[ I_y = -e \int \f{\dif k}{2 \pi} v n\tsb{F}\br{\vep_k} \]
+Since $\dif k = \dif \vep / \hbar v$,
+\[ I_R = - \f{e}{2\pi \hbar}\int_{-\inf}^{\vep\tsb{FR}} \dif \vep n\tsb{F}\br{\vep} \]
+\[ I_L = - \f{e}{2\pi \hbar}\int_{-\inf}^{\vep\tsb{FL}} \dif \vep n\tsb{F}\br{\vep} \]
+Therefore,
+\[ I_y = I_R + I_L = -\f{e}{h} \br{\vep\tsb{FR} - \vep\tsb{FL}} = -\f{e^2}{h}V_x \]
+Such each filled Landau level contributes $\si_{yx} = - e^2 / h$ to the total Hall conductivity. Using the Landau level filling factor $\nu$,
+\[ \si_{yx} = - \f{e^2}{h} \nu \]
+Analogously,
+\[ \si_{xy} = + \f{e^2}{h} \nu \]
+As long as $\vep\tsb{F}$ is in the \textit{mobility gap} between Landau levels, $\si_{xy}$ stays pinned at this value since the number of edge states doesn't change and the bulk states don't contribute. Therefore,
+\[ \si = \begin{pmatrix}
+    0 & + \f{e^2}{h}\nu \\
+    - \f{e^2}{h}\nu & 0 \\
+\end{pmatrix} \]
+The resistivity tensor is defined such that,
+\[ \rho_{xx} = \f{\si_{xx}}{\si_{xx}^2 + \si_{xy}^2} = 0 \]
+\[ \rho_{xy} = -\f{\si_{xy}}{\si_{xx}^2 +\si_{xy}^2} = - \f{1}{\si^{xy}} = - \f{h}{e^2} \nu \]
+Amazingly, $\rho_{xx}$ and $\si_{xx}$ are zero simultaneously. Therefore a 2DEG in the quantum Hall regime behaves both as perfect insulator and a perfect conductor (in the appropriate directions).
 
 \subsubsection{Conclusion}
 
