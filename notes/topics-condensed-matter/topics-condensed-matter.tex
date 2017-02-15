@@ -248,10 +248,10 @@ Substituting these results into \cref{eq:polyacetylene_tight_binding} gives,
 \eq \label{eq:H_polyacetylene}
 \begin{split}
 H
-&= - t_1 \f{1}{N} \sum_{n} \sum_{k ,k'} \ket{k, 2}\bra{k', 1} e^{-2ikna}e^{2ik'na} \\
-&\quad  - t_2 \f{1}{N} \sum_{n} \sum_{k ,k'} \ket{k, 2}\bra{k', 1} e^{-2ik\br{n-1}a}e^{2ik'na} \\
-&\quad  - t_1 \f{1}{N} \sum_{n} \sum_{k ,k'} \ket{k, 1}\bra{k', 2} e^{-2ikna}e^{2ik'na} \\
-&\quad  - t_2 \f{1}{N} \sum_{n} \sum_{k ,k'} \ket{k, 1}\bra{k', 2} e^{-2ikna}e^{2ik'\br{n-1}a}
+&= - t_1 \f{1}{N} \sum_{n} \sum_{k_1 ,k_2} \ket{k_1, 2}\bra{k_2, 1} e^{-2ik_1na}e^{2ik_2na} \\
+&\quad  - t_2 \f{1}{N} \sum_{n} \sum_{k_1 ,k_2} \ket{k_1, 2}\bra{k_2, 1} e^{-2ik_1\br{n-1}a}e^{2ik_2na} \\
+&\quad  - t_1 \f{1}{N} \sum_{n} \sum_{k_1 ,k_2} \ket{k_1, 1}\bra{k_2, 2} e^{-2ik_1na}e^{2ik_2na} \\
+&\quad  - t_2 \f{1}{N} \sum_{n} \sum_{k_1 ,k_2} \ket{k_1, 1}\bra{k_2, 2} e^{-2ik_1na}e^{2ik_2\br{n-1}a}
 \end{split}
 \end{align*}
 \begin{align*}
@@ -295,7 +295,7 @@ Upon close inspection of \cref{eq:H_matrix}, it becomes easy to identity the Pau
 The remaining decomposition follows from $e^{\pm ix} = \cos\br{x} \pm i \sin \br{x}$
 \[ H\br{k} = \ep \si_z - t_1 \si_x - t_2 \cos\br{2 k a}\si_x - t_2 \sin\br{2 k a}\si_y \]
 Alternatively it is possible to finding  this correspondence by making use of (pseudo-)ladder operators of \cref{eq:pauli_matrices},
-\[ \ket{1}\bra{2} = \f{1}{2}\br{\si_x + i \si_y} \]
+\[ \ket{1}\bra{2} = \f{1}{2}\br{\si_x + i \si_y} \qquad \ket{2}\bra{1} = \f{1}{2}\br{\si_x - i \si_y} \]
 We therefore define $\ve d \br{k}$ as an \term{effective magnetic field} such that,
 \[ \ve d\br{k} = \begin{pmatrix} d_x\br{k} \\ d_y\br{k} \\ d_z\br{k} \end{pmatrix} = \begin{pmatrix} -t_1 - t_2 \cos\br{2 k a} \\ - t_2 \sin\br{2 k a} \\ 0 \end{pmatrix} \eq \label{eq:dk}\]
 Therefore $H\br{k} = \ve d\br{k} \cdot \ve \si$. This system is \textit{equivalent} to a spin-1/2 particle in a magnetic field of the form $\ve d\br{k}$. The eigenstates of $H\br{k}$ correspond to $\ba{\ve \si}$ along $\ve d$ or in the opposite direction to $\ve d$.
@@ -508,13 +508,16 @@ Therefore we should look for a solution of the form,
 \[ \psi\br{x} = e^{f\br{x}} \si_y \ket{z} \]
 Where $\ket{z}$ is written in $\si_z$ basis,
 \[ \ket{z} = z_{\uparrow} \ket{\uparrow} + z_{\downarrow} \ket{\downarrow} \]
-\[ \si_{z}\ket{\uparrow} = + \ket{\uparrow} \qquad \si_{z}\ket{\downarrow} = - \ket{\downarrow} \]
-Using $\si_y^2 = \ident$ and $\si_x \si_y = i \si_z$,
-\[ \bs{i \hbar v_F \si_y \der{f}{x} + i m\br{x} \si_z} e^{f\br{x}}\ket{z} = 0 \]
+Using $\si_y^2 = \ident$ and $\si_x \si_y = i \si_z$ multiply by both sides by $\si_y$,
+\[ \bs{-i \hbar v_F \der{f}{x} + i m\br{x} \si_z} e^{f\br{x}}\ket{z} = 0 \]
 Dropping the exponential $e^{f\br{x}}$,
-\[ \bs{i \hbar v_F \si_y \der{f}{x} + i m\br{x} \si_z} \ket{z} = 0 \]
+\[ \bs{-i \hbar v_F \der{f}{x} + i m\br{x} \si_z} \ket{z} = 0 \]
 Adjusting the constant coefficients,
-\[ \bs{\der{f}{x} + \f{m\br{x}}{\hbar v_F} \si_z} \ket{z} = 0 \]
+\[ \bs{\der{f}{x} - \f{m\br{x}}{\hbar v_F} \si_z} \ket{z} = 0 \]
+Recalling that,
+\[ \si_{z}\ket{\uparrow} = + \ket{\uparrow} \qquad \si_{z}\ket{\downarrow} = - \ket{\downarrow} \]
+Assume $\ket{z} = \ket{\uparrow}$,
+\[ \bs{\der{f}{x} + \f{m\br{x}}{\hbar v_F}} \ket{\uparrow} = 0 \]
 Therefore,
 \[ \der{f}{x} = - \f{m\br{x}}{\hbar v_F} \]
 Can be solved using,
@@ -523,7 +526,7 @@ Where $m\br{0} = 0$. Altogether, the solution $\psi{x}$ can be written,
 \[ \psi\br{x} = e^{- \f{1}{\hbar v_F} \int_{0}^{x} \dif x' m\br{x'}} \si_y \ket{\uparrow} \]
 Since $\si_y \ket{\uparrow} = i \ket{\downarrow}$,
 \[ \psi\br{x} = ie^{- \f{1}{\hbar v_F} \int_{0}^{x} \dif x' m\br{x'}}\ket{\downarrow} \]
-
+Of course an analogous solution exists for $\ket{z} = \ket{\downarrow}$.
 \begin{center}
 \begin{tikzpicture}
     \draw[->] (-3, 0) -- (3, 0) node[right]{$x$};
@@ -566,7 +569,7 @@ Typically, the choice for $\ve a_i$ is not unique. However, the best choice for 
 The \term{primitive unit cell} is the parallelepiped defined by the primitive translation vectors. A primitive unit cell is also not unique. A special type of unit cell, usually the most convenient, is the \term{Wigner-Seitz unit cell}. A Wigner-Seitz unit cell is the region of space about a Bravais lattice point that are closer to this point than to any other Bravais lattice point. As an example, the first Brillouin zone is the Wigner-Seitz cell in reciprocal (momentum) space. Analogously to \cref{eq:R_lattice} which indexes lattice points in position space, we define the \term{reciprocal lattice} and all points in momentum space $\ve G$ such that,
 \[ \ve G = m_1 \ve b_1 + m_2 \ve b_2 + m_3 \ve b_3\]
 Provided that we have the following correspondence between $\ve R$ and $\ve G$,
-\[ e^{i \ve G \cdot \ve P} = 1 \]
+\[ e^{i \ve G \cdot \ve G} = 1 \]
 This is equivalent to the following,
 \[ \ve b_{i} \cdot \ve a_{j} = 2 \pi \de_{ij} \qquad \forall i,j \]
 
