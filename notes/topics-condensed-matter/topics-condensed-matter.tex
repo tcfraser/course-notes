@@ -1712,11 +1712,11 @@ Where the frequency $\w_c = \f{eB}{mc}$ is the cyclotron frequency. In order to 
 Which is circular motion with frequency $\w_c$. Therefore if we need to model the average time between collisions with impurities, the simplest description involves a decrease in momentum with characteristic time $\tau$.
 \[ \der{\ve p}{t} = - e \br{\ve E + \f{1}{c} \ve v \times \ve B} - \f{\ve p}{\tau} \]
 Therefore without a magnetic field we have,
-\[ \der{\ve p}{t} = \f{- \ve p}{t} \implies \ve p\br{t} = \ve p\br{0} e^{- t/\tau} \]
+\[ \der{\ve p}{t} = \f{- \ve p}{\tau} \implies \ve p\br{t} = \ve p\br{0} e^{- t/\tau} \]
 In general,
 \[ m\der{\ve v}{t} = - \f{m \ve v}{\tau} - e\br{\ve E + \f{1}{c} \ve v \times \ve B} \]
 Assuming that $\ve E$ and $\ve B$ are time-independent, we can look for the time-independent steady state solution corresponds to a fixed $\ve v$,
-\[ \der{\ve v}{t} = 0 \implies \ve v = -\f{e \tau}{m} \br{\ve E + \f{1}{c} \ve v \times \ve B} \]
+\[ \der{\ve v}{t} = 0 \implies \ve v  -\f{e \tau}{m} \br{\ve E + \f{1}{c} \ve v \times \ve B} \]
 The electron $\ve v$ is connect to the current density $\ve j$ through the following equation we have seen before,
 \[ \ve j = - e n \ve v \]
 Where $n$ is the electron density and $e$ is the electric charge. Therefore,
@@ -1726,7 +1726,7 @@ In the absence of a magnetic field $\ve B$, we recover Ohm's law,
 Where the proportionality is the conductivity $\si$,
 \[ \si = \f{e^2 n \tau}{m} \]
 The electric field is,
-\[ \ve E = \f{\ve j}{\si} = \f{1}{nec} \ve B \times \ve j \]
+\[ \ve E = \f{\ve j}{\si} - \f{1}{nec} \ve B \times \ve j \]
 Component-wise,
 \begin{align*}
     E_x &= \f{1}{\si} j_x + \f{B}{nec} j_y \\
@@ -1754,7 +1754,7 @@ We refer to this as the \term{classical Hall effect}.
 \end{tikzpicture}
 \end{center}
 
-In reality, the classical Gall effect occurs at weak magnetic fields or in dirty samples.
+In reality, the classical Hall effect occurs at weak magnetic fields or in dirty samples.
 If we let $1/\tau$ characterize the impurity scattering rate, our classical Hall effect is relevant in the domain where,
 \[ \w_{C} \tau \ll 1 \]
 Recall that the cyclotron frequency is $\w_c$,
@@ -1890,7 +1890,7 @@ As we have seen before in \cref{eq:chrial_dispersion}, the existence of the chir
 \[ I_y = -e \int \f{\dif k}{2 \pi} v n\tsb{F}\br{\vep_k} \]
 Since $\dif k = \dif \vep / \hbar v$,
 \[ I_R = - \f{e}{2\pi \hbar}\int_{-\inf}^{\vep\tsb{FR}} \dif \vep n\tsb{F}\br{\vep} \]
-\[ I_L = - \f{e}{2\pi \hbar}\int_{-\inf}^{\vep\tsb{FL}} \dif \vep n\tsb{F}\br{\vep} \]
+\[ I_L = + \f{e}{2\pi \hbar}\int_{-\inf}^{\vep\tsb{FL}} \dif \vep n\tsb{F}\br{\vep} \]
 Therefore,
 \[ I_y = I_R + I_L = -\f{e}{h} \br{\vep\tsb{FR} - \vep\tsb{FL}} = -\f{e^2}{h}V_x \]
 Such each filled Landau level contributes $\si_{yx} = - e^2 / h$ to the total Hall conductivity. Using the Landau level filling factor $\nu$,
@@ -1904,7 +1904,7 @@ As long as $\vep\tsb{F}$ is in the \textit{mobility gap} between Landau levels, 
 \end{pmatrix} \]
 The resistivity tensor is defined such that,
 \[ \rho_{xx} = \f{\si_{xx}}{\si_{xx}^2 + \si_{xy}^2} = 0 \]
-\[ \rho_{xy} = -\f{\si_{xy}}{\si_{xx}^2 +\si_{xy}^2} = - \f{1}{\si^{xy}} = - \f{h}{e^2} \nu \]
+\[ \rho_{xy} = -\f{\si_{xy}}{\si_{xx}^2 +\si_{xy}^2} = - \f{1}{\si_{xy}} = - \f{h}{e^2} \nu \]
 Amazingly, $\rho_{xx}$ and $\si_{xx}$ are zero simultaneously. Therefore a 2DEG in the quantum Hall regime behaves both as perfect insulator and a perfect conductor (in the appropriate directions).
 
 \subsubsection{Conclusion}
