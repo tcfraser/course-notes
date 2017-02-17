@@ -1922,7 +1922,7 @@ Heretofore, we have consider materials where electrons are modeled as moving in 
 However, in specific cases the electron interactions yield interesting physics. For example Landau Fermi liquid theory, magnetism and superconductivity all require a description of electronic interactions. \\
 
 In particular, \term{ferro-magnetism} is the appearance of \textit{spontaneous} macroscopic magnetic momentum in certain materials at sufficiently low temperature $T$. For a material magnetic field $H$, the magnetization $M$ is
-\[ M = \chi H \]
+\[ M = \chi H \eq \label{eq:linear_susceptibility}\]
 Where $\chi$ is the \term{magnetic susceptibility}.
 \begin{itemize}
     \item $\chi > 0$ para-magnets
@@ -2032,8 +2032,9 @@ Where $\ba{ij}$ denotes nearest neighbor terms, the factor of $1/2$ avoids doubl
 And the $\mu_{B}$ terms is simply the ordinary magnetic moment coupling. It is important to note that the nearest-neighbor approximation permits one to assume that $\s J$ is a constant (depending only on the distance between nearest neighbors). The Heisenberg model \cref{eq:Heisenberg_model} is one of the simplest examples of a \term{quantum many-body problem} which are notoriously difficult to solve and are typically only approximated at best. The Heisenberg model cannot be solved exactly; one such approximation is called \term{mean-field theory}.
 
 \subsection{Mean-field Theory of the Heisenberg Model}
+\label{sec:mft}
 Mean-field theory approximations of the Heisenberg model begin by re-writing the spins $\ve S_i$ as,
-\[ \ve S_i = \ve S_i - \ba{\ve S_i} + \ba{\ve S_i} \]
+\[ \ve S_i = \ve S_i - \ba{\ve S_i} + \ba{\ve S_i} \eq \label{eq:mft_approx}\]
 Therefore the spin product $\ve S_i \cdot \ve S_j$ includes many terms,
 \[ \ve S_i \cdot \ve S_j = \br{\ve S_i - \ba{\ve S_i} + \ba{\ve S_i}} \cdot \br{\ve S_j - \ba{\ve S_j} + \ba{\ve S_j}} \]
 \[ \ve S_i \cdot \ve S_j = \br{\ve S_i - \ba{\ve S_i}} \cdot \br{\ve S_j - \ba{\ve S_j}} + \ve S_i \cdot \ba{\ve S_j} + \ve S_j \cdot \ba{\ve S_i} - \ba{\ve S_i} \cdot \ba{\ve S_j} \eq \label{eq:mmf}\]
@@ -2042,7 +2043,7 @@ The mean-field approximation assumes that the deviations of $\ve S_i$ from their
 Therefore we can neglect the first term in \cref{eq:mmf} for being quadratic in the deviation,
 \[ \ve S_i \cdot \ve S_j \simeq \ve S_i \cdot \ba{\ve S_j} + \ve S_j \cdot \ba{\ve S_i} - \ba{\ve S_i} \cdot \ba{\ve S_j} \]
 Therefore \cref{eq:Heisenberg_model} becomes,
-\[ H = -\f{1}{2} \s J \sum_{\ba{ij}} \bs{\ve S_i \cdot \ba{\ve S_j} + \ve S_j \cdot \ba{\ve S_i} - \ba{\ve S_i} \cdot \ba{\ve S_j}} - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \]
+\[ H = -\f{1}{2} \s J \sum_{\ba{ij}} \bs{\ve S_i \cdot \ba{\ve S_j} + \ve S_j \cdot \ba{\ve S_i} - \ba{\ve S_i} \cdot \ba{\ve S_j}} - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \eq \label{eq:shared_mft_approx}\]
 Notice that the first two terms $\br{\ve S_i \cdot \ba{\ve S_j}, \ve S_j \cdot \ba{\ve S_i}}$ are essentially $\ve S_i$ interacting with an effective magnetic field $\ve B\tsb{eff} \sim \ba{S_j}$. Furthermore, we will neglect the third term $\ba{\ve S_i} \cdot \ba{\ve S_j}$ for first analysis and include in back whenever its affects become relevant. Finally, we conclude that each spin shares the same expectation.
 \[ \ba{\ve S_i} = \ba{\ve S_j} = \ba{\ve S} \]
 Essentially $\ve S_i$ is independent of $i$. Our approximations have let us to the following Hamiltonian,
@@ -2079,7 +2080,7 @@ Which have the non-linear implicit equation for $B_m$ in terms of $B$.
 Evidently, the molecular magnetic field will depend on the temperature $T$ and external magnetic field $B$. Alternatively, we can use this to find the expectation $\ba{S^{z}} \defined M$ as the \term{macroscopic magnetization per atom},
 \[ M = \f12 \tanh \bs{\f{B + \s J z M}{2 k_B T}} \]
 In order to study \textit{spontaneous} magnetization, we set the external field $\ve B$ to zero such that,
-\[ M = \f12 \tanh \bs{\f{\s J z M}{2 k_B T}} \]
+\[ M = \f12 \tanh \bs{\f{\s J z M}{2 k_B T}} \eq \label{eq:magnetization_M}\]
 \begin{center}
     \begin{tikzpicture}
         \draw[thick, ->] (-4, 0) -- (+4, 0) node[right]{$M$};
@@ -2094,13 +2095,13 @@ In order to study \textit{spontaneous} magnetization, we set the external field 
         \draw[gray, dashed] (+4, -2) -- node[below right]{$-1$} (-4, -2);
     \end{tikzpicture}
 \end{center}
-Evidently there are at most $3$ solutions depending on the temperature. There are three solutions if the slope of $\tanh \f{\s J z M}{2 k_B T}$ is greater than $1$ at $M = 0$. Taylor series,
+Evidently there are at most $3$ solutions depending on the temperature. There are three solutions if the slope of $\tanh \f{\s J z M}{2 k_B T}$ is greater than $1$ at $M = 0$. Using a Taylor series,
 \[ \tanh x \simeq x \]
-Therefore the slope of $\f12\tanh \br{\f{\s J z M }{2 k_B T}}$ near $M=0$ is simply,
+The slope of $\f12\tanh \br{\f{\s J z M }{2 k_B T}}$ near $M=0$ is simply,
 \[ \f{\s J z}{4 k_B T} \]
-Therefore we define the critical temperature,
+This defines a \term{critical temperature},
 \[ \f{\s J z}{4 k_B T} > 1 \implies \f{\s J z}{4 k_B T_c} = 1 \implies T_c = \f{\s J z}{4 k_B} \]
-Therefore we have the following case,
+Which distinguishes two different phases,
 \begin{itemize}
     \item $T < T_c$ ferro-magnetism
     \item $T < T_c$ no ferro-magnetism
@@ -2118,7 +2119,7 @@ For iron we have $\s J \sim \SI{1}{\eV}$ and $T \sim \SI{e4}{\K}$. This is an ex
 \end{center}
 We refer to $M$ as the \term{M-order parameter} which allows us to formally distinguish between ferro-magnets and para-magnets. We have $M \neq 0$ in the FM phase but $M=0$ in the PM phase. \\
 
-Depending on the nature of the phase transition boundary, we can have two types of phase translations: \term{first order phase translations} which are discontinuous or \term{second order phase transitions} which are continuous.
+Depending on the nature of the phase transition boundary, we can have two types of phase translations: \term{first order phase translations} which are discontinuous or \term{second order phase transitions} which are continuous (as is the case for this phase transition).
 
 \begin{center}
     \begin{tikzpicture}
@@ -2142,9 +2143,98 @@ Depending on the nature of the phase transition boundary, we can have two types 
     \end{tikzpicture}
 \end{center}
 
+Given that $M$ vanishes continuously as $T$ increases, we can Taylor series \cref{eq:magnetization_M} near $T = T_c$,
+\[ M = \f12 \bs{\f{\s J z M}{2 k_B T} - \f13 \br{\f{\s J z M}{2 k_B T}}^3} \]
+Recalling the form of $T_c$ we cancel $M$ and obtain a quadratic equation for $M$,
+\[ 1 = \f{T_c}{T} - \f13 \br{\f{T_c}{T}}^3 M^2 \]
+Therefore $M^2$ as a function of temperature (at least near $T \simeq T_c$) can be written as,
+\[ M^2 = \f{3}{4} \br{\f{T}{T_c}}^3 \br{\f{T_c}{T} - 1} \]
+\[ M = \pm \f{1}{2} \f{T}{T_c} \sqrt{3\br{1 - \f{T}{T_c}}} \]
+Since $T \simeq T_c$ we can neglect the prefactor,
+\[ M\br{T} = \pm \f{1}{2}\sqrt{3\br{1 - \f{T}{T_c}}} \]
+Therefore near the critical temperature we have,
+\[ M\br{T} \sim \sqrt{T_c - T} \]
+Defining the \term{reduced temperature} $t$,
+\[ t = \f{T- T_c}{T_c} \]
+We have that $M\br{t}$ behaves as follows,
+\[ M\br{t} \simeq \br{- t}^{\be} \]
+Where $\be = \f12$ is called the \term{critical exponent}. In general (and as in this example), the critical exponent is typically some number $\be \in \R$ that is independent of the microscopic details of the material (like $\s J$ for example). Since $\be$ entirely determines the nature of the phase transition, we consider $\be$ to be a universal behaviour and is of particular interest. This universality is analogous to the Quantum Hall effect in which the conductivity is only dependent on universal constants. \\
 
+The \term{magnetic susceptibility $\chi$} (first introduced in \cref{eq:linear_susceptibility}) in general is defined as,
+\[ \chi = \der{M}{B} \]
+For the mean-field theory approximations of the Heisenberg model we have obtained,
+\[ M = \f12 \tanh \br{\f{B + \s J z M}{2 k_B T}} \]
+Which for $T > T_c$ if $B \approx 0$ is small, the magnetization is also small $M \approx 0$. Expanding in Taylor series once again,
+\[ M = \f{1}{2} \f{B + \s J z M}{2 k_B T} \]
+Solving for $M$ as a response function of $B$,
+\[ M = \f{B}{4 k_B T} + M \f{\s J z}{4 k_B T} \]
+\[ M\br{1- \f{\s J z}{4 k_B T}} = \f{B}{4 k_B T} \]
+\[ M\br{1- \f{T_c}{T}} = \f{B}{4 k_B T} \]
+\[ M = \br{1- \f{T_c}{T}}^{-1}\f{B}{4 k_B T} \]
+Therefore the magnetic susceptibility is $\chi$,
+\[ \chi = \f{M}{B} = \f{1}{4 k_B \br{T- T_c}} \]
+This is known as the \term{Cure-Weiss law}. Notice that this is consistent with our classification of paramagnets (which have $\chi > 0$ and $T > T_c$). Notice that $\chi$ diverges when $T \to T_c$; this is an alternative form of critical behaviour with critical exponent $\ga = -1$,
+\[ \chi \sim \br{t}^{\ga} \]
+The divergence of susceptibility is an example of non-analytic behaviour in a real physical system. The physical meaning of $\chi$ tells you how strongly $M$ responds to $B$.
+\begin{center}
+\begin{tikzpicture}
+    \pgfmathsetmacro{\axissize}{4};
+    \pgfmathsetmacro{\plotsize}{3};
+    \pgfmathsetmacro{\tc}{1};
+    \draw[thick, ->] (0,0) -- (+\axissize,0) node[right]{$T$};
+    \draw[thick, ->] (0, 0) -- (0,+\axissize) node[above]{$\chi\br{T}$};
+    \draw[thick, scale=1.0,domain=0.25:\plotsize,smooth,variable=\T,red] plot ({\T+\tc},{1/(\T)});
+    \draw[thick, dashed] (\tc, 0) node[below]{$T_c$} -- (\tc, \axissize);
+\end{tikzpicture}
+\end{center}
+The susceptibility $\chi$ diverges at $T = T_c$ because when $T < T_c$ we have spontaneous magnetization ($M \neq 0$) even in the absence of $B = 0$.
+\subsection{Mean-field Theory and Helmholtz Free Energy}
+In the previous section (\cref{sec:mft}), we analyzed the mean-field theory approximation to the Heisenberg model $H$,
+\[ H = -\f12 \s J \sum_{\ba{ij}} \ve S_i \cdot \ve S_j \]
+Although very useful, the mean-field theory approximations fail an predicting all phenomena that are manifest in the Heisenberg model. Here we will make the same first approximations,
+\[ \ve S_i = \ve S_i - \ba{\ve S_i} + \ba{\ve S_i} \eq \label{eq:nmft_approx}\]
+And obtain the following,
+\[ H = -\f{1}{2} \s J \sum_{\ba{ij}} \bs{\ve S_i \cdot \ba{\ve S_j} + \ve S_j \cdot \ba{\ve S_i} - \ba{\ve S_i} \cdot \ba{\ve S_j}} - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \eq \label{eq:shared_nmft_approx}\]
+Letting $\ve B = B \hat z$ and assuming that the expectation of each $\ve S_i$ is magnetized as follows,
+\[ \ba{\ve S_i} = M \hat z \qquad \forall i \]
+To obtain the following Hamiltonian,
+\[ H = \f{\s J z N}{2} M^2 - \br{\s J z M + B} \sum_{i} S_i^z \]
+From this, we can define the \term{partition function $Z$} (as used in statistical mechanics) over the energy states,
+\[ Z = \bs{\sum_{S^{z} = \pm 1/2} e^{- \f{\s J z M^2}{2k_BT} + \f{\s J z M S^{z}}{k_B T}}}^N \]
+Such that the \term{Helmholtz free energy $F$} has the following form,
+\[ F \defined E - TS = - k_B T \ln Z \]
+Simplifying $Z$,
+\[ Z = \bs{e^{- \f{\s J z M^2}{2k_BT} + \f{\s J z M}{2k_B T}} + e^{- \f{\s J z M^2}{2k_BT} - \f{\s J z M}{2k_B T}}}^N \]
+\[ Z = e^{- \f{\s J z M^2 N}{2 k_B T}}\bs{e^{\f{\s J z M}{2k_BT}}+ e^{- \f{\s J Z M}{2k_B T}}}^N \]
+\[ Z = e^{- \f{\s J z M^2 N}{2 k_B T}}\bs{2 \cosh\br{\f{\s J Z M}{2k_B T}}}^N \]
+Therefore the free energy is,
+\[F = \f{\s J z M^2 N}{2} - k_B T \ln\bs{2^N \cosh^N \br{\f{\s J z M}{2 k_B T}}} \]
+\[F = \f{\s J z M^2 N}{2} - Nk_B T \ln\bs{2 \cosh \br{\f{\s J z M}{2 k_B T}}} \]
+In order to find the equilibrium state of this system, we need to minimize the Helmholtz free energy with respect to $M$,
+\[ \pder{F}{M} = \s J z M N - N k_B T \f{2 \f{\s J z}{2 k_B T} \sinh \br{\f{\s J z M}{2 k_B T}}}{2 \cosh \br{\f{\s J z M}{2 k_B T}}}\]
+\[ \pder{F}{M} = \s J z M N - N k_B T \f{\s J z}{k_B T} \tanh \br{\f{\s J z M}{2 k_B T}} \]
+Minimizing corresponds to setting $\pder{F}{M} = 0$. Doing so yields,
+\[ M = \f12 \tanh \br{\f{\s J z M}{2 k_B T}} \]
+Which is identical to \cref{eq:magnetization_M} as expected. This approach is simply an alternative method for deriving \cref{eq:magnetization_M}. Near $T = T_c$, we can expand $F\br{M}$ in Taylors series with respect to $M$. Defining $f$ to be $F / N$,
+\[ f \defined \f{F}{N} = \f{\s J z M^2}{2} - k_B T \ln\bs{2 \cosh \br{\f{\s J z M}{2 k_B T}}} \]
+As in turns out, we need to expand $f\br{M}$ to fourth order. Before doing so, notice that $f\br{M}$ is an even function in $M$ (which is equivalent to saying that $f\br{M} = f\br{-M}$). Therefore within the the first four orders, we have two non-zero terms.
+\[ f\br{M} = \f{\s J z M^2}{2} - \f{k_B T}{2} \br{\f{\s J z M}{2 k_B T}}^2 + \f{k_B T}{12} \br{\f{\s J z M}{2 k_B T}}^4 + \s O \br{M^4} \]
+For notational convenience, drop $\s O \br{M^4}$ and make use of natural units such that $k_B T \mapsto T$ where $T$ now has units of energy.
+\[ f\br{M} = \f{\s J z M^2}{2} - \f{T}{2} \br{\f{\s J z M}{2 T}}^2 + \f{T}{12} \br{\f{\s J z M}{2 T}}^4 \]
+Moreover, making use of the critical temperature $T_c$,
+\[ f\br{M} = 2 T_c M^2 \br{1 - \f{T_c}{T}} + \f43 \f{T_c^4}{T^3} M^4 \]
+Again since $T \approx T_c$ when $M \approx 0$ we can neglect prefactors,
+\[ f\br{M} = 2 T_c \br{1 - \f{T_c}{T}} M^2 + \f43 T_c M^4 \]
 
-
-
+\begin{center}
+\begin{tikzpicture}
+    \pgfmathsetmacro{\axissize}{4};
+    \pgfmathsetmacro{\plotsize}{3};
+    \draw[thick, ->] (-\axissize,0) -- (+\axissize,0) node[right]{$M$};
+    \draw[thick, ->] (0,-\axissize) -- (0,+\axissize) node[above]{$f\br{M}$};
+    \draw[thick, scale=1.0,domain=-1.5:1.5,smooth,variable=\T,red ] plot ({\T*4},{(\T)^2}) node[right]{$T > T_c$};
+    \draw[thick, scale=1.0,domain=-1.5:1.5,smooth,variable=\T,blue ] plot ({\T*4},{(\T)^4 - (\T)^2}) node[right]{$T < T_c$};
+\end{tikzpicture}
+\end{center}
 \end{document}
 
