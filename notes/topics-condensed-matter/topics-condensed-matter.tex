@@ -2157,7 +2157,7 @@ Therefore near the critical temperature we have,
 Defining the \term{reduced temperature} $t$,
 \[ t = \f{T- T_c}{T_c} \]
 We have that $M\br{t}$ behaves as follows,
-\[ M\br{t} \simeq \br{- t}^{\be} \]
+\[ M\br{t} \simeq \br{- t}^{\be} \eq \label{eq:critical_exponent_onehalf}\]
 Where $\be = \f12$ is called the \term{critical exponent}. In general (and as in this example), the critical exponent is typically some number $\be \in \R$ that is independent of the microscopic details of the material (like $\s J$ for example). Since $\be$ entirely determines the nature of the phase transition, we consider $\be$ to be a universal behaviour and is of particular interest. This universality is analogous to the Quantum Hall effect in which the conductivity is only dependent on universal constants. \\
 
 The \term{magnetic susceptibility $\chi$} (first introduced in \cref{eq:linear_susceptibility}) in general is defined as,
@@ -2234,7 +2234,58 @@ Again since $T \approx T_c$ when $M \approx 0$ we can neglect prefactors,
     \draw[thick, ->] (0,-\axissize) -- (0,+\axissize) node[above]{$f\br{M}$};
     \draw[thick, scale=1.0,domain=-1.5:1.5,smooth,variable=\T,red ] plot ({\T*4},{(\T)^2}) node[right]{$T > T_c$};
     \draw[thick, scale=1.0,domain=-1.5:1.5,smooth,variable=\T,blue ] plot ({\T*4},{(\T)^4 - (\T)^2}) node[right]{$T < T_c$};
+    \draw[thick,blue,dashed] (2.9,0) -- (2.9, -0.4) node[below]{$M_0$};
+    \draw[thick,blue,dashed] (-2.9,0) -- (-2.9, -0.4) node[below]{$-M_0$};
 \end{tikzpicture}
 \end{center}
-\end{document}
 
+As you can see when $T$ transitions from $T > T_c$ to $T < T_c$, two new free energy minima form at precisely $\pm M_0$.
+\[ \pder{f}{M} = 0 \implies 0 = \pder{}{M}\br{2 T_c \br{1 - \f{T_c}{T}} M^2 + \f43 T_c M^4} = 4 T_c \br{1 - \f{T_c}{T}} M + \f{16}3 T_c M^3 \]
+For $M \neq 0$ (which corresponds to a maximum of $f$ when $T < T_c$),
+\[ 0 = 4 T_c \br{1 - \f{T_c}{T}} + \f{16}3 T_c M^2\]
+\[ 4 T_c \br{\f{T_c}{T} - 1} = \f{16}3 T_c M^2\]
+\[ M^2 = \f34\br{\f{T_c}{T} - 1}\]
+\[ M = \pm M_0 \defined \pm \sqrt{\f34\br{\f{T_c}{T} - 1}}\]
+The important scaling feature is that $M$ scales as,
+\[ M \sim \br{\f{T_c - T}{T_c}}^{1/2} \]
+For $M$ nearby $\pm M_0$; this is identical to the critical exponent of $\be = 1/2$ found earlier (\cref{eq:critical_exponent_onehalf}).
+
+\subsection{Landau Theory}
+Let us now return to out original Heisenberg model,
+\[ H = - \f{\s J}{2}\sum_{\ba{ij}}\ve S_i \cdot \ve S_j \]
+Notice that $H$ is invariant with respect to arbitrary rotation of all spins because $\ve S_i \cdot \ve S_j$ is preserved under rotations (note that this is a global symmetry of all spins simultaneously). If we define $\ve M$ to be a vector corresponding to all of the mean spins,
+\[ \ve M \defined \ba{\ve S_i} \]
+We induce the following free-energy density $f\br{\ve M}$ which depends on each of the independent spins. $f \br{\ve M}$ will have the same global symmetry of rotations. Therefore $f\br{\ve M}$ can only depend on $\ve M \cdot \ve M = \abs{\ve M}^2$ to various powers,
+\[  f\br{\ve M} = a \ve M \cdot \ve M + \f{b}{2} \br{\ve M \cdot \ve M}^2 + \cdots\]
+Where $a, b = a\br{t}, b\br{t} \in \R$ are yet unknown coefficients that are parameterized by $t = \br{T-T_c}/T_c$. This remarkable result require no calculations, just symmetry arguments. When $\abs{t} \ll 1$, $T$ is very close to $T_c$. We expand out $a\br{t}$ and $b\br{t}$ in Taylor series of $t$,
+\[ a\br{t} a_0 + a_1 t + \cdots \qquad  b\br{t} b_0 + b_1 t + \cdots \]
+We can find $a_0, a_1$ and $b_0, b_1$ from the requirement that $\abs{\ve M} \neq 0$ when $t < 0$ ($T < T_c$) and $\abs{\ve M} = 0$ when $t > 0$ ($T > T_c$). Therefore for $f\br{\ve M}$,
+\[ f\br{\ve M} = a \abs{\ve M}^2 + \f{b}{2}\abs{\ve M}^4 \]
+The value of $f$ is minimized at thermal equilibrium,
+\[ \pder{f}{\abs{\ve M}} = 2 a \abs{\ve M} + 2 b \abs{\ve M}^3 = 0 \]
+Which implies that for $\abs{\ve M} \neq 0$,
+\[ \abs{\ve M} = \sqrt{-\f{a}{b}} \]
+If $b < 0$, then for sufficiently large $\abs{\ve M}$ we have that $f < 0$ regardless of the value of $a$. Therefore we must limit our expansion of $b\br{t}$ to the first order in $b$ and demand that $b > 0$ always,
+\[ b \br{t} = b_0 > 0 \]
+Since $b > 0$ holds always, a physically realizable solution $\ve M \in \R^{N}$ requires,
+\[ T>T_c \iff a > 0 \qquad T < T_c \iff a < 0 \implies a\br{t} = a_1 t \quad a_1 > 0 \]
+Therefore we conclude that near the minima of $f$,
+\[ \abs{\ve M} \sim \br{-t}^{1/2} \]
+Which is again the universal result we obtained \cref{eq:critical_exponent_onehalf}. The remarkable observation is that the this analysis follows entirely from symmetry arguments. In general, the this can be generalized to second-order phase transitions and the general theory is known as the \term{Landau Theory of Continuous Phase Transitions}.\\
+
+If we subject our interacting spin system to an external magnetic field $\ve B$, we have that $f\br{\ve M}$ is modified accordingly,
+\[ f\br{\ve M} = a \abs{\ve M}^2 + \f{b}{2}\abs{\ve M}^4 - \ve B \cdot \ve M \]
+Which is distinct from the above because $\ve B$ singles out a particular direction of $\ve M$ ($f\br{\ve M} \neq f \br{\abs{\ve M}}$). Therefore we assume that $\ve M = M \hat B$,
+\[ f\br{M} = a M^2 + \f{b}{2} M^4 - BM \]
+\[ \pder{f}{M} = 2 a M + 2 b M^4 - B = 0 \]
+Which yields,
+\[ 2 a\der{M}{B} + 6 b M^2 \der{M}{B} = 1 \]
+Re-introduce the magnetic susceptibility defined as,
+\[ \chi \defined \der{M}{B} \]
+\[ 2 a \chi + 6 b M^2 \chi = 1 \]
+Therefore $\chi\br{M}$ has the following form,
+\[ \chi\br{M} = \f{1}{2 a + 6 b M^2} \]
+In the case where $T > T_c$, we have,
+\[ \chi = \f{1}{2a} = \f{1}{2a_1t} \]
+
+\end{document}
