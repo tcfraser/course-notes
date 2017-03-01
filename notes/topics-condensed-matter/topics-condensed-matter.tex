@@ -28,7 +28,7 @@
 The \textit{condensed} in condensed matter physics refers to the fact that a \textit{condensed} material is anything that is not a gas (i.e. liquid or solids). In this class we will be mostly interested in solids. The main qualifying feature of solids are their rigidity, (i.e. a solid has not only a fixed volume, like a liquid, but also a fixed shape). Rigidity is a consequence of the fact that atoms in solids form an ordered crystal lattice. Localized to each atom is a bunch of electrons; some in inner orbitals and some in the outer orbitals. Electrons in outer orbitals may be weakly bound to their respective atoms and be able to move around the lattice structure. These electrons are called \term{valence electrons}.
 
 \section{Effects of the Electronic Structure Topology}
-
+\label{sec:structure_topological}
 \subsection{Toy Model of a Solid}
 \label{sec:toy_model}
 
@@ -2174,7 +2174,7 @@ Solving for $M$ as a response function of $B$,
 Therefore the magnetic susceptibility is $\chi$,
 \[ \chi = \f{M}{B} = \f{1}{4 k_B \br{T- T_c}} \]
 This is known as the \term{Cure-Weiss law}. Notice that this is consistent with our classification of paramagnets (which have $\chi > 0$ and $T > T_c$). Notice that $\chi$ diverges when $T \to T_c$; this is an alternative form of critical behaviour with critical exponent $\ga = -1$,
-\[ \chi \sim \br{t}^{\ga} \]
+\[ \chi \sim \br{t}^{\ga} \eq \label{eq:sus_crit_exp} \]
 The divergence of susceptibility is an example of non-analytic behaviour in a real physical system. The physical meaning of $\chi$ tells you how strongly $M$ responds to $B$.
 \begin{center}
 \begin{tikzpicture}
@@ -2256,9 +2256,9 @@ Let us now return to out original Heisenberg model,
 Notice that $H$ is invariant with respect to arbitrary rotation of all spins because $\ve S_i \cdot \ve S_j$ is preserved under rotations (note that this is a global symmetry of all spins simultaneously). If we define $\ve M$ to be a vector corresponding to all of the mean spins,
 \[ \ve M \defined \ba{\ve S_i} \]
 We induce the following free-energy density $f\br{\ve M}$ which depends on each of the independent spins. $f \br{\ve M}$ will have the same global symmetry of rotations. Therefore $f\br{\ve M}$ can only depend on $\ve M \cdot \ve M = \abs{\ve M}^2$ to various powers,
-\[  f\br{\ve M} = a \ve M \cdot \ve M + \f{b}{2} \br{\ve M \cdot \ve M}^2 + \cdots\]
+\[  f\br{\ve M} = a \ve M \cdot \ve M + \f{b}{2} \br{\ve M \cdot \ve M}^2 + \cdots \eq \label{eq:landau_theory_first}\]
 Where $a, b = a\br{t}, b\br{t} \in \R$ are yet unknown coefficients that are parameterized by $t = \br{T-T_c}/T_c$. This remarkable result require no calculations, just symmetry arguments. When $\abs{t} \ll 1$, $T$ is very close to $T_c$. We expand out $a\br{t}$ and $b\br{t}$ in Taylor series of $t$,
-\[ a\br{t} a_0 + a_1 t + \cdots \qquad  b\br{t} b_0 + b_1 t + \cdots \]
+\[ a\br{t} = a_0 + a_1 t + \cdots \qquad  b\br{t} = b_0 + b_1 t + \cdots \]
 We can find $a_0, a_1$ and $b_0, b_1$ from the requirement that $\abs{\ve M} \neq 0$ when $t < 0$ ($T < T_c$) and $\abs{\ve M} = 0$ when $t > 0$ ($T > T_c$). Therefore for $f\br{\ve M}$,
 \[ f\br{\ve M} = a \abs{\ve M}^2 + \f{b}{2}\abs{\ve M}^4 \]
 The value of $f$ is minimized at thermal equilibrium,
@@ -2275,8 +2275,9 @@ Which is again the universal result we obtained \cref{eq:critical_exponent_oneha
 
 If we subject our interacting spin system to an external magnetic field $\ve B$, we have that $f\br{\ve M}$ is modified accordingly,
 \[ f\br{\ve M} = a \abs{\ve M}^2 + \f{b}{2}\abs{\ve M}^4 - \ve B \cdot \ve M \]
-Which is distinct from the above because $\ve B$ singles out a particular direction of $\ve M$ ($f\br{\ve M} \neq f \br{\abs{\ve M}}$). Therefore we assume that $\ve M = M \hat B$,
+Which is distinct from the above because $\ve B$ singles out a particular direction of $\ve M$ ($f\br{\ve M} \neq f \br{\abs{\ve M}}$). Therefore we assume that $\ve M = M \hat B$ (at least when considering minimum energy configurations),
 \[ f\br{M} = a M^2 + \f{b}{2} M^4 - BM \]
+Once again the minimum energy configuration occurs when $\di f / \di M = 0$
 \[ \pder{f}{M} = 2 a M + 2 b M^4 - B = 0 \]
 Which yields,
 \[ 2 a\der{M}{B} + 6 b M^2 \der{M}{B} = 1 \]
@@ -2285,7 +2286,63 @@ Re-introduce the magnetic susceptibility defined as,
 \[ 2 a \chi + 6 b M^2 \chi = 1 \]
 Therefore $\chi\br{M}$ has the following form,
 \[ \chi\br{M} = \f{1}{2 a + 6 b M^2} \]
-In the case where $T > T_c$, we have,
-\[ \chi = \f{1}{2a} = \f{1}{2a_1t} \]
+For large temperatures $T > T_c$, we have $M = 0$ whenever $B=0$,
+\[ \chi = \f{1}{2a} = \f{1}{2a_1t} \sim \br{t}^{\ga}\qquad \ga= -1 \]
+Where $\ga = -1$ is the susceptibility critical exponent as we have derived earlier (\cref{eq:sus_crit_exp}). For lower temperatures $T < T_c$ we have that $M^2 = - a / b$.
+\[ \chi = \f{1}{2 a - 6 b\f{a}{b}} = - \f{1}{4b} = - \f{1}{4 a_1 t} \sim \br{-t}^{\ga} \]
+With the same critical exponent (the only difference being the leading coefficients and the sign of $t$). Together we have,
+\[ \chi \sim \abs{t}^{\ga} \]
+
+\begin{center}
+\begin{tikzpicture}
+    \pgfmathsetmacro{\axissize}{4};
+    \pgfmathsetmacro{\plotsize}{3};
+    \pgfmathsetmacro{\tc}{2};
+    \draw[thick, ->] (0,0) -- (+6,0) node[right]{$T$};
+    \draw[thick, ->] (0, 0) -- (0,+4) node[above]{$\chi\br{T}$};
+    \draw[thick, scale=1.0,domain=0.25:4,smooth,variable=\T,red] plot ({\T+\tc},{1/(\T)});
+    \draw[thick, scale=1.0,domain=-1.6:-0.25,smooth,variable=\T,red] plot ({\T+\tc},{-1/(\T)});
+    \draw[thick, dashed] (\tc, 0) node[below]{$T_c$} -- (\tc, \axissize);
+\end{tikzpicture}
+\end{center}
+
+The values of critical exponents from our mean-field theory approach are wrong in the sense that they do not correspond to something physical.
+In general, critical exponents depend on,
+\begin{enumerate}
+    \item Nature of order parameter
+    \item Symmetry
+    \item Dimensionality of the sample
+\end{enumerate}
+In the language of this more general Landau theory, the mean-field theory approach does not accurately describe the above dependence. First notice that when we first hypothesized \cref{eq:landau_theory_first} we assumed that $\ve M$ was a constant vector that was independent of spatial coordinates (i.e. position in the material). There was no good reason as to why we assumed this and in general we had to have $\ve M\br{\ve r}$ dependent on $\ve r$. In this case the free energy $F$ would be the functional,
+\[ F \stackrel{?}{=} \int \dif^3 r \bs{a \br{\ve M \cdot \ve M} + \f{b}{2} \br{\ve M \cdot \ve M}^4} \]
+The `$?$' above the equals sign is present because this form for $F$ does not capture any ordering structure among the spins.
+If we re-examine the Heisenberg model,
+\[ H = - \f{\s J}{2}\sum_{\ba{ij}} \ve S_i \cdot \ve S_j = - \f{\s J}{4} \sum_{\ba{ij}} \bs{\br{\ve S_i - \ve S_j}^2 - \ve S_i^2 - \ve S_j^2} \]
+One can see that the $\ve S_i^2,\ve S_j^2$ are independent of the order or structure of the spin locations but $\ve S_i - \ve S_j$ approximates a spin gradient,
+\[ \br{\ve S_i - \ve S_j}^2 \sim \vdel \ve S \cdot \vdel \ve S = \br{\vdel M^x}^2 + \br{\vdel M^y}^2+ \br{\vdel M^z}^2 \]
+Therefore the free-energy should penalize non-uniformity in $\ve M$,
+\[ F = \int \dif^3 r \bs{a \br{\ve M \cdot \ve M} + \f{b}{2} \br{\ve M \cdot \ve M}^4 + \f{1}{2}\rho \vdel \ve M \cdot \vdel \ve M} \eq \label{eq:improve_landau}\]
+Where $\rho >0$ is some unknown positive constant. This forms the starting point for an \textit{improved} Landau theory. Calculating critical exponents under the above theory is complicated. Even if we could calculate critical exponents using \cref{eq:improve_landau}, this would still be an incomplete theory for ferro-magnetism. \Cref{eq:improve_landau} still implies that any material at sufficiently low temperatures $T<T_c$ would become a ferromagnet. However not all materials become ferromagnets in this way. The failure of \cref{eq:improve_landau} is that is still does not encapsulate the idea that the electrons which carry the spins (elementary magnetic moments). Therefore we need to take into account the itinerant character of the electrons. The model that accomplishes this is called the \term{Hubbard model}. The kinetic energy terms of the Hubbard model are,
+\[ H\tsb{kin} = - t \sum_{\ba{ij}\si} \br{\ket{i \si}\bra{j\si} + \ket{j \si}\bra{i \si}}  \eq\label{eq:hubbard_model_kin}\]
+where $t$ is now the usual tunneling constant of an electron traveling through a material (as we invoked frequently in \cref{sec:structure_topological}). Additionally we need to characterize the long-range interactions between spins. This however if too difficult so we approximate the interactions to only be short range. Simplifying for one orbital per atom,
+\[ H\tsb{int} = U \sum_{i} n_{i \uparrow}n_{i \downarrow} \eq\label{eq:hubbard_model_int}\]
+with $n_{i, \si}$ denotes the number operator for the number of atoms localized to atom $i$ with spin $\si$. Terms of the form $n_{i \uparrow}n_{i \uparrow}$ are not present due to the Pauli exclusion principle. The Hubbard model is simply \cref{eq:hubbard_model_kin} combined with \cref{eq:hubbard_model_int},
+\[ H = - t \sum_{\ba{ij}\si} \br{\ket{i \si}\bra{j\si} + \ket{j \si}\bra{i \si}} + U \sum_{i} n_{i \uparrow}n_{i \downarrow} \eq \label{eq:hubbard_ham} \]
+Even this extremely simple model cannot be solved exactly (doing so would certainly yield a Nobel prize in physics). We perform mean-field theory approximations in $n_{i,\si}$,
+\[ n_{i\si} = \ba{n_{i\si}} + n_{i\si} - \ba{n_{i\si}} \]
+Therefore,
+\[ n_{i \uparrow}n_{i\downarrow} = \br{\ba{n_{i\uparrow}} + n_{i\uparrow} - \ba{n_{i\uparrow}}} \br{\ba{n_{i\downarrow}} + n_{i\downarrow} - \ba{n_{i\downarrow}}} \]
+\[ n_{i \uparrow}n_{i\downarrow} = \br{n_{i\uparrow} - \ba{n_{i\uparrow}}}\br{n_{i\downarrow} - \ba{n_{i\downarrow}}} + n_{i \uparrow} \ba{n_{i \downarrow}} + n_{i \downarrow}\ba{n_{i \uparrow}} + \ba{n_{i \uparrow}}\ba{n_{i \downarrow}} - 2\ba{n_{i \uparrow}}\ba{n_{i \downarrow}} \]
+Once again we assume that the fluctuations are small,
+\[ n_{i \uparrow}n_{i\downarrow} = n_{i \uparrow} \ba{n_{i \downarrow}} + n_{i \downarrow}\ba{n_{i \uparrow}} - \ba{n_{i \uparrow}}\ba{n_{i \downarrow}} \]
+Now we let $n$ denote the average number of electrons per atom (here we assume that this number is uniform $n_i = n$),
+\[ n = \ba{n_{i \uparrow}} + \ba{n_{i \downarrow}} \]
+We define the \term{degree of spin polarization} $\xi$ such that,
+\[ \xi \defined \f{\ba{n_{i \uparrow}} - \ba{n_{i \downarrow}}}{\ba{n_{i \uparrow}} + \ba{n_{i \downarrow}}} \]
+\[ \ba{n_{i\uparrow}} = n \f{1 + \xi}{2} \qquad \ba{n_{i\downarrow}} = n \f{1 - \xi}{2} \]
+Where $\xi_i = \xi$ is uniform as well for simplicity. Now we have \cref{eq:hubbard_ham} taking the following form,
+\[ H = -t \sum_{\ba{ij}\si}\br{\ket{i \si}\bra{j \si} + \ket{j \si}\bra{i \si}} + \f{Un}{2} \sum_{i} \br{n_{i \uparrow} + n_{i \downarrow}} - \f{Un\xi}{2} \sum_{i} \br{n_{i \uparrow} - n_{i \downarrow}} - \f{Un^2}{4} \br{1 - \xi^2} N \]
+
+
 
 \end{document}
