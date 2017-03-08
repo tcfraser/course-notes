@@ -2343,6 +2343,124 @@ We define the \term{degree of spin polarization} $\xi$ such that,
 Where $\xi_i = \xi$ is uniform as well for simplicity. Now we have \cref{eq:hubbard_ham} taking the following form,
 \[ H = -t \sum_{\ba{ij}\si}\br{\ket{i \si}\bra{j \si} + \ket{j \si}\bra{i \si}} + \f{Un}{2} \sum_{i} \br{n_{i \uparrow} + n_{i \downarrow}} - \f{Un\xi}{2} \sum_{i} \br{n_{i \uparrow} - n_{i \downarrow}} - \f{Un^2}{4} \br{1 - \xi^2} N \]
 
+\subsection{Mott Insulators and Anti-Ferromagnetism}
 \todo[TC]{Missed two lectures}
+The ground state wavefunction was found to be,
+\[ \ket{\psi} = \f{1}{\sqrt{2}} \br{\ket{1\uparrow, 2 \downarrow} - \ket{1 \downarrow, 2 \uparrow}} \]
+Where $\ket{\psi}$ corresponded to a total spin of $\ve S = 0$ and a ground state energy of,
+\[ E_g = - \f{4t^2}{U} \]
+Where $E_g$ is obtained via the following,
+\[ H \ket{\psi} = \s J \ve S_1 \cdot \ve S_2 \ket{\psi} = E_g \ket{\psi} \]
+Therefore $\s J = \f{4 t^2}{U}$. Using the two spin model $H = \s J \ve S_1 \cdot \ve S_2$ we can immediately generalize to $N$ interacting spin systems where the spin terms are restricted to nearest neighbor interactions,
+\[ H = \f{\s J}{2} \sum_{\ba{ij}} \ve S_i \cdot \ve S_j \]
+Which is a good description of an anti-ferromagnet because anti-ferromagnets are Mott insulators.
+\begin{enumerate}
+    \item Ferromagnetism arises from lowering of the interaction energy between the electrons, when the spins are aligned. Ferromagnets are metals. (e.g. Fe, Co, Ni, Mn)
+    \item Anti-Ferromagnetism arises from lowering of kinetic energy when spins are anti-aligned. Anti-Ferromagnets are Mott insulators. (e.g. MnO, NiO, La$_2$CnO$_4$)
+\end{enumerate}
+In is important to understand the qualitative differences between ferromagnets and anti-ferromagnets given their similar models:\\
+\textbf{Ferromagnets:}
+For ferromagnets our interacting model (with two spins) is,
+\[ H = - \s J \ve S_1 \cdot \ve S_2 \]
+Where the spins become aligned or anti-aligned in the ground state,
+\[ \ket{\psi} \in \bc{\ket{\uparrow, \uparrow}, \ket{\downarrow, \downarrow}} \]
+Where the components of the spin $\ve S = \f{\hbar}{2} \ve \si$ can be written as,
+\[ \ve S_1 \cdot \ve S_2 = S_1^xS_1^x + S_1^yS_1^y + S_1^zS_1^z = \f12 \br{S_1^+ S_2^- + S_1^- S_2^+} + S_1^z S_2^z \]
+Therefore we see that,
+\begin{align*}
+    S^z \ket{\uparrow} &= \f{\hbar}{2}\si^{z}\ket{\uparrow} = \f{\hbar}{2}\ket{\uparrow} \\
+    S^z \ket{\downarrow} &= \f{\hbar}{2}\si^{z}\ket{\downarrow} = \f{\hbar}{2}\ket{\downarrow} \\
+    S^+ \ket{\uparrow} &= \f{\hbar}{2}\si^{+}\ket{\uparrow} = \f{\hbar}{2} \begin{pmatrix}
+        0 & 2 \\
+        0 & 0 \\
+    \end{pmatrix}\begin{pmatrix}
+        1 \\ 0
+    \end{pmatrix}  = 0 \\
+    S^- \ket{\uparrow} &= \f{\hbar}{2}\si^{+}\ket{\uparrow} = \f{\hbar}{2} \begin{pmatrix}
+        0 & 0 \\
+        2 & 0 \\
+    \end{pmatrix}\begin{pmatrix}
+        1 \\ 0
+    \end{pmatrix} = \hbar \ket{\downarrow} \
+    S^+ \ket{\downarrow} &= \f{\hbar}{2}\si^{+}\ket{\downarrow} = \f{\hbar}{2} \begin{pmatrix}
+        0 & 2 \\
+        0 & 0 \\
+    \end{pmatrix}\begin{pmatrix}
+        0 \\ 1
+    \end{pmatrix}  = \hbar \ket{\uparrow} \\
+    S^- \ket{\downarrow} &= \f{\hbar}{2}\si^{+}\ket{\downarrow} = \f{\hbar}{2} \begin{pmatrix}
+        0 & 0 \\
+        2 & 0 \\
+    \end{pmatrix}\begin{pmatrix}
+        0 \\ 1
+    \end{pmatrix} = 0
+\end{align*}
+Therefore $\ket{\uparrow, \uparrow}$ is an eigenstate of $H$ with eigenenergy $- \s J \hbar^2 / 4$,
+\[ H \ket{\psi} = -\f{\s J \hbar^2}{4}\bs{\si_1^{z}\si_2^{z} + \f12 \br{\si_1^+ \si_2^- + \si_1^- \si_2^+}} \ket{\uparrow, \uparrow} = - \f{\s J \hbar^2}{4}\ket{\uparrow, \uparrow} \]
+This analysis seems trivial, but becomes illuminating when we consider the analogy for anti-ferromagnets.
+\textbf{Ferromagnets:}
+For anti-ferromagnets our interacting model (with two spins) is,
+\[ H = + \s J \ve S_1 \cdot \ve S_2 \]
+A simple guess for the ground state would reasonably be $\ket{\uparrow, \downarrow}$ (or $\ket{\downarrow, \uparrow}$). This however does not work,
+\[ H \ket{\psi} = \f{\s J \hbar^2}{4}\bs{\si_1^{z}\si_2^{z} + \f12 \br{\si_1^+ \si_2^- + \si_1^- \si_2^+}} \ket{\uparrow, \downarrow} \not \propto \ket{\uparrow, \downarrow} \]
+Therefore $\ket{\uparrow, \downarrow}$ is \textit{not} the ground state of for anti-ferromagnets. This state, and the analogous multi-spin state, where neighboring spin states have opposite spin, is called the \term{Neel state}.
+\begin{center}
+    \begin{tikzpicture}
+    \pgfmathsetmacro{\spinsize}{0.2}
+    \foreach \i in {0,...,5}{
+        \draw[thin] (\i, 0-1) -- (\i, 5+1);
+    }
+    \foreach \j in {0,...,5}{
+        \draw[thin] (0-1, \j) -- (5+1, \j);
+    }
+    \foreach \i in {0,...,5}{
+    \foreach \j in {0,...,5}{
+        \pgfmathparse{\i+\j}
+        \ifthenelse{\isodd{\pgfmathresult}}
+        {
+            \draw[thick,->] (\i-\spinsize, \j-\spinsize) -- (\i+\spinsize, \j+\spinsize);
+        }{
+            \draw[thick,<-] (\i-\spinsize, \j-\spinsize) -- (\i+\spinsize, \j+\spinsize);
+        }
+    }
+    }
+    \end{tikzpicture}
+\end{center}
 
+\section{Superconductivity}
+Superconductivity is the phenomena in materials where resistivity suddenly drops to zero below a critical temperature $T_c$,
+
+\begin{center}
+\begin{tikzpicture}
+    \pgfmathsetmacro{\axissize}{4};
+    \pgfmathsetmacro{\plotsize}{3};
+    \draw[->] (0,0) -- (+\axissize,0) node[right]{$T$};
+    \draw[->] (0, 0) -- (0,+\axissize) node[above]{$\rho\br{T}$};
+    \draw[scale=1.0,thick, domain=1:\plotsize,smooth,variable=\T,red] plot ({\T},{\plotsize*exp(\T)/exp(\plotsize)});
+    \draw[red, thick] (1,0) node[below]{$T_c$} -- (1,{0.1 + 1/\plotsize});
+\end{tikzpicture}
+\end{center}
+
+A related feature is that that specific heat of the material jumps at the critical temperature as well.
+
+
+\begin{center}
+\begin{tikzpicture}
+    \pgfmathsetmacro{\axissize}{4};
+    \pgfmathsetmacro{\plotsize}{3};
+    \draw[->] (0,0) -- (+\axissize,0) node[right]{$T$};
+    \draw[->] (0, 0) -- (0,+\axissize) node[above]{$C_v\br{T}$};
+    \draw[scale=1.0,thick, domain=0:1,smooth,variable=\T,red] plot ({\T},{-1 + exp(\T)});
+    \draw[red, thick, dashed] (1,0) node[below]{$T_c$} -- (1,{-1+ exp(1)});
+    \draw[scale=1.0,thick, domain=1:\plotsize,smooth,variable=\T,red] plot ({\T},{\T});
+\end{tikzpicture}
+\end{center}
+
+There are two possible ways one could interpret the features of superconductivity. The first is that superconductors are simply ideal metals in which below $T_c$ the electrons do not experience scattering. Alternatively, it could be that a superconductor is a new state of matter. If was the \term{Meissner effect} in the 1930s involving liquefied Helium that first demonstrated the latter; superconductivity is genuinely a new state of matter. In an ideal metal with $\rho = 0$ when $T < T_c$
+if we were to start from $T > T_c$ we have $\vdel \times \ve E = - \f1c \pder{\ve B}{t}$. When $T < T_c$ we have that $\pder{\ve B}{t} = 0$ (for an ideal metal). Therefore $\be E = \rho \ve j \implies \ve E = \ve 0$ inside the sample when $T < T_c$. This is fundamentally different than a superconductor which expels all magnetic fields below $T_c$.
+\begin{itemize}
+    \item Ideal metal: $T < T_c$, $\rho = 0$, $\ve B = \text{const}$
+    \item Superconductor: $T < T_c$, $\rho = 0$, $\ve B = \ve 0$
+\end{itemize}
+Typical superconductors like Al, Sn, Hg have very low critical temperatures ($T_c \sim \SI{1}{\K} - \SI{10}{\K}$) which are non-ideal for use in practical electronics. High temperature super conductors like La$_{2-x}$Sr$_{x}$CnO$_4$ have $T_c \sim \SI{34}{\K}$. The current record holder is HgBa$_2$Ca$_2$CN$_3$O$_8$ with $T_c \sim \SI{133}{\K}$.
 \end{document}
