@@ -15,6 +15,9 @@
 \setfancyvecbold
 \draftprofile[TC Fraser]{TC}{Red}
 
+\newcommand{\uu}{\uparrow}
+\newcommand{\dd}{\downarrow}
+
 \begin{document}
 
 \titlePage
@@ -144,7 +147,7 @@ Given \cref{eq:discrete_finite_k}, there are $N$ distinct Bloch vector states $\
 \end{tikzpicture}
 \end{center}
 
-Of course, this holds when the electrons in the material are at zero temperature where the electrons occupy all of the lowest possible energy states. For a half-filled energy band, all of the \textit{negative} energy states are filled and the positive energy states are vacant. This separation defines the \term{Fermi energy} for this system which occurs at the interface between filled energy states and un-filled energy states ($\vep\tsb{F} = 0$ in this problem). In order to find the state that corresponds to this upper limit one needs to solve,
+Of course, this holds when the electrons in the material are at zero temperature where the electrons occupy all of the lowest possible energy states. For a half-filled energy band, all of the \textit{negative} energy states are filled and the positive energy states are vacant. This separation defines the \term{Fermi energy} for this system which occurs at the interface between filled energy states and unfilled energy states ($\vep\tsb{F} = 0$ in this problem). In order to find the state that corresponds to this upper limit one needs to solve,
 \[ \vep\br{k} = \vep\tsb{F} = 0 \implies -2t \cos\br{ka} = 0 \]
 Therefore the value of $k$ that solves this equation is,
 \[  k = \pm \f{\pi}{2a} = \pm k\tsb{F}\]
@@ -280,7 +283,7 @@ At this point \cref{eq:H_energy_difference_ks_diag_simp} has been diagonalized w
 Notice that $H\br{k}$ can be written as a $2\times 2$ matrix as follows,
 \[ H\br{k} = \kbordermatrix{ & 1 & 2 \\ 1 & 0 & - \br{t_1 + t_2 e^{- i2ka} } \\ 2 & - \br{t_1 + t_2 e^{+ i2ka} } & 0 } \eq \label{eq:H_matrix}\]
 Since $H\br{k}$ represents a two level system, we can therefore write $H\br{k}$ as a sum over the three Pauli matrices with the following spin-correspondence (which we refer to as a \term{pseudo-spin}),
-\[ \ket{1} = \ket{\uparrow} \qquad \ket{2} = \ket{\downarrow} \]
+\[ \ket{1} = \ket{\uu} \qquad \ket{2} = \ket{\dd} \]
 The \term{Pauli matrices} are,
 \begin{align*}
 \eq \label{eq:pauli_matrices}
@@ -507,7 +510,7 @@ With $E = 0$ localized near $x = 0$.
 Therefore we should look for a solution of the form,
 \[ \psi\br{x} = e^{f\br{x}} \si_y \ket{z} \]
 Where $\ket{z}$ is written in $\si_z$ basis,
-\[ \ket{z} = z_{\uparrow} \ket{\uparrow} + z_{\downarrow} \ket{\downarrow} \]
+\[ \ket{z} = z_{\uu} \ket{\uu} + z_{\dd} \ket{\dd} \]
 Using $\si_y^2 = \ident$ and $\si_x \si_y = i \si_z$ multiply by both sides by $\si_y$,
 \[ \bs{-i \hbar v_F \der{f}{x} + i m\br{x} \si_z} e^{f\br{x}}\ket{z} = 0 \]
 Dropping the exponential $e^{f\br{x}}$,
@@ -515,18 +518,18 @@ Dropping the exponential $e^{f\br{x}}$,
 Adjusting the constant coefficients,
 \[ \bs{\der{f}{x} - \f{m\br{x}}{\hbar v_F} \si_z} \ket{z} = 0 \eq \label{eq:mass_varying_eqn}\]
 Recalling that,
-\[ \si_{z}\ket{\uparrow} = + \ket{\uparrow} \qquad \si_{z}\ket{\downarrow} = - \ket{\downarrow} \]
-Assume $\ket{z} = \ket{\uparrow}$,
-\[ \bs{\der{f}{x} + \f{m\br{x}}{\hbar v_F}} \ket{\uparrow} = 0 \]
+\[ \si_{z}\ket{\uu} = + \ket{\uu} \qquad \si_{z}\ket{\dd} = - \ket{\dd} \]
+Assume $\ket{z} = \ket{\uu}$,
+\[ \bs{\der{f}{x} + \f{m\br{x}}{\hbar v_F}} \ket{\uu} = 0 \]
 Therefore,
 \[ \der{f}{x} = - \f{m\br{x}}{\hbar v_F} \]
 Can be solved using,
 \[ f\br{x} = - \f{1}{\hbar v_F} \intl_{0}^{x} \dif x' m\br{x'} \]
 Where $m\br{0} = 0$. Altogether, the solution $\psi{x}$ can be written,
-\[ \psi\br{x} = e^{- \f{1}{\hbar v_F} \int_{0}^{x} \dif x' m\br{x'}} \si_y \ket{\uparrow} \]
-Since $\si_y \ket{\uparrow} = i \ket{\downarrow}$,
-\[ \psi\br{x} = ie^{- \f{1}{\hbar v_F} \int_{0}^{x} \dif x' m\br{x'}}\ket{\downarrow} \]
-Of course an analogous solution exists for $\ket{z} = \ket{\downarrow}$.
+\[ \psi\br{x} = e^{- \f{1}{\hbar v_F} \int_{0}^{x} \dif x' m\br{x'}} \si_y \ket{\uu} \]
+Since $\si_y \ket{\uu} = i \ket{\dd}$,
+\[ \psi\br{x} = ie^{- \f{1}{\hbar v_F} \int_{0}^{x} \dif x' m\br{x'}}\ket{\dd} \]
+Of course an analogous solution exists for $\ket{z} = \ket{\dd}$.
 \begin{center}
 \begin{tikzpicture}
     \draw[->] (-3, 0) -- (3, 0) node[right]{$x$};
@@ -711,7 +714,7 @@ Therefore the Hamiltonian becomes,
 \[ H = - t\sum_{\ve k}\bs{\ket{\ve k, 2} \bra{\ve k, 1} \br{1 + e^{i \ve k \cdot \ve a_1} + e^{i \ve k \cdot \ve a_2}} + \ket{\ve k, 1} \bra{\ve k, 2} \br{1 + e^{-i \ve k \cdot \ve a_1} + e^{-i \ve k \cdot \ve a_2}}} \]
 We have now diagonalized $H$ in terms of the momentum wave-vector index $\ve k$. Letting $H = \sum_{\ve k} H\br{\ve k}$ where,
 \[ H\br{\ve k} = -t\bs{\ket{ 2} \bra{ 1} \br{1 + e^{i \ve k \cdot \ve a_1} + e^{i \ve k \cdot \ve a_2}} + \ket{ 1} \bra{ 2} \br{1 + e^{-i \ve k \cdot \ve a_1} + e^{-i \ve k \cdot \ve a_2}}} \]
-Invoking pseudo-spin states $\ket{1} = \ket{\uparrow}$ and $\ket{2} = \ket{\downarrow}$ we can write,
+Invoking pseudo-spin states $\ket{1} = \ket{\uu}$ and $\ket{2} = \ket{\dd}$ we can write,
 \[ H\br{\ve k} = \ve d\br{\ve k} \cdot \ve \si \]
 Where $\ve d \br{\ve k}$ is,
 \begin{align*}
@@ -923,15 +926,15 @@ But $\tau^{z} \si^{z}$ is not invariant under time-reversal,
 Other component that is missing from our model is the real spin of the electron (not pseudo-spin) $\ve S$. Spin $\ve S$ is parity even and time-reversal odd,
 \[ \pi^{\dagger} \ve S \pi = \ve S \qquad \Theta \ve S \Theta^{-1} = - \ve S \]
 \begin{align*}
-    S^{z} &= \ket{\uparrow} \bra{\uparrow} - \ket{\downarrow}\bra{\downarrow} \\
-    S^{y} &= -i\br{\ket{\uparrow} \bra{\downarrow} - \ket{\downarrow}\bra{\uparrow}} \\
-    S^{x} &= \ket{\uparrow} \bra{\downarrow} + \ket{\downarrow}\bra{\uparrow}
+    S^{z} &= \ket{\uu} \bra{\uu} - \ket{\dd}\bra{\dd} \\
+    S^{y} &= -i\br{\ket{\uu} \bra{\dd} - \ket{\dd}\bra{\uu}} \\
+    S^{x} &= \ket{\uu} \bra{\dd} + \ket{\dd}\bra{\uu}
 \end{align*}
 Upon adding this term, $\tau^{z} \si^{z} S^{z}$ maintains the desired symmetries,
 \[ \pi^{\dagger} \tau^{z} \si^{z} S^{z} \pi = \tau^{z} \si^{z} S^{z} \qquad \Theta \tau^{z} \si^{z} S^{z} \Theta^{-1} = \tau^{z} \si^{z} S^{z} \]
 This was discovered by Kane and Mele (2005) and their paper gave rise to the field of topological insulators. Therefore the true graphene Hamiltonian can be written as,
 \[ H\br{\ve k} =\hbar v\tsb{F} \br{k_x \tau^{z} \si^x + k_y \si^{y}} + \De\tsb{SO} \tau^{z} \si^{z} S^{z} \eq \label{eq:gp_kane_mele}\]
-Where $\De\tsb{SO}$ is refered to as the \term{spin-orbit interaction}. The origin of the $\De\tsb{SO}$ term is due to the following process. When the valence electrons have the ability to tunnel between atoms, some of the atoms in the crystal lattice become ionized. The electric field of ionized atoms is felt as a magnetic field in the rest frame of the electrons. Effectively this magnetic field has strength $\ve B = \ve v \times \ve E / c$ which tends to be small as $B \propto c^{-1}$. Additionally, $\ve E$ grows for heavier and heavier atoms. This magnetic field acts on the spin in the usual manner $H \propto \ve B \cdot \ve S$. This is encapsulated in \cref{eq:gp_kane_mele} as $\tau^{z} \si^{z}$ is coupled with the spin $S^{z}$. \\
+Where $\De\tsb{SO}$ is referred to as the \term{spin-orbit interaction}. The origin of the $\De\tsb{SO}$ term is due to the following process. When the valence electrons have the ability to tunnel between atoms, some of the atoms in the crystal lattice become ionized. The electric field of ionized atoms is felt as a magnetic field in the rest frame of the electrons. Effectively this magnetic field has strength $\ve B = \ve v \times \ve E / c$ which tends to be small as $B \propto c^{-1}$. Additionally, $\ve E$ grows for heavier and heavier atoms. This magnetic field acts on the spin in the usual manner $H \propto \ve B \cdot \ve S$. This is encapsulated in \cref{eq:gp_kane_mele} as $\tau^{z} \si^{z}$ is coupled with the spin $S^{z}$. \\
 
 In order to formally introduce the $\De\tsb{SO} \tau^{z} \si^{z} S^{z}$ term into the Hamiltonian, we need to include next nearest-neighbor tunneling ($1 \to 1$ and $2 \to 2$ tunneling),
 
@@ -1104,12 +1107,12 @@ In contrast, if $t_2$ is imaginary $t_2^{*} = - t_2$ which means $t_2 = i \ti t_
 In order to write $H_{2, \atomp}$ in terms of $\ve d\br{\ve k} \cdot \ve \si$, recognize that if the electrons have spin,
 \begin{align*}
     \ve S &= \br{S^{x}, S^{y}, S^{z}} \\
-    S^{z} &= \ket{\uparrow} \bra{\uparrow} - \ket{\downarrow}\bra{\downarrow} \\
-    S^{y} &= -i\br{\ket{\uparrow} \bra{\downarrow} - \ket{\downarrow}\bra{\uparrow}} \\
-    S^{x} &= \ket{\uparrow} \bra{\downarrow} + \ket{\downarrow}\bra{\uparrow}
+    S^{z} &= \ket{\uu} \bra{\uu} - \ket{\dd}\bra{\dd} \\
+    S^{y} &= -i\br{\ket{\uu} \bra{\dd} - \ket{\dd}\bra{\uu}} \\
+    S^{x} &= \ket{\uu} \bra{\dd} + \ket{\dd}\bra{\uu}
 \end{align*}
 Then the eigenstates can become the following,
-\[ \ket{\ve R, \al} \mapsto \ket{\ve R, \al_{\si}, \al_{S}} \qquad \al_{\si} \in \bc{\atomm, \atomp} , \al_{S} \in \bc{\uparrow, \downarrow} \]
+\[ \ket{\ve R, \al} \mapsto \ket{\ve R, \al_{\si}, \al_{S}} \qquad \al_{\si} \in \bc{\atomm, \atomp} , \al_{S} \in \bc{\uu, \dd} \]
 Then is is possible to write the following,
 \[ \ident = S^{z} \si^{z} \]
 Therefore,
@@ -1213,7 +1216,7 @@ This Hamiltonian has the desired invariant spin terms $\si^{z} \tau^{z} s^{z}$ a
 
 In order to study the effect $\De\tsb{SO}$ in \cref{eq:gp_kane_mele}, we will include a massive term $m \si^{z}$ and study the following,
 \[ H\br{\ve k} =\hbar v\tsb{F} \br{k_x \tau^{z} \si^x + k_y \si^{y}} + \De\tsb{SO} \tau^{z} \si^{z} S^{z} + m \si^{z}\]
-Specifically for our analysis, we will look at the affect on $S^{z} = 1$ spin up ($\uparrow$) spins. The associated Hamiltonian for $S^{z} = 1$ has two bands $\tau^{z} = \pm 1$,
+Specifically for our analysis, we will look at the affect on $S^{z} = 1$ spin up ($\uu$) spins. The associated Hamiltonian for $S^{z} = 1$ has two bands $\tau^{z} = \pm 1$,
 \[ \bc{H\br{\ve k}}_{\tau^{z} = +1} \defined H_{+}\br{\ve k} =\hbar v\tsb{F} \br{k_x \si^x + k_y \si^{y}} + \br{m + \De\tsb{SO}} \si^{z}\]
 \[ \bc{H\br{\ve k}}_{\tau^{z} = -1} \defined H_{+}\br{\ve k} =\hbar v\tsb{F} \br{-k_x \si^x + k_y \si^{y}} + \br{m - \De\tsb{SO}} \si^{z}\]
 Therefore the dispersion relations are distinct for each value of $\tau^{z}$,
@@ -1343,9 +1346,9 @@ Therefore the net current is,
 The conductivity is,
 \[ \f{I}{V_{y}} = - \f{e^2}{h} \]
 The interesting feature of this conductivity is that is only depends on the fundamental constants $e, h$. As it turns out, measurements of this conductivity represent our most precise measurements of $e$ and $h$. An excellent external resource is a book by R.B. Laughlin called \textit{Different Universe}. An important thing to remember that this analysis only applies for a particular spin value. In this case we analyzed spin up states $S^{z} = +1$. In general we have,
-\[ \si_{xy}^{\uparrow} = -\f{e^2}{h} \qquad \si_{xy}^{\downarrow} = +\f{e^2}{h} \]
+\[ \si_{xy}^{\uu} = -\f{e^2}{h} \qquad \si_{xy}^{\dd} = +\f{e^2}{h} \]
 Which means that we can construct a \term{spin current},
-\[ \si_{xy}^{S} =\f{1}{2} \br{\si_{xy}^{\uparrow} - \si_{xy}^{\downarrow}} = - \f{e^2}{h} \]
+\[ \si_{xy}^{S} =\f{1}{2} \br{\si_{xy}^{\uu} - \si_{xy}^{\dd}} = - \f{e^2}{h} \]
 Effectively, if we have an equal number of electrons moving to the right and the left but each direction is biased to a particular spin, we can have a buildup of spin up electrons on the right and spin down electrons on the left. This is the analogue of \textit{spin voltage}. \\
 
 \clearpage
@@ -1960,7 +1963,7 @@ This is much closer to the critical temperature for iron, therefore we conclude 
 
 Consider $2$ electrons on two atomic orbitals $\varphi_1\br{\ve r_1}$ and $\varphi_2\br{\ve r_2}$ with the same energy. The Coulumb potential is,
 \[ V\br{\ve r_1 - \ve r_2} = \f{e^2}{\abs{\ve r_1 - \ve r_2}} \]
-In general the wave-function for the two electrons will depend on positions $\ve r_1, \ve r_2$ for the two electrons and spin values $\si_i \in \bc{\uparrow, \downarrow}$. This position and spin wave-functions are separable,
+In general the wave-function for the two electrons will depend on positions $\ve r_1, \ve r_2$ for the two electrons and spin values $\si_i \in \bc{\uu, \dd}$. This position and spin wave-functions are separable,
 \[ \psi \br{\ve r_1 \si_1, \ve r_2 \si_2} = \psi\br{\ve r_1, \ve r_2} \chi \br{\si_1, \si_2} \]
 Since the electrons are Fermions the wave-function must be antisymmetric with respect to the exchange of the two particles,
 \[ \psi\br{\ve r_2 \si_2, \ve r_1 \si_1} = - \psi\br{\ve r_1 \si_1, \ve r_2\si_2} \]
@@ -1976,15 +1979,15 @@ Therefore we have two possibilities for the antisymmetry of $\psi$,
 Since the potential $V \br{\ve r_1 - \ve r_2}$ is independent of the spin, the total spin of two electrons is a conserved quantity. In using this observation, it is convenient to not label the individual spins $\si_1, \si_2$ (which are not conserved) but instead the total spin $S$ and its projection onto the $z$-axis $M$.
 \[ \ket{\si_1, \si_2} \mapsto \ket{S, M} \]
 If the total number states has to be conserved ($\ket{\si_1, \si_2} \in \s H^{2} \otimes \s H^{2} \implies \ket{S, M} \in \s H^{2} \otimes \s H^{2}$), then the four spin states,
-\[ \ket{\uparrow, \uparrow} \quad\ket{\uparrow, \downarrow} \quad\ket{\downarrow, \uparrow} \quad\ket{\downarrow, \downarrow}  \]
+\[ \ket{\uu, \uu} \quad\ket{\uu, \dd} \quad\ket{\dd, \uu} \quad\ket{\dd, \dd}  \]
 Map to $4$ possible values for $S, M$. The $z$ component of the spin can take on any value from $1, 0, -1$ but the total magnitude of the spin must be either $0,1$.
 \[ \ket{0, 0} \quad\ket{1, 1} \quad\ket{1, 0} \quad\ket{1, -1}  \]
 Notice that these four states form and orthonormal basis for $\s H^2 \otimes \s H^{2}$. Explicitly these $\ket{S, M}$ states can be written as superpositions of the $\ket{\si_1, \si_2}$ states,
 \begin{align*}
-    \ket{1,1} & = \ket{\uparrow, \uparrow} \\
-    \ket{1, -1} &= \ket{\downarrow, \downarrow} \\
-    \ket{1,0} &= \f{1}{\sqrt{2}}\br{\ket{\uparrow, \downarrow} + \ket{\uparrow, \downarrow}} \\
-    \ket{0,0} &= \f{1}{\sqrt{2}}\br{\ket{\uparrow, \downarrow} - \ket{\uparrow, \downarrow}}
+    \ket{1,1} & = \ket{\uu, \uu} \\
+    \ket{1, -1} &= \ket{\dd, \dd} \\
+    \ket{1,0} &= \f{1}{\sqrt{2}}\br{\ket{\uu, \dd} + \ket{\uu, \dd}} \\
+    \ket{0,0} &= \f{1}{\sqrt{2}}\br{\ket{\uu, \dd} - \ket{\uu, \dd}}
 \end{align*}
 Importantly, each state $\ket{S, M}$ where the total spin $S$ is $S = 1$ is \textit{symmetric} with respect to the interchange of two electrons and the the spin $S = 0$ state is \textit{antisymmetric}. This anti-symmetry couples the spin states to the orbital components of the wave function. Since the spin $S=1$ states are symmetric, the wavefunction in position space with $S = 1$ must be anti-symmetric,
 \[ \psi_{1M} \br{\ve r_1, \ve r_2} = \f{1}{\sqrt{2}}\br{\varphi_1\br{\ve r_1} \varphi_2\br{\ve r_2} - \varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}} \ket{1, M} \]
@@ -1993,26 +1996,26 @@ Analogously,
 In order to determine the correction to the energy values due to the Coulumb interactions, use perturbation theory. Specifically, the $\psi_{1M}$ states are $3$-fold degenerate in position space but are distinct when spin states are included. Recalling that the corrections can be computed by calculating the matrix elements of the corrections $V$,
 \begin{align*}
 \bramidket{1,M}{V}{1,M}
-&= \int \int \dif^3 r_1 \dif^3 r_2 \f{1}{\sqrt{2}}\br{\varphi^*_1\br{\ve r_1} \varphi^*_2\br{\ve r_2} - \varphi^*_2\br{\ve r_1} \varphi^*_1\br{\ve r_2}} V\br{\ve r_1 - \ve r_2} \f{1}{\sqrt{2}}\br{\varphi_1\br{\ve r_1} \varphi_2\br{\ve r_2} - \varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}}\\
-&= \f{1}{2}\int \int \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bigg[\abs{\varphi_1\br{\ve r_1}}^2 \abs{\varphi_2\br{\ve r_2}}^2 + \abs{\varphi_1\br{\ve r_2}}^2 \abs{\varphi_2\br{\ve r_1}}^2  + \cdots\\
+&= \iint \dif^3 r_1 \dif^3 r_2 \f{1}{\sqrt{2}}\br{\varphi^*_1\br{\ve r_1} \varphi^*_2\br{\ve r_2} - \varphi^*_2\br{\ve r_1} \varphi^*_1\br{\ve r_2}} V\br{\ve r_1 - \ve r_2} \f{1}{\sqrt{2}}\br{\varphi_1\br{\ve r_1} \varphi_2\br{\ve r_2} - \varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}}\\
+&= \f{1}{2}\iint \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bigg[\abs{\varphi_1\br{\ve r_1}}^2 \abs{\varphi_2\br{\ve r_2}}^2 + \abs{\varphi_1\br{\ve r_2}}^2 \abs{\varphi_2\br{\ve r_1}}^2  + \cdots\\
 &\qquad \cdots - \varphi_1^{*}\br{\ve r_1} \varphi_2^{*}\br{\ve r_2}\varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2} - \varphi_2^{*}\br{\ve r_1} \varphi_1^{*}\br{\ve r_2}\varphi_1\br{\ve r_1} \varphi_2\br{\ve r_2}\bigg]
 \end{align*}
 Recognize that since the potential only depends on the distance $\abs{\ve r_1, \ve r_2}$, our integral over $\ve r_1,\ve r_2$ counts each term twice. Therefore,
 \begin{align*}
 \bramidket{1,M}{V}{1,M}
-&= \int \int \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bigg[\abs{\varphi_1\br{\ve r_1}}^2 \abs{\varphi_2\br{\ve r_2}}^2 - \varphi_1^{*}\br{\ve r_1} \varphi_2^{*}\br{\ve r_2}\varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}\bigg]
+&= \iint \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bigg[\abs{\varphi_1\br{\ve r_1}}^2 \abs{\varphi_2\br{\ve r_2}}^2 - \varphi_1^{*}\br{\ve r_1} \varphi_2^{*}\br{\ve r_2}\varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}\bigg]
 \end{align*}
 Similarly, we can calculate the matrix element for $\ket{0,0}$ (the elements $\bramidket{0,0}{V}{1, M}$ are zero),
 \begin{align*}
 \bramidket{0,0}{V}{0,0}
-&= \int \int \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bigg[\abs{\varphi_1\br{\ve r_1}}^2 \abs{\varphi_2\br{\ve r_2}}^2 + \varphi_1^{*}\br{\ve r_1} \varphi_2^{*}\br{\ve r_2}\varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}\bigg]
+&= \iint \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bigg[\abs{\varphi_1\br{\ve r_1}}^2 \abs{\varphi_2\br{\ve r_2}}^2 + \varphi_1^{*}\br{\ve r_1} \varphi_2^{*}\br{\ve r_2}\varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}\bigg]
 \end{align*}
 Notice that $\bramidket{0,0}{V}{0,0}$ differs from $\bramidket{1,M}{V}{1,M}$ by the sign in the second set of terms. To facilitate discussions, let $\s C$ define the \term{Coulomb integral $\s C$},
-\[ \s C = \int \int \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bs{\abs{\varphi_1\br{\ve r_1}}^2 \abs{\varphi_2\br{\ve r_2}}^2} \]
+\[ \s C = \iint \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bs{\abs{\varphi_1\br{\ve r_1}}^2 \abs{\varphi_2\br{\ve r_2}}^2} \]
 Which is shared by both matrix elements and is a equivalent to a classical measurement of a Coulomb energy,
-\[ \s C = \int \int \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \rho_1\br{\ve r_1}\rho_2\br{\ve r_2} \]
+\[ \s C = \iint \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \rho_1\br{\ve r_1}\rho_2\br{\ve r_2} \]
 The differing integral is called the \term{exchange integral $\s J$},
-\[ \s J = \int \int \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bs{\varphi_1^{*}\br{\ve r_1} \varphi_2^{*}\br{\ve r_2}\varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}} \]
+\[ \s J = \iint \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bs{\varphi_1^{*}\br{\ve r_1} \varphi_2^{*}\br{\ve r_2}\varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}} \]
 In conclusion,
 \[ \bramidket{0,0}{V}{0,0} = \s C + \s J \qquad \bramidket{1,M}{V}{1,M} = \s C - \s J \]
 The state with higher (or lower) energy correction will depend on the sign of $\s J$. If $\s J > 0$, this leads to alignment of the individual spins and to ferro-magnetism. Recalling $\psi_{1M} \br{\ve r_1, \ve r_2}$,
@@ -2032,76 +2035,123 @@ Where $\ba{ij}$ denotes nearest neighbor terms, the factor of $1/2$ avoids doubl
 And the $\mu_{B}$ terms is simply the ordinary magnetic moment coupling. It is important to note that the nearest-neighbor approximation permits one to assume that $\s J$ is a constant (depending only on the distance between nearest neighbors). The Heisenberg model \cref{eq:Heisenberg_model} is one of the simplest examples of a \term{quantum many-body problem} which are notoriously difficult to solve and are typically only approximated at best. The Heisenberg model cannot be solved exactly; one such approximation is called \term{mean-field theory}.
 
 \subsection{Mean-field Theory of the Heisenberg Model}
-\label{sec:mft}
-Mean-field theory approximations of the Heisenberg model begin by re-writing the spins $\ve S_i$ as,
-\[ \ve S_i = \ve S_i - \ba{\ve S_i} + \ba{\ve S_i} \eq \label{eq:mft_approx}\]
-Therefore the spin product $\ve S_i \cdot \ve S_j$ includes many terms,
-\[ \ve S_i \cdot \ve S_j = \br{\ve S_i - \ba{\ve S_i} + \ba{\ve S_i}} \cdot \br{\ve S_j - \ba{\ve S_j} + \ba{\ve S_j}} \]
-\[ \ve S_i \cdot \ve S_j = \br{\ve S_i - \ba{\ve S_i}} \cdot \br{\ve S_j - \ba{\ve S_j}} + \ve S_i \cdot \ba{\ve S_j} + \ve S_j \cdot \ba{\ve S_i} - \ba{\ve S_i} \cdot \ba{\ve S_j} \eq \label{eq:mmf}\]
-The mean-field approximation assumes that the deviations of $\ve S_i$ from their mean $\ba{\ve S_i}$ is small,
-\[ \ve S_i = \ba{\ve S_i} + \s O\br{ \br{\ve S_i}^2} \]
-Therefore we can neglect the first term in \cref{eq:mmf} for being quadratic in the deviation,
-\[ \ve S_i \cdot \ve S_j \simeq \ve S_i \cdot \ba{\ve S_j} + \ve S_j \cdot \ba{\ve S_i} - \ba{\ve S_i} \cdot \ba{\ve S_j} \]
-Therefore \cref{eq:Heisenberg_model} becomes,
-\[ H = -\f{1}{2} \s J \sum_{\ba{ij}} \bs{\ve S_i \cdot \ba{\ve S_j} + \ve S_j \cdot \ba{\ve S_i} - \ba{\ve S_i} \cdot \ba{\ve S_j}} - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \eq \label{eq:shared_mft_approx}\]
-Notice that the first two terms $\br{\ve S_i \cdot \ba{\ve S_j}, \ve S_j \cdot \ba{\ve S_i}}$ are essentially $\ve S_i$ interacting with an effective magnetic field $\ve B\tsb{eff} \sim \ba{S_j}$. Furthermore, we will neglect the third term $\ba{\ve S_i} \cdot \ba{\ve S_j}$ for first analysis and include in back whenever its affects become relevant. Finally, we conclude that each spin shares the same expectation.
+% \label{sec:mft}
+% Mean-field theory approximations of the Heisenberg model begin by re-writing the spins $\ve S_i$ as,
+% \[ \ve S_i = \ve S_i - \ba{\ve S_i} + \ba{\ve S_i} \eq \label{eq:mft_approx}\]
+% Therefore the spin product $\ve S_i \cdot \ve S_j$ includes many terms,
+% \[ \ve S_i \cdot \ve S_j = \br{\ve S_i - \ba{\ve S_i} + \ba{\ve S_i}} \cdot \br{\ve S_j - \ba{\ve S_j} + \ba{\ve S_j}} \]
+% \[ \ve S_i \cdot \ve S_j = \br{\ve S_i - \ba{\ve S_i}} \cdot \br{\ve S_j - \ba{\ve S_j}} + \ve S_i \cdot \ba{\ve S_j} + \ve S_j \cdot \ba{\ve S_i} - \ba{\ve S_i} \cdot \ba{\ve S_j} \eq \label{eq:mmf}\]
+% The mean-field approximation assumes that the deviations of $\ve S_i$ from their mean $\ba{\ve S_i}$ is small,
+% \[ \ve S_i = \ba{\ve S_i} + \s O\br{ \br{\ve S_i}^2} \]
+% Therefore we can neglect the first term in \cref{eq:mmf} for being quadratic in the deviation,
+% \[ \ve S_i \cdot \ve S_j \simeq \ve S_i \cdot \ba{\ve S_j} + \ve S_j \cdot \ba{\ve S_i} - \ba{\ve S_i} \cdot \ba{\ve S_j} \]
+% Therefore \cref{eq:Heisenberg_model} becomes,
+% \[ H = -\f{1}{2} \s J \sum_{\ba{ij}} \bs{\ve S_i \cdot \ba{\ve S_j} + \ve S_j \cdot \ba{\ve S_i} - \ba{\ve S_i} \cdot \ba{\ve S_j}} - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \eq \label{eq:shared_mft_approx}\]
+% Notice that the first two terms $\br{\ve S_i \cdot \ba{\ve S_j}, \ve S_j \cdot \ba{\ve S_i}}$ are essentially $\ve S_i$ interacting with an effective magnetic field $\ve B\tsb{eff} \sim \ba{S_j}$. Furthermore, we will neglect the third term $\ba{\ve S_i} \cdot \ba{\ve S_j}$ for first analysis and include in back whenever its affects become relevant. Finally, we conclude that each spin shares the same expectation.
+% \[ \ba{\ve S_i} = \ba{\ve S_j} = \ba{\ve S} \]
+% Essentially $\ve S_i$ is independent of $i$. Our approximations have let us to the following Hamiltonian,
+% \[ H = -\f{1}{2} \s J \sum_{\ba{ij}} \bs{\ve S_i \cdot \ba{\ve S} + \ve S_j \cdot \ba{\ve S}} - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \]
+% Re-organizing the double counting,
+% \[ H = -\s J \sum_{\ba{ij}} \ve S_i \cdot \ba{\ve S} - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \]
+% Define the \term{z-coordination number} as the number of nearest neighbors for a given site $i$. We do this because the first summand is independent of $j$ which yields $z$ identical terms. Therefore,
+% \[ H = -\s J z \ba{\ve S} \cdot \sum_{i} \ve S_i  - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \]
+% We define the effective spin magnetic field as the \term{molecular field $\ve B_m$},
+% \[ \ve B_m = J z \ba{\ve S} \eq \label{eq:Bm_Defined}\]
+% While we redefine the true magnetic field to absorb the coefficients,
+% \[ g \mu_B \ve B \mapsto \ve B \]
+% Thus,
+% \[ H = -\br{\ve B + \ve B_m} \cdot \sum_{i} \ve S_i \eq \label{eq:effect_molecular_magnetic_field} \]
+% Recall that in \cref{eq:Heisenberg_model} we have the following terms,
+% \[ H \sim - \f{1}{2}\s J \sum_{\ba{ij}} \ve S_i \cdot \ve S_j \]
+% which possesses a symmetry with respect to an arbitrary rotations of all the spins. Therefore there is no preferred direction to the spin system in the absence of magnetic fields. However a particular direction is chosen subjected to the magnetic field $\ve B$. This is an example of \term{spontaneously broken symmetry} in which the arbitrary direction is chosen spontaneously. In regard to \cref{eq:effect_molecular_magnetic_field}, the energy is minimized when the spins are aligned and $\sum_i \ve S_i$ is maximized. If we choose the external magnetic field $\ve B$ to point in the $\hat z$ direction $\ve B = B \hat z$ we can conclude that the molecular magnetic field aligns itself in the same direction,
+% \[ \ve B_m = B_m \hat z \]
+% Therefore \cref{eq:effect_molecular_magnetic_field} simplifies,
+% \[ H = -\br{B + B_m} \cdot \sum_{i} S_i^z \]
+% At zero temperature, the spins will tend toward the minimal energy state when corresponds to the spins aligning with $S_i^z = \f12$. However at finite temperature,
+% \[ \ba{S^z} = \f{\sum_{S^{z} = \pm 1/2} S^{z}e^{-\f{H_i}{k_B T}}}{\sum_{S^{z} = \pm 1/2} e^{-\f{H_i}{k_B T}}} \]
+% Where $H_i$ is an individual Hamiltonian,
+% \[ H_i = -\br{B + B_m} S_i^{z} \]
+% Explicitly,
+% \[ \ba{S^z} = \f{\sum_{S^{z} = \pm 1/2} S^{z}e^{\f{\br{B+B_m}S^{z}}{k_B T}}}{\sum_{S^{z} = \pm 1/2} e^{\f{\br{B+B_m}S^{z}}{k_B T}}} \]
+% \[ \ba{S^z} = \f{1}{2}\f{e^{\f{\br{B+B_m}}{2k_B T}} - e^{-\f{\br{B+B_m}}{2k_B T}}}{e^{\f{\br{B+B_m}}{2k_B T}} + e^{-\f{\br{B+B_m}}{2k_B T}}} \]
+% Recognize the hyperbolic trigonometric formulas,
+% \[ \ba{S^z} = \f{1}{2}\f{\cosh \f{\br{B+B_m}}{2k_B T}}{\sinh \f{\br{B+B_m}}{2k_B T}} = \f12 \tanh \bs{\f{\br{B+B_m}}{2k_B T}} \]
+% Recalling \cref{eq:Bm_Defined},
+% \[ B_m = J z \ba{S^{z}} \]
+% Which have the non-linear implicit equation for $B_m$ in terms of $B$.
+% \[ B_m = \f{\s J z}{2} \tanh \bs{\f{\br{B+B_m}}{2k_B T}} \]
+% Evidently, the molecular magnetic field will depend on the temperature $T$ and external magnetic field $B$. Alternatively, we can use this to find the expectation $\ba{S^{z}} \defined M$ as the \term{macroscopic magnetization per atom},
+% \[ M = \f12 \tanh \bs{\f{B + \s J z M}{2 k_B T}} \eq \label{eq:main_magnetization_equation} \]
+
+Begin with the Heisenberg model for many interacting spins $\bc{\ve S_i}$ ($i \in \bc{1,\ldots,N}$) subjected to an external magnetic field $\ve B$,
+\[ H = -\f{1}{2} \s J \sum_{\ba{ij}} {\ve S_i \cdot \ve S_j} - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \eq \label{eq:heisenberg_model}\]
+where $\ba{ij}$ indicates the sum is over nearest neighbor spins,
+\[ \ba{ij} \defined \bc{\br{i,j} \in \bc{1,\ldots,N}^{2} \mid \text{$i$ and $j$ are nearest neighbors}} \]
+the factor of $1/2$ avoids double-counting the interactions, the exchange integral $\s J$ is treated as a constant, $g$ is the spin g-factor of the electrons, and $\mu_B$ is the magnetic moment coupling constant.\\
+
+Performing a mean-field approximation, we assert that the spins $\ve S_i$ variation (specifically $\ve S_i - \ba{\ve S_i}$) is small.
+\[ \ve S_i = \ba{\ve S_i} + \s O \br{\ve S_i^2} \]
+This permits us to write $\ve S_i \cdot \ve S_j$ in a form that exploits this mean-field theory approximation,
+\begin{align*}
+\ve S_i \cdot \ve S_j
+&= \br{\ve S_i - \ba{\ve S_i} + \ba{\ve S_i}} \cdot \br{\ve S_j - \ba{\ve S_j} + \ba{\ve S_j}} \\
+&= \br{\ve S_i - \ba{\ve S_i}} \cdot \br{\ve S_j - \ba{\ve S_j}} + \ve S_i \cdot \ba{\ve S_j} + \ve S_j \cdot \ba{\ve S_i} - \ba{\ve S_i} \cdot \ba{\ve S_j}
+\end{align*}
+Neglecting $\br{\ve S_i - \ba{\ve S_i}} \cdot \br{\ve S_j - \ba{\ve S_j}}$ as it is quadratic in the assumed small spin deviation, we obtain,
+\[ H = -\f{1}{2} \s J \sum_{\ba{ij}} \bc{\ve S_i \cdot \ba{\ve S_j} + \ve S_j \cdot \ba{\ve S_i} - \ba{\ve S_i} \cdot \ba{\ve S_j}} - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \eq \label{eq:mmf_heisenberg_model_init}\]
+Finally, make the approximation that each of the spins shared the same expectation,
 \[ \ba{\ve S_i} = \ba{\ve S_j} = \ba{\ve S} \]
-Essentially $\ve S_i$ is independent of $i$. Our approximations have let us to the following Hamiltonian,
-\[ H = -\f{1}{2} \s J \sum_{\ba{ij}} \bs{\ve S_i \cdot \ba{\ve S} + \ve S_j \cdot \ba{\ve S}} - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \]
-Re-organizing the double counting,
-\[ H = -\s J \sum_{\ba{ij}} \ve S_i \cdot \ba{\ve S} - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \]
-Define the \term{z-coordination number} as the number of nearest neighbors for a given site $i$. We do this because the first summand is independent of $j$ which yields $z$ identical terms. Therefore,
-\[ H = -\s J z \ba{\ve S} \cdot \sum_{i} \ve S_i  - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \]
-We define the effective spin magnetic field as the \term{molecular field $\ve B_m$},
-\[ \ve B_m = J z \ba{\ve S} \eq \label{eq:Bm_Defined}\]
-While we redefine the true magnetic field to absorb the coefficients,
-\[ g \mu_B \ve B \mapsto \ve B \]
-Thus,
-\[ H = -\br{\ve B + \ve B_m} \cdot \sum_{i} \ve S_i \eq \label{eq:effect_molecular_magnetic_field} \]
+\[ H = -\f{1}{2} \s J \sum_{\ba{ij}} \bc{\ve S_i \cdot \ba{\ve S} + \ve S_j \cdot \ba{\ve S} - \ba{\ve S} \cdot \ba{\ve S}} - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \eq \label{eq:mmf_heisenberg_model_same_exp}\]
+Noticing that each term in the summand of the $\s J$ term only depends on at most one index (either $i$ or $j$ or neither), we define the \term{$z$-coordination number} as the number of nearest neighbors for each atomic site $i$,
+\[ z_i = \# \bc{\br{k, j} \in \bc{1,\ldots,N}^2 \mid \br{k,j} \in \ba{ij}} \]
+and then assume that the lattice structure is such that $z_i = z$ is independent of $i$. Therefore \cref{eq:mmf_heisenberg_model_same_exp} becomes,
+\[ H = -\f{1}{2} \s J z \ba{\ve S} \cdot \sum_{i} \bc{2\ve S_i - \ba{\ve S}} - g \mu_{B} \ve B \cdot \sum_{i} \ve S_i \eq \label{eq:mmf_heisenberg_model_z_coord} \]
+
+At this stage it is notationally convenient to re-label a number of terms in this expression. The first is to renormalize the overall Hamiltonian by a constant,
+\[ H \mapsto H - \f{1}{2}\s J zN \ba{\ve S}^2  \]
+The second is to modify the units of $\ve B$ in order to eliminate the constants $g \mu_B$,
+\[ \ve B \mapsto \f{1}{g \mu_{B}} \ve B \]
+Therefore our Heisenberg model (\cref{eq:mmf_heisenberg_model_z_coord}) under these modifications becomes,
+\[ H = - \br{\s J z \ba{\ve S} + \ve B} \cdot \sum_{i} \ve S_i \eq \label{eq:mmf_heisenberg_model} \]
+Where $\ve B_m \defined \s J z \ba{\ve S}$ can be regarded as the \term{molecular magnetic field} generated by the spins of the material. Without loss of generality, fix the external magnetic field in the $\hat z$ direction ($\ve B = B \hat z$). Subject to this field, the energy of the system is minimized when $\ve B_m$ aligns in the same direction as $\ve B$ ($\ba{\ve S} \to \ba{S^z}\hat z$). Therefore we obtain,
+\[ H = - \br{\s J z \ba{S^z} + B} \sum_{i} S_i^z \]
 Recall that in \cref{eq:Heisenberg_model} we have the following terms,
 \[ H \sim - \f{1}{2}\s J \sum_{\ba{ij}} \ve S_i \cdot \ve S_j \]
-which possesses a symmetry with respect to an arbitrary rotations of all the spins. Therefore there is no preferred direction to the spin system in the absence of magnetic fields. However a particular direction is chosen subjected to the magnetic field $\ve B$. This is an example of \term{spontaneously broken symmetry} in which the arbitrary direction is chosen spontaneously. In regard to \cref{eq:effect_molecular_magnetic_field}, the energy is minimized when the spins are aligned and $\sum_i \ve S_i$ is maximized. If we choose the external magnetic field $\ve B$ to point in the $\hat z$ direction $\ve B = B \hat z$ we can conclude that the molecular magnetic field aligns itself in the same direction,
-\[ \ve B_m = B_m \hat z \]
-Therefore \cref{eq:effect_molecular_magnetic_field} simplifies,
-\[ H = -\br{B + B_m} \cdot \sum_{i} S_i^z \]
-At zero temperature, the spins will tend toward the minimal energy state when corresponds to the spins aligning with $S_i^z = \f12$. However at finite temperature,
-\[ \ba{S^z} = \f{\sum_{S^{z} = \pm 1/2} S^{z}e^{-\f{H_i}{k_B T}}}{\sum_{S^{z} = \pm 1/2} e^{-\f{H_i}{k_B T}}} \]
-Where $H_i$ is an individual Hamiltonian,
-\[ H_i = -\br{B + B_m} S_i^{z} \]
+which possesses a symmetry with respect to an arbitrary rotations of all the spins. Therefore there is no preferred direction to the spin system in the absence of magnetic fields. However a particular direction is chosen subjected to the magnetic field $\ve B$. This is an example of \term{spontaneously broken symmetry} in which the arbitrary direction is chosen spontaneously. In regard to \cref{eq:mmf_heisenberg_model}, minimizing the energy of the system also forces $\sum_i S_i^z$ to become maximized (i.e. the spins all aligning in the same direction $S_i^z = \f12, \forall i$). However the minimal energy configuration is only accessible when the temperature $T$ is exactly zero. At finite temperature, each spin has a variety of accessible spin states $S_i^{z} \in \s S \defined \bc{-\f12, +\f12}$. Since $\ba{S^z}$ has be assumed to be the same for each site $i$, a finite temperature $T$ modifies $S_i^{z}$ such that $H_i \defined - \br{\s J z \ba{S^z} + B} S_i^z$ is increased (by decreasing $S_i^{z}$) in accordance with the increase $T$ in a manner independent of $i$. Therefore one can construct a partition function for the accessible spins states $\s S$ which will take on the same form for each $S_i^z$,
+\[ Z \defined \sum_{S^z \in \s S} \exp\bs{-\f{H}{k_BT}} = \sum_{S^z \in \s S} \exp\bs{\f{\br{B_m + B} S^{z}}{k_BT}} \eq \label{eq:partition}\]
+Therefore the spin expectation will be,
+\[ \ba{S^z} = \f{1}{Z} \sum_{S^z \in \s S} S^z \exp\bs{\f{\br{B_m + B} S^{z}}{k_BT}} \eq \label{eq:partition_expectation}\]
 Explicitly,
-\[ \ba{S^z} = \f{\sum_{S^{z} = \pm 1/2} S^{z}e^{\f{\br{B+B_m}S^{z}}{k_B T}}}{\sum_{S^{z} = \pm 1/2} e^{\f{\br{B+B_m}S^{z}}{k_B T}}} \]
-\[ \ba{S^z} = \f{1}{2}\f{e^{\f{\br{B+B_m}}{2k_B T}} - e^{-\f{\br{B+B_m}}{2k_B T}}}{e^{\f{\br{B+B_m}}{2k_B T}} + e^{-\f{\br{B+B_m}}{2k_B T}}} \]
-Recognize the hyperbolic trigonometric formulas,
-\[ \ba{S^z} = \f{1}{2}\f{\cosh \f{\br{B+B_m}}{2k_B T}}{\sinh \f{\br{B+B_m}}{2k_B T}} = \f12 \tanh \bs{\f{\br{B+B_m}}{2k_B T}} \]
-Recalling \cref{eq:Bm_Defined},
-\[ B_m = J z \ba{S^{z}} \]
-Which have the non-linear implicit equation for $B_m$ in terms of $B$.
-\[ B_m = \f{\s J z}{2} \tanh \bs{\f{\br{B+B_m}}{2k_B T}} \]
-Evidently, the molecular magnetic field will depend on the temperature $T$ and external magnetic field $B$. Alternatively, we can use this to find the expectation $\ba{S^{z}} \defined M$ as the \term{macroscopic magnetization per atom},
-\[ M = \f12 \tanh \bs{\f{B + \s J z M}{2 k_B T}} \]
-In order to study \textit{spontaneous} magnetization, we set the external field $\ve B$ to zero such that,
-\[ M = \f12 \tanh \bs{\f{\s J z M}{2 k_B T}} \eq \label{eq:magnetization_M}\]
+\[ Z = \exp\bs{-\f{{B_m + B}}{2k_BT}} + \exp\bs{\f{{B_m + B}}{2k_BT}} = 2 \cosh\bs{\f{{B_m + B}}{2k_BT}} \]
+\[ \ba{S^z} = \f{1}{Z} \bc{\f12 \exp\bs{\f{{B_m + B}}{2k_BT}} -\f12 \exp\bs{-\f{{B_m + B}}{2k_BT}}} = \f{1}{2Z} 2 \sinh\bs{\f{{B_m + B}}{2k_BT}} = \f12 \tanh\bs{\f{B_m + B}{2k_B T}} \]
+Therefore the macroscopic magnetization per atom $M \defined \ba{S^{z}}$ must satisfy the following implicit formula,
+\[ M = \f12 \tanh\bs{\f{\s J z M + B}{2k_B T}} \eq \label{eq:main_magnetization_equation} \]
+In order to study \textit{spontaneous} magnetization, we set the external field $\ve B$. In the absence of an external magnetic field $\ve B = \ve 0$, we assume that there material magnetizes spontaneously (and spontaneously breaks rotation symmetry) if and only if \cref{eq:main_magnetization_equation} has a solution for the given temperature $T$.
+\[ M = \f12 \tanh\bs{\f{\s J z M}{2k_B T}} \eq \label{eq:magnetization_M}\]
+For visualization, consider a re-scaling of the temperature parameter $\s T \defined \f{2 k_B T}{\s J z}$ such that \cref{eq:magnetization_M} becomes,
+\[ M = \f12 \tanh\bs{\f{M}{\s T}} \eq \label{eq:1_solution_point} \]
+When plotted, the solutions (or absence of solutions becomes clearer). Since $\tanh \br{0} = 0$, there is always a solution of $M = 0$ at all temperatures. If the slope of the RHS of \cref{eq:1_solution_point} is ever greater than a slope of $1$, there are two non-trivial solutions $M = \pm M_0$. This transition between no magnetization and magnetization is a phase transition and occurs at a \term{critical temperature} of $\s T_c = 1$ which corresponds to,
+\[ 1 = \der{}{M} \bc{\f{1}{2}\tanh\bs{\f{M}{\s T}}} \bigg|_{M = 0} = {\f{1}{2\s T}\text{sech}^2\bs{\f{M}{\s T}}} \bigg|_{M = 0} = \f{1}{2 \s T} \implies \s T_c = \f12 \implies T_c = \f{\s J z}{4 k_B}\]
 \begin{center}
     \begin{tikzpicture}
         \draw[thick, ->] (-4, 0) -- (+4, 0) node[right]{$M$};
-        \draw[thick, ->] (0, -4) -- (0, +4) node[above]{$\tanh\f{\s J z M}{2 k_B T}$};
-        \draw[thick, scale=1.0,domain=-1.5:1.5,smooth,variable=\M,red   ] plot ({\M},{2*\M}) node[above]{$2M$};
-        \draw[thick, scale=1.0,domain=-3:3,smooth,variable=\M,blue  ] plot ({\M},{2*tanh(2*\M)}) node[above right]{$\f{\s J z}{2 k_B T} = 2$};
-        \draw[thick, scale=1.0,domain=-3:3,smooth,variable=\M,purple] plot ({\M},{2*tanh(1*\M)}) node[right]{$\f{\s J z}{2 k_B T} = 1$};
-        \draw[thick, scale=1.0,domain=-3:3,smooth,variable=\M,green ] plot ({\M},{2*tanh(1/2*\M)}) node[below right]{$\f{\s J z}{2 k_B T} = 1/2$};
-        \draw[gray, dashed] (+1,0) node[below]{$M_0$} -- (+1,+2);
-        \draw[gray, dashed] (-1,0) node[above]{$M_0$} -- (-1,-2);
-        \draw[gray, dashed] (+4, +2) -- node[above left]{$1$} (-4, +2);
-        \draw[gray, dashed] (+4, -2) -- node[below right]{$-1$} (-4, -2);
+        \draw[thick, ->] (0, -3) -- (0, +3) node[above]{$\f12\tanh\f{M}{\s T}$};
+        \draw[thick,domain=-3:3,smooth,variable=\M,black,dashed] plot ({\M},{\M}) node[above]{$M$};
+        \draw[thick,domain=-4:4,smooth,variable=\M,green] plot ({\M},{4*0.5*tanh(1/2 * \M)}) node[right]{$\s T = \s T_c$};
+        \draw[thick,domain=-4:4,smooth,variable=\M,blue ] plot ({\M},{4*0.5*tanh(1/3 * \M)}) node[right]{};
+        \draw[thick,domain=-4:4,smooth,variable=\M,blue ] plot ({\M},{4*0.5*tanh(1/8 * \M)}) node[right]{$\s T \to \inf$};
+        \draw[thick,domain=-4:4,smooth,variable=\M,red  ] plot ({\M},{4*0.5*tanh(3/4 * \M)}) node[right]{};
+        \draw[thick,domain=-4:4,smooth,variable=\M,red  ] plot ({\M},{4*0.5*tanh(2   * \M)}) node[above]{$\s T \to 0$};
+        \draw[dashed] (+1.7,0) node[below]{$M_0$} -- (+1.7,+2);
+        \draw[] (1.7+0.1,1.7) arc (0:360:0.1);
+        \draw[dashed] (-1.7,0) node[above]{$M_0$} -- (-1.7,-2);
+        \draw[] (-1.7+0.1,-1.7) arc (0:360:0.1);
+        \draw[dashed] (+4, +2) -- node[above right]{$+\f12$} (-4, +2);
+        \draw[dashed] (+4, -2) -- node[below right]{$-\f12$} (-4, -2);
     \end{tikzpicture}
 \end{center}
-Evidently there are at most $3$ solutions depending on the temperature. There are three solutions if the slope of $\tanh \f{\s J z M}{2 k_B T}$ is greater than $1$ at $M = 0$. Using a Taylor series,
-\[ \tanh x \simeq x \]
-The slope of $\f12\tanh \br{\f{\s J z M }{2 k_B T}}$ near $M=0$ is simply,
-\[ \f{\s J z}{4 k_B T} \]
-This defines a \term{critical temperature},
-\[ \f{\s J z}{4 k_B T} > 1 \implies \f{\s J z}{4 k_B T_c} = 1 \implies T_c = \f{\s J z}{4 k_B} \]
-Which distinguishes two different phases,
+
+The critical temperature distinguishes two different phases of the material,
 \begin{itemize}
     \item $T < T_c$ ferro-magnetism
     \item $T < T_c$ no ferro-magnetism
@@ -2188,6 +2238,103 @@ The divergence of susceptibility is an example of non-analytic behaviour in a re
 \end{tikzpicture}
 \end{center}
 The susceptibility $\chi$ diverges at $T = T_c$ because when $T < T_c$ we have spontaneous magnetization ($M \neq 0$) even in the absence of $B = 0$.
+
+\subsection{Arbitrary Spin Systems}
+
+In \label{sec:mft}, we performed mean-field theory analysis on the Heisenberg model \cref{eq:heisenberg_model} where the accessible spin states for the electrons formed the smallest possible set $\s S = \bc{-\f12, +\f12}$ which were the possible $S^{z}$ values for a particle with intrinsic spin of $S = \f12$. Instead we consider a particle with intrinsic spin $S \in \bc{0, \f12, 1, \f32, 2, \ldots}$ such that,
+\[ \s S = \bc{-S, -S + 1, \ldots, S - 1, S} \]
+Of course we can immediately disregard the trivial case of $S = 0$ whereby there is no magnetization because the Heisenberg model is trivially zero. \\
+
+Returning to the partition function \cref{eq:partition},
+\[ Z = \sum_{S^z \in \s S} \exp\bs{-\f{H}{k_BT}} = \sum_{S^z \in \s S} \exp\bs{\f{\br{B_m + B} S^{z}}{k_BT}} \]
+Explicitly if we let $k$ be an index associated with the sum over spins defined such that $k = \s S + S$,
+\[ k \in \bc{0, 1, \ldots, 2S - 1, 2S} \]
+Also let $\eta \defined \exp\bs{\f{\br{B_m + B}}{k_BT}}$,
+\begin{align*}
+Z
+&= \sum_{S^z \in \s S} \exp\bs{\f{\br{B_m + B} S^{z}}{k_BT}} \\
+&= \sum_{k = 0}^{2S} \eta^{\br{k - S}} \\
+&= \sum_{k = 0}^{2S} \eta^{k} \eta^{-S} \\
+&= \f{1}{\eta^{S}}\sum_{k = 0}^{2S} \eta^{k} \\
+&= \f{1}{\eta^{S}}\br{\sum_{k = 0}^{\inf} \eta^{k} - \sum_{k = 2S}^{\inf} \eta^{k}} \\
+&= \f{1}{\eta^{S}}\br{\sum_{k = 0}^{\inf} \eta^{k} - \eta^{2S}\sum_{k = 2S+1}^{\inf} \eta^{k - 2S}} \\
+&= \f{1}{\eta^{S}}\br{\sum_{k = 0}^{\inf} \eta^{k} - \eta^{2S+1}\sum_{k = 0}^{\inf} \eta^{k}} \\
+&= \f{1- \eta^{2S+1}}{\eta^{S}}\sum_{k = 0}^{\inf} \eta^{k}
+\end{align*}
+Ignoring the fact that $\abs{\eta} = \abs{\exp\bs{\f{\br{B_m + B}}{k_BT}}} \not < 1$, we can make use of the geometric series (confident that the expression is convergent because the original sum was finite),
+\[ Z = \f{1- \eta^{2S+1}}{\eta^{S}\br{1 - \eta}} \eq \label{eq:derivative} \]
+Additionally we may make use of an arithmetic series to derive the expectation value $\ba{S^{z}}$ (analogous to \cref{eq:partition_expectation}),
+\[ \ba{S^z} = \f{1}{Z} \sum_{S^z \in \s S} S^z \exp\bs{\f{\br{B_m + B} S^{z}}{k_BT}} = \f{1}{Z} \sum_{k = 0}^{2S} \br{k - S} \eta^{k - S}\]
+\begin{align*}
+    \ba{S^z}
+    &= \f{1}{Z} \sum_{k = 0}^{2S} \br{k - S} \eta^{k - S} \\
+    &= \f{1}{Z\eta^{S}} \bc{\sum_{k = 0}^{2S} k \eta^{k} - S\sum_{k = 0}^{2S} \eta^{k}} \\
+    &= \f{1}{Z\eta^{S}} \bc{\sum_{k = 0}^{2S} k \eta^{k} - S \eta^{S} Z} \\
+    &= \f{1}{Z\eta^{S}} \bc{\eta\sum_{k = 0}^{2S} k \eta^{k-1} - S\eta^{S}Z} \\
+    &= \f{1}{Z\eta^{S}} \bc{\eta\sum_{k = 0}^{2S} \der{\eta^{k}}{\eta} - S\eta^{S}Z} \\
+    &= \f{1}{Z\eta^{S}} \bc{\eta\der{}{\eta}\sum_{k = 0}^{2S} \eta^{k} - S\eta^{S}Z} \\
+    &= \f{1}{Z\eta^{S}} \bc{\eta\der{}{\eta}\br{\eta^{S}Z} - S\eta^{S}Z}
+\end{align*}
+Taking the derivative of \cref{eq:derivative},
+\begin{align*}
+\der{}{\eta}\br{\eta^{S}Z}
+&= \der{}{\eta}\bc{\eta^{S}\f{1- \eta^{2S+1}}{\eta^{S}\br{1 - \eta}}} \\
+&= \der{}{\eta}\bc{\br{1- \eta^{2S+1}}\br{1 - \eta}^{-1}} \\
+&= - \br{2S+1}\eta^{2S}\br{1 - \eta}^{-1} + \br{1- \eta^{2S+1}}\br{1 - \eta}^{-2} \\
+\end{align*}
+Therefore,
+\[ \eta\der{}{\eta}\br{\eta^{S}Z} - S\eta^{S}Z = - \br{2S+1}\eta^{2S+1}\br{1 - \eta}^{-1} + \eta\br{1- \eta^{2S+1}}\br{1 - \eta}^{-2} - S\br{1- \eta^{2S+1}}\br{1 - \eta}^{-1}  \]
+\[ \ba{S^z} = \f{1}{Z\eta^{S}}\bc{- \br{2S+1}\eta^{2S+1}\br{1 - \eta}^{-1} + \eta\br{1- \eta^{2S+1}}\br{1 - \eta}^{-2} - S\br{1- \eta^{2S+1}}\br{1 - \eta}^{-1}}  \]
+\[ \ba{S^z} = \f{1}{Z\eta^{S} \br{1 - \eta}^2}\bc{- \br{2S+1}\eta^{2S+1}\br{1 - \eta} + \eta\br{1- \eta^{2S+1}} - S\br{1- \eta^{2S+1}}\br{1 - \eta}}  \]
+\[ \ba{S^z} = \f{1}{Z\eta^{S} \br{1 - \eta}^2}\bc{2S\eta^{2S+1}\br{\eta-1} - \eta^{2S+1}\br{1 - \eta} + \eta\br{1- \eta^{2S+1}} + S\br{1- \eta^{2S+1}}\br{\eta - 1}}  \]
+\[ \ba{S^z} = \f{1}{Z\eta^{S} \br{1 - \eta}^2}\bc{- \br{\eta^{2S+1} - \eta^{2S+2}} - \br{\eta^{2S+2} - \eta} + S\br{1 + \eta^{2S+1}}\br{\eta - 1}}  \]
+% Therefore
+% \[ \ba{S^z} = \f{1}{Z\eta^{S}} \bc{\f{\eta}{1 - \eta} \br{Z-S\eta^{-S-1} - S\eta^{S} - \eta^{S}}  - SZ} \]
+% \[ \ba{S^z} = \f{1}{Z\eta^{S}} \bc{\f{\br{2 S \br{\eta-1} - \eta \br{\eta^{2S} - 1}}}{\eta^{S}\br{1 - \eta}^2}} \]
+% \[ \ba{S^z} = \f{\br{1 - \eta}}{1- \eta^{2S+1}}\bc{\f{\br{2 S \br{\eta-1} - \eta \br{\eta^{2S} - 1}}}{\eta^{S}\br{1 - \eta}^2}} \]
+% \[ \ba{S^z} = \f{2 S \br{\eta-1} - \eta \br{\eta^{2S} - 1}}{\eta^{S}\br{1- \eta^{2S+1}}\br{1 - \eta}} \]
+% \[ \ba{S^z} = \f{2 S \eta - 2S - \eta^{2S+1} + \eta}{\eta^{S}\br{1- \eta^{2S+1}}\br{1 - \eta}} \]
+% By choosing $x = \f{\br{B_m + B}}{k_BT}$ we have $\eta = e^{x}$. Moreover,
+% \[ \eta^{S} + \eta^{-S} = e^{Sx} + e^{-Sx} = 2 \cosh \br{Sx} \]
+% \[ \eta^{S} - \eta^{-S} = e^{Sx} - e^{-Sx} = 2 \sinh \br{Sx} \]
+% \[ Z = \f{\eta^{S} - \eta^{-S}}{\eta - 1} = 2 \f{\sinh \br{Sx}}{e^{x} - 1} \]
+% ---
+% \[ \ba{S^z} = \f{1}{Z\eta^{S}} \bc{\f{S\br{\eta-1}\br{\eta^{2S+1} + 1}}{\br{1 - \eta}^2} - \f{\eta\br{\eta^{2S} - 1}}{\br{1 - \eta}^2}} \]
+\[ \ba{S^z} = \f{1}{Z\eta^{S}} \f{S\br{\eta-1}\br{\eta^{2S+1} + 1} - \eta\br{\eta^{2S} - 1}}{\br{1 - \eta}^2} \]
+\[ \ba{S^z} = \f{1}{Z\eta^{S}} \f{S\br{\eta^{2S+2} + \eta - \eta^{2S+1} - 1} + \br{\eta - \eta^{2S+1}}}{\br{1 - \eta}^2} \]
+\[ \ba{S^z} = \f{S\br{\eta^{2S+2} + \eta - \eta^{2S+1} - 1} + \br{\eta - \eta^{2S+1}}}{\br{\eta^{2S+1} - 1}\br{\eta - 1}} \]
+\[ \ba{S^z} = \f{S\br{\eta^{2S+2} + \eta - \eta^{2S+1} - 1} + \f{1}{2}\br{\eta^{2S+2} + \eta - \eta^{2S+1} - 1 - \eta^{2S+2} + \eta - \eta^{2S+1} + 1}}{\br{\eta^{2S+1} - 1}\br{\eta - 1}} \]
+\[ \ba{S^z} = \f{\f{2S+1}{2}\br{\eta^{2S+2} + \eta - \eta^{2S+1} - 1} - \f{1}{2}\br{\eta^{2S+2} - \eta + \eta^{2S+1} - 1}}{\br{\eta^{2S+1} - 1}\br{\eta - 1}} \]
+\[ \ba{S^z} = \f{\f{2S+1}{2}\br{\eta^{2S+1} + 1}\br{\eta - 1} - \f{1}{2}\br{\eta^{2S+1} - 1}\br{\eta + 1}}{\br{\eta^{2S+1} - 1}\br{\eta - 1}} \]
+\[ \ba{S^z} = \f{2S+1}{2} \f{\br{\eta^{2S+1} + 1}\br{\eta - 1}}{\br{\eta^{2S+1} - 1}\br{\eta - 1}} - \f{1}{2} \f{\br{\eta^{2S+1} - 1}\br{\eta + 1}}{\br{\eta^{2S+1} - 1}\br{\eta - 1}} \]
+\[ \ba{S^z} = \f{2S+1}{2} \f{\eta^{2S+1} + 1}{\eta^{2S+1} - 1} - \f{1}{2} \f{\eta + 1}{\eta - 1} \]
+Defining $\chi$ such that $\eta = e^{\chi}$,
+\[ \ba{S^z} = \f{2S+1}{2} \f{e^{\br{2S+1} \chi} + 1}{e^{\br{2S+1} \chi} - 1} - \f{1}{2} \f{e^{\chi} + 1}{e^{\chi} - 1} \]
+\[ \ba{S^z} = \f{2S+1}{2} \coth \br{\f{2S+1}{2} \chi} - \f{1}{2} \coth \br{\f{1}{2} \chi} \]
+\[ \ba{S^z} = S B_S\br{S \chi} \]
+Where $B_S\br{x}$ is the Brillouin function,
+\[ B_S \br{x} \defined \f{2S+1}{2S} \coth\br{\f{2S+1}{2S} x} - \f{1}{2S} \coth\br{\f{1}{2S} x} \]
+Therefore analogously to \cref{eq:main_magnetization_equation} the magnetization $M \defined \ba{S^z}$ must satisfy the following equation,
+\[ M = S B_S \br{\f{S\br{\s J z M + B}}{k_B T}} \]
+In the absence of an external magnetic field we have (letting $\s T = k_B T / \s J z$),
+\[ M = S B_S \br{\f{SM}{\s T}} \]
+Since $\coth\br{x} = - \coth\br{-x}$ is odd symmetric, we have that,
+\[ S B_S \br{\f{SM}{\s T}} = -S B_S \br{\f{S\br{-M}}{\s T}} \]
+Therefore we can restrict our focus to potential solutions where $M \geq 0$ being confident that a negative $M$ solution exists as well. Next,
+\[ S B_S \br{\f{SM}{\s T}} = \f{2S+1}{2} \coth \br{\f{2S+1}{2S} \f{M}{\s T}} - \f{1}{2} \coth \br{\f{1}{2S} \f{M}{\s T}} \]
+For $M \geq 0$,
+\[ S B_S \br{\f{SM}{\s T}} \geq \f{1}{2} \coth \br{\f{2S+1}{2S} \f{M}{\s T}} - \f{1}{2} \coth \br{\f{1}{2S} \f{M}{\s T}} \]
+\[ S B_S \br{\f{SM}{\s T}} \geq \f{1}{2} \coth \br{\f{1}{2S} \f{M}{\s T}} - \f{1}{2} \coth \br{\f{1}{2S} \f{M}{\s T}} \]
+\[ S B_S \br{\f{SM}{\s T}} \geq 0 \]
+Finally,
+\[ \der{}{\s M} \br{S B_S \br{\f{SM}{\s T}}} = \der{}{\s M}\bc{\f{2S+1}{2} \coth \br{\f{2S+1}{2S} \f{M}{\s T}} - \f{1}{2} \coth \br{\f{1}{2S} \f{M}{\s T}}} \]
+\[ \der{}{\s M} \br{S B_S \br{\f{SM}{\s T}}} = -\f{2S+1}{2}\f{2S+1}{2S\s T}\text{csch}^2\br{\f{2S+1}{2S} \f{M}{\s T}} + \f{1}{2} \f{1}{2S\s T} \text{csch}^2 \br{\f{1}{2S} \f{M}{\s T}} \]
+Since $\der{}{\s M} \br{S B_S \br{\f{SM}{\s T}}}$ as positive $M > 0$ solution exists if and only if $S B_S \br{\f{SM}{\s T}}$ has slope greater than $1$ at $M = 0$. This defines the critical temperature.
+\[ \der{}{\s M} \br{S B_S \br{\f{SM}{\s T}}} \Bigg|_{M = 0} = \lim_{M \to 0^{+}} \bc{-\f{2S+1}{2}\f{2S+1}{2S\s T}\text{csch}^2\br{\f{2S+1}{2S} \f{M}{\s T}} + \f{1}{2} \f{1}{2S\s T} \text{csch}^2 \br{\f{1}{2S} \f{M}{\s T}} } \]
+\[ \der{}{\s M} \br{S B_S \br{\f{SM}{\s T}}} \Bigg|_{M = 0} = \f{S \br{S+1}}{3 \s T} \]
+\[ \s T_c = \f{S \br{S+1}}{3} \implies T_c = \f{\s J z}{k_B} \f{S \br{S+1}}{3} \]
+Which for $S = 1/2$ we recover the usual $T_c = \f{\s J z}{4k_B}$.
+
 \subsection{Mean-field Theory and Helmholtz Free Energy}
 In the previous section (\cref{sec:mft}), we analyzed the mean-field theory approximation to the Heisenberg model $H$,
 \[ H = -\f12 \s J \sum_{\ba{ij}} \ve S_i \cdot \ve S_j \]
@@ -2325,32 +2472,121 @@ Therefore the free-energy should penalize non-uniformity in $\ve M$,
 Where $\rho >0$ is some unknown positive constant. This forms the starting point for an \textit{improved} Landau theory. Calculating critical exponents under the above theory is complicated. Even if we could calculate critical exponents using \cref{eq:improve_landau}, this would still be an incomplete theory for ferro-magnetism. \Cref{eq:improve_landau} still implies that any material at sufficiently low temperatures $T<T_c$ would become a ferromagnet. However not all materials become ferromagnets in this way. The failure of \cref{eq:improve_landau} is that is still does not encapsulate the idea that the electrons which carry the spins (elementary magnetic moments). Therefore we need to take into account the itinerant character of the electrons. The model that accomplishes this is called the \term{Hubbard model}. The kinetic energy terms of the Hubbard model are,
 \[ H\tsb{kin} = - t \sum_{\ba{ij}\si} \br{\ket{i \si}\bra{j\si} + \ket{j \si}\bra{i \si}}  \eq\label{eq:hubbard_model_kin}\]
 where $t$ is now the usual tunneling constant of an electron traveling through a material (as we invoked frequently in \cref{sec:structure_topological}). Additionally we need to characterize the long-range interactions between spins. This however if too difficult so we approximate the interactions to only be short range. Simplifying for one orbital per atom,
-\[ H\tsb{int} = U \sum_{i} n_{i \uparrow}n_{i \downarrow} \eq\label{eq:hubbard_model_int}\]
-with $n_{i, \si}$ denotes the number operator for the number of atoms localized to atom $i$ with spin $\si$. Terms of the form $n_{i \uparrow}n_{i \uparrow}$ are not present due to the Pauli exclusion principle. The Hubbard model is simply \cref{eq:hubbard_model_kin} combined with \cref{eq:hubbard_model_int},
-\[ H = - t \sum_{\ba{ij}\si} \br{\ket{i \si}\bra{j\si} + \ket{j \si}\bra{i \si}} + U \sum_{i} n_{i \uparrow}n_{i \downarrow} \eq \label{eq:hubbard_ham} \]
+\[ H\tsb{int} = U \sum_{i} n_{i \uu}n_{i \dd} \eq\label{eq:hubbard_model_int}\]
+with $n_{i, \si}$ denotes the number operator for the number of atoms localized to atom $i$ with spin $\si$. Terms of the form $n_{i \uu}n_{i \uu}$ are not present due to the Pauli exclusion principle. The Hubbard model is simply \cref{eq:hubbard_model_kin} combined with \cref{eq:hubbard_model_int},
+\[ H = - t \sum_{\ba{ij}\si} \br{\ket{i \si}\bra{j\si} + \ket{j \si}\bra{i \si}} + U \sum_{i} n_{i \uu}n_{i \dd} \eq \label{eq:hubbard_ham} \]
 Even this extremely simple model cannot be solved exactly (doing so would certainly yield a Nobel prize in physics). We perform mean-field theory approximations in $n_{i,\si}$,
 \[ n_{i\si} = \ba{n_{i\si}} + n_{i\si} - \ba{n_{i\si}} \]
 Therefore,
-\[ n_{i \uparrow}n_{i\downarrow} = \br{\ba{n_{i\uparrow}} + n_{i\uparrow} - \ba{n_{i\uparrow}}} \br{\ba{n_{i\downarrow}} + n_{i\downarrow} - \ba{n_{i\downarrow}}} \]
-\[ n_{i \uparrow}n_{i\downarrow} = \br{n_{i\uparrow} - \ba{n_{i\uparrow}}}\br{n_{i\downarrow} - \ba{n_{i\downarrow}}} + n_{i \uparrow} \ba{n_{i \downarrow}} + n_{i \downarrow}\ba{n_{i \uparrow}} + \ba{n_{i \uparrow}}\ba{n_{i \downarrow}} - 2\ba{n_{i \uparrow}}\ba{n_{i \downarrow}} \]
+\[ n_{i \uu}n_{i\dd} = \br{\ba{n_{i\uu}} + n_{i\uu} - \ba{n_{i\uu}}} \br{\ba{n_{i\dd}} + n_{i\dd} - \ba{n_{i\dd}}} \]
+\[ n_{i \uu}n_{i\dd} = \br{n_{i\uu} - \ba{n_{i\uu}}}\br{n_{i\dd} - \ba{n_{i\dd}}} + n_{i \uu} \ba{n_{i \dd}} + n_{i \dd}\ba{n_{i \uu}} + \ba{n_{i \uu}}\ba{n_{i \dd}} - 2\ba{n_{i \uu}}\ba{n_{i \dd}} \]
 Once again we assume that the fluctuations are small,
-\[ n_{i \uparrow}n_{i\downarrow} = n_{i \uparrow} \ba{n_{i \downarrow}} + n_{i \downarrow}\ba{n_{i \uparrow}} - \ba{n_{i \uparrow}}\ba{n_{i \downarrow}} \]
+\[ n_{i \uu}n_{i\dd} = n_{i \uu} \ba{n_{i \dd}} + n_{i \dd}\ba{n_{i \uu}} - \ba{n_{i \uu}}\ba{n_{i \dd}} \]
 Now we let $n$ denote the average number of electrons per atom (here we assume that this number is uniform $n_i = n$),
-\[ n = \ba{n_{i \uparrow}} + \ba{n_{i \downarrow}} \]
+\[ n = \ba{n_{i \uu}} + \ba{n_{i \dd}} \]
 We define the \term{degree of spin polarization} $\xi$ such that,
-\[ \xi \defined \f{\ba{n_{i \uparrow}} - \ba{n_{i \downarrow}}}{\ba{n_{i \uparrow}} + \ba{n_{i \downarrow}}} \]
-\[ \ba{n_{i\uparrow}} = n \f{1 + \xi}{2} \qquad \ba{n_{i\downarrow}} = n \f{1 - \xi}{2} \]
+\[ \xi \defined \f{\ba{n_{i \uu}} - \ba{n_{i \dd}}}{\ba{n_{i \uu}} + \ba{n_{i \dd}}} \]
+\[ \ba{n_{i\uu}} = n \br{\f{1 + \xi}{2}} \qquad \ba{n_{i\dd}} = n \br{\f{1 - \xi}{2}} \eq \label{eq:nupdowndefined} \]
 Where $\xi_i = \xi$ is uniform as well for simplicity. Now we have \cref{eq:hubbard_ham} taking the following form,
-\[ H = -t \sum_{\ba{ij}\si}\br{\ket{i \si}\bra{j \si} + \ket{j \si}\bra{i \si}} + \f{Un}{2} \sum_{i} \br{n_{i \uparrow} + n_{i \downarrow}} - \f{Un\xi}{2} \sum_{i} \br{n_{i \uparrow} - n_{i \downarrow}} - \f{Un^2}{4} \br{1 - \xi^2} N \]
+\[ H = -t \sum_{\ba{ij}\si}\br{\ket{i \si}\bra{j \si} + \ket{j \si}\bra{i \si}} + \f{Un}{2} \sum_{i} \br{n_{i \uu} + n_{i \dd}} - \f{Un\xi}{2} \sum_{i} \br{n_{i \uu} - n_{i \dd}} - \f{Un^2}{4} \br{1 - \xi^2} N \eq \label{eq:hubbard_ham_working_1}\]
+Performing a Fourier transform on the lattice site basis states $\ket{i \si}$,
+\[ \ket{i \si} = \f{1}{\sqrt{N}} \sum_{k} \ket{k \si} \braket{k \si}{i \si} = \f{1}{\sqrt{N}} \sum_{k} \ket{k \si} e^{- i \ve k \cdot \ve R_i} \]
+We obtain the usual localization energies,
+\[ \vep_k = - 2 t \sum_{\ve a} \cos \br{\ve k \cdot \ve a} \]
+Such that \cref{eq:hubbard_ham_working_1} becomes,
+\[ H = \sum_{k,\si} \vep_k \ket{k \si}\bra{k \si} + \f{Un}{2} \sum_{i} \br{n_{i \uu} + n_{i \dd}} - \f{Un\xi}{2} \sum_{i} \br{n_{i \uu} - n_{i \dd}} - \f{Un^2}{4} \br{1 - \xi^2} N \eq \label{eq:hubbard_ham_working_2}\]
+The second term of \cref{eq:hubbard_ham_working_2} is a constant (it simply adds up all of the electrons which is presumed constant). Therefore we can neglect this term by absorbing it into the definition of $H$. Splitting the third term into a sum over spin up states and spin down states yields,
+\[ H = \sum_{k} \br{\vep_k - \f{Un \xi}{2}} \ket{k \uu}\bra{k \uu} + \sum_{k} \br{\vep_k + \f{Un \xi}{2}} \ket{k \dd}\bra{k \dd} - \f{Un^2}{4} \br{1 - \xi^2} N \eq \label{eq:hubbard_ham_working_3}\]
+The physics behind the appearance (or lack of appearance) of magnetism in this model is the comparison between the energy cost of polarization and the interaction energy gain. In order to find the interaction energy gain (average per state),
+\[ \f{\ba{H\tsb{int}}}{N} = - \f{U n \xi}{2} \f{1}{N} \sum_{i} \br{\ba{n_{i \uu}} - \ba{n_{i \dd}}} + \f{U n^2 \xi^2}{4} = -\f{U n^2 \xi^2}{2} + \f{U n^2 \xi^2}{4} = -\f{U n^2 \xi^2}{4} \]
+The fact that this interaction energy gain is negative means that the system gains (lowers) its energy due to spin polarization. Now let us calculate the kinetic energy cost. There is a kinetic energy cost because we have to fill the $\uu$ and $\dd$ spin states to two different energies. Pursuant to \cref{eq:hubbard_ham_working_3} define this two energies as $\vep_{k \uu}, \vep_{k \dd}$
+\[ \vep_{k \uu} = \vep_k - \f{U n \xi}{2} \qquad \vep_{k \dd} = \vep_k + \f{U n \xi}{2} \]
+For a given Fermi energy $\vep_F$ we can define two effective Fermi energies for either the spin $\uu$ or spin $\dd$ states.
+\[ \vep_{k \uu} - \vep_F = \vep_k - \f{U n \xi}{2} - \vep_F \defined \vep_k - \vep_{F\uu} \qquad \vep_{k \dd} - \vep_F = \vep_k + \f{U n \xi}{2} - \vep_F \defined \vep_k - \vep_{F\dd} \]
+Where $\vep_{F\uu}, \vep_{F\dd}$ are defined as follows,
+\[ \vep_{F \uu} = \vep_F + \f{U n \xi}{2} \qquad \vep_{F \dd} = \vep_F - \f{U n \xi}{2} \]
+Therefore the effective Fermi-energy for the spin $\uu$ ($\dd$) states is raised (lowered). Therefore the expected occupation for the $\uu$ states is equal to half the total $\f{n}{2}$ plus an extra amount given in terms of the density of states $g\br{\vep}$,
+\[ \ba{n_{\uu}} = \f{n}{2} + \int_{\vep_F}^{\vep_{F\uu}} \dif \vep g\br{\vep} \approx \f{n}{2} + g\br{\vep_F} \br{\vep_{F\uu} - \vep_{F}} \eq \label{eq:expected_up}\]
+Where we approximate $\vep_{F\uu} \approx \vep_{F}$ such that the integral is linearized. Analogously for $n_{\dd}$ we have,
+\[ \ba{n_{\dd}} = \f{n}{2} - \int_{\vep_{F\dd}}^{\vep_{F}} \dif \vep g\br{\vep} \approx \f{n}{2} - g\br{\vep_F} \br{\vep_{F} - \vep_{F\dd}} \eq \label{eq:expected_down} \]
+Therefore $\ba{n_{\uu}} - \ba{n_{\dd}}$ is the difference of \cref{eq:expected_up} and \cref{eq:expected_down},
+\[ \ba{n_{\uu}} - \ba{n_{\dd}} = g\br{\vep_F} \br{\vep_{F\uu} - \vep_{F}} + g\br{\vep_F} \br{\vep_{F} - \vep_{F\dd}} = g\br{\vep_F} \br{\vep_{F\uu} - \vep_{F\dd}} = 2 g\br{\vep_F}\br{\vep_{F\uu} - \vep_{F}} \]
+Additionally using \cref{eq:nupdowndefined} and our earlier assumption of occupation uniformity yields,
+\[ \ba{n_{\uu}} - \ba{n_{\dd}} = n \xi \]
+Therefore combining these two results yields,
+\[ \vep_{F\uu} - \vep_{F} = \f{n \xi}{2 g\br{\vep_F}} \]
+Then the kinetic energy cost of spin polarization is given by,
+\[ E\tsb{kin} = \int_{\vep_F}^{\vep_{F \uu}}\dif \vep \br{\vep g\br{\vep}} - \int_{\vep_{F \dd}}^{\vep_{F}}\dif \vep \br{\vep g\br{\vep}} \]
+\begin{align*}
+E\tsb{kin}
+&\simeq \f{g\br{\vep_F}}{2} \br{\vep_{F \uu}^2 - \vep_{F}^2 - \vep_{F}^{2} + \vep_{F \dd}^2}\\
+&= \f{g\br{\vep_F}}{2} \bs{\br{\vep_{F \uu} - \vep_{F}}\br{\vep_{F \uu} + \vep_{F}} + \br{\vep_{F \dd} - \vep_{F}}\br{\vep_{F \dd} + \vep_{F}}}\\
+&= \f{g\br{\vep_F}}{2} \br{\vep_{F\uu} - \vep_F} \bs{\br{\vep_{F \uu} + \vep_{F}} - \br{\vep_{F \dd} + \vep_{F}}}\\
+&= \f{g\br{\vep_F}}{2} \br{\vep_{F\uu} - \vep_F} \bs{\br{\vep_{F \uu} - \vep_{F}} - \br{\vep_{F \dd} - \vep_{F}}}\\
+&= g\br{\vep_F} \br{\vep_{F\uu} - \vep_F}^2 \\
+&= \f{n^2 \xi^2}{4 g\br{\vep_F}}
+\end{align*}
+Therefore the kinetic energy cost is positive. In total, the energy cost is,
+\[ E\tsb{tot} = E\tsb{kin} + E\tsb{int} = \f{n^2 \xi^2}{4 g\br{\vep_F}} - \f{U n^2 \xi^2}{4} = \f{n^2 \xi^2}{4 g\br{\vep_F}} \br{1 - U g\br{\vep_F}} \]
+Therefore the interaction energy gain dominates the kinetic energy cost when the term in brackets is negative or when,
+\[ U g\br{\vep_F} > 1 \]
+This inequality is known as the \term{Stoner criterion} named after Edmund Clifton Stoner. The Stoner criterion explains the importance of d-orbitals. In d-orbitals, $g\br{\vep_F}$ is larger because d-orbitals give rise to more narrow bands. Moreover $U$ is larger since d-electrons are more strongly localized (the Coulomb interaction is stronger).
 
 \subsection{Mott Insulators and Anti-Ferromagnetism}
-\todo[TC]{Missed two lectures}
-The ground state wavefunction was found to be,
-\[ \ket{\psi} = \f{1}{\sqrt{2}} \br{\ket{1\uparrow, 2 \downarrow} - \ket{1 \downarrow, 2 \uparrow}} \]
+Returning to the Hubbard model,
+\[ H = -t \sum_{\ba{ij}\si} \br{\ket{i \si} \bra{j \si} + \ket{j \si} \bra{i \si}} + U \sum_{i} n_{i \uu} n_{i \dd} \eq \label{eq:mott_hubbard_discussion} \]
+Consider a half-filled band where there is one electron per site ($n_{i \uu} = 1$ or $n_{i \dd} = 1$, not both). According to band energy theory, this is a metal. However, for large enough $U$, it becomes energetically unfavorable for electrons to move, since moving through a half-filled energy and always involves doubly occupying some sites ($n_{i \uu} = 1$ and $n_{i \dd} = 1$) which by \cref{eq:mott_hubbard_discussion} costs energy $U$. Therefore at roughly $U \sim zt$ there is transition from metal to insulator, which is called a \term{Mott insulator}. An important question in a Mott insulator is what happens to the spins of the localized electrons? \\
+
+Supposing $U$ is sufficiently high that $U \gg 2t$, therefore we can set $t = 0$ in \cref{eq:mott_hubbard_discussion} and analyze,
+\[ H = U \sum_{i} n_{i \uu} n_{i \dd}  \]
+The ground state of a Mott insulator is where there is exactly one electron at every site, but the spin can either be $\uu$ or $\dd$. Therefore the ground state is $2^{N}$-fold degenerate. This degeneracy is lifted when $t \neq 0$. The question then becomes, how is this degeneracy lifted? To see how this happens, consider the two-site problem where there are $N = 2$ electrons,
+\[ H = - t\sum_{\si} \br{\ket{1\si} \bra{2\si} + \ket{2\si} \bra{1\si}} + U \sum_{i \in \bc{1,2}} n_{i \uu} n_{i \dd} \]
+Since there are $2$ electrons ($1$ for each site), there are $4$ single-electron states,
+\[ \ket{1 \uu} \quad \ket{1 \dd} \quad \ket{2 \uu} \quad \ket{2 \dd} \]
+As discussed before, the wavefunction for $2$ electrons must be anti-symmetric. Therefore there are $6$ possible states of $2$ electrons (the notation $\ket{1\dd, 2\uu}$ reads: on site $1$ there is a spin $\dd$ electron and on site $2$ there is a spin $\uu$ electron),
+\begin{align*}
+    \ket{1\uu, 1\dd} &= -\ket{1\dd, 1\uu} \\
+    \ket{1\uu, 2\uu} &= -\ket{2\uu, 1\uu} \\
+    \ket{1\uu, 2\dd} &= -\ket{2\dd, 1\uu} \\
+    \ket{1\dd, 2\uu} &= -\ket{2\uu, 1\dd} \\
+    \ket{1\dd, 2\dd} &= -\ket{2\dd, 1\dd} \\
+    \ket{2\uu, 2\dd} &= -\ket{2\dd, 2\uu}
+\end{align*}
+Therefore we need to find the matrix representation of $H$ in terms of this basis. The matrix-element of such a representation is only nonzero when there are $2$ electrons on either site $1$ or site $2$ (and not one on each),
+\[ \bra{1 \uu, 1 \dd} H\tsb{int} \ket{1 \uu, 1 \dd} = \bra{2 \uu, 2 \dd} H\tsb{int} \ket{2 \uu, 2 \dd} = U \]
+The remaining elements are all zero. The kinetic energy term turns $\ket{1 \uu}$ into $\ket{2 \uu}$ and $\ket{1 \dd}$ into $\ket{2 \dd}$ and vice versa. Thus we have,
+\begin{align*}
+\bra{1 \dd, 2 \uu} H\tsb{kin} \ket{1 \dd, 1 \uu} &= -t \\
+\bra{1 \dd, 2 \uu} H\tsb{kin} \ket{1 \uu, 1 \dd} &= t
+\end{align*}
+Therefore the complete Hamiltonian ($H\tsb{kin} + H\tsb{int}$) can be written as,
+\[ H = \begin{pmatrix}
+    U & 0 & -t & t & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 \\
+    -t & 0 & 0 & 0 & 0 & -t \\
+    t & 0 & 0 & 0 & 0 & t \\
+    0 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & -t & t & 0 & U \\
+\end{pmatrix} \]
+Clearly the states $\ket{1 \uu, 2 \uu}$ and $\ket{1 \dd, 2 \dd}$ correspond to the 2nd and 5th rows and columns of this matrix and are decoupled from the other states and have eigenenergy $0$. The remaining Hamiltonian, indexed by states $\ket{1 \uu, 2 \dd}, \ket{1 \uu, 2 \dd}, \ket{1 \dd, 2 \uu}$ and $\ket{2 \uu, 2 \dd}$ (respectively) can be written as a $4 \times 4$ matrix,
+\[ H = \begin{pmatrix}
+    U & -t & t & 0 \\
+    -t & 0 & 0 & -t \\
+    t & 0 & 0 & t \\
+    0 & -t & t & U \\
+\end{pmatrix} \]
+Its eigenvalues are,
+\[ E_1 = 0 \qquad E_2 = U \qquad E_3 = \f12 \br{U + \sqrt{U^2 + 16t^2}} \qquad E_4 = \f12 \br{U - \sqrt{U^2 + 16t^2}} \]
+The ground states of the system correspond to the lowest energy eigenvalues. Clearly this is $E_4$,
+\[ E_g = E_4 = \f12 \br{U - \sqrt{U^2 + 16t^2}} \]
+The corresponding (unnormalized) eigenvector is,
+\[ \ket{z} = \br{1, \f{U + \sqrt{U^2 + 16t^2}}{4t}, -\f{U + \sqrt{U^2 + 16t^2}}{4t}, 1} \]
+Specifically for Mott insulators we are interested in the case where $U \gg t$. In this case,
+\[ \ket{z} \approx \br{0, \f{U}{2t}, -\f{U}{2t}, 0} \]
+This ground state wavefunction is,
+\[ \ket{\psi} = \f{1}{\sqrt{2}} \br{\ket{1\uu, 2 \dd} - \ket{1 \dd, 2 \uu}} \]
 Where $\ket{\psi}$ corresponded to a total spin of $\ve S = 0$ and a ground state energy of,
-\[ E_g = - \f{4t^2}{U} \]
-Where $E_g$ is obtained via the following,
-\[ H \ket{\psi} = \s J \ve S_1 \cdot \ve S_2 \ket{\psi} = E_g \ket{\psi} \]
+\[ E_g = \f12 \br{U - \sqrt{U^2 + 16t^2}} \approx \f12 \br{U - U\br{1 + 8\f{t^2}{U^2}}} = - \f{4t^2}{U} \]
 Therefore $\s J = \f{4 t^2}{U}$. Using the two spin model $H = \s J \ve S_1 \cdot \ve S_2$ we can immediately generalize to $N$ interacting spin systems where the spin terms are restricted to nearest neighbor interactions,
 \[ H = \f{\s J}{2} \sum_{\ba{ij}} \ve S_i \cdot \ve S_j \]
 Which is a good description of an anti-ferromagnet because anti-ferromagnets are Mott insulators.
@@ -2363,47 +2599,47 @@ In is important to understand the qualitative differences between ferromagnets a
 For ferromagnets our interacting model (with two spins) is,
 \[ H = - \s J \ve S_1 \cdot \ve S_2 \]
 Where the spins become aligned or anti-aligned in the ground state,
-\[ \ket{\psi} \in \bc{\ket{\uparrow, \uparrow}, \ket{\downarrow, \downarrow}} \]
+\[ \ket{\psi} \in \bc{\ket{\uu, \uu}, \ket{\dd, \dd}} \]
 Where the components of the spin $\ve S = \f{\hbar}{2} \ve \si$ can be written as,
 \[ \ve S_1 \cdot \ve S_2 = S_1^xS_1^x + S_1^yS_1^y + S_1^zS_1^z = \f12 \br{S_1^+ S_2^- + S_1^- S_2^+} + S_1^z S_2^z \]
 Therefore we see that,
 \begin{align*}
-    S^z \ket{\uparrow} &= \f{\hbar}{2}\si^{z}\ket{\uparrow} = \f{\hbar}{2}\ket{\uparrow} \\
-    S^z \ket{\downarrow} &= \f{\hbar}{2}\si^{z}\ket{\downarrow} = \f{\hbar}{2}\ket{\downarrow} \\
-    S^+ \ket{\uparrow} &= \f{\hbar}{2}\si^{+}\ket{\uparrow} = \f{\hbar}{2} \begin{pmatrix}
+    S^z \ket{\uu} &= \f{\hbar}{2}\si^{z}\ket{\uu} = \f{\hbar}{2}\ket{\uu} \\
+    S^z \ket{\dd} &= \f{\hbar}{2}\si^{z}\ket{\dd} = \f{\hbar}{2}\ket{\dd} \\
+    S^+ \ket{\uu} &= \f{\hbar}{2}\si^{+}\ket{\uu} = \f{\hbar}{2} \begin{pmatrix}
         0 & 2 \\
         0 & 0 \\
     \end{pmatrix}\begin{pmatrix}
         1 \\ 0
     \end{pmatrix}  = 0 \\
-    S^- \ket{\uparrow} &= \f{\hbar}{2}\si^{+}\ket{\uparrow} = \f{\hbar}{2} \begin{pmatrix}
+    S^- \ket{\uu} &= \f{\hbar}{2}\si^{+}\ket{\uu} = \f{\hbar}{2} \begin{pmatrix}
         0 & 0 \\
         2 & 0 \\
     \end{pmatrix}\begin{pmatrix}
         1 \\ 0
-    \end{pmatrix} = \hbar \ket{\downarrow} \
-    S^+ \ket{\downarrow} &= \f{\hbar}{2}\si^{+}\ket{\downarrow} = \f{\hbar}{2} \begin{pmatrix}
+    \end{pmatrix} = \hbar \ket{\dd} \
+    S^+ \ket{\dd} &= \f{\hbar}{2}\si^{+}\ket{\dd} = \f{\hbar}{2} \begin{pmatrix}
         0 & 2 \\
         0 & 0 \\
     \end{pmatrix}\begin{pmatrix}
         0 \\ 1
-    \end{pmatrix}  = \hbar \ket{\uparrow} \\
-    S^- \ket{\downarrow} &= \f{\hbar}{2}\si^{+}\ket{\downarrow} = \f{\hbar}{2} \begin{pmatrix}
+    \end{pmatrix}  = \hbar \ket{\uu} \\
+    S^- \ket{\dd} &= \f{\hbar}{2}\si^{+}\ket{\dd} = \f{\hbar}{2} \begin{pmatrix}
         0 & 0 \\
         2 & 0 \\
     \end{pmatrix}\begin{pmatrix}
         0 \\ 1
     \end{pmatrix} = 0
 \end{align*}
-Therefore $\ket{\uparrow, \uparrow}$ is an eigenstate of $H$ with eigenenergy $- \s J \hbar^2 / 4$,
-\[ H \ket{\psi} = -\f{\s J \hbar^2}{4}\bs{\si_1^{z}\si_2^{z} + \f12 \br{\si_1^+ \si_2^- + \si_1^- \si_2^+}} \ket{\uparrow, \uparrow} = - \f{\s J \hbar^2}{4}\ket{\uparrow, \uparrow} \]
+Therefore $\ket{\uu, \uu}$ is an eigenstate of $H$ with eigenenergy $- \s J \hbar^2 / 4$,
+\[ H \ket{\psi} = -\f{\s J \hbar^2}{4}\bs{\si_1^{z}\si_2^{z} + \f12 \br{\si_1^+ \si_2^- + \si_1^- \si_2^+}} \ket{\uu, \uu} = - \f{\s J \hbar^2}{4}\ket{\uu, \uu} \]
 This analysis seems trivial, but becomes illuminating when we consider the analogy for anti-ferromagnets.
 \textbf{Ferromagnets:}
 For anti-ferromagnets our interacting model (with two spins) is,
 \[ H = + \s J \ve S_1 \cdot \ve S_2 \]
-A simple guess for the ground state would reasonably be $\ket{\uparrow, \downarrow}$ (or $\ket{\downarrow, \uparrow}$). This however does not work,
-\[ H \ket{\psi} = \f{\s J \hbar^2}{4}\bs{\si_1^{z}\si_2^{z} + \f12 \br{\si_1^+ \si_2^- + \si_1^- \si_2^+}} \ket{\uparrow, \downarrow} \not \propto \ket{\uparrow, \downarrow} \]
-Therefore $\ket{\uparrow, \downarrow}$ is \textit{not} the ground state of for anti-ferromagnets. This state, and the analogous multi-spin state, where neighboring spin states have opposite spin, is called the \term{Neel state}.
+A simple guess for the ground state would reasonably be $\ket{\uu, \dd}$ (or $\ket{\dd, \uu}$). This however does not work,
+\[ H \ket{\psi} = \f{\s J \hbar^2}{4}\bs{\si_1^{z}\si_2^{z} + \f12 \br{\si_1^+ \si_2^- + \si_1^- \si_2^+}} \ket{\uu, \dd} \not \propto \ket{\uu, \dd} \]
+Therefore $\ket{\uu, \dd}$ is \textit{not} the ground state of for anti-ferromagnets. This state, and the analogous multi-spin state, where neighboring spin states have opposite spin, is called the \term{Neel state}.
 \begin{center}
     \begin{tikzpicture}
     \pgfmathsetmacro{\spinsize}{0.2}
@@ -2428,7 +2664,7 @@ Therefore $\ket{\uparrow, \downarrow}$ is \textit{not} the ground state of for a
 \end{center}
 
 \section{Superconductivity}
-Superconductivity is the phenomena in materials where resistivity suddenly drops to zero below a critical temperature $T_c$,
+Most metallic elements (except ferromagnets) and even some non-metals undergo a transition into a superconducting state as the temperature is lowered. Superconductivity is the phenomena where resistivity suddenly drops to zero below a critical temperature $T_c$,
 
 \begin{center}
 \begin{tikzpicture}
@@ -2441,9 +2677,7 @@ Superconductivity is the phenomena in materials where resistivity suddenly drops
 \end{tikzpicture}
 \end{center}
 
-A related feature is that that specific heat of the material jumps at the critical temperature as well.
-
-
+A related feature is that that specific heat $C_v$ of the material jumps at the critical temperature as well from $C_v \sim T$ to $C_v \sim e^{-\f{\De}{k_B T}}$. \\
 \begin{center}
 \begin{tikzpicture}
     \pgfmathsetmacro{\axissize}{4};
@@ -2462,5 +2696,40 @@ if we were to start from $T > T_c$ we have $\vdel \times \ve E = - \f1c \pder{\v
     \item Ideal metal: $T < T_c$, $\rho = 0$, $\ve B = \text{const}$
     \item Superconductor: $T < T_c$, $\rho = 0$, $\ve B = \ve 0$
 \end{itemize}
-Typical superconductors like Al, Sn, Hg have very low critical temperatures ($T_c \sim \SI{1}{\K} - \SI{10}{\K}$) which are non-ideal for use in practical electronics. High temperature super conductors like La$_{2-x}$Sr$_{x}$CnO$_4$ have $T_c \sim \SI{34}{\K}$. The current record holder is HgBa$_2$Ca$_2$CN$_3$O$_8$ with $T_c \sim \SI{133}{\K}$.
+Typical superconductors like Al, Sn, Hg have very low critical temperatures ($T_c \sim \SI{1}{\K} - \SI{10}{\K}$) which are non-ideal for use in practical electronics. High temperature super conductors like La$_{2-x}$Sr$_{x}$CnO$_4$ have $T_c \sim \SI{34}{\K}$. The current record holder is HgBa$_2$Ca$_2$CN$_3$O$_8$ with $T_c \sim \SI{133}{\K}$. \\
+
+Microscopically, superconductivity originates from the pairing of electrons. In metallic superconductors this is due to the exchange of phonons: electrons moving through the crystal lattice, polarizes the crystal lattice locally, which attracts another electron. In cuprate high-$T_c$ superconductors, pairing is thought to be due to the anti-ferromagnetic spin-spin interaction of the parent (undoped) Mott insulator. \\
+
+The most important qualitative properties of superconductors can be described using semi-phenomenological \term{Landau-Ginzburg theory}.\\
+
+Pairs of electrons form bosonic states and are considered bosons. Bosons are not constrained by the Pauli exclusion principle; any number of bosons may occupy the ground state. Therefore at zero or low temperatures, all the bosons will want to \textit{condense} into the lowest energy state; the state with zero momentum. In this state, all of the bosons are essentially described by a single wavefunction $\varphi\br{\ve r}$. Landau and Ginzburg realized that one may think of $\varphi\br{\ve r}$ as an order parameter, just like magnetization in a ferromagnet. Near $T_c$ we may then write down a Taylor expansion of the free energy $F$ in powers of $\varphi$. Since the free energy should not depend on the phase of $\varphi\br{\ve r}$, it may only depend on $\abs{\varphi}^2, \abs{\varphi}^4, \ldots$ and so on. Thus,
+\[ F = F_0 + V a \abs{\varphi}^2 + \f12 V b \abs{\varphi}^4 + \cdots \]
+Where $F_0$ is the free energy of the normal metallic state which we will omit henceforth. $V$ is the total volume. The ground state occurs when $F$ is minimized,
+\[ \f{1}{V} \pder{F}{\abs{\varphi}} = 2 a \abs{\varphi} + 2 b \abs{\varphi}^3 = 0 \]
+Therefore we have a ground state,
+\[ \abs{\varphi} = \sqrt{- \f{a}{b}} \]
+Which is possible when $a < 0$ ($b > 0$ always) when $T < T_c$. Therefore,
+\[ a \sim \f{T - T_c}{T_c} \]
+Therefore,
+\[ \abs{\varphi} \sim \sqrt{T_c - T} \sim \br{-t}^{\be} \qquad \be = \f12 \]
+To describe properties of superconductors it turns out to be very important to describe situations when $\varphi\br{\ve r}$ is not uniform. In this case we need to add extra terms to the free energy which depend on the non-uniformity of $\varphi\br{\ve r}$; specifically $\vdel \varphi\br{\ve r}$. Naively, the following should work by symmetry,
+\[ F = \kappa \intl \dif^3 r \abs{\vdel \varphi}^2 \]
+Where $\kappa > 0$. However, it does not really work since this violates a very important physical principle: {gauge invariance}. When we talked about electrons in a magnetic field, we saw that the momentum operator in a magnetic field was,
+\[ \hat p = - i \hbar \vdel  + \f{e}{c} \ve A \]
+which was a result of demanding gauge invariance. Consider a wavefunction $\psi\br{\ve r}$. Let us multiply it by an arbitrary position-dependent phase factor $\s X\br{\ve r}$.
+\[ \psi\br{\ve r} \mapsto e^{i \s X \br{\ve r}}\psi\br{\ve r} \]
+Acting on this new wave-function with the momentum operator yields,
+\[ \br{- i \hbar \vdel  + \f{e}{c} \ve A} \br{e^{i \s X \br{\ve r}}\psi\br{\ve r}} = e^{i \s X \br{\ve r}} \bs{- i \hbar \vdel  + \f{e}{c} \ve A + \hbar \vdel \s X} \psi\br{\ve r} \]
+Now recall that $\ve A$ is defined only up to a gradient $\ve A \mapsto \ve A + \vdel f$, thus we can make use of the following gauge transformation of $\ve A$,
+\[ \ve A \mapsto \ve A - \f{\hbar c}{e} \vdel \s X \]
+and obtain,
+\[ \br{- i \hbar \vdel  + \f{e}{c} \ve A} \br{e^{i \s X \br{\ve r}}\psi\br{\ve r}} = e^{i \s X \br{\ve r}} \bs{- i \hbar \vdel  + \f{e}{c} \ve A} \psi\br{\ve r} \]
+This means that the Schrodinger equation for a particle of charge $-e$ in an electromagnetic field is invariant under the following transformation,
+\[ \psi \mapsto e^{i \s X} \psi \qquad \ve A \mapsto \ve A - \f{\hbar c}{e} \vdel \s X \]
+In our case, $\varphi\br{\ve r}$ is a wave-function of particles with charge $-2e$ (one for each electron). Thus the free energy must be invariant under the following,
+\[ \varphi \mapsto e^{i \s X} \varphi \qquad \ve A \mapsto \ve A - \f{\hbar c}{2e} \vdel \s X \]
+This means that the free energy must have the following form,
+\[ F = \int \dif^3 r \bs{\f{1}{2 m^*} \abs{\br{-i \hbar \vdel  + \f{e^{*}}{c} \ve A}\varphi}^2 + a \abs{\varphi}^2 + \f{b}{2}\abs{\varphi}^4 + \f{\abs{\ve B}^2}{8\pi} } \]
+Where $e^* = 2e$ and $m^* = 2m$.
+
 \end{document}
