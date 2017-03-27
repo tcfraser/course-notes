@@ -2730,6 +2730,113 @@ In our case, $\varphi\br{\ve r}$ is a wave-function of particles with charge $-2
 \[ \varphi \mapsto e^{i \s X} \varphi \qquad \ve A \mapsto \ve A - \f{\hbar c}{2e} \vdel \s X \]
 This means that the free energy must have the following form,
 \[ F = \int \dif^3 r \bs{\f{1}{2 m^*} \abs{\br{-i \hbar \vdel  + \f{e^{*}}{c} \ve A}\varphi}^2 + a \abs{\varphi}^2 + \f{b}{2}\abs{\varphi}^4 + \f{\abs{\ve B}^2}{8\pi} } \]
-Where $e^* = 2e$ and $m^* = 2m$.
+Where $e^* = 2e$ and $m^* = 2m$.\\
+
+\todo{Missed a week of lectures}
+
+\subsection{Josephson Effects}
+Let us imagine we have two pieces of a superconducting material that are initially detached from each other and each are described by their own wavefunctions $\phi_1\br{\ve r}, \phi_2\br{\ve r}$.
+\begin{center}
+    \begin{tikzpicture}
+        \draw (-2,+0) node[draw, minimum width=3em, minimum height=3em]{$\phi_1\br{\ve r}$};
+        \draw (+2,+0) node[draw, minimum width=3em, minimum height=3em]{$\phi_2\br{\ve r}$};
+    \end{tikzpicture}
+\end{center}
+
+Furthermore assume that $\abs{\phi_1} = \abs{\phi_2} = \sqrt{n_s}$ (i.e. the two wavefunctions have the same norm but might having differing phases that are spatially dependent).
+\[ \phi_1\br{\ve r} = \sqrt{n_s} e^{i\te_1\br{\ve r}} \qquad \phi_2\br{\ve r} = \sqrt{n_s} e^{i\te_2\br{\ve r}} \]
+Afterwards, suppose we bring the two materials together such that they become adjacent. It is possible to model this composite system simply by considering the tunneling between the two regions with amplitude $t$,
+\begin{center}
+    \begin{tikzpicture}
+        \draw (-0.55,+0) node[draw, minimum width=3em, minimum height=3em]{$\phi_1\br{\ve r}$};
+        \draw (+0.55,+0) node[draw, minimum width=3em, minimum height=3em]{$\phi_2\br{\ve r}$};
+    \end{tikzpicture}
+\end{center}
+Electrons in the first material $\ket{1}$ can tunnel to the second material $\ket{2}$ and vice versa via the following Hamiltonian,
+\[ H = - t \br{\ket 1 \bra 2 + \ket 2 \bra 1} = \begin{pmatrix}
+    0 & -t \\ -t & 0
+\end{pmatrix} \]
+The composite wavefunction at the interface is $\phi\br{\ve r} = \f{1}{\sqrt{2}} \br{\phi_1\br{\ve r} + \phi_2\br{\ve r}}$ whose dynamics is modeled by the Schrodinger equation $H\phi = E \phi$. Because of $\phi$, we have the following \term{supercurrent},
+\[ \ve j = \f{i \hbar e^{*}}{2m^{*}} \br{\phi^{*} \vdel \phi - \phi \vdel \phi^*} \]
+Computing the gradient would be difficult in general because the phases $\te_1, \te_2$ are position dependent. Instead, we can liberally approximate the gradient across the interface as,
+\[ \vdel \phi \approx \f{\phi_2 - \phi_1}{L} \hat x \]
+Where $L$ is the characteristic length of the interface in the $\hat x$-direction. Then we have,
+\begin{align*}
+    \phi^* \vdel \phi - \phi \vdel \phi^*
+    &\propto \br{\phi_1^* + \phi_2^*}\br{\phi_2 - \phi_1} - \br{\phi_2 + \phi_1} \br{\phi_2^* - \phi_1^*} \\
+    &= \phi_1^* \phi_2 - \abs{\phi_1}^2 + \abs{\phi_2}^* - \phi_2^* \phi_1 - \phi_2^* \phi_1 - \abs{\phi_2}^2 + \abs{\phi_1}^* + \phi_1^* \phi_2 \\
+    &= 2\br{\phi_1^* \phi_2 - \phi_2^* \phi_1} \\
+    &= 2n_s \br{e^{-i\te_1}e^{i\te_2} - e^{i\te_1}e^{-i\te_2}} \\
+    &= -4 i n_s \sin \te \qquad \te \defined \te_1 - \te_2
+\end{align*}
+This supercurrent is present even in the absence of a external electric field. If the two adjacent materials are superconductors, this current always flows across the junction on the absence of voltage. This current where $I = I_c \sin \te$ is called the \term{DC-Josephson effect/current}.\\
+
+Instead if we subject the two materials to an external potential $V$,
+\begin{center}
+    \begin{tikzpicture}
+        \draw (-0.55,+0) node[draw, minimum width=3em, minimum height=3em]{$\phi_1\br{\ve r}$};
+        \draw (+0.55,+0) node[draw, minimum width=3em, minimum height=3em]{$\phi_2\br{\ve r}$};
+        \draw (+0,-1) -- (+2, -1) -- (+2,+0) -- (+1.1, +0);
+        \draw (-0,-1) -- (-2, -1) -- (-2,+0) -- (-1.1, +0);
+        \draw (0, -1) node[draw, circle, fill=white, ]{$V$};
+    \end{tikzpicture}
+\end{center}
+
+Then the system Hamiltonian becomes,
+\[ H = \begin{pmatrix}
+    e V & - t \\
+    -t & - e V
+\end{pmatrix} \eq \label{eq:ACJC_H} \]
+Where the dynamics of $\phi$ are governed by the Schrodinger equation $i \hbar \pder{\phi}{t} = H \phi$ which is explicitly,
+\begin{align*}
+\eq\label{eq:ACJC}
+\begin{split}
+    i\hbar \pder{\phi_1}{t} &= e V \phi_1 - t \phi_2 \\
+    i\hbar \pder{\phi_2}{t} &= - t \phi_1 - e V \phi_2
+\end{split}
+\end{align*}
+Instead of solving this set of equations directly, we can make use of the conjugate forms of \cref{eq:ACJC},
+\begin{align*}
+\eq\label{eq:ACJC_conj}
+\begin{split}
+    -i\hbar \pder{\phi_1^*}{t} &= e V \phi_1^* - t \phi_2^* \\
+    -i\hbar \pder{\phi_2^*}{t} &= - t \phi_1^* - e V \phi_2^*
+\end{split}
+\end{align*}
+Multiplying \cref{eq:ACJC,eq:ACJC_conj} by factors of $\phi_1, \phi_2$, we can sum the results and reconstruct the supercurrent,
+\[ i\hbar \br{\phi_2^* \phi_1 - \phi_1^* \phi_2} = i \hbar \br{\phi_1 \pder{\phi_2^*}{t} + \phi_1^* \pder{\phi_1}{t} - \phi_2 \pder{\phi_1^*}{t} - \phi_1^* \pder{\phi_2}{t}}\]
+Substituting \cref{eq:ACJC},
+\begin{align*}
+    i\hbar \br{\phi_2^* \phi_1 - \phi_1^* \phi_2}
+    &= eV \phi_2^* \phi_1 - t \abs{\phi_2}^2 + e V \phi_2^* \phi_1 + t \abs{\phi_1}^2 + eV \phi_1^* \phi_2 - t \abs{\phi_1}^2 + e V \phi_1^* \phi_2 + t \abs{\phi_2}^2 \\
+    &= 2 e V \br{\phi_2^* \phi_1 - \phi_1^* \phi_2} \\
+    &= 4 e V n_s \cos \te \\
+    &= i \hbar \pder{}{t}\br{-2 i n_s \sin \te} \\
+    &= 2 \hbar n_s \cos \te \pder{\te}{t}
+\end{align*}
+Therefore we obtain the \term{Josephson relation} for $\te$,
+\[ \pder{\te}{t} = \f{2eV}{\hbar} \]
+If $V$ is a constant, i.e. we apply a external DC voltage and the phase response becomes linear in time,
+\[ \phi\br{t} = \phi\br{0} + \f{2eV}{\hbar}t \]
+The responding current however is oscillatory,
+\[ I\br{t} = I_c \sin \bs{\phi\br{0} + \f{2eV}{\hbar}t} \]
+This is referred to as the \term{AC-Josephson effect}. It is surprising to see an AC response from the application of a DC external voltage. The fact that the frequency of oscillation depends on the voltage $V$ and fundamental constants $\f{2e}{\hbar}$, measurements of this frequency represent our most precise measurement of $\f{e}{\hbar}$. Analyzing the Josephson effect in this way is incomplete; we have failed incorporate the effects of resistance of the junction.
+
+\begin{itemize}
+    \item $I < I_c$: the current flows without resistance, $\implies V = 0$
+    \item $I > I_c$: part of the current will become non-superfluid
+\end{itemize}
+This is referred to as a \term{resistively shunted Josephson junction}. The total current can be decomposed into the two effects,
+\[ I = I_c \sin \te + \f{V}{R} \]
+Therefore given that the external potential is related to the time-derivative of the phase,
+\[ V = \f{\hbar}{2e} \pder{\te}{t} \]
+We conclude that,
+\[ I = I_c \sin \te + \f{\hbar}{2 e R} \der{\te}{t} \]
+which is a differential equation for $\te\br{t}$ that can be solved.
+\[ \der{\te}{t} = \f{2eR}{\hbar}\br{I - I_c \sin \te} = \f{2 I e R}{\hbar} \br{1 - \f{I_c}{I}\sin \te} \]
+Letting $\la = I_c/I < 1$ and $\w_0 = \f{2IeR}{\hbar}$ we obtain the following non-linear differential equation,
+\[ \der{\te}{t} = \w_0\br{1 - \la \sin \te} \]
+
+
 
 \end{document}
