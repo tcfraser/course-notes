@@ -16,6 +16,7 @@
 \draftprofile[TC Fraser]{TC}{Red}
 
 \newcommand{\uu}{\uparrow}
+\newcommand{\vp}{\varphi}
 \newcommand{\dd}{\downarrow}
 
 \begin{document}
@@ -1792,18 +1793,18 @@ Therefore \cref{eq:quantum_hall_ham} becomes,
 \end{align*}
 Notice that $H$ is not invariant with respect to translations along the $x$-direction but \textit{is} invariant with respect to translations along the $y$-direction. Translation symmetries give rise to wave functions that are also momentum eigenstates. If the energy eigenstates $\psi\br{x,y}$ are thus functions of $x,y$ and have the following form,
 \[ H \psi\br{x,y} = E \psi\br{x,y} \]
-Symmetry analysis suggests we should expect $\psi$ to the separable into a plane wave solution with non-trivial $x$-dependence $\varphi\br{x}$.
-\[ \psi\br{x,y} = e^{i k_y y} \varphi\br{x} \]
+Symmetry analysis suggests we should expect $\psi$ to the separable into a plane wave solution with non-trivial $x$-dependence $\vp\br{x}$.
+\[ \psi\br{x,y} = e^{i k_y y} \vp\br{x} \]
 With $k_y$ to be determined. Substituting this ansatz into \cref{eq:quantum_hall_ham_landau} yields,
-\[ E \psi\br{x,y}= - \f{\hbar^2}{2m} \pdder{\varphi}{x} e^{ik_yy} + \f{1}{2m}\br{\hbar k_y + \f{eB}{c}x}^2 \varphi e^{ik_yy} \]
-Canceling $\varphi$,
-\[ E \varphi = - \f{\hbar^2}{2m} \pdder{\varphi}{x} + \f{1}{2m}\br{\hbar k_y + \f{eB}{c}x}^2 \varphi \eq \label{eq:hall1D}\]
+\[ E \psi\br{x,y}= - \f{\hbar^2}{2m} \pdder{\vp}{x} e^{ik_yy} + \f{1}{2m}\br{\hbar k_y + \f{eB}{c}x}^2 \vp e^{ik_yy} \]
+Canceling $\vp$,
+\[ E \vp = - \f{\hbar^2}{2m} \pdder{\vp}{x} + \f{1}{2m}\br{\hbar k_y + \f{eB}{c}x}^2 \vp \eq \label{eq:hall1D}\]
 Gives us a 1D differential equation. For convenience of notation we introduce the \term{magnetic length} $\ell$,
 \[ \ell = \sqrt{\f{\hbar c}{eB}} \]
 Additionally re-use the classical cyclotron frequency,
 \[ \w_{C} = \f{eB}{mc} \]
 Using these constants, \cref{eq:hall1D} can we re-expressed as,
-\[ -\f{\hbar^2}{2m} \pdder{\varphi}{x} + \f{m\w_{C}^2}{2} \br{x + k_y \ell^{2}}^2 \varphi = E \varphi \]
+\[ -\f{\hbar^2}{2m} \pdder{\vp}{x} + \f{m\w_{C}^2}{2} \br{x + k_y \ell^{2}}^2 \vp = E \vp \]
 At this stage, it should be clear that this Hamiltonian is nothing more than a 1D Harmonic oscillator with frequency $\w_{C}$ and centered at $x = - k_y \ell^{2}$. The solution for the quantum harmonic oscillator can be found in a number of undergraduate quantum theory textbooks.
 \[ \psi_{n k_y}\br{x} = \f{e^{ik_y y}}{\sqrt{\ell \sqrt{\pi} 2^{n} n!}} e^{-\f{1}{2 \ell^2} \br{x + k_y \ell^2}^2} H_n\br{\f{x + k_y \ell^2}{\ell}} \]
 Where $H_n$ is the \term{$n$-th Hermite polynomial}. The wave function solutions are given by the Hermite polynomials, but the important feature are the quantized energy levels,
@@ -1884,8 +1885,8 @@ For fixed $N$ as $B \to \inf$, the floor function eventually reaches zero and th
 \end{center}
 
 As the magnetic field increases, $N_{\phi} \propto B$ increases and $\vep\tsb{F}$ moves towards zero through the Landau levels. When $\vep\tsb{F}$ is in the mobility gap, the system behaves like an insulator while when it passes through the Landau level centers, it becomes metallic. This explains why nothing changes at the plateaus of $\rho_{xy}$ but doesn't explain why $\rho_{xy}$ is non-zero and quantized to precise values. This has to do with the existence of edge states. Consider a sample 2DEG that is finite in the $x$-direction admitting zero potential in regions between $\pm L_x / 2$ but approaches an infinite barrier at $V\br{\pm L_x / 2} = \inf$. Then the Schrödinger equation yields the familiar shifted harmonic oscillator with potential $V\br{x}$,
-\[ \f{\hbar^2}{2m} \dder{\varphi}{x} + \f{m\w_c^2}{2}\br{x + k_y \ell^2} \varphi + V\br{x} \varphi = E \varphi \]
-At $V = 0$, $\varphi \sim e^{-\f{1}{2\ell^2}\br{x+k_y\ell^2}^2}$ varies on the scale of the magnetic length $\ell$. Suppose that $V\br{x}$ is very slowly varying on this scale. In this limit, we can solve the Schrödinger equation by simply replacing $V\br{x} \approx V\br{k_y \ell^2}$. The eigenvalues then become,
+\[ \f{\hbar^2}{2m} \dder{\vp}{x} + \f{m\w_c^2}{2}\br{x + k_y \ell^2} \vp + V\br{x} \vp = E \vp \]
+At $V = 0$, $\vp \sim e^{-\f{1}{2\ell^2}\br{x+k_y\ell^2}^2}$ varies on the scale of the magnetic length $\ell$. Suppose that $V\br{x}$ is very slowly varying on this scale. In this limit, we can solve the Schrödinger equation by simply replacing $V\br{x} \approx V\br{k_y \ell^2}$. The eigenvalues then become,
 \[ E_{nk_y} = \hbar \w_c \br{n + \f12} + V\br{k_y \ell^2} \]
 Thus when $\vep\tsb{F}$ is between the Landau levels in the bulk, there are still states at the Fermi energy of the edges of the system (called the edge states). Their number is equal to the number of filled Landau levels (edges are populated for each Landau level last). Moreover, near the intersection with $\vep\tsb{F}$ the dispersion is \textit{chiral},
 \[ E_{n k_y} \simeq \vep\tsb{F}\pm\hbar v_n \br{k_y \pm k_{y,n}} \]
@@ -1961,7 +1962,7 @@ For ordinary electron-electron Coulomb interactions $e^2 / a_0$ is the typical C
 \[ \f{e^2}{a_0} \sim \SI{1}{\eV} \qquad T \sim \SI{e4}{\K} \]
 This is much closer to the critical temperature for iron, therefore we conclude that ordinary Coulumb interactions are responsible for ferro-magnetism. This result is surprising because the Coulumb potential does not know about magnetic fields; instead the effects of spin (in combination with $V\br{\ve r}$) will give rise to ferro-magnetism. \\
 
-Consider $2$ electrons on two atomic orbitals $\varphi_1\br{\ve r_1}$ and $\varphi_2\br{\ve r_2}$ with the same energy. The Coulumb potential is,
+Consider $2$ electrons on two atomic orbitals $\vp_1\br{\ve r_1}$ and $\vp_2\br{\ve r_2}$ with the same energy. The Coulumb potential is,
 \[ V\br{\ve r_1 - \ve r_2} = \f{e^2}{\abs{\ve r_1 - \ve r_2}} \]
 In general the wave-function for the two electrons will depend on positions $\ve r_1, \ve r_2$ for the two electrons and spin values $\si_i \in \bc{\uu, \dd}$. This position and spin wave-functions are separable,
 \[ \psi \br{\ve r_1 \si_1, \ve r_2 \si_2} = \psi\br{\ve r_1, \ve r_2} \chi \br{\si_1, \si_2} \]
@@ -1990,36 +1991,36 @@ Notice that these four states form and orthonormal basis for $\s H^2 \otimes \s 
     \ket{0,0} &= \f{1}{\sqrt{2}}\br{\ket{\uu, \dd} - \ket{\uu, \dd}}
 \end{align*}
 Importantly, each state $\ket{S, M}$ where the total spin $S$ is $S = 1$ is \textit{symmetric} with respect to the interchange of two electrons and the the spin $S = 0$ state is \textit{antisymmetric}. This anti-symmetry couples the spin states to the orbital components of the wave function. Since the spin $S=1$ states are symmetric, the wavefunction in position space with $S = 1$ must be anti-symmetric,
-\[ \psi_{1M} \br{\ve r_1, \ve r_2} = \f{1}{\sqrt{2}}\br{\varphi_1\br{\ve r_1} \varphi_2\br{\ve r_2} - \varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}} \ket{1, M} \]
+\[ \psi_{1M} \br{\ve r_1, \ve r_2} = \f{1}{\sqrt{2}}\br{\vp_1\br{\ve r_1} \vp_2\br{\ve r_2} - \vp_2\br{\ve r_1} \vp_1\br{\ve r_2}} \ket{1, M} \]
 Analogously,
-\[ \psi_{00} \br{\ve r_1, \ve r_2} = \f{1}{\sqrt{2}}\br{\varphi_1\br{\ve r_1} \varphi_2\br{\ve r_2} + \varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}} \ket{0, 0} \]
+\[ \psi_{00} \br{\ve r_1, \ve r_2} = \f{1}{\sqrt{2}}\br{\vp_1\br{\ve r_1} \vp_2\br{\ve r_2} + \vp_2\br{\ve r_1} \vp_1\br{\ve r_2}} \ket{0, 0} \]
 In order to determine the correction to the energy values due to the Coulumb interactions, use perturbation theory. Specifically, the $\psi_{1M}$ states are $3$-fold degenerate in position space but are distinct when spin states are included. Recalling that the corrections can be computed by calculating the matrix elements of the corrections $V$,
 \begin{align*}
 \bramidket{1,M}{V}{1,M}
-&= \iint \dif^3 r_1 \dif^3 r_2 \f{1}{\sqrt{2}}\br{\varphi^*_1\br{\ve r_1} \varphi^*_2\br{\ve r_2} - \varphi^*_2\br{\ve r_1} \varphi^*_1\br{\ve r_2}} V\br{\ve r_1 - \ve r_2} \f{1}{\sqrt{2}}\br{\varphi_1\br{\ve r_1} \varphi_2\br{\ve r_2} - \varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}}\\
-&= \f{1}{2}\iint \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bigg[\abs{\varphi_1\br{\ve r_1}}^2 \abs{\varphi_2\br{\ve r_2}}^2 + \abs{\varphi_1\br{\ve r_2}}^2 \abs{\varphi_2\br{\ve r_1}}^2  + \cdots\\
-&\qquad \cdots - \varphi_1^{*}\br{\ve r_1} \varphi_2^{*}\br{\ve r_2}\varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2} - \varphi_2^{*}\br{\ve r_1} \varphi_1^{*}\br{\ve r_2}\varphi_1\br{\ve r_1} \varphi_2\br{\ve r_2}\bigg]
+&= \iint \dif^3 r_1 \dif^3 r_2 \f{1}{\sqrt{2}}\br{\vp^*_1\br{\ve r_1} \vp^*_2\br{\ve r_2} - \vp^*_2\br{\ve r_1} \vp^*_1\br{\ve r_2}} V\br{\ve r_1 - \ve r_2} \f{1}{\sqrt{2}}\br{\vp_1\br{\ve r_1} \vp_2\br{\ve r_2} - \vp_2\br{\ve r_1} \vp_1\br{\ve r_2}}\\
+&= \f{1}{2}\iint \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bigg[\abs{\vp_1\br{\ve r_1}}^2 \abs{\vp_2\br{\ve r_2}}^2 + \abs{\vp_1\br{\ve r_2}}^2 \abs{\vp_2\br{\ve r_1}}^2  + \cdots\\
+&\qquad \cdots - \vp_1^{*}\br{\ve r_1} \vp_2^{*}\br{\ve r_2}\vp_2\br{\ve r_1} \vp_1\br{\ve r_2} - \vp_2^{*}\br{\ve r_1} \vp_1^{*}\br{\ve r_2}\vp_1\br{\ve r_1} \vp_2\br{\ve r_2}\bigg]
 \end{align*}
 Recognize that since the potential only depends on the distance $\abs{\ve r_1, \ve r_2}$, our integral over $\ve r_1,\ve r_2$ counts each term twice. Therefore,
 \begin{align*}
 \bramidket{1,M}{V}{1,M}
-&= \iint \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bigg[\abs{\varphi_1\br{\ve r_1}}^2 \abs{\varphi_2\br{\ve r_2}}^2 - \varphi_1^{*}\br{\ve r_1} \varphi_2^{*}\br{\ve r_2}\varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}\bigg]
+&= \iint \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bigg[\abs{\vp_1\br{\ve r_1}}^2 \abs{\vp_2\br{\ve r_2}}^2 - \vp_1^{*}\br{\ve r_1} \vp_2^{*}\br{\ve r_2}\vp_2\br{\ve r_1} \vp_1\br{\ve r_2}\bigg]
 \end{align*}
 Similarly, we can calculate the matrix element for $\ket{0,0}$ (the elements $\bramidket{0,0}{V}{1, M}$ are zero),
 \begin{align*}
 \bramidket{0,0}{V}{0,0}
-&= \iint \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bigg[\abs{\varphi_1\br{\ve r_1}}^2 \abs{\varphi_2\br{\ve r_2}}^2 + \varphi_1^{*}\br{\ve r_1} \varphi_2^{*}\br{\ve r_2}\varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}\bigg]
+&= \iint \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bigg[\abs{\vp_1\br{\ve r_1}}^2 \abs{\vp_2\br{\ve r_2}}^2 + \vp_1^{*}\br{\ve r_1} \vp_2^{*}\br{\ve r_2}\vp_2\br{\ve r_1} \vp_1\br{\ve r_2}\bigg]
 \end{align*}
 Notice that $\bramidket{0,0}{V}{0,0}$ differs from $\bramidket{1,M}{V}{1,M}$ by the sign in the second set of terms. To facilitate discussions, let $\s C$ define the \term{Coulomb integral $\s C$},
-\[ \s C = \iint \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bs{\abs{\varphi_1\br{\ve r_1}}^2 \abs{\varphi_2\br{\ve r_2}}^2} \]
+\[ \s C = \iint \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bs{\abs{\vp_1\br{\ve r_1}}^2 \abs{\vp_2\br{\ve r_2}}^2} \]
 Which is shared by both matrix elements and is a equivalent to a classical measurement of a Coulomb energy,
 \[ \s C = \iint \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \rho_1\br{\ve r_1}\rho_2\br{\ve r_2} \]
 The differing integral is called the \term{exchange integral $\s J$},
-\[ \s J = \iint \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bs{\varphi_1^{*}\br{\ve r_1} \varphi_2^{*}\br{\ve r_2}\varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}} \]
+\[ \s J = \iint \dif^3 r_1 \dif^3 r_2 V\br{\ve r_1 - \ve r_2} \bs{\vp_1^{*}\br{\ve r_1} \vp_2^{*}\br{\ve r_2}\vp_2\br{\ve r_1} \vp_1\br{\ve r_2}} \]
 In conclusion,
 \[ \bramidket{0,0}{V}{0,0} = \s C + \s J \qquad \bramidket{1,M}{V}{1,M} = \s C - \s J \]
 The state with higher (or lower) energy correction will depend on the sign of $\s J$. If $\s J > 0$, this leads to alignment of the individual spins and to ferro-magnetism. Recalling $\psi_{1M} \br{\ve r_1, \ve r_2}$,
-\[ \psi_{1M} \br{\ve r_1, \ve r_2} = \f{1}{\sqrt{2}}\br{\varphi_1\br{\ve r_1} \varphi_2\br{\ve r_2} - \varphi_2\br{\ve r_1} \varphi_1\br{\ve r_2}} \ket{1, M} \]
+\[ \psi_{1M} \br{\ve r_1, \ve r_2} = \f{1}{\sqrt{2}}\br{\vp_1\br{\ve r_1} \vp_2\br{\ve r_2} - \vp_2\br{\ve r_1} \vp_1\br{\ve r_2}} \ket{1, M} \]
 It can be seen that if we let $\ve r_1 = \ve r_2$ the antisymmetry forces,
 \[ \psi_{1M} \br{\ve r_1, \ve r_1} = 0 \]
 Therefore the probability of both electrons being found in the same place is zero and therefore the Coulomb interaction (which would normally tend to $\inf$ as $\ve r_1 \to \ve r_2$). Therefore the electrons tend toward their minimal energy state which corresponds to aligning their spins $S = 1$. An alternative way of seeing this is to consider $\s J$ in the case where $\ve r_1 = \ve r_2$, $\s J$ tends toward $\s C$ which is positive.\\
@@ -2664,6 +2665,7 @@ Therefore $\ket{\uu, \dd}$ is \textit{not} the ground state of for anti-ferromag
 \end{center}
 
 \section{Superconductivity}
+\subsection{Ginzburg-Landau Free Energy}
 Most metallic elements (except ferromagnets) and even some non-metals undergo a transition into a superconducting state as the temperature is lowered. Superconductivity is the phenomena where resistivity suddenly drops to zero below a critical temperature $T_c$,
 
 \begin{center}
@@ -2702,18 +2704,18 @@ Microscopically, superconductivity originates from the pairing of electrons. In 
 
 The most important qualitative properties of superconductors can be described using semi-phenomenological \term{Landau-Ginzburg theory}.\\
 
-Pairs of electrons form bosonic states and are considered bosons. Bosons are not constrained by the Pauli exclusion principle; any number of bosons may occupy the ground state. Therefore at zero or low temperatures, all the bosons will want to \textit{condense} into the lowest energy state; the state with zero momentum. In this state, all of the bosons are essentially described by a single wavefunction $\varphi\br{\ve r}$. Landau and Ginzburg realized that one may think of $\varphi\br{\ve r}$ as an order parameter, just like magnetization in a ferromagnet. Near $T_c$ we may then write down a Taylor expansion of the free energy $F$ in powers of $\varphi$. Since the free energy should not depend on the phase of $\varphi\br{\ve r}$, it may only depend on $\abs{\varphi}^2, \abs{\varphi}^4, \ldots$ and so on. Thus,
-\[ F = F_0 + V a \abs{\varphi}^2 + \f12 V b \abs{\varphi}^4 + \cdots \]
+Pairs of electrons form bosonic states and are considered bosons. Bosons are not constrained by the Pauli exclusion principle; any number of bosons may occupy the ground state. Therefore at zero or low temperatures, all the bosons will want to \textit{condense} into the lowest energy state; the state with zero momentum. In this state, all of the bosons are essentially described by a single wavefunction $\vp\br{\ve r}$. Landau and Ginzburg realized that one may think of $\vp\br{\ve r}$ as an order parameter, just like magnetization in a ferromagnet. Near $T_c$ we may then write down a Taylor expansion of the free energy $F$ in powers of $\vp$. Since the free energy should not depend on the phase of $\vp\br{\ve r}$, it may only depend on $\abs{\vp}^2, \abs{\vp}^4, \ldots$ and so on. Thus,
+\[ F = F_0 + V a \abs{\vp}^2 + \f12 V b \abs{\vp}^4 + \cdots \]
 Where $F_0$ is the free energy of the normal metallic state which we will omit henceforth. $V$ is the total volume. The ground state occurs when $F$ is minimized,
-\[ \f{1}{V} \pder{F}{\abs{\varphi}} = 2 a \abs{\varphi} + 2 b \abs{\varphi}^3 = 0 \]
+\[ \f{1}{V} \pder{F}{\abs{\vp}} = 2 a \abs{\vp} + 2 b \abs{\vp}^3 = 0 \]
 Therefore we have a ground state,
-\[ \abs{\varphi} = \sqrt{- \f{a}{b}} \]
+\[ \abs{\vp} = \sqrt{- \f{a}{b}} \]
 Which is possible when $a < 0$ ($b > 0$ always) when $T < T_c$. Therefore,
 \[ a \sim \f{T - T_c}{T_c} \]
 Therefore,
-\[ \abs{\varphi} \sim \sqrt{T_c - T} \sim \br{-t}^{\be} \qquad \be = \f12 \]
-To describe properties of superconductors it turns out to be very important to describe situations when $\varphi\br{\ve r}$ is not uniform. In this case we need to add extra terms to the free energy which depend on the non-uniformity of $\varphi\br{\ve r}$; specifically $\vdel \varphi\br{\ve r}$. Naively, the following should work by symmetry,
-\[ F = \kappa \intl \dif^3 r \abs{\vdel \varphi}^2 \]
+\[ \abs{\vp} \sim \sqrt{T_c - T} \sim \br{-t}^{\be} \qquad \be = \f12 \]
+To describe properties of superconductors it turns out to be very important to describe situations when $\vp\br{\ve r}$ is not uniform. In this case we need to add extra terms to the free energy which depend on the non-uniformity of $\vp\br{\ve r}$; specifically $\vdel \vp\br{\ve r}$. Naively, the following should work by symmetry,
+\[ F = \kappa \intl \dif^3 r \abs{\vdel \vp}^2 \]
 Where $\kappa > 0$. However, it does not really work since this violates a very important physical principle: {gauge invariance}. When we talked about electrons in a magnetic field, we saw that the momentum operator in a magnetic field was,
 \[ \hat p = - i \hbar \vdel  + \f{e}{c} \ve A \]
 which was a result of demanding gauge invariance. Consider a wavefunction $\psi\br{\ve r}$. Let us multiply it by an arbitrary position-dependent phase factor $\s X\br{\ve r}$.
@@ -2726,13 +2728,197 @@ and obtain,
 \[ \br{- i \hbar \vdel  + \f{e}{c} \ve A} \br{e^{i \s X \br{\ve r}}\psi\br{\ve r}} = e^{i \s X \br{\ve r}} \bs{- i \hbar \vdel  + \f{e}{c} \ve A} \psi\br{\ve r} \]
 This means that the Schrodinger equation for a particle of charge $-e$ in an electromagnetic field is invariant under the following transformation,
 \[ \psi \mapsto e^{i \s X} \psi \qquad \ve A \mapsto \ve A - \f{\hbar c}{e} \vdel \s X \]
-In our case, $\varphi\br{\ve r}$ is a wave-function of particles with charge $-2e$ (one for each electron). Thus the free energy must be invariant under the following,
-\[ \varphi \mapsto e^{i \s X} \varphi \qquad \ve A \mapsto \ve A - \f{\hbar c}{2e} \vdel \s X \]
+In our case, $\vp\br{\ve r}$ is a wave-function of particles with charge $-2e$ (one for each electron). Thus the free energy must be invariant under the following,
+\[ \vp \mapsto e^{i \s X} \vp \qquad \ve A \mapsto \ve A - \f{\hbar c}{2e} \vdel \s X \]
 This means that the free energy must have the following form,
-\[ F = \int \dif^3 r \bs{\f{1}{2 m^*} \abs{\br{-i \hbar \vdel  + \f{e^{*}}{c} \ve A}\varphi}^2 + a \abs{\varphi}^2 + \f{b}{2}\abs{\varphi}^4 + \f{\abs{\ve B}^2}{8\pi} } \]
-Where $e^* = 2e$ and $m^* = 2m$.\\
+\[ F = \int \dif^3 r \bs{\f{1}{2 m^*} \abs{\br{-i \hbar \vdel  + \f{e^{*}}{c} \ve A}\vp}^2 + a \abs{\vp}^2 + \f{b}{2}\abs{\vp}^4 + \f{\abs{\ve B}^2}{8\pi} - \f{\ve B \cdot \ve H}{4\pi}} \eq \label{eq:ginzburg-landau}\]
+Where $e^* = 2e$ and $m^* = 2m$ and $\ve H$ is an external magnetic field. \Cref{eq:ginzburg-landau} is called the \term{Ginzburg-Landau free energy} of a superconductor. \\
 
-\todo{Missed a week of lectures}
+The thermodynamic equilibrium of a state of a superconductor is determined by minimizing $F$ with respect to $\vp$. Determining the equilibrium points requires some variational calculus. Varying $F$ with respect to $\vp^*\br{\ve r}$,
+\begin{align*}
+    \de_{\vp^*} F
+    &= \int \dif \ve r \bs{a \phi \de \vp^* + b \vp \abs{\vp}^2 \de\vp^* + \f{1}{2m^{*}} \br{i\hbar \vdel \de \vp^* + \f{e^*}{c}\ve A \de \vp*}\cdot\br{-i\hbar \vdel \vp + \f{e^*}{c}\ve A \vp}} \eq \label{eq:glfe_variation}
+\end{align*}
+Consider the first term in the product expansion,
+\begin{align*}
+    &\int \dif \ve r \vdel \de \vp^* \cdot \br{-i\hbar \vdel + \f{e^*}{c}\ve A}\vp\\
+    &\qquad = - \int \dif \ve r \de \vp^* \vdel \cdot \br{-i\hbar \vdel + \f{e^*}{c}\ve A}\vp + \int \dif \ve r \vdel \cdot \bs{\de \vp^* \br{-i\hbar \vdel + \f{e^*}{c}\ve A} \vp} \\
+    &\qquad = - \int \dif \ve r \de \vp^* \vdel \cdot \br{-i\hbar \vdel + \f{e^*}{c}\ve A}\vp + \oint \de \vp^* \br{-i\hbar \vdel\vp + \f{e^*}{c}\ve A\vp}\cdot \dif \ve S
+\end{align*}
+Here $S$ is the surface of the sample. It is possible to neglect the surface term since it only determines the boundary conditions for $\vp$ in a finite sample. Therefore \cref{eq:glfe_variation} becomes,
+\begin{align*}
+    \de_{\vp^*} F
+    &= \int \dif \ve r \bs{a \vp + b \vp \abs{\vp}^2 + \f{1}{2m^*}\br{-i\hbar \vdel + \f{e^*}{c}\ve A}^2 \vp} \de \vp^* = 0
+\end{align*}
+The thermodynamic equilibrium occurs when $\de_{\vp^*} F = 0$. $\de_{\vp^*} F$ can only equal zero if the expression in the square brackets vanishes at every point in $\ve r$ (this is due to the Raymond-Dubois lemma). Thus we obtain the \term{first Ginzburg-Landau equation}.
+\[ \f{1}{2m^{*}}\br{-i\hbar \vdel + \f{e^*}{c} \ve A}^2 \vp + a \vp + b \abs{\vp}^2\vp = 0 \eq \label{eq:first_ginzburg-landau}\]
+\Cref{eq:first_ginzburg-landau} looks like a Schrodinger equation for a particle in a magnetic field, but it is clearly non-linear in $\vp$. Note however, that the magnetic field $\ve B = \vdel \times \ve A$ inside the sample is also a thermodynamic variable and we must also vary $F$ with respect to $\ve A$ analogous to how we varied $F$ with respect to $\vp^*$ in \cref{eq:glfe_variation}.
+\begin{align*}
+    \de_{\ve A} F
+    &= \int \dif \ve r \bigg[\f{1}{2m^*} \f{e^*}{c} \de \ve A \vp^* \cdot \br{-i\hbar \vdel + \f{e^*}{c}\ve A}\vp + \f{1}{2m^*}\br{i\hbar\vdel + \f{e^*}{c}\ve A}\vp^* \cdot \f{e^*}{c}\de \ve A \vp + \cdots \\
+    &\qquad \cdots +\f{1}{4\pi}\br{\vdel \times \ve A}\cdot \br{\vdel \times \de \ve A} - \f{\ve H}{4\pi}\cdot \br{\vdel \times \de \ve A} \bigg]
+\end{align*}
+Consider the last two terms, we make use of the following identity: $\ve a \cdot \br{\vdel \times \ve b} = \ve b \cdot \br{\vdel \times \ve a} - \vdel \cdot \br{\ve a \times \ve b}$,
+\begin{align*}
+    &\f{1}{4\pi} \int \dif \ve r \bs{\br{\vdel \times \ve A} - \ve H}\cdot \br{\vdel \times \de \ve A}
+    &\qquad= \f{1}{4\pi}\int \dif \ve r \de \ve A \cdot \vdel \times\br{\vdel \times \ve A} - \f{1}{4\pi} \oint \dif \ve S \cdot \bs{\de \ve A \times \br{\vdel \times \ve A - \ve H}}
+\end{align*}
+The surface integral vanishes because since the magnetic field at the surface of the conductor is fixed by boundary conditions. Thus $\de A|_{S} = \ve 0$. Thus we obtain,
+\begin{align*}
+    \de_{\ve A} F = \int \dif \ve r \bs{\f{-i\hbar e^*}{2 m^* c}\br{\vp^* \vdel \vp - \vp \vdel \vp^*} + \f{{e^*}^2}{m^* c^2} \abs{\vp}^2 \ve A + \f{1}{4\pi} \vdel \times \br{\vdel \times \ve A}}\cdot \de \ve A = 0
+\end{align*}
+Setting the integrand to be zero and using the fact that $\vdel \times \br{\vdel \times \ve A} = \vdel \times \ve B = \f{4\pi}{c}\ve j$ we obtain an expression for $\ve j$,
+\[ \ve j = \f{i\hbar e^*}{2m^*}\br{\vp^* \vdel \vp - \vp \vdel \vp^*} - \f{{e^*}^2}{m^* c}\abs{\vp}^2\ve A \eq \label{eq:second_ginzburg-landau} \]
+This is referred to as the \term{second Ginzburg-Landau equation}. We will now analyze the consequences of \cref{eq:first_ginzburg-landau,eq:second_ginzburg-landau}. We begin by assuming that $T < T_c$ so that we are in the superconducting state. If we assume that $\vp$ is uniform throughout the material, then \cref{eq:first_ginzburg-landau} becomes,
+\[ a \vp^* + b \abs{\vp}^2 \vp = 0 \]
+Therefore we have obtained a non-trivial solution to \cref{eq:first_ginzburg-landau},
+\[ \abs{\vp} = \sqrt{\f{\abs{a}}{b}} \]
+If we interpret $\vp\br{\ve r}$ as the wavefunction of the pair condensate, then $\abs{\vp}^2$ should have the meaning of the number density of pairs in the material,
+\[ \abs{\vp}^2 = n_s^* \]
+Letting $\vp\br{\ve r} = \sqrt{n_s^*} e^{i \te \br{\ve r}}$, then in a superconducting sample, we can expect $n_s^*$ to be uniform and only $\te\br{\ve r}$ to be depending on $\ve r$. Calculating the current via \cref{eq:second_ginzburg-landau} and we obtain,
+\[ \ve j = -\f{\hbar e^* n_s^*}{m^*}\br{\vdel \te + \f{e^*}{\hbar c} \ve A} \]
+Therefore the superconducting current $\ve j$ is directly related to the gradient of the phase of the macroscopic condensate wavefunction $\vdel \te \br{\ve r}$. This explains both the Meissner effect and the effect of zero resistance. First consider the Meissner effect. It is possible to remove the phase by a gauge transformation,
+\[ \ve j = - \f{{e^*}^2n_s^*}{m^* c} \ve A \eq \label{eq:j_proper_gauge}\]
+Then take the curl of both sides of \cref{eq:j_proper_gauge}. If $\vdel \times \ve B = \f{4\pi}{c}\ve j$,
+\[ \vdel \times \br{\vdel \times \ve B} = \f{4\pi}{c}\br{\vdel \times \ve j} = \vdel \br{\vdel \cdot \ve B} - \del^2 \ve B = - \del^2 \ve B \]
+\[ \vdel \times \ve j = -\f{{e^*}^2n_s^*}{m^* c}\vdel \times \ve A =  -\f{{e^*}^2n_s^*}{m^* c}\ve B\]
+Thus we obtain the following equation for $\ve B$,
+\[ \del^2 \ve B = \f{4\pi{e^*}^2n_s^*}{m^*c^2} \ve B = \f{1}{\la^2}\ve B \eq \label{eq:laplace_B}\]
+Where $\la$ can be interpreted as the penetration depth of the magnetic field into the superconductor,
+\[ \la = \sqrt{\f{m^* c^2}{4 \pi {e^*}^2 n_s^*}} \eq \label{eq:penetration_depth}\]
+If, for example, we place the magnetic field parallel to the superconductor with surface normal co-linear to the $\hat x$-axis,
+\begin{center}
+    \begin{tikzpicture}
+        \draw[thick, <->] (+0, +1.4) -- (+0, -1.4);
+        \draw[thick, ->] (-1, -0.75) -- (-1, +0.75) node[midway, left]{$\ve B$};
+        \foreach \i in {-3,...,3}{
+            \draw (+0,+\i/3) -- ++ (0.2, 0.2);
+        }
+        \path[fill=red, fill opacity=0.2] (+0, +1.4) -- (+0, -1.4) -- (+3, -1.4) -- (+3, +1.4) -- cycle;
+        \draw (+1.6, -1) node[]{Superconductor};
+        \draw[thick, ->] (+0.5, +0) -- ++ (+1, +0) node[right]{$\hat x$};
+    \end{tikzpicture}
+\end{center}
+then \cref{eq:laplace_B} determines that $\ve B$ only penetrates a distance of $\la$ into the superconductor,
+\[ \dder{B}{x} = \f{1}{\la^2}B \implies B\br{x} = B\br{0}e^{-x/\la} \]
+In simple, metallic superconductors, $\la \sim \SI{100}{\angstrom}$ which is much shorter than the characteristic size of the superconducting object. This gives the effect that the magnetic field is expelled from the superconductor and explains that \cref{eq:laplace_B} is the origin of the Meissner effect. \\
+
+\subsection{Persistent Currents}
+What about the effect of virtually zero resistivity and \term{persistent currents} in superconducting materials? This can be accomplished by setting up gradients of the phase $\te \br{\ve r}$ inside a superconducting ring.
+\begin{center}
+    \begin{tikzpicture}
+        \draw (0,0) circle (2);
+        \draw (0,0) circle (1);
+        \foreach \i in {0,...,35} {
+            \draw[thick, ->] ({1.2*cos(\i/36*360)}, {1.2*sin(\i/36*360)}) -- ({1.8*cos(\i/36*360)}, {1.8*sin(\i/36*360)});
+        }
+    \end{tikzpicture}
+\end{center}
+If we recall some important terms of \cref{eq:ginzburg-landau},
+\[ F = \int \dif^3 r \f{\hbar^2 {n_s^*}^2}{2 m^*} \br{\vdel \te + \f{e^*}{\hbar c} \ve A}^2 + \cdots \]
+In order to minimize $F$, we roughly want the following to hold inside the ring.
+\[ \vdel \te = -\f{e^*}{\hbar c}\ve A\]
+This implies that the current must flow at the edge of the ring creating the corresponding magnetic flux,
+\[ \ve j = \f{c}{4\pi} \vdel \times \ve B \]
+and therefore we must have,
+\[ \oint \vdel \te \cdot \dif \ve \ell = 2 \pi n \]
+Where $n$ is some integer. Going from the $n=1$ to $n=0$ state requires \textit{unwinding} the phase, which costs a huge amount of energy. The above also implies the quantization of magnetic flux inside the superconducting ring.
+\[ \oint \vdel \te \cdot \dif \ve \ell = 2 \pi n = - \f{e^*}{\hbar c}\oint \vdel A \cdot \dif \ve \ell = - \f{e^*}{\hbar c} \vp \]
+Thus the magnetic field is quantized in units of $\vp_0$,
+\[ \vp_0 = \f{hc}{e^*} = \f{hc}{2e} \]
+and a measurement of magnetic flux quantization proves that electrons pairing in superconductors is a valid model.
+
+\subsection{Type I \& Type II Superconductors}
+One important length scale for a superconductor is the penetration depth $\la$ of the magnetic field (\cref{eq:penetration_depth}) derived above via \cref{eq:laplace_B}.
+\[ \la = \sqrt{\f{m^* c^2}{4 \pi {e^*}^2 n_s^*}} \]
+There is another length scale, the coherence length $\xi$, which is related to how the superconducting order parameter $\vp\br{\ve r}$ varies spatially. Consider the first Ginzburg-Landau equation \cref{eq:first_ginzburg-landau},
+\[ \f{1}{2m^{*}}\br{-i\hbar \vdel + \f{e^*}{c} \ve A}^2 \vp + a \vp + b \abs{\vp}^2\vp = 0 \]
+Suppose there was no magnetic field $\ve A = \ve 0$ and look for a solution that satisfies the following boundary conditions,
+\[ \vp\br{x = 0} = 0 \qquad \vp\br{x \to \inf} = \sqrt{-\f{a}{b}} \eq \label{eq:normal_sc_bc}\]
+This solution represents a boundary between a normal and superconducting material,
+\[ - \f{\hbar^2}{2m^*}\dder{\vp}{x} + a \vp + b \abs{\vp^*}^3 \vp = 0 \eq \label{eq:normal_sc_equation}\]
+The solution to \cref{eq:normal_sc_equation} that satisfies the relevant boundary conditions \cref{eq:normal_sc_bc} is,
+\[ \varphi\br{x} = \sqrt{-\f{a}{b}} \tanh\br{\f{x}{\sqrt{2}\xi}} \]
+Where $\xi$ is the \term{coherence length},
+\[ \xi = \sqrt{\f{\hbar^2}{-2 m^* a}} \]
+The coherence length $\xi$ determines the extent to which the superconducting wavefunction will penetrate into the region associated with the normal material. The ratio of $\la$ and $\xi$, $\s X = \la / \xi$ is an important parameter. Superconductors with $\s X < 1/\sqrt{2}$ are called \term{type I superconductors}, while $\s X>1/\sqrt{2}$ are \term{type II superconductors}. \\
+
+Consider a superconductor in a magnetic field. When the field is expelled, the free energy density is given by,
+\[ f = a \abs{\vp}^2 + \f{b}{2}\abs{\vp}^4 \]
+The non-trivial solution occurs at $\abs{\vp}^2 = - \f{a}{b}$ which means that the free energy density becomes,
+\[ f = - \f{a^2}{b} + \f{a^2}{2 b} = -\f{a^2}{2b} \]
+Which is referred to as the \term{condensation energy}. The system gains condensation energy by transitioning into the superconducting state. However, magnetic energy is lost when the field is expelled from the superconductor:
+\[ f_m = \f{B^2}{8\pi} - \f{BH}{4\pi} = - \f{H^2}{8 \pi} \]
+When the magnetic field is large enough, the loss of magnetic energy will become larger than the gain in condensation energy and the superconductor will be destroyed and will allow the field to penetrate. This happens at the thermodynamic critical field $H_c$,
+\[ \f{H_c^2}{8\pi} = \f{a^2}{2b} \implies H_c = \sqrt{\f{4 \pi a^2}{b}} \]
+At this critical magnetic field, $a \sim T - T_c$ which implies $H_c \sim \abs{T - T_c}$.
+\begin{center}
+    \begin{tikzpicture}
+        \draw[thick,<->] (3, 0) node[right]{$T$} -- (0,0) node[below left]{$0$} -- (0, 3) node[above]{$H$};
+        % \draw[thick] (0,2) arc (90:0:2);
+        \draw[thick] (2, 0) node[below]{$T_c$};
+        \draw[thick] (0, 2) node[left]{$H_c$};
+        \draw[thick] (2, 0) node[below]{$T_c$};
+        \draw[thick] (1,0.6) node[]{Meissner};
+        \draw[thick] (2,2) node[]{Normal};
+        \draw[thick, scale=1.0,domain=0:2,samples=200,variable=\x,red] plot ({\x},{2*((2-\x)^(0.5))/((2)^(0.5))});
+    \end{tikzpicture}
+\end{center}
+Additionally the magnetic susceptibility $\chi$ produces perfect diamagnetism,
+\[ B = H + 4 \pi M = 0 \implies H = - 4 \pi M \implies \chi = \pder{M}{H} = -\f{1}{4\pi} \]
+\begin{center}
+    \begin{tikzpicture}
+        \draw[thick,<->] (3, 0) node[right]{$H$} -- (0,0) node[below left]{$0$} -- (0, 3) node[above]{$-M$};
+        \draw[thick, red] (0.5,0) arc (0:45:0.5) node[midway, right]{$1/4\pi$};
+        \draw[thick] (2, 0) node[below]{$H_c$};
+        % \draw[thick] (0, 2) node[left]{$\f12$};
+        \draw[thick, red] (0,0) -- (2,2);
+        \draw[thick, red, dashed] (2,0) -- (2,2);
+    \end{tikzpicture}
+\end{center}
+In reality, this only holds true for type I superconductors. \\
+
+Suppose we have constructed a large field $H$, much greater than $H_c$, and begin decreasing the field strength. We can expect the superconducting state to appear when the first Ginzburg-Landau equation (\cref{eq:first_ginzburg-landau}) has non-trivial solution. The field, at which this happens, is different from $H_c$, and is called ${H_c}_2$. Near ${H_c}_2$ we can expect $\abs{\vp}$ to be small, enabling us to neglect the non-linear term in \cref{eq:first_ginzburg-landau}. In this regime, we have,
+\[ \f{1}{2m^*}\br{-i\hbar \vdel + \f{e^*}{c} \ve A}^2 \vp = - a \vp \]
+This is simply the Schrodinger equation for a charged particle in a magnetic field with energy $-a$. If we choose the Landau gauge $\ve A = x B \hat y$, then \cref{eq:first_ginzburg-landau} becomes,
+\[ - \f{\hbar^2}{2m^*}\br{\pdder{}{x} + \pdder{}{z}} \vp + \f{1}{2m^*}\br{-i\hbar \pder{}{y} + \f{e^*}{c} B x}^2 \vp = - a \vp \]
+Conjecturing an ansatz of the following form $\vp\br{\ve r} = e^{i\br{k_y y + k_z z}} \phi\br{x}$, we obtain the auxiliary equation,
+\[ -\f{\hbar^2}{2m^*}\dder{\phi}{x} + \br{\f{e^*B}{c}}^2 x^2 \phi + \f{\hbar k_y e^* B}{c}x \phi = \br{-a - \f{\hbar^2k_y^2}{2m^*}- \f{\hbar^2k_z^2}{2m^*}} \phi\]
+This is simply a Schrodinger equation for a harmonic oscillator with the minimum of the potential energy shifted from $x = 0$ to $x = x_0 = - k_y \ell^2$ where have defined the usual \term{magnetic length},
+\[ \ell = \sqrt{\f{\hbar c}{e^* B}} \]
+Completing the square we obtain,
+\[ - \f{\hbar^2}{m^*}\dder{\phi}{x} + \f{m^* \w_c^2}{2}\br{x - x_0}^2 \phi = E \phi \]
+Where we have the defined the following constants,
+\[ E = - a - \f{\hbar^2 k_z^2}{2m^*} \qquad \w_c = \f{e^* B}{m^* c} \]
+The eigenenergies of this Schrodinger equation will have the following form,
+\[ E_n = \hbar \w_c \br{n + \f12} \]
+For this equation to have a solution, we must have $E = E_n$ for some $n \in \bc{1,2,\ldots}$. The largest value of $B$ for which a solution exists is found from,
+\[ E_0 = \f{\hbar \w_c}{2} = E\br{k_z = 0} = -a \implies \f{\hbar e^* B\tsb{max}}{2m^* c} = - a \implies B\tsb{max} = {H_c}_2 = - \f{2am^*c}{\hbar e^*}\]
+${H_c}_2$ can be expressed in terms of $\s X$ and $H_c$,
+\[ {H_c}_2 = - \f{2am^*c}{\hbar e^*} = \f{H_c}{-a \sqrt{\f{4\pi}{b}}} = \sqrt{2}\f{m^* c}{\hbar e^*} \sqrt{\f{b}{2\pi}} H_c \]
+Using $n_s = \abs{\vp}^2 = - \f{a}{b}$,
+\[ \s X = \f{\la}{\xi} = \sqrt{\f{m^* c^2}{4 \pi {e^*}^2 n_s}} \cdot \sqrt{\f{- 2 m^* a}{\hbar^2}} = \sqrt{\f{m^* c^2 b}{4 \pi {e^*}^2 \br{-a}}} \cdot \sqrt{\f{- 2 m^* a}{\hbar^2}} = \f{m^* c}{\hbar e^*} \sqrt{\f{b}{2\pi}} \]
+Thus we obtain,
+\[ {H_c}_2 = \sqrt{2}\s X H_c \]
+Which justifies the different behaviour of type I and II superconductors. When $\s X > 1 / \sqrt{2}$ we have ${H_c}_2 > H_c$.
+\begin{center}
+    \begin{tikzpicture}[scale=2]
+        \draw[thick,<->] (2.5, 0) node[right]{$T$} -- (0,0) node[below left]{$0$} -- (0, 2.5) node[above]{$H$};
+        % \draw[thick] (0,2) arc (90:0:2);
+        \draw[thick] (2, 0) node[below]{$T_c$};
+        \draw[thick] (0, 2) node[left]{${H_c}_2$};
+        \draw[thick] (0, 1) node[left]{${H_c}$};
+        \draw[thick] (2, 0) node[below]{$T_c$};
+        \draw[thick] (1,0.4) node[]{Meissner};
+        \draw[thick] (0.7,1.0) node[]{Vortex};
+        \draw[thick] (1.5,1.5) node[]{Normal};
+        \draw[thick, scale=1.0,domain=0:2,samples=200,variable=\x,red] plot ({\x},{1*((2-\x)^(0.5))/((2)^(0.5))});
+        \draw[thick, scale=1.0,domain=0:2,samples=200,variable=\x,red] plot ({\x},{2*((2-\x)^(0.5))/((2)^(0.5))});
+    \end{tikzpicture}
+\end{center}
+In type II superconductors, there exists a superconducting state at fields $H > H_c$. In this state the field penetrates inside the superconductor, yet $\abs{\vp}$ is still non-zero and the sample is superconducting.
+\[ {H_c}_2 = -\f{2a m^* c}{\hbar e^*} = - \f{2m^* a}{\hbar^2} \f{\hbar c}{e^*} = \f{\varphi_0}{2 \pi \xi^2} \]
+Where $\varphi_0 = h c /e^*$ is the flux quantum. Thus ${H_c}_2$ corresponds to one flux quantum per area $2 \pi \xi^2$.
 
 \subsection{Josephson Effects}
 Let us imagine we have two pieces of a superconducting material that are initially detached from each other and each are described by their own wavefunctions $\phi_1\br{\ve r}, \phi_2\br{\ve r}$.
