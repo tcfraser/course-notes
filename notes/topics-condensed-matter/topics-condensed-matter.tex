@@ -2745,7 +2745,7 @@ Consider the first term in the product expansion,
     &\qquad = - \int \dif \ve r \de \vp^* \vdel \cdot \br{-i\hbar \vdel + \f{e^*}{c}\ve A}\vp + \int \dif \ve r \vdel \cdot \bs{\de \vp^* \br{-i\hbar \vdel + \f{e^*}{c}\ve A} \vp} \\
     &\qquad = - \int \dif \ve r \de \vp^* \vdel \cdot \br{-i\hbar \vdel + \f{e^*}{c}\ve A}\vp + \oint \de \vp^* \br{-i\hbar \vdel\vp + \f{e^*}{c}\ve A\vp}\cdot \dif \ve S
 \end{align*}
-Here $S$ is the surface of the sample. It is possible to neglect the surface term since it only determines the boundary conditions for $\vp$ in a finite sample. Therefore \cref{eq:glfe_variation} becomes,
+Here $S$ is the surface of the sample. It is possible to neglect the surface term since it only determines the boundary conditions for $\vp$ in a finite sample (i.e. $\de \varphi^*|_S = 0$). Therefore \cref{eq:glfe_variation} becomes,
 \begin{align*}
     \de_{\vp^*} F
     &= \int \dif \ve r \bs{a \vp + b \vp \abs{\vp}^2 + \f{1}{2m^*}\br{-i\hbar \vdel + \f{e^*}{c}\ve A}^2 \vp} \de \vp^* = 0
@@ -2763,7 +2763,7 @@ Consider the last two terms, we make use of the following identity: $\ve a \cdot
     \f{1}{4\pi} \int \dif \ve r \bs{\br{\vdel \times \ve A} - \ve H}\cdot \br{\vdel \times \de \ve A}
     = \f{1}{4\pi}\int \dif \ve r \de \ve A \cdot \vdel \times\br{\vdel \times \ve A} - \f{1}{4\pi} \oint \dif \ve S \cdot \bs{\de \ve A \times \br{\vdel \times \ve A - \ve H}}
 \end{align*}
-The surface integral vanishes because since the magnetic field at the surface of the conductor is fixed by boundary conditions. Thus $\de \ve A|_{S} = \ve 0$. Thus we obtain,
+The surface integral vanishes because the magnetic field at the surface of the conductor is fixed by boundary conditions. Thus $\de \ve A|_{S} = \ve 0$. Thus we obtain,
 \begin{align*}
     \de_{\ve A} F = \int \dif \ve r \bs{\f{-i\hbar e^*}{2 m^* c}\br{\vp^* \vdel \vp - \vp \vdel \vp^*} + \f{{e^*}^2}{m^* c^2} \abs{\vp}^2 \ve A + \f{1}{4\pi} \vdel \times \br{\vdel \times \ve A}}\cdot \de \ve A = 0
 \end{align*}
@@ -2777,7 +2777,7 @@ If we interpret $\vp\br{\ve r}$ as the wavefunction of the pair condensate, then
 \[ \abs{\vp}^2 = n_s^* \]
 Letting $\vp\br{\ve r} = \sqrt{n_s^*} e^{i \te \br{\ve r}}$, then in a superconducting sample, we can expect $n_s^*$ to be uniform and only $\te\br{\ve r}$ to be depending on $\ve r$. Calculating the current via \cref{eq:second_ginzburg-landau} and we obtain,
 \[ \ve j = -\f{\hbar e^* n_s^*}{m^*}\br{\vdel \te + \f{e^*}{\hbar c} \ve A} \]
-Therefore the superconducting current $\ve j$ is directly related to the gradient of the phase of the macroscopic condensate wavefunction $\vdel \te \br{\ve r}$. This explains both the Meissner effect and the effect of zero resistance. First consider the Meissner effect. It is possible to remove the phase by a gauge transformation,
+Therefore the superconducting current $\ve j$ is directly related to the gradient of the phase of the macroscopic condensate wavefunction $\vdel \te \br{\ve r}$. This explains both the Meissner effect and the effect of zero resistance. First consider the Meissner effect. It is possible to remove the phase by a gauge transformation ($\ve A \mapsto \ve A - \f{\hbar c}{e^*} \vdel \te$),
 \[ \ve j = - \f{{e^*}^2n_s^*}{m^* c} \ve A \eq \label{eq:j_proper_gauge}\]
 Then take the curl of both sides of \cref{eq:j_proper_gauge}. If $\vdel \times \ve B = \f{4\pi}{c}\ve j$,
 \[ \vdel \times \br{\vdel \times \ve B} = \f{4\pi}{c}\br{\vdel \times \ve j} = \vdel \br{\vdel \cdot \ve B} - \del^2 \ve B = - \del^2 \ve B \]
@@ -2910,7 +2910,7 @@ Which justifies the different behaviour of type I and II superconductors. When $
         \draw[thick] (0, 1) node[left]{${H_c}$};
         \draw[thick] (2, 0) node[below]{$T_c$};
         \draw[thick] (1,0.4) node[]{Meissner};
-        \draw[thick] (0.7,1.0) node[]{Vortex};
+        \draw[thick] (0.9,1.2) node[]{Vortex};
         \draw[thick] (1.5,1.5) node[]{Normal};
         \draw[thick, scale=1.0,domain=0:2,samples=200,variable=\x,red] plot ({\x},{1*((2-\x)^(0.5))/((2)^(0.5))});
         \draw[thick, scale=1.0,domain=0:2,samples=200,variable=\x,red] plot ({\x},{2*((2-\x)^(0.5))/((2)^(0.5))});
@@ -3006,7 +3006,7 @@ If $V$ is a constant, i.e. we apply a external DC voltage and the phase response
 \[ \phi\br{t} = \phi\br{0} + \f{2eV}{\hbar}t \]
 The responding current however is oscillatory,
 \[ I\br{t} = I_c \sin \bs{\phi\br{0} + \f{2eV}{\hbar}t} \]
-This is referred to as the \term{AC-Josephson effect}. It is surprising to see an AC response from the application of a DC external voltage. The fact that the frequency of oscillation depends on the voltage $V$ and fundamental constants $\f{2e}{\hbar}$, measurements of this frequency represent our most precise measurement of $\f{e}{\hbar}$. Analyzing the Josephson effect in this way is incomplete; we have failed incorporate the effects of resistance of the junction.
+This is referred to as the \term{AC-Josephson effect}. It is surprising to see an AC response from the application of a DC external voltage. The fact that the frequency of oscillation depends on the voltage $V$ and fundamental constants $\f{2e}{\hbar}$, measurements of this frequency represent our most precise measurement of $\f{e}{\hbar}$. Analyzing the Josephson effect in this way is incomplete; we have failed incorporate the effects of resistance of the junction. If we subject the junction to a larger current than $I_c$ we will have some residual effects,
 
 \begin{itemize}
     \item $I < I_c$: the current flows without resistance, $\implies V = 0$
@@ -3014,15 +3014,94 @@ This is referred to as the \term{AC-Josephson effect}. It is surprising to see a
 \end{itemize}
 This is referred to as a \term{resistively shunted Josephson junction}. The total current can be decomposed into the two effects,
 \[ I = I_c \sin \te + \f{V}{R} \]
-Therefore given that the external potential is related to the time-derivative of the phase,
-\[ V = \f{\hbar}{2e} \pder{\te}{t} \]
+Where $I_c\sin\te$ is the supercurrent through the junction and $\f{V}{R}$ is the dissipative current which is modeled as a current passing through a resistor with resistance $R$.\\
+
+Therefore given that the the time-derivative of the phase $\pder{\te}{t}$ is governed by the external potential $V$,
+\[ V = \f{\hbar}{2e} \pder{\te}{t} \eq \label{eq:Vddtphi}\]
 We conclude that,
 \[ I = I_c \sin \te + \f{\hbar}{2 e R} \der{\te}{t} \]
 which is a differential equation for $\te\br{t}$ that can be solved.
 \[ \der{\te}{t} = \f{2eR}{\hbar}\br{I - I_c \sin \te} = \f{2 I e R}{\hbar} \br{1 - \f{I_c}{I}\sin \te} \]
-Letting $\la = I_c/I < 1$ and $\w_0 = \f{2IeR}{\hbar}$ we obtain the following non-linear differential equation,
+Let $\la$ and $\w_{0}$ be the following parameters,
+\[ \la \defined \f{I_c}{I} < 1 \qquad \w_0 = \f{2IeR}{\hbar}  \]
+Where $\la$ is dimensionless and $\w_0$ as units of frequency. Therefore we obtain the following non-linear differential equation,
 \[ \der{\te}{t} = \w_0\br{1 - \la \sin \te} \]
+Integrating this separable equation,
+\[ \w_0\cdot \br{t - t_0} = \intl \f{\dif \te}{1 - \la \sin \te} \]
+Since $\la < 1$ we have that the integrand never diverges and moreover, it can be solved analytically,
+\[ \tan \f{\te}{2} = \la + \sqrt{1 - \la^2} \tan\bs{\f12 \sqrt{1 -\la^2} \w_0 \br{t - t_0}} \]
+Therefore,
+\[ \te\br{t} = 2\tan^{-1}\bc{\la + \sqrt{1 - \la^2} \tan\bs{\f12 \sqrt{1 -\la^2} \w_0 \br{t - t_0}}} \]
+Using \cref{eq:Vddtphi} we obtain a time-dependent voltage $V\br{t}$ in response to a DC current,
+\[ V\br{t} = R \f{I^2 - I_c^2}{I - I_c \cos \w t} \qquad \w = \f{2e}{\hbar} R \sqrt{I^2 - I_c^2} \]
+If instead we are interested in the time averaged voltage $\ba{V}$, we can calculate that as well,
+\[ \ba{V} = \f{w}{2\pi}\int_{0}^{\f{2\pi}{\w}} V\br{t}\dif t = \f{\hbar \w}{2e} = R \sqrt{I^2 - I_c^2} \]
+\begin{center}
+    \begin{tikzpicture}
+        \draw[thick, <->] (0, +3) node[above]{$\ba{V}$} -- (0, 0) -- (+3, 0) node[right]{$I$};
+        \draw (+1, 0) node[below]{$I_c$};
+        \draw[thick,scale=1.0,domain=1:3,samples=200,variable=\I,red] plot ({\I},{sqrt(\I^2 - 1^2)});
+        \draw[thick,dashed,scale=1.0,domain=0:3,samples=200,variable=\I,red] plot ({\I},{\I});
+    \end{tikzpicture}
+\end{center}
+Evidently at high current $I$, the junction behaves classically.
 
+\subsection{SQUID - Superconducting Quantum Interference Device}
 
+Suppose we had two Josephson junctions (labeled $a, b$) arranged in the following configuration,
+\begin{center}
+    \begin{tikzpicture}
+        \pgfmathsetmacro{\dd}{0.25};
+        \pgfmathsetmacro{\ww}{2};
+        \pgfmathsetmacro{\tt}{1};
+        \pgfmathsetmacro{\zz}{0.8};
+        \draw (-\dd, +3*\tt) -- (-\dd, +2*\tt) -- (-\ww, +2*\tt) -- (-\ww, -2*\tt) -- (-\dd, -2*\tt) -- (-\dd, -3*\tt);
+        \draw (+\dd, +3*\tt) -- (+\dd, +2*\tt) -- (+\ww, +2*\tt) -- (+\ww, -2*\tt) -- (+\dd, -2*\tt) -- (+\dd, -3*\tt);
+        \draw[scale=0.8] (+\ww, +2*\tt) -- (-\ww, +2*\tt) -- (-\ww, -2*\tt) -- (+\ww, -2*\tt) -- cycle;
+        \draw[dashed, scale=0.9] (+\ww, +\zz) node[below]{$3$} -- (+\ww, +2*\tt) -- (-\ww, +2*\tt) -- (-\ww, +\zz) node[below]{$1$};
+        \draw[dashed, scale=0.9] (+\ww, -\zz) node[above]{$4$} -- (+\ww, -2*\tt) -- (-\ww, -2*\tt) -- (-\ww, -\zz) node[above]{$2$};
+        \draw[->] (+0, +3*\tt) node[above]{$I$} -- ++(0, -1);
+        \draw[<-] (+0, -3*\tt) node[below]{$I$} -- ++(0, +1);
+        \draw[] (-\ww*0.9, +0) node[draw, fill=black, fill opacity=0.2]{$a$};
+        \draw[] (-\ww*0.9, +0) node[]{$a$};
+        \draw[] (+\ww*0.9, +0) node[draw, fill=black, fill opacity=0.2]{$b$};
+        \draw[] (+\ww*0.9, +0) node[]{$b$};
+    \end{tikzpicture}
+\end{center}
+It is possible to calculate the relative phase differences between the labeled points $1,2,3,4$ by integrating along the dashed paths,
+\[ \ve j = - \f{\hbar e^* n_s}{m^*} \br{\vdel \te + \f{e^*}{\hbar c} \ve A} \]
+\[ \vdel \te = - \f{e^*}{\hbar c} \ve A \]
+\[ \te_3 - \te_1 + \te_2 - \te_4 = -\f{2e}{\hbar c} \oint \ve A \cdot \dif \ve \ell \]
+\[ \varphi_a = \te_2 - \te_1 \qquad \varphi_b = \te_4 - \te_3 \]
+Therefore the difference of the two phase differences across the two junctions is,
+\[ \varphi_a - \varphi_b = -\f{2e}{\hbar c}\phi = - 2\pi \f{\phi}{\phi_0} \qquad \phi_0 \defined \f{hc}{2e}\]
+Therefore the currents across the junctions are,
+\[ I_a = I_c \sin \varphi_a \qquad I_b = I_c \sin \varphi_b \]
+And the total interference becomes,
+\[ I = I_a + I_b = I_c \br{\sin \vp_A + \sin \vp_b} = 2 I_c \sin\br{\f{\vp_a + \vp_b}{2}}\cos\br{\f{\vp_a - \vp_b}{2}} \]
+Which corresponds to a macroscopic interference between the two junctions. But we also have that,
+\[ \vp_b = \vp_a + 2 \pi \f{\phi}{\phi_0} \]
+Therefore,
+\[ I = 2 I_c \sin\br{\f{\pi\phi}{\phi_0}}\cos\br{\vp_a + \f{\pi \phi}{\phi_0}} \]
+The maximal current through the SQUID for a given $\phi$ is therefore,
+\[ I\tsb{max} = 2 I_c \abs{\cos \br{\f{\pi \phi}{\phi_0}}} \]
+This current acts as very sensitive magnetometer.\\
+
+\subsection{Josephson Junction Qubit}
+A Josephson junction already has a two-level behave depending on whether $I > I_c$ or $I < I_c$. We have already consider the effect of the supercurrent $I_c \sin \te$ and the residual ordinary current $\f{V}{R}$ but here is a final term that heretofore we have neglected; namely that the Josephson junction also acts as a capacitor,
+\[ I = I_c \sin \te + \f{V}{R} + C \der{V}{t} \eq \label{eq:jjc}\]
+Where $V = \f{\hbar}{2e} \der{\te}{t}$ still holds. Therefore \cref{eq:jjc} can be written in terms of $\te$,
+\[ I = I_c \sin \te + \f{\hbar}{2eR}\der{\te}{t} + \f{\hbar C}{2e} \dder{\te}{t} \]
+\[ \dder{\te}{t} + \f{1}{RC} \der{\te}{t} + \f{2eI_c}{\hbar C} \sin \te = \f{2eI}{\hbar C} \eq \label{eq:jjc_te}\]
+Above we considered the over-damped limit of the above equation where $\f{1}{RC}$ is very large and we could neglect the second derivative term. Classically we can interpret $\te$ as the coordinate of a classical particle. Doing so, we can correct assign a physical interpretation to the terms in \cref{eq:jjc_te}. Doing so means that \cref{eq:jjc_te} acts as an equation of motion for a particle in a potential,
+\[ U\br{\te} \sim - I \te - I_c \cos \te \]
+Which is known as a \term{washboard potential} and can be visualized as a tilted cosine curve,
+\begin{center}
+    \begin{tikzpicture}
+        \draw[thick, <->] (0, +3) node[above]{$U\br{\te}$} -- (0, 0) -- (+5, 0) node[right]{$\te$};
+        \draw[thick,scale=1.0,domain=0:5,samples=200,variable=\I,red] plot ({\I},{2-0.3*\I-0.2*cos(deg(3*pi*\I))});
+    \end{tikzpicture}
+\end{center}
+When $I < I_c$, the particle is trapped in one of the minimum where $\der{\te}{t} = 0 \implies V = 0$. Alternatively if $I > I_c$ then the particle is moving down this potential and its motion gives rise to a finite voltage. For each of the potential wells, there will be a number of quantized energy levels that the particle can have. For sufficiently small junctions, it is possible to create a superposition between the lowest energy states of neighboring wells. This is called a \term{current-biased qubit}.
 
 \end{document}
