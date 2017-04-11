@@ -435,7 +435,7 @@ It can be seen that when $\de t > 0$, the curve in $d_x, d_y$ does not enclose t
     \draw[thick,scale=1.0,domain=-pi/2:pi/2,smooth,variable=\k,red] plot ({- (\t + \dt) - (\t - \dt)*cos(deg(2*\k))},{- (\t - \dt)*sin(deg(2*\k))});
     \draw[thick,] (-2*\t, -\tick) -- (-2*\t, \tick) node[above left]{$-2t$};
     \draw[thick,] (-2*\dt, -\tick) -- (-2*\dt, \tick) node[above left]{$-2\de t$};
-    \draw[thick,] (- 2, 2) node[]{$\de t > 0$};
+    \draw[thick,] (- 2, 2) node[]{$\de t < 0$};
 \end{tikzpicture}
 \end{center}
 It can be seen that the origin $\abs{\ve d} = 0$ is enclosed. This \textit{topological} difference is what leads us to call the $\de t < 0$ case as a \term{topological insulator} as apposed to an \term{ordinary insulator}. \\
