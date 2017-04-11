@@ -2770,7 +2770,7 @@ The surface integral vanishes because the magnetic field at the surface of the c
 Setting the integrand to be zero and using the fact that $\vdel \times \br{\vdel \times \ve A} = \vdel \times \ve B = \f{4\pi}{c}\ve j$ we obtain an expression for $\ve j$,
 \[ \ve j = \f{i\hbar e^*}{2m^*}\br{\vp^* \vdel \vp - \vp \vdel \vp^*} - \f{{e^*}^2}{m^* c}\abs{\vp}^2\ve A \eq \label{eq:second_ginzburg-landau} \]
 This is referred to as the \term{second Ginzburg-Landau equation}. We will now analyze the consequences of \cref{eq:first_ginzburg-landau,eq:second_ginzburg-landau}. We begin by assuming that $T < T_c$ so that we are in the superconducting state. If we assume that $\vp$ is uniform throughout the material, then \cref{eq:first_ginzburg-landau} becomes,
-\[ a \vp^* + b \abs{\vp}^2 \vp = 0 \]
+\[ a \vp + b \abs{\vp}^2 \vp = 0 \]
 Therefore we have obtained a non-trivial solution to \cref{eq:first_ginzburg-landau},
 \[ \abs{\vp} = \sqrt{\f{\abs{a}}{b}} \]
 If we interpret $\vp\br{\ve r}$ as the wavefunction of the pair condensate, then $\abs{\vp}^2$ should have the meaning of the number density of pairs in the material,
@@ -2836,7 +2836,7 @@ There is another length scale, the coherence length $\xi$, which is related to h
 Suppose there was no magnetic field $\ve A = \ve 0$ and look for a solution that satisfies the following boundary conditions,
 \[ \vp\br{x = 0} = 0 \qquad \vp\br{x \to \inf} = \sqrt{-\f{a}{b}} \eq \label{eq:normal_sc_bc}\]
 This solution represents a boundary between a normal and superconducting material,
-\[ - \f{\hbar^2}{2m^*}\dder{\vp}{x} + a \vp + b \abs{\vp^*}^3 \vp = 0 \eq \label{eq:normal_sc_equation}\]
+\[ - \f{\hbar^2}{2m^*}\dder{\vp}{x} + a \vp + b \abs{\vp}^2 \vp = 0 \eq \label{eq:normal_sc_equation}\]
 The solution to \cref{eq:normal_sc_equation} that satisfies the relevant boundary conditions \cref{eq:normal_sc_bc} is,
 \[ \varphi\br{x} = \sqrt{-\f{a}{b}} \tanh\br{\f{x}{\sqrt{2}\xi}} \]
 Where $\xi$ is the \term{coherence length},
@@ -2990,7 +2990,7 @@ Instead of solving this set of equations directly, we can make use of the conjug
 \end{split}
 \end{align*}
 Multiplying \cref{eq:ACJC,eq:ACJC_conj} by factors of $\phi_1, \phi_2$, we can sum the results and reconstruct the supercurrent,
-\[ i\hbar \br{\phi_2^* \phi_1 - \phi_1^* \phi_2} = i \hbar \br{\phi_1 \pder{\phi_2^*}{t} + \phi_1^* \pder{\phi_1}{t} - \phi_2 \pder{\phi_1^*}{t} - \phi_1^* \pder{\phi_2}{t}}\]
+\[ i\hbar \br{\phi_2^* \phi_1 - \phi_1^* \phi_2} = i \hbar \br{\phi_1 \pder{\phi_2^*}{t} + \phi_2^* \pder{\phi_1}{t} - \phi_2 \pder{\phi_1^*}{t} - \phi_1^* \pder{\phi_2}{t}}\]
 Substituting \cref{eq:ACJC},
 \begin{align*}
     i\hbar \br{\phi_2^* \phi_1 - \phi_1^* \phi_2}
@@ -3006,7 +3006,9 @@ If $V$ is a constant, i.e. we apply a external DC voltage and the phase response
 \[ \phi\br{t} = \phi\br{0} + \f{2eV}{\hbar}t \]
 The responding current however is oscillatory,
 \[ I\br{t} = I_c \sin \bs{\phi\br{0} + \f{2eV}{\hbar}t} \]
-This is referred to as the \term{AC-Josephson effect}. It is surprising to see an AC response from the application of a DC external voltage. The fact that the frequency of oscillation depends on the voltage $V$ and fundamental constants $\f{2e}{\hbar}$, measurements of this frequency represent our most precise measurement of $\f{e}{\hbar}$. Analyzing the Josephson effect in this way is incomplete; we have failed incorporate the effects of resistance of the junction. If we subject the junction to a larger current than $I_c$ we will have some residual effects,
+This is referred to as the \term{AC-Josephson effect}. It is surprising to see an AC response from the application of a DC external voltage. The fact that the frequency of oscillation depends on the voltage $V$ and fundamental constants $2e/\hbar$, measurements of this frequency represent our most precise measurement of ${e}/{\hbar}$. In combination with the quantum hall effect, which gives a precise measurement of $e^2/\hbar$, we obtain our most precise values for $e$ and $\hbar$, some of the most fundamental physical constants.\\
+
+Analyzing the Josephson effect in this way is incomplete; we have failed incorporate the effects of resistance of the junction. If we subject the junction to a larger current than $I_c$ we will have some residual effects,
 
 \begin{itemize}
     \item $I < I_c$: the current flows without resistance, $\implies V = 0$
@@ -3087,7 +3089,7 @@ Therefore,
 \[ I = 2 I_c \sin\br{\f{\pi\phi}{\phi_0}}\cos\br{\vp_a + \f{\pi \phi}{\phi_0}} \]
 The maximal current through the SQUID for a given $\phi$ is therefore,
 \[ I\tsb{max} = 2 I_c \abs{\cos \br{\f{\pi \phi}{\phi_0}}} \]
-This current acts as very sensitive magnetometer.\\
+Thus a SQUID device bay be used to measure magnetic flux and can act as very sensitive magnetometer.\\
 
 \subsection{Josephson Junction Qubit}
 A Josephson junction already has a two-level behave depending on whether $I > I_c$ or $I < I_c$. We have already consider the effect of the supercurrent $I_c \sin \te$ and the residual ordinary current $\f{V}{R}$ but here is a final term that heretofore we have neglected; namely that the Josephson junction also acts as a capacitor,
@@ -3104,6 +3106,140 @@ Which is known as a \term{washboard potential} and can be visualized as a tilted
         \draw[thick,scale=1.0,domain=0:5,samples=200,variable=\I,red] plot ({\I},{2-0.3*\I-0.2*cos(deg(3*pi*\I))});
     \end{tikzpicture}
 \end{center}
-When $I < I_c$, the particle is trapped in one of the minimum where $\der{\te}{t} = 0 \implies V = 0$. Alternatively if $I > I_c$ then the particle is moving down this potential and its motion gives rise to a finite voltage. For each of the potential wells, there will be a number of quantized energy levels that the particle can have. For sufficiently small junctions, it is possible to create a superposition between the lowest energy states of neighboring wells. This is called a \term{current-biased qubit}.
+Under this interpretation, the velocity of the particle $\der{\te}{t}$ corresponds to the voltage. This system behaves like a qubit because it can be in one of two states. When $I < I_c$, the particle is trapped in one of the minimum where $\der{\te}{t} = 0 \implies V = 0$. Alternatively if $I > I_c$ then the particle is moving down this potential and its motion gives rise to a finite voltage. For each of the potential wells, there will be a number of quantized energy levels that the particle can have. For sufficiently small junctions, it is possible to create a superposition between the lowest energy states of neighboring wells. This is called a \term{current-biased qubit}. The \textit{tilt} of the washboard potential is adjusted by the applied current and changes the energy difference between the ground state and the first excited states.\\
+
+Another type of qubit is a flux qubit. The free energy of a superconductor is given by \cref{eq:ginzburg-landau},
+\[ F = \f{\hbar^2 n_s}{2m^*} \int \dif^3 r \br{\vdel \te + \f{2e}{\hbar c} \ve A}^2 \]
+Now suppose we construct a ring as a circle of radius $R$.
+\begin{center}
+    \begin{tikzpicture}
+        \pgfmathsetmacro{\xx}{2};
+        \pgfmathsetmacro{\yy}{1};
+        \draw[thick] (0,0) circle ({sqrt(\xx^2 + \yy^2)});
+        \draw[thick, ->] (0,0) -- node[above]{$R$} (\xx, \yy);
+        \draw[thick, ->] (\xx, \yy) -- node[right]{$\hat \te$} ++({-0.5*\yy}, {0.5*\xx});
+    \end{tikzpicture}
+\end{center}
+Such that the magnetic flux is $\phi$,
+\[ \ve A = \f{\phi}{2\pi R} \hat \te \qquad \oint \ve A \cdot \dif \ve \ell = \phi\]
+Therefore the free energy becomes,
+\[ F = \f{\hbar^2 n_s}{2 m^*} \int \dif^3 r \br{\vdel \te + \f{2e}{\hbar c} \f{\phi}{2\pi R}\hat \te}^2 \]
+Furthermore since $\hat \te \propto \dif \ve \ell$,
+\[ \oint \vdel \te \cdot \dif \ve \ell = 2 \pi n \implies \vdel \te  = \f{n}{R} \hat \te  \]
+Therefore,
+\begin{align*}
+F
+&= \f{\hbar^2 n_s}{2 m^*} V \br{\f{n}{R} + \f{2e}{\hbar c} \f{\phi}{2\pi R}}^2 \\
+&= \f{\hbar^2 n_s V}{2 m^* R^2} \f{e^2}{\pi^2 \hbar^2 c^2}\br{\phi + n \phi_0}^2
+\end{align*}
+Defining $\la$ such that,
+\[\f{e^2 n_s V}{2 \pi m^* R^2 c^2} = \f{V}{8 \pi^3 \la^2 R^2} \]
+Yields,
+\[ F\br{\phi} = \f{V}{\br{2\pi}^3 \la^2 R^2} \br{\phi + n \phi_0}^2 \]
+Parameterized by the integer $n$ we have the following plot for the free energy,
+\begin{center}
+    \begin{tikzpicture}
+        \draw[thick, <->] (-3, +0) -- (+3, +0) node[right]{$\phi$};
+        \draw[thick,  ->] (+0, +0) -- (+0, +4) node[above]{$F\br{\phi}$};
+        \draw[thick, <->, scale=1.0,domain=-1:+1,samples=50,variable=\x,red] plot ({\x+2},{3*(\x)^2});
+        \draw[thick, <->, scale=1.0,domain=-1:+1,samples=50,variable=\x,red] plot ({\x+1},{3*(\x)^2});
+        \draw[thick, <->, scale=1.0,domain=-1:+1,samples=50,variable=\x,red] plot ({\x-0},{3*(\x)^2});
+        \draw[thick, <->, scale=1.0,domain=-1:+1,samples=50,variable=\x,red] plot ({\x-1},{3*(\x)^2});
+        \draw[thick, <->, scale=1.0,domain=-1:+1,samples=50,variable=\x,red] plot ({\x-2},{3*(\x)^2});
+        \draw[thick] (-2, +0.2) -- (-2, -0.2) node[below]{$-2\phi_0$};
+        \draw[thick] (-1, +0.2) -- (-1, -0.2) node[below]{$-\phi_0$};
+        \draw[thick] (+0, +0.2) -- (+0, -0.2) node[below]{$0$};
+        \draw[thick] (+1, +0.2) -- (+1, -0.2) node[below]{$\phi_0$};
+        \draw[thick] (+2, +0.2) -- (+2, -0.2) node[below]{$2\phi_0$};
+    \end{tikzpicture}
+\end{center}
+When $\phi = \phi_0/2$, there becomes two degenerate states in the neighboring wells. In this state, we have a two state system, a valid qubit.
+
+\subsection{dsadsa}
+
+Consider the structure of the vortex state in Type II superconductors. Suppose the external field is only \textit{slightly} less than ${H_{c}}_2$. Then the solution of the Ginzburg-Landau equation should be nearby the solutions to the linearized the GL equation:
+\[ - \f{\hbar^2}{2 m^*} \dder{\vp}{x} + \f{\w^{*} \w_{c}}{2} \br{x - x_0}^2 \vp = E \vp \]
+With $E = - a = \hbar \w_c /2$ and $H = {H_{c}}_{2}$,
+\[ {H_{c}}_2 = - \f{2am^{*}c}{\hbar e^{*}} \]
+The magnetic length $\ell$ is the usual,
+\[ \ell^2 = \f{\hbar c}{e^{*} H} = \f{\hbar c}{e^{*} {H_{c}}_{2}} = \f{\hbar c}{e^{*}}\br{- \f{2am^{*}c}{\hbar e^{*}}}^{-1} = -\f{\hbar^2}{2 a m^{*}} = \xi^2  \]
+Another way to understand ${H_{c}}_2$ is to consider that ${H_{c}}_2$ is the magnetic field at which the magnetic length length $\ell$ is equal to the coherence length $\xi$. The solutions of the linearized GL equation with $E = \hbar \w_c / 2$ have the following form up to a normalization constant,
+\[ \vp_{k_y}\br{x} = e^{-\f{1}{2\ell^2}\br{x + k_y \ell^2}^2} \]
+Since we have $\ell = \xi$,
+\[ \vp_{k_y}\br{x} = e^{-\f{1}{2\xi^2}\br{x + k_y \xi^2}^2} \]
+These represent the lowest order Landau level wavefunctions which should be familiar from the Integer Quantum Hall Effect. The true solutions for the non-linear GL equation for $H$ slightly less that ${H_{c}}_2$ should be a linear combination of these wavefunctions. The trick is to find the correct combination. Suppose we look for a solution that is uniform in the $z$-direction, i.e. the direction of the magnetic field. Then the lowest Landau level eigenstates have the following form,
+\[ \phi_{k_y}\br{\ve r} = e^{ik_y y}e^{-\f{1}{2\xi^2}\br{x + k_y \xi^2}^2} \]
+Alexei Alexeyevich Abrikosov's idea was to look for a solution, which is periodic in space. Let $d$ be the spatial period in the $y$-direction. The corresponding reciprocal lattice vectors then become,
+\[ G_{n} = Gn = \f{2\pi}{d}n \]
+where $n \in \Z$ is any integer. We can reduce the wavevector $k_y$ to the first Brillouin zone $k_{y} \mapsto k_y + Gn$, and look for a solution in the form of Bloch functions,
+\[ \phi_k\br{\ve r} = \sum_{n=-\inf}^{\inf} c_n e^{ik_y y + i Gn y}e^{-ik_x\br{k_y \xi^2 + G n \xi^2}} e^{-\f{1}{2 \xi^2} \br{x + k_y \xi^2 + G n \xi^2}^2} \]
+Where the appropriate coefficients $c_n$ need to be found. Note that if we take the coefficients $c_n$ to be periodic in $n$, then the solution will also be automatically period in the $x$-direction. Indeed, let $c_{n+m} = c_n$.
+\begin{align*}
+\phi_k\br{x + G \xi^2 m, y}
+&= \sum_{n=-\inf}^{\inf} c_n e^{ik_y y}e^{i Gn y}e^{-ik_x\br{k_y \xi^2 + G n \xi^2}} e^{-\f{1}{2 \xi^2} \br{x + k_y \xi^2 + G n \xi^2 + G m\xi^2}^2} \\
+&= \sum_{n=-\inf}^{\inf} c_{n-m} e^{ik_y y}e^{i Gn y}e^{-i Gm y}e^{-ik_x\br{k_y \xi^2 + G n \xi^2}}e^{ik_xGm\xi^2} e^{-\f{1}{2 \xi^2} \br{x + k_y \xi^2 + G n \xi^2}^2} \\
+&= e^{-i Gm y}e^{ik_xGm\xi^2}\sum_{n=-\inf}^{\inf} c_{n-m} e^{ik_y y}e^{i Gn y}e^{-ik_x\br{k_y \xi^2 + G n \xi^2}} e^{-\f{1}{2 \xi^2} \br{x + k_y \xi^2 + G n \xi^2}^2} \\
+&= e^{-i Gm y}e^{ik_xGm\xi^2}\phi_k\br{x,y}
+\end{align*}
+Therefore $\phi_k$ becomes periodic in the $x$-direction up to a phase factor. We need to choose the period $m$. The simplest choice, made originally by Abrikosov, is to take $m = 1$. It was latter shown that the lowest energy solution is actually obtained with $m=2$, but this is unimportant here. With $m = 1$, all $C_n = C$ are constant can we obtain,
+\[ \phi_k\br{\ve r} = c \sum_{n=-\inf}^{\inf} e^{ik_y y}e^{iGny} e^{-k_x G n\xi^2}e^{-ik_x k_y\xi^2}e^{-\f{1}{2\xi^2}\br{x + k_y\xi^2 + Gn\xi^2}^2} \eq \label{eq:mbf}\]
+Since $G\xi^2$ is the period in the $x$-direction, we must have,
+\[ G \xi^2 = \f{2\pi}{G} \implies G^2 = \f{2\pi}{\xi^2} \implies d = \sqrt{2\pi \xi^2}, G = \f{\sqrt{2\pi}}{\xi} \]
+The functions $\phi_k\br{\ve r}$ are called magnetic Bloch functions. Simplifying \cref{eq:mbf},
+\begin{align*}
+\phi_k\br{\ve r}
+&= c \sum_{n=-\inf}^{\inf} e^{ik_y y}e^{iGny} e^{-k_x G n\xi^2}e^{-ik_x k_y\xi^2}e^{-\f{1}{2\xi^2}\br{x + k_y\xi^2 + Gn\xi^2}^2} \\
+&= c e^{ik_y y}e^{-ik_x k_y\xi^2} \sum_{n=-\inf}^{\inf}e^{iGny} e^{-k_x G n\xi^2}e^{-\f{1}{2\xi^2}\br{x + k_y\xi^2 + Gn\xi^2}^2} \\
+&= c e^{ik_y y}e^{-ik_x k_y\xi^2} \sum_{n=-\inf}^{\inf}e^{iGny} e^{-k_x G n\xi^2}e^{-\f{1}{2\xi^2}\br{x + k_y\xi^2}^2}e^{-\f{2}{2\xi^2}\br{x + k_y\xi^2}\br{Gn\xi^2}}e^{-\f{1}{2\xi^2}\br{Gn\xi^2}^2} \\
+&= c e^{ik_y y}e^{-ik_x k_y\xi^2} \sum_{n=-\inf}^{\inf}e^{in\br{Gy - Gk_x\xi^2 + i G\br{x+k_y\xi^2}}} e^{-\f{G^2\xi^2}{2}n^2}e^{-\f{1}{2\xi^2}\br{x + k_y\xi^2}^2} \\
+&= c e^{ik_y y}e^{-ik_x k_y\xi^2}e^{-\f{1}{2\xi^2}\br{x + k_y\xi^2}^2} \sum_{n=-\inf}^{\inf}e^{in\br{Gy - Gk_x\xi^2 + i G\br{x+k_y\xi^2}}} e^{-\f{G^2\xi^2}{2}n^2} \\
+&= c e^{ik_y y}e^{-ik_x k_y\xi^2}e^{-\f{1}{2\xi^2}\br{x + k_y\xi^2}^2} \te_{3}\br{\f12\br{y - k_x\xi^2 + i \br{x+k_y\xi^2}}, e^{-\f{G^2 \xi^2}{2}}}
+\end{align*}
+Where $\te_3\br{z, q}$ is the \term{Jacobi $\te$-function}.
+\[ \te_{3}\br{z,q} = \sum_{n=-\inf}^{\inf} q^{n^2} e^{2niz} \]
+Where $z,q$ can be re-expressed as,
+\[ z = \f{iG}{2}\br{x+k_y \xi^2 - i \br{y - k_x\xi^2}} \]
+\[ q = e^{-\f{G^2\xi^2}{2}} = e^{-\pi} \]
+The most interesting property of the $\te_3\br{z,q}$ function for us is that its zeros occur at the following points,
+\[ z = \bs{m + \f12 + \br{n + \f12}\tau}\pi \]
+Where $m,n$ are integers and $q = e^{i\pi \tau}$. In our case $\tau = i$ meaning that,
+\[ z = \bs{m + \f12 + i\br{n + \f12}}\pi \]
+By equating real and imaginary parts we obtain,
+\begin{align*}
+\f{G}{2}\br{x + k_y \xi^2} &= \br{n + \f12}\pi \\
+\f{G}{2}\br{y - k_x \xi^2} &= \br{m + \f12}\pi
+\end{align*}
+\begin{align*}
+x + k_y \xi^2 &= \f{\pi\br{2n + 1}}{G} \\
+y - k_x \xi^2 &= \f{\pi\br{2m + 1}}{G}
+\end{align*}
+Then we get the following,
+\begin{align*}
+x &=  - k_y \xi^2 + \f{\pi\br{2n + 1}}{G} = \br{n+\f12}d - k_y \xi^2\\
+y &=  + k_x \xi^2 + \f{\pi\br{2m + 1}}{G} = \br{m+\f12}d + k_x \xi^2
+\end{align*}
+and therefore the zeros can be found at,
+\[ \ve r\tsb{zeros} = \br{n+\f12}d \hat x + \br{m+ \f12}d \hat y - \br{\ve k \times \hat z}\xi^2 \]
+Thus the zeros form a square lattice with lattice constant $d$. The phase of $\phi_k\br{\ve r}$ winds by $2\pi$ around each zero. These zeros thus represent vortices of the superconducting wavefunction. Returning to $\phi_k\br{\ve r}$, we can find the normalization constant $c$,
+\begin{align*}
+    \int \dif^2 r \abs{\phi_k \br{\ve r}}^2
+    &= \abs{c}^2 \cdot \int\dif x \dif y e^{-\f{1}{\xi^2}\br{x + k_y \xi^2}^2} \sum_{n,m = -\inf}^{\inf} e^{i G\br{n-m}\br{y - k_y \xi^2}}e^{-G\br{n+m}\br{x+ k_y \xi^2}}e^{-\f{G^2\xi^2}{2}\br{n^2+m^2}}
+\end{align*}
+Recalling that we have the following identity,
+\[ \f{1}{L_y} \int_{- \f{L_y}{2}}^{\f{L_y}{2}} \dif y e^{i G \br{n - m} y} = \de_{n,m} \]
+We obtain,
+\begin{align*}
+    \int \dif^2 r \abs{\phi_k \br{\ve r}}^2
+    &= \abs{c}^2 L_y \int_{-\inf}^{\inf}\dif x e^{-\f{1}{\xi^2}x^2} \sum_{n = -\inf}^{\inf} e^{-2 G nx - G^2 \xi^2 n^2} \\
+    &= \abs{c}^2 L_y \sum_{n = -\inf}^{\inf} \sqrt{\pi}\xi e^{\f{4G^2n^2\xi^2}{4} - G^2\xi^2n^2}
+\end{align*}
+The sum over $n$ only extends to finite values of $\abs{n}$, such that $Gn \xi^2$ is within the limits of the superconducting sample. This means that $- \f{L_x}{2} \leq G n \xi^2 \leq \f{L_x}{2}$, i.e. there are $L_x / G \xi^2$ allowed values of $n$. Then we obtain,
+\[ \abs{c}^2 L_y \sqrt{\pi} \xi \f{L_x}{G \xi^2} = 1 \]
+Therefore,
+\[ \abs{c}^2 = \f{G \xi}{L_xL_y \sqrt{\pi}} = \f{\sqrt{2\pi}}{L_xL_y \sqrt{\pi}} = \f{\sqrt{2}}{L_x L_y} \]
+Thus taking $c$ to be real,
+\[  c = \f{2^{1/4}}{\sqrt{L_xL_y}} = \sqrt{\f{\sqrt{2\pi} \xi}{L_x}} \f{1}{\sqrt{\sqrt{\pi} L_y \xi}} \]
+Where $\br{\sqrt{\sqrt{\pi} L_y \xi}}^{-1}$ is the coefficient of the lowest Landau level wavefunction in the Landau gauge. Finally,
+\[ \phi_k\br{\ve r} = \f{2^{1/4}}{\sqrt{L_xL_y}} e^{- ik_xk_y \xi^2} e^{i k_y y} e^{-\f{1}{2 \xi^2}\br{x + k_y \xi^2}^2} \cdot \te_3\bs{\f{G}{2}\br{y - k_x \xi^2 + i \br{x + k_y \xi^2}}, e^{-\pi}} \]
 
 \end{document}
