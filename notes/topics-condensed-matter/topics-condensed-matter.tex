@@ -2831,15 +2831,15 @@ and a measurement of magnetic flux quantization proves that electrons pairing in
 \subsection{Type I \& Type II Superconductors}
 One important length scale for a superconductor is the penetration depth $\la$ of the magnetic field (\cref{eq:penetration_depth}) derived above via \cref{eq:laplace_B}.
 \[ \la = \sqrt{\f{m^* c^2}{4 \pi {e^*}^2 n_s^*}} \]
-There is another length scale, the coherence length $\xi$, which is related to how the superconducting order parameter $\vp\br{\ve r}$ varies spatially. Consider the first Ginzburg-Landau equation \cref{eq:first_ginzburg-landau},
+There is another length scale, the coherence length $\xi$, which is related to how the superconducting order parameter $\vp\br{\ve r}$ varies spatially. Specfiically we will consider a superconducting material for all $x > 0$ placed adjacent to a normal metal for all $x < 0$. Consider the first Ginzburg-Landau equation \cref{eq:first_ginzburg-landau},
 \[ \f{1}{2m^{*}}\br{-i\hbar \vdel + \f{e^*}{c} \ve A}^2 \vp + a \vp + b \abs{\vp}^2\vp = 0 \]
-Suppose there was no magnetic field $\ve A = \ve 0$ and look for a solution that satisfies the following boundary conditions,
-\[ \vp\br{x = 0} = 0 \qquad \vp\br{x \to \inf} = \sqrt{-\f{a}{b}} \eq \label{eq:normal_sc_bc}\]
-This solution represents a boundary between a normal and superconducting material,
+Suppose there was no magnetic field $\ve A = \ve 0$. Therefore, deep into the superconducting material we expect $\vp \sim \sqrt{-a/b}$. In the normal metal, far away from the superconductor, we expect $\vp \sim 0$, i.e. the superconducting state $\vp$ vanishes. Therefore we are looking for a solution to \cref{eq:first_ginzburg-landau} that satisfies the following boundary conditions,
+\[ \vp\br{x = -\inf} = 0 \qquad \vp\br{x \to +\inf} = \sqrt{-\f{a}{b}} \eq \label{eq:normal_sc_bc}\]
+Therefore, \cref{eq:first_ginzburg-landau} can be examined for $\vp$ constant in both $y,z$ directions.
 \[ - \f{\hbar^2}{2m^*}\dder{\vp}{x} + a \vp + b \abs{\vp}^2 \vp = 0 \eq \label{eq:normal_sc_equation}\]
 The solution to \cref{eq:normal_sc_equation} that satisfies the relevant boundary conditions \cref{eq:normal_sc_bc} is,
-\[ \varphi\br{x} = \sqrt{-\f{a}{b}} \tanh\br{\f{x}{\sqrt{2}\xi}} \]
-Where $\xi$ is the \term{coherence length},
+\[ \varphi\br{x} = \f12\sqrt{-\f{a}{b}} \bs{1 + \tanh\br{\f{x}{\sqrt{2}\xi}}} \]
+Where $\xi$ is termed the \term{coherence length} and measures how quickly the superconducting state transitions across the boundary $x=0$,
 \[ \xi = \sqrt{\f{\hbar^2}{-2 m^* a}} \]
 The coherence length $\xi$ determines the extent to which the superconducting wavefunction will penetrate into the region associated with the normal material. The ratio of $\la$ and $\xi$, $\s X = \la / \xi$ is an important parameter. Superconductors with $\s X < 1/\sqrt{2}$ are called \term{type I superconductors}, while $\s X>1/\sqrt{2}$ are \term{type II superconductors}. \\
 
