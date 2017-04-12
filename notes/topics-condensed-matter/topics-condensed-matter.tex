@@ -2692,8 +2692,7 @@ A related feature is that that specific heat $C_v$ of the material jumps at the 
 \end{tikzpicture}
 \end{center}
 
-There are two possible ways one could interpret the features of superconductivity. The first is that superconductors are simply ideal metals in which below $T_c$ the electrons do not experience scattering. Alternatively, it could be that a superconductor is a new state of matter. If was the \term{Meissner effect} in the 1930s involving liquefied Helium that first demonstrated the latter; superconductivity is genuinely a new state of matter. In an ideal metal with $\rho = 0$ when $T < T_c$
-if we were to start from $T > T_c$ we have $\vdel \times \ve E = - \f1c \pder{\ve B}{t}$. When $T < T_c$ we have that $\pder{\ve B}{t} = 0$ (for an ideal metal). Therefore $\be E = \rho \ve j \implies \ve E = \ve 0$ inside the sample when $T < T_c$. This is fundamentally different than a superconductor which expels all magnetic fields below $T_c$.
+There are two possible ways one could interpret the features of superconductivity. The first is that superconductors are simply ideal metals in which below $T_c$ the electrons do not experience scattering. Alternatively, it could be that a superconductor is a new state of matter. If was the \term{Meissner effect} in the 1930s involving liquefied Helium that first demonstrated the latter; superconductivity is genuinely a new state of matter. In an ideal metal with $\rho = 0$, if we were to start from $T > T_c$ we have $\vdel \times \ve E = - \f1c \pder{\ve B}{t}$. When $T < T_c$ we have that $\pder{\ve B}{t} = 0$ (for an ideal metal). Therefore $\ve E = \rho \ve j \implies \ve E = \ve 0$ inside the sample when $T < T_c$. This is fundamentally different than a superconductor which expels all magnetic fields below $T_c$.
 \begin{itemize}
     \item Ideal metal: $T < T_c$, $\rho = 0$, $\ve B = \text{const}$
     \item Superconductor: $T < T_c$, $\rho = 0$, $\ve B = \ve 0$
@@ -2820,13 +2819,17 @@ In order to minimize $F$, we roughly want the following to hold inside the ring.
 \[ \vdel \te = -\f{e^*}{\hbar c}\ve A\]
 This implies that the current must flow at the edge of the ring creating the corresponding magnetic flux,
 \[ \ve j = \f{c}{4\pi} \vdel \times \ve B \]
-and therefore we must have,
-\[ \oint \vdel \te \cdot \dif \ve \ell = 2 \pi n \]
-Where $n$ is some integer. Going from the $n=1$ to $n=0$ state requires \textit{unwinding} the phase, which costs a huge amount of energy. The above also implies the quantization of magnetic flux inside the superconducting ring.
+Where $\ve B = \vdel \times \ve A$. If we integrate $\ve A$ around the loop $\di \s A$,
+\[ \oint_{\di \s A} \vdel A \cdot \dif \ve \ell = \int_{\s A} \ve B \cdot \dif \ve a = \phi \]
+we obtain the magnetic flux $\phi$ through the loop. Surprisingly, this magnetic flux is quantized. If we compare $\phi$ to the integral of $\vdel \te$, by the fundamental theorem of calculus for line integrals,
+\[ \oint_{\di \s A} \vdel \te \cdot \dif \ve \ell = \oint_{\ga\bs{\ve q, \ve p}} \vdel \te \cdot \dif \ve \ell = \te\br{\ve q} - \te\br{\ve p} \]
+where $\ga\bs{\ve q, \ve p}$ is a parameterized curve in $\di \s A$. Since the loop is closed, $\ve q = \ve p$. Moreover, since $\te\br{\ve r}$ represents the phase of the superconducting wave-function $\vp\br{\ve r} \propto e^{i \te \br{\ve r}}$, we must have $\te\br{\ve q} - \te\br{\ve p} = 2\pi n$, i.e. the phase completes an integer number of windings for some integer $n$. Therefore,
 \[ \oint \vdel \te \cdot \dif \ve \ell = 2 \pi n = - \f{e^*}{\hbar c}\oint \vdel A \cdot \dif \ve \ell = - \f{e^*}{\hbar c} \vp \]
-Thus the magnetic field is quantized in units of $\vp_0$,
+Which leads one to conclude that the flux $\vp$ is quantized by $n$,
+\[ \vp = -\f{hc}{e^{*}} n \defined \phi_0 n \]
+Where $\phi_0$ measures the magnetic field quantization unit.
 \[ \vp_0 = \f{hc}{e^*} = \f{hc}{2e} \]
-and a measurement of magnetic flux quantization proves that electrons pairing in superconductors is a valid model.
+The sign of $\phi_0$ indicates which direction the winding occurs and is irrelevant. Transitioning from the $n=1$ to $n=0$ state requires \textit{unwinding} the phase, which costs a huge amount of energy. Therefore, we see that the current $\ve j$ is maintain in discrete increments.
 
 \subsection{Type I \& Type II Superconductors}
 One important length scale for a superconductor is the penetration depth $\la$ of the magnetic field (\cref{eq:penetration_depth}) derived above via \cref{eq:laplace_B}.
