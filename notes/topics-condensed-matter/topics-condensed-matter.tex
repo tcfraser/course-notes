@@ -2820,7 +2820,7 @@ In order to minimize $F$, we roughly want the following to hold inside the ring.
 This implies that the current must flow at the edge of the ring creating the corresponding magnetic flux,
 \[ \ve j = \f{c}{4\pi} \vdel \times \ve B \]
 Where $\ve B = \vdel \times \ve A$. If we integrate $\ve A$ around the loop $\di \s A$,
-\[ \oint_{\di \s A} \vdel A \cdot \dif \ve \ell = \int_{\s A} \ve B \cdot \dif \ve a = \phi \]
+\[ \oint_{\di \s A} \ve A \cdot \dif \ve \ell = \int_{\s A} \vdel \times \ve A \cdot \dif \ve a = \int_{\s A} \ve B \cdot \dif \ve a = \phi \]
 we obtain the magnetic flux $\phi$ through the loop. Surprisingly, this magnetic flux is quantized. If we compare $\phi$ to the integral of $\vdel \te$, by the fundamental theorem of calculus for line integrals,
 \[ \oint_{\di \s A} \vdel \te \cdot \dif \ve \ell = \oint_{\ga\bs{\ve q, \ve p}} \vdel \te \cdot \dif \ve \ell = \te\br{\ve q} - \te\br{\ve p} \]
 where $\ga\bs{\ve q, \ve p}$ is a parameterized curve in $\di \s A$. Since the loop is closed, $\ve q = \ve p$. Moreover, since $\te\br{\ve r}$ represents the phase of the superconducting wave-function $\vp\br{\ve r} \propto e^{i \te \br{\ve r}}$, we must have $\te\br{\ve q} - \te\br{\ve p} = 2\pi n$, i.e. the phase completes an integer number of windings for some integer $n$. Therefore,
@@ -3006,9 +3006,9 @@ Substituting \cref{eq:ACJC},
 Therefore we obtain the \term{Josephson relation} for $\te$,
 \[ \pder{\te}{t} = \f{2eV}{\hbar} \]
 If $V$ is a constant, i.e. we apply a external DC voltage and the phase response becomes linear in time,
-\[ \phi\br{t} = \phi\br{0} + \f{2eV}{\hbar}t \]
+\[ \te\br{t} = \te\br{0} + \f{2eV}{\hbar}t \]
 The responding current however is oscillatory,
-\[ I\br{t} = I_c \sin \bs{\phi\br{0} + \f{2eV}{\hbar}t} \]
+\[ I\br{t} = I_c \sin \bs{\te\br{0} + \f{2eV}{\hbar}t} \]
 This is referred to as the \term{AC-Josephson effect}. It is surprising to see an AC response from the application of a DC external voltage. The fact that the frequency of oscillation depends on the voltage $V$ and fundamental constants $2e/\hbar$, measurements of this frequency represent our most precise measurement of ${e}/{\hbar}$. In combination with the quantum hall effect, which gives a precise measurement of $e^2/\hbar$, we obtain our most precise values for $e$ and $\hbar$, some of the most fundamental physical constants.\\
 
 Analyzing the Josephson effect in this way is incomplete; we have failed incorporate the effects of resistance of the junction. If we subject the junction to a larger current than $I_c$ we will have some residual effects,
@@ -3161,7 +3161,7 @@ When $\phi = \phi_0/2$, there becomes two degenerate states in the neighboring w
 \subsection{Abrikosov Vortex Lattice}
 
 Consider the structure of the vortex state in Type II superconductors. Suppose the external field is only \textit{slightly} less than ${H_{c}}_2$. Then the solution of the Ginzburg-Landau equation should be nearby the solutions to the linearized the GL equation:
-\[ - \f{\hbar^2}{2 m^*} \dder{\vp}{x} + \f{\w^{*} \w_{c}}{2} \br{x - x_0}^2 \vp = E \vp \]
+\[ - \f{\hbar^2}{2 m^*} \dder{\vp}{x} + \f{m \w_{c}}{2} \br{x - x_0}^2 \vp = E \vp \]
 With $E = - a = \hbar \w_c /2$ and $H = {H_{c}}_{2}$,
 \[ {H_{c}}_2 = - \f{2am^{*}c}{\hbar e^{*}} \]
 The magnetic length $\ell$ is the usual,
