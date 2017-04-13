@@ -1863,11 +1863,11 @@ Tends towards the following step function,
     0 & \vep > \mu
 \end{cases} \]
 At this temperature scale, the chemical potential is effectively the the Fermi energy $\vep\tsb{F}$. This makes sense; the typically energy $\mu$ to add/remove an electron would be the equivalent to the edge state fermions $\vep\tsb{F}$. As the magnetic field increases the Landau occupancy $N_{\phi}$ increases letting $\vep\tsb{F}$ tend to zero at higher and higher energies. For a fixed total number of particles $N$,
-\[ \nu = \left\lfloor{\f{N}{N_{\phi}}}\right\rfloor \eq \label{eq:nu}\]
+\[ \nu = \left\lfloor{\f{N}{N_{\phi}}}\right\rfloor \qquad \nu = 0, 1, 2,\ldots \eq \label{eq:nu}\]
 Gives the total number of \textit{completely} filled Landau levels while the Fermi energy $\vep\tsb{F}$ is simply the energy of the maximal Landau level that is at least partially occupied.
 \[ \vep\tsb{F} = E_{\nu + 1} = \hbar \w_c \br{\nu + \f32} \eq \label{eq:fermi} \]
 Therefore $\vep\tsb{F} = \mu$ becomes a function of $B$ for fixed $N$,
-\[ \mu\br{B} = \hbar \f{e B}{mc} \br{\left\lfloor{\f{N{2 \pi \hbar c}}{{L_xL_y eB}}}\right\rfloor + \f12} \]
+\[ \mu\br{B} = \hbar \f{e B}{mc} \br{\left\lfloor{\f{N{2 \pi \hbar c}}{{L_xL_y eB}}}\right\rfloor + \f32} \]
 For fixed $N$ as $B \to \inf$, the floor function eventually reaches zero and the chemical potential tends as a straight line with slope $\f{\hbar e}{2mc}$. In order to plot this function consider setting $\hbar = c = e = m = 1$ and defining fixed $\ti n = 2 \pi N / (L_xL_y)$,
 \[ \mu\br{B} = B \br{\left\lfloor{\f{\ti n}{B}}\right\rfloor + \f32} \]
 \begin{center}
@@ -2491,7 +2491,7 @@ We define the \term{degree of spin polarization} $\xi$ such that,
 Where $\xi_i = \xi$ is uniform as well for simplicity. Now we have \cref{eq:hubbard_ham} taking the following form,
 \[ H = -t \sum_{\ba{ij}\si}\br{\ket{i \si}\bra{j \si} + \ket{j \si}\bra{i \si}} + \f{Un}{2} \sum_{i} \br{n_{i \uu} + n_{i \dd}} - \f{Un\xi}{2} \sum_{i} \br{n_{i \uu} - n_{i \dd}} - \f{Un^2}{4} \br{1 - \xi^2} N \eq \label{eq:hubbard_ham_working_1}\]
 Performing a Fourier transform on the lattice site basis states $\ket{i \si}$,
-\[ \ket{i \si} = \f{1}{\sqrt{N}} \sum_{k} \ket{k \si} \braket{k \si}{i \si} = \f{1}{\sqrt{N}} \sum_{k} \ket{k \si} e^{- i \ve k \cdot \ve R_i} \]
+\[ \ket{i \si} = \sum_{k} \ket{k \si} \braket{k \si}{i \si} = \f{1}{\sqrt{N}} \sum_{k} \ket{k \si} e^{- i \ve k \cdot \ve R_i} \]
 We obtain the usual localization energies,
 \[ \vep_k = - 2 t \sum_{\ve a} \cos \br{\ve k \cdot \ve a} \]
 Such that \cref{eq:hubbard_ham_working_1} becomes,
